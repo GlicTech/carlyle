@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>62.0</apiVersion>
+    <assignments>
+        <name>Update_Target</name>
+        <label>Update Target</label>
+        <locationX>50</locationX>
+        <locationY>503</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.pro_LOI_Target__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Contract.pro_Roll_Off_Target__c</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <decisions>
+        <name>LOI_is_empty</name>
+        <label>LOI is empty</label>
+        <locationX>182</locationX>
+        <locationY>287</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Is_Not_empty</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.LOI_Date__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Contract</targetReference>
+            </connector>
+            <label>Is Not empty</label>
+        </rules>
+    </decisions>
+    <description>PP-11/12-Assing LOI target based on LOI date</description>
+    <environments>Default</environments>
+    <interviewLabel>Prodigy-Before Update flow trigger {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Prodigy-Before Update flow trigger</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Contract</name>
+        <label>Get Contract</label>
+        <locationX>50</locationX>
+        <locationY>395</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Update_Target</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>leaseworks__Aircraft__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.leaseworks__Aircraft__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>leaseworks__Lease__c</object>
+        <sortField>leaseworks__Lease_End_Date_New__c</sortField>
+        <sortOrder>Desc</sortOrder>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>LOI_is_empty</targetReference>
+        </connector>
+        <object>leaseworks__Aircraft_Proposal__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>
