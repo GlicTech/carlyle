@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Amount_Accrued__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <formula>CASE(TEXT(leaseworks__Transaction_Type__c)
+,&#39;MR Accrued&#39;, IF(leaseworks__Utilization_Status__c==&#39;Approved By Lessor&#39;, leaseworks__Supplemental_Rent_Utilization__r.leaseworks__Total_Maintenance_Reserve__c, null)
+,&#39;MR Claim Accrued&#39;, IF(leaseworks__Claim_Status__c==&#39;Approved&#39;, leaseworks__Claim_Amount__c, null)
+,leaseworks__Amount_Invoiced__c)</formula>
+    <inlineHelpText>Auto-calculated field, showing accrued amount as per the source Document. This amount affects Running Balance (Accrued). NULL for  transactions updating only cash balance.</inlineHelpText>
+    <label>Amount (Accrued)</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

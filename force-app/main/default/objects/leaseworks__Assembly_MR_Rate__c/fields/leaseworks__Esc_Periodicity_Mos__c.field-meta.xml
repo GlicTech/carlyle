@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Esc_Periodicity_Mos__c</fullName>
+    <defaultValue>12</defaultValue>
+    <deprecated>false</deprecated>
+    <description>Enter the number of periodicity in months in which the MR Rates will be escalated throughout the lease term.
+
+Below are the usages-
+1. Rate Schedule Creation (Generate MR Schedule Button):
+Utilized in the calculation of escalation factor for creating MR Rate records in Supplement Rent. If not provided, the default value is 12.
+
+2. LLP Price Catalog Summary Record Update:
+Used when updating Rate Schedules (MR Rate) under Supplement Rent records. The Escalation Periodicity (Months) field is considered in the calculation, defaulting to 12 if blank.
+
+3. Fx Monthly Output Record Creation:
+Applied in the calculation of Fx Monthly Output records, considering the Escalation Periodicity (Months) field. Defaults to 12 if blank on the Supplement Rent record.
+
+4. MR Calculation on Supplement Rent Utilization:
+The Escalation Periodicity (Months) value is considered in the calculation. If blank, it defaults to 12 during MR calculation on Supplement Rent utilization.&quot;</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Enter the number of periodicity in months in which the MR Rates will be escalated throughout the lease term.</inlineHelpText>
+    <label>Escalation Periodicity (Months)</label>
+    <precision>2</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

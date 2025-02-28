@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>Supplemental Rent Rate Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <validationRules>
+        <errorMessage><!-- Negative numbers are not allowed in the Rate field. Please correct it and save again --></errorMessage>
+        <name>leaseworks__Negative_numbers_validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please select the &quot;Rate Based On&quot; option according to the values entered in the &quot;Rate&quot; or &quot;Ratio Table&quot; fields. Select &quot;Rate&quot; if a rate is entered, and select &quot;Ratio Table&quot; if the ratio table is entered. The &quot;None&quot; value is not valid for MR calculation. --></errorMessage>
+        <name>leaseworks__Rate_Based_On_none_validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please provide either a Rate or a Ratio Table for MR calculation based on the selected &apos;Rate Based On&apos; option. --></errorMessage>
+        <name>leaseworks__Rate_Based_On_options_validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Since &apos;Rate Based On&apos; is set to Rate, please remove the Ratio Table to ensure the correct MR calculation --></errorMessage>
+        <name>leaseworks__Rate_Based_On_rate_validation</name>
+    </validationRules>
+</CustomObjectTranslation>

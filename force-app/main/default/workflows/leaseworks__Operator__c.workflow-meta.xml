@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>leaseworks__Approval_of_new_operator</fullName>
+        <description>Operator - Approve New Request</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>leaseworks__LeaseWorksTemplates/leaseworks__Customer_Approval_Flow</template>
+    </alerts>
+    <alerts>
+        <fullName>leaseworks__Customer_Approval_Email_Alert</fullName>
+        <description>Customer Approval Email Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>leaseworks__LeaseWorksTemplates/leaseworks__Customer_Approval_Flow</template>
+    </alerts>
+    <alerts>
+        <fullName>leaseworks__Operator_Send_Email_To_Rep_On_Assignment</fullName>
+        <description>Operator Send Email To Rep On Assignment</description>
+        <protected>false</protected>
+        <recipients>
+            <field>leaseworks__Marketing_Rep_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>leaseworks__LeaseWorksTemplates/leaseworks__Operator_Assigned</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>leaseworks__Final_Rejection_Actions</fullName>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Declined</literalValue>
+        <name>Final Rejection Actions</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Operator_Approval</fullName>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Approved</literalValue>
+        <name>Operator Approval</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Operator_Set_Alias</fullName>
+        <field>leaseworks__Alias__c</field>
+        <formula>Name</formula>
+        <name>Operator Set Alias</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Operator_Set_Resp_Email</fullName>
+        <description>Set email id of the Rep when Rep is assigned/updated.</description>
+        <field>leaseworks__Marketing_Rep_Email__c</field>
+        <formula>null</formula>
+        <name>Operator Set Resp Email</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Revenue_SC</fullName>
+        <field>leaseworks__Revenue_Check__c</field>
+        <formula>IF( leaseworks__Revenue__c   &gt;  0 , 
+          TEXT( leaseworks__Revenue__c ) , &quot;revenue not specified&quot;)</formula>
+        <name>Revenue SC</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Set_Final_Approval_Status</fullName>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Approved</literalValue>
+        <name>Set Final Approval Status</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Set_Final_Rejection_Status</fullName>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Declined</literalValue>
+        <name>Set Final Rejection Status</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Set_Fnal_Rejection_Status</fullName>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Declined</literalValue>
+        <name>Set Fnal Rejection Status</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Set_Initial_Approval</fullName>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Pending Approval</literalValue>
+        <name>Set Initial Approval Status</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Set_Initial_Approval_Status</fullName>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Pending Approval</literalValue>
+        <name>Set Initial Approval Status</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_Customer_Status_Pending</fullName>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Pending Approval</literalValue>
+        <name>Update Customer Status Pending</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_Operator_Status_Declined</fullName>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Declined</literalValue>
+        <name>Update Operator Status Declined</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_Operator_Status_Open</fullName>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Pending Approval</literalValue>
+        <name>Update Operator Status Open</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_Operator_status_Approved</fullName>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Approved</literalValue>
+        <name>Update Operator status Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>leaseworks__Operator Approval</fullName>
+        <active>false</active>
+        <description>To send a notification when a new operator is created</description>
+        <formula>TRUE</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__Operator Set Alias</fullName>
+        <actions>
+            <name>leaseworks__Operator_Set_Alias</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Set Alias by copying Name if Alias is empty</description>
+        <formula>AND(!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c,  ISBLANK(leaseworks__Alias__c),  PRIORVALUE( Name ) != Name)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__OperatorSendMailToResp</fullName>
+        <actions>
+            <name>leaseworks__Operator_Send_Email_To_Rep_On_Assignment</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>leaseworks__Operator_Set_Resp_Email</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Send an email alert to the Marketing Officer when a new operator is assigned to them</description>
+        <formula>AND(!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c,!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_Assignment_Notification__c,ISCHANGED( leaseworks__Marketing_Representative_Contact__c ))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__Revenue Status</fullName>
+        <actions>
+            <name>leaseworks__Revenue_SC</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>True</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+</Workflow>

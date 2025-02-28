@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>leaseworks__UpdateRevisionName</fullName>
+        <description>Update standard Name field</description>
+        <field>Name</field>
+        <formula>IF( (LEN(Name)+LEN(Text(leaseworks__Version_Number__c))+4)&lt;=80,
+Name &amp; &#39; - V&#39; &amp; Text(leaseworks__Version_Number__c),
+(LEFT(Name, 80-((LEN(Text(leaseworks__Version_Number__c))+4))) &amp; &#39; - V&#39; &amp; Text(leaseworks__Version_Number__c)))</formula>
+        <name>UpdateRevisionName</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>leaseworks__UpdateRevisionNameField</fullName>
+        <actions>
+            <name>leaseworks__UpdateRevisionName</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Update name field</description>
+        <formula>!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+</Workflow>

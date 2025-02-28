@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__TermRequiredIfTermsCommunicted</fullName>
+    <active>false</active>
+    <errorConditionFormula>false /*Deal_Proposal__r.Terms_Communicated__c  &amp;&amp; 
+
+(ISBLANK(Term_Mos__c) || 
+Term_Mos__c &lt; 0)*/</errorConditionFormula>
+    <errorDisplayField>leaseworks__Term_Mos__c</errorDisplayField>
+    <errorMessage>Terms Communicated is selected on Marketing Prospect. Please enter Term (Mos).</errorMessage>
+</ValidationRule>

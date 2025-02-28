@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__EnforceCurrentTSForEngine</fullName>
+    <active>false</active>
+    <description>If Type is &#39;Engine%&#39; then Current thrust Setting is required .</description>
+    <errorConditionFormula>false /*IF( ISBLANK(Engine_Thrust_Setting__c ) 
+   &amp;&amp; CONTAINS(TEXT(Type__c) , &#39;Engine&#39;)
+ , true, false)*/</errorConditionFormula>
+    <errorDisplayField>leaseworks__Engine_Thrust_Setting__c</errorDisplayField>
+    <errorMessage>Current thrust Setting is a mandatory field .</errorMessage>
+</ValidationRule>

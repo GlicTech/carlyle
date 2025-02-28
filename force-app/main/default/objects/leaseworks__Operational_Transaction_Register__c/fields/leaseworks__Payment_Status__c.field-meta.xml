@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Payment_Status__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Prepayment functionality is already deprecated. Keeping the lookup to track historical prepayments</description>
+    <externalId>false</externalId>
+    <formula>IF(!ISBLANK(leaseworks__Invoice__c),TEXT(leaseworks__Invoice__r.leaseworks__Payment_Status__c),
+IF(!ISBLANK(leaseworks__Payments_Credits__c),&#39;&#39;,
+IF(!ISBLANK(leaseworks__Prepayment__c),&#39;&#39;,
+IF(!ISBLANK(leaseworks__Payables__c),TEXT(leaseworks__Payables__r.leaseworks__Payment_Status__c),
+IF(!ISBLANK(leaseworks__Payouts__c),&#39;&#39;,
+IF(!ISBLANK(leaseworks__Credit_Memo__c),&#39;&#39;,&#39;&#39;))))))</formula>
+    <label>Payment Status</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

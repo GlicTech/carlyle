@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__PrePayDtCannotBeWithInGracePeriodDt</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND ( leaseworks__Prepayment_Date__c &gt;= leaseworks__Loan__r.leaseworks__Grace_Period_Start_Date__c, leaseworks__Prepayment_Date__c &lt;=  leaseworks__Loan__r.leaseworks__Grace_Period_End_Date__c )</errorConditionFormula>
+    <errorMessage>Pre-payment record cannot be created for the grace period</errorMessage>
+</ValidationRule>

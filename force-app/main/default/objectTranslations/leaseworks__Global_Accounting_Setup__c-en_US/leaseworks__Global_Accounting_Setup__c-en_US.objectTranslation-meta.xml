@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>Global Accounting Setup Layout</layout>
+        <sections>
+            <label><!-- Straight Line Revenue Setting --></label>
+            <section>Straight Line Revenue Setting</section>
+        </sections>
+    </layouts>
+    <validationRules>
+        <errorMessage><!-- Deferred Basis is required if Deferred Revenue Method is Fixed Number of Days. Please enter value for Deferred Basis. --></errorMessage>
+        <name>leaseworks__Accrual_Days_Basis_Is_Mandatory</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Deferred Basis should be between 30.0 and 31.0 --></errorMessage>
+        <name>leaseworks__Accrual_Days_Basis_greater_than_Zero</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please select a value for Deferred Revenue Method. --></errorMessage>
+        <name>leaseworks__Accrual_Method_is_Mandatory</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Bank Fee Accounting is required to proceed. --></errorMessage>
+        <name>leaseworks__Bank_Fee_Accounting_Required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Default Accounting Profile is mandatory --></errorMessage>
+        <name>leaseworks__Default_Accounting_Setup_is_mandatory</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Deferred Basis is applicable only for Fixed Number of Days method --></errorMessage>
+        <name>leaseworks__DeferredBasis_SetNoOfDaysMethod</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Interest, MR and SD Accounting Methods are required to proceed. --></errorMessage>
+        <name>leaseworks__Interest_Accounting_Method_Mandatory</name>
+    </validationRules>
+</CustomObjectTranslation>

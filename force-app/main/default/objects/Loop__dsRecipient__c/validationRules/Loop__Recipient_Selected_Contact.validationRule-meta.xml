@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Loop__Recipient_Selected_Contact</fullName>
+    <active>true</active>
+    <description>Recipient must be related to a contact if Selected Contact is chosen.</description>
+    <errorConditionFormula>AND( ISPICKVAL( Loop__dsStaticRecipient__c, &quot;Selected Contact&quot;),  Loop__dsContact__c = &quot;&quot;)</errorConditionFormula>
+    <errorDisplayField>Loop__dsContact__c</errorDisplayField>
+    <errorMessage>Selected contact static recipient requires a contact.</errorMessage>
+</ValidationRule>

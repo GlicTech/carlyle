@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Age_Years__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <formula>if(( ISNULL(leaseworks__Info_Date__c ) || ISBLANK(leaseworks__Vintage_From__c) ),null,if((leaseworks__Info_Date__c &gt; DATE(VALUE(leaseworks__Vintage_From__c), 7, 1)),(leaseworks__Info_Date__c - DATE(VALUE(leaseworks__Vintage_From__c), 7, 1))/365.25,0))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Age of the aircraft (considering Vintage and Info Date)</inlineHelpText>
+    <label>Age (Years)</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>1</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

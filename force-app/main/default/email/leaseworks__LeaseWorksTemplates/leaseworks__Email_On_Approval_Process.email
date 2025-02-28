@@ -1,0 +1,5 @@
+<messaging:emailTemplate subject="{! relatedTo.Invoice_Number_F__c } {! IF(relatedTo.Status__c == 'Submitted','is submitted for approval','Approval process completed') }" relatedToType="leaseworks__Invoice__c">
+<messaging:htmlEmailBody >
+    <c:InvoiceSubmittedApprovalTemplate recordId="{!relatedTo.Id}" emailType="invoice"/>
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>

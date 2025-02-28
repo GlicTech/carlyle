@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Rate_Reset_On_Last_Escalation_Date__c</fullName>
+    <defaultValue>false</defaultValue>
+    <deprecated>false</deprecated>
+    <description>1. This is entered by user because we are not setting up this field in backend code.
+2. When doing MR Calculation on supplement Rent Utilzation records-
+          2.1. If Rate Reset On Last Escalation Date? field is not blank on supplement rent then we are taking first escalation date value from Last Escalation date, if Last Escalation date is not blank, in further calculation.
+          2.2. If Next Escalation Date field on supplement rent is less than &quot;For Month Ending&quot; field Supplement Rent Utilizaton then we are setting up &quot;this field value to false.
+3. Using by Forecast to generates monthly scenario outputs
+          3.1 If Rate Reset On Last Escalation Date? field is not blank on supplement rent then we are taking first escalation date value from Last Escalation date, if Last Escalation date is not blank, in calculation.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>If the MR Rate was reset on Last Escalation Date. If checked, rate will be further escalated from the last reset date.</inlineHelpText>
+    <label>Rate Reset On Last Escalation Date?</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

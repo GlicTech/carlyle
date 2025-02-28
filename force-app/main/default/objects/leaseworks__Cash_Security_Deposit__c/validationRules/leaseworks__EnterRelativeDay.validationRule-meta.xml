@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__EnterRelativeDay</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(ISPICKVAL( leaseworks__Deposit_Due_Date_Type__c , &quot;Relative&quot;),ISBLANK( leaseworks__Relative_Due_Day__c ))</errorConditionFormula>
+    <errorDisplayField>leaseworks__Deposit_Due_Date_Type__c</errorDisplayField>
+    <errorMessage>For &quot;Relative&quot; due date type ,please enter value in the &quot;Relative Due Day&quot; field.</errorMessage>
+</ValidationRule>

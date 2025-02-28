@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Loop__Recipient_Selected_User</fullName>
+    <active>true</active>
+    <description>Recipient must be related to a user if Selected User is chosen.</description>
+    <errorConditionFormula>AND( ISPICKVAL( Loop__dsStaticRecipient__c, &quot;Selected User&quot;),  Loop__dsUser__c  = &quot;&quot;)</errorConditionFormula>
+    <errorDisplayField>Loop__dsUser__c</errorDisplayField>
+    <errorMessage>Selected user static recipient requires a user.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Validate_Month_End_Date</fullName>
+    <active>true</active>
+    <description>Validates that the last day of the month is chosen. If the user chooses 28 or 29 February OR chooses 30 or 31 for other months it would be valid. In valid for all others.</description>
+    <errorConditionFormula>leaseworks__Month_Ending__c!=(
+	date(
+		year(leaseworks__Month_Ending__c)+
+			(if(month(leaseworks__Month_Ending__c)==12,1,0)
+			),
+			(mod(month(leaseworks__Month_Ending__c),12)+1
+			),		1
+	)-1
+		
+)</errorConditionFormula>
+    <errorDisplayField>leaseworks__Month_Ending__c</errorDisplayField>
+    <errorMessage>Period ending day has to be the last day of the month</errorMessage>
+</ValidationRule>

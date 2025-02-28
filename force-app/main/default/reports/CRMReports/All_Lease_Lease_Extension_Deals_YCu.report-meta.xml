@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CHILD_NAME</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>leaseworks__Aircraft_Proposal__c.leaseworks__Rent__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>leaseworks__Aircraft_Proposal__c.leaseworks__Term_Mos__c</field>
+    </columns>
+    <description>Report for Claudia.</description>
+    <filter>
+        <criteriaItems>
+            <column>leaseworks__Marketing_Activity__c.leaseworks__Deal_Type__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Lease,Lease Extension</value>
+        </criteriaItems>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>leaseworks__Aircraft_Proposal__c.leaseworks__MSN_E__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>All Lease / Lease Extension Deals</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntityCustomEntity$leaseworks__Marketing_Activity__c$leaseworks__Aircraft_Proposal__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>leaseworks__Marketing_Activity__c.Today__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

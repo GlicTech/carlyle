@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>leaseworks__Smart_Lease_Logo</letterhead>
+    <name>New Aircraft Approval</name>
+    <style>formalLetter</style>
+    <subject>Request: Approval of Aircraft {!leaseworks__Aircraft__c.Name} Required</subject>
+    <textOnly>{!leaseworks__Aircraft__c.OwnerFullName} has created an aircraft {!leaseworks__Aircraft__c.Name} type {!leaseworks__Aircraft__c.leaseworks__Aircraft_Type__c} registered in {!leaseworks__Aircraft__c.leaseworks__Country_Of_Registration__c} .
+
+
+Your approval is required before this Aircraft can be added in to the system.
+
+Please login to LeaseWorks and approve at your earliest convenience:
+
+http://salesforce.com/login</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

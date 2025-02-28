@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Invoice_Amount__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Amount to be invoiced to the lessor
+20150527 - CA EE Invoice amount need to be split between CA amount and LLP amount. Creating two new fields (CA and LLP Amounts) and converting this field to store the sum of both. Will use a WF to keep this field updated. Adding a new formula field pointing to this to show on the screen.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Amount to be invoiced to the lessor</inlineHelpText>
+    <label>_Total Invoice Amount</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

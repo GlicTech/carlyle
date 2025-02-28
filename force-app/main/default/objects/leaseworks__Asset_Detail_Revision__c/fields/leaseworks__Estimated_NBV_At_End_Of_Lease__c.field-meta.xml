@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Estimated_NBV_At_End_Of_Lease__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <formula>if( text(leaseworks__Aircraft__r.leaseworks__Contractual_Status__c)==&#39;On Order&#39;
+,leaseworks__Y_Hidden_Estimated_NBV_at_the_EOL__c
+,
+
+leaseworks__NBV__c - ((leaseworks__Monthly_Depreciation__c/30)* ABS((leaseworks__LeaseTerm_Expires_Date__c - leaseworks__NBV_As_of_Date__c ) ))
+)</formula>
+    <label>Z_Unused Estimated NBV At End Of Lease1</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

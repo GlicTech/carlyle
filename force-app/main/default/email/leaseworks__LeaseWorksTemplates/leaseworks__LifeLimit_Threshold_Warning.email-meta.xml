@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Warning letter with life limit threshold is within reach</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>leaseworks__Smart_Lease_Logo</letterhead>
+    <name>Life Limit Threshold Warning</name>
+    <style>formalLetter</style>
+    <subject>Reminder: Life Limit Threshold Approaching On Assembly {!leaseworks__Utilization_Report_List_Item__c.leaseworks__Constituent_Assembly__c}</subject>
+    <textOnly>The life limit on your {!leaseworks__Constituent_Assembly__c.leaseworks__Type__c} is {!leaseworks__Constituent_Assembly__c.leaseworks__Life_Limit__c}. You are withing 10% of this. Please schedule a shop visit.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

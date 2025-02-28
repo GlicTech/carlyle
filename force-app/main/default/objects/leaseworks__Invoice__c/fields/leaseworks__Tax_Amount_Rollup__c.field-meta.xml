@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Tax_Amount_Rollup__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Amount of tax to be collected from the invoice. Tax Amount is based on the Tax percentage of the country of the lessor, if tax is applicable as set on the lease</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Amount of tax to be collected from the invoice. Tax Amount is based on the Tax percentage of the country of the lessor, if tax is applicable as set on the lease</inlineHelpText>
+    <label>Effective Tax Amount</label>
+    <summarizedField>leaseworks__Invoice_Line_Item__c.leaseworks__Total_Line_Amount__c</summarizedField>
+    <summaryFilterItems>
+        <field>leaseworks__Invoice_Line_Item__c.leaseworks__Invoice_Line_Type__c</field>
+        <operation>equals</operation>
+        <value>Tax</value>
+    </summaryFilterItems>
+    <summaryForeignKey>leaseworks__Invoice_Line_Item__c.leaseworks__Invoice__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

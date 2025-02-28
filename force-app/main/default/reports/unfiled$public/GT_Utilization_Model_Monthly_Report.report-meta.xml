@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>FK_NAME</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Constituent_Assembly__c.leaseworks__Type__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Constituent_Assembly__c.leaseworks__Serial_Number__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>leaseworks__Constituent_Assembly__c.leaseworks__TSN__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>leaseworks__Constituent_Assembly__c.leaseworks__CSN__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>leaseworks__Constituent_Assembly__c.leaseworks__CA_TSN_at_Last_Event__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>leaseworks__Constituent_Assembly__c.leaseworks__CA_CSN_at_Last_Event__c</field>
+    </columns>
+    <format>Tabular</format>
+    <name>GT Utilization Model - Monthly Report</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$leaseworks__Constituent_Assembly__c@leaseworks__Constituent_Assembly__c.leaseworks__Attached_Aircraft__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>leaseworks__Constituent_Assembly__c.leaseworks__Y_Hidden_Last_Event_Date__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

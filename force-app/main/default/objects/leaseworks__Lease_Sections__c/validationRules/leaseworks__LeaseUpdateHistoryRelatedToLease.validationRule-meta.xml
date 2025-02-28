@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__LeaseUpdateHistoryRelatedToLease</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(!ISBLANK( leaseworks__Lease_Update_History__c ),  leaseworks__Lease__c &lt;&gt;  leaseworks__Lease_Update_History__r.leaseworks__Lease__c)</errorConditionFormula>
+    <errorDisplayField>leaseworks__Lease_Update_History__c</errorDisplayField>
+    <errorMessage>Please choose the Lease Update History related to this Lease</errorMessage>
+</ValidationRule>

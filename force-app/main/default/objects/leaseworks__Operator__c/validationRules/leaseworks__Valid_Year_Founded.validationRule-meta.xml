@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Valid_Year_Founded</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND( !ISBLANK(leaseworks__Founded__c)  , OR(!ISNUMBER(leaseworks__Founded__c), VALUE(leaseworks__Founded__c )&lt;1900, VALUE(leaseworks__Founded__c )&gt;YEAR(TODAY())))</errorConditionFormula>
+    <errorDisplayField>leaseworks__Founded__c</errorDisplayField>
+    <errorMessage>Invalid year.</errorMessage>
+</ValidationRule>

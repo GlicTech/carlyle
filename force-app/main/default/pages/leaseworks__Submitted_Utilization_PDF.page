@@ -1,0 +1,420 @@
+<apex:page showHeader="false" standardStylesheets="false" applyHtmlTag="false" contenttype="application/vnd.ms-excel#Monthly_Utilization_{!TODAY()}.xls"
+    controller="leaseworks.SubmittedUtilizationPDFController">
+
+    <!--  renderAs="pdf" -->
+
+    <head>
+
+        <style>
+            @page {
+                /* Landscape orientation */
+                size: landscape;
+            }
+
+            table tr td {
+                padding: 2px;
+            }
+
+            .title {
+                color: #475780;
+                font-weight: 600;
+            }
+
+            .img-cls {
+                height: 70px;
+            }
+
+            .headerTitle {
+                font-size: 22px;
+                padding-left: 20px;
+            }
+        </style>
+    </head>
+
+    <div>
+
+        <table>
+            <tr>
+                <td class="headerTitle">
+                    Monthly Utilization 
+                </td>
+                <td>
+                  
+                </td>
+                
+            </tr>
+        </table>
+    </div>
+
+    <table style="margin-top:10px; width:100%;">
+        <tr style="width:100%">
+            <td style="width:33%; vertical-align:top">
+                <table style="width:100%;">
+                    <tbody>
+                        <tr class="title" style="width:100%;">
+                            <td>
+                                Lease No
+                            </td>
+                            <td>
+                                {!data.leaseNo}
+                            </td>
+                        </tr>
+                        <tr style="width:100%;">
+                            <td>
+                                Period From
+                            </td>
+                            <td>
+                                <apex:outputText value="{0, date, MMM d','  yyyy}">
+                                    <apex:param value="{!data.periodFrom}" />
+                                </apex:outputText>
+                            </td>
+                        </tr>
+                        <tr style="width:100%;">
+                            <td>
+                                Period To
+                            </td>
+                            <td>
+                                <apex:outputText value="{0, date, MMM d','  yyyy}">
+                                    <apex:param value="{!data.periodTo}" />
+                                </apex:outputText>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </td>
+
+            <!-- for Airfram and APU in case of Aircraft -->
+            <apex:repeat value="{!data.row1}" var="assembly">
+                <td style="width:33%;vertical-align:top">
+                    <table width="100%;">
+                        <tbody>
+                            <tr class="title">
+                                <td>
+                                    {!assembly.type}
+                                </td>
+                                <td>
+                                    <div>{!assembly.serialNumber}</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Total Flight Hours
+                                </td>
+                                <td>
+                                    {!assembly.totalFlightHours}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Total Flight Cycles
+                                </td>
+                                <td>
+                                    {!assembly.totalFlightCycles}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Hours Flown This Month
+                                </td>
+                                <td>
+                                    {!assembly.hoursFlownThisMonth}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Cycles Flown This Month
+                                </td>
+                                <td>
+                                    {!assembly.cyclesFlownThisMonth}
+                                </td>
+                            </tr>
+                            <apex:outputPanel layout="none" rendered="{!contains(assembly.type, 'Engine') && data.row1.size>0}">
+
+                                <tr>
+                                    <td>
+                                        Derate
+                                    </td>
+                                    <td>
+                                        {!assembly.derate}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+
+                                        EGT MARGIN (Takeoff)
+
+                                    </td>
+                                    <td>
+
+                                        {!assembly.egtMarginTakeOff}
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+
+                                        EGT MARGIN (Cruise)
+
+                                    </td>
+                                    <td>
+
+                                        {!assembly.egtMarginCruise}
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Fan Speed (N1)
+
+                                    </td>
+                                    <td>
+
+                                        {!assembly.fanSpeedN1}
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Fan Speed (N2)
+                                    </td>
+                                    <td>
+                                        {!assembly.fanSpeedN2}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Core Vibration
+                                    </td>
+                                    <td>
+                                        {!assembly.coreVibration}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Fuel Flow
+                                    </td>
+                                    <td>
+                                        {!assembly.fuelFlow}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Oil Consumption
+                                    </td>
+                                    <td>
+                                        {!assembly.oilConsumption}
+                                    </td>
+                                </tr>
+                            </apex:outputPanel>
+                        </tbody>
+                    </table>
+                </td>
+            </apex:repeat>
+
+
+        </tr>
+
+
+        <apex:outputPanel rendered="{!data.assetType =='Aircraft'}">
+            <!-- row  2 for Engines -->
+            <tr style="width:100%">
+                <apex:repeat value="{!data.row2}" var="assembly">
+                    <td style="padding-top:20px;width:25%;vertical-align:top">
+                        <table>
+                            <tbody>
+                                <tr class="title">
+                                    <td>
+                                        {!assembly.type}
+                                    </td>
+                                    <td>
+                                        {!assembly.serialNumber}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Total Flight Hours
+                                    </td>
+                                    <td>
+                                        {!assembly.totalFlightHours}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Total Flight Cycles
+                                    </td>
+                                    <td>
+                                        {!assembly.totalFlightCycles}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Hours Flown This Month
+                                    </td>
+                                    <td>
+                                        {!assembly.hoursFlownThisMonth}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Cycles Flown This Month
+                                    </td>
+                                    <td>
+                                        {!assembly.cyclesFlownThisMonth}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Derate
+                                    </td>
+                                    <td>
+                                        {!assembly.derate}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        EGT MARGIN (Takeoff)
+                                    </td>
+                                    <td>
+                                        {!assembly.egtMarginTakeOff}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        EGT MARGIN (Cruise)
+                                    </td>
+                                    <td>
+                                        {!assembly.egtMarginCruise}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Fan Speed (N1)
+                                    </td>
+                                    <td>
+                                        {!assembly.fanSpeedN1}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Fan Speed (N2)
+                                    </td>
+                                    <td>
+                                        {!assembly.fanSpeedN2}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Core Vibration
+                                    </td>
+                                    <td>
+                                        {!assembly.coreVibration}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Fuel Flow
+                                    </td>
+                                    <td>
+                                        {!assembly.fuelFlow}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Oil Consumption
+                                    </td>
+                                    <td>
+                                        {!assembly.oilConsumption}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </apex:repeat>
+            </tr>
+
+            <!-- row  3 for LG-->
+            <tr style="width:100%;">
+                <apex:repeat value="{!data.row3}" var="assembly">
+                    <td style="vertical-align:top;width:20%">
+                        <div style="page-break-before:always;" />
+                        <table>
+                            <tbody>
+                                <tr class="title">
+                                    <td>
+                                        {!assembly.type} Serial No.
+                                    </td>
+                                    <td>
+                                        {!assembly.serialNumber}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Part No.
+                                    </td>
+                                    <td>
+                                        {!assembly.partNo}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div>
+                                            Total Flight Hours
+                                        </div>
+                                    </td>
+                                    <td>
+                                        {!assembly.totalFlightHours}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Total Flight Cycles
+                                    </td>
+                                    <td>
+                                        {!assembly.totalFlightCycles}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Hours Flown This Month
+                                    </td>
+                                    <td>
+                                        {!assembly.hoursFlownThisMonth}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Cycles Flown This Month
+                                    </td>
+                                    <td>
+                                        {!assembly.cyclesFlownThisMonth}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </apex:repeat>
+            </tr>
+
+        </apex:outputPanel>
+
+    </table>
+
+    <br/>
+    <div style="margin-top:20px">
+    <table>
+        <tbody>
+            <tr class="title" style="width:100%;">
+                <td>
+                    Comments
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">{!data.comments}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</apex:page>

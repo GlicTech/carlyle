@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Invalid_Unknown_FH_FC_rule</fullName>
+    <active>true</active>
+    <description>User has to uncheck the Unknown FH/FC checkbox when FH, FC hold non null values.</description>
+    <errorConditionFormula>(!ISNULL(leaseworks__Running_Hours_During_Month__c)  &amp;&amp;  !ISNULL(leaseworks__Cycles_During_Month__c))  &amp;&amp;  leaseworks__Unknown_FH_FC__c</errorConditionFormula>
+    <errorMessage>Please unselect the Unknown FH/FC checkbox since FH, FC values are present.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__DeferredBasis_SetNoOfDaysMethod</fullName>
+    <active>true</active>
+    <description>if Accrual Method  is Actual 365 and Accrual Days Basis is not null, then throw the validation</description>
+    <errorConditionFormula>AND(
+ISPICKVAL( leaseworks__Accrual_Method__c , &#39;Actual(365)&#39;),
+!ISBLANK( leaseworks__Accrual_Days_Basis__c )
+)</errorConditionFormula>
+    <errorMessage>Deferred Basis is applicable only for Fixed Number of Days method</errorMessage>
+</ValidationRule>

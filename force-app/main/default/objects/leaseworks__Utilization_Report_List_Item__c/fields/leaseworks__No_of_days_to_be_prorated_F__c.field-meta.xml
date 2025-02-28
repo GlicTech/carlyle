@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__No_of_days_to_be_prorated_F__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <formula>IF(  AND( OR(ISBLANK(leaseworks__Partial_Period_From__c) , ISNULL(leaseworks__Partial_Period_From__c)) , OR(ISBLANK(leaseworks__Partial_Period_To__c) , ISNULL(leaseworks__Partial_Period_To__c)) )
+, ((leaseworks__End_Date_F__c  -  leaseworks__Start_Date_F__c ) + 1)
+, ((leaseworks__Partial_Period_To__c -  leaseworks__Partial_Period_From__c ) + 1) 
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>No Of Days To Be Prorated</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

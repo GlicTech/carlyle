@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Loop__Org_Wide_Email__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <formula>IF( ISBLANK( Loop__OrgWideEmailId__c ) , &quot;None&quot; , IF( ISBLANK( Loop__OrgWideEmailName__c ), IF( ISBLANK( Loop__OrgWideEmailAddress__c ), Loop__OrgWideEmailId__c, Loop__OrgWideEmailAddress__c ), IF( ISBLANK( Loop__OrgWideEmailAddress__c ), Loop__OrgWideEmailName__c, Loop__OrgWideEmailName__c &amp; &quot; (&quot; &amp; Loop__OrgWideEmailAddress__c &amp; &quot;)&quot; ) )  ) &amp; &quot; [&quot; &amp;  HYPERLINK(&quot;/apex/loop__ddpEdit?type=orgwideemail&amp;ddpId=&quot; &amp; Id, &quot;Change&quot; , &quot;_self&quot; )  &amp; &quot;]&quot;</formula>
+    <inlineHelpText>For information on Organization-Wide Addresses, search the Salesforce Help site for organization-wide addresses.</inlineHelpText>
+    <label>Org-Wide Email</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,1 @@
+trigger Notify_leaseworks_O_Constituent_Assembly_AutoTrigger on leaseworks__Constituent_Assembly__c (before insert, before update, before delete, after insert, after update, after delete, after undelete) { leaseworks.Notify_NotificationScheduler.triggerHandler(leaseworks__Constituent_Assembly__c.sObjectType); }

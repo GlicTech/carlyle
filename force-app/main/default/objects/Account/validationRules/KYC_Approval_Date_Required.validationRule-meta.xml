@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>KYC_Approval_Date_Required</fullName>
+    <active>true</active>
+    <description>This validation rule ensure that if the &quot;KYC Approved&quot; picklist is set to &quot;Yes&quot;, the &quot;KYC Approved As Of&quot; Date field must be populated</description>
+    <errorConditionFormula>AND(
+    ISPICKVAL(pro_KYC_Approved__c, &quot;Yes&quot;),
+    ISBLANK(pro_KYC_Approved_As_Of__c)
+)</errorConditionFormula>
+    <errorDisplayField>pro_KYC_Approved_As_Of__c</errorDisplayField>
+    <errorMessage>The &quot;KYC Approved As Of&quot; Date field must be populated if you set &quot;KYC Approved&quot; to &quot;Yes&quot;</errorMessage>
+</ValidationRule>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Escalation_Required_Check</fullName>
+    <active>true</active>
+    <description>Escalation Start Date and Percentage are required together</description>
+    <errorConditionFormula>OR(
+and(leaseworks__Escalation__c &gt;0 ,OR(ISBLANK(leaseworks__Escalation_Start_Date__c),ISNULL(leaseworks__Escalation_Start_Date__c)) 
+),
+and(OR(! ISBLANK( leaseworks__Escalation_Start_Date__c ), !ISNULL(leaseworks__Escalation_Start_Date__c)) , ISNULL( leaseworks__Escalation__c ) )
+)</errorConditionFormula>
+    <errorMessage>Escalation Start Date and Percentage must be entered together</errorMessage>
+</ValidationRule>

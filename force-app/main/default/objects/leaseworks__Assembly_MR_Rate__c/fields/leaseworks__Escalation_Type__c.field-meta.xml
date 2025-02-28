@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Escalation_Type__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Regular Annual will ignore MR Rate table for MR Rate calculation
+Complex - fixes user-defined escalation will be used with Start and End Dates and fixed excalation</description>
+    <externalId>false</externalId>
+    <inlineHelpText>&quot;Regular Annual&quot; will ignore MR Rate table for MR Rate calculation // 2. &quot;Advanced&quot; allows user-defined escalation. Will be used with Start and End Dates and fixed escalation. // 3. &quot;LLP Catalog&quot; Avg cost per cycle of all LLPs will be used for MR Rate.</inlineHelpText>
+    <label>Escalation Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Regular Annual</fullName>
+                <default>true</default>
+                <label>Regular Annual</label>
+            </value>
+            <value>
+                <fullName>Advanced</fullName>
+                <default>false</default>
+                <label>Advanced</label>
+            </value>
+            <value>
+                <fullName>LLP Catalog</fullName>
+                <default>false</default>
+                <label>LLP Catalog</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Event_Phase_F__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <formula>/* check first 3 character of type__c */
+case( LEFT(Text(leaseworks__Type__c),3), &#39;LLP&#39; ,null
+,&#39;Hea&#39; , Text(leaseworks__Aircraft__r.leaseworks__Event_Phase__c)
+,&#39;C-C&#39; , Text(leaseworks__Aircraft__r.leaseworks__Event_Phase__c)
+,&#39;Oth&#39; , Text(leaseworks__Aircraft__r.leaseworks__Event_Phase__c)
+, Text(leaseworks__Assembly__r.leaseworks__Event_Phase__c )
+)</formula>
+    <label>Event Phase</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

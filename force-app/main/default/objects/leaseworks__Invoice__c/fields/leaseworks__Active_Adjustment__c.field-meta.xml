@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Active_Adjustment__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <label>_Active Adjustment</label>
+    <summaryFilterItems>
+        <field>leaseworks__Invoice_Adjustment__c.leaseworks__Approval_Status__c</field>
+        <operation>equals</operation>
+        <value>Pending, Approved, Cancelled-Pending</value>
+    </summaryFilterItems>
+    <summaryForeignKey>leaseworks__Invoice_Adjustment__c.leaseworks__Linked_Invoice__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

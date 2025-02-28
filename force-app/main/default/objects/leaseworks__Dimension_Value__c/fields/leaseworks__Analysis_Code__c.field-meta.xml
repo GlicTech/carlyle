@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Analysis_Code__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <formula>IF( NOT(ISBLANK(  leaseworks__Asset__c )) ,  leaseworks__Asset__r.leaseworks__Analysis_Code__c ,  IF( NOT(ISBLANK(leaseworks__Entity__c)) ,  leaseworks__Entity__r.leaseworks__Analysis_Code__c ,  IF(NOT(ISBLANK( leaseworks__Operator_New__c )),  leaseworks__Operator_New__r.leaseworks__Analysis_Code__c ,  IF(NOT(ISBLANK( leaseworks__Lease__c )),  leaseworks__Lease__r.leaseworks__Analysis_Code__c ,   IF(NOT(ISBLANK( leaseworks__Bank_Account__c )),  leaseworks__Bank_Account__r.leaseworks__Analysis_Code__c , Name) ) ) ) )</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Analysis Code</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

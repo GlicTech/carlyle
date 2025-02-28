@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__True_Up_Gross__c</fullName>
+    <defaultValue>false</defaultValue>
+    <deprecated>false</deprecated>
+    <description>We are populating this field value from different places- 1. When creating utilization, If utilization type = &quot;True Up Gross&quot; then we are populating this field value with true. 2. On Invoice record, we are copying value from utilization field to respective &quot;True_Up_Gross__c&quot; invoice field in insert and update case 3. When creating utilization then populating this field value if type = true up via utilization staging. 4. When Creating a utilization of type = &quot;Assumed/Estimated&quot; then setting up this value to false.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>We populate this field from multiple sources: For &#39;True Up Gross&#39; utilization types, we set it to &#39;true&#39; during creation. In Invoices, we copy it from utilization to &#39;True_Up_Gross__c&#39; during insert/update. Utilization staging fills it for &#39;true up&#39; types.
+&#39;Assumed/Estimated&#39; utilizations set it to &#39;false&#39;.</inlineHelpText>
+    <label>_True Up</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

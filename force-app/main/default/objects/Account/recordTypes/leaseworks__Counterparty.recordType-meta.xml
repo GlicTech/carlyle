@@ -1,0 +1,1036 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Counterparty</fullName>
+    <active>true</active>
+    <compactLayoutAssignment>Account_Operator</compactLayoutAssignment>
+    <label>Counterparty</label>
+    <picklistValues>
+        <picklist>AccountSource</picklist>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Web</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Customer_Target__c</picklist>
+        <values>
+            <fullName>Customer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Target</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Industry</picklist>
+        <values>
+            <fullName>Agriculture</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Apparel</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Biotechnology</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Chemicals</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Communications</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Construction</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Consulting</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Education</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Electronics</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Energy</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Engineering</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Entertainment</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Environmental</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Food %26 Beverage</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Government</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Healthcare</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Hospitality</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Insurance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Machinery</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Manufacturing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Media</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not For Profit</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Recreation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Retail</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Shipping</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Technology</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Telecommunications</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Transportation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Utilities</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Irish_Tax_Resident_Local__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Ownership</picklist>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Private</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Public</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Subsidiary</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Ranking_grouping__c</picklist>
+        <values>
+            <fullName>Customer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Target</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Top 10</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Top 20</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Top 50</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Rating</picklist>
+        <values>
+            <fullName>Cold</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Hot</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Warm</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Regional_Manager__c</picklist>
+        <values>
+            <fullName>AMERICAS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>APAC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EMEA</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Type</picklist>
+        <values>
+            <fullName>Counterparty</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>leaseworks__Account_Currency__c</picklist>
+        <values>
+            <fullName>EUR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GBP</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>JPY</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MYR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>USD</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>leaseworks__Active__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>leaseworks__Airline_Type_M__c</picklist>
+        <values>
+            <fullName>ACMI</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cargo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Charter</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Full Service</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Leisure</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Low-Cost Carrier</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Major</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>National</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Regional</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>leaseworks__Approval_Status__c</picklist>
+        <values>
+            <fullName>Approved</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pending</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>leaseworks__CustomerPriority__c</picklist>
+        <values>
+            <fullName>High</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Low</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Medium</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>leaseworks__Customer_Tier__c</picklist>
+        <values>
+            <fullName>Tier 1</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>leaseworks__Financial_Institution__c</picklist>
+        <values>
+            <fullName>AGRICULTURAL BANK OF CHINA LIMITED</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Australia and New Zealand Banking Group Limited</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BANCO DO BRASIL S%2EA%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BANK OF CHINA LIMITED</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BNP PARIBAS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Banco Bilbao Vizcaya Argentaria</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Banco Popular de Puerto Rico</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Bangkok Bank Public Company Limited</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Bank of America%2C N%2EA%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Bank of Communications</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Bank of India</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Bank of Taiwan</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Bank of the West</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Barclays Bank PLC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Branch Banking and Trust Company</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>COMMERZBANK AKTIENGESELLSCHAFT</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CREDIT SUISSE AG</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CTBC Bank Co%2E%2C Ltd%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Capital One</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Chang Hwa Commercial Bank</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Charter One Bank</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Chase Bank USA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>China Construction Bank</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Citibank%2C N%2EA%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Citizens Bank of Massachusetts</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Citizens Bank of Pennsylvania</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Colonial Bank%2C National Association</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Comerica Bank</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Commerce Bank</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Commonwealth Bank of Australia</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Compass Bank</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Countrywide Bank</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Crédit Agricole Corporate and Investment Bank</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>DBS BANK LTD%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Deutsche Bank AG</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Discover Bank</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>E%2E SUN Commercial Bank%2C Ltd%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>E*TRADE Bank</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Euroclear Bank SA%2FNV</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fifth Third Bank</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>First Commercial Bank</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>First Tennessee Bank</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>HSBC Bank USA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Harris National Association</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>INDUSTRIAL AND COMMERCIAL BANK OF CHINA LIMITED</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ING Bank N%2EV%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ING Bank%2C fsb</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Industrial Bank of Korea</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Intesa Sanpaolo S%2Ep%2EA%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Itaú Unibanco S%2EA%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>JPMorgan Chase Bank%2C N%2EA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>KEB Hana Bank</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Keybank</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Kookmin Bank</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>LaSalle Bank Midwest</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>LaSalle Bank National Association</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Manufacturers and Traders Trust Company</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Marshall and Ilsley Bank</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mega International Commercial Bank Co%2E%2CLtd</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Merrill Lynch Bank</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Metropolitan Bank and Trust Company</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Morgan Stanley Bank</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>National Australia Bank Limited</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>National Bank of Pakistan</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>National City Bank</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>North Fork Bank</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Oversea-Chinese Banking Corporation Limited</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PHILIPPINE NATIONAL BANK</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PNC Bank</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PT%2E Bank Negara Indonesia %28Persero%29 Tbk</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Regions Bank</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Royal Bank of Canada</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Société Générale</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sovereign Bank</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Standard Chartered Bank</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>State Bank of India</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>State Street Bank and Trust Company</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SunTrust Bank</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>TD Bank USA%2C National Association</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>TD BankNorth</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Taishin International Bank Co%2E%2C Ltd%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Taiwan Business Bank</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>The Bank of New York</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>The Bank of New York Mellon</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>The Hongkong and Shanghai Banking Corporation Limited</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>The Huntington National Bank</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>The Korea Development Bank</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>U%2ES%2E Bank</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>UBS AG</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>UBSBank</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>UNITED OVERSEAS BANK group</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>USAA Federal Savings Bank</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>UniCredit Bank AG</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Union Bank of California</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Union de Banques Arabes et Françaises</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>WOORI BANK</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Wachovia Bank</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Washington Mutual Bank</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Wells Fargo Bank%2C National Association</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>World Savings Bank</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>leaseworks__Owned_Aircraft_Types__c</picklist>
+        <values>
+            <fullName>727</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>737</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>747</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>757</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>767</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>777</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>787</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>A300</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>A300 B4</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>A310</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>A319</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>A320</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>A321</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>A330</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>A340</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>A380</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ATR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BAe 146 %2F Avro RJ</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Bombardier CRJ</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Bombardier CSeries</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Bombardier Dash 8</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Bombardier Q400</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Embraer E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Embraer ERJ</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fokker</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fokker F50 %2F F60</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fokker F70 %2F F100</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mitsubishi Regional Jet</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Shukhoi Superjet 100</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>de Havilland Dash 7</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>leaseworks__SLA__c</picklist>
+        <values>
+            <fullName>Bronze</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Gold</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Platinum</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Silver</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>leaseworks__Status__c</picklist>
+        <values>
+            <fullName>Approved</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Declined</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pending Approval</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>leaseworks__Subtype__c</picklist>
+        <values>
+            <fullName>Airport</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Bank</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Borescope Services</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Civil Aviation Authority %28CAA%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Consultant Services</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ferry Services</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Lender</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MRO</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Original Equipment Manufacturer %28OEM%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Parts Services</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SPC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SPV</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Storage %2F Preservation Services</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sublessee</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>leaseworks__UpsellOpportunity__c</picklist>
+        <values>
+            <fullName>Maybe</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>pro_KYC_Approved__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>No - KYC Materials not received</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>No - KYC in progress</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not Applicable</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes - KYC Refresh Requested</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>pro_Reporting_Region__c</picklist>
+        <values>
+            <fullName>APAC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Bankruptcy %2F Restricted</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EMEA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>LATAM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NORTAM</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

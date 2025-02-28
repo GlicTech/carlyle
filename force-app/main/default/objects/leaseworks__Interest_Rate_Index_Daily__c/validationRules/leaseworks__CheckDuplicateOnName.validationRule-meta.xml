@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__CheckDuplicateOnName</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+OR(
+ISNEW(),
+ISCHANGED( Name )
+),
+NOT(
+ISBLANK (
+VLOOKUP( $ObjectType.leaseworks__Interest_Rate_Index_Daily__c.Fields.Name, $ObjectType.leaseworks__Interest_Rate_Index_Daily__c.Fields.Name, Name )
+)
+)
+)</errorConditionFormula>
+    <errorDisplayField>Name</errorDisplayField>
+    <errorMessage>One or more dates already exist in the Daily table; please check your data.</errorMessage>
+</ValidationRule>

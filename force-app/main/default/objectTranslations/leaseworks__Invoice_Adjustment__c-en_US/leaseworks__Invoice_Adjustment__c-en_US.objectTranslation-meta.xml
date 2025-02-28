@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <fieldSets>
+        <label><!-- SkipFieldsFromValidations --></label>
+        <name>leaseworks__SkipFieldsFromValidations</name>
+    </fieldSets>
+    <layouts>
+        <layout>Invoice Adjustment Layout</layout>
+        <sections>
+            <label><!-- Accounting Details --></label>
+            <section>Accounting Details</section>
+        </sections>
+        <sections>
+            <label><!-- Adjustment Details --></label>
+            <section>Adjustment Details</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- Cancel Adjustment --></label>
+        <name>leaseworks__Cancel_Adjustment</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Reject Cancellation --></label>
+        <name>leaseworks__Reject_Cancellation</name>
+    </quickActions>
+    <validationRules>
+        <errorMessage><!-- Adjustment Amount should not be 0 --></errorMessage>
+        <name>leaseworks__Adjustment_Amount_should_not_be_zero</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Unable to proceed with transactions: The linked invoice is currently associated with an inactive entity. Please link an active entity to the linked invoice to continue. --></errorMessage>
+        <name>leaseworks__Entity_Is_Inactive</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Unable to proceed with approval/cancellation. Entity on the  Linked Invoice is inactive. Please link it to an active entity to continue. --></errorMessage>
+        <name>leaseworks__Status_is_Apprved_and_Entity_Is_Inactive</name>
+    </validationRules>
+</CustomObjectTranslation>

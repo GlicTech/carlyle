@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__MR_Above_Threshold__c</fullName>
+    <deprecated>false</deprecated>
+    <description>As of now only for internal purpose, we will remove it on later phase.</description>
+    <externalId>false</externalId>
+    <formula>(leaseworks__Rate_Beyond_Threshold__c *  if( text(leaseworks__Effective_Unit__c) == &#39;Monthly&#39;,1,    leaseworks__Net_Units__c  )    )* leaseworks__Effective_Escalation_Factor__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Z_unused_2106 MR Above Threshold</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <type>Currency</type>
+</CustomField>

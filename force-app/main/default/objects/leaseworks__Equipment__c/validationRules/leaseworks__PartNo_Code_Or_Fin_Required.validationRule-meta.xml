@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__PartNo_Code_Or_Fin_Required</fullName>
+    <active>true</active>
+    <description>Part No, Code or FIN is required.</description>
+    <errorConditionFormula>AND( leaseworks__Part_Number__c == null,
+ leaseworks__Code__c == null,
+ leaseworks__FIN__c == null)</errorConditionFormula>
+    <errorDisplayField>leaseworks__Part_Number__c</errorDisplayField>
+    <errorMessage>Please enter either Part Number, Code or FIN.</errorMessage>
+</ValidationRule>

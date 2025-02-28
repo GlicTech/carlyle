@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Adhoc_Validation</fullName>
+    <active>false</active>
+    <errorConditionFormula>ISCHANGED(Ad_hoc_Schedule_Local__c ) &amp;&amp; PRIORVALUE( Ad_hoc_Schedule_Local__c )=true</errorConditionFormula>
+    <errorMessage>Disabling &#39;Ad hoc Schedule&#39; through this button is not allowed. For further assistance, please reach out to leaseworks support.</errorMessage>
+</ValidationRule>

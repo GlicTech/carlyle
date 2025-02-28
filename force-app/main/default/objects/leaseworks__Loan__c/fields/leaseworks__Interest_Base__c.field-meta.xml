@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Interest_Base__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Monthly Interest rate will be calculated based on the interest base selected.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Select the base to calculate the loan interest (Actual days/365 or Actual days/360).</inlineHelpText>
+    <label>Interest Base</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Actual/360</fullName>
+                <default>false</default>
+                <label>Actual/360</label>
+            </value>
+            <value>
+                <fullName>Actual/365</fullName>
+                <default>false</default>
+                <label>Actual/365</label>
+            </value>
+            <value>
+                <fullName>Actual Days /Actual Days (365/366)</fullName>
+                <default>false</default>
+                <label>Actual Days /Actual Days (365/366)</label>
+            </value>
+            <value>
+                <fullName>30/360</fullName>
+                <default>false</default>
+                <label>30/360</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

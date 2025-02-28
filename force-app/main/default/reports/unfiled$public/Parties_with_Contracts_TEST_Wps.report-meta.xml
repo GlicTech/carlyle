@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Parties__c.leaseworks__Role__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Parties__c.leaseworks__Account__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Parties__c.Account_Start_Date_Local__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Parties__c.Account_End_Date_Local__c</field>
+    </columns>
+    <filter>
+        <criteriaItems>
+            <column>FK_$leaseworks__Lease__c.leaseworks__Lease_Type_Status__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Awaiting Delivery,LOI,On Lease</value>
+        </criteriaItems>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>FK_NAME</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>FK_$leaseworks__Lease__c.leaseworks__Lease_Type_Status__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Parties with Contracts - TEST</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$leaseworks__Parties__c@leaseworks__Parties__c.leaseworks__Contract__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>leaseworks__Parties__c.Account_End_Date_Local__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

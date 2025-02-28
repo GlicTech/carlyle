@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__SLR_Calculation_Method__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Select the method for calculating the average monthly straight-line amount.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Select the method for calculating the average monthly straight-line amount.</inlineHelpText>
+    <label>SLR Calculation Method</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Even Periods</fullName>
+                <default>true</default>
+                <label>Even Periods</label>
+            </value>
+            <value>
+                <fullName>Fixed(30/360)</fullName>
+                <default>false</default>
+                <label>Fixed(30/360)</label>
+            </value>
+            <value>
+                <fullName>Actual Days</fullName>
+                <default>false</default>
+                <label>Actual(365)</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

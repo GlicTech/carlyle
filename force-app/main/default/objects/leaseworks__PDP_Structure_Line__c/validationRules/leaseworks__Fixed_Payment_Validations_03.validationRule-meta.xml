@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Fixed_Payment_Validations_03</fullName>
+    <active>true</active>
+    <description>Checks that a Date is especified if it is a Fixed Payment and is not on Signature.</description>
+    <errorConditionFormula>AND(
+ RecordType.DeveloperName = &#39;Fixed&#39;,
+ ISNULL(leaseworks__Fixed_Date__c),
+ NOT(leaseworks__Signature__c)
+)</errorConditionFormula>
+    <errorDisplayField>leaseworks__Fixed_Date__c</errorDisplayField>
+    <errorMessage>You must especify a Date for Fixed Payments.</errorMessage>
+</ValidationRule>

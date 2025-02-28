@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Invalid_TSN_Unknown_Change</fullName>
+    <active>true</active>
+    <description>Do not allow the user to change TSN Unknown checkbox to false when the utilization status shows missing FH utilization
+Do not allow the user to change TSN Unknown checkbox to true when the utilization status does not show missing FH utilization</description>
+    <errorConditionFormula>OR((!ISBLANK(leaseworks__Y_Hidden_Utilization_Status__c) &amp;&amp;
+contains(leaseworks__Y_Hidden_Utilization_Status__c,&#39;FH&#39;) &amp;&amp; ! leaseworks__TSN_Unknown__c),
+(!ISBLANK(leaseworks__Y_Hidden_Utilization_Status__c) &amp;&amp;
+!contains(leaseworks__Y_Hidden_Utilization_Status__c,&#39;FH&#39;) &amp;&amp;  leaseworks__TSN_Unknown__c))</errorConditionFormula>
+    <errorMessage>Cannot change TSN Unknown. Please refer to missing utilization from Utilization Status.</errorMessage>
+</ValidationRule>

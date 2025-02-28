@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Either_Months_to_Delivery_or_Date</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(TEXT(leaseworks__Milestone_Date__c )=&quot;&quot;, TEXT(leaseworks__Months_to_Delivery__c) =&quot;&quot;)</errorConditionFormula>
+    <errorDisplayField>leaseworks__Months_to_Delivery__c</errorDisplayField>
+    <errorMessage>At least one parameter is required: Milestone Date or Months to Delivery. 
+Please enter and save</errorMessage>
+</ValidationRule>

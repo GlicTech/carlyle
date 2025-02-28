@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__MR_Claim_Calculation__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Created this hidden fied due to Formula size limit issue for Amount (Invoiced) field.</description>
+    <externalId>false</externalId>
+    <formula>CASE(TEXT(leaseworks__Transaction_Type__c)
+,&#39;MR Contribution Applied&#39;, IF(ISBLANK(leaseworks__Event_Payable__c),0,IF(OR(ISPICKVAL(leaseworks__Event_Payable__r.leaseworks__Status__c,&#39;Pending&#39;),ISPICKVAL(leaseworks__Event_Payable__r.leaseworks__Status__c,&#39;Declined&#39;),ISPICKVAL(leaseworks__Event_Payable__r.leaseworks__Status__c,&#39;Cancelled&#39;)),null,leaseworks__Event_Payable__r.leaseworks__Lessor_Contribution_Committed__c))
+,&#39;MR Claim&#39;, IF(OR(ISPICKVAL(leaseworks__Event_Payable__r.leaseworks__Status__c,&#39;Pending&#39;),ISPICKVAL(leaseworks__Event_Payable__r.leaseworks__Status__c,&#39;Declined&#39;),ISPICKVAL(leaseworks__Event_Payable__r.leaseworks__Status__c,&#39;Cancelled&#39;)),null,leaseworks__Event_Payable__r.leaseworks__Payable_Amount__c* (-1))
+,&#39;MR Lessor Commitment Amount Applied&#39;, IF(ISBLANK(leaseworks__Event_Payable__c),0,IF(OR(ISPICKVAL(leaseworks__Event_Payable__r.leaseworks__Status__c,&#39;Pending&#39;),ISPICKVAL(leaseworks__Event_Payable__r.leaseworks__Status__c,&#39;Declined&#39;),ISPICKVAL(leaseworks__Event_Payable__r.leaseworks__Status__c,&#39;Cancelled&#39;)),null,leaseworks__Event_Payable__r.leaseworks__Lessor_Commitment_Amount__c))
+,null)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>_MR Claim Calculation</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

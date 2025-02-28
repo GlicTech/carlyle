@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Check_Life_Limits</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Z_unused_2012 Check Life Limits</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>{!REQUIRESCRIPT(&quot;/soap/ajax/57.0/connection.js&quot;)}
+{!REQUIRESCRIPT(&quot;/soap/ajax/57.0/apex.js&quot;)}
+
+try{
+var retVal =sforce.apex.execute(&quot;leaseworks/CustomEvents&quot;,&quot;RunThresholdCheck&quot;, {});
+}
+catch(e){
+var retVal = &#39;Error While Scheduling The Job!&#39; + e;
+}
+window.alert(retVal);</url>
+</WebLink>

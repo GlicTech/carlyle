@@ -1,0 +1,668 @@
+<!-- 
+	This is a copy of original Analysis Summary.
+	Diff : 	1) This is rendered as Excel
+			2) remove &nbsp;
+
+ -->
+<apex:page standardController="leaseworks__Fleet_Acquisition_Analysis__c" standardStylesheets="false" extensions="leaseworks.FleetAcquisitionAnalysisCalulcation" contentType="application/vnd.ms-excel#FleetAcquisitionAnalysis_{!curPBL.Name}.xls"  showheader="false" sidebar="false" title="Fleet Acquisition Analysis  - {!curPBL.Name}" readonly="true">
+    <style type="text/css">
+        .inFlowText {color:#009900;}
+        .outFlowText{color:#D00000;}
+        .totalText  {color:#330099;}
+        table.ex1 {table-layout:auto}
+        caption.cap1 {
+		    text-align: left;
+		    margin-bottom: 5px;
+		    font-size: 110%;
+		    padding: 5px;
+		    font-weight: bold;
+		}
+		table.ex2{
+		    border: 1px solid black;
+		    table-layout: fixed;
+		    width: 200px;
+		}
+		
+		td..ex3 {
+		    border: 1px solid black;
+		    overflow: hidden;
+		    width: 100px;
+		}
+				
+    </style>
+
+    <apex:sectionHeader title="Fleet Acquisition Analysis - {!curPBL.Name} : {!curPBL.aircraft__r.Name}"/> 
+	<apex:form id="UserInputInformationForm">
+    	<apex:pageBlock >
+    		<apex:pageBlockSection columns="1">
+    			<apex:outputField value="{!curPBL.leaseworks__Purchase_Price__c}"/>
+				<apex:outputField value="{!curPBL.leaseworks__Loan_Principle__c}"/>
+				<apex:outputField value="{!curPBL.leaseworks__Debt_Percentage__c}"/>
+				<apex:outputField value="{!curPBL.leaseworks__Interest_Rate_F__c}"/>		
+				<apex:outputField value="{!curPBL.leaseworks__Tax_rate__c}"/>	
+				<apex:outputField value="{!curPBL.leaseworks__Balloon_Payment__c}"/>
+				<apex:outputField value="{!curPBL.leaseworks__Term_Months__c}"/>
+				<apex:outputField value="{!curPBL.leaseworks__Monthly_Debt_Repayment_Amount__c}"/>
+				<apex:outputField value="{!curPBL.leaseworks__Monthly_Lease_Payment__c}"/>	
+				<apex:outputField value="{!curPBL.leaseworks__Lease_Rate_Factor__c}"/>					
+				<apex:outputField value="{!curPBL.leaseworks__Residual_Value__c}"/>	
+				<apex:outputField value="{!curPBL.leaseworks__Security_Deposit__c}"/>
+				<apex:outputField value="{!curPBL.leaseworks__After_Tax_Discount_Rate__c}"/>	
+				<apex:outputField value="{!curPBL.leaseworks__After_Tax_Discount_Rate_Annual__c}"/>					
+			</apex:pageBlockSection>
+
+	<br/>
+	<br/>
+	<apex:outputPanel id="thePanel0" style="font-size: 120%;">Net Present Value</apex:outputPanel>
+						    <table class="ex1" border="1" id="PeriodTable2" style="border-collapse:collapse;">
+						    	<tr align="right">
+									<td align="right" style="white-space:nowrap">
+										<apex:OutputText escape="false"><b> NPV (Buy) </b></apex:OutputText>
+									</td>
+									<td style="white-space:nowrap;color:'black'; background-color:{!IF(NPV_Buy_Rank,'#76ff03','')}" align="right">
+										<apex:outputText value="{0,number,$#,###}" escape="false">
+			                			<apex:param value="{!NPV_Buy}"/>									
+										</apex:outputText>											
+									</td>
+								</tr>
+						    	<tr align="right">
+									<td align="right" style="white-space:nowrap">
+										<apex:OutputText escape="false"><b> NPV (Operating Lease) </b></apex:OutputText>
+									</td>
+									<td style="white-space:nowrap;color:'black'; background-color:{!IF(NPV_OL_Rank,'#76ff03','')}" align="right">
+										<apex:outputText value="{0,number,$#,###}" escape="false">
+			                			<apex:param value="{!NPV_OL}"/>									
+										</apex:outputText>											
+									</td>
+								</tr>
+						    	<tr align="right">
+									<td align="right" style="white-space:nowrap">
+										<apex:OutputText escape="false"><b> NPV (Finance Lease) </b></apex:OutputText>
+									</td>
+									<td style="white-space:nowrap;color:'black'; background-color:{!IF(NPV_FL_Rank,'#76ff03','')}" align="right">
+										<apex:outputText value="{0,number,$#,###}" escape="false">
+			                			<apex:param value="{!NPV_FL}"/>									
+										</apex:outputText>											
+									</td>
+								</tr>																							
+							</table> 	
+
+		</apex:pageBlock>
+	</apex:form>
+	
+
+	<apex:pageBlock title="Buy Analysis">
+			<apex:OutputText escape="false"><b> Annual Depreciation Schedule </b></apex:OutputText>			
+			    <table class="ex1" border="1" id="DepreciationTable" style="border-collapse:collapse;">
+			    	
+					  <tr>
+					    <th id="PeriodHeader">
+					    	<apex:outputText value=" Year# " escape="false"/>
+					    </th>
+					    <th id="PeriodHeaderMOnth">
+					    	<apex:outputText value=" Month# " escape="false"/>
+					    </th>					    
+					    <th id="DepreciationHeader">
+					    	<apex:outputText value=" Depreciation (%) " escape="false"/>
+					    </th>
+					    <th id="DepreciationAmtHeader"> 
+					    	<apex:outputText value=" Depreciation " escape="false"/>
+					    </th>
+					    <th id="SalvageValueHeader"> 
+					    	<apex:outputText value=" Salvage Value " escape="false"/>
+					    </th>
+					  </tr>      
+			        <apex:repeat value="{!(ChartDepreciation)}" var="ChartDeprec">
+			            <tr align="center" title="Annual MACRS Table" >
+			                	<td align="center">{!(ChartDeprec.I1)}</td>
+			                	<td align="center">{!(ChartDeprec.d1)}</td>
+			                    <td  align="right">
+									
+									<apex:outputText value="{0, number, #,###.##%}" escape="false">
+       								<apex:param value="{!(ChartDeprec.d2/100)}" />
+ 									</apex:outputText>
+			                    </td>
+			                    <td  align="right">
+                 					<apex:outputText value="{0,number,$#,###}" escape="false">
+                					<apex:param value="{!ChartDeprec.d3}"/>									
+									</apex:outputText>
+			                    </td>
+			                    <td  align="right">
+                 					<apex:outputText value="{0,number,$#,###}" escape="false">
+                					<apex:param value="{!(ChartDeprec.d4)}"/>									
+									</apex:outputText>									
+			                    </td>
+			            </tr>
+			        </apex:repeat>
+			    </table>
+			<br/>
+			<br/>
+			<apex:OutputText escape="false"><b> Amortization table </b></apex:OutputText>			
+			    <table class="ex1" border="1" id="AmortizationTable " style="border-collapse:collapse;">
+			    	
+					  <tr>
+					    <th id="PeriodHeader">
+					    	<apex:outputText value=" Period (Month) &nbsp" escape="false"/>
+					    </th>
+					    <th id="Payment">   
+					    	<apex:outputText value=" Payment " escape="false"/>
+					    </th>		
+					    <th id="InterestExpense">
+					    	<apex:outputText value=" Interest Expense " escape="false"/>
+					    </th>	
+					    <th id="Principal">   
+					    	<apex:outputText value=" Principal Repayment " escape="false"/>
+					    </th>						    				    			    
+					    <th id="OutstandingBalance">
+					    	<apex:outputText value="Outstanding Balance " escape="false"/>
+					    </th>
+					  </tr>      
+			        <apex:repeat value="{!(AmortizationTable_Buy)}" var="AmortizationTableBuyVar">
+			            <tr align="center" title="Amortization Table" >
+			                    <td  align="center">
+									<apex:outputText value="{!(AmortizationTableBuyVar.I1)}" />
+									
+			                    </td>			            
+			                    <td  align="right">
+									
+                 					<apex:outputText value="{0,number,$#,###}" escape="false">
+                					<apex:param value="{!(AmortizationTableBuyVar.D1)}"/>									
+									</apex:outputText>											
+			                    </td>
+			                    <td  align="right">
+                 					<apex:outputText value="{0,number,$#,###}" escape="false">
+                					<apex:param value="{!(AmortizationTableBuyVar.D3)}"/>									
+									</apex:outputText>										
+			                    </td>
+			                    <td  align="right">
+                 					<apex:outputText value="{0,number,$#,###}" escape="false">
+                					<apex:param value="{!(AmortizationTableBuyVar.D4)}"/>									
+									</apex:outputText>										
+			                    </td>
+			                    <td  align="right">
+                 					<apex:outputText value="{0,number,$#,###}" escape="false">
+                					<apex:param value="{!(AmortizationTableBuyVar.D5)}"/>									
+									</apex:outputText>										
+			                    </td>
+	                    			                    
+			            </tr>
+			        </apex:repeat>
+			    </table>
+			<br/>
+			<br/>	
+					
+			<apex:OutputText escape="false"><b> To Buy with Tax Rate of {!curPBL.leaseworks__Tax_rate__c}%</b></apex:OutputText>
+			<br/>
+			    <table class="ex1"  id="BuyTable1" style="border-collapse:collapse;">
+			        <tr  >
+			            <td>
+				            <table class="ex1" border="1" id="FirstColumnTable1" style="border-collapse:collapse;">
+								<tr align="center">
+									<td align="left" style="white-space:nowrap">
+										<apex:OutputText escape="false"> Month# </apex:OutputText>
+									</td>										
+								</tr>
+								 
+								<tr align="center">
+									<td align="left" style="white-space:nowrap">
+										<apex:OutputText escape="false"> Debt Payments </apex:OutputText>
+									</td>										
+								</tr>
+								
+								<tr align="center">
+									<td align="left" style="white-space:nowrap">
+										<apex:OutputText escape="false"> Interest Tax Shield </apex:OutputText>
+									</td>											
+								</tr>	
+								<tr align="center">
+									<td align="left" style="white-space:nowrap">
+										<apex:OutputText escape="false"> Depreciation Tax Shield </apex:OutputText>
+									</td>											
+								</tr>	
+							
+								
+								<tr align="center">
+									<td align="left" style="white-space:nowrap">
+										<apex:OutputText escape="false"> Net Proceeds From Sale Of Aircraft  </apex:OutputText>
+									</td>									
+								</tr>	
+								<tr align="center">
+									<td align="left" style="white-space:nowrap">
+										<apex:OutputText escape="false"> Balloon Payment  </apex:OutputText>
+									</td>									
+								</tr>		
+								<tr align="center">
+									<td align="left" style="white-space:nowrap">
+										<apex:OutputText escape="false"> Net cash flow </apex:OutputText>
+									</td>									
+								</tr>		
+														
+					        </table>  						
+						
+						</td>
+			            <td>
+				            <table class="ex1" border="1" id="PeriodTable1" style="border-collapse:collapse;">
+					           
+									<tr align="right">
+									<apex:repeat value="{!Chart_Buy}" var="ChartStructVar">
+										<td  style="white-space:nowrap" align="center">
+											<apex:OutputText escape="false"> {!ChartStructVar.I1} </apex:OutputText>
+										</td>
+									</apex:repeat>										
+									</tr>
+									 
+									<tr align="right">
+									<apex:repeat value="{!Chart_Buy}" var="ChartStructVar">
+										<td style="white-space:nowrap">
+											<apex:outputText value="{0,number,$#,###}" escape="false">
+                							<apex:param value="{!ChartStructVar.d1}"/>									
+											</apex:outputText>											
+										</td>
+									</apex:repeat>	
+									</tr>	
+									
+									<tr align="right">
+									<apex:repeat value="{!Chart_Buy}" var="ChartStructVar">
+										<td style="white-space:nowrap">
+											<apex:outputText value="{0,number,$#,###}" escape="false">
+                							<apex:param value="{!ChartStructVar.d2}"/>									
+											</apex:outputText>											
+										</td>																			
+									</apex:repeat>	
+									</tr>
+									<tr align="right">
+									<apex:repeat value="{!Chart_Buy}" var="ChartStructVar">
+										<td style="white-space:nowrap">
+											<apex:outputText value="{0,number,$#,###}" escape="false">
+                							<apex:param value="{!ChartStructVar.d3}"/>									
+											</apex:outputText>											
+										</td>																			
+									</apex:repeat>	
+									</tr>									
+									<tr align="right">
+									<apex:repeat value="{!Chart_Buy}" var="ChartStructVar">
+										<td style="white-space:nowrap">
+											<apex:outputText value="{0,number,$#,###}" escape="false">
+                							<apex:param value="{!ChartStructVar.d4}"/>									
+											</apex:outputText>											
+										</td>																			
+									</apex:repeat>	
+									</tr>
+
+									<tr align="right" >
+									<apex:repeat value="{!Chart_Buy}" var="ChartStructVar">
+										<td style="white-space:nowrap">
+											<apex:outputText value="{0,number,$#,###}" escape="false">
+                							<apex:param value="{!ChartStructVar.d5}"/>									
+											</apex:outputText>											
+										</td>																			
+									</apex:repeat>	
+									</tr>	
+									<tr align="right" >
+									<apex:repeat value="{!Chart_Buy}" var="ChartStructVar">
+										<td style="white-space:nowrap">
+											<apex:outputText value="{0,number,$#,###}" escape="false">
+                							<apex:param value="{!ChartStructVar.d6}"/>									
+											</apex:outputText>											
+										</td>																			
+									</apex:repeat>	
+									</tr>
+																																		
+					        </table>  
+						</td> 
+			        </tr>	
+	
+			    </table>
+			     
+				<table class="ex1"  id="BuyTable2">
+					<tr align="center">
+						<td>
+						    <table class="ex1" border="1" id="PeriodTable2" style="border-collapse:collapse;">
+						    	<tr align="center">
+									<td align="center" style="white-space:nowrap">
+										<apex:OutputText escape="false"><b> NPV </b></apex:OutputText>
+									</td>
+									<td style="white-space:nowrap" align="right">
+										<apex:outputText value="{0,number,$#,###}" escape="false">
+			                			<apex:param value="{!NPV_Buy}"/>									
+										</apex:outputText>											
+									</td>
+								</tr>
+															
+							</table>  
+						</td>
+					</tr>			    
+			    </table>	
+			    		
+				<br/>
+					
+	</apex:pageBlock>
+  
+	<apex:pageBlock title="Operating Lease Analysis">	
+			<apex:OutputText escape="false"><b> To Lease with Tax Rate of {!curPBL.leaseworks__Tax_rate__c}%</b></apex:OutputText>
+			<br/>
+			    <table class="ex1"  id="LeaseTable1">
+			        <tr  >
+			            <td>
+				            <table border="1" id="FirstColumnTable1" style="border-collapse:collapse;">
+								<tr align="center">
+									<td align="left" style="white-space:nowrap">
+										<apex:OutputText escape="false"> Month# </apex:OutputText>
+									</td>	
+								</tr>
+								<tr align="center">
+									<td align="left" style="white-space:nowrap">
+										<apex:OutputText escape="false"> Security deposit </apex:OutputText>
+									</td>										
+								</tr>
+								<tr align="center">
+									<td align="left" style="white-space:nowrap">
+										<apex:OutputText escape="false"> Monthly Lease Payment </apex:OutputText>
+									</td>											
+								</tr>
+								<tr align="center">
+									<td align="left" style="white-space:nowrap">
+										<apex:OutputText escape="false"> Lease Payment Tax Shield </apex:OutputText>
+									</td>										
+								</tr>	
+
+								<tr align="center">
+									<td align="left" style="white-space:nowrap">
+										<apex:OutputText escape="false"> Net cash flow </apex:OutputText>
+									</td>										
+								</tr>									
+					        </table>  						
+						
+						</td>
+			            <td>
+				            <table  border="1" id="PeriodTable1" style="border-collapse:collapse;">
+					           
+									<tr align="right">
+									<apex:repeat value="{!Chart_OL}" var="ChartStructLeaseVar">
+										<td style="white-space:nowrap" align="center">
+											<apex:OutputText escape="false"> {!ChartStructLeaseVar.I1} </apex:OutputText>
+										</td>
+									</apex:repeat>										
+									</tr>
+									<tr align="right">
+									<apex:repeat value="{!Chart_OL}" var="ChartStructLeaseVar">
+										<td style="white-space:nowrap" align="right">
+											<apex:outputText value=" {0,number,$#,###}" escape="false">
+				                			<apex:param value="{!ChartStructLeaseVar.d1}"/>									
+											</apex:outputText>											
+										</td>										
+									</apex:repeat>	
+									</tr>	
+									<tr align="right">
+									<apex:repeat value="{!Chart_OL}" var="ChartStructLeaseVar">
+										<td style="white-space:nowrap" align="right">
+											<apex:outputText value="{0,number,$#,###}" escape="false">
+				                			<apex:param value="{!ChartStructLeaseVar.d2}"/>									
+											</apex:outputText>											
+										</td>									
+									</apex:repeat>	
+									</tr>
+									<tr align="right">
+									<apex:repeat value="{!Chart_OL}" var="ChartStructLeaseVar">
+										<td style="white-space:nowrap" align="right">
+											<apex:outputText value="{0,number,$#,###}" escape="false">
+				                			<apex:param value="{!ChartStructLeaseVar.d3}"/>									
+											</apex:outputText>											
+										</td>									
+									</apex:repeat>	
+									</tr>
+									<tr align="right">
+									<apex:repeat value="{!Chart_OL}" var="ChartStructLeaseVar">
+										<td style="white-space:nowrap" align="right">
+											<apex:outputText value="{0,number,$#,###}" escape="false">
+				                			<apex:param value="{!ChartStructLeaseVar.d4}"/>									
+											</apex:outputText>											
+										</td>									
+									</apex:repeat>	
+									</tr>
+					        </table>  
+						</td> 
+			        </tr>	
+			    </table>	
+				<table class="ex1"  id="LeaseTable2">
+					<tr align="center">
+						<td>
+						    <table class="ex1" border="1" id="PeriodTable2" style="border-collapse:collapse;">
+						    	<tr align="center">
+									<td align="center" style="white-space:nowrap">
+										<apex:OutputText escape="false"><b> NPV </b></apex:OutputText>
+									</td>
+									<td style="white-space:nowrap" align="right">
+										<apex:outputText value="{0,number,$#,###}" escape="false">
+			                			<apex:param value="{!NPV_OL}"/>									
+										</apex:outputText>											
+									</td>
+								</tr>	
+														
+							</table>  
+						</td>
+					</tr>			    
+			    </table>			
+				<br/>
+				<br/>	
+	</apex:pageBlock>	
+	<br/>
+	<apex:pageBlock title="Finance Lease Analysis">
+	
+				<br/>
+    		<apex:pageBlockSection columns="1">
+    			<apex:outputField value="{!curPBL.leaseworks__Down_Payment_Percentage_F__c}"/>
+				<apex:outputField value="{!curPBL.leaseworks__Down_Payment_Amount__c}"/>
+				<apex:outputField value="{!curPBL.leaseworks__Purchase_Price__c}"/>		
+				<apex:outputField value="{!curPBL.leaseworks__Remaining_Balance__c}"/>	
+				<apex:outputField value="{!curPBL.leaseworks__Monthly_Lease_Payment_FL_F__c}"/>
+				<apex:outputField value="{!curPBL.leaseworks__Buy_Out_Price_At_Lease_Expiration__c}"/>
+								
+			</apex:pageBlockSection>
+				<br/>
+				<br/>	
+			<apex:OutputText escape="false"><b> Amortization table </b></apex:OutputText>			
+			    <table class="ex1" border="1" id="AmortizationTable " style="border-collapse:collapse;">
+			    	
+					  <tr>
+					    <th id="PeriodHeader">
+					    	<apex:outputText value=" Period (Month) &nbsp" escape="false"/>
+					    </th>
+					    <th id="Payment">   
+					    	<apex:outputText value=" Lease Payment " escape="false"/>
+					    </th>		
+					    <th id="InterestExpense">
+					    	<apex:outputText value=" Principal " escape="false"/>
+					    </th>	
+					    <th id="Principal">   
+					    	<apex:outputText value=" Interest Expense " escape="false"/>
+					    </th>						    				    			    
+					    <th id="OutstandingBalance">
+					    	<apex:outputText value="Outstanding Balance " escape="false"/>
+					    </th>
+					  </tr>      
+			        <apex:repeat value="{!(AmortizationTable_FL)}" var="AmortizationTableFLVar">
+			            <tr align="center" title="Amortization Table" >
+			                    <td  align="center">
+									<apex:outputText value="{!(AmortizationTableFLVar.I1)}" />
+									
+			                    </td>			            
+			                    <td  align="right">
+									
+                 					<apex:outputText value="{0,number,$#,###}" escape="false">
+                					<apex:param value="{!(AmortizationTableFLVar.D1)}"/>									
+									</apex:outputText>											
+			                    </td>
+			                    <td  align="right">
+                 					<apex:outputText value="{0,number,$#,###}" escape="false">
+                					<apex:param value="{!(AmortizationTableFLVar.D2)}"/>									
+									</apex:outputText>										
+			                    </td>
+			                    <td  align="right">
+                 					<apex:outputText value="{0,number,$#,###}" escape="false">
+                					<apex:param value="{!(AmortizationTableFLVar.D3)}"/>									
+									</apex:outputText>										
+			                    </td>
+			                    <td  align="right">
+                 					<apex:outputText value="{0,number,$#,###}" escape="false">
+                					<apex:param value="{!(AmortizationTableFLVar.D4)}"/>									
+									</apex:outputText>										
+			                    </td>
+	                    			                    
+			            </tr>
+			        </apex:repeat>
+			    </table>
+			<br/>
+			<br/>	
+					
+			    <table class="ex1"  id="BuyTable1" style="border-collapse:collapse;">
+			        <tr  >
+			            <td>
+				            <table class="ex1" border="1" id="FirstColumnTable1" style="border-collapse:collapse;">
+								<tr align="center">
+									<td align="left" style="white-space:nowrap">
+										<apex:OutputText escape="false"> Month# </apex:OutputText>
+									</td>										
+								</tr>
+								 
+								<tr align="center">
+									<td align="left" style="white-space:nowrap">
+										<apex:OutputText escape="false"> Initial Down Payment or Deposit </apex:OutputText>
+									</td>										
+								</tr>
+								
+								<tr align="center">
+									<td align="left" style="white-space:nowrap">
+										<apex:OutputText escape="false"> Lease Payment </apex:OutputText>
+									</td>											
+								</tr>	
+								<tr align="center">
+									<td align="left" style="white-space:nowrap">
+										<apex:OutputText escape="false"> Interest Tax Shield </apex:OutputText>
+									</td>											
+								</tr>	
+							
+								<tr align="center">
+									<td align="left" style="white-space:nowrap">
+										<apex:OutputText escape="false"> Depreciation Tax Shield  </apex:OutputText>
+									</td>									
+								</tr>
+																
+								<tr align="center">
+									<td align="left" style="white-space:nowrap">
+										<apex:OutputText escape="false"> Buyout + Unrealized Gain  </apex:OutputText>
+									</td>									
+								</tr>	
+		
+								<tr align="center">
+									<td align="left" style="white-space:nowrap">
+										<apex:OutputText escape="false"> Net cash flow </apex:OutputText>
+									</td>									
+								</tr>		
+														
+					        </table>  						
+						
+						</td>
+			            <td>
+				            <table class="ex1" border="1" id="PeriodTable1" style="border-collapse:collapse;">
+					           
+									<tr align="right">
+									<apex:repeat value="{!Chart_FL}" var="Chart_FLVar">
+										<td  style="white-space:nowrap" align="center">
+											<apex:OutputText escape="false"> {!Chart_FLVar.I1} </apex:OutputText>
+										</td>
+									</apex:repeat>										
+									</tr>
+									 
+									<tr align="right">
+									<apex:repeat value="{!Chart_FL}" var="Chart_FLVar">
+										<td style="white-space:nowrap">
+											<apex:outputText value="{0,number,$#,###}" escape="false">
+                							<apex:param value="{!Chart_FLVar.d1}"/>									
+											</apex:outputText>											
+										</td>
+									</apex:repeat>	
+									</tr>	
+									
+									<tr align="right">
+									<apex:repeat value="{!Chart_FL}" var="Chart_FLVar">
+										<td style="white-space:nowrap">
+											<apex:outputText value="{0,number,$#,###}" escape="false">
+                							<apex:param value="{!Chart_FLVar.d2}"/>									
+											</apex:outputText>											
+										</td>																			
+									</apex:repeat>	
+									</tr>
+									<tr align="right">
+									<apex:repeat value="{!Chart_FL}" var="Chart_FLVar">
+										<td style="white-space:nowrap">
+											<apex:outputText value="{0,number,$#,###}" escape="false">
+                							<apex:param value="{!Chart_FLVar.d3}"/>									
+											</apex:outputText>											
+										</td>																			
+									</apex:repeat>	
+									</tr>	
+									
+									<tr align="right" >
+									<apex:repeat value="{!Chart_FL}" var="Chart_FLVar">
+										<td style="white-space:nowrap">
+											<apex:outputText value="{0,number,$#,###}" escape="false">
+                							<apex:param value="{!Chart_FLVar.d5}"/>									
+											</apex:outputText>											
+										</td>																			
+									</apex:repeat>	
+									</tr>	
+																										
+									<tr align="right">
+									<apex:repeat value="{!Chart_FL}" var="Chart_FLVar">
+										<td style="white-space:nowrap">
+											<apex:outputText value="{0,number,$#,###}" escape="false">
+                							<apex:param value="{!Chart_FLVar.d4}"/>									
+											</apex:outputText>											
+										</td>																			
+									</apex:repeat>	
+									</tr>
+
+									<tr align="right" >
+									<apex:repeat value="{!Chart_FL}" var="Chart_FLVar">
+										<td style="white-space:nowrap">
+											<apex:outputText value="{0,number,$#,###}" escape="false">
+                							<apex:param value="{!Chart_FLVar.d6}"/>									
+											</apex:outputText>											
+										</td>																			
+									</apex:repeat>	
+									</tr>
+																																		
+					        </table>  
+						</td> 
+			        </tr>	
+	
+			    </table>
+			     
+				<table class="ex1"  id="BuyTable2">
+					<tr align="center">
+						<td>
+						    <table class="ex1" border="1" id="PeriodTable2" style="border-collapse:collapse;">
+						    	<tr align="center">
+									<td align="center" style="white-space:nowrap">
+										<apex:OutputText escape="false"><b> NPV </b></apex:OutputText>
+									</td>
+									<td style="white-space:nowrap" align="right">
+										<apex:outputText value="{0,number,$#,###}" escape="false">
+			                			<apex:param value="{!NPV_FL}"/>									
+										</apex:outputText>											
+									</td>
+								</tr>
+																
+							</table>  
+						</td>
+					</tr>			    
+			    </table>	
+			    		
+				<br/>
+					
+	</apex:pageBlock>
+
+	<br/>
+	<br/>		
+</apex:page>

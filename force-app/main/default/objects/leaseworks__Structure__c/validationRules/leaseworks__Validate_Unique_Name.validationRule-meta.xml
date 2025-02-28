@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Validate_Unique_Name</fullName>
+    <active>false</active>
+    <errorConditionFormula>false /*Name = VLOOKUP($ObjectType.Structure__c.Fields.Name ,  
+$ObjectType.Structure__c.Fields.Name ,  
+Name)*/</errorConditionFormula>
+    <errorDisplayField>Name</errorDisplayField>
+    <errorMessage>There is already one Structure with that Name</errorMessage>
+</ValidationRule>

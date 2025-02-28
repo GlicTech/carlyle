@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__AssetOrLeaseOrOperatorRequired</fullName>
+    <active>true</active>
+    <description>Please enter the record to which this Commitment is Related To (for example Asset ,Lease,Lessee).</description>
+    <errorConditionFormula>AND( ISBLANK( leaseworks__Associated_Asset__c ) , ISBLANK( leaseworks__Lease_L__c ),ISBLANK( leaseworks__Lessee_L_New__c ))</errorConditionFormula>
+    <errorMessage>Please enter the record to which this Commitment is Related To (Asset or Lease or Lessee).</errorMessage>
+</ValidationRule>

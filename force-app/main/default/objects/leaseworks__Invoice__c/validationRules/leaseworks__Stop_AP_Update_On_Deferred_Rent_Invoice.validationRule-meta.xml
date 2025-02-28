@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Stop_AP_Update_On_Deferred_Rent_Invoice</fullName>
+    <active>false</active>
+    <description>The Accounting Period cannot be updated on invoices spanning two different months</description>
+    <errorConditionFormula>AND( leaseworks__Y_hidden_AccEnabled__c , leaseworks__Is_Deferred_Rent__c , PRIORVALUE( leaseworks__Accounting_Period__c ) != leaseworks__Accounting_Period__c )</errorConditionFormula>
+    <errorDisplayField>leaseworks__Accounting_Period__c</errorDisplayField>
+    <errorMessage>The accounting period cannot be overridden on a deferred revenue invoice.</errorMessage>
+</ValidationRule>

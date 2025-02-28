@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Paid_Amount__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Used for internal backend calculations</description>
+    <externalId>false</externalId>
+    <inlineHelpText>This is the total of all invoices that have been paid up.</inlineHelpText>
+    <label>Z_Unused_2106 Total Paid Amount</label>
+    <summarizedField>leaseworks__Constt_Assembly_Eligible_Event_Invoice__c.leaseworks__Invoice_Amount__c</summarizedField>
+    <summaryFilterItems>
+        <field>leaseworks__Constt_Assembly_Eligible_Event_Invoice__c.leaseworks__Status__c</field>
+        <operation>equals</operation>
+        <value>Paid</value>
+    </summaryFilterItems>
+    <summaryForeignKey>leaseworks__Constt_Assembly_Eligible_Event_Invoice__c.leaseworks__Constt_Assembly_Eligible_Event__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>leaseworks__PCM_Review_Rejected</fullName>
+        <description>PCM Review Rejected</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>leaseworks__LW_Pricing_Analysis_Template/leaseworks__PCM_Review_Reject_Email_Template</template>
+    </alerts>
+    <alerts>
+        <fullName>leaseworks__PCM_Team_Review</fullName>
+        <description>PCM Team Review</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>leaseworks__LW_Pricing_Analysis_Template/leaseworks__PCM_Review_Complete_Email_Template</template>
+    </alerts>
+    <alerts>
+        <fullName>leaseworks__Pricing_Analysis_Complete_Email_Alert</fullName>
+        <description>Pricing Analysis Complete Email Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>leaseworks__LW_Pricing_Analysis_Template/leaseworks__Pricing_Review_Complete_Email_Template</template>
+    </alerts>
+    <alerts>
+        <fullName>leaseworks__Pricing_Review</fullName>
+        <description>Pricing Review</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>leaseworks__LW_Pricing_Analysis_Template/leaseworks__Pricing_Review_Email_Template</template>
+    </alerts>
+    <alerts>
+        <fullName>leaseworks__Pricing_Review_Rejected</fullName>
+        <description>Pricing Review Rejected</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>leaseworks__LW_Pricing_Analysis_Template/leaseworks__Pricing_Review_Reject_Email_Template</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>leaseworks__PricingRun_SetStatusToApproved</fullName>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Approved</literalValue>
+        <name>PricingRun_SetStatusToApproved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Set_Status_to_Pricing_Analysis</fullName>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Pricing Analysis Review</literalValue>
+        <name>Set Status to Pricing Analysis</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Set_Status_to_Rejected_by_PCM_Team</fullName>
+        <field>leaseworks__Status__c</field>
+        <literalValue>PCM Review Rejected</literalValue>
+        <name>Set Status to Rejected by PCM Team</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Set_Status_to_Rejected_by_Pricing_Team</fullName>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Pricing Analysis Rejected</literalValue>
+        <name>Set Status to Rejected by Pricing Team</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Set_Status_to_Submitted_Approval</fullName>
+        <field>leaseworks__Status__c</field>
+        <literalValue>PCM Review</literalValue>
+        <name>Set Status to PCM Review</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__UpdateDARevName</fullName>
+        <description>deprecated</description>
+        <field>Name</field>
+        <formula>IF( (LEN(Name)+10)&lt;=80,Name &amp; &#39;- Revision&#39;,LEFT(Name, 70) &amp; &#39;- Revision&#39; )</formula>
+        <name>UpdateDARevName</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>leaseworks__UpdateDARevisionName</fullName>
+        <actions>
+            <name>leaseworks__UpdateDARevName</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>deprecated</description>
+        <formula>false</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+</Workflow>

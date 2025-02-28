@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__PaymentAmountGreaterThanZero</fullName>
+    <active>true</active>
+    <description>This is for the deferred payment. The amount should not be null or less than zero.</description>
+    <errorConditionFormula>AND(leaseworks__Deferred__c, OR(leaseworks__Amount__c=null, leaseworks__Amount__c &lt; 0.0))</errorConditionFormula>
+    <errorDisplayField>leaseworks__Amount__c</errorDisplayField>
+    <errorMessage>The amount received should not be less than zero.</errorMessage>
+</ValidationRule>

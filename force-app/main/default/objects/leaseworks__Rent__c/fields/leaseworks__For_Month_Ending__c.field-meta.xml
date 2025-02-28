@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__For_Month_Ending__c</fullName>
+    <defaultValue>date(year(today())+(if(month(today())&gt;=11,1,0)),
+(mod(month(today()),12)+2),
+1)-1</defaultValue>
+    <deprecated>false</deprecated>
+    <description>Changing to default to end of next month. Source: Fortress.
+Date Due will be made optional.</description>
+    <externalId>false</externalId>
+    <label>End Date</label>
+    <required>true</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

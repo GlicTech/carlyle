@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Type_and_CA_cannot_be_changed</fullName>
+    <active>true</active>
+    <description>Ideally, only the utilization should be changed on the Assembly UR.</description>
+    <errorConditionFormula>AND( ! ISNEW()  ,OR( leaseworks__Constituent_Assembly__c !=  PRIORVALUE( leaseworks__Constituent_Assembly__c )))</errorConditionFormula>
+    <errorMessage>You cannot change Report Item Type and Constituent Assembly of an Assembly Utilization Report.</errorMessage>
+</ValidationRule>

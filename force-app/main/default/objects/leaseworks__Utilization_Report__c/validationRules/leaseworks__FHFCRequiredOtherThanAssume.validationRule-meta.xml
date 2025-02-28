@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__FHFCRequiredOtherThanAssume</fullName>
+    <active>true</active>
+    <description>FH FC is required other than Assumed UR</description>
+    <errorConditionFormula>AND(  !$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c ,
+
+and(
+  OR(  AND(isBlank(leaseworks__FH_String__c), isBlank( leaseworks__Airframe_Flight_Hours_Month__c )) ,isBlank( leaseworks__Airframe_Cycles_Landing_During_Month__c )
+   ),
+!leaseworks__Unknown_FH_FC__c 
+)
+)</errorConditionFormula>
+    <errorMessage>You must enter a value for Airframe Flight Hours (FH) &amp; Airframe Flight Cycles (FC)</errorMessage>
+</ValidationRule>

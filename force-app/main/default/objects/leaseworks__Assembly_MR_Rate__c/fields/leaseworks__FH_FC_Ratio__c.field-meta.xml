@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__FH_FC_Ratio__c</fullName>
+    <deprecated>false</deprecated>
+    <description>FH:FC Ratio to be used for MR calculations; This can be current month, previous year 12 mos, rolling 12 months, lease anniversary 12 mos
+
+From MR Reconciliation Studio-
+        1. When generating MR reconciliation type of utilization, we are creating or updating FH:FC ratio records.
+        2. We are updating new FH:FC ration value on Supplement rent if old and new ration percentage is not blank and greater than reconcilation schedule record&#39;s Ratio Variance (%) field.
+
+On Supplement Rent Utilization record- Before inserting and before updating a record-
+       1. If Utilization Type not equal to &quot;MR Reconciliation&quot; and Assumed FH:FC Ratio field is blank on SR Utilization record then we are using this(Ratio Current) field value in calculation</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Calculate automatically the ratio of the Actual and Adjusted utilizations. Also allow to manually enter the Ratio</inlineHelpText>
+    <label>Ratio Current</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>4</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

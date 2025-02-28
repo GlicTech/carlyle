@@ -1,0 +1,28 @@
+<apex:page showheader="TRUE" sidebar="false" standardController="leaseworks__Pricing_Run_New__c" title="Add Asset">
+    <apex:includeScript value="/lightning/lightning.out.js" />
+    
+    <script>
+    
+(function(){try{var a=navigator.userAgent; 
+if((a.indexOf('Salesforce')!=-1)&&(a.indexOf('iPhone')!=-1||a.indexOf('iPad')!=-1) &&(a.indexOf('Safari')==-1)){ 
+var s=document.createElement('style'); 
+s.innerHTML="html,html body{overflow: auto;-webkit-overflow-scrolling:touch;}body{position:absolute;left:0;right:0;top:0;bottom:0;}"; 
+document.getElementsByTagName('head')[0].appendChild(s);}}catch(e){}})(); 
+
+         var pricingId = "{!$CurrentPage.parameters.id}";
+         console.log("Id=");
+         console.log(pricingId );
+        $Lightning.use("leaseworks:ProxyLightningApp", function() {
+            $Lightning.createComponent(
+                "leaseworks:ProxyLightning",
+                {"componentTypeName" : "leaseworks:AddTermsForPricing",
+                 "componentAttribute" :  {"pricingRunInputId" : pricingId}},
+                "lightning",
+                function(cmp) {
+                    console.log("Component created!");
+                    console.log(cmp);
+                });
+            });
+    </script>
+    <div id="lightning"></div>
+</apex:page>

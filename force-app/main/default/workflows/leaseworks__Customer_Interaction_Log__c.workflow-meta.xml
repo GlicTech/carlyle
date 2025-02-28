@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>leaseworks__Cancel_Event_ics</fullName>
+        <description>Cancel Event ics</description>
+        <protected>false</protected>
+        <recipients>
+            <field>leaseworks__Assigned_To__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>leaseworks__LeaseWorksTemplates/leaseworks__IL_ics_Entry_Cancel_Event</template>
+    </alerts>
+    <alerts>
+        <fullName>leaseworks__Email_Alert_for_IL_Follow_Up_Task</fullName>
+        <description>Email Alert for IL Follow Up Task</description>
+        <protected>false</protected>
+        <recipients>
+            <field>leaseworks__Assigned_To__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>leaseworks__LeaseWorksTemplates/leaseworks__Calendar_ICS_Entry_IL</template>
+    </alerts>
+    <alerts>
+        <fullName>leaseworks__IL_Email</fullName>
+        <description>IL Email</description>
+        <protected>false</protected>
+        <recipients>
+            <field>LastModifiedById</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>leaseworks__LeaseWorksTemplates/leaseworks__IL_Email_Template</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>leaseworks__UpdateSequence</fullName>
+        <field>leaseworks__Y_Hidden_Sequence__c</field>
+        <formula>leaseworks__Y_Hidden_Sequence__c  + 1</formula>
+        <name>UpdateSequence</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>leaseworks__SendICSEntryCancelEvent</fullName>
+        <actions>
+            <name>leaseworks__Cancel_Event_ics</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>leaseworks__UpdateSequence</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>AND(!ISNEW(),ISCHANGED(leaseworks__Follow_Up_Due_Date__c),ISBLANK(leaseworks__Follow_Up_Due_Date__c) )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__SendICSEntryForIL</fullName>
+        <actions>
+            <name>leaseworks__Email_Alert_for_IL_Follow_Up_Task</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>leaseworks__UpdateSequence</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>AND(!ISBLANK(leaseworks__Follow_Up_Due_Date__c),!ISBLANK( leaseworks__Assigned_To__c ), OR(ISCHANGED(leaseworks__Follow_Up_Due_Date__c),   ISCHANGED(leaseworks__Assigned_To__c), ISNEW()  ))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

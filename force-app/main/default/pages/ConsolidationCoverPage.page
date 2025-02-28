@@ -1,0 +1,113 @@
+<apex:page controller="ConsolidationCoverPageController" renderAs="PDF" showHeader="false" sidebar="false" standardStylesheets="false" >
+    <head>
+        <style>
+            @page {
+            size: A4 portrait;
+            margin: 3mm;
+            }
+            
+            body {
+            font-family: sans-serif;
+            font-size: 11pt;
+            }
+            th {
+            min-height: 15px;
+            max-height: auto;
+            //background:#ddd;
+            }
+            td {
+            min-height: 15px;
+            max-height: auto;
+            }
+            table {-fs-table-paginate: paginate;}
+        </style>
+    </head>
+    <body>
+        <table border="1" cellspacing="0" cellpadding="10" style="width: 100%; border-collapse: collapse; border-color: #000; text-align:left;">
+            <tr>
+                <td style="border-right: 1px solid black;">
+                    <table width="100%">
+                        <tr>
+                            <td>
+                                
+                                <apex:outputText value="{!lessorData.lessor_name}"/><br/><br/>
+                                <apex:outputText value="{!lessorData.lessor_billing_street}"/><br/>
+                                <apex:outputText value="{!lessorData.lessor_billing_city}" /><br/>
+                                <apex:outputText value="{!lessorData.lessor_billing_state}"/><br/>
+                                <apex:outputText value="{!lessorData.lessor_billing_postal_code}"/><br/>
+                                <apex:outputText value="{!lessorData.lessor_billing_country}"/><br/>
+                                Contact Email - <apex:outputText value="{!lessorData.lessor_email}"/>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td style="border-right: 1px solid black;">
+                    <table width="100%">
+                        <tr>
+                            <td>
+                                <b>Lessee</b><br/><br/>
+                                <apex:outputText value="{!leseeData.lesse_name}"/><br/><br/>
+                                <apex:outputText value="{!leseeData.lesse_address_street}"/><br/>
+                                <apex:outputText value="{!leseeData.lesse_city}" /><br/>
+                                <apex:outputText value="{!leseeData.lesse_state}"/><br/>
+                                <apex:outputText value="{!leseeData.lesse_zip_code}"/><br/>
+                                <apex:outputText value="{!leseeData.lesse_country}"/><br/>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td height="10px">
+                    &nbsp;
+                </td>
+            </tr>
+        </table>
+        <table border="1" cellspacing="0" cellpadding="10" style="width: 100%; border-collapse: collapse; border-color: #000; text-align:left;">
+            <thead>
+                <tr> 
+                    <th>S No.</th>
+                    <th>Invoice Number</th>
+                    <th>Invoice Type</th>
+                    <th>Invoice Date</th>
+                    <th>Due Date</th>
+                    <th>Balance Due</th>
+                </tr>     
+            </thead>
+            
+            <apex:repeat value="{!lstOfInvoiceData}" var="invoice_data">                
+                <tr width="100%">
+                    <td><apex:outputText value="{!invoice_data.s_no}"/></td>
+                    <td><apex:outputText value="{!invoice_data.invoice_no}"/></td>
+                    <td><apex:outputText value="{!invoice_data.invoice_type}"/></td>
+                    <td>
+                        <apex:outputText value="{0, date, dd'-'MMM'-'YYYY}">
+                            <apex:param value="{!invoice_data.invoice_date}" /> 
+                        </apex:outputText>
+                    </td>
+                    <td>
+                        <apex:outputText value="{0, date, dd'-'MMM'-'YYYY}">
+                            <apex:param value="{!invoice_data.invoice_due_date}" /> 
+                        </apex:outputText>
+                    </td>
+                    <td>
+                        <apex:outputText value="{0, Number, Currency}" >
+                            <apex:param value="{!invoice_data.invoice_amount}" />
+                        </apex:outputText>
+                    </td>
+                </tr>                    
+            </apex:repeat>  
+            <tr width="100%">
+                <td colspan="4" style="border-right:0px"></td>
+                <td style="text-align:center; border-left:0px">Total</td>
+                <td>
+                    <apex:outputText value="{0, Number, Currency}" >
+                        <apex:param value="{!leseeData.invoice_amount_sum}" />
+                    </apex:outputText>
+                </td>
+            </tr>            
+        </table>   
+    </body> 
+</apex:page>

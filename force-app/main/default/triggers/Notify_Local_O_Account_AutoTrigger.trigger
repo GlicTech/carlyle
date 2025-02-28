@@ -1,0 +1,1 @@
+trigger Notify_Local_O_Account_AutoTrigger on Account (before insert, before update, before delete, after insert, after update, after delete, after undelete) { leaseworks.Notify_NotificationScheduler.triggerHandler(Account.sObjectType); }

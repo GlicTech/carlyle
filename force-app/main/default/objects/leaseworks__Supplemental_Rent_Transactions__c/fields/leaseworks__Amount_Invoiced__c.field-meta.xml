@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Amount_Invoiced__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Formula (currency, 2 decimals) showing amount on the document, but only for documents, classified as Invoiced, calculated by trigger
+/**The Below transaction types will be considered NULL
+&#39;MR Payment Offset&#39;
+&#39;MR Payment Credit Applied&#39;
+&#39;MR Cash Payment&#39;
+&#39;MR Contribution Used&#39;
+&#39;MR Rebate Payout&#39;
+&#39;Payout- MR Reconciliationt&#39;
+&#39;MR Lessor Commitment Amount Used&#39;
+***/</description>
+    <externalId>false</externalId>
+    <formula>CASE(TEXT(leaseworks__Transaction_Type__c)
+,&#39;Opening Balance&#39;, leaseworks__Supplemental_Rent__r.leaseworks__Starting_MR_Balance__c
+,&#39;MR Invoice&#39;, IF(ISBLANK(leaseworks__Invoice_Line_Item__c),0,IF( OR(ISPICKVAL(leaseworks__Invoice_Line_Item__r.leaseworks__Invoice__r.leaseworks__Status__c,&#39;Pending&#39;),
+ISPICKVAL(leaseworks__Invoice_Line_Item__r.leaseworks__Invoice__r.leaseworks__Status__c,&#39;Declined&#39;),ISPICKVAL(leaseworks__Invoice_Line_Item__r.leaseworks__Invoice__r.leaseworks__Status__c,&#39;Cancelled&#39;),
+ISPICKVAL(leaseworks__Invoice_Line_Item__r.leaseworks__Invoice__r.leaseworks__Status__c,&#39;Submitted&#39;)),null,leaseworks__Invoice_Line_Item__r.leaseworks__Amount_Due__c))
+,&#39;MR Invoice Reconciliation&#39;, IF(ISBLANK(leaseworks__Invoice_Line_Item__c),0,IF( OR(ISPICKVAL(leaseworks__Invoice_Line_Item__r.leaseworks__Invoice__r.leaseworks__Status__c,&#39;Pending&#39;),
+ISPICKVAL(leaseworks__Invoice_Line_Item__r.leaseworks__Invoice__r.leaseworks__Status__c,&#39;Declined&#39;),ISPICKVAL(leaseworks__Invoice_Line_Item__r.leaseworks__Invoice__r.leaseworks__Status__c,&#39;Cancelled&#39;)),null,leaseworks__Invoice_Line_Item__r.leaseworks__Amount_Due__c))
+,&#39;MR Invoice Overpayment Credit&#39;, IF( OR(leaseworks__Credit_Memo_Status__c == &#39;Pending&#39;, 
+leaseworks__Credit_Memo_Status__c == &#39;Declined&#39;,leaseworks__Credit_Memo_Status__c == &#39;Cancelled&#39;),null,leaseworks__Credit_Memo_Issuance_Amount__c *(-1))
+,&#39;MR Contribution Applied&#39;, leaseworks__MR_Claim_Calculation__c
+,&#39;MR Claim&#39;, leaseworks__MR_Claim_Calculation__c
+,&#39;Adjustment&#39;, leaseworks__Supplemental_Rent_Adjustment_Amount__c
+,&#39;MR Invoice Adjustment&#39;,IF(OR(leaseworks__Invoice_Status__c == &#39;Pending&#39; ,leaseworks__Invoice_Status__c == &#39;Declined&#39;,leaseworks__Invoice_Status__c == &#39;Cancelled&#39;),null,IF(OR(ISPICKVAL(leaseworks__Invoice_Adjustment_Line_Item__r.leaseworks__Invoice_Adjustment__r.leaseworks__Approval_Status__c ,&#39;Approved&#39;),ISPICKVAL(leaseworks__Invoice_Adjustment_Line_Item__r.leaseworks__Invoice_Adjustment__r.leaseworks__Approval_Status__c ,&#39;Cancelled-Pending&#39;)),IF( leaseworks__Invoice_Adjustment_Line_Item__r.leaseworks__Line_Adjustment_Amount__c != 0 ,leaseworks__Invoice_Adjustment_Line_Item__r.leaseworks__Line_Adjustment_Amount__c ,null),null))
+,&#39;MR Transfer&#39;, IF( OR(leaseworks__MR_Fund_Transfer_Status__c == &#39;Pending&#39;,leaseworks__MR_Fund_Transfer_Status__c == &#39;Rejected&#39;),null,IF((leaseworks__Assembly_MR_Fund_Transfer_Source__c = leaseworks__Supplemental_Rent__c),(-1),1))*leaseworks__Assembly_MR_Fund_Transfer_Amount__c
+,&#39;MR Invoice Credit (Adjustment)&#39;,IF((leaseworks__Payment_Line_Item__r.leaseworks__Status__c =&#39;Cancelled&#39;),null,leaseworks__Payment_Line_Item__r.leaseworks__Amount_Paid__c*(-1))
+,&#39;MR Rebate&#39;,IF(OR(ISPICKVAL(leaseworks__Event_Payable__r.leaseworks__Status__c,&#39;Pending&#39;),ISPICKVAL(leaseworks__Event_Payable__r.leaseworks__Status__c,&#39;Declined&#39;),ISPICKVAL(leaseworks__Event_Payable__r.leaseworks__Status__c,&#39;Cancelled&#39;)),null,leaseworks__Payable_Line_Item__r.leaseworks__Payable_Line_Amount__c* (-1))
+,&#39;Payable - MR Reconciliation&#39;,IF(OR(ISPICKVAL(leaseworks__Event_Payable__r.leaseworks__Status__c,&#39;Pending&#39;),ISPICKVAL(leaseworks__Event_Payable__r.leaseworks__Status__c,&#39;Declined&#39;),ISPICKVAL(leaseworks__Event_Payable__r.leaseworks__Status__c,&#39;Cancelled&#39;)),null,leaseworks__Payable_Line_Item__r.leaseworks__Payable_Line_Amount__c* (-1))
+,&#39;MR Manual Payable&#39;,IF(OR(ISPICKVAL(leaseworks__Event_Payable__r.leaseworks__Status__c,&#39;Pending&#39;),ISPICKVAL(leaseworks__Event_Payable__r.leaseworks__Status__c,&#39;Declined&#39;),ISPICKVAL(leaseworks__Event_Payable__r.leaseworks__Status__c,&#39;Cancelled&#39;)),null,leaseworks__Payable_Line_Item__r.leaseworks__Payable_Line_Amount__c* (-1))
+,&#39;MR Lessor Commitment Amount Applied&#39;, leaseworks__MR_Claim_Calculation__c
+,&#39;MR Accrued&#39;, null
+,null)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Auto-calculated field, showing invoiced amount as per the source Document. This amount affects Running Balance (Invoiced). Zero for non-approved transactions and transactions updating only cash balance</inlineHelpText>
+    <label>Amount (Invoiced)</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

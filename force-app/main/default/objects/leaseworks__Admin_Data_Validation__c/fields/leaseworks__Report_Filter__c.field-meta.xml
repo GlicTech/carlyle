@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Report_Filter__c</fullName>
+    <deprecated>false</deprecated>
+    <description>To get Inactive or failed script in case of active.</description>
+    <externalId>false</externalId>
+    <formula>(leaseworks__Active__c &amp;&amp;  text(leaseworks__Status__c) != &#39;Success&#39;) || !leaseworks__Active__c</formula>
+    <label>_Report Filter</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

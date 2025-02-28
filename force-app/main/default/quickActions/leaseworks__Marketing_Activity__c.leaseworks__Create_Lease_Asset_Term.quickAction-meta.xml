@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>create Lease Asset term records</description>
+    <fieldOverrides>
+        <field>Name</field>
+        <formula>&quot;&lt;System Generated&gt;&quot;</formula>
+    </fieldOverrides>
+    <label>New Asset in Deal</label>
+    <optionsCreateFeedItem>true</optionsCreateFeedItem>
+    <quickActionLayout>
+        <layoutSectionStyle>TwoColumnsLeftToRight</layoutSectionStyle>
+        <quickActionLayoutColumns>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>leaseworks__Aircraft__c</field>
+                <uiBehavior>Edit</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>leaseworks__Asset_Type__c</field>
+                <uiBehavior>Edit</uiBehavior>
+            </quickActionLayoutItems>
+        </quickActionLayoutColumns>
+        <quickActionLayoutColumns />
+    </quickActionLayout>
+    <targetObject>leaseworks__Aircraft_Proposal__c</targetObject>
+    <targetParentField>leaseworks__Marketing_Activity__c</targetParentField>
+    <targetRecordType>leaseworks__Aircraft_Proposal__c.leaseworks__Lease</targetRecordType>
+    <type>Create</type>
+</QuickAction>

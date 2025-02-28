@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Return_Condition_Status__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Calculates the last month whose return condition is false</description>
+    <externalId>false</externalId>
+    <label>Return Condition Status</label>
+    <summarizedField>leaseworks__Monthly_Scenario__c.leaseworks__End_Date__c</summarizedField>
+    <summaryFilterItems>
+        <field>leaseworks__Monthly_Scenario__c.leaseworks__Return_Condition_Status__c</field>
+        <operation>equals</operation>
+        <value>False</value>
+    </summaryFilterItems>
+    <summaryForeignKey>leaseworks__Monthly_Scenario__c.leaseworks__Fx_Component_Output__c</summaryForeignKey>
+    <summaryOperation>max</summaryOperation>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

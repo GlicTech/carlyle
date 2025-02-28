@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Valid_Month_Ending</fullName>
+    <active>false</active>
+    <errorConditionFormula>false /*For_Month_Ending__c!=(
+	date(
+		year(For_Month_Ending__c)+
+			(if(month(For_Month_Ending__c)==12,1,0)
+			),
+			(mod(month(For_Month_Ending__c),12)+1
+			),		1
+	)-1)*/</errorConditionFormula>
+    <errorDisplayField>leaseworks__For_Month_Ending__c</errorDisplayField>
+    <errorMessage>Month ending day must be the last day of the month.</errorMessage>
+</ValidationRule>

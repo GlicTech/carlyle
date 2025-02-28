@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__ExpiryDateRequired</fullName>
+    <active>true</active>
+    <errorConditionFormula>OR(ISBLANK(leaseworks__Expiry_Date__c), ISNULL(leaseworks__Expiry_Date__c))</errorConditionFormula>
+    <errorDisplayField>leaseworks__Expiry_Date__c</errorDisplayField>
+    <errorMessage>Expiry Date is a Required Field</errorMessage>
+</ValidationRule>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__InductionDate_Before_ReleaseDate</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c
+,
+OR (leaseworks__Release_Date__c &lt; leaseworks__Induction_Date__c, leaseworks__Release_Date__c &gt; TODAY() )
+
+)</errorConditionFormula>
+    <errorDisplayField>leaseworks__Release_Date__c</errorDisplayField>
+    <errorMessage>Release date cannot be before the Induction date or future date</errorMessage>
+</ValidationRule>

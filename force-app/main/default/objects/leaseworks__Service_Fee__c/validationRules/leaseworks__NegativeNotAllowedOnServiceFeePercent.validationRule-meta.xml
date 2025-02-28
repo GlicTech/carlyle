@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__NegativeNotAllowedOnServiceFeePercent</fullName>
+    <active>true</active>
+    <description>It restricts to Enter Negative value on percent</description>
+    <errorConditionFormula>leaseworks__Service_Fee_Pct__c  &lt;=  0   ||   leaseworks__Service_Fee_Pct__c &gt; 100</errorConditionFormula>
+    <errorDisplayField>leaseworks__Service_Fee_Pct__c</errorDisplayField>
+    <errorMessage>Please enter a positive value less than 100.</errorMessage>
+</ValidationRule>
