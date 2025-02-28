@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>61.0</apiVersion>
+    <description>Flow to update related technical project lease</description>
+    <environments>Default</environments>
+    <interviewLabel>Update related technical project lease {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Update related technical project lease</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Update_Technical_Project</name>
+        <label>Update Technical Project</label>
+        <locationX>176</locationX>
+        <locationY>323</locationY>
+        <faultConnector>
+            <targetReference>Error_while_updating_the_field</targetReference>
+        </faultConnector>
+        <inputAssignments>
+            <field>Minimum_Lease_Delivery_Conditions_Local__c</field>
+            <value>
+                <elementReference>$Record.leaseworks__Delivery_Condition__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Minimum_Lease_Return_Conditions_Local__c</field>
+            <value>
+                <elementReference>$Record.leaseworks__Return_Condition__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record.leaseworks__Technical_Projects__r</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Update_Technical_Project</targetReference>
+        </connector>
+        <filterFormula>OR(
+    AND(
+        ISNEW(),
+        OR(
+            NOT(ISBLANK({!$Record.leaseworks__Delivery_Condition__c})),
+            NOT(ISBLANK({!$Record.leaseworks__Return_Condition__c}))
+        )
+    ),
+    OR(
+        ISCHANGED({!$Record.leaseworks__Delivery_Condition__c}),
+        ISCHANGED({!$Record.leaseworks__Return_Condition__c})
+    )
+)</filterFormula>
+        <object>leaseworks__Lease__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

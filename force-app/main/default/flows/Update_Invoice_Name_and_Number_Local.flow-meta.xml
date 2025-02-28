@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>61.0</apiVersion>
+    <decisions>
+        <name>Check_CMS_Invoice_number</name>
+        <label>Check CMS Invoice number</label>
+        <locationX>314</locationX>
+        <locationY>323</locationY>
+        <defaultConnector>
+            <targetReference>Update_Invoice_Name_and_Number</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>If_CMS_Invoice_number_present</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.CMS_Invoice_Number__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+            </conditions>
+            <connector>
+                <targetReference>Update_CMS_Invoice_Name_and_Number</targetReference>
+            </connector>
+            <label>If CMS Invoice number present</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <formulas>
+        <name>SetInvoiceName</name>
+        <dataType>String</dataType>
+        <expression>if(Contains(TEXT($Record.leaseworks__Invoice_Type__c),&#39;HL/SL-&#39;), $Record.leaseworks__Lessor_Level__c &amp; &#39;-&#39;,&#39;&#39;)&amp; TEXT(YEAR( $Record.leaseworks__Invoice_Date__c )) &amp; &#39;-&#39;
+&amp;
+Case(TEXT($Record.leaseworks__Invoice_Type__c),
+&#39;Aircraft MR&#39;,&#39;U&#39; ,
+&#39;Rent&#39;, &#39;R&#39;,
+&#39;Loan&#39;, &#39;L&#39;,
+&#39;Security Deposit&#39;, &#39;S&#39;,
+&#39;Interest&#39;,&#39;I&#39;,
+&#39;HL/SL-Rent&#39;,&#39;R&#39;,
+&#39;HL/SL-MR&#39;,&#39;U&#39;,
+&#39;HL/SL-SD&#39;,&#39;S&#39;,
+&#39;Service Fee&#39;,&#39;SF-&#39;,
+&#39;HL/SL-Interest&#39;,&#39;I&#39;,
+&#39;M&#39;
+)
+&amp;
+IF(NOT(TEXT($Record.leaseworks__Invoice_Type__c) = &#39;Service Fee&#39;),
+&#39;I&#39; &amp; &#39;-&#39; ,&#39;&#39;)
+&amp;
+Case($Record.leaseworks__Monthly_Utilization_Type_F__c,
+&#39;True Up Gross&#39;,&#39;TU&#39; ,
+&#39;Assumed/Estimated&#39;, &#39;AE&#39;,
+&#39;Manual Credits/Adjustments&#39;, &#39;MC&#39;,
+&#39;Provision&#39;,&#39;PR&#39;,
+&#39;&#39;
+)
+&amp;
+IF( !ISBLANK($Record.leaseworks__Y_Hidden_Sequence_Number__c),
+(&#39;-&#39;&amp;RIGHT(&#39;00000&#39; &amp; TEXT( $Record.leaseworks__Y_Hidden_Sequence_Number__c ),6)), &#39;&#39;)
+&amp;
+if($Record.leaseworks__Y_Hidden_Record_Type__c == &#39;MR_Reconciliation&#39;
+, &#39;(Reconciliation)&#39; , &#39;&#39;)</expression>
+    </formulas>
+    <formulas>
+        <description>Sets the invoice number</description>
+        <name>SetInvoiceNumber</name>
+        <dataType>String</dataType>
+        <expression>IF(CONTAINS(TEXT($Record.leaseworks__Invoice_Type__c) , &#39;HL/SL&#39;) ,  $Record.Name ,TEXT(YEAR( $Record.leaseworks__Invoice_Date__c )) &amp; &#39;-&#39; &amp;
+
+Case(TEXT($Record.leaseworks__Invoice_Type__c), 
+
+&#39;Aircraft MR&#39;,&#39;U&#39; , 
+
+&#39;Rent&#39;, &#39;R&#39;, 
+&#39;Loan&#39; , &#39;L&#39;,
+
+&#39;Security Deposit&#39;, &#39;S&#39;, 
+
+&#39;Interest&#39;,&#39;I&#39;,
+&#39;Service Fee&#39;, &#39;SF-&#39;,
+
+&#39;M&#39;
+
+)
+&amp;
+IF(NOT(TEXT($Record.leaseworks__Invoice_Type__c) = &#39;Service Fee&#39;),
+&#39;I&#39; &amp; &#39;-&#39; ,&#39;&#39;)
+&amp;
+
+
+Case($Record.leaseworks__Monthly_Utilization_Type_F__c, 
+
+&#39;True Up Gross&#39;,&#39;TU&#39; , 
+
+&#39;Assumed/Estimated&#39;, &#39;AE&#39;, 
+
+&#39;Manual Credits/Adjustments&#39;, &#39;MC&#39;, 
+
+&#39;Provision&#39;,&#39;PR&#39;,
+
+&#39;&#39;
+
+)
+
+&amp;
+
+IF( !ISBLANK($Record.leaseworks__Y_Hidden_Sequence_Number__c), 
+
+(&#39;-&#39;&amp;RIGHT(&#39;00000&#39; &amp; TEXT( $Record.leaseworks__Y_Hidden_Sequence_Number__c ),6)), &#39;&#39;))</expression>
+    </formulas>
+    <interviewLabel>Update Invoice Name and Number Local {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Update Invoice Name and Number Local</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Update_CMS_Invoice_Name_and_Number</name>
+        <label>Update CMS Invoice Name and Number</label>
+        <locationX>50</locationX>
+        <locationY>431</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>CMS_Invoice_Number__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue></stringValue>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Name</field>
+            <value>
+                <elementReference>$Record.CMS_Invoice_Number__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>leaseworks__Invoice_Number__c</field>
+            <value>
+                <elementReference>$Record.CMS_Invoice_Number__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_Invoice_Name_and_Number</name>
+        <label>Update Invoice Name and Number</label>
+        <locationX>578</locationX>
+        <locationY>431</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>CMS_Invoice_Number__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Name</field>
+            <value>
+                <elementReference>SetInvoiceName</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>leaseworks__Invoice_Number__c</field>
+            <value>
+                <elementReference>SetInvoiceNumber</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>188</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Check_CMS_Invoice_number</targetReference>
+        </connector>
+        <filterFormula>!{!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c}</filterFormula>
+        <object>leaseworks__Invoice__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Draft</status>
+</Flow>

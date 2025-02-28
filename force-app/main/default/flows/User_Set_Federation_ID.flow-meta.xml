@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>60.0</apiVersion>
+    <description>Set Federation ID of all users, for SSO.</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>ModifiedEmail</name>
+        <dataType>String</dataType>
+        <expression>SUBSTITUTE(SUBSTITUTE({!$Record.Email}, &quot;@carlyle.aero&quot;, &quot;@apollo.aero&quot;), &quot;.invalid&quot;,&quot;&quot;)</expression>
+    </formulas>
+    <interviewLabel>User - Set Federation ID {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>User - Set Federation ID</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <description>Set the Federation ID to the email address, having replaced @carlyle.aero with @apollo.aero as that&#39;s what&#39;s currently being sent (to be changed when they fix that).</description>
+        <name>Set_Federation_ID</name>
+        <label>Set Federation ID</label>
+        <locationX>590</locationX>
+        <locationY>117</locationY>
+        <inputAssignments>
+            <field>FederationIdentifier</field>
+            <value>
+                <elementReference>ModifiedEmail</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>75</locationX>
+        <locationY>38</locationY>
+        <connector>
+            <targetReference>Set_Federation_ID</targetReference>
+        </connector>
+        <object>User</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Obsolete</status>
+</Flow>

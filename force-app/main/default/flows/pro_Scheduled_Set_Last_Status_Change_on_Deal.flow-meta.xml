@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>61.0</apiVersion>
+    <decisions>
+        <name>Aging_Found</name>
+        <label>Aging Found?</label>
+        <locationX>182</locationX>
+        <locationY>360</locationY>
+        <defaultConnectorLabel>No - Stop!</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Proceed</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>pro_Get_Most_Recent_Deal_Aging</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Deal_Last_Status_Change_Date</targetReference>
+            </connector>
+            <label>Yes - Proceed</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <interviewLabel>Scheduled - Set Last Status Change on Deal {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Scheduled - Set Last Status Change on Deal</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>pro_Get_Most_Recent_Deal_Aging</name>
+        <label>Get Most Recent Deal Aging</label>
+        <locationX>182</locationX>
+        <locationY>252</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Aging_Found</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Name</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Name</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>leaseworks__DealStage_in_Days__c</object>
+        <sortField>leaseworks__Date_of_Assignment__c</sortField>
+        <sortOrder>Desc</sortOrder>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <name>Update_Deal_Last_Status_Change_Date</name>
+        <label>Update Deal - Last Status Change Date</label>
+        <locationX>50</locationX>
+        <locationY>468</locationY>
+        <inputAssignments>
+            <field>pro_Last_Status_Change__c</field>
+            <value>
+                <elementReference>pro_Get_Most_Recent_Deal_Aging.CreatedDate</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>pro_Get_Most_Recent_Deal_Aging</targetReference>
+        </connector>
+        <object>leaseworks__Marketing_Activity__c</object>
+        <schedule>
+            <frequency>Once</frequency>
+            <startDate>2024-09-30</startDate>
+            <startTime>06:48:00.000Z</startTime>
+        </schedule>
+        <triggerType>Scheduled</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>
