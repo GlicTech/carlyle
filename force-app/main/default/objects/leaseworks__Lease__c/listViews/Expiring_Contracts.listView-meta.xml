@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Expiring_Contracts</fullName>
+    <columns>NAME</columns>
+    <columns>leaseworks__Lease_End_Date_New__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>leaseworks__Active__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <label>Expiring Contracts</label>
+</ListView>

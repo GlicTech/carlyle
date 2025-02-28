@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__SaleJournalOnlyWithSaleDate</fullName>
+    <active>true</active>
+    <description>Sale Journal Entries Can Be Created Only After Sale Date Is Entered.</description>
+    <errorConditionFormula>AND(ISBLANK(leaseworks__Date_Sold__c), leaseworks__Generate_Aircraft_Sale_Journals__c)</errorConditionFormula>
+    <errorDisplayField>leaseworks__Date_Sold__c</errorDisplayField>
+    <errorMessage>Please enter Date Sold to generate Sale Journal Entries.</errorMessage>
+</ValidationRule>

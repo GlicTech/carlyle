@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Engine_Allocation_Pct_Must_Add_Up_to_100</fullName>
+    <active>false</active>
+    <description>(Deprecated)Total must either be zero or 100.</description>
+    <errorConditionFormula>/*AND( (BLANKVALUE(HPC_Allocation__c, 0) + BLANKVALUE(HPT_Allocation__c, 0) + 
+
+BLANKVALUE(Combustor_Allocation__c, 0) + 
+BLANKVALUE(Gearbox_Allocation__c, 0) + 
+
+BLANKVALUE(LPC_Allocation__c, 0) + BLANKVALUE(LPT_Allocation__c, 0)+ 
+
+BLANKVALUE(LP_Fan_Shaft_Rotor__c, 0)+
+BLANKVALUE(IP_Compressor_Allocation__c, 0)+
+BLANKVALUE(HP_System__c, 0)+
+BLANKVALUE(IP_Turbine_Allocation__c, 0)+
+BLANKVALUE(External_Gearbox_Allocation__c, 0)+ 
+BLANKVALUE(Non_Modular__c, 0)+ 
+BLANKVALUE(Intermediate_Case_Allocation__c, 0))  != 1
+,
+(BLANKVALUE(HPC_Allocation__c, 1000) + BLANKVALUE(HPT_Allocation__c, 1000) + BLANKVALUE(Combustor_Allocation__c, 1000) + 
+BLANKVALUE(Gearbox_Allocation__c, 1000) + 
+BLANKVALUE(LPC_Allocation__c, 1000) + 
+BLANKVALUE(LP_Fan_Shaft_Rotor__c, 1000) +
+BLANKVALUE(IP_Compressor_Allocation__c, 1000) +
+BLANKVALUE(HP_System__c, 1000) +
+BLANKVALUE(IP_Turbine_Allocation__c, 1000) +
+BLANKVALUE(External_Gearbox_Allocation__c, 1000) +
+BLANKVALUE(Non_Modular__c, 1000) +
+BLANKVALUE(Intermediate_Case_Allocation__c, 1000) +
+BLANKVALUE(LPT_Allocation__c, 1000))  != 13000)*/
+false</errorConditionFormula>
+    <errorDisplayField>leaseworks__LPC_Allocation__c</errorDisplayField>
+    <errorMessage>LLP MR allocation percentages must add up to 100%.</errorMessage>
+</ValidationRule>

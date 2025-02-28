@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Habitual_Base_not_blank</fullName>
+    <active>false</active>
+    <description>Business policy is to have Habitual Base set once the lease is active. This validation prompts users to lookup Habitual Base at the time that they change the Lease Status to &quot;On Lease&quot;</description>
+    <errorConditionFormula>AND (leaseworks__Habitual_Base__c = null,
+ISPICKVAL(leaseworks__Lease_Type_Status__c, &quot;On Lease&quot;))</errorConditionFormula>
+    <errorDisplayField>leaseworks__Habitual_Base__c</errorDisplayField>
+    <errorMessage>Lease Contracts with Lease Status = On Lease should have the Habitual Base populated. Please select the Country where the Habitual Base is located before saving.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Meeting_Attendee_10__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <label>Attendee 10</label>
+    <lookupFilter>
+        <active>false</active>
+        <booleanFilter>10 OR ((1 AND 2) OR (3 AND 4) OR (5 AND 6) OR (5 AND 7) OR (5 AND 8) OR (1 AND 9) OR (1 AND 10) AND (1 OR 3 OR 5))</booleanFilter>
+        <errorMessage>Contact doesn&#39;t belong to the selected company.</errorMessage>
+        <filterItems>
+            <field>Contact.leaseworks__Counter_Party__c</field>
+            <operation>notEqual</operation>
+            <value />
+        </filterItems>
+        <filterItems>
+            <field>Contact.leaseworks__Counter_Party__c</field>
+            <operation>equals</operation>
+            <valueField>$Source.leaseworks__Related_To_Counter_Party__c</valueField>
+        </filterItems>
+        <filterItems>
+            <field>Contact.leaseworks__Counter_Party__c</field>
+            <operation>notEqual</operation>
+            <value />
+        </filterItems>
+        <filterItems>
+            <field>Contact.leaseworks__Counter_Party__c</field>
+            <operation>equals</operation>
+            <valueField>$Source.leaseworks__Related_To_Counter_Party__c</valueField>
+        </filterItems>
+        <filterItems>
+            <field>Contact.leaseworks__Operator__c</field>
+            <operation>notEqual</operation>
+            <value />
+        </filterItems>
+        <filterItems>
+            <field>Contact.leaseworks__Operator__c</field>
+            <operation>equals</operation>
+            <valueField>$Source.leaseworks__Related_To_Operator__c</valueField>
+        </filterItems>
+        <filterItems>
+            <field>Contact.leaseworks__Operator__c</field>
+            <operation>equals</operation>
+            <valueField>$Source.leaseworks__Related_To_Operator_2__c</valueField>
+        </filterItems>
+        <filterItems>
+            <field>Contact.leaseworks__Operator__c</field>
+            <operation>equals</operation>
+            <valueField>$Source.leaseworks__Related_To_Operator_3__c</valueField>
+        </filterItems>
+        <filterItems>
+            <field>Contact.leaseworks__Counter_Party__c</field>
+            <operation>equals</operation>
+            <valueField>$Source.leaseworks__Related_To_Counter_Party2__c</valueField>
+        </filterItems>
+        <filterItems>
+            <field>$Source.leaseworks__Y_Hidden_Disable_Filter_On_Attendee__c</field>
+            <operation>equals</operation>
+            <value>Yes</value>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>Contact</referenceTo>
+    <relationshipLabel>Interaction Logs (Meeting Attendee 10)</relationshipLabel>
+    <relationshipName>Interaction_Logs9</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>pro_Outcome__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(pro_Closed_Manually__c = TRUE, &#39;Closed - Target Manually Updated&#39;,
+IF(pro_Target_Readjusted__c = TRUE, &#39;Closed - Target Readjusted&#39;,
+IF(pro_Asset_in_Deal__c != NULL, &#39;Closed - LOI&#39;,
+IF( AND(NOT(ISBLANK(pro_Contract__r.leaseworks__Extended_On__c)),  pro_Contract_Extended__c = TRUE) , &#39;Closed - Contract Extended&#39;,
+IF( pro_Target__r.pro_End_Date__c  &lt; TODAY(), &#39;Open - Target Date Exceeded&#39;, 
+&#39;Open&#39;)))))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Outcome</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

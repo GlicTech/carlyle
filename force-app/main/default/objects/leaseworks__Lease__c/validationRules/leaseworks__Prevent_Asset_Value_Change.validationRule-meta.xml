@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Prevent_Asset_Value_Change</fullName>
+    <active>true</active>
+    <description>This validation rule prevents user from changing the asset record on the Lease record if there are existing Supplemental Rent records.</description>
+    <errorConditionFormula>IF(AND(ISCHANGED(leaseworks__Aircraft__c), leaseworks__Y_Hidden_Supplemental_Rent_Count__c &gt; 0), true, false)</errorConditionFormula>
+    <errorDisplayField>leaseworks__Aircraft__c</errorDisplayField>
+    <errorMessage>Cannot change associated Asset because Supplemental Rent is configured and associated with Assemblies. Please delete Supplemental Rent first.</errorMessage>
+</ValidationRule>

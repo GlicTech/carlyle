@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Custom_Compounding_Base_Days_Check</fullName>
+    <active>true</active>
+    <description>When the Compounding Base is &#39;Custom&#39; , user needs to provide value for the Custom Days</description>
+    <errorConditionFormula>AND(ISPICKVAL(leaseworks__Compounding_Base__c,&#39;Custom&#39;),ISNULL(leaseworks__Custom_Days__c))</errorConditionFormula>
+    <errorMessage>&#39;Custom Days&#39; is required when &#39;Custom&#39; is chosen for Compounding Frequency</errorMessage>
+</ValidationRule>
