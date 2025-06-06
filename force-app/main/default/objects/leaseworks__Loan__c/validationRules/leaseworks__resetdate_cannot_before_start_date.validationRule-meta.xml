@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__resetdate_cannot_before_start_date</fullName>
+    <active>true</active>
+    <errorConditionFormula>leaseworks__First_Rate_Reset_Date__c  &lt;  leaseworks__Loan_Start_Date__c</errorConditionFormula>
+    <errorMessage>The First reset date must be equal to or greater than the loan start date.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Bill_To_Party__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Select the party to send invoices to. Based on the selection, contact details will populate on the Bulk Invoicing screen from either the &#39;Lessee&#39; or &#39;Invoiced Party&#39;. For invoice parties, please ensure the record exists on the parties related list on the contract.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Select the party to send invoices to. Based on the selection, contact details will populate on the Bulk Invoicing screen from either the &#39;Lessee&#39; or &#39;Invoiced Party&#39;. For invoice parties, please ensure the record exists on the parties related list on the contract.</inlineHelpText>
+    <label>Bill To Party</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Lessee</fullName>
+                <default>false</default>
+                <label>Lessee</label>
+            </value>
+            <value>
+                <fullName>Invoiced Party</fullName>
+                <default>true</default>
+                <label>Invoiced Party</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

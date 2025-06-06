@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__GL_Account_Code_For_UnEarnedRev</fullName>
+    <active>true</active>
+    <description>Only GL accounts linked to Income Codes can have the &quot;Include in Unearned Revenue Calculation?&quot; checked.</description>
+    <errorConditionFormula>AND (!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c, NOT(ISPICKVAL(leaseworks__Code__c , &#39;Income Codes&#39;)),leaseworks__Include_in_Unearned_Rev_Calc__c )</errorConditionFormula>
+    <errorDisplayField>leaseworks__Include_in_Unearned_Rev_Calc__c</errorDisplayField>
+    <errorMessage>Only GL accounts linked to Income Codes can have the &quot;Include in Unearned Revenue Calculation?&quot; checked.</errorMessage>
+</ValidationRule>

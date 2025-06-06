@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Document_Status__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Formula field showing the current status of the associated Document</description>
+    <externalId>false</externalId>
+    <formula>CASE(TEXT(leaseworks__Transaction_Type__c)
+,&#39;MR Invoice&#39;,TEXT(leaseworks__Invoice_Line_Item__r.leaseworks__Invoice__r.leaseworks__Status__c)
+,&#39;MR Invoice Reconciliation&#39;, TEXT(leaseworks__Invoice_Line_Item__r.leaseworks__Invoice__r.leaseworks__Status__c)
+,&#39;MR Invoice Overpayment Credit&#39;, leaseworks__Credit_Memo_Status__c
+,&#39;MR Cash Payment&#39;,leaseworks__Payment_Line_Item__r.leaseworks__Status__c
+,&#39;MR Payment Credit Applied&#39;,leaseworks__Payment_Line_Item__r.leaseworks__Status__c
+,&#39;MR Invoice Credit (Adjustment)&#39;,leaseworks__Payment_Line_Item__r.leaseworks__Status__c
+,&#39;MR Payment Offset&#39;,leaseworks__Payment_Line_Item__r.leaseworks__Status__c		
+,&#39;MR Transfer&#39;,leaseworks__MR_Fund_Transfer_Status__c
+,&#39;MR Accrued&#39;,leaseworks__Utilization_Status__c
+,&#39;MR Claim Accrued&#39;,leaseworks__Claim_Status__c
+,&#39;MR Invoice Adjustment&#39;,TEXT(leaseworks__Invoice_Adjustment_Line_Item__r.leaseworks__Invoice_Adjustment__r.leaseworks__Approval_Status__c),
+IF(!ISBLANK(leaseworks__Event_Payable__c),TEXT(leaseworks__Event_Payable__r.leaseworks__Status__c),IF(!ISBLANK(leaseworks__Event_Payout__c), TEXT(leaseworks__Event_Payout__r.leaseworks__Status__c),&#39;&#39;)))
+
+/**
+Below transaction types are covered in else of the case statement:
+&#39;MR Contribution Applied&#39;,TEXT(Event_Payable__r.Status__c)
+&#39;MR Contribution Used&#39;,TEXT(Event_Payable__r.Status__c)
+&#39;MR Claim&#39;,TEXT(Event_Payable__r.Status__c)
+&#39;MR Claim Refund&#39;,TEXT(Event_Payout__r.Status__c)
+&#39;MR Claim Offset&#39;,TEXT(Event_Payout__r.Status__c)
+&#39;MR Rebate&#39;,TEXT(Event_Payable__r.Status__c)
+&#39;MR Rebate Payout&#39;,TEXT(Event_Payout__r.Status__c)
+&#39;MR Manual Payable&#39;,TEXT(Event_Payable__r.Status__c)
+&#39;MR Manual Payout&#39;,TEXT(Event_Payout__r.Status__c)
+&#39;Payable- MR Reconciliationt&#39;,TEXT(Event_Payable__r.Status__c)
+&#39;Payout- MR Reconciliationt&#39;,TEXT(Event_Payout__r.Status__c)
+**/</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Auto-calculated field, showing the source document status. Non-approved documents may not update the fund balance, therefore Amount field can be zero</inlineHelpText>
+    <label>Document Status</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

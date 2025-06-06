@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Loop__Recipient_Dynamic_Name</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND( ISPICKVAL( Loop__dsStaticRecipient__c , &quot;Dynamic Name-Email&quot; ) ,  ISBLANK( Loop__StaticName__c )  )</errorConditionFormula>
+    <errorDisplayField>Loop__StaticName__c</errorDisplayField>
+    <errorMessage>A parameter is required for a Dynamic Name-Email recipient.</errorMessage>
+</ValidationRule>

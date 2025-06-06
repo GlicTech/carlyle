@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>leaseworks__AssemblyMRRateSetDataVerifiedBy</fullName>
+        <field>leaseworks__Data_Verified_By__c</field>
+        <formula>$User.FirstName + &#39; &#39; + $User.LastName +&#39;, &#39; +
+
+Text(MONTH(TODAY())) + &#39;/&#39; + Text(Day(TODAY())) + &#39;/&#39; + Text(year(TODAY()))</formula>
+        <name>AssemblyMRRateSetDataVerifiedBy</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>leaseworks__Assembly MR Rate Data Verifed By</fullName>
+        <actions>
+            <name>leaseworks__AssemblyMRRateSetDataVerifiedBy</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>OR ( AND (ISNEW(), leaseworks__Data_Verified_For_Accuracy__c ), ISCHANGED(leaseworks__Data_Verified_For_Accuracy__c))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

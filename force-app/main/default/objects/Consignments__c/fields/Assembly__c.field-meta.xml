@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Assembly__c</fullName>
+    <deleteConstraint>Restrict</deleteConstraint>
+    <description>Associated Assembly</description>
+    <externalId>false</externalId>
+    <label>Assembly</label>
+    <lookupFilter>
+        <active>true</active>
+        <filterItems>
+            <field>leaseworks__Constituent_Assembly__c.Fleet_Status__c</field>
+            <operation>equals</operation>
+            <value>Consigned</value>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>leaseworks__Constituent_Assembly__c</referenceTo>
+    <relationshipLabel>Consignment Agreements</relationshipLabel>
+    <relationshipName>Consignments</relationshipName>
+    <required>true</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

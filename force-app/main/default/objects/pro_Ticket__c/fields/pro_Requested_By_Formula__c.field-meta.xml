@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>pro_Requested_By_Formula__c</fullName>
+    <description>Hyperlink to the Requested By user</description>
+    <externalId>false</externalId>
+    <formula>HYPERLINK(&#39;/&#39; &amp; pro_Requested_By__c, pro_Requested_By__r.FirstName &amp; &#39; &#39; &amp; pro_Requested_By__r.LastName)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Requested By</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

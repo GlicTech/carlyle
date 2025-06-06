@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Approval_Status__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Indicates the approval of the transaction record. Prepayment functionality is already deprecated. Keeping the lookup to track historical prepayments</description>
+    <externalId>false</externalId>
+    <formula>IF(!ISBLANK(leaseworks__Invoice__c),TEXT(leaseworks__Invoice__r.leaseworks__Status__c),
+IF(!ISBLANK(leaseworks__Payments_Credits__c),TEXT(leaseworks__Payments_Credits__r.leaseworks__Payment_Status__c),
+IF(!ISBLANK(leaseworks__Prepayment__c),TEXT(leaseworks__Prepayment__r.leaseworks__Approval_Status__c),
+IF(!ISBLANK(leaseworks__Payables__c),TEXT(leaseworks__Payables__r.leaseworks__Status__c),
+IF(!ISBLANK(leaseworks__Payouts__c),TEXT(leaseworks__Payouts__r.leaseworks__Status__c),
+IF(!ISBLANK(leaseworks__Credit_Memo__c),TEXT(leaseworks__Credit_Memo__r.leaseworks__Status__c),
+IF(!ISBLANK( leaseworks__Payment_on_Account__c ),TEXT( leaseworks__Payment_on_Account__r.leaseworks__Status__c ),&#39;&#39;)))))))</formula>
+    <inlineHelpText>Indicates the approval of the transaction record.</inlineHelpText>
+    <label>Approval Status</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

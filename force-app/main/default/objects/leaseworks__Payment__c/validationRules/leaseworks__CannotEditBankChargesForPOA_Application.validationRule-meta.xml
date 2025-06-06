@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__CannotEditBankChargesForPOA_Application</fullName>
+    <active>true</active>
+    <description>When the user tries to add bank charges on a payment record created by applying Payment on Account, a validation error wil be thrown</description>
+    <errorConditionFormula>AND(NOT( ISNULL(leaseworks__Payment_on_Account__c) ), NOT( ISBLANK(leaseworks__Payment_on_Account__c) ),ISCHANGED( leaseworks__Bank_Charges__c ))</errorConditionFormula>
+    <errorMessage>Bank charges cannot be modified when applying a payment on account to an invoice.</errorMessage>
+</ValidationRule>

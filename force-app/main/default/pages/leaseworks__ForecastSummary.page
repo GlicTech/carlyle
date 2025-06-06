@@ -1,0 +1,16 @@
+<apex:page cache="false" standardStylesheets="false" showHeader="false">
+    <apex:includeLightning />
+	  <apex:slds />
+    <div id="lightning" class="slds-scope"/>
+	
+    <script>
+        $Lightning.use("leaseworks:ForecastSummary", function() {
+          $Lightning.createComponent("leaseworks:Forecast_Summary",
+          { recordId : "{!$CurrentPage.parameters.id}" },
+          "lightning",
+          function(cmp) {
+            // do some stuff
+          });
+        });
+    </script>
+</apex:page>

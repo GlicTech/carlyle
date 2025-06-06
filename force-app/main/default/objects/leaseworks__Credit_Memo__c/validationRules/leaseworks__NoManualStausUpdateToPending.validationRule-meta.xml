@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__NoManualStausUpdateToPending</fullName>
+    <active>true</active>
+    <description>Status cannot be updated to Pending Manually</description>
+    <errorConditionFormula>AND( ISCHANGED(leaseworks__Status__c),ISPICKVAL(leaseworks__Status__c , &#39;Pending&#39;),
+				ISPICKVAL(	PRIORVALUE(leaseworks__Status__c),&#39;Approved&#39;) )</errorConditionFormula>
+    <errorMessage>Update from Approved to Pending is not allowed</errorMessage>
+</ValidationRule>

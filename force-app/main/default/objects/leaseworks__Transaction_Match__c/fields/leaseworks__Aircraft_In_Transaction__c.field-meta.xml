@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Aircraft_In_Transaction__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <label>Aircraft In Transaction</label>
+    <lookupFilter>
+        <active>true</active>
+        <errorMessage>Please choose an Aircraft In Transaction from an acquisition transaction</errorMessage>
+        <filterItems>
+            <field>leaseworks__Aircraft_In_Transaction__c.leaseworks__Transaction__r.leaseworks__Transaction_Type__c</field>
+            <operation>equals</operation>
+            <value>Acquisition</value>
+        </filterItems>
+        <infoMessage>Aircraft In Transaction from acquisition transactions only will be listed.</infoMessage>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>leaseworks__Aircraft_In_Transaction__c</referenceTo>
+    <relationshipLabel>Transaction Matches</relationshipLabel>
+    <relationshipName>Transaction_Matches</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

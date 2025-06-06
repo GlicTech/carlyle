@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Last_CR_Utilization_Approved_Date__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <label>_Last Correction Utilization Approved</label>
+    <summarizedField>leaseworks__Utilization_Report__c.leaseworks__Month_Ending__c</summarizedField>
+    <summaryFilterItems>
+        <field>leaseworks__Utilization_Report__c.leaseworks__Type__c</field>
+        <operation>equals</operation>
+        <value>TSN/CSN Correction</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>leaseworks__Utilization_Report__c.leaseworks__Status__c</field>
+        <operation>equals</operation>
+        <value>Approved By Lessor</value>
+    </summaryFilterItems>
+    <summaryForeignKey>leaseworks__Utilization_Report__c.leaseworks__Aircraft__c</summaryForeignKey>
+    <summaryOperation>max</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

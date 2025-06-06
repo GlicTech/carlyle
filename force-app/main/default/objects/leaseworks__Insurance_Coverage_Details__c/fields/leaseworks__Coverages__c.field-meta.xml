@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Coverages__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <formula>IF(INCLUDES(leaseworks__Insurance_Certificate_IR__r.leaseworks__Coverages__c,&quot;Hull All risks&quot;),&quot;Hull All risks;&quot;,null)&amp;
+IF(INCLUDES(leaseworks__Insurance_Certificate_IR__r.leaseworks__Coverages__c,&quot;Hull War&quot;),&quot;Hull War;&quot;,null)&amp;
+IF(INCLUDES(leaseworks__Insurance_Certificate_IR__r.leaseworks__Coverages__c,&quot;Legal Liability&quot;),&quot;Legal Liability;&quot;,null)&amp;
+IF(INCLUDES(leaseworks__Insurance_Certificate_IR__r.leaseworks__Coverages__c,&quot;TLO Policy&quot;),&quot;TLO Policy;&quot;,null)&amp;
+IF(INCLUDES(leaseworks__Insurance_Certificate_IR__r.leaseworks__Coverages__c,&quot;Spares All Risk&quot;),&quot;Spares All Risk;&quot;,null)&amp;
+IF(INCLUDES(leaseworks__Insurance_Certificate_IR__r.leaseworks__Coverages__c,&quot;Deductible&quot;),&quot;Deductible;&quot;,null)&amp;
+IF(INCLUDES(leaseworks__Insurance_Certificate_IR__r.leaseworks__Coverages__c,&quot;Excess 3rd Party War&quot;),&quot;Excess 3rd Party War;&quot;,null)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Coverages</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

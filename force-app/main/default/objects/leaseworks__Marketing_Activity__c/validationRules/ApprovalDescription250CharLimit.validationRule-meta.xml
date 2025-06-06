@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ApprovalDescription250CharLimit</fullName>
+    <active>true</active>
+    <description>Limits the description field to 250 characters for Approval record type.</description>
+    <errorConditionFormula>AND(
+    LEN(leaseworks__Description__c ) &gt; 250,
+     RecordType.Name  = &#39;Approval&#39;
+
+)</errorConditionFormula>
+    <errorDisplayField>leaseworks__Description__c</errorDisplayField>
+    <errorMessage>The Description field on an Approval cannot have more than 250 characters.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__DeliveryDetailsRelatedToSameLease</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(!ISBLANK( leaseworks__Redelivery_Details__c ),leaseworks__Redelivery_Details__c &lt;&gt; leaseworks__Lease__r.leaseworks__Return_Condition__c  )</errorConditionFormula>
+    <errorDisplayField>leaseworks__Redelivery_Details__c</errorDisplayField>
+    <errorMessage>Please choose the Redelivery Details related to this Lease</errorMessage>
+</ValidationRule>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>pro_Only_Assigned_Approver_Can_Check</fullName>
+    <active>false</active>
+    <description>Allows only the Assigned Approver to check the Asset In Deal Approval field.</description>
+    <errorConditionFormula>AND(
+
+     ISCHANGED(  pro_Lease_Documentation_Approval__c ),
+      pro_Assigned_To__c !=  $User.Id 
+)</errorConditionFormula>
+    <errorDisplayField>pro_Lease_Documentation_Approval__c</errorDisplayField>
+    <errorMessage>Only the Assigned Approver can update this field.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__NoPaymentsForProvisionUR</fullName>
+    <active>true</active>
+    <description>Not allow for payments if the utilization is Provision.</description>
+    <errorConditionFormula>leaseworks__Invoice__r.leaseworks__Monthly_Utilization_Type_F__c =&#39;Provision&#39;</errorConditionFormula>
+    <errorMessage>Payment not allowed for provision invoice.</errorMessage>
+</ValidationRule>

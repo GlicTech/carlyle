@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__SubInvoice_Entity_Is_Inactive</fullName>
+    <active>true</active>
+    <description>To Check Entity is Inactive when SubInvoice is Created.</description>
+    <errorConditionFormula>AND(
+!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c,
+RecordType.DeveloperName != &#39;Deferred Sub Invoice&#39;,
+leaseworks__Invoice_Deferred_From__c != Null,
+ISNEW(),
+leaseworks__Y_hidden_AccEnabled__c,
+leaseworks__Entity__r.leaseworks__Inactive__c)</errorConditionFormula>
+    <errorMessage>Unable to proceed with transactions: The related invoice is associated with an inactive entity. Please ensure the entity is active to continue.</errorMessage>
+</ValidationRule>

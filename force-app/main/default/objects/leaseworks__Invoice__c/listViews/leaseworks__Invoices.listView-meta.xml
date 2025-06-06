@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Invoices</fullName>
+    <columns>NAME</columns>
+    <columns>leaseworks__Month_Ending__c</columns>
+    <columns>leaseworks__Invoice_Type__c</columns>
+    <columns>leaseworks__Invoice_Date__c</columns>
+    <columns>leaseworks__Date_of_MR_Payment_Due__c</columns>
+    <columns>leaseworks__Invoiced_Amount_Formula__c</columns>
+    <columns>leaseworks__Amount_Paid__c</columns>
+    <columns>leaseworks__Balance_Due__c</columns>
+    <columns>leaseworks__Ageing__c</columns>
+    <columns>leaseworks__Status__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>notEqual</operation>
+        <value>leaseworks__Invoice__c.leaseworks__Credit_Note</value>
+    </filters>
+    <label>Invoices</label>
+</ListView>

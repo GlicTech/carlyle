@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>leaseworks__For_Month_Ending</fullName>
+        <field>leaseworks__For_Month_Ending__c</field>
+        <formula>BLANKVALUE( leaseworks__For_Month_Ending__c , date(year( leaseworks__Rent_Due_Date__c ), month( leaseworks__Rent_Due_Date__c), 1)-1)</formula>
+        <name>For Month Ending</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__RentSetAmountDueforPBH</fullName>
+        <description>@Deprecated</description>
+        <field>leaseworks__Rent_Due_Amount__c</field>
+        <formula>leaseworks__Rent_Due_Amount__c</formula>
+        <name>RentSetAmountDueforPBH</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__SetRentAmountFromLease</fullName>
+        <description>Get the Rent Amount From Parent Lease and Set it to the Rent record.</description>
+        <field>leaseworks__Rent_Due_Amount__c</field>
+        <formula>leaseworks__Rent_Rate__c * 
+leaseworks__Escalation_Factor__c *
+IF( TEXT(leaseworks__Stepped_Rent__r.leaseworks__Rent_Period__c)  == &#39;Daily&#39;,  leaseworks__Period_Days__c , 1) * IF(TEXT(leaseworks__Stepped_Rent__r.leaseworks__Rent_Period__c)  == &#39;Daily&#39;, 1, BLANKVALUE(leaseworks__Prorate__c , 1 )) 
++ BLANKVALUE(leaseworks__Rental_Adjustment_Amount__c, 0)
++ BLANKVALUE(leaseworks__Rental_Credit_Debit__c, 0)</formula>
+        <name>SetRentAmountFromLease</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__UpdateRentPaid</fullName>
+        <description>@deprecated -Update RentPaid on checking Paid checkbox.</description>
+        <field>leaseworks__Rent_Paid__c</field>
+        <formula>/* Default value - due to currency data type */
+-99</formula>
+        <name>UpdateRentPaid</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__UpdateRentPaidDate</fullName>
+        <description>@deprecated-Update Rent Paid Date</description>
+        <field>leaseworks__Rent_Paid_Date__c</field>
+        <formula>/*This Field is no more in used. Since datatype is date so returning default value Today&#39;s date*/
+TODAY()</formula>
+        <name>UpdateRentPaidDate</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_MRO</fullName>
+        <description>Deprecated</description>
+        <field>leaseworks__MRO_Amount__c</field>
+        <formula>leaseworks__MRO_Amount__c</formula>
+        <name>Update MRO</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_Rent_Name</fullName>
+        <description>Updates the Rent name using specific format: RENT_MONTH_YEAR</description>
+        <field>Name</field>
+        <formula>TEXT(YEAR(leaseworks__For_Month_Ending__c )) 
+&amp; &#39;-&#39; &amp; 
+RIGHT(&#39;0&#39; &amp; TEXT(Month(leaseworks__For_Month_Ending__c )), 2) 
+&amp; &#39;-&#39; &amp;
+if( NOT(ISNULL(leaseworks__Sequence__c)) , RIGHT(&#39;00&#39; &amp; TEXT(leaseworks__Sequence__c),3) + if(leaseworks__Y_Hidden_Utilization__c!=null,if(ISPICKVAL(leaseworks__Y_Hidden_Utilization__r.leaseworks__Type__c,&#39;Actual&#39;),&#39;&#39;,&#39;(&#39; + MID(leaseworks__Y_Hidden_Utilization__r.Name,13,3)+&#39;)&#39;),&#39;&#39;) , 
+RIGHT(&#39;00&#39; &amp; TEXT(leaseworks__Period_Since_Lease_Start__c), 3) 
++ if(leaseworks__Y_Hidden_Utilization__c!=null,if(ISPICKVAL(leaseworks__Y_Hidden_Utilization__r.leaseworks__Type__c,&#39;Actual&#39;),&#39;&#39;,&#39;(&#39; + MID(leaseworks__Y_Hidden_Utilization__r.Name,13,3)+&#39;)&#39;),&#39;&#39;) )</formula>
+        <name>Update Rent Name</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>leaseworks__Rent Created</fullName>
+        <actions>
+            <name>leaseworks__SetRentAmountFromLease</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Triggered when rent is created. @Deprecated</description>
+        <formula>false</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__RentUpdated</fullName>
+        <actions>
+            <name>leaseworks__RentSetAmountDueforPBH</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>leaseworks__UpdateRentPaidDate</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>leaseworks__Update_MRO</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>leaseworks__Update_Rent_Name</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>When Record is updated. Mainly actions on Paid Checbox.</description>
+        <formula>true</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

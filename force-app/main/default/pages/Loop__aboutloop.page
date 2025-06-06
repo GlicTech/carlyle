@@ -1,0 +1,58 @@
+<apex:page sidebar="false" setup="false" controller="Loop.aboutLoop" id="aPage" title="Nintex DocGen Admin" showHeader="true" tabStyle="DDP_Admin__tab" action="{!onload}">
+    <!-- DON'T REMOVE: This link is used by Trialforce Source Orgs -->
+    <apex:form id="tsoResetLinkForm">
+        <apex:commandLink action="{!resetDdpFilesUpdate}" value="TSO Reset" style="display: none;" id="tsoResetLink" />
+    </apex:form>
+
+    <html style="height:100%;">
+        <head>
+            <style type="text/css">
+                .center-middle {
+                    width: 80px;
+                    height: 80px;
+                    position: absolute;
+                    margin: auto;
+                    top: 0;
+                    right: 0;
+                    left: 0;
+                    bottom: 0;
+                }
+            </style>
+            <script>
+                var isLightning = {!$User.UIThemeDisplayed == "Theme4d"};
+
+                // Highlight DocGen Package tab
+                if (!isLightning && {!cameFromDdpTab}) {
+                    // "Drawloop Admin"/"DocGen Admin" tab, comment is here so we don't miss this in a Find
+                    var ddpAdminTab = document.getElementsByClassName('wt-Drawloop-Admin');
+                    // If viewing the page from outside our App, the tabs may not exist
+                    if (ddpAdminTab && ddpAdminTab.length) {
+                        ddpAdminTab[0].classList.remove('zen-active');
+                        ddpAdminTab[0].classList.remove('brandPrimaryBgr');
+                        ddpAdminTab[0].classList.remove('primaryPalette');
+                    }
+                    var ddpTab = document.getElementsByClassName('wt-DDP');
+                    if (ddpTab && ddpTab.length) {
+                        ddpTab[0].classList.add('zen-active');
+                        ddpTab[0].classList.add('brandPrimaryBgr');
+                        ddpTab[0].classList.add('primaryPalette');
+                    }
+                }
+
+                if ({!cameFromDdpTab} && {!setupWizardComplete} && !!'{!JSENCODE(ddpListViewId)}' && window.sforce && sforce.one && sforce.one.navigateToList) {
+                    sforce.one.navigateToList('{!JSENCODE(ddpListViewId)}', null, 'Loop__DDP__c');
+                }
+
+                // Remove padding from classic
+                if (!isLightning && document.getElementsByClassName('noSidebarCell')) {
+                    document.getElementsByClassName('noSidebarCell')[0].style.padding = 0;
+                    document.getElementById('bodyTable').style.padding = 0;
+                }
+            </script>
+        </head>
+    <c:LightningInjector lightningAppName="{!lightningAppName}"
+        lightningComponentName="{!lightningComponentName}"
+        params="{!componentAttributesString}"
+    />
+    </html>
+</apex:page>

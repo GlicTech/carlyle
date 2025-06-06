@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Placement_after_Due</fullName>
+    <active>true</active>
+    <description>Placement only on after Due</description>
+    <errorConditionFormula>AND(
+!ISBLANK(leaseworks__Placement_By__c), !ISBLANK(leaseworks__All_Proposals_Due_By_Date__c),
+leaseworks__Placement_By__c &lt; leaseworks__All_Proposals_Due_By_Date__c)</errorConditionFormula>
+    <errorDisplayField>leaseworks__Placement_By__c</errorDisplayField>
+    <errorMessage>Placement cannot be before Proposals are due.</errorMessage>
+</ValidationRule>

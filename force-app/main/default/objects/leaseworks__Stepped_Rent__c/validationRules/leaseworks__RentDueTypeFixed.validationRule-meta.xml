@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__RentDueTypeFixed</fullName>
+    <active>true</active>
+    <description>If Rent Due Type field is Fixed, then Rent Due Type value must be between 1 and 31.</description>
+    <errorConditionFormula>and (
+						contains(text(leaseworks__Rent_Due_Type__c),&#39;Fixed&#39;),
+						OR(leaseworks__Rent_Due_Day__c &lt; 1, leaseworks__Rent_Due_Day__c &gt; 31)
+)</errorConditionFormula>
+    <errorDisplayField>leaseworks__Rent_Due_Day__c</errorDisplayField>
+    <errorMessage>Rent Due Type &#39;Fixed&#39; has been selected, therefore value in Rent Due Day field must be between 1 and 31 (days in the calendar month)</errorMessage>
+</ValidationRule>

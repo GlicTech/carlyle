@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>Technical Audit Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Details --></label>
+            <section>Details</section>
+        </sections>
+        <sections>
+            <label><!-- External Document --></label>
+            <section>External Document</section>
+        </sections>
+        <sections>
+            <label><!-- Result --></label>
+            <section>Result</section>
+        </sections>
+    </layouts>
+    <validationRules>
+        <errorMessage><!-- Audit End Date cannot before Audit Start Date --></errorMessage>
+        <name>leaseworks__AuditEndDatecannotbeforeAuditStartDate</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Audit Start Date cannot greater than Audit End Date --></errorMessage>
+        <name>leaseworks__AuditStartDateNotGreaterthanAuditEndDate</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- This Audit is associated with the Asset and cannot be changed --></errorMessage>
+        <name>leaseworks__Do_not_allow_Asset_change</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- Create_Audit_Schedule --></label>
+        <name>leaseworks__Create_Audit_Schedule</name>
+    </webLinks>
+</CustomObjectTranslation>

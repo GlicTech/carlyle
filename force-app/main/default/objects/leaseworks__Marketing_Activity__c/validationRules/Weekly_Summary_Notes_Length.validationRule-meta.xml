@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Weekly_Summary_Notes_Length</fullName>
+    <active>true</active>
+    <description>Validation for weekly summary notes greater than 250 characters.</description>
+    <errorConditionFormula>LEN(leaseworks__Weekly_Summary_Notes__c) &gt;250</errorConditionFormula>
+    <errorMessage>You can add up to 250 characters only in the Deal Weekly Summary Notes.</errorMessage>
+</ValidationRule>

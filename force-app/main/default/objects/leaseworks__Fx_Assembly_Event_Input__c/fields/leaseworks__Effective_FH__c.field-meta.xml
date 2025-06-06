@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Effective_FH__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <formula>if( leaseworks__Fx_Assembly_Input__r.leaseworks__User_Defined_Utilization_FH__c
+,  if( isBlank(leaseworks__FH__c), leaseworks__Fx_Assembly_Input__r.leaseworks__FH__c ,leaseworks__FH__c )
+,  leaseworks__AVG_FH__c 
+)</formula>
+    <label>Effective FH</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

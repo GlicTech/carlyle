@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__X1st_AV_Reduction_Start_Date</fullName>
+    <active>true</active>
+    <description>The 1st AV Reduction Start Date cannot be lesser than the AV Reduction Start Date at the time of 1st AV Reduction Start Date update</description>
+    <errorConditionFormula>AND( NOT( ISNEW() ),
+ ISCHANGED( leaseworks__X1st_Reduction_Start_Date__c ) ,
+ leaseworks__X1st_Reduction_Start_Date__c &lt;  leaseworks__Reduction_Start_Date__c 
+ )</errorConditionFormula>
+    <errorMessage>1st Reduction Start Date cannot be earlier than the provided Start Date. Please adjust the value and try to save again.</errorMessage>
+</ValidationRule>

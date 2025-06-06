@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Decimals_are_not_allowed_for_Year_Field</fullName>
+    <active>true</active>
+    <description>Decimals Are Not Allowed For Year field.</description>
+    <errorConditionFormula>false/*AND(!$Setup.LeaseWorksSettings__c.Disable_All_Triggers__c,
+NOT(ISBLANK(Year__c)) &amp;&amp; MOD(Year__c, 1) &lt;&gt; 0)*/</errorConditionFormula>
+    <errorDisplayField>leaseworks__Year__c</errorDisplayField>
+    <errorMessage>Decimals are not allowed.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Life_Limit__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Show the value from child of LLp which is current TS</description>
+    <externalId>false</externalId>
+    <label>Life Limit (Cycles)</label>
+    <summarizedField>leaseworks__Thrust_Setting__c.leaseworks__Cycle_Limit__c</summarizedField>
+    <summaryFilterItems>
+        <field>leaseworks__Thrust_Setting__c.leaseworks__Current_Thrust__c</field>
+        <operation>equals</operation>
+        <value>True</value>
+    </summaryFilterItems>
+    <summaryForeignKey>leaseworks__Thrust_Setting__c.leaseworks__Life_Limited_Part__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Role__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Please select the appropriate role from this party.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Please select the appropriate role for this party.
+The list of available roles is controlled by the Party Type field. Roles have been configured based on whether the party is related to an Asset or a Contract, so certain roles will only appear for the corresponding type.
+If the party is a common one, not specifically tied to an asset or a contract, please select Generic as the Party Type — this option will display all available roles.</inlineHelpText>
+    <label>Role</label>
+    <required>true</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Party_Type__c</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Asset Owner</fullName>
+                <default>false</default>
+                <label>Asset Owner</label>
+            </value>
+            <value>
+                <fullName>Beneficial Owner</fullName>
+                <default>false</default>
+                <label>Beneficial Owner</label>
+            </value>
+            <value>
+                <fullName>Borrower</fullName>
+                <default>false</default>
+                <label>Borrower</label>
+            </value>
+            <value>
+                <fullName>Economic Obligor</fullName>
+                <default>false</default>
+                <label>Economic Obligor</label>
+            </value>
+            <value>
+                <fullName>Financier</fullName>
+                <default>false</default>
+                <label>Financier</label>
+            </value>
+            <value>
+                <fullName>Guarantor (Lessee)</fullName>
+                <default>false</default>
+                <label>Guarantor (Lessee)</label>
+            </value>
+            <value>
+                <fullName>Guarantor (Lessor)</fullName>
+                <default>false</default>
+                <label>Guarantor (Lessor)</label>
+            </value>
+            <value>
+                <fullName>Head Invoicing Party</fullName>
+                <default>false</default>
+                <label>Head Invoicing Party</label>
+            </value>
+            <value>
+                <fullName>Head Invoicing Party Level 2</fullName>
+                <default>false</default>
+                <label>Head Invoicing Party Level 2</label>
+            </value>
+            <value>
+                <fullName>Head Lessee</fullName>
+                <default>false</default>
+                <label>Head Lessee</label>
+            </value>
+            <value>
+                <fullName>Head Lessee Level 2</fullName>
+                <default>false</default>
+                <label>Head Lessee Level 2</label>
+            </value>
+            <value>
+                <fullName>Head Lessor</fullName>
+                <default>false</default>
+                <label>Head Lessor</label>
+            </value>
+            <value>
+                <fullName>Head Lessor II</fullName>
+                <default>false</default>
+                <label>Head Lessor II</label>
+            </value>
+            <value>
+                <fullName>Head Lessor Level 2</fullName>
+                <default>false</default>
+                <label>Head Lessor Level 2</label>
+            </value>
+            <value>
+                <fullName>Invoiced Party</fullName>
+                <default>false</default>
+                <label>Invoiced Party</label>
+            </value>
+            <value>
+                <fullName>Invoicing Party</fullName>
+                <default>false</default>
+                <label>Invoicing Party</label>
+            </value>
+            <value>
+                <fullName>Legal Owner</fullName>
+                <default>false</default>
+                <label>Legal Owner</label>
+            </value>
+            <value>
+                <fullName>Lender</fullName>
+                <default>false</default>
+                <label>Lender</label>
+            </value>
+            <value>
+                <fullName>Lessee</fullName>
+                <default>false</default>
+                <label>Lessee</label>
+            </value>
+            <value>
+                <fullName>Lessee Previous</fullName>
+                <default>false</default>
+                <label>Lessee Previous</label>
+            </value>
+            <value>
+                <fullName>Lessee SPV</fullName>
+                <default>false</default>
+                <label>Lessee SPV</label>
+            </value>
+            <value>
+                <fullName>Lessor</fullName>
+                <default>false</default>
+                <label>Lessor</label>
+            </value>
+            <value>
+                <fullName>Next Operator</fullName>
+                <default>false</default>
+                <label>Next Operator</label>
+            </value>
+            <value>
+                <fullName>Operator</fullName>
+                <default>false</default>
+                <label>Operator</label>
+            </value>
+            <value>
+                <fullName>Owner</fullName>
+                <default>false</default>
+                <label>Owner</label>
+            </value>
+            <value>
+                <fullName>Owner Participant (Lessor Level)</fullName>
+                <default>false</default>
+                <label>Owner Participant (Lessor Level)</label>
+            </value>
+            <value>
+                <fullName>Owner Trustee</fullName>
+                <default>false</default>
+                <label>Owner Trustee</label>
+            </value>
+            <value>
+                <fullName>Previous Operator</fullName>
+                <default>false</default>
+                <label>Previous Operator</label>
+            </value>
+            <value>
+                <fullName>Security Trustee</fullName>
+                <default>false</default>
+                <label>Security Trustee</label>
+            </value>
+            <value>
+                <fullName>Sub Lessee</fullName>
+                <default>false</default>
+                <label>Sub Lessee</label>
+            </value>
+            <value>
+                <fullName>Sub Lessee Level 2</fullName>
+                <default>false</default>
+                <label>Sub Lessee Level 2</label>
+            </value>
+            <value>
+                <fullName>Sub Lessee Level 3</fullName>
+                <default>false</default>
+                <label>Sub Lessee Level 3</label>
+            </value>
+            <value>
+                <fullName>Sub Lessor</fullName>
+                <default>false</default>
+                <label>Sub Lessor</label>
+            </value>
+            <value>
+                <fullName>Sub Lessor Level 2</fullName>
+                <default>false</default>
+                <label>Sub Lessor Level 2</label>
+            </value>
+            <value>
+                <fullName>Sub Lessor Level 3</fullName>
+                <default>false</default>
+                <label>Sub Lessor Level 3</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Generic</controllingFieldValue>
+            <controllingFieldValue>Asset</controllingFieldValue>
+            <valueName>Asset Owner</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Generic</controllingFieldValue>
+            <controllingFieldValue>Asset</controllingFieldValue>
+            <valueName>Beneficial Owner</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Generic</controllingFieldValue>
+            <valueName>Borrower</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Generic</controllingFieldValue>
+            <controllingFieldValue>Contract</controllingFieldValue>
+            <valueName>Economic Obligor</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Generic</controllingFieldValue>
+            <valueName>Financier</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Generic</controllingFieldValue>
+            <controllingFieldValue>Contract</controllingFieldValue>
+            <valueName>Guarantor (Lessee)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Generic</controllingFieldValue>
+            <controllingFieldValue>Contract</controllingFieldValue>
+            <valueName>Guarantor (Lessor)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Generic</controllingFieldValue>
+            <controllingFieldValue>Contract</controllingFieldValue>
+            <valueName>Head Invoicing Party</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Generic</controllingFieldValue>
+            <controllingFieldValue>Contract</controllingFieldValue>
+            <valueName>Head Invoicing Party Level 2</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Generic</controllingFieldValue>
+            <controllingFieldValue>Contract</controllingFieldValue>
+            <valueName>Head Lessee</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Generic</controllingFieldValue>
+            <controllingFieldValue>Contract</controllingFieldValue>
+            <valueName>Head Lessee Level 2</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Generic</controllingFieldValue>
+            <controllingFieldValue>Contract</controllingFieldValue>
+            <valueName>Head Lessor</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Generic</controllingFieldValue>
+            <valueName>Head Lessor II</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Generic</controllingFieldValue>
+            <controllingFieldValue>Contract</controllingFieldValue>
+            <valueName>Head Lessor Level 2</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Generic</controllingFieldValue>
+            <controllingFieldValue>Contract</controllingFieldValue>
+            <valueName>Invoiced Party</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Generic</controllingFieldValue>
+            <controllingFieldValue>Contract</controllingFieldValue>
+            <valueName>Invoicing Party</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Generic</controllingFieldValue>
+            <controllingFieldValue>Asset</controllingFieldValue>
+            <valueName>Legal Owner</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Generic</controllingFieldValue>
+            <valueName>Lender</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Generic</controllingFieldValue>
+            <controllingFieldValue>Contract</controllingFieldValue>
+            <valueName>Lessee</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Generic</controllingFieldValue>
+            <controllingFieldValue>Contract</controllingFieldValue>
+            <valueName>Lessee Previous</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Generic</controllingFieldValue>
+            <valueName>Lessee SPV</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Generic</controllingFieldValue>
+            <controllingFieldValue>Contract</controllingFieldValue>
+            <valueName>Lessor</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Generic</controllingFieldValue>
+            <controllingFieldValue>Contract</controllingFieldValue>
+            <valueName>Next Operator</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Generic</controllingFieldValue>
+            <controllingFieldValue>Contract</controllingFieldValue>
+            <valueName>Operator</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Generic</controllingFieldValue>
+            <valueName>Owner</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Generic</controllingFieldValue>
+            <controllingFieldValue>Contract</controllingFieldValue>
+            <valueName>Owner Participant (Lessor Level)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Generic</controllingFieldValue>
+            <valueName>Owner Trustee</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Generic</controllingFieldValue>
+            <controllingFieldValue>Contract</controllingFieldValue>
+            <valueName>Previous Operator</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Generic</controllingFieldValue>
+            <controllingFieldValue>Asset</controllingFieldValue>
+            <valueName>Security Trustee</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Generic</controllingFieldValue>
+            <controllingFieldValue>Contract</controllingFieldValue>
+            <valueName>Sub Lessee</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Generic</controllingFieldValue>
+            <controllingFieldValue>Contract</controllingFieldValue>
+            <valueName>Sub Lessee Level 2</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Generic</controllingFieldValue>
+            <controllingFieldValue>Contract</controllingFieldValue>
+            <valueName>Sub Lessee Level 3</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Generic</controllingFieldValue>
+            <controllingFieldValue>Contract</controllingFieldValue>
+            <valueName>Sub Lessor</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Generic</controllingFieldValue>
+            <controllingFieldValue>Contract</controllingFieldValue>
+            <valueName>Sub Lessor Level 2</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Generic</controllingFieldValue>
+            <controllingFieldValue>Contract</controllingFieldValue>
+            <valueName>Sub Lessor Level 3</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

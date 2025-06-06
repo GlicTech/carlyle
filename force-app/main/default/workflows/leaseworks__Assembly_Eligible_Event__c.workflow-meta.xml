@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>leaseworks__CFO_CTO_Claim_Review</fullName>
+        <description>CFO/CTO Claim Review</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>leaseworks__Claim_Process_Email_Templates/leaseworks__CTO_CFO_Review</template>
+    </alerts>
+    <alerts>
+        <fullName>leaseworks__Claim_Approval_Email_Alert</fullName>
+        <description>Claim Approval Email Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>leaseworks__Claim_Process_Email_Templates/leaseworks__Claim_Approval</template>
+    </alerts>
+    <alerts>
+        <fullName>leaseworks__Claim_Under_Dispute_Email_Alert</fullName>
+        <description>Claim Under Dispute Email Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>leaseworks__Claim_Process_Email_Templates/leaseworks__ClaimUnder_Dispute_ContractLegalReview</template>
+    </alerts>
+    <alerts>
+        <fullName>leaseworks__Claim_in_Dispute_Email_Alert</fullName>
+        <description>Claim in Dispute Email Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>leaseworks__Claim_Process_Email_Templates/leaseworks__Head_of_Technical_CTO_Reivew</template>
+    </alerts>
+    <alerts>
+        <fullName>leaseworks__Contract_Legal_Review_Email_Alert</fullName>
+        <description>Contract/ Legal Review Email Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>leaseworks__Claim_Process_Email_Templates/leaseworks__HeadTechCTO_to_Contract_Legal</template>
+    </alerts>
+    <alerts>
+        <fullName>leaseworks__Finance_Accounting_Review_Email_Alert</fullName>
+        <description>Finance / Accounting Review Email Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>leaseworks__Claim_Process_Email_Templates/leaseworks__FinanceAccountReview</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>leaseworks__AssemblyEventSetDataVerifiedBy</fullName>
+        <field>leaseworks__Data_Verified_By__c</field>
+        <formula>$User.FirstName + &#39; &#39; + $User.LastName +&#39;, &#39; +
+
+Text(MONTH(TODAY())) + &#39;/&#39; + Text(Day(TODAY())) + &#39;/&#39; + Text(year(TODAY()))</formula>
+        <name>AssemblyEventSetDataVerifiedBy</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__CAEventSetCorrectionDate</fullName>
+        <field>leaseworks__Effective_Date__c</field>
+        <formula>if(isBlank(leaseworks__Effective_Date__c), if(isBlank(leaseworks__End_Date__c), leaseworks__Start_Date__c ,leaseworks__End_Date__c) , leaseworks__Effective_Date__c)</formula>
+        <name>CAEventSetCorrectionDate</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Set_CA_CSLV</fullName>
+        <description>CSLV is set to 0 when a new Assembly Eligible Event is created</description>
+        <field>leaseworks__CSLV__c</field>
+        <formula>IF( !isBlank(leaseworks__End_Date__c) &amp;&amp; ISCHANGED(leaseworks__End_Date__c) ,0,  leaseworks__Constituent_Assembly__r.leaseworks__CSLSV__c )</formula>
+        <name>Set CA CSLV</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>leaseworks__Constituent_Assembly__c</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Set_CA_TSLV</fullName>
+        <description>TSLV is set to 0 when a new Assembly Eligible Event is created</description>
+        <field>leaseworks__TSLV__c</field>
+        <formula>IF( !isBlank(leaseworks__End_Date__c) &amp;&amp; ISCHANGED(leaseworks__End_Date__c)  ,0, leaseworks__Constituent_Assembly__r.leaseworks__TSLSV__c )</formula>
+        <name>Set CA TSLV</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>leaseworks__Constituent_Assembly__c</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_CAEE_Name</fullName>
+        <description>Updates the CA EE name</description>
+        <field>Name</field>
+        <formula>IF(AND(OR(ISNULL(leaseworks__Projected_Event__c),ISBLANK(leaseworks__Projected_Event__c)),OR(ISNULL(leaseworks__Custom_PE_Record_Number__c),ISBLANK(leaseworks__Custom_PE_Record_Number__c))), 
+IF(CONTAINS(Name,&#39;&lt;System Generated&gt;&#39;),TEXT(leaseworks__Event_Type__c),Name) ,
+IF( AND(OR(ISNULL(leaseworks__Projected_Event__c),ISBLANK(leaseworks__Projected_Event__c)), OR(ISNULL(leaseworks__Y_Hidden_Maintenance_Program_Event__c),ISBLANK(leaseworks__Y_Hidden_Maintenance_Program_Event__c))),
+IF( OR(ISNULL(leaseworks__Custom_PE_Record_Number__c),ISBLANK(leaseworks__Custom_PE_Record_Number__c)) , &#39;&#39; , &#39;Custom Event(&#39; &amp; TEXT(leaseworks__Custom_PE_Record_Number__c) &amp; &#39;)&#39; ),
+IF( OR(ISNULL(leaseworks__Custom_PE_Record_Number__c),ISBLANK(leaseworks__Custom_PE_Record_Number__c)) , leaseworks__Projected_Event__r.leaseworks__Event_Type__c , &#39;Custom Event(&#39; &amp; TEXT(leaseworks__Custom_PE_Record_Number__c) &amp; &#39;)&#39; )
+)
+&amp; &#39;-&#39; &amp; TEXT(leaseworks__End_Date__c)&amp;&quot;-&quot;&amp;leaseworks__Constituent_Assembly__r.leaseworks__Serial_Number__c
+)</formula>
+        <name>Update CAEE Name</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_Certified_By</fullName>
+        <field>leaseworks__Certified_By__c</field>
+        <formula>IF( !isBlank(leaseworks__End_Date__c) &amp;&amp; ISCHANGED(leaseworks__End_Date__c) , $User.FirstName + &#39; &#39; + $User.LastName, &#39;&#39;)</formula>
+        <name>Update Certified By</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>leaseworks__Assembly Event Data Verifed By</fullName>
+        <actions>
+            <name>leaseworks__AssemblyEventSetDataVerifiedBy</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>OR ( AND (ISNEW(), leaseworks__Data_Verified_For_Accuracy__c ), ISCHANGED(leaseworks__Data_Verified_For_Accuracy__c))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__CA CSLV and TSLV</fullName>
+        <actions>
+            <name>leaseworks__Set_CA_CSLV</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>leaseworks__Set_CA_TSLV</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>CSLV &amp; TSLV set to 0 when a new Assembly Eligible Event is created</description>
+        <formula>!IsBlank(leaseworks__End_Date__c)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__Constt Assembly Eligible Event Created Updated</fullName>
+        <actions>
+            <name>leaseworks__CAEventSetCorrectionDate</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>leaseworks__Update_CAEE_Name</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Workflow for when Assembly Eligible event is created or updated</description>
+        <formula>TRUE</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__EligibleEventTSLVSCLVVerifiedBy</fullName>
+        <actions>
+            <name>leaseworks__Update_Certified_By</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Record the person who clicked TSLV/CSLV Certify Check Box</description>
+        <formula>TRUE</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

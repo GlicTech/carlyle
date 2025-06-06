@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Y_Hidden_Total_Locked_Amount__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Sum of all the locked Drawdown amount</description>
+    <externalId>false</externalId>
+    <label>Z_Unused_2211{Total Locked Amount}</label>
+    <summarizedField>leaseworks__LOC_Drawn_Down__c.leaseworks__Amount__c</summarizedField>
+    <summaryFilterItems>
+        <field>leaseworks__LOC_Drawn_Down__c.leaseworks__Locked__c</field>
+        <operation>equals</operation>
+        <value>True</value>
+    </summaryFilterItems>
+    <summaryForeignKey>leaseworks__LOC_Drawn_Down__c.leaseworks__Letter_Of_Credit__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

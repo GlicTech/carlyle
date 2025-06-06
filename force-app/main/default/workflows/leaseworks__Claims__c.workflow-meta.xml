@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>leaseworks__CFO_CTO_Claim_Review</fullName>
+        <description>CFO/CTO Claim Review</description>
+        <protected>false</protected>
+        <recipients>
+            <field>LastModifiedById</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>leaseworks__Claim_Process_Email_Templates/leaseworks__CTO_CFO_Review</template>
+    </alerts>
+    <alerts>
+        <fullName>leaseworks__Caim_in_Dispute_Email_Alert</fullName>
+        <description>Claim in Dispute Email Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <field>LastModifiedById</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>leaseworks__Claim_Process_Email_Templates/leaseworks__Head_of_Technical_CTO_Reivew</template>
+    </alerts>
+    <alerts>
+        <fullName>leaseworks__Claim_Approval_Email_Alert</fullName>
+        <description>Claim Approval Email Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <field>LastModifiedById</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>leaseworks__Claim_Process_Email_Templates/leaseworks__Claim_Approval</template>
+    </alerts>
+    <alerts>
+        <fullName>leaseworks__Claim_Under_Dispute_Email_Alert</fullName>
+        <description>Claim Under Dispute Email Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <field>LastModifiedById</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>leaseworks__Claim_Process_Email_Templates/leaseworks__ClaimUnder_Dispute_ContractLegalReview</template>
+    </alerts>
+    <alerts>
+        <fullName>leaseworks__Contract_Legal_Review_Email_Alert</fullName>
+        <description>Contract/ Legal Review Email Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <field>LastModifiedById</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>leaseworks__Claim_Process_Email_Templates/leaseworks__HeadTechCTO_to_Contract_Legal</template>
+    </alerts>
+    <alerts>
+        <fullName>leaseworks__Finance_Accounting_Review_Email_Alert</fullName>
+        <description>Finance / Accounting Review Email Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <field>LastModifiedById</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>leaseworks__Claim_Process_Email_Templates/leaseworks__FinanceAccountReview</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>Final_Sign_Off_Approved_Status</fullName>
+        <field>leaseworks__Claim_Status__c</field>
+        <literalValue>Approved</literalValue>
+        <name>Final Sign Off Approved Status</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Status_Update</fullName>
+        <field>leaseworks__Claim_Status__c</field>
+        <literalValue>CTO Sign-off</literalValue>
+        <name>Status Update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Status_Update_Approved</fullName>
+        <field>leaseworks__Claim_Status__c</field>
+        <literalValue>Approved</literalValue>
+        <name>Status Update Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Status</fullName>
+        <field>leaseworks__Claim_Status__c</field>
+        <literalValue>CTO Sign-off</literalValue>
+        <name>Update Status</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__ClaimSetDataVerifiedBy</fullName>
+        <field>leaseworks__Data_Verified_By__c</field>
+        <formula>$User.FirstName + &#39; &#39; + $User.LastName +&#39;, &#39; +
+
+Text(MONTH(TODAY())) + &#39;/&#39; + Text(Day(TODAY())) + &#39;/&#39; + Text(year(TODAY()))</formula>
+        <name>ClaimSetDataVerifiedBy</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>leaseworks__Claims Data Verifed By</fullName>
+        <actions>
+            <name>leaseworks__ClaimSetDataVerifiedBy</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>AND(!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c,OR ( AND (ISNEW(),  leaseworks__Data_Verified_for_Accuracy__c  ), ISCHANGED( leaseworks__Data_Verified_for_Accuracy__c )))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

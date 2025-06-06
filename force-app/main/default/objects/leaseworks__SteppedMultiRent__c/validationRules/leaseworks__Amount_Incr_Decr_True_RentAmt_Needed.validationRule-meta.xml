@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Amount_Incr_Decr_True_RentAmt_Needed</fullName>
+    <active>true</active>
+    <description>If Amount increase/decrease? is True , Rent Amount is mandatory</description>
+    <errorConditionFormula>AND( leaseworks__Amount_Incr_Decr__c = TRUE,OR(ISNULL(leaseworks__Applicable_Rent__c),ISBLANK(leaseworks__Applicable_Rent__c)))</errorConditionFormula>
+    <errorDisplayField>leaseworks__Rent_Percent__c</errorDisplayField>
+    <errorMessage>Please Enter Rent Amount.</errorMessage>
+</ValidationRule>

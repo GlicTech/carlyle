@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__MRRateStartDate</fullName>
+    <active>false</active>
+    <description>MR Rate Start Date can not be prior to Lease Start Date.</description>
+    <errorConditionFormula>false/*MR_Rate_Start_Date__c &lt; Assembly_MR_Info__r.Lease__r.Lease_Start_Date_New__c*/</errorConditionFormula>
+    <errorDisplayField>leaseworks__MR_Rate_Start_Date__c</errorDisplayField>
+    <errorMessage>MR Rate Start Date can not be prior to Lease Start Date. Please update MR Rate Start Date.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,52 @@
+<template>
+    <div class="container">
+        <h2>File Uploader - {configName}</h2>
+
+        <template if:true={isConfigActive}>
+            <div class="drop-zone" onclick={openFileDialog}>
+                <lightning-icon icon-name="utility:upload" size="medium"></lightning-icon>
+                <p>Click or Drag File Here</p>
+                <input type="file" accept=".csv" class="hidden-file-input" onchange={handleFileChange} />
+            </div>
+        </template>
+        <template if:false={isConfigActive}>
+            <div class="drop-zone disabled">
+                <p>Configuration is Inactive</p>
+            </div>
+        </template>
+
+        <div class="button-section">
+            <lightning-button
+                variant="neutral"
+                label="Download Sample"
+                onclick={downloadSampleFile}
+                class="sample-btn"
+                disabled={isSampleDisabled}>
+            </lightning-button>
+
+            <lightning-button
+                variant="brand"
+                label="Process File"
+                onclick={processFile}
+                class="upload-btn"
+                disabled={isDisabled}>
+            </lightning-button>
+
+        </div>
+
+        <template if:true={fileName}>
+            <div class="attached-file">
+                <lightning-icon icon-name="doctype:csv" size="small"></lightning-icon>
+                <span>{fileName}</span>
+            </div>
+        </template>
+
+        <template if:true={errorMessage}>
+            <div class="slds-text-color_error">{errorMessage}</div>
+        </template>
+
+        <template if:true={successMessage}>
+            <div class="slds-text-color_success">{successMessage}</div>
+        </template>
+    </div>
+</template>

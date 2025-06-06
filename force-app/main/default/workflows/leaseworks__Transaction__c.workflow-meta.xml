@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>leaseworks__Transaction_Update_Name</fullName>
+        <field>Name</field>
+        <formula>CASE(leaseworks__Seller_Type__c, 
+&#39;Airline&#39;, leaseworks__Seller_Airline__r.Name, 
+&#39;Lessor&#39;, leaseworks__Lessor__r.Name, 
+leaseworks__Seller__c )+ &#39; - &#39; + TEXT(leaseworks__Estimated_Closing__c)</formula>
+        <name>Transaction Update Name</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>leaseworks__Transaction Saved</fullName>
+        <actions>
+            <name>leaseworks__Transaction_Update_Name</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Not using</description>
+        <formula>True</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

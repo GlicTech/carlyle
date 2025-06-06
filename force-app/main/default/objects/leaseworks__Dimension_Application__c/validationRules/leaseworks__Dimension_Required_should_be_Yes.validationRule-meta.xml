@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Dimension_Required_should_be_Yes</fullName>
+    <active>true</active>
+    <description>#DimensionStory - If &#39;Default Value Required&#39; is marked as Yes, then &#39;Dimension Required&#39; must be Yes.</description>
+    <errorConditionFormula>false 
+    /*ISPICKVAL(Default_Value_Required__c ,&#39;Yes&#39;) &amp;&amp; ISPICKVAL(Dimension_Required__c,&#39;No&#39;) &amp;&amp;  NOT(ISBLANK( Lease__r.Accounting_Setup_P__c ))*/</errorConditionFormula>
+    <errorDisplayField>leaseworks__Dimension_Required__c</errorDisplayField>
+    <errorMessage>Dimension Required&#39; must be marked as Yes if &#39;Default Value Required&#39; is marked as Yes.</errorMessage>
+</ValidationRule>

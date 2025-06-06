@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Update_Fleet_Sumary_All</fullName>
+    <availability>online</availability>
+    <description>Update Fleet Sumary All</description>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Z_Unused_2012 Update Fleet Summary All</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>{!REQUIRESCRIPT(&quot;/soap/ajax/57.0/connection.js&quot;)}
+{!REQUIRESCRIPT(&quot;/soap/ajax/57.0/apex.js&quot;)}
+
+try{
+if(&#39;{!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Package_Prefix__c}&#39;== &quot;&quot;){
+var retVal =sforce.apex.execute(&quot;LWGlobalUtils&quot;,&quot;callGlobalMethod&quot;, {TypeOfmethod:&quot;updateFleetSummaryAll&quot;,RecId:&quot;{! leaseworks__Operator__c.Id }&quot;});
+}
+else{
+var retVal =sforce.apex.execute(&quot;leaseworks/LWGlobalUtils&quot;,&quot;callGlobalMethod&quot;, {TypeOfmethod:&quot;updateFleetSummaryAll&quot;,RecId:&quot;{! leaseworks__Operator__c.Id }&quot;});
+}
+
+
+}catch(err){
+retVal=&quot;Unable to call update fleet summary, probably because you don&#39;t have necessary permission.&quot; + err;
+}
+
+window.moveTo(0,0)
+window.resizeTo(screen.availWidth, screen.availHeight)
+window.alert(retVal);</url>
+</WebLink>

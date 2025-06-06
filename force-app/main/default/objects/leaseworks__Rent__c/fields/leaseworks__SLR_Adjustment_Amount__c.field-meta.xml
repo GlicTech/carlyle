@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__SLR_Adjustment_Amount__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Formula field to store the difference between the Average SLR Amount and the Invoiced Amount.</description>
+    <externalId>false</externalId>
+    <formula>if( leaseworks__Overridden_Average_SLR_Amount__c &gt; 0 , leaseworks__Overridden_Average_SLR_Amount__c - leaseworks__Total_Due__c, leaseworks__Average_SLR_Amount__c - leaseworks__Total_Due__c)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Displays the difference between the Average SLR Amount and the Invoiced Amount.</inlineHelpText>
+    <label>SLR Adjustment Amount</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

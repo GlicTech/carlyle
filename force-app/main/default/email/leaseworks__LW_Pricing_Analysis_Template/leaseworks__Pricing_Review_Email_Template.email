@@ -1,0 +1,233 @@
+<messaging:emailTemplate recipientType="User"
+    relatedToType="leaseworks__Pricing_Run_New__c"
+    subject="{!relatedTo.Name} - Pricing Review">
+<messaging:htmlEmailBody >
+<html>
+    <header><apex:image id="theImage" value="{!'/servlet/servlet.FileDownload?file=0152o0000093rSj'}"/></header>
+    <body>
+    <STYLE type="text/css">
+        TH {font-size: 11px; font-face: arial;background: #CCCCCC; border-width: 1;  text-align: center } 
+        TD  {font-size: 11px; font-face: verdana } 
+        TABLE {border: solid #CCCCCC; border-width: 1}
+        TR:nth-child(even){background-color: #aaa;}
+     </STYLE>
+     <font face="arial" size="2">
+<p></p>
+<p>The economic analysis request <a href="{!LEFT($Api.Enterprise_Server_URL_300, FIND('/services',$Api.Enterprise_Server_URL_300))}{!relatedTo.id}">{!relatedTo.Name}</a> for the Deal {!relatedTo.Y_Hidden_MA_Name__c} has been submitted for pricing review.</p>
+
+<table>
+ <tr>
+      <th>Action</th>
+      <apex:repeat var="cx" value="{!relatedTo.Pricing_Output_New__r}">
+        <td><a href="{!LEFT($Api.Enterprise_Server_URL_300, FIND('/services',$Api.Enterprise_Server_URL_300))}{!cx.id}">View</a></td>
+       </apex:repeat>
+  </tr>
+  <tr>
+  <th>Deal Type</th>
+      <apex:repeat var="deal" value="{!relatedTo.Pricing_Output_New__r}">
+        <td>{!deal.leaseworks__Deal_Type__c}</td>
+       </apex:repeat>
+  </tr> 
+   <tr>
+      <th> Analysis Target </th> 
+      <apex:repeat var="ax" value="{!relatedTo.Pricing_Output_New__r}">
+        <td>{!ax.leaseworks__Analysis_Target__c}</td>
+          </apex:repeat>
+   </tr>
+    <tr>
+            <th>MSN</th>
+            <apex:repeat var="msn" value="{!relatedTo.Pricing_Output_New__r}">
+            <td>{!msn.leaseworks__MSN__c}</td>
+             </apex:repeat>
+       </tr>
+       <tr>
+            <th>Airline</th>
+            <apex:repeat var="airL" value="{!relatedTo.Pricing_Output_New__r}">
+            <td>{!airL.leaseworks__Airline__c}</td>
+             </apex:repeat>
+       </tr>
+       <tr>
+            <th>Aircraft Model</th>
+            <apex:repeat var="model" value="{!relatedTo.Pricing_Output_New__r}">
+            <td>{!model.leaseworks__Aircraft_Model__c}</td>
+             </apex:repeat>
+       </tr>
+       <tr>
+            <th>Engine Type</th>
+            <apex:repeat var="engType" value="{!relatedTo.Pricing_Output_New__r}">
+            <td>{!engType.leaseworks__Engine_Type__c}</td>
+             </apex:repeat>
+        </tr>
+        <tr>
+            <th>MTOW</th>
+            <apex:repeat var="mtow" value="{!relatedTo.Pricing_Output_New__r}">
+            <td><apex:outputField value="{!mtow.leaseworks__MTOW_lbs__c}"/></td>
+             </apex:repeat>
+        </tr>
+       <tr>
+            <th>Date Of Manufacture</th>
+            <apex:repeat var="dom" value="{!relatedTo.Pricing_Output_New__r}">
+            <td><apex:outputField value="{!dom.leaseworks__Date_Of_Manufacture__c}"/></td>
+             </apex:repeat>
+       </tr>
+       <tr>
+            <th>Aircraft Upgrade Option</th>
+            <apex:repeat var="up" value="{!relatedTo.Pricing_Output_New__r}">
+            <td><apex:outputField value="{!up.leaseworks__Aircraft_Upgrade_Option__c}"/></td>
+             </apex:repeat>
+       </tr>
+       <tr>
+            <th>Purchase Price</th>
+            <apex:repeat var="ix" value="{!relatedTo.Pricing_Output_New__r}">
+            <td><apex:outputField value="{!ix.leaseworks__Purchase_Price_Inc_NVA_If_Known__c}"/></td>
+             </apex:repeat>
+        </tr>
+        <tr>
+            <th>Purchase Price (For SLBs and Opp Inv)</th>
+            <apex:repeat var="Pp" value="{!relatedTo.Pricing_Output_New__r}">
+            <td><apex:outputField value="{!Pp.leaseworks__Purchase_Price_SLB_Only__c}"/></td>
+             </apex:repeat>
+        </tr>
+        <tr>
+            <th>Non-Value Added IFE</th>
+            <apex:repeat var="ife" value="{!relatedTo.Pricing_Output_New__r}">
+            <td><apex:outputField value="{!ife.leaseworks__Non_Value_Add__c}"/></td>
+             </apex:repeat>
+        </tr> 
+         <tr>
+            <th>Lease Term</th>
+            <apex:repeat var="term" value="{!relatedTo.Pricing_Output_New__r}">
+            <td><apex:outputField value="{!term.leaseworks__Lease_Term__c}"/></td>
+             </apex:repeat>
+         </tr>  
+         <tr>
+            <th>IRR</th>
+            <apex:repeat var="lx" value="{!relatedTo.Pricing_Output_New__r}">
+            <td><apex:outputField value="{!lx.leaseworks__IRR__c}"/></td>
+             </apex:repeat>
+         </tr> 
+         <tr>
+            <th>EBT</th>
+            <apex:repeat var="ebt" value="{!relatedTo.Pricing_Output_New__r}">
+            <td><apex:outputField value="{!ebt.leaseworks__EBT__c}"/></td>
+             </apex:repeat>
+         </tr> 
+         <tr>
+            <th>Rent Type</th>
+            <apex:repeat var="mx" value="{!relatedTo.Pricing_Output_New__r}">
+            <td>{!mx.leaseworks__Rate_Type__c}</td>
+             </apex:repeat>
+         </tr> 
+         <tr>
+            <th>Rent Base Month</th>
+            <apex:repeat var="nx" value="{!relatedTo.Pricing_Output_New__r}">
+            <td> <apex:outputField value="{!nx.leaseworks__Rent_Base_Month__c}"/> </td>
+             </apex:repeat>
+         </tr>
+         <tr>
+            <th>Current Rent</th>
+            <apex:repeat var="ox" value="{!relatedTo.Pricing_Output_New__r}">
+            <td> <apex:outputField value="{!ox.leaseworks__Current_Rent__c}"/> </td>
+             </apex:repeat>
+         </tr>
+         <tr>
+            <th>LRF</th>
+            <apex:repeat var="lrf" value="{!relatedTo.Pricing_Output_New__r}">
+            <td> <apex:outputField value="{!lrf.leaseworks__Lease_Rate_Factor__c}"/> </td>
+             </apex:repeat>
+         </tr>
+         <tr>
+            <th>Deposit Type</th>
+            <apex:repeat var="px" value="{!relatedTo.Pricing_Output_New__r}">
+            <td>{!px.leaseworks__Deposit_Type__c}</td>
+             </apex:repeat>
+          </tr>
+         <tr>
+            <th>Deposit</th>
+            <apex:repeat var="qx" value="{!relatedTo.Pricing_Output_New__r}">
+            <td><apex:outputField value="{!qx.leaseworks__Deposit__c}" /></td>
+             </apex:repeat>
+         </tr>
+         <tr>
+            <th>Deposit (Rent Multiple)</th>
+            <apex:repeat var="rx" value="{!relatedTo.Pricing_Output_New__r}">
+            <td><apex:outputField value="{!rx.leaseworks__Deposit_Rent_Multiple__c}" /></td>
+             </apex:repeat>
+        </tr> 
+        <tr></tr>
+        <tr>
+            <th>MR</th>
+            <apex:repeat var="mr" value="{!relatedTo.Pricing_Output_New__r}">
+            <td><apex:outputField value="{!mr.leaseworks__Maintenance_Reserves__c}" /></td>
+             </apex:repeat>
+        </tr> 
+        <tr>
+            <th>Type of MR (if Cash)</th>
+            <apex:repeat var="type" value="{!relatedTo.Pricing_Output_New__r}">
+            <td><apex:outputField value="{!type.leaseworks__Type_of_MR_If_Cash__c}" /></td>
+             </apex:repeat>
+        </tr> 
+        <tr>
+            <th>Airframe 6Y</th>
+            <apex:repeat var="airframe" value="{!relatedTo.Pricing_Output_New__r}">
+           
+            <td><apex:outputField value="{!airframe.leaseworks__Airframe_6Y_8Y_9Y_per_Month__c}" /></td>
+             </apex:repeat>
+        </tr>
+        <tr>
+            <th>Airframe 12Y</th>
+            <apex:repeat var="af" value="{!relatedTo.Pricing_Output_New__r}">
+            <td><apex:outputField value="{!af.leaseworks__Airframe_12_Y_per_Month__c}" /></td>
+             </apex:repeat>
+        </tr> 
+        <tr>
+            <th>Engine 1st Run per FH</th>
+            <apex:repeat var="fh" value="{!relatedTo.Pricing_Output_New__r}">
+            <td><apex:outputField value="{!fh.leaseworks__Engine_1st_Run_per_FH__c}" /></td>
+             </apex:repeat>
+        </tr> 
+        <tr>
+            <th>Engine Subsequent Run per FH</th>
+            <apex:repeat var="run" value="{!relatedTo.Pricing_Output_New__r}">
+            <td><apex:outputField value="{!run.leaseworks__Engine_Subsequent_Run_per_FH__c}" /></td>
+             </apex:repeat>
+        </tr> 
+        <tr>
+            <th>Engine LLP per Cycle</th>
+            <apex:repeat var="cycle" value="{!relatedTo.Pricing_Output_New__r}">
+            <td><apex:outputField value="{!cycle.leaseworks__Engine_LLP_per_Cycle__c}" /></td>
+             </apex:repeat>
+        </tr> 
+        <tr>
+            <th>Landing Gear per Month</th>
+            <apex:repeat var="lg" value="{!relatedTo.Pricing_Output_New__r}">
+            <td><apex:outputField value="{!lg.leaseworks__Landing_Gear_per_Month__c}" /></td>
+             </apex:repeat>
+        </tr> 
+        <tr>
+            <th>APU per Hour</th>
+            <apex:repeat var="apu" value="{!relatedTo.Pricing_Output_New__r}">
+            <td><apex:outputField value="{!apu.leaseworks__APU_per_Hour__c}" /></td>
+             </apex:repeat>
+        </tr>   
+        <tr></tr>
+          <tr>
+         <th>Notes</th>
+            <apex:repeat var="note" value="{!relatedTo.Pricing_Output_New__r}">
+            <td><apex:outputText value="{!note.leaseworks__Additional_Notes__c}" /></td>
+             </apex:repeat>
+        </tr>
+        <tr>
+         <th>Notes (MTOW, SATCOM, HUD, etc)</th>
+            <apex:repeat var="Addnote" value="{!relatedTo.Pricing_Output_New__r}">
+            <td><apex:outputText value="{!Addnote.leaseworks__Notes__c}" /></td>
+             </apex:repeat>
+        </tr>   
+</table>
+<p>Please log onto <a href="https://na73.salesforce.com/{!relatedTo.id}"> LeaseWorks </a>and provide the economic analysis request.</p>
+<p />
+            </font>
+        </body>
+    </html>
+</messaging:htmlEmailBody> 
+</messaging:emailTemplate>

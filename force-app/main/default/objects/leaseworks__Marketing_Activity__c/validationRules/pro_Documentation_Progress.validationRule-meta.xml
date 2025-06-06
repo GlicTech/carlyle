@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>pro_Documentation_Progress</fullName>
+    <active>false</active>
+    <description>Restricts user from moving the deal status past documentation stage until Lease Documentation Approval % is at 100% for all AiDs related to the deal.</description>
+    <errorConditionFormula>AND( 
+     NOT(  pro_Bypass_Documentation_Approval__c  ),
+     pro_Of_AiDs_With_Documentation_Approved__c &lt; 1,
+     ISPICKVAL( leaseworks__Deal_Status__c , &#39;Closed - Won&#39;)
+)</errorConditionFormula>
+    <errorMessage>Lease Documentation Approval must be at 100% for all related AiDs before moving past the &#39;Documentation&#39; stage</errorMessage>
+</ValidationRule>

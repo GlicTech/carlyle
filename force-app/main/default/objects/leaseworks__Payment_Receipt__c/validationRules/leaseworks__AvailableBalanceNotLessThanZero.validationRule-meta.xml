@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__AvailableBalanceNotLessThanZero</fullName>
+    <active>true</active>
+    <description>Available balance should not be less than Zero</description>
+    <errorConditionFormula>/*AND(Prepayment__c, Available_Balance_Cur__c &lt; 0.0 )*/false</errorConditionFormula>
+    <errorMessage>The Available balance on the Prepayment cannot be less than 0</errorMessage>
+</ValidationRule>

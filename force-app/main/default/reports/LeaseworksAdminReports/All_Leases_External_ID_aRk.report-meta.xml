@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <aggregateTypes>Average</aggregateTypes>
+        <aggregateTypes>Maximum</aggregateTypes>
+        <field>leaseworks__Lease__c.leaseworks__Base_Rent__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <aggregateTypes>Average</aggregateTypes>
+        <aggregateTypes>Maximum</aggregateTypes>
+        <field>leaseworks__Lease__c.leaseworks__Lease_Term__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Lease__c.leaseworks__Lessee_Account_Name_New__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Lease__c.leaseworks__Lease_Id_External__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Lease__c.Unique_Lease_ID_Local__c</field>
+    </columns>
+    <description>Temporary report for LW development</description>
+    <filter>
+        <criteriaItems>
+            <column>leaseworks__Lease__c.Unique_Lease_ID_Local__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value></value>
+        </criteriaItems>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>leaseworks__Lease__c.leaseworks__Lease_Type_Status__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>All Leases Unique Lease ID</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$leaseworks__Lease__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>false</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>CUST_CREATED_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

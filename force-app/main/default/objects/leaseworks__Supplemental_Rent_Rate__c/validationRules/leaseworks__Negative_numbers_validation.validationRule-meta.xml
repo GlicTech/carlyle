@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Negative_numbers_validation</fullName>
+    <active>true</active>
+    <description>Negative numbers are not allowed on the &#39;Rate (Precise)&#39; and &#39;Rate&#39; fields</description>
+    <errorConditionFormula>OR( leaseworks__Rate__c &lt; 0 , leaseworks__Rate_Precise__c &lt; 0 )</errorConditionFormula>
+    <errorMessage>Negative numbers are not allowed in the Rate field. Please correct it and save again</errorMessage>
+</ValidationRule>

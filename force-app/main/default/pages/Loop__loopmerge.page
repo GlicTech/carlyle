@@ -1,0 +1,27 @@
+<apex:page title="Nintex DocGen">
+    <script type="text/javascript" src="{!URLFOR($Resource.Scripts, 'jQuery.js')}"></script>
+    <script src="{!URLFOR($Resource.Scripts, 'jquery.drawloop.js')}"></script>
+    <style>
+        .message .messageText {
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .bPageTitle .pageTitleIcon {
+            display: none;
+        }
+        .bPageTitle .ptBody .pageDescription,
+        .bPageTitle .ptBreadcrumb {
+            margin-left: 20px !important;
+        }
+
+    </style>
+    <script type="text/javascript">
+    jQuery(window).ready(function () {
+        let eid = "{!JSENCODE($CurrentPage.parameters.eid)}";
+        jQuery('.bPageTitle').append('<div class="ptBreadcrumb" id="dlbc"><a href="/' + eid +'"> &laquo; Back</a></div>');
+    });
+    </script>
+    <apex:sectionHeader subtitle="Nintex DocGen" />
+    <apex:pageMessage summary="This feature is discontinued." severity="error" strength="3"/>
+
+</apex:page>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Loop__Case_Articles__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <formula>IF( ISBLANK( Loop__KA_Required__c ) , &quot;&quot; , &quot;Required: &quot; ) &amp; 
+SUBSTITUTE( SUBSTITUTE( Loop__KA_Required__c , &quot;,&quot; , &quot;, &quot; ) , &quot;__kav&quot; , &quot;&quot; ) &amp; 
+
+IF( OR( ISBLANK( Loop__KA_Required__c ) , ISBLANK( Loop__KA_Optional__c ) ) , &quot;&quot; , BR() ) &amp; 
+IF( ISBLANK( Loop__KA_Optional__c ) , &quot;&quot; , &quot;Optional: &quot; ) &amp; 
+SUBSTITUTE( SUBSTITUTE( Loop__KA_Optional__c , &quot;,&quot; , &quot;, &quot; ) , &quot;__kav&quot; , &quot;&quot; ) &amp; 
+
+IF( AND( NOT( ISBLANK( Loop__KA_Separate__c ) ) , NOT( AND( ISBLANK( Loop__KA_Required__c ) , ISBLANK( Loop__KA_Optional__c ) ) ) ) , BR() , &quot;&quot; ) &amp; 
+IF( ISBLANK( Loop__KA_Separate__c ) , &quot;&quot; , &quot;Separate Optional: &quot; ) &amp; 
+SUBSTITUTE( SUBSTITUTE( Loop__KA_Separate__c , &quot;,&quot; , &quot;, &quot; ) , &quot;__kav&quot; , &quot;&quot; ) &amp; 
+
+IF( AND( ISBLANK( Loop__KA_Required__c ) , ISBLANK( Loop__KA_Optional__c ) , ISBLANK( Loop__KA_Separate__c ) ) , &quot;None&quot; , BR() ) &amp; 
+&quot; [&quot; &amp; HYPERLINK( &quot;/apex/loop__ddpEdit?type=article&amp;ddpId=&quot; &amp; Id , &quot;Change&quot; , &quot;_self&quot; ) &amp; &quot;]&quot;</formula>
+    <label>Case Articles</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

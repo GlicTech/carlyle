@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>On_Lease_Status_Only</fullName>
+    <columns>NAME</columns>
+    <columns>leaseworks__Aircraft__c</columns>
+    <columns>leaseworks__Operator_New__c</columns>
+    <columns>leaseworks__Lease_Start_Date_New__c</columns>
+    <columns>leaseworks__Lease_End_Date_New__c</columns>
+    <columns>leaseworks__Lease_Type_Status__c</columns>
+    <columns>Transaction_Code__c</columns>
+    <columns>leaseworks__Current_Rent_New__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>leaseworks__Lease_Type_Status__c</field>
+        <operation>equals</operation>
+        <value>On Lease</value>
+    </filters>
+    <label>On Lease Status Only</label>
+</ListView>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__SecondRentStartDatevsActualRentDates</fullName>
+    <active>true</active>
+    <description>The second Rent Start Date cannot be lesser than the actual rent start date and cannot be greater than the actual rent end date.</description>
+    <errorConditionFormula>IF(NOT(ISNULL(leaseworks__Sec_Rent_Perd_Start_Dt__c)),OR(leaseworks__Sec_Rent_Perd_Start_Dt__c &lt; leaseworks__Start_Date__c , leaseworks__Sec_Rent_Perd_Start_Dt__c &gt;  leaseworks__Rent_End_Date__c ),false)</errorConditionFormula>
+    <errorDisplayField>leaseworks__Sec_Rent_Perd_Start_Dt__c</errorDisplayField>
+    <errorMessage>The Second Rent Period Start Date must be between the actual Rent Start and End Date.</errorMessage>
+</ValidationRule>

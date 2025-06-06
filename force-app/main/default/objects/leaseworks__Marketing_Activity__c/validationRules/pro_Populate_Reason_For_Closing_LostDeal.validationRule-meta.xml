@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>pro_Populate_Reason_For_Closing_LostDeal</fullName>
+    <active>false</active>
+    <description>The field Reason For Closing Deal must be appropriately populated before changing status to Closed/Lost.</description>
+    <errorConditionFormula>AND(
+    ISCHANGED(leaseworks__Deal_Status__c),
+    ISPICKVAL(leaseworks__Deal_Status__c, &#39;Closed - Lost&#39;),
+       NOT(
+       OR(
+          ISPICKVAL(leaseworks__Reason_For_Closing_Deal__c, &#39;Won deal with another operator&#39;),
+          ISPICKVAL(leaseworks__Reason_For_Closing_Deal__c, &#39;Declined to pursue&#39;),
+          ISPICKVAL(leaseworks__Reason_For_Closing_Deal__c, &#39;Airline awarded deal to competitor&#39;),
+          ISPICKVAL(leaseworks__Reason_For_Closing_Deal__c, &#39;Airline cancelled opportunity&#39;),
+          ISPICKVAL(leaseworks__Reason_For_Closing_Deal__c, &#39;Deal on hold by airline&#39;)
+
+       )
+       )
+)</errorConditionFormula>
+    <errorDisplayField>leaseworks__Reason_For_Closing_Deal__c</errorDisplayField>
+    <errorMessage>Change the Reason For Closing Deal to an appropriate option before moving the Status to &#39;Closed - Lost&#39;</errorMessage>
+</ValidationRule>

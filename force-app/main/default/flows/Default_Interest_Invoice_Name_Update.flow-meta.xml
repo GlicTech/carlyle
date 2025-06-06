@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>61.0</apiVersion>
+    <decisions>
+        <description>To check for the Disable triggers/Disable Flows flag on the custom setting.</description>
+        <name>Check_Custom_Setting</name>
+        <label>Check Custom Setting</label>
+        <locationX>182</locationX>
+        <locationY>323</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Check_Trigger_and_WFs</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>CheckTriggers</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>CheckWFs</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Name</targetReference>
+            </connector>
+            <label>Check Trigger and WFs</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <formulas>
+        <name>CheckTriggers</name>
+        <dataType>Boolean</dataType>
+        <expression>{!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c}</expression>
+    </formulas>
+    <formulas>
+        <name>CheckWFs</name>
+        <dataType>Boolean</dataType>
+        <expression>{!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c}</expression>
+    </formulas>
+    <formulas>
+        <name>formattedName</name>
+        <dataType>String</dataType>
+        <expression>SUBSTITUTE({!$Record.Name}, &#39;M&#39;, &#39;D&#39;)</expression>
+    </formulas>
+    <interviewLabel>Default Interest Invoice Name Update {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Default Interest Invoice Name Update</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Update_Name</name>
+        <label>Update Name</label>
+        <locationX>50</locationX>
+        <locationY>431</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Name</field>
+            <value>
+                <elementReference>formattedName</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>leaseworks__Invoice_Number__c</field>
+            <value>
+                <elementReference>formattedName</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Check_Custom_Setting</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>leaseworks__Invoice_Type__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Default Interest</stringValue>
+            </value>
+        </filters>
+        <object>leaseworks__Invoice__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

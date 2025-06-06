@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__InterestRateIndexandFirstRateResetDate</fullName>
+    <active>true</active>
+    <description>Interest Rate Index and First Rate Reset Date cannot be blank if Loan Type is &quot;Variable&quot;</description>
+    <errorConditionFormula>And( ISPICKVAL( leaseworks__Loan_Type__c,&#39;Variable&#39;),OR( ISNULL( leaseworks__Interest_Rate_Index__c ) , ISNULL( leaseworks__First_Rate_Reset_Date__c )))</errorConditionFormula>
+    <errorMessage>For &#39;Variable&#39; Loan Type neither Interest Rate Index nor First Rate Reset Date can be blank. Please check and enter the missing value(s).</errorMessage>
+</ValidationRule>

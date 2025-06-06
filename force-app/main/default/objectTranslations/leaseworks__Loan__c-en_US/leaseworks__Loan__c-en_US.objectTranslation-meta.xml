@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>Loan Layout</layout>
+        <sections>
+            <label><!-- Loan Dates --></label>
+            <section>Loan Dates</section>
+        </sections>
+        <sections>
+            <label><!-- Loan Rates --></label>
+            <section>Loan Rates</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- Update Loan References --></label>
+        <name>Update_Loan_References</name>
+    </quickActions>
+    <validationRules>
+        <errorMessage><!-- The down payment must be less than the Total Asset Purchase Price and cannot be negative. --></errorMessage>
+        <name>leaseworks__Down_Payment_cannot_exceed_total_asset</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter the Fixed Interest Rate. --></errorMessage>
+        <name>leaseworks__FixedInterestRateCannotBeBlank</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please select the Fixed Interest Rate. This is required for Fixed loan type. --></errorMessage>
+        <name>leaseworks__FixedInterestRateNeededFixedType</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Grace Period duration is greater than the Interest Base days --></errorMessage>
+        <name>leaseworks__GracePeriodCannotBeGTInterestBaseDays</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Grace Period must start from the Loan Start Date. --></errorMessage>
+        <name>leaseworks__GracePeriodStartDtNotEqToLoanStartDt</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The Grace Period duration must be between the Loan Start and End Date. --></errorMessage>
+        <name>leaseworks__GracePeriodStartEndDtBtwLoanStartEndDt</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Grace Schedule related fields must be entered together. --></errorMessage>
+        <name>leaseworks__Grace_Period_fields_Enter_Together</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- For &apos;Variable&apos; Loan Type neither Interest Rate Index nor First Rate Reset Date can be blank. Please check and enter the missing value(s). --></errorMessage>
+        <name>leaseworks__InterestRateIndexandFirstRateResetDate</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The fixed interest rate must be greater than zero. --></errorMessage>
+        <name>leaseworks__Interest_rate_cannot_be_less_than_zero</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The loan Amount must be greater than 0. --></errorMessage>
+        <name>leaseworks__Loan_Amount_greater_than_0</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The loan End Date must be greater than the loan start date. --></errorMessage>
+        <name>leaseworks__Loan_end_cannot_less_than_start_date</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The First reset date must be equal to or greater than the loan start date. --></errorMessage>
+        <name>leaseworks__resetdate_cannot_before_start_date</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Second loan start date must be greater than the loan start date. --></errorMessage>
+        <name>leaseworks__seconddate_greater_than_startdate</name>
+    </validationRules>
+</CustomObjectTranslation>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Company__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Lessor information from the associated lease</description>
+    <externalId>false</externalId>
+    <formula>HYPERLINK(&quot;/&quot;&amp; leaseworks__Payment__r.leaseworks__Invoice__r.leaseworks__Lease__r.leaseworks__Lesor__c ,leaseworks__Payment__r.leaseworks__Invoice__r.leaseworks__Lease__r.leaseworks__Lesor__r.Name , &quot;_blank&quot;)</formula>
+    <inlineHelpText>Lessor information from the associated lease</inlineHelpText>
+    <label>Company</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

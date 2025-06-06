@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Is_Current_SRR_Local__c</fullName>
+    <description>This field is created for internal purposes to identify the current SRR used in MR calculations based on the latest approved utilization. Based on this check, the &#39;Current Rate&#39; dynamic related list is conditionally displayed.</description>
+    <externalId>false</externalId>
+    <formula>NOT(ISNULL(leaseworks__MR_Rate_Schedule__c )) &amp;&amp; ( leaseworks__Supplemental_Rent__r.leaseworks__Y_Hidden_Asset__r.leaseworks__Last_UR_Approved_For_The_Month_Of__c &gt;= leaseworks__MR_Rate_Schedule__r.leaseworks__MR_Rate_Start_Date__c ) &amp;&amp; ( leaseworks__Supplemental_Rent__r.leaseworks__Y_Hidden_Asset__r.leaseworks__Last_UR_Approved_For_The_Month_Of__c &lt;= leaseworks__MR_Rate_Schedule__r.leaseworks__MR_Rate_End_Date__c )</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>_Is Current SRR</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

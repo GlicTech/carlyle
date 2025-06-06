@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Required_PBH_Rate_FC</fullName>
+    <active>true</active>
+    <description>RBH Rate (FC) value is required if rate basis is set to Cycle</description>
+    <errorConditionFormula>AND(
+            OR (leaseworks__Rate_Basis_F__c == &#39;Cycle&#39;, leaseworks__Rate_Basis_F__c == &#39;FC Matrix&#39;),
+            ISNULL(leaseworks__PBH_Rate_FC__c)
+        )</errorConditionFormula>
+    <errorDisplayField>leaseworks__PBH_Rate_FC__c</errorDisplayField>
+    <errorMessage>PBH Rate (FC) value is required when the rate basis is set to Cycle</errorMessage>
+</ValidationRule>

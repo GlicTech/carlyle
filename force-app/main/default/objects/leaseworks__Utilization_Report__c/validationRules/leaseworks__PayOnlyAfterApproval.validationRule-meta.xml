@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__PayOnlyAfterApproval</fullName>
+    <active>false</active>
+    <description>Deprecated: UR Can be marked as paid only after it is approved by lessor.</description>
+    <errorConditionFormula>/*AND( !(ISPICKVAL(PRIORVALUE(Status__c), &#39;Approved By Lessor&#39;)),  MR_Paid__c )*/
+false</errorConditionFormula>
+    <errorDisplayField>leaseworks__MR_Paid__c</errorDisplayField>
+    <errorMessage>Utilization Report can be marked as paid only after it is approved by lessor.</errorMessage>
+</ValidationRule>

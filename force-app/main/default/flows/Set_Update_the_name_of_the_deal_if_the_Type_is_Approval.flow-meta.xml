@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>63.0</apiVersion>
+    <environments>Default</environments>
+    <formulas>
+        <name>FinalName</name>
+        <dataType>String</dataType>
+        <expression>IF(
+  LEN({!NameForTheDeal}) &gt; 80,
+  LEFT({!NameForTheDeal}, 77) &amp; &quot;...&quot;,
+  {!NameForTheDeal}
+)</expression>
+    </formulas>
+    <formulas>
+        <name>NameForTheDeal</name>
+        <dataType>String</dataType>
+        <expression>IF(
+  ISBLANK(TEXT({!$Record.Approval_Type__c})),
+  {!$Record.leaseworks__Counter_Party__r.Name} &amp; &quot; - &quot; &amp;
+  IF(MONTH(DATEVALUE({!$Record.CreatedDate})) &lt; 10, 
+     &quot;0&quot; &amp; TEXT(MONTH(DATEVALUE({!$Record.CreatedDate}))), 
+     TEXT(MONTH(DATEVALUE({!$Record.CreatedDate})))
+  ) &amp; &quot;/&quot; &amp; TEXT(YEAR(DATEVALUE({!$Record.CreatedDate}))),
+  
+  TEXT({!$Record.Approval_Type__c}) &amp; &quot; - &quot; &amp; 
+  {!$Record.leaseworks__Counter_Party__r.Name} &amp; &quot; - &quot; &amp;
+  IF(MONTH(DATEVALUE({!$Record.CreatedDate})) &lt; 10, 
+     &quot;0&quot; &amp; TEXT(MONTH(DATEVALUE({!$Record.CreatedDate}))), 
+     TEXT(MONTH(DATEVALUE({!$Record.CreatedDate})))
+  ) &amp; &quot;/&quot; &amp; TEXT(YEAR(DATEVALUE({!$Record.CreatedDate})))
+)</expression>
+    </formulas>
+    <interviewLabel>Up {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Set/Update the name of the deal if the Type is Approval</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Disable_Triggers</name>
+        <label>Disable Triggers</label>
+        <locationX>176</locationX>
+        <locationY>323</locationY>
+        <connector>
+            <targetReference>Update_deal_name_of_type_Approval</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>leaseworks__Disable_All_Triggers__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <object>leaseworks__LeaseWorksSettings__c</object>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Enable_Triggers</name>
+        <label>Enable Triggers</label>
+        <locationX>176</locationX>
+        <locationY>539</locationY>
+        <inputAssignments>
+            <field>leaseworks__Disable_All_Triggers__c</field>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </inputAssignments>
+        <object>leaseworks__LeaseWorksSettings__c</object>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_deal_name_of_type_Approval</name>
+        <label>Update deal name of type Approval</label>
+        <locationX>176</locationX>
+        <locationY>431</locationY>
+        <connector>
+            <targetReference>Enable_Triggers</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>Error_wile_updating_the_name_of_the_deal</targetReference>
+        </faultConnector>
+        <inputAssignments>
+            <field>Name</field>
+            <value>
+                <elementReference>FinalName</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Disable_Triggers</targetReference>
+        </connector>
+        <filterFormula>AND(
+    ISPICKVAL({!$Record.leaseworks__Deal_Type__c}, &quot;Approval&quot;),
+    NOT({!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c}),
+    NOT({!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c}),
+    OR(
+        ISNEW(),
+        ISCHANGED({!$Record.Approval_Type__c}),
+ISCHANGED({!$Record.leaseworks__Counter_Party__r.Id})
+    )
+)</filterFormula>
+        <object>leaseworks__Marketing_Activity__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Draft</status>
+</Flow>

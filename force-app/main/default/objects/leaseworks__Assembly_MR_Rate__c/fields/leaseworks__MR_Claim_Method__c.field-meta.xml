@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__MR_Claim_Method__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Used to set up logic for MR Claims Panel to be able to claim entire available MR Balance</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Set this parameter to be able to claim 1) lower of MR Balance or Claim amount or 2) entire MR Balance (may be higher than Event cost and claimed amount)</inlineHelpText>
+    <label>Z_Unused 2106 Claim Method</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Lower of Claim/Balance</fullName>
+                <default>true</default>
+                <label>Lower of Claim/Balance</label>
+            </value>
+            <value>
+                <fullName>Total MR Balance</fullName>
+                <default>false</default>
+                <label>Total MR Balance</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

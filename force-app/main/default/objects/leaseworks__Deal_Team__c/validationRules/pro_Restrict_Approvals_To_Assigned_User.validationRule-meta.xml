@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>pro_Restrict_Approvals_To_Assigned_User</fullName>
+    <active>false</active>
+    <errorConditionFormula>AND(
+
+   NOT( $User.Id =  leaseworks__Assigned_To__r.Id ),
+
+OR(
+
+
+  ISCHANGED( pro_BAC_Approval__c ),
+  ISCHANGED( pro_LOI_Signed_Approved__c ) 
+
+ )  
+)</errorConditionFormula>
+    <errorMessage>Only the Assigned To user can change this field.</errorMessage>
+</ValidationRule>

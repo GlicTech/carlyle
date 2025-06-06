@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <fieldSets>
+        <label><!-- SkipFieldsFromValidations --></label>
+        <name>leaseworks__SkipFieldsFromValidations</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- SkipFieldsFromValidationsHLSL --></label>
+        <name>leaseworks__SkipFieldsFromValidationsHLSL</name>
+    </fieldSets>
+    <layouts>
+        <layout>Payables Layout</layout>
+        <sections>
+            <label><!-- Accounting Details --></label>
+            <section>Accounting Details</section>
+        </sections>
+        <sections>
+            <label><!-- Amounts --></label>
+            <section>Amounts</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Key Dates --></label>
+            <section>Key Dates</section>
+        </sections>
+        <sections>
+            <label><!-- Other Information --></label>
+            <section>Other Information</section>
+        </sections>
+        <sections>
+            <label><!-- System Info --></label>
+            <section>System Info</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- Cancel Payable --></label>
+        <name>leaseworks__Cancel_Payable</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Z_unused_2024 Create Payout --></label>
+        <name>leaseworks__Create_Payout</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Create Payout --></label>
+        <name>leaseworks__Create_Payout_New</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Reject Cancellation --></label>
+        <name>leaseworks__Undo_Cancellation</name>
+    </quickActions>
+    <validationRules>
+        <errorMessage><!-- Cancellation Date cannot be prior to the payable date. --></errorMessage>
+        <name>leaseworks__CancellationDateNotPrioToPayableDate</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please select a Cash Security Deposit --></errorMessage>
+        <name>leaseworks__CashSDMandatory</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Claims, Assembly Event and Supplemental Rent fields are required to be able to create Payable for an Event Claim. --></errorMessage>
+        <name>leaseworks__ClaimSRMandatory</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The Claim must be Approved to create Payable Invoice/s --></errorMessage>
+        <name>leaseworks__ClaimShouldBeApproved</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Unable to proceed with transactions: The lease is currently associated with an inactive entity. Please link an active entity to the lease to continue. --></errorMessage>
+        <name>leaseworks__Entity_Is_Inactive</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please select an Invoice to be able to create Rebates Payable --></errorMessage>
+        <name>leaseworks__InvoiceMandatoryForRebates</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Rebates can only be applied to Approved Invoices --></errorMessage>
+        <name>leaseworks__InvoiceShouldBeApproved</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Loan installment cannot be removed from loan payable. --></errorMessage>
+        <name>leaseworks__LoanInstallmentMandatory</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please select a lease associated with the lessee --></errorMessage>
+        <name>leaseworks__OtherPayableTypeLeaseLesseeValidation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Total Payable Amount cannot exceed the Loan Slip Amount --></errorMessage>
+        <name>leaseworks__PayableAmtCantExceedLoanSlipAmt</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Payable Amount must be greater than zero --></errorMessage>
+        <name>leaseworks__PayableAmtGreaterThanZero</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Payable Due Date must be greater than or equal to the Payable Date --></errorMessage>
+        <name>leaseworks__PayableDueDateGreaterThanPayableDate</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Manual update on Lessor Commitment Amount is not allowed once the MR Claim Payable is generated. Please decline this and create a new payable with the corrected amount. --></errorMessage>
+        <name>leaseworks__PreventLessorCommitmentUpdate</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Manual update on Lessor Contribution Committed is not allowed once the MR Claim Payable is generated. Please decline this and create a new payable with the corrected amount. --></errorMessage>
+        <name>leaseworks__PreventLessorContributionUpdate</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Manual update on Payable Amount is not allowed once the MR Claim Payable is generated. Please decline this and create a new payable with the corrected amount. --></errorMessage>
+        <name>leaseworks__PreventMRClaimPayableAmountUpdate</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please select a Reconciliation Schedule to be able to create a refund for the MR reconciliation amount --></errorMessage>
+        <name>leaseworks__ReconScheduleMandatoryForUtilPayables</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Unable to proceed with approval/cancellation. Entity on the Payable is inactive. Please link it to an active entity to continue. --></errorMessage>
+        <name>leaseworks__Status_is_Apprved_and_Entity_Is_Inactive</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please select a Utilization to be able to create a refund for the MR TrueUp amount --></errorMessage>
+        <name>leaseworks__UtilizationMandatoryForMRTrueUpPayables</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- Apply_To_Invoice --></label>
+        <name>leaseworks__Apply_To_Invoice</name>
+    </webLinks>
+</CustomObjectTranslation>

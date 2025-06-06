@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Next_Escalation_Date__c</fullName>
+    <deprecated>false</deprecated>
+    <description>On creating and updating supplement rent record-
+if Next Escalation Date is not blank and Day of Next Escalation Date is not equal to 1st day then we are populating with first date of Next Escalation Date.
+
+Calculation on SR Utilization record - 
+1. When doing supplment rent utilization calculation, if Next Escalation Date is blank then finding escalation date using First Escalation Date and For The Month Ending date
+2. If Next Escalation Date is less than For The Month Ending then calculating next escalation date using Escalation Periodicity (Months) if Escalation Periodicity (Months) is not blank else taking 12 as value</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Next Escalation Date</inlineHelpText>
+    <label>Next Escalation Date</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

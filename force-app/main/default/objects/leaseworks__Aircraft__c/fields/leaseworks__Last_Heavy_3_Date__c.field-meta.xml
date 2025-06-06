@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Last_Heavy_3_Date__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Date on which Last Heavy Check 3 was done.</description>
+    <externalId>false</externalId>
+    <label>Z_Unused Last Heavy 3 Date</label>
+    <summarizedField>leaseworks__Aircraft_Eligible_Event__c.leaseworks__Start_Date__c</summarizedField>
+    <summaryFilterItems>
+        <field>leaseworks__Aircraft_Eligible_Event__c.leaseworks__Event_Type__c</field>
+        <operation>equals</operation>
+        <value>Heavy Maintenance 3</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>leaseworks__Aircraft_Eligible_Event__c.leaseworks__End_Date__c</field>
+        <operation>greaterThan</operation>
+        <value>1/1/1900</value>
+    </summaryFilterItems>
+    <summaryForeignKey>leaseworks__Aircraft_Eligible_Event__c.leaseworks__Aircraft__c</summaryForeignKey>
+    <summaryOperation>max</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

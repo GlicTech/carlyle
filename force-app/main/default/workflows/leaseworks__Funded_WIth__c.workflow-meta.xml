@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>leaseworks__FundedWithSetName</fullName>
+        <field>Name</field>
+        <formula>leaseworks__Invoice_Reference__r.Name + &#39; - &#39; + 
+
+case(month(leaseworks__Invoice_Reference__r.leaseworks__Month_Ending__c) 
+,1,&#39;Jan&#39; 
+,2,&#39;Feb&#39; 
+,3,&#39;Mar&#39; 
+,4,&#39;Apr&#39; 
+,5,&#39;May&#39; 
+,6,&#39;Jun&#39; 
+,7,&#39;Jul&#39; 
+,8,&#39;Aug&#39; 
+,9,&#39;Sep&#39; 
+,10,&#39;Oct&#39; 
+,11,&#39;Nov&#39; 
+,&#39;Dec&#39;) 
++ &#39; &#39; + Text(Year(leaseworks__Invoice_Reference__r.leaseworks__Month_Ending__c))</formula>
+        <name>FundedWithSetName</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>leaseworks__FundedWithCreateUpd</fullName>
+        <actions>
+            <name>leaseworks__FundedWithSetName</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>true</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

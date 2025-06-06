@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Missed_Deadline_Provide_Reason</fullName>
+    <active>false</active>
+    <description>Forces users to complete the Missed Deadline Reason field when Actual Date &gt; Projected Date</description>
+    <errorConditionFormula>AND(
+    pro_Actual_Date__c &gt;  pro_Projected_Date__c,
+     ISBLANK(pro_Missed_Deadline_Reason__c )
+)</errorConditionFormula>
+    <errorMessage>You must complete the Missed Deadline Reason field.</errorMessage>
+</ValidationRule>

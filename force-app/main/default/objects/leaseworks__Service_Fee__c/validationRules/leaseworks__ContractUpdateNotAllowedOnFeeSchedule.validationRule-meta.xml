@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__ContractUpdateNotAllowedOnFeeSchedule</fullName>
+    <active>true</active>
+    <errorConditionFormula>And(!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c,ISCHANGED( leaseworks__Lease__c ))</errorConditionFormula>
+    <errorMessage>Contract cannot be updated on the fee schedule, please create a new fee schedule.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Larger_of_FH_FC_not_valid_for_Months</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(leaseworks__Larger_Of_FH_FC__c,  TEXT(leaseworks__Rate_Basis__c) = &quot;Monthly&quot;)</errorConditionFormula>
+    <errorDisplayField>leaseworks__Larger_Of_FH_FC__c</errorDisplayField>
+    <errorMessage>This can be selected only when Rate Basis is Hours or Cycles.</errorMessage>
+</ValidationRule>

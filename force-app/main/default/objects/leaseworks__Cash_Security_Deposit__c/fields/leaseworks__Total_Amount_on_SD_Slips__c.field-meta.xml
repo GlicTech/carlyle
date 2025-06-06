@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Total_Amount_on_SD_Slips__c</fullName>
+    <deprecated>false</deprecated>
+    <description>This field is auto calculated by the system and represents the total amount on the generated SD slips.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Indicates the total amount that has been allocated to SD slips that have been generated. The allocated amount on the slips cannot exceed the stipulated amount for the security deposit.</inlineHelpText>
+    <label>Total Amount on SD Slip(s)</label>
+    <summarizedField>leaseworks__Security_Deposit_Slip__c.leaseworks__SD_Slip_Amount__c</summarizedField>
+    <summaryForeignKey>leaseworks__Security_Deposit_Slip__c.leaseworks__Security_Deposit__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

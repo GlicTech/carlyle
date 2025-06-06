@@ -1,0 +1,13 @@
+<apex:page standardController="leaseworks__Deal__c" applyHtmlTag="false" applyBodyTag="false" showHeader="false"> 
+    <apex:includeLightning />  
+    <div id="lightning" />   
+    <script>
+        $Lightning.use("leaseworks:ProspectExplorerApp", function() { 
+            $Lightning.createComponent("leaseworks:ProspectExplorerComponent",  
+              { recordId : '{!Deal__c.Id}'},
+              "lightning", function(cmp) { 
+                // do some stuff 
+           }); 
+        }); 
+    </script> 
+</apex:page>

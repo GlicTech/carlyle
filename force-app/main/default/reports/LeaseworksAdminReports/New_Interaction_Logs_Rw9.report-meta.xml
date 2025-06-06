@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Customer_Interaction_Log__c.leaseworks__Y_Hidden_Operator_List__c</field>
+    </columns>
+    <columns>
+        <field>CUST_CREATED_NAME</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Customer_Interaction_Log__c.leaseworks__Type_Of_Interaction__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Customer_Interaction_Log__c.leaseworks__Summary__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Customer_Interaction_Log__c.leaseworks__Attendees_List__c</field>
+    </columns>
+    <filter>
+        <booleanFilter>1 AND 2 AND 3</booleanFilter>
+        <criteriaItems>
+            <column>CUST_LAST_UPDATE_NAME</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notContain</operator>
+            <value>LW,Leaseworks</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>leaseworks__Customer_Interaction_Log__c.Draft__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Final</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>leaseworks__Customer_Interaction_Log__c.leaseworks__Discussion_Type__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Credit Update,General,Marketing Intel,PDP,RFP,Trading</value>
+        </criteriaItems>
+    </filter>
+    <format>Tabular</format>
+    <name>Weekly Interaction Logs</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$leaseworks__Customer_Interaction_Log__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>CUST_LAST_UPDATE</dateColumn>
+        <interval>INTERVAL_LAST7</interval>
+    </timeFrameFilter>
+</Report>

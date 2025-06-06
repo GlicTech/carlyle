@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Primary_Unit_Interval__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Interval based on Primary Unit and will be used for MR calculation</description>
+    <externalId>false</externalId>
+    <formula>IF(TEXT(leaseworks__Primary_Unit__c) =&quot;Hours&quot;,
+   leaseworks__Interval_2_Hours__c, 
+IF(TEXT(leaseworks__Primary_Unit__c) =&quot;Cycles&quot;,
+      leaseworks__Interval_2_Cycles__c ,
+IF(TEXT(leaseworks__Primary_Unit__c) =&quot;Months&quot;,
+      leaseworks__Interval_2_Months__c,null)))</formula>
+    <inlineHelpText>Interval based on Primary Unit and will be used for MR calculation</inlineHelpText>
+    <label>Primary Unit Interval</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

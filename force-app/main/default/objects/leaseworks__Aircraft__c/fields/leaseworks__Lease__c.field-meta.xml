@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Lease__c</fullName>
+    <deleteConstraint>Restrict</deleteConstraint>
+    <deprecated>false</deprecated>
+    <description>This field automatically fills with the current active Lease record linked to this Asset, identified by the &#39;Active&#39; field (leaseworks__Active__c) set to &#39;True&#39;. In the absence of an active Lease on this Asset (following the described logic), the system will clear this field. [This process is executed through a scheduled job that runs daily.]</description>
+    <externalId>false</externalId>
+    <inlineHelpText>This field is automatically filled with the current active Lease record linked to this Asset, determined by the &#39;Active&#39; field being set to &#39;True&#39;. If there is no active Lease associated with this Asset (following the logic described), the system will clear this field.</inlineHelpText>
+    <label>Lease</label>
+    <lookupFilter>
+        <active>true</active>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <errorMessage>Selected Lease has already different Asset assigned, please change the Lease before saving this Asset</errorMessage>
+        <filterItems>
+            <field>$Source.Id</field>
+            <operation>equals</operation>
+            <valueField>leaseworks__Lease__c.leaseworks__Aircraft__c</valueField>
+        </filterItems>
+        <filterItems>
+            <field>leaseworks__Lease__c.leaseworks__Aircraft__c</field>
+            <operation>equals</operation>
+            <value />
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>leaseworks__Lease__c</referenceTo>
+    <relationshipLabel>Assets</relationshipLabel>
+    <relationshipName>Aircrafts</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

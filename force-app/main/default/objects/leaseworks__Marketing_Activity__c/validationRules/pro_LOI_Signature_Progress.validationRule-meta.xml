@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>pro_LOI_Signature_Progress</fullName>
+    <active>false</active>
+    <description>Restricts users from passing the LOI Signature stage until LOI Approval is at 100%</description>
+    <errorConditionFormula>AND(
+    NOT( pro_Bypass_LOI_Approval__c ),
+     pro_LOI_Approval__c &lt; 1,
+     OR(
+         ISPICKVAL( leaseworks__Deal_Status__c , &#39;BAC Approval&#39;),
+         ISPICKVAL( leaseworks__Deal_Status__c , &#39;Documentation&#39;),
+         ISPICKVAL( leaseworks__Deal_Status__c , &#39;Closed - Won&#39;)
+     )
+)</errorConditionFormula>
+    <errorMessage>LOI Approval must be at 100% to pass this stage</errorMessage>
+</ValidationRule>

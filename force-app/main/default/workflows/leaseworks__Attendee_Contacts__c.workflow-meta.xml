@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>leaseworks__AttendeeContactSetName</fullName>
+        <field>Name</field>
+        <formula>if(isBlank(leaseworks__Contact__c),Name,leaseworks__Contact__r.Name  )</formula>
+        <name>AttendeeContactSetName</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>leaseworks__AttendeeContact_CreateUpdate</fullName>
+        <actions>
+            <name>leaseworks__AttendeeContactSetName</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <formula>true</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

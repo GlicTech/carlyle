@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Est_Green_Time_MO__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Estimated remaining life in months</description>
+    <externalId>false</externalId>
+    <formula>IF((leaseworks__Portal_Asset_Request__r.leaseworks__Assumed_Monthly_FH__c == 0 || leaseworks__Portal_Asset_Request__r.leaseworks__Assumed_Monthly_FC__c == 0), 0,
+MIN(
+NULLVALUE(leaseworks__Assembly__r.leaseworks__Remaining_Life_FH_Calculated__c,0)/ leaseworks__Portal_Asset_Request__r.leaseworks__Assumed_Monthly_FH__c, NULLVALUE(leaseworks__Assembly__r.leaseworks__Remaining_Life_FC_Calculated__c,0)/leaseworks__Portal_Asset_Request__r.leaseworks__Assumed_Monthly_FC__c 
+))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Estimated remaining life in months</inlineHelpText>
+    <label>Est Green Time(MO)</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldOverrides>
+        <field>leaseworks__Cancellation_Date__c</field>
+        <formula>TODAY()</formula>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>leaseworks__JE_Cancellation_Method__c</field>
+        <formula>if(
+leaseworks__Payment_on_Account_Line__c.leaseworks__Global_Accounting_Setting__r.leaseworks__Accounting_ON__c ,
+if(leaseworks__Payment_on_Account_Line__c.leaseworks__Global_Accounting_Setting__r.leaseworks__Block_Journal_Reversals__c &amp;&amp;
+leaseworks__Payment_on_Account_Line__c.leaseworks__Global_Accounting_Setting__r.leaseworks__Block_Journal_Unposting__c ,&#39;None&#39;,
+if( leaseworks__Payment_on_Account_Line__c.leaseworks__Global_Accounting_Setting__r.leaseworks__Block_Journal_Unposting__c , &#39;Reverse JEs&#39;,
+
+if( leaseworks__Payment_on_Account_Line__c.leaseworks__Global_Accounting_Setting__r.leaseworks__Block_Journal_Reversals__c ,
+&#39;Unpost JEs&#39;, &#39;Reverse JEs&#39;) )
+), &#39;None&#39;)</formula>
+    </fieldOverrides>
+    <label>Cancel Payment on Account</label>
+    <optionsCreateFeedItem>false</optionsCreateFeedItem>
+    <quickActionLayout>
+        <layoutSectionStyle>TwoColumnsLeftToRight</layoutSectionStyle>
+        <quickActionLayoutColumns>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>Name</field>
+                <uiBehavior>Readonly</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>leaseworks__Payment_on_Account_Amount_Formula__c</field>
+                <uiBehavior>Readonly</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>leaseworks__Reversal_Accounting_Period__c</field>
+                <uiBehavior>Edit</uiBehavior>
+            </quickActionLayoutItems>
+        </quickActionLayoutColumns>
+        <quickActionLayoutColumns>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>leaseworks__Operator__c</field>
+                <uiBehavior>Required</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>leaseworks__Cancellation_Date__c</field>
+                <uiBehavior>Required</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>leaseworks__JE_Cancellation_Method__c</field>
+                <uiBehavior>Edit</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>leaseworks__Note__c</field>
+                <uiBehavior>Readonly</uiBehavior>
+            </quickActionLayoutItems>
+        </quickActionLayoutColumns>
+    </quickActionLayout>
+    <type>Update</type>
+</QuickAction>

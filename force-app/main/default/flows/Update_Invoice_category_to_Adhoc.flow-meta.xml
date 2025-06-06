@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>62.0</apiVersion>
+    <assignments>
+        <name>Update_Invoice_Category</name>
+        <label>Update Invoice Category</label>
+        <locationX>176</locationX>
+        <locationY>323</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.leaseworks__Invoice_Category__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Ad-Hoc</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Disable_the_Triggers</targetReference>
+        </connector>
+    </assignments>
+    <environments>Default</environments>
+    <interviewLabel>Update Invocie {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Update Invoice category to Adhoc</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Disable_the_Triggers</name>
+        <label>Disable the Triggers</label>
+        <locationX>176</locationX>
+        <locationY>431</locationY>
+        <connector>
+            <targetReference>Save_Updated_Invoice</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>leaseworks__Disable_All_Triggers__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <object>leaseworks__LeaseWorksSettings__c</object>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Enable_all_Triggers</name>
+        <label>Enable all Triggers</label>
+        <locationX>440</locationX>
+        <locationY>755</locationY>
+        <inputAssignments>
+            <field>leaseworks__Disable_All_Triggers__c</field>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </inputAssignments>
+        <object>leaseworks__LeaseWorksSettings__c</object>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Enable_the_Triggers</name>
+        <label>Enable the Triggers</label>
+        <locationX>176</locationX>
+        <locationY>647</locationY>
+        <inputAssignments>
+            <field>leaseworks__Disable_All_Triggers__c</field>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </inputAssignments>
+        <object>leaseworks__LeaseWorksSettings__c</object>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Save_Updated_Invoice</name>
+        <label>Save Updated Invoice</label>
+        <locationX>176</locationX>
+        <locationY>539</locationY>
+        <connector>
+            <targetReference>Enable_the_Triggers</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>Failed_to_update_the_Invoice_Category</targetReference>
+        </faultConnector>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Update_Invoice_Category</targetReference>
+        </connector>
+        <filterFormula>AND(
+    ISPICKVAL({!$Record.leaseworks__Invoice_Type__c}, &quot;Rent&quot;),
+    ISPICKVAL({!$Record.leaseworks__Invoice_Category__c}, &quot;Manual Rent&quot;),
+    ISPICKVAL({!$Record.leaseworks__Status__c}, &quot;Pending&quot;),
+    {!$Record.leaseworks__Rent__r.leaseworks__Stepped_Rent__r.Ad_hoc_Schedule_Local__c} = True,
+    NOT(
+        OR(
+            {!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c},
+            {!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c}
+        )  
+)
+)</filterFormula>
+        <object>leaseworks__Invoice__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

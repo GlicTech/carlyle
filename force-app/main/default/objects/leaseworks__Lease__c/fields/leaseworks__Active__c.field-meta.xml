@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Active__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Active? Lease checkbox for reporting. Driven by Lease Start and Lease End/Redelivery date, based on Setup -&gt; Custom Settings -&gt; Leaseworks Settings -&gt; Active Lease logic. Active? Override field on the Lease page can override the calculation formula when selected by user</description>
+    <externalId>false</externalId>
+    <formula>If(
+        (ISPICKVAL( leaseworks__Active_Override__c ,&#39;Default&#39;) || ISBLANK(TEXT( leaseworks__Active_Override__c ))) , 
+        AND(leaseworks__Lease_Start_Date_New__c &lt;= TODAY(),
+        
+        IF($Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Active_Lease_Logic__c=&#39;Redelivery Date&#39;,
+        true,
+        leaseworks__Lease_End_Date_New__c&gt;= TODAY()
+        ),
+        
+        (TEXT(leaseworks__Lease_Type_Status__c)==&#39;On Lease&#39;),
+        !ISBLANK(leaseworks__Aircraft__c) ),If(ISPICKVAL( leaseworks__Active_Override__c ,&#39;Active&#39;),True,False))</formula>
+    <inlineHelpText>Active? Lease checkbox for reporting. Driven by Lease Start and Lease End or Redelivery date based on the configuration. Active? Override field on the Lease page can override the calculation formula when selected by user</inlineHelpText>
+    <label>Active?</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

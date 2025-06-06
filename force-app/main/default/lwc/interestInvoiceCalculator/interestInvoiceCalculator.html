@@ -1,0 +1,262 @@
+<template>
+    <lightning-card variant="base">
+        <template if:true={isSpinner}>
+            <lightning-spinner></lightning-spinner>
+        </template>
+        
+        <div class="slds-p-around_medium">
+            <div class="tabs-custom" style="margin-bottom: -20px; margin-top: -15px; padding-bottom: 10px;">
+                <div slot="title">
+                    <h1 class="slds-section__title" style="font-family: sans-serif; font-style: normal; font-weight: bold;font-size: 14px;line-height: 20px;color: #000000;">
+                        <lightning-icon size="small" icon-name="custom:custom16"></lightning-icon>&nbsp;
+                        <strong>Interest Studio</strong>
+                    </h1>
+                </div>
+                <div slot="actions">
+                    <lightning-button label="Reset" style="font-family: sans-serif;" title="Non-primary action"
+                        onclick={onReset} class="slds-m-left_x-small"></lightning-button>
+                    <lightning-button label="Calculate Interest"
+                        style="font-family: sans-serif; color: #005FB2 !important;" title="Non-primary action"
+                        onclick={handleCalculateInterest} variant="brand" class=" slds-m-left_x-small" disabled={showErrorwhenMissingSetup}></lightning-button>
+                </div>
+            </div>
+ 
+ 
+        </div>
+ 
+        <div class="slds-p-around_medium slds-m-top--small">
+            <div class="tabs-custom">
+                <div style="font-size: 0.8125rem; font-family: sans-serif;">
+                    Interest Calculation Criteria
+                </div>
+            </div>
+        </div>
+ 
+        <div class="slds-box">
+            <div class="form-input-main">
+                <div class="slds-grid slds-wrap slds-gutters_large">
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 ">
+                        <div class="form-input-inner" style="font-family: sans-serif;">
+                            <div>
+                                <abbr class="slds-required" title="required">*</abbr>
+                                <label for="less" style="font-family: sans-serif; margin-right: 35px;">Lessees </label>
+                            </div>
+                            <input type="text" value={selectedLessee} class="lesses form-control input-lg" disabled
+                                id="less" />
+                            <a onclick={handleShowLessee} class="slds-p-left--x-small show-list" style="font-family: sans-serif;"> Show List</a>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 ">
+                        <div class="form-input-inner" style="font-family: sans-serif;">
+                            <div>
+                                <abbr class="slds-required" title="required">*</abbr>
+                                <label for="inv" style="font-family: sans-serif; margin-right: 19px;">Invoice Type </label>
+                            </div>
+                            <input type="text" value={selectedInvoiceTypes} class="invoiceType form-control input-lg" disabled
+                                id="inv"/>
+                            <a onclick={handleShowInvoice} class="slds-p-left--x-small show-list" style="font-family: sans-serif;"> Show List</a>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 ">
+                        <div class="form-input-inner" style="font-family: sans-serif;">
+                            <div>
+                                <abbr class="slds-required" title="required">*</abbr>
+                                <label for="stdt" style="margin-right: 43px; font-family: sans-serif;">Month </label> 
+                            </div> 
+                            <lightning-combobox name="monthPicker" value={monthValue} placeholder="Select Month"
+                                 options={monthNameList} onchange={handleMonthYearChange} style="padding-bottom: 3px;padding-top: 3px;"
+                                variant="label-hidden"></lightning-combobox> 
+                        </div>
+ 
+                    </div>
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 ">
+                        <div class="form-input-inner" style="font-family: sans-serif;">
+                            <div>
+                                <abbr class="slds-required" title="required">*</abbr>
+                                <label for="eddt" style="margin-right: 54px; font-family: sans-serif;">Year </label>
+                            </div>
+                            <lightning-combobox name="yearPicker" value={yearValue} class = "slds-p-left--small"
+                                placeholder="Select Year " options={yearList} onchange={handleMonthYearChange}
+                                style="padding-bottom: 3px;padding-top: 3px;"
+                                variant="label-hidden"></lightning-combobox> 
+                        </div>
+                    </div>
+                    <a onclick={handleShowCalculationValues} class="slds-align--absolute-center" style="font-family: sans-serif;"> Show Interest Calculation Parameters</a>
+                    <!--
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 ">
+                        <div class="form-input-inner">
+                            <div class="slds-p-left--x-small">
+                                <label for="stdt" style="font-family: sans-serif; margin-right: 11px;">Invoice Date</label> 
+                            </div> 
+                            <input type="Date" value={invoicedateValue} class="form-control input-lg" style="padding-bottom: 7px;padding-top: 7px;" 
+                                id="invoicedate" onchange={handleInvoiceDateChangeEvent}/>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 ">
+                        <div class="form-input-inner">
+                            <div class="slds-p-left--x-small">
+                                <label for="eddt" style="font-family: sans-serif; margin-right: -12px;">Payment Due Date</label>
+                            </div>
+                            <input type="Date" value={invoiceduedateValue} class="form-control input-lg" disabled
+                            id="invoiceduedate" style="padding-bottom: 7px;padding-top: 7px;"/>
+                        </div>
+                    </div>
+                    -->
+                </div>
+ 
+            </div>
+        </div>
+ 
+        <template if:true={openLesseeModal}>
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-03" aria-modal="true"
+                aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <template if:true={isLoading}>
+                    <lightning-spinner></lightning-spinner>
+                </template>
+                <div class="slds-modal__container">
+                    <lightning-card variant="base">
+                        <header class="slds-modal__header slds-p-top--none">
+                            <h2 class="slds-text-heading_medium slds-hyphenate" style="font-family: sans-serif;">Lessee
+                                Selection
+                            </h2>
+                        </header>
+                        <div class="slds-grid slds-wrap" style="font-family: sans-serif; background-color: #f3f3f3; margin-bottom: 10px; border-bottom: solid 1px #dadada;">
+                            <div
+                                class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_4-of-12 slds-m-right_small slds-m-top_x-small slds-m-bottom_x-small slds-text-align_right">
+                                <label style="font-family: sans-serif; padding-top: 7px; display:inline-block; ">Lessee
+                                </label>
+                            </div>
+ 
+                            <div
+                                class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_4-of-12 slds-m-top_x-small slds-m-bottom_x-small">
+                                <lightning-input type="search" variant="label-hidden" value={searchValue}
+                                    placeholder="search" onchange={handleSearchKeyword}></lightning-input>
+                            </div> 
+                        </div> 
+                        <div class="slds-grid slds-wrap slds-scrollable slds-p-around_large " style="font-family: sans-serif; max-height:250px;width:100%">
+                            <div
+                                class="slds-col slds-size_1-of-1 slds-medium-size_1-of-12 slds-large-size_1-of-12  slds-m-bottom_x-small  slds-text-align_right">
+                                <lightning-input type="checkbox" data-name="select-all" data-id="select-all" checked={allLeseeChecked}
+                                    onchange={handleSelectAllLessee} style="margin-left: -10px;"></lightning-input>
+                            </div>
+                            <div
+                                class="slds-col slds-size_1-of-1 slds-medium-size_11-of-12 slds-large-size_11-of-12 slds-m-bottom_x-small slds-text-align_left">
+                                <b>Select All</b>
+                            </div>
+                            <template for:each={lesseeRecordsSorted} for:item="rec" for:index="i"> 
+                                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-12 slds-large-size_1-of-12 slds-m-top_x-small slds-m-bottom_x-small slds-text-align_right"
+                                    key={rec.Id}>
+                                    <lightning-input type="checkbox" data-id={rec.Id} data-name="checkbox" value={rec.isChecked}
+                                        checked={rec.isChecked} onchange={handleOptionLesseeChange}></lightning-input>
+                                </div> 
+                                <div class="slds-col slds-size_1-of-1 slds-medium-size_3-of-12 slds-large-size_3-of-12 slds-m-top_x-small slds-m-bottom_x-small slds-text-align_left"
+                                    key={rec.Id}>
+                                    {rec.Name}
+                                </div>
+                            </template>
+ 
+                        </div>
+                        <footer class="slds-modal__footer">
+                            <lightning-button variant="neutral" label="Cancel" style="font-family: sans-serif;"
+                                title="Cancel" onclick={handleCloseLesseeModal} class="slds-m-right_small"></lightning-button>
+                            <lightning-button variant="brand" label="Save" style="font-family: sans-serif;" title="Save"
+                                onclick={handleSaveLesseeModal}></lightning-button>
+                        </footer>
+                    </lightning-card>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+ 
+        <template if:true={openInvoiceTypeModal}>
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-03" aria-modal="true"
+                aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <lightning-card variant="base">
+                        <header class="slds-modal__header slds-p-top--none">
+                            <h2 class="slds-text-heading_medium slds-hyphenate" style="font-family: sans-serif;">Invoice Type</h2>
+                        </header>  
+ 
+                        <div class="slds-grid slds-wrap slds-scrollable slds-p-around_large " style="font-family: sans-serif;max-height:250px;width:100%">
+                            <div
+                                class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_2-of-12  slds-text-align_right">
+                                <lightning-input type="checkbox" data-id="select-all" checked={allInvoiceChecked}
+                                    onchange={handleSelectAllInvoice} style="margin-left: -5px;"></lightning-input>
+                            </div>
+                            <div
+                                class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_10-of-12  slds-m-bottom_x-small slds-text-align_left">
+                                <b>Select All</b>
+                            </div>
+                            <template for:each={invoiceTypePicklistValues} for:item="pic" for:index="i">
+                                <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_2-of-12 slds-m-top_x-small slds-m-bottom_x-small slds-text-align_right"
+                                    key={pic.id}>
+                                    <lightning-input type="checkbox" data-id="checkbox" data-label={pic.label} checked={pic.isChecked}
+                                        onchange={handleOptionInvoiceChange}></lightning-input>
+                                </div> 
+ 
+                                <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_4-of-12 slds-m-top_x-small slds-m-bottom_x-small slds-text-align_left"
+                                    key={pic.id}>
+                                    {pic.label}
+                                </div>
+                            </template>
+                        </div>
+ 
+                        <footer class="slds-modal__footer">
+                            <lightning-button variant="neutral" label="Cancel" style="font-family: sans-serif;"
+                                title="Cancel" onclick={handleCloseInvoiceModal} class="slds-m-right_small"></lightning-button>
+                            <lightning-button variant="brand" label="Save" style="font-family: sans-serif;" title="Save"
+                                onclick={saveInvoiceModal}></lightning-button>
+                        </footer>
+ 
+                    </lightning-card>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+ 
+        <template if:true={openCalculationValuesModal}>
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-03" aria-modal="true"
+                aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <lightning-card variant="base">
+                        <header class="slds-modal__header slds-p-top--none">
+                            <h2 class="slds-text-heading_medium slds-hyphenate" style="font-family: sans-serif;">Interest Calculation Parameters</h2>
+                        </header>  
+                        <div class="slds-grid slds-wrap slds-scrollable slds-p-around_large " style="font-family: sans-serif;max-height:250px;width:100%; font-size: small;">
+                             <template if:true={setupRecords}>
+                                 <lightning-layout multiple-rows="true">
+                                    <template for:each={setupRecords} for:item="record">
+                                        <lightning-layout-item key={record.Id} flexibility="auto" size="6" class="slds-col slds-size_6-of-12" padding="around-small">
+                                            <lightning-input label="Interest Base" value={record.Interest_Base__c} data-id="field1" variant="label-inline" disabled></lightning-input>
+                                        </lightning-layout-item>
+                                        <lightning-layout-item key={record.Id} flexibility="auto" size="6" class="slds-col slds-size_6-of-12" padding="around-small">
+                                            <lightning-input label="Interest Calculation Method" value={record.Interest_Calculation_Method__c} data-id="field2" variant="label-inline" disabled></lightning-input>
+                                        </lightning-layout-item>
+                                        <lightning-layout-item key={record.Id} flexibility="auto" size="6" class="slds-col slds-size_6-of-12" padding="around-small">
+                                            <lightning-input label="Grace Period" value={record.Grace_Period__c} data-id="field3" variant="label-inline" disabled></lightning-input>
+                                        </lightning-layout-item>
+                                        <lightning-layout-item key={record.Id} flexibility="auto" size="6" class="slds-col slds-size_6-of-12" padding="around-small">
+                                            <lightning-input type="checkbox" label="Compound Interest" value={record.Compound_Interest__c} variant="label-inline" data-id="field4" disabled></lightning-input>
+                                        </lightning-layout-item>
+                                    </template>
+                                </lightning-layout>
+                            </template>
+                            <template if:true={showErrorwhenMissingSetup}>
+                                <p>The default parameters for interest calculation are missing for your organization. Please contact your IT department or reach out to LW Support to add the missing custom metadata..</p>
+                            </template>
+                        </div>
+ 
+                        <footer class="slds-modal__footer">
+                            <lightning-button variant="neutral" label="Cancel" style="font-family: sans-serif;"
+                                title="Cancel" onclick={handleCloseCalculationValues} class="slds-m-right_small"></lightning-button>
+                        </footer>
+ 
+                    </lightning-card>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+
+    </lightning-card>
+ 
+</template>

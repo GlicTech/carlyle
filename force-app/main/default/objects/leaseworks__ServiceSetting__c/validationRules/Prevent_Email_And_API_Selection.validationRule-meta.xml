@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Prevent_Email_And_API_Selection</fullName>
+    <active>true</active>
+    <description>This validation rule prevents the users from selecting the Export Via Email and Export Via API together</description>
+    <errorConditionFormula>leaseworks__Export_via_API__c &amp;&amp; leaseworks__Export_via_Email__c</errorConditionFormula>
+    <errorMessage>Please select either Export Via Email or Export Via API</errorMessage>
+</ValidationRule>

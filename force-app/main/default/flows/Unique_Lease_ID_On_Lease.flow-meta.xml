@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>62.0</apiVersion>
+    <assignments>
+        <name>Update_Unique_Lease_Id</name>
+        <label>Update Unique Lease Id</label>
+        <locationX>176</locationX>
+        <locationY>287</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Unique_Lease_ID_Local__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Hidden_Unique_Lease_ID_Local__c</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <environments>Default</environments>
+    <interviewLabel>Update {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Unique Lease ID on Lease</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Update_Unique_Lease_Id</targetReference>
+        </connector>
+        <filterLogic>or</filterLogic>
+        <filters>
+            <field>leaseworks__Type__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Aircraft</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>leaseworks__Type__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Engine</stringValue>
+            </value>
+        </filters>
+        <object>leaseworks__Lease__c</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Obsolete</status>
+</Flow>

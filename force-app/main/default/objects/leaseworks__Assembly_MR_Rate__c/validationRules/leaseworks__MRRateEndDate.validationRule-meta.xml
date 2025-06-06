@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__MRRateEndDate</fullName>
+    <active>true</active>
+    <description>MR Rate End Date can not be after Lease Redelivery Date.</description>
+    <errorConditionFormula>IF(AND(leaseworks__Lease__r.leaseworks__Lease_End_Date_New__c &gt; TODAY(),  ISNULL(leaseworks__Lease__r.leaseworks__Redelivery_Date__c)) , leaseworks__MR_Rate_End_Date__c &gt; leaseworks__Lease__r.leaseworks__Lease_End_Date_New__c , leaseworks__MR_Rate_End_Date__c &gt; leaseworks__Lease__r.leaseworks__Redelivery_Date_F__c)</errorConditionFormula>
+    <errorDisplayField>leaseworks__MR_Rate_End_Date__c</errorDisplayField>
+    <errorMessage>MR Rate End Date can not be after Lease Redelivery Date or Lease End Date (in case Redelivery Date is blank and end date &gt; today). Please update MR Rate End Date.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <validationRules>
+        <errorMessage><!-- You are not allowed to create Bank Account --></errorMessage>
+        <name>leaseworks__Stop_Bank_Account_TD_Creation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You cannot create or modify a dimension on an approved transaction. --></errorMessage>
+        <name>leaseworks__Stop_Create_Modify_Approved_Transaction</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You cannot modify this field. --></errorMessage>
+        <name>leaseworks__Stop_Cust_Dimension_field_modify</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- A default dimension value is required if &apos;Default Value Required&apos; is marked as Yes. --></errorMessage>
+        <name>leaseworks__Stop_Dimension_Value_Blank</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The dimension value at the transaction level cannot be different from the default dimension value defined on the lease. --></errorMessage>
+        <name>leaseworks__Stop_Dimension_Value_Change</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Standard dimensions cannot be manually created or modified or deleted. --></errorMessage>
+        <name>leaseworks__Stop_Std_Dimension_field_modify</name>
+    </validationRules>
+</CustomObjectTranslation>

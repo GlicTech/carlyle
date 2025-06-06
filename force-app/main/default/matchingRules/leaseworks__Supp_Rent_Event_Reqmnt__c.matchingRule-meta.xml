@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MatchingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <matchingRules>
+        <fullName>leaseworks__NotAlllowedDupMETName</fullName>
+        <description>Duplicate Supplemental Rent Event Requirements associated with the same Maintenance Event Task are not allowed</description>
+        <label>NotAlllowedDupMETName</label>
+        <matchingRuleItems>
+            <blankValueBehavior>NullNotAllowed</blankValueBehavior>
+            <fieldName>leaseworks__Y_Hidden_DupMPE__c</fieldName>
+            <matchingMethod>Exact</matchingMethod>
+        </matchingRuleItems>
+        <ruleStatus>Active</ruleStatus>
+    </matchingRules>
+    <matchingRules>
+        <fullName>leaseworks__UniqueSRERName</fullName>
+        <description>Allowing to create only one unique Supplemental Rent Event Requirement Task Name under same Supplemental Rent</description>
+        <label>UniqueSRERName</label>
+        <matchingRuleItems>
+            <blankValueBehavior>NullNotAllowed</blankValueBehavior>
+            <fieldName>leaseworks__Y_Hidden_Key__c</fieldName>
+            <matchingMethod>Exact</matchingMethod>
+        </matchingRuleItems>
+        <ruleStatus>Active</ruleStatus>
+    </matchingRules>
+</MatchingRules>

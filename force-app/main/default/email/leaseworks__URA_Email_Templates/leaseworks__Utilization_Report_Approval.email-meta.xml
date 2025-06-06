@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email from lessee to lessor seeking approval of the utilization report</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>leaseworks__Smart_Lease_Logo</letterhead>
+    <name>Utilization Report Approval Request</name>
+    <style>formalLetter</style>
+    <subject>Request: Utilization Report For {!leaseworks__Aircraft__c.Name} For {!leaseworks__Utilization_Report__c.Name} Has Been Submitted For Approval</subject>
+    <textOnly>Utilization report for aircraft (MSN {!leaseworks__Aircraft__c.leaseworks__MSN_Number__c}) for {!leaseworks__Utilization_Report__c.leaseworks__Month_Ending__c} has been submitted for your approval. Your urgent attention to this matter is sincerely appreciated. 
+
+Yours sincerely,
+Company Management</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

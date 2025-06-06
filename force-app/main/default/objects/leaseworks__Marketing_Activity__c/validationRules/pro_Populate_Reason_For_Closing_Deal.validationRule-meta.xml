@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>pro_Populate_Reason_For_Closing_Deal</fullName>
+    <active>false</active>
+    <description>The field Reason For Closing Deal must be appropriately populated before changing status to Closed/Won.</description>
+    <errorConditionFormula>AND(
+    ISCHANGED(leaseworks__Deal_Status__c),
+    ISPICKVAL(leaseworks__Deal_Status__c, &#39;Closed - Won&#39;),
+    NOT(
+        OR(
+            ISPICKVAL(leaseworks__Reason_For_Closing_Deal__c, &#39;Deal Won&#39;),
+            ISPICKVAL(leaseworks__Reason_For_Closing_Deal__c, &#39;Delivered&#39;)
+        )
+    )
+)</errorConditionFormula>
+    <errorDisplayField>leaseworks__Reason_For_Closing_Deal__c</errorDisplayField>
+    <errorMessage>Change Reason For Closing Deal to either &#39;Deal Won&#39; or &#39;Delivered&#39; before changing the Status to &#39;Closed - Won&#39;. Check the Deal Closing section at the bottom of the Details tab.</errorMessage>
+</ValidationRule>

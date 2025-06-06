@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__ValidationFinalFeeSlipAmt</fullName>
+    <active>true</active>
+    <description>Fee Slip Amount cannot be negative.</description>
+    <errorConditionFormula>IF(  AND(!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c , leaseworks__Fee_Slip_Adj_Amount__c &lt; 0 , ABS( leaseworks__Fee_Slip_Adj_Amount__c) &gt;  ABS( leaseworks__Fee_Slip_Amount__c )) , true, false)</errorConditionFormula>
+    <errorMessage>Fee Slip Amount cannot be negative.</errorMessage>
+</ValidationRule>

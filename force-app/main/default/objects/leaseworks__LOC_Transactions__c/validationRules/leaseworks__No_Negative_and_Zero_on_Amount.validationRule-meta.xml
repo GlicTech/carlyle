@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__No_Negative_and_Zero_on_Amount</fullName>
+    <active>true</active>
+    <errorConditionFormula>IF( AND( ISPICKVAL( leaseworks__Type__c , &#39;Amount&#39;), leaseworks__Amount__c = 0) , true, false)</errorConditionFormula>
+    <errorDisplayField>leaseworks__Amount__c</errorDisplayField>
+    <errorMessage>The field Amount can&#39;t be 0</errorMessage>
+</ValidationRule>

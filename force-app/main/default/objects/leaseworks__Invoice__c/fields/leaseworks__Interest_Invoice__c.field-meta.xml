@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Interest_Invoice__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <deprecated>false</deprecated>
+    <description>Lookup to Interest Invoice from Unpaid Invoice</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Invoice with calculations of Late Payment Interest</inlineHelpText>
+    <label>_Z_Unused_2203 Interest Invoice</label>
+    <lookupFilter>
+        <active>true</active>
+        <filterItems>
+            <field>leaseworks__Invoice__c.leaseworks__Lease__c</field>
+            <operation>equals</operation>
+            <valueField>$Source.leaseworks__Lease__c</valueField>
+        </filterItems>
+        <filterItems>
+            <field>leaseworks__Invoice__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Interest</value>
+        </filterItems>
+        <isOptional>true</isOptional>
+    </lookupFilter>
+    <referenceTo>leaseworks__Invoice__c</referenceTo>
+    <relationshipLabel>Invoices (Unpaid Invoice)</relationshipLabel>
+    <relationshipName>Interest_Invoices</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

@@ -1,0 +1,758 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>leaseworks__Alert_Cycle_Threshold_Email</fullName>
+        <description>Constt Assembly - Cycle Limit Threshold Warning</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>leaseworks__LeaseWorksTemplates/leaseworks__LifeLimit_Threshold_Warning</template>
+    </alerts>
+    <alerts>
+        <fullName>leaseworks__UrliDerateOverrideAlertMail</fullName>
+        <description>UrliDerateOverrideAlertMail</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>leaseworks__LeaseWorksTemplates/leaseworks__Custom_Derate_Override_Alert</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>leaseworks__CopyLGLeftMRRToURLI</fullName>
+        <field>leaseworks__Base_MRR__c</field>
+        <formula>null</formula>
+        <name>CopyLGLeftMRRToURLI</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__CopyLGMRRToURLI</fullName>
+        <description>deprecated</description>
+        <field>leaseworks__Base_MRR__c</field>
+        <formula>null</formula>
+        <name>CopyLGMRRToURLI</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__CopyMRRToURLI</fullName>
+        <description>deprecated</description>
+        <field>leaseworks__Base_MRR__c</field>
+        <formula>null</formula>
+        <name>CopyMRRToURLI</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Copy_APU_MR_To_UR</fullName>
+        <description>Copy APU MR To UR</description>
+        <field>leaseworks__Maintenance_Reserve_APU__c</field>
+        <formula>leaseworks__Total_Maintenance_Reserve__c</formula>
+        <name>Copy APU MR To UR</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>leaseworks__Utilization_Report__c</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Copy_Engine_1_LLP_MR_To_UR</fullName>
+        <field>leaseworks__Maintenance_Reserve_Engine_1_LLP__c</field>
+        <formula>null</formula>
+        <name>Copy Engine 1 LLP MR To UR</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>leaseworks__Utilization_Report__c</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Copy_Engine_1_MR_To_UR</fullName>
+        <field>leaseworks__Maintenance_Reserve_Engine_1__c</field>
+        <formula>leaseworks__Total_Maintenance_Reserve__c</formula>
+        <name>Copy Engine 1 MR To UR</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>leaseworks__Utilization_Report__c</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Copy_Engine_2_LLP_MR_To_UR</fullName>
+        <field>leaseworks__Maintenance_Reserve_Engine_2_LLP__c</field>
+        <formula>null</formula>
+        <name>Copy Engine 2 LLP MR To UR</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>leaseworks__Utilization_Report__c</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Copy_Engine_2_MR_To_UR</fullName>
+        <field>leaseworks__Maintenance_Reserve_Engine_2__c</field>
+        <formula>leaseworks__Total_Maintenance_Reserve__c</formula>
+        <name>Copy Engine 2 MR To UR</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>leaseworks__Utilization_Report__c</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Copy_Engine_3_LLP_MR_To_UR</fullName>
+        <field>leaseworks__Maintenance_Reserve_Engine_3_LLP__c</field>
+        <formula>null</formula>
+        <name>Copy Engine 3 LLP MR To UR</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>leaseworks__Utilization_Report__c</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Copy_Engine_3_MR_To_UR</fullName>
+        <field>leaseworks__Maintenance_Reserve_Engine_3__c</field>
+        <formula>leaseworks__Total_Maintenance_Reserve__c</formula>
+        <name>Copy Engine 3 MR To UR</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>leaseworks__Utilization_Report__c</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Copy_Engine_4_LLP_MR_To_UR</fullName>
+        <field>leaseworks__Maintenance_Reserve_Engine_4_LLP__c</field>
+        <formula>null</formula>
+        <name>Copy Engine 4 LLP MR To UR</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>leaseworks__Utilization_Report__c</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Copy_Engine_4_MR_To_UR</fullName>
+        <field>leaseworks__Maintenance_Reserve_Engine_4__c</field>
+        <formula>leaseworks__Total_Maintenance_Reserve__c</formula>
+        <name>Copy Engine 4 MR To UR</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>leaseworks__Utilization_Report__c</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__URLI_Set_LW_Status_Approved</fullName>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Approved</literalValue>
+        <name>URLI Set LW Status Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__URLI_Set_LW_Status_Pending</fullName>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Pending</literalValue>
+        <name>URLI Set LW Status Pending</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__URLI_Set_LW_Status_Rejected</fullName>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Rejected</literalValue>
+        <name>URLI Set LW Status Rejected</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__UR_Update_MR_Other</fullName>
+        <field>leaseworks__Maintenance_Reserve_Other__c</field>
+        <formula>leaseworks__Total_Maintenance_Reserve__c</formula>
+        <name>UR Update MR Other</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>leaseworks__Utilization_Report__c</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_1_LLP</fullName>
+        <description>Unused--- Flat_Rate_Per_Cycle should actually be Flat_Rate_LLP and
+Monthly_Cap_Flat_Rate_Cycles should be Monthly_Cap_Flat_Rate_LLPs</description>
+        <field>leaseworks__Maintenance_Reserve_Engine_1_LLP__c</field>
+        <name>Update Engine 1 LLP</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Null</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>leaseworks__Utilization_Report__c</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_APU_MR_Hrs</fullName>
+        <description>Unused--- Updates the APU maintenance reserve on the utilization report</description>
+        <field>leaseworks__Maintenance_Reserve_APU__c</field>
+        <name>Update APU MR_Hrs</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Null</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>leaseworks__Utilization_Report__c</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_Effective_MRR_APU</fullName>
+        <field>leaseworks__Effective_MRR_APU__c</field>
+        <formula>null</formula>
+        <name>Update Effective MRR APU</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>leaseworks__Utilization_Report__c</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_Effective_MRR_Engine_1</fullName>
+        <field>leaseworks__Effective_MRR_Engine_1__c</field>
+        <formula>null</formula>
+        <name>Update Effective MRR Engine 1</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>leaseworks__Utilization_Report__c</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_Effective_MRR_Engine_1_LLP</fullName>
+        <field>leaseworks__Effective_MRR_Engine_1_LLP__c</field>
+        <formula>null</formula>
+        <name>Update Effective MRR Engine 1</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>leaseworks__Utilization_Report__c</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_Effective_MRR_Engine_2</fullName>
+        <field>leaseworks__Effective_MRR_Engine_2__c</field>
+        <formula>null</formula>
+        <name>Update Effective MRR Engine 2</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>leaseworks__Utilization_Report__c</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_Effective_MRR_Engine_2_LLP</fullName>
+        <field>leaseworks__Effective_MRR_Engine_2_LLP__c</field>
+        <formula>null</formula>
+        <name>Update Effective MRR Engine 2</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>leaseworks__Utilization_Report__c</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_Effective_MRR_Engine_3</fullName>
+        <field>leaseworks__Effective_MRR_Engine_3__c</field>
+        <formula>null</formula>
+        <name>Update Effective MRR Engine 3</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>leaseworks__Utilization_Report__c</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_Effective_MRR_Engine_3_LLP</fullName>
+        <field>leaseworks__Effective_MRR_Engine_3_LLP__c</field>
+        <formula>null</formula>
+        <name>Update Effective MRR Engine 3</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>leaseworks__Utilization_Report__c</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_Effective_MRR_Engine_4</fullName>
+        <field>leaseworks__Effective_MRR_Engine_4__c</field>
+        <formula>null</formula>
+        <name>Update Effective MRR Engine 4</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>leaseworks__Utilization_Report__c</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_Effective_MRR_Engine_4_LLP</fullName>
+        <field>leaseworks__Effective_MRR_Engine_4_LLP__c</field>
+        <formula>null</formula>
+        <name>Update Effective MRR Engine 4</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>leaseworks__Utilization_Report__c</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_Effective_Rate_LG_Center_Main</fullName>
+        <field>leaseworks__Effective_MRR_LG_Center_Main__c</field>
+        <formula>null</formula>
+        <name>Update Effective MRR LG Centre</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>leaseworks__Utilization_Report__c</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_Effective_Rate_LG_Left_Main</fullName>
+        <field>leaseworks__Effective_MRR_LG_Left_Main__c</field>
+        <formula>null</formula>
+        <name>Update Effective MRR LG Left Main</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>leaseworks__Utilization_Report__c</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_Effective_Rate_LG_Left_Wing</fullName>
+        <field>leaseworks__Effective_MRR_LG_Left_Wing__c</field>
+        <formula>null</formula>
+        <name>Update Effective MRR LG Left Wing</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>leaseworks__Utilization_Report__c</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_Effective_Rate_LG_Nose</fullName>
+        <field>leaseworks__Effective_MRR_LG_Nose__c</field>
+        <formula>null</formula>
+        <name>Update Effective MRR Nose</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>leaseworks__Utilization_Report__c</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_Effective_Rate_LG_Right_Main</fullName>
+        <field>leaseworks__Effective_MRR_LG_Right_Main__c</field>
+        <formula>null</formula>
+        <name>Update Effective MRR LG Right Main</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>leaseworks__Utilization_Report__c</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_Effective_Rate_LG_Right_Wing</fullName>
+        <field>leaseworks__Effective_MRR_LG_Right_Wing__c</field>
+        <formula>null</formula>
+        <name>Update Effective MRR LG Right Wing</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>leaseworks__Utilization_Report__c</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_Engine2_LLP_Reserve</fullName>
+        <description>Z_Unused---Maintenance reserve rate from the lease * cycles during month</description>
+        <field>leaseworks__Maintenance_Reserve_Engine_2_LLP__c</field>
+        <name>Update Engine 2 LLP Reserve</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Null</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>leaseworks__Utilization_Report__c</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_Engine3_LLP</fullName>
+        <description>Z_Unused---</description>
+        <field>leaseworks__Maintenance_Reserve_Engine_3_LLP__c</field>
+        <name>Update Engine 3 LLP</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Null</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>leaseworks__Utilization_Report__c</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_Engine_1_Reserve</fullName>
+        <description>Z_Unused---</description>
+        <field>leaseworks__Maintenance_Reserve_Engine_1__c</field>
+        <name>Update Engine 1 Reserve</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Null</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>leaseworks__Utilization_Report__c</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_Engine_2_LLP_Reserve</fullName>
+        <description>Update RH engine 4 LLP maintenance reserve</description>
+        <field>leaseworks__Maintenance_Reserve_Engine_4_LLP__c</field>
+        <formula>null</formula>
+        <name>Update RH Engine 2 LLP Reserve</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>leaseworks__Utilization_Report__c</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_Engine_2_Reserve</fullName>
+        <description>Z_Unused---</description>
+        <field>leaseworks__Maintenance_Reserve_Engine_2__c</field>
+        <name>Update Engine 2 Reserve</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Null</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>leaseworks__Utilization_Report__c</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_Engine_3_Reserve</fullName>
+        <description>Z_Unused---Updates Engine 3 reserve when ever hours are updated on the URL Item Engine 3</description>
+        <field>leaseworks__Maintenance_Reserve_Engine_3__c</field>
+        <name>Update Engine 3 Reserve</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Null</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>leaseworks__Utilization_Report__c</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_Engine_4_Reserve</fullName>
+        <description>Z_Unused---Update engine 4 maintenance reserve</description>
+        <field>leaseworks__Maintenance_Reserve_Engine_4__c</field>
+        <name>Update Engine 4 Reserve</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Null</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>leaseworks__Utilization_Report__c</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_LG_Center_Main</fullName>
+        <field>leaseworks__Maintenance_Reserve_LG_Center_Main__c</field>
+        <formula>leaseworks__Total_Maintenance_Reserve__c</formula>
+        <name>Update LG_Center_Main</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>leaseworks__Utilization_Report__c</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_LG_Left_Main</fullName>
+        <field>leaseworks__Maintenance_Reserve_LG_Left_Main__c</field>
+        <formula>leaseworks__Total_Maintenance_Reserve__c</formula>
+        <name>Update LG_Left_Main</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>leaseworks__Utilization_Report__c</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_LG_Left_Wing</fullName>
+        <field>leaseworks__Maintenance_Reserve_LG_Left_Wing__c</field>
+        <formula>leaseworks__Total_Maintenance_Reserve__c</formula>
+        <name>Update LG_Left_Wing</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>leaseworks__Utilization_Report__c</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_LG_Nose</fullName>
+        <field>leaseworks__Maintenance_Reserve_LG_Nose__c</field>
+        <formula>leaseworks__Total_Maintenance_Reserve__c</formula>
+        <name>Update LG_Nose</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>leaseworks__Utilization_Report__c</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_LG_Right_Main</fullName>
+        <field>leaseworks__Maintenance_Reserve_LG_Right_Main__c</field>
+        <formula>leaseworks__Total_Maintenance_Reserve__c</formula>
+        <name>Update LG_Right_Main</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>leaseworks__Utilization_Report__c</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_LG_Right_Wing</fullName>
+        <field>leaseworks__Maintenance_Reserve_LG_Right_Wing__c</field>
+        <formula>leaseworks__Total_Maintenance_Reserve__c</formula>
+        <name>Update LG_Right_Wing</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>leaseworks__Utilization_Report__c</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_MR_Landing_Gear</fullName>
+        <description>Deprecated. Don&#39;t Use. /*Update MR for landing gear - please note that the Landing Gear cycles variable name here is Landing Gear per hour though its really per cycle (the user label says cycles). Unable to rename the variable name due to mgd package.*/</description>
+        <field>leaseworks__Maintenance_Reserve_Landing_Gear__c</field>
+        <formula>-999999999</formula>
+        <name>Update MR Landing Gear</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>leaseworks__Utilization_Report__c</targetObject>
+    </fieldUpdates>
+    <rules>
+        <fullName>leaseworks__APU Updated</fullName>
+        <actions>
+            <name>leaseworks__Copy_APU_MR_To_UR</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Workflow to be performed when APU is created or updated</description>
+        <formula>false</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__Constt Assembly Threshold Warnings</fullName>
+        <actions>
+            <name>leaseworks__Alert_Cycle_Threshold_Email</name>
+            <type>Alert</type>
+        </actions>
+        <active>false</active>
+        <description>Workflow to check if CSLV (if aircraft is not new) or CSN (if aircraft is new and not had a C-Ccheck) has hit life limit threshold</description>
+        <formula>!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c &amp;&amp; IF ( leaseworks__Utilization_Report__r.leaseworks__Aircraft__r.leaseworks__ISNEWAC__c =&quot;F&quot;, (leaseworks__CSLV__c-PRIORVALUE( leaseworks__Cycles_During_Month__c)+ leaseworks__Cycles_During_Month__c) &gt;= (0.9* leaseworks__Constituent_Assembly__r.leaseworks__Life_Limit__c), ( leaseworks__CSN__c -PRIORVALUE( leaseworks__Cycles_During_Month__c)+ leaseworks__Cycles_During_Month__c) &gt;= (0.9* leaseworks__Constituent_Assembly__r.leaseworks__Life_Limit__c))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__Engine 1 Updated</fullName>
+        <actions>
+            <name>leaseworks__Copy_Engine_1_LLP_MR_To_UR</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>leaseworks__Copy_Engine_1_MR_To_UR</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Workflow to use when engine 1 fields are updated</description>
+        <formula>false</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__Engine 2 Updated</fullName>
+        <actions>
+            <name>leaseworks__Copy_Engine_2_LLP_MR_To_UR</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>leaseworks__Copy_Engine_2_MR_To_UR</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Workflow to use when engine 2 is updated</description>
+        <formula>false</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__Engine 3 Updated</fullName>
+        <actions>
+            <name>leaseworks__Copy_Engine_3_LLP_MR_To_UR</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>leaseworks__Copy_Engine_3_MR_To_UR</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Workflow to use when engine 3 fields are updated</description>
+        <formula>false</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__Engine 4 Updated</fullName>
+        <actions>
+            <name>leaseworks__Copy_Engine_4_LLP_MR_To_UR</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>leaseworks__Copy_Engine_4_MR_To_UR</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Workflow to use when engine 4 fields are updated</description>
+        <formula>false</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__Other Updated</fullName>
+        <actions>
+            <name>leaseworks__UR_Update_MR_Other</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Workflow to use when engine 1 fields are updated</description>
+        <formula>!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c &amp;&amp; TEXT(leaseworks__Report_Item__c) == &#39;Other&#39;</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__UR_Update LG Center Main MR</fullName>
+        <actions>
+            <name>leaseworks__Update_Effective_Rate_LG_Center_Main</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>leaseworks__Update_LG_Center_Main</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Workflow to update landing gear MR on the utilization report</description>
+        <formula>!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c &amp;&amp; TEXT(leaseworks__Report_Item__c) == &#39;Landing Gear - Center&#39;</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__UR_Update LG Left Main MR</fullName>
+        <actions>
+            <name>leaseworks__Update_LG_Left_Main</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Workflow to update landing gear MR on the utilization report</description>
+        <formula>false</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__UR_Update LG Left Wing MR</fullName>
+        <actions>
+            <name>leaseworks__Update_LG_Left_Wing</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Workflow to update landing gear MR on the utilization report</description>
+        <formula>false</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__UR_Update LG Nose MR</fullName>
+        <actions>
+            <name>leaseworks__Update_LG_Nose</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Workflow to update landing gear MR on the utilization report</description>
+        <formula>false</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__UR_Update LG Right Main MR</fullName>
+        <actions>
+            <name>leaseworks__Update_LG_Right_Main</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Workflow to update landing gear MR on the utilization report</description>
+        <formula>false</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__UR_Update LG Right Wing MR</fullName>
+        <actions>
+            <name>leaseworks__Update_LG_Right_Wing</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Workflow to update landing gear MR on the utilization report</description>
+        <formula>false</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__UR_Update Landing Gear MR</fullName>
+        <actions>
+            <name>leaseworks__Update_MR_Landing_Gear</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>leaseworks__Utilization_Report_List_Item__c.leaseworks__Report_Item__c</field>
+            <operation>startsWith</operation>
+            <value>This Rule No More Used - Landing Gear</value>
+        </criteriaItems>
+        <description>Deprecated. Don&#39;t Use. /*Workflow to update landing gear MR on the utilization report*/</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__UrliCopyLGLeftMRRFromLease</fullName>
+        <actions>
+            <name>leaseworks__CopyLGLeftMRRToURLI</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <formula>!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c &amp;&amp; LEFT(TEXT(leaseworks__Constituent_Assembly__r.leaseworks__Type__c),19)== &#39;Landing Gear - Left&#39;</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__UrliCopyLGMRRFromLease</fullName>
+        <actions>
+            <name>leaseworks__CopyLGMRRToURLI</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <formula>AND(!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c, LEFT(TEXT(leaseworks__Constituent_Assembly__r.leaseworks__Type__c),3)== &#39;Lan&#39;,  LEFT(TEXT(leaseworks__Constituent_Assembly__r.leaseworks__Type__c),19)!= &#39;Landing Gear - Left&#39;)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__UrliCopyMRRFromLease</fullName>
+        <actions>
+            <name>leaseworks__CopyMRRToURLI</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <formula>!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c &amp;&amp; LEFT(TEXT(leaseworks__Constituent_Assembly__r.leaseworks__Type__c),3)!= &#39;Lan&#39;</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__UrliDerateOverride</fullName>
+        <actions>
+            <name>leaseworks__UrliDerateOverrideAlertMail</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <formula>AND(leaseworks__Derate__c!=  leaseworks__Constituent_Assembly__r.leaseworks__Derate__c, OR(ISNEW(),AND(!ISNEW(),  ISCHANGED(leaseworks__Derate__c)    ) ) )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

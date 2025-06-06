@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>leaseworks__Thrust_Setting_Set_Desc</fullName>
+        <field>Name</field>
+        <formula>LEFT(leaseworks__Life_Limited_Part__r.leaseworks__Part_Number__c   &amp; &#39; - &#39; &amp; leaseworks__Thrust_Setting_Nam__r.Name,80)</formula>
+        <name>Thrust Setting Set Description</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>leaseworks__ThrustSettingCreatedUpdated</fullName>
+        <actions>
+            <name>leaseworks__Thrust_Setting_Set_Desc</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>This workflow has been de-activated in the Jan-25 release(48.0) .A  flow template &quot;Update Thrust Usage Name&quot;  has been included in its place in 48.0 release.</description>
+        <formula>true</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

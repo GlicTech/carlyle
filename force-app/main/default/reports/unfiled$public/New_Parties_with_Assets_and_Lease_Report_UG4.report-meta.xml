@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>leaseworks__Parties__c$Name</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Parties__c$leaseworks__Role__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Parties__c$leaseworks__Account__c</field>
+    </columns>
+    <description>This was created to be reviewed by Jonathan after dataloading.</description>
+    <filter>
+        <criteriaItems>
+            <column>leaseworks__Parties__c$leaseworks__Contract__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value></value>
+        </criteriaItems>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>leaseworks__Parties__c$leaseworks__Contract__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>New Parties with Assets and Lease Report</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Parties_with_Assets_and_Lease__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>leaseworks__Parties__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>pro_Days_Left_Final_Delivery_Date_Colour__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(
+    NOT(ISBLANK(pro_Actual_Delivery_Date__c)),
+    IMAGE(&quot;/resource/1727948760000/Green?&quot;, &quot;Green&quot;,20,20),
+    IF(
+        pro_Days_Left_To_Final_Delivery_Date__c &gt;= 30,
+        IMAGE(&quot;/resource/1727948760000/Green?&quot;, &quot;Green&quot;,20,20) &amp; &quot; &quot; &amp; TEXT(ROUND(pro_Days_Left_To_Final_Delivery_Date__c, 0)) &amp; &quot; days remaining&quot;,
+        IF(
+            AND(pro_Days_Left_To_Final_Delivery_Date__c &gt; 0, pro_Days_Left_To_Final_Delivery_Date__c &lt; 30),
+            IMAGE(&quot;/resource/1727950613000/Yellow?&quot;, &quot;Yellow&quot;,20,20) &amp; &quot; &quot; &amp; TEXT(ROUND(pro_Days_Left_To_Final_Delivery_Date__c, 0)) &amp; &quot; days remaining&quot;,
+            IF(
+                pro_Days_Left_To_Final_Delivery_Date__c &lt;= 0,
+                IMAGE(&quot;/resource/1727950641000/Red?&quot;, &quot;Red&quot;,20,20) &amp; &quot; &quot; &amp; TEXT(ROUND(pro_Days_Left_To_Final_Delivery_Date__c, 0)) &amp; &quot; days overdue&quot;,
+                &quot;&quot;
+            )
+        )
+    )
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Days Left To Final Delivery Date</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

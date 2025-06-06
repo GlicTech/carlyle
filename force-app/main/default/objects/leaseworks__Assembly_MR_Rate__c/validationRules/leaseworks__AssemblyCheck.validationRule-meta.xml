@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__AssemblyCheck</fullName>
+    <active>false</active>
+    <description>Please select relevant Assembly.</description>
+    <errorConditionFormula>IF(OR($Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c, $Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c), FALSE, 
+        AND(!leaseworks__Inactive__c, (leaseworks__Lease__r.leaseworks__Aircraft__c != leaseworks__Assembly_Lkp__r.leaseworks__Attached_Aircraft__c)))</errorConditionFormula>
+    <errorDisplayField>leaseworks__Assembly_Lkp__c</errorDisplayField>
+    <errorMessage>Please select relevant Assembly.</errorMessage>
+</ValidationRule>

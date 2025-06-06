@@ -1,0 +1,173 @@
+/*
+Description: Error will be parsed as follows:
+
+Example: 
+Message Error Occured: Upsert failed. First exception on row 0; first error: FIELD_CUSTOM_VALIDATION_EXCEPTION, Insert failed. First exception on row 0; first error: CANNOT_INSERT_UPDATE_ACTIVATE_ENTITY, URLITrigger: execution of AfterInsert
+
+caused by: System.DmlException: Update failed. First exception on row 0 with id a0a1U000000tIVAQA2; first error: FIELD_CUSTOM_VALIDATION_EXCEPTION, You cannot modify MR Rates once the Lease is Approved.: [Lease__c]
+
+Class.URLITriggerHandler.updateMRInfos: line 355, column 1
+Class.URLITriggerHandler.afterInsert: line 286, column 1
+Class.TriggerFactory.execute: line 73, column 1
+Class.TriggerFactory.createHandler: line 27, column 1
+Trigger.URLITrigger: line 3, column 1: []: []
+
+Step:1 First of all, system checks if 'FIELD_CUSTOM_VALIDATION_EXCEPTION' is present in error message or not.
+Step:2 If present, it will fetch the message after the last occurence of 'FIELD_CUSTOM_VALIDATION_EXCEPTION' and after that it will check whether the
+message also contains 'LeaseWareException' or not.
+Step:3 If 'LeaseWareException' is present the message, it will trim out the message from 'LeaseWareException' to the first occurence of 'Class.'. This substring
+contains the original message to be displayed.
+Step:4 If condition in step 3 is not met then, the system will trim out the message from last occurence of 'FIELD_CUSTOM_VALIDATION_EXCEPTION' and trim out 
+the message till the first occurence of 'Class.'.
+Step: 5 If system finds 'NullPointerException', the system will trim out the message till the second occurence of 'Class.'.
+
+*/
+
+window._jsLibrary = (function() {
+return {
+handleErrors: function(errormsg,type) {
+	handleErrorMessage(errormsg,type);
+	},
+};
+}());
+
+window.handleErrorMessage = function(errormsg,type){
+let toastParams = {
+		title: type == undefined ? "Error" : type,
+		message: "Unknown error", // Default error message
+		type: type == undefined ? "error" : type,
+		duration: '7000'
+	};
+	if (typeof errormsg === 'object') {
+		errormsg.forEach(function (error) {
+			//top-level error. There can be only one
+			if (error.message) {
+				error.message = parseErrorMessage(error.message);
+				toastParams.message = error.message;
+				let toastEvent = $A.get("e.force:showToast");
+				toastEvent.setParams(toastParams);
+				toastEvent.fire();
+			}
+			//page-level errors (validation rules, etc)
+			if (error.pageErrors) {
+				let arrErr = [];
+				error.pageErrors.forEach(function (pageError) {
+					toastParams.message = pageError.message;
+					let toastEvent = $A.get("e.force:showToast");
+					toastEvent.setParams(toastParams);
+					toastEvent.fire();
+				});
+			}
+			if (error.fieldErrors) {
+				//field specific errors--we'll say what the field is
+				for (var fieldName in error.fieldErrors) {
+					//each field could have multiple errors
+					error.fieldErrors[fieldName].forEach(function (errorList) {
+						toastParams.message = errorList.message;
+						let toastEvent = $A.get("e.force:showToast");
+						toastEvent.setParams(toastParams);
+						toastEvent.fire();
+						//console.log( "Field Error on " + fieldName + " : " + errorList.message );                         
+					});
+				};
+			}
+		});
+	} else if (typeof errormsg === "string" && errormsg.length != 0) {
+		toastParams.message = errormsg;
+		let toastEvent = $A.get("e.force:showToast");
+		toastEvent.setParams(toastParams);
+		toastEvent.fire();
+	}
+}
+window.parseErrorMessage = function(errormsg) {
+var errormessage;
+var finalErrorMsg;
+var msgList;
+// Error handler if error is coming from trigger
+if(errormsg.includes("FIELD_CUSTOM_VALIDATION_EXCEPTION")){
+	var message = errormsg;
+	msgList = message.split('FIELD_CUSTOM_VALIDATION_EXCEPTION');
+	/*
+	Output: msgList[length-1] = , You cannot modify MR Rates once the Lease is Approved.: [Lease__c]
+
+									Class.URLITriggerHandler.updateMRInfos: line 355, column 1
+									Class.URLITriggerHandler.afterInsert: line 286, column 1
+									Class.TriggerFactory.execute: line 73, column 1
+									Class.TriggerFactory.createHandler: line 27, column 1
+									Trigger.URLITrigger: line 3, column 1: []: []
+	*/
+
+	errormsg = getErrorType(msgList[msgList.length - 1], finalErrorMsg, errormessage, true); 
+	console.log('Error: ',finalErrorMsg);
+}
+else{
+	errormsg = getErrorType(errormsg, finalErrorMsg, errormessage, false);;
+}
+return errormsg;
+},
+window.getErrorType = function(errorMsg, finalErrorMsg, errormessage, hasFieldCustom){ 
+if(errorMsg.includes('LeaseWareException')){
+	finalErrorMsg = getErrors(errorMsg, 'LeaseWareException',errormessage);
+}
+else{
+	if(errorMsg.includes('QueryException')){
+		finalErrorMsg = getErrors(errorMsg, 'QueryException',errormessage);
+	}
+	else{
+		if(errorMsg.includes("NullPointerException")){
+			finalErrorMsg = getErrors(errorMsg, 'NullPointerException',errormessage);
+		}
+		else{
+			if(errorMsg.includes("StringException")){
+				finalErrorMsg = getErrors(errorMsg, 'StringException',errormessage);
+			}
+			else{
+				if(errorMsg.includes("MathException")){
+					finalErrorMsg = getErrors(errorMsg, 'MathException',errormessage);
+				}
+				else{
+					if(errorMsg.includes("ListException")){
+						finalErrorMsg = getErrors(errorMsg, 'ListException',errormessage);
+					}
+					else{
+						if(hasFieldCustom){
+							if(errorMsg.includes('Class.')){
+								errormessage = errorMsg.substr(0, errorMsg.indexOf('Class.')); // Output: , You cannot modify MR Rates once the Lease is Approved. [Lease__c]
+							}
+							else{
+								errormessage= errorMsg; 
+							}
+							finalErrorMsg = errormessage.substr(0,errormessage.indexOf(']')+1).substr(1); // Output: You cannot modify MR Rates once the Lease is Approved.: [Lease__c]
+						}
+						else{
+							finalErrorMsg = errorMsg;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+return finalErrorMsg;
+},
+window.getErrors = function(message, exceptionType, errormessage){
+var messagesList;
+var classNameWithMsg;
+if(message.includes('Class.')){
+	messagesList = message.split('Class.');
+	classNameWithMsg = messagesList[1];
+	errormessage = message.substr(0, message.indexOf('Class.'));
+	if(exceptionType == 'NullPointerException'){
+		errormessage = errormessage.substr(errormessage.indexOf(exceptionType)) + classNameWithMsg + '. Please contact LeaseWorks Support.';
+	}
+	else{
+		errormessage = errormessage.substr(errormessage.indexOf(exceptionType)); 
+	}
+}
+else{
+	errormessage= message.substr(message.indexOf(exceptionType));
+}
+return errormessage;
+}
+
+

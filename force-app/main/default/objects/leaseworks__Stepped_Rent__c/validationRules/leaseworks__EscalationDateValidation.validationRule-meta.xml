@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__EscalationDateValidation</fullName>
+    <active>true</active>
+    <errorConditionFormula>IF(OR(!ISBLANK( leaseworks__Escalation_Start_Date__c ), !ISNULL(leaseworks__Escalation_Start_Date__c)),
+  OR(leaseworks__Escalation_Start_Date__c &gt; leaseworks__Rent_End_Date__c , leaseworks__Escalation_Start_Date__c &lt; leaseworks__Start_Date__c ) ,
+ false)</errorConditionFormula>
+    <errorMessage>Escalation Start date must fall between the Rent Start date &amp; Rent End Date (inclusive).</errorMessage>
+</ValidationRule>

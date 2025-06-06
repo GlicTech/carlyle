@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__RFP_start_before_Due_and_Placement</fullName>
+    <active>true</active>
+    <description>Due date and Placement by dates must be after Start date.</description>
+    <errorConditionFormula>OR(
+AND(
+!ISBLANK(leaseworks__RFP_Start_Date__c), !ISBLANK(leaseworks__All_Proposals_Due_By_Date__c), 
+leaseworks__RFP_Start_Date__c&gt;leaseworks__All_Proposals_Due_By_Date__c),
+AND(
+!ISBLANK(leaseworks__RFP_Start_Date__c), !ISBLANK(leaseworks__Placement_By__c), 
+leaseworks__RFP_Start_Date__c&gt;leaseworks__Placement_By__c))</errorConditionFormula>
+    <errorDisplayField>leaseworks__RFP_Start_Date__c</errorDisplayField>
+    <errorMessage>RFP Start Date must be before All Proposals Due Date and Placement By.</errorMessage>
+</ValidationRule>

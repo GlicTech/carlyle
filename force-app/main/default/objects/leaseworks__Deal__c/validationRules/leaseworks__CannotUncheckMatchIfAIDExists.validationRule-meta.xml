@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__CannotUncheckMatchIfAIDExists</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(!ISBLANK(leaseworks__MSN_List__c),  PRIORVALUE( leaseworks__Match_Aircraft_and_Engine_Types__c ) !=  leaseworks__Match_Aircraft_and_Engine_Types__c )</errorConditionFormula>
+    <errorDisplayField>leaseworks__Match_Aircraft_and_Engine_Types__c</errorDisplayField>
+    <errorMessage>You cannot change Match Aircraft and Engine Types criteria after aircraft are added to the campaign.</errorMessage>
+</ValidationRule>

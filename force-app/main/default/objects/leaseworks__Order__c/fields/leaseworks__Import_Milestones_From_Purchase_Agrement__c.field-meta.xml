@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Import_Milestones_From_Purchase_Agrement__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <inlineHelpText>Select Purchase Agreement (as template) to import milestones. After initial save, milestones are not updated when source PA changes, but they will be deleted when this link is deleted, manually entered Milestones will remain</inlineHelpText>
+    <label>Import Milestones From Purchase Agrement</label>
+    <lookupFilter>
+        <active>true</active>
+        <filterItems>
+            <field>leaseworks__Order__c.Id</field>
+            <operation>notEqual</operation>
+            <valueField>$Source.Id</valueField>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>leaseworks__Order__c</referenceTo>
+    <relationshipLabel>Purchase Agreements</relationshipLabel>
+    <relationshipName>Purchase_Agreements</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

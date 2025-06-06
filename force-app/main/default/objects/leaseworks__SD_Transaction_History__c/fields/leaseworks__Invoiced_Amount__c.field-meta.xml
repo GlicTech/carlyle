@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Invoiced_Amount__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <formula>CASE(Text(leaseworks__Transaction_Type_PL__c)
+,&#39;Invoice&#39;, IF(ISBLANK(leaseworks__Invoice__c),0,IF( OR(ISPICKVAL( leaseworks__Invoice__r.leaseworks__Status__c,&#39;Pending&#39;),ISPICKVAL(leaseworks__Invoice__r.leaseworks__Status__c,&#39;Declined&#39;)
+,ISPICKVAL(leaseworks__Invoice__r.leaseworks__Status__c,&#39;Cancelled&#39;),ISPICKVAL(leaseworks__Invoice__r.leaseworks__Status__c,&#39;Submitted&#39;)),null,leaseworks__Invoice__r.leaseworks__Invoiced_Amount_Formula__c))
+,&#39;Payable&#39;, IF(ISBLANK(leaseworks__Payable__c),0,IF( OR(ISPICKVAL( leaseworks__Payable__r.leaseworks__Status__c,&#39;Pending&#39;),ISPICKVAL(leaseworks__Payable__r.leaseworks__Status__c,&#39;Submitted&#39;),ISPICKVAL(leaseworks__Payable__r.leaseworks__Status__c,&#39;Declined&#39;),ISPICKVAL(leaseworks__Payable__r.leaseworks__Status__c,&#39;Cancelled&#39;)),null,leaseworks__Payable__r.leaseworks__Payable_Amount__c * (-1)))
+,&#39;Letter Of Credit&#39;, IF(ISBLANK(leaseworks__Letter_Of_Credit__c),0,IF(leaseworks__Status__c==&#39;Pending&#39;,null,IF(leaseworks__Status__c==&#39;Active&#39;,leaseworks__Letter_Of_Credit__r.leaseworks__LC_Amount_LC_Currency__c,leaseworks__Letter_Of_Credit__r.leaseworks__LC_Amount_LC_Currency__c* (-1))))
+,null)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Invoiced Amount</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

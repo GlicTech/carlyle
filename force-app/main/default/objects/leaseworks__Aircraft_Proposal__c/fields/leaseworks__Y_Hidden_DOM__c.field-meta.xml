@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Y_Hidden_DOM__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <formula>if(isBlank(leaseworks__Aircraft__c),
+  DATE(value(leaseworks__World_Fleet_Aircraft__r.leaseworks__BuildYear__c),7,1)  
+,leaseworks__Aircraft__r.leaseworks__Date_of_Manufacture__c 
+)</formula>
+    <label>_DOM</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

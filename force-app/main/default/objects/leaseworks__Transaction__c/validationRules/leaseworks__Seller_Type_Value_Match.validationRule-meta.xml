@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Seller_Type_Value_Match</fullName>
+    <active>true</active>
+    <description>Ensure that the selected Seller Type and the lookup entered match. For example, if seller type is Airline</description>
+    <errorConditionFormula>AND( TEXT(leaseworks__Transaction_Type__c) == &#39;Acquisition&#39; , OR(ISBLANK(TEXT(leaseworks__Seller_Type__c)),
+CASE(leaseworks__Seller_Type__c,
+
+&quot;Lessor&quot;, IF(ISBLANK(leaseworks__Lessor__c),1,0),
+&quot;Manufacturer&quot;, IF(ISBLANK(leaseworks__Seller__c),1,0),
+&quot;Other&quot;, IF(ISBLANK(leaseworks__Seller__c),1,0),
+0)==1))</errorConditionFormula>
+    <errorDisplayField>leaseworks__Seller_Type__c</errorDisplayField>
+    <errorMessage>Please choose a Seller Type and select the appropriate seller for the selected Seller Type.</errorMessage>
+</ValidationRule>

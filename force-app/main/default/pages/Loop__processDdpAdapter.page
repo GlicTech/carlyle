@@ -1,0 +1,95 @@
+<apex:page id="processDdpAdapter" controller="Loop.ProcessDdpAdapterController" showHeader="false" sidebar="false" lightningStylesheets="true">
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <body class="slds-scope" onload="onload();">
+            <apex:slds />
+            <style type="text/css">
+                .process-ddp-container {
+                    margin-top: .5rem;
+                    margin-bottom: 1rem;
+                }
+                .process-ddp-container .success-icon {
+                    color: #04844b;
+                }
+                .process-ddp-container .title-container,
+                .process-ddp-container .success-icon,
+                .validation-error-message-container {
+                    /* We programmatically show these */
+                    display: none;
+                }
+            </style>
+            <div class="process-ddp-container">
+                <div class="slds-media slds-media_center title-container">
+                    <div class="slds-media__figure">
+                        <span class="success-icon slds-icon_container slds-current-color" title="Success">
+                            <svg aria-hidden="true" class="slds-icon slds-icon_small">
+                                <use xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/utility-sprite/svg/symbols.svg#success')}"></use>
+                            </svg>
+                            <span class="slds-assistive-text">{!JSENCODE($Label.Processing_Request)}</span>
+                        </span>
+                    </div>
+                    <div class="slds-media__body">
+                        <span class="adapter-title slds-text-heading_medium"></span>
+                    </div>
+                </div>
+                <c:processDDP rendered="{! parameters != null}" parameters="{!parameters}"/>
+            </div>
+
+            <div class="validation-error-message-container">
+                <div class="slds-inline_icon_text slds-grid slds-align_absolute-center">
+                    <svg aria-hidden="true" class="slds-icon slds-icon_xx-small slds-icon-text-error slds-m-right_xx-small slds-col slds-no-flex">
+                        <use xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/utility-sprite/svg/symbols.svg#error')}"></use>
+                    </svg>
+                    <div class="slds-col slds-align-middle slds-text-color_error">
+                        <p>{!JSENCODE($Label.The_following_errors_occurred)}</p>
+                    </div>
+                </div>
+                <div class="slds-text-longform">
+                    <ul>
+                        <apex:repeat value="{!validationErrorMessages}" var="validationErrorMessage">
+                            <li class="slds-text-color_error">{!validationErrorMessage}</li>
+                        </apex:repeat>
+                    </ul>
+                </div>
+            </div>
+
+            <script type="application/javascript">
+                function onComplete(data) {
+                    showSuccessTitle();
+                    fireHeightMessage(getContainerHeight());
+                }
+                function showSuccessTitle() {
+                    setTitleMessage('{!JSINHTMLENCODE(successTitleMessage)}');
+                    showSuccessIcon();
+                    showTitle();
+                }
+                function getContainerHeight() {
+                    return document.querySelector('.process-ddp-container').scrollHeight + 24;
+                }
+                function fireHeightMessage(height) {
+                    parent.postMessage(JSON.stringify({ height }), '{!lightningExperienceOrigin}');
+                }
+                function setTitleMessage(message) {
+                    document.querySelector('.process-ddp-container .title-container .adapter-title').innerText = message;
+                }
+                function showSuccessIcon() {
+                    document.querySelector('.process-ddp-container .title-container .success-icon').style.display = 'inline-flex';
+                }
+                function getValidationContainerHeight() {
+                    return document.querySelector('.validation-error-message-container').scrollHeight + 24;
+                }
+                function showValidationContainer() {
+                    document.querySelector('.validation-error-message-container').style.display = 'block';
+                }
+                function onload() {
+                    if({!validationErrorMessages.size > 0}) {
+                        showValidationContainer();
+                        fireHeightMessage(getValidationContainerHeight());
+                    }
+                }
+                function showTitle() {
+                    document.querySelector('.process-ddp-container .title-container').style.display = 'inline-flex';
+                }
+            </script>
+        </body>
+    </html>
+</apex:page>

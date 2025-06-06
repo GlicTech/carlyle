@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Contracts_Weekly_Summary_255_Limit</fullName>
+    <active>true</active>
+    <description>Restricts the Contracts Weekly Summary Notes field to a max of 255 Characters</description>
+    <errorConditionFormula>LEN( pro_Contracts_Legal_Weekly_Summary_Notes__c ) &gt; 255</errorConditionFormula>
+    <errorDisplayField>pro_Contracts_Legal_Weekly_Summary_Notes__c</errorDisplayField>
+    <errorMessage>There is a MAX of 255 characters allowed in these Weekly Notes</errorMessage>
+</ValidationRule>

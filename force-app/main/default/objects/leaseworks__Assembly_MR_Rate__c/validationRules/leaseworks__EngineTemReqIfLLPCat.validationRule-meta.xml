@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__EngineTemReqIfLLPCat</fullName>
+    <active>true</active>
+    <description>Engine Template should be selected when LLP Catalog Escalation Type is used</description>
+    <errorConditionFormula>and( 
+text(leaseworks__Escalation_Type__c)==&#39;LLP Catalog&#39; ,  isBlank(leaseworks__Engine_Template__c) 
+)</errorConditionFormula>
+    <errorDisplayField>leaseworks__Engine_Template__c</errorDisplayField>
+    <errorMessage>Engine Template should be selected when LLP Catalog Escalation Type is used. Please select Engine Template</errorMessage>
+</ValidationRule>

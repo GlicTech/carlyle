@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>leaseworks__Deal_Approval_Email</fullName>
+        <description>Deal Approval Email</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>leaseworks__LeaseWorksTemplates/leaseworks__Marketing_Deal_Approval</template>
+    </alerts>
+    <alerts>
+        <fullName>leaseworks__Prospect_Send_Email_to_Resp</fullName>
+        <description>Prospect Send Email to Resp</description>
+        <protected>false</protected>
+        <recipients>
+            <field>leaseworks__Resp_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>leaseworks__LeaseWorksTemplates/leaseworks__Campaign_Prospect_Assigned</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>leaseworks__Marketing_Approved</fullName>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Marketing Approved</literalValue>
+        <name>MarketingApproved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__ProspectSetName</fullName>
+        <description>Set the name for the record.</description>
+        <field>Name</field>
+        <formula>IF(leaseworks__Prospect_New__c==null,&#39;&#39;, leaseworks__Prospect_New__r.Name + &#39;-&#39;)
+
++ IF(CONTAINS(leaseworks__Deal__r.leaseworks__MSN_List__c, &#39;,&#39;),
+LEFT(leaseworks__Deal__r.leaseworks__MSN_List__c, FIND(&#39;,&#39;, leaseworks__Deal__r.leaseworks__MSN_List__c)-1),
+leaseworks__Deal__r.leaseworks__MSN_List__c)
+
++ IF(CONTAINS(leaseworks__Deal__r.leaseworks__MSN_List__c, &#39;,&#39;), &#39;*&#39;,&#39;&#39;)</formula>
+        <name>ProspectSetName</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Prospect_Set_Resp_Email</fullName>
+        <field>leaseworks__Resp_Email__c</field>
+        <formula>leaseworks__Y_Hidden_Assigned_To__r.Email</formula>
+        <name>Prospect Set Resp Email</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_the_date_on_which</fullName>
+        <description>Track the date on which marketing status was changes</description>
+        <field>leaseworks__Y_marketing_status_changed_date__c</field>
+        <formula>TODAY()</formula>
+        <name>Update the date marketing status change</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__WatingMarketingApproval</fullName>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Waiting For Marketing Approval</literalValue>
+        <name>WatingMarketingApproval</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>leaseworks__Prospect Date Marketing Status Last Updated</fullName>
+        <actions>
+            <name>leaseworks__Update_the_date_on_which</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Get the date on which marketing status was last updated, This is used to calculate number of days marketing status was last updated.</description>
+        <formula>ISCHANGED(leaseworks__Status__c)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__ProspectSendMailToResp</fullName>
+        <actions>
+            <name>leaseworks__Prospect_Send_Email_to_Resp</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>leaseworks__Prospect_Set_Resp_Email</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>AND(!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c,  !$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_Assignment_Notification__c, ISCHANGED(leaseworks__Y_Hidden_Assigned_To__c))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__ProspectSetName</fullName>
+        <actions>
+            <name>leaseworks__ProspectSetName</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c =false</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

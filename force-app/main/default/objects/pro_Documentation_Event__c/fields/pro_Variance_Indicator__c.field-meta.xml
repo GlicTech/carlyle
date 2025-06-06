@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>pro_Variance_Indicator__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(
+  AND(NOT(ISBLANK(pro_Actual_Date__c)), pro_Variance_Days__c &gt;= 0),
+  IMAGE(&quot;/resource/1730193892000/green_circle?&quot;, &quot;green_circle&quot;, 20, 20),
+  IF(
+    AND(NOT(ISBLANK(pro_Actual_Date__c)), pro_Variance_Days__c &lt; 0),
+    IMAGE(&quot;/resource/1745838669000/red_circle?&quot;, &quot;red_circle&quot;, 20, 20),
+    IF(
+      AND(ISBLANK(pro_Actual_Date__c), NOT(ISBLANK(pro_Projected_Date__c))),
+      IMAGE(&quot;/resource/1730193913000/yellow_circle?&quot;, &quot;yellow_circle&quot;, 20, 20),
+      NULL
+    )
+  )
+)</formula>
+    <label>Variance Indicator</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

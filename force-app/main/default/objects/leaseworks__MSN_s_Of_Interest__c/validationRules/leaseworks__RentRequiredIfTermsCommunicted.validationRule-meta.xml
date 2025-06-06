@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__RentRequiredIfTermsCommunicted</fullName>
+    <active>true</active>
+    <errorConditionFormula>leaseworks__Deal_Proposal__r.leaseworks__Terms_Communicated__c  &amp;&amp; 
+
+(ISBLANK(leaseworks__Rent_000__c) || 
+leaseworks__Rent_000__c &lt; 0)</errorConditionFormula>
+    <errorDisplayField>leaseworks__Rent_000__c</errorDisplayField>
+    <errorMessage>Terms Communicated is selected on Marketing Prospect. Please enter Rent.</errorMessage>
+</ValidationRule>

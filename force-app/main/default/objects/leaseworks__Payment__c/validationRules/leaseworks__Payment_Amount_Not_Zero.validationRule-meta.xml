@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Payment_Amount_Not_Zero</fullName>
+    <active>true</active>
+    <description>For all payments except deferred payments, the amount should not be negative, null, or Zero.
+For deferred payments, the amount can be Zero.</description>
+    <errorConditionFormula>AND(NOT(leaseworks__Deferred__c), OR(leaseworks__Amount__c=null, leaseworks__Amount__c &lt;= 0.0)
+,!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c)</errorConditionFormula>
+    <errorDisplayField>leaseworks__Amount__c</errorDisplayField>
+    <errorMessage>The amount received should be greater than zero</errorMessage>
+</ValidationRule>

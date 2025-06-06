@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>pro_AiDs_Documentation_Approved_Count__c</fullName>
+    <description>A count of all AiDs with Lease Documentation Approval % field = 100%</description>
+    <externalId>false</externalId>
+    <label>AiDs Documentation Approved Count</label>
+    <summaryFilterItems>
+        <field>leaseworks__Aircraft_Proposal__c.pro_Lease_Documentation_Approval_per__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </summaryFilterItems>
+    <summaryForeignKey>leaseworks__Aircraft_Proposal__c.leaseworks__Marketing_Activity__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

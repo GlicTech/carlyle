@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Deal_Probability__c</fullName>
+    <externalId>false</externalId>
+    <formula>CASE( leaseworks__Probability_N__c ,
+&quot;Low&quot;, IMAGE(&quot;/resource/1730193943000/red_circle?&quot;, &quot;red&quot;,20,20),
+&quot;Medium&quot;, IMAGE(&quot;/resource/1730193913000/yellow_circle?&quot;, &quot;yellow&quot;,20,20),
+&quot;High&quot;, IMAGE(&quot;/resource/1730193892000/green_circle&quot;,&quot;green&quot;,20,20),
+&quot;No probability is set&quot;)</formula>
+    <label>Deal Probability</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

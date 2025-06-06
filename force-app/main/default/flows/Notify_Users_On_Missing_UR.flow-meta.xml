@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Send_email_for_missing_UR_Action_1</name>
+        <label>Send email for missing UR Action 1</label>
+        <locationX>50</locationX>
+        <locationY>360</locationY>
+        <actionName>leaseworks__Lease__c.Send_email_for_missing_UR</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <apiVersion>61.0</apiVersion>
+    <decisions>
+        <name>Decision_1</name>
+        <label>Verify if UR is not received on given date</label>
+        <locationX>182</locationX>
+        <locationY>252</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Outcome_1_of_Decision_1</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>NotifyDate</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>DateToday</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Send_email_for_missing_UR_Action_1</targetReference>
+            </connector>
+            <label>Outcome 1 of Decision 1</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <formulas>
+        <name>DateToday</name>
+        <dataType>Date</dataType>
+        <expression>TODAY()</expression>
+    </formulas>
+    <formulas>
+        <name>NotifyDate</name>
+        <dataType>Date</dataType>
+        <expression>DATE(
+    YEAR(TODAY()),  
+    MONTH(TODAY()), 
+    ( VALUE(TEXT ({!$Record.leaseworks__UR_Due_Day__c}))+1)          
+)</expression>
+    </formulas>
+    <interviewLabel>Notify Users On Missing UR {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Notify Users On Missing UR</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Decision_1</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Is_Utilization_Present_Local__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>leaseworks__Active__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>leaseworks__Reserve_Type__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>End of Lease Adjustment</stringValue>
+            </value>
+        </filters>
+        <object>leaseworks__Lease__c</object>
+        <schedule>
+            <frequency>Daily</frequency>
+            <startDate>2024-05-14</startDate>
+            <startTime>00:25:00.000Z</startTime>
+        </schedule>
+        <triggerType>Scheduled</triggerType>
+    </start>
+    <status>Obsolete</status>
+    <textTemplates>
+        <name>EmailSubject</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>&lt;p&gt;&lt;span style=&quot;background-color: rgb(249, 248, 248); font-size: 14px; font-family: -apple-system, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, &amp;quot;Helvetica Neue&amp;quot;, Helvetica, Arial, sans-serif; color: rgb(30, 31, 33);&quot;&gt;Last utilization report not found for {!$Record.leaseworks__Operator_New__r.Name} ,  {!$Record.Name} .&lt;/span&gt;&lt;/p&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>EmailTemplate</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>&lt;p&gt;Dear user,&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Please be informed that the last utilization report for {!$Record.leaseworks__Operator_New__r.Name}, {!$Record.Name} has not been received timely.&lt;/p&gt;&lt;p&gt;Please take the necessary action to follow up with the Operator.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Thanks.&lt;/p&gt;</text>
+    </textTemplates>
+    <variables>
+        <name>EmailList</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>EmailSubjectText</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <stringValue>Last utilization report not found for {!$Record.leaseworks__Operator_New__r.Name} ,  {!$Record.Name} .</stringValue>
+        </value>
+    </variables>
+    <variables>
+        <name>UserIdList</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

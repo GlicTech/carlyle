@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Investment_Required__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Investment required to reconfigure the aircraft to the client&#39;s requirements. This is a build up of the costs as specified in the Modification Cost section below with details.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>If the reconfiguration costs are calculated with a bottoms up approach considering all the mod costs, this field would calculate the total using Modification Cost Detail section in the related list on the right of this page.</inlineHelpText>
+    <label>Investment Required</label>
+    <summarizedField>leaseworks__Modification_Cost_Details__c.leaseworks__Cost__c</summarizedField>
+    <summaryForeignKey>leaseworks__Modification_Cost_Details__c.leaseworks__Proposed_Aircraft_Terms__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

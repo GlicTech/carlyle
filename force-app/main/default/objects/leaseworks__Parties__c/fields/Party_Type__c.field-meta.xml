@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Party_Type__c</fullName>
+    <description>Local field created for to set the field dependency and control the role options for the respective Asset/Contract parties.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Select the party type associated with the account. Based on the selected type, relevant role options will be displayed. If &quot;Contract&quot; is selected, only roles defined for contract parties will be shown. If &quot;Asset&quot; is selected, only roles applicable to asset parties will be available. Selecting &quot;Generic&quot; will display all role options regardless of type.</inlineHelpText>
+    <label>Party Type</label>
+    <required>true</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Generic</fullName>
+                <default>false</default>
+                <label>Generic</label>
+            </value>
+            <value>
+                <fullName>Contract</fullName>
+                <default>false</default>
+                <label>Contract</label>
+            </value>
+            <value>
+                <fullName>Asset</fullName>
+                <default>false</default>
+                <label>Asset</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

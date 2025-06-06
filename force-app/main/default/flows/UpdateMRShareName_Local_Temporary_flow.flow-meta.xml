@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>63.0</apiVersion>
+    <environments>Default</environments>
+    <formulas>
+        <description>This field shortens the Name to 80 characters</description>
+        <name>UpdMRShareName</name>
+        <dataType>String</dataType>
+        <expression>IF(
+  LEN({!$Record.leaseworks__Assembly_MR_Info__r.Name} +  &#39; - &#39;  + {!$Record.leaseworks__Assembly__c} + &#39; - &#39; + {!$Record.leaseworks__Maintenance_Event_Name__c}) &gt; 80,
+  LEFT({!$Record.leaseworks__Assembly_MR_Info__r.Name} + &#39; - &#39; + {!$Record.leaseworks__Assembly__c} + &#39; - &#39; + {!$Record.leaseworks__Maintenance_Event_Name__c}, 77) + &#39;...&#39;,
+  {!$Record.leaseworks__Assembly_MR_Info__r.Name} + &#39; - &#39; + {!$Record.leaseworks__Assembly__c} + &#39; - &#39; + {!$Record.leaseworks__Maintenance_Event_Name__c}
+)</expression>
+    </formulas>
+    <interviewLabel>UpdateMRShareName Local Temporary flow {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>UpdateMRShareName Local Temporary flow</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>UpdateMRShareName</name>
+        <label>UpdateMRShareName</label>
+        <locationX>176</locationX>
+        <locationY>287</locationY>
+        <inputAssignments>
+            <field>Name</field>
+            <value>
+                <elementReference>UpdMRShareName</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>UpdateMRShareName</targetReference>
+        </connector>
+        <filterFormula>NOT({!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c}) &amp;&amp; NOT({!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c})</filterFormula>
+        <object>leaseworks__MR_Share__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

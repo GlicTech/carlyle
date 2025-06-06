@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>61.0</apiVersion>
+    <decisions>
+        <name>Finding_Matching_Text_On_Related_Deal</name>
+        <label>Finding Matching Text On Related Deal</label>
+        <locationX>446</locationX>
+        <locationY>323</locationY>
+        <defaultConnectorLabel>End</defaultConnectorLabel>
+        <rules>
+            <name>Commercial_Weekly_Summary</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.leaseworks__Related_To_Marketing_Activity__r.pro_Commercial_Weekly_Summary_Notes_2__c</leftValueReference>
+                <operator>EqualTo</operator>
+            </conditions>
+            <connector>
+                <targetReference>Set_IL_Type_Commercial_Weekly_Summary_Notes</targetReference>
+            </connector>
+            <label>Commercial Weekly Summary</label>
+        </rules>
+        <rules>
+            <name>Technical_Weekly_Summary</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.leaseworks__Related_To_Marketing_Activity__r.Technical_Weekly_Summary_Notes__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>$Record.leaseworks__Summary__c</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_IL_Type_Technical_Weekly_Summary_Notes</targetReference>
+            </connector>
+            <label>Technical Weekly Summary</label>
+        </rules>
+        <rules>
+            <name>Contracts_Lega_Weekly_Summary</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.leaseworks__Related_To_Marketing_Activity__r.pro_Contracts_Legal_Weekly_Summary_Notes__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>$Record.leaseworks__Summary__c</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_IL_Type_Contracts_Weekly_Summary_Notes</targetReference>
+            </connector>
+            <label>Contracts/Lega Weekly Summary</label>
+        </rules>
+    </decisions>
+    <description>This record triggered flow runs when the &quot;_IsAutoCreated&quot; checkbox is set to TRUE on an Interaction Log. After the Save, we check which Weekly Summary note the Interaction Logs Summary Note is taken from on the Related Deal Record and then reclassify the Type of Interaction accordingly.</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>f_IL_Subject</name>
+        <dataType>String</dataType>
+        <expression>&quot;CPC Update - Deal: &quot; &amp;  {!$Record.leaseworks__Related_To_Marketing_Activity__r.Deal_Unique_ID__c} &amp; &quot; (&quot; &amp; TEXT(MONTH({!$Record.leaseworks__Date_Of_Call__c})) &amp; &quot;/&quot; &amp; TEXT(DAY({!$Record.leaseworks__Date_Of_Call__c})) &amp; &quot;/&quot; &amp; TEXT(YEAR({!$Record.leaseworks__Date_Of_Call__c})) &amp; &quot;)&quot;</expression>
+    </formulas>
+    <interviewLabel>Interaction Log - After Save / Create - Reclassify {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Interaction Log - After Save / Create - Reclassify Type Of Interaction</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Set_IL_Type_Commercial_Weekly_Summary_Notes</name>
+        <label>Set IL Type - Commercial Weekly Summary Notes</label>
+        <locationX>50</locationX>
+        <locationY>431</locationY>
+        <inputAssignments>
+            <field>Name</field>
+            <value>
+                <elementReference>f_IL_Subject</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>leaseworks__Type_Of_Interaction__c</field>
+            <value>
+                <stringValue>Commercial Weekly Summary Note</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Set_IL_Type_Contracts_Weekly_Summary_Notes</name>
+        <label>Set IL Type - Contracts Weekly Summary Notes</label>
+        <locationX>578</locationX>
+        <locationY>431</locationY>
+        <inputAssignments>
+            <field>Name</field>
+            <value>
+                <elementReference>f_IL_Subject</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>leaseworks__Type_Of_Interaction__c</field>
+            <value>
+                <stringValue>Contracts/Legal Weekly Summary Note</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Set_IL_Type_Technical_Weekly_Summary_Notes</name>
+        <label>Set IL Type - Technical Weekly Summary Notes</label>
+        <locationX>314</locationX>
+        <locationY>431</locationY>
+        <inputAssignments>
+            <field>Name</field>
+            <value>
+                <elementReference>f_IL_Subject</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>leaseworks__Type_Of_Interaction__c</field>
+            <value>
+                <stringValue>Technical Weekly Summary Note</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>320</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Finding_Matching_Text_On_Related_Deal</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>leaseworks__Y_Hidden_IsAutoCreated__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <object>leaseworks__Customer_Interaction_Log__c</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

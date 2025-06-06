@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Notice_Period_Validation_2</fullName>
+    <active>true</active>
+    <errorConditionFormula>OR(leaseworks__Notice_Period_Days__c  &lt; 0,leaseworks__Notice_Period_Days__c &gt; 9999)</errorConditionFormula>
+    <errorDisplayField>leaseworks__Notice_Period_Days__c</errorDisplayField>
+    <errorMessage>Value outside of Valid range on numeric field</errorMessage>
+</ValidationRule>

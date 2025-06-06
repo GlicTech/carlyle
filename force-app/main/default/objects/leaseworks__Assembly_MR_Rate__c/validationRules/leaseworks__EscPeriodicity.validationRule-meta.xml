@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__EscPeriodicity</fullName>
+    <active>true</active>
+    <description>Escalation Periodicity (Months) should be greater than 0 and less than 25 and also negative numbers and decimal places are not allowed.</description>
+    <errorConditionFormula>AND(!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c , OR( 
+OR(leaseworks__Esc_Periodicity_Mos__c == 0, leaseworks__Esc_Periodicity_Mos__c &gt; 24)
+, 
+REGEX( TEXT( leaseworks__Esc_Periodicity_Mos__c ) , &#39;[0-9]+[.]{1}[0-9]+&#39; ), 
+And( !ISBLANK(leaseworks__Esc_Periodicity_Mos__c ) , leaseworks__Esc_Periodicity_Mos__c &lt; 0 )
+) )</errorConditionFormula>
+    <errorDisplayField>leaseworks__Esc_Periodicity_Mos__c</errorDisplayField>
+    <errorMessage>Please enter a whole number between 1 and 24 for the periodicity.</errorMessage>
+</ValidationRule>

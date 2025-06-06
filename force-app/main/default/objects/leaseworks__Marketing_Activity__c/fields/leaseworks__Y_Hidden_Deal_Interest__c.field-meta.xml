@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Y_Hidden_Deal_Interest__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <formula>IF(TEXT( leaseworks__Deal_Interest__c ) = &#39;No interest in leasing&#39;,0,
+IF(TEXT(leaseworks__Deal_Interest__c ) = &#39;New Customer that has not explicitly addressed leasing&#39;,25,
+IF(TEXT(leaseworks__Deal_Interest__c ) = &#39;Customer has requested information of leasing vs financing&#39;,50,
+IF(TEXT(leaseworks__Deal_Interest__c ) = &#39;Exisiting Customer has requested a lease quote&#39;,100,null))))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>_Deal_Interest</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

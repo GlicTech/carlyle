@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ResolutionNotesToCloseTickets</fullName>
+    <active>true</active>
+    <description>Force users to fill in the Resolution Notes field before moving the Ticket status to &#39;Closed&#39;</description>
+    <errorConditionFormula>AND(
+ ISBLANK(pro_Resolution_Notes__c),
+  ISPICKVAL(pro_Status__c, &#39;Closed&#39;)
+)</errorConditionFormula>
+    <errorDisplayField>pro_Resolution_Notes__c</errorDisplayField>
+    <errorMessage>The Resolution Notes field must be completed before the Ticket can be closed.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__ClaimDueCannotBeNegative</fullName>
+    <active>true</active>
+    <description>The Claims Payout Due Day cannot be negative</description>
+    <errorConditionFormula>NULLVALUE(leaseworks__Claims_Payout_Due_Day__c, 0) &lt; 0</errorConditionFormula>
+    <errorMessage>Number of days cannot be negative. Please enter a number greater than or equal to 0</errorMessage>
+</ValidationRule>

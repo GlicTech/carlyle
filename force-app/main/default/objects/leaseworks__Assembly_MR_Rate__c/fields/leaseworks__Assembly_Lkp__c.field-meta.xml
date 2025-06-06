@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Assembly_Lkp__c</fullName>
+    <deleteConstraint>Restrict</deleteConstraint>
+    <deprecated>false</deprecated>
+    <description>Before searching for Assembly to link, ensure Asset has a Lease assigned (Lease field on the Asset page)</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Before searching for Assembly to link, ensure Asset has a Lease assigned (Lease field on the Asset page)</inlineHelpText>
+    <label>Associated Assembly</label>
+    <lookupFilter>
+        <active>true</active>
+        <booleanFilter>(1 OR 2) AND 3</booleanFilter>
+        <filterItems>
+            <field>$Source.leaseworks__Lease__c</field>
+            <operation>equals</operation>
+            <valueField>leaseworks__Constituent_Assembly__c.leaseworks__Attached_Aircraft__r.leaseworks__Lease__c</valueField>
+        </filterItems>
+        <filterItems>
+            <field>$Source.leaseworks__Y_Hidden_Asset__c</field>
+            <operation>equals</operation>
+            <valueField>leaseworks__Constituent_Assembly__c.leaseworks__Attached_Aircraft__r.Id</valueField>
+        </filterItems>
+        <filterItems>
+            <field>leaseworks__Constituent_Assembly__c.leaseworks__Attached_Aircraft__c</field>
+            <operation>notEqual</operation>
+            <value />
+        </filterItems>
+        <isOptional>true</isOptional>
+    </lookupFilter>
+    <referenceTo>leaseworks__Constituent_Assembly__c</referenceTo>
+    <relationshipLabel>Supplemental Rent</relationshipLabel>
+    <relationshipName>Assembly_MR_Info</relationshipName>
+    <required>true</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

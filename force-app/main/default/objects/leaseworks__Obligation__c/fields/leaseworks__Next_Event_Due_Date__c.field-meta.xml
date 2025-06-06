@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Next_Event_Due_Date__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <inlineHelpText>The earliest Due Date of all related Obligation Schedule records that are still Open</inlineHelpText>
+    <label>Next Due Date</label>
+    <summarizedField>leaseworks__Obligations_Schedule__c.leaseworks__Due_Date__c</summarizedField>
+    <summaryFilterItems>
+        <field>leaseworks__Obligations_Schedule__c.leaseworks__Status__c</field>
+        <operation>equals</operation>
+        <value>Open</value>
+    </summaryFilterItems>
+    <summaryForeignKey>leaseworks__Obligations_Schedule__c.leaseworks__Obligation__c</summaryForeignKey>
+    <summaryOperation>min</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ConfirmationBeforeConvertingRecordType</fullName>
+    <active>true</active>
+    <description>When users input over 250000 into the Financial Impact field, an automation runs to change the record type. This rule forces users to check a checkbox before they can save a record with more than 250000 in the Financial Impact field.</description>
+    <errorConditionFormula>AND(
+       Value__c &gt; 250000,
+        pro_Convert_To_Lease_Amendment__c != True
+)</errorConditionFormula>
+    <errorDisplayField>pro_Convert_To_Lease_Amendment__c</errorDisplayField>
+    <errorMessage>Once the Financial Impact is above $250,000, the record will be converted to Lease Amendment. Tick the checkbox to confirm.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Send_Email_to_Deal_Team_Revised</name>
+        <label>Send Email to Deal Team (Revised)</label>
+        <locationX>50</locationX>
+        <locationY>839</locationY>
+        <actionName>SendBetterEmail</actionName>
+        <actionType>apex</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>HTMLbody</name>
+            <value>
+                <elementReference>EmailTemplate</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>SendTOthisStringCollectionOfEmailAddresses</name>
+            <value>
+                <elementReference>AssignedToUserId</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>subject</name>
+            <value>
+                <stringValue>Deal Status Change Notification</stringValue>
+            </value>
+        </inputParameters>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <apiVersion>60.0</apiVersion>
+    <assignments>
+        <name>Assignment_1</name>
+        <label>Assignment 1</label>
+        <locationX>270</locationX>
+        <locationY>539</locationY>
+        <assignmentItems>
+            <assignToReference>AssignedToUserId</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Loop_1.leaseworks__Assigned_To__r.Email</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_1</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>If_Deal_Team_has_user</name>
+        <label>If Deal Team has user</label>
+        <locationX>182</locationX>
+        <locationY>731</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Send_Email</name>
+            <conditionLogic>NOT(1)</conditionLogic>
+            <conditions>
+                <leftValueReference>AssignedToUserId</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue></stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Send_Email_to_Deal_Team_Revised</targetReference>
+            </connector>
+            <label>Send Email</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <formulas>
+        <name>GetBaseURL</name>
+        <dataType>String</dataType>
+        <expression>{!LEFT($Api.Partner_Server_URL_260, FIND(&#39;/services&#39;, $Api.Partner_Server_URL_260))} &amp; &#39;/&#39; &amp; {!$Record.Id}</expression>
+    </formulas>
+    <interviewLabel>Deal Member Notification On Status Change to Documentation {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Deal Member Notification On Status Change to Documentation</label>
+    <loops>
+        <name>Loop_1</name>
+        <label>Loop 1</label>
+        <locationX>182</locationX>
+        <locationY>431</locationY>
+        <collectionReference>Get_Related_Deal_Team_Assignees</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Assignment_1</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>If_Deal_Team_has_user</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Related_Deal_Team_Assignees</name>
+        <label>Get Related Deal Team Assignees</label>
+        <locationX>182</locationX>
+        <locationY>323</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Loop_1</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>leaseworks__Marketing_Activity__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>leaseworks__Assigned_To__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>leaseworks__Deal_Team__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Related_Deal_Team_Assignees</targetReference>
+        </connector>
+        <filterFormula>(OR((ISNEW() &amp;&amp;  ISPICKVAL({!$Record.leaseworks__Deal_Status__c}, &#39;Documentation&#39;)),    
+ (NOT(ISPICKVAL({!$Record__Prior.leaseworks__Deal_Status__c}, &#39;Documentation&#39;)) &amp;&amp;(ISPICKVAL({!$Record.leaseworks__Deal_Status__c}, &#39;Documentation&#39;))))) &amp;&amp; ( {!$Record.leaseworks__Inactive_MA__c}=False)</filterFormula>
+        <object>leaseworks__Marketing_Activity__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <textTemplates>
+        <name>EmailTemplate</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>&lt;p&gt;Dear User,&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;This is to notify you that the active deal  &lt;a href=&quot;{!GetBaseURL}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;{!$Record.Name}&lt;/a&gt; has moved to {!$Record.leaseworks__Deal_Status__c}.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Thank You!&lt;/p&gt;</text>
+    </textTemplates>
+    <variables>
+        <name>AssignedToUserId</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>
