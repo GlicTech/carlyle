@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>RestrictEditOfRequiredFields</fullName>
+    <active>true</active>
+    <description>Restricts users who have edit access on Asset from being able to edit required fields</description>
+    <errorConditionFormula>AND(
+  $Profile.Name = &quot;Carlyle Commercial&quot;,
+  OR(
+    leaseworks__MSN_Number__c &lt;&gt; PRIORVALUE(leaseworks__MSN_Number__c),
+    Name &lt;&gt; PRIORVALUE(Name),
+    RecordTypeId &lt;&gt; PRIORVALUE(RecordTypeId),
+    OwnerId &lt;&gt; PRIORVALUE(OwnerId)
+  )
+)</errorConditionFormula>
+    <errorMessage>You don&#39;t have the required permission to edit the fields on an Asset record.</errorMessage>
+</ValidationRule>

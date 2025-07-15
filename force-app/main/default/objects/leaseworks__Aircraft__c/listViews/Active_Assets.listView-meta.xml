@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Active_Assets</fullName>
+    <columns>NAME</columns>
+    <columns>leaseworks__Asset_Type_GP__c</columns>
+    <columns>leaseworks__Asset_Variant_GP__c</columns>
+    <columns>leaseworks__Engine_Variant_GP__c</columns>
+    <columns>leaseworks__Portfolio__c</columns>
+    <columns>Transaction_Code__c</columns>
+    <columns>leaseworks__Status__c</columns>
+    <columns>pro_Current_Status__c</columns>
+    <columns>leaseworks__Y_Hidden_Lease_End_Date__c</columns>
+    <columns>leaseworks__Date_of_Manufacture__c</columns>
+    <columns>leaseworks__Assigned_To__c</columns>
+    <columns>leaseworks__Lease__c</columns>
+    <columns>leaseworks__Registration_Number__c</columns>
+    <columns>leaseworks__TSN__c</columns>
+    <columns>leaseworks__CSN__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>leaseworks__Status__c</field>
+        <operation>equals</operation>
+        <value>Assigned,Available,In Shop,In-Production,Pending,Active,AOG,LOI</value>
+    </filters>
+    <label>Active Assets</label>
+</ListView>

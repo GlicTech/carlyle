@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__NumericRoutingNumber</fullName>
+    <active>true</active>
+    <description>Routing Number for US should be numeric only.</description>
+    <errorConditionFormula>AND(leaseworks__Country__r.Name=&quot;United States&quot;, NOT(ISNUMBER(  leaseworks__Routing_ABA__c )),NOT(ISBLANK( leaseworks__Routing_ABA__c )))</errorConditionFormula>
+    <errorMessage>Routing/ABA should be numeric for United States.</errorMessage>
+</ValidationRule>

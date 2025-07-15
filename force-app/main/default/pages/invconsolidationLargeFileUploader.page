@@ -1,0 +1,44 @@
+<apex:page showHeader="false" sidebar="false" applyBodyTag="false" standardStylesheets="false" >
+    
+    <script type="text/javascript">__sfdcSessionId = '{!$Api.Session_Id}';</script>
+    <script src="../../soap/ajax/30.0/connection.js" type="text/javascript"></script>
+    
+    <script>
+    function uploadContentVersion(recordId ,filename, filecontent) {
+        var PRLObj = new sforce.SObject('leaseworks__Bulk_Invoice_Process_Request_Log__c');
+        PRLObj.leaseworks__Status__c = 'In Preview';
+        PRLObj.leaseworks__Retry_Counter__c = 0;
+        PRLObj.leaseworks__Type__c = 'consolidation';
+        PRLObj.leaseworks__Comments__c = '';
+        PRLObj.leaseworks__Account__c = recordId;
+        var PRLObjRec = sforce.connection.create([PRLObj]);
+        var contentVersion = new sforce.SObject('ContentVersion');
+        
+        contentVersion.Title = filename;
+        contentVersion.ContentLocation = 'S';
+        contentVersion.PathOnClient = '/' + filename;
+        contentVersion.FirstPublishLocationId = PRLObjRec[0].id;
+        contentVersion.VersionData = filecontent;
+        
+        var results = sforce.connection.create([contentVersion]);
+        for (var i = 0; i < results.length; i++) {
+            if (results[i].getBoolean("success")) {
+                //alert('New ContentVersion record created:' + results[i].id);
+                window.parent.postMessage(results[i].id, "*");
+            }
+            else {
+                //alert('Failed:' + results[i]);
+            }
+        }
+    }
+    
+    window.addEventListener('message', (message)=>{
+        var file = message.data;
+        uploadContentVersion(file.parentRec, file.fileName , file.fileContent);
+    });
+        
+        //window.parent.postMessage('loaded', "*")
+    </script>
+    
+    <body></body>
+</apex:page>

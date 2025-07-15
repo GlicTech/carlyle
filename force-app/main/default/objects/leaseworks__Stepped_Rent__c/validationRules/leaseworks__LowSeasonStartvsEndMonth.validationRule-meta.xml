@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__LowSeasonStartvsEndMonth</fullName>
+    <active>true</active>
+    <description>if low season start and end year are the same, then low season start and end month cannot be same</description>
+    <errorConditionFormula>AND( ISPICKVAL(leaseworks__Rent_Type__c, &#39;Seasonal Rent&#39;), AND(VALUE(leaseworks__Low_Season_Start_Year__c) ==  VALUE(leaseworks__Low_Season_End_Year__c) ,  CASE(
+TEXT(leaseworks__Low_Season_Start_Month__c),
+&#39;January&#39;,1,
+&#39;February&#39;,2,
+&#39;March&#39;,3,
+&#39;April&#39;,4,
+&#39;May&#39;,5,
+&#39;June&#39;,6,
+&#39;July&#39;,7,
+&#39;August&#39;,8,
+&#39;September&#39;,9,
+&#39;October&#39;,10,
+&#39;November&#39;,11,
+12) == CASE(
+TEXT(leaseworks__Low_Season_End_Month__c),
+&#39;January&#39;,1,
+&#39;February&#39;,2,
+&#39;March&#39;,3,
+&#39;April&#39;,4,
+&#39;May&#39;,5,
+&#39;June&#39;,6,
+&#39;July&#39;,7,
+&#39;August&#39;,8,
+&#39;September&#39;,9,
+&#39;October&#39;,10,
+&#39;November&#39;,11,
+12)))</errorConditionFormula>
+    <errorMessage>Low season start and end month cannot be same</errorMessage>
+</ValidationRule>

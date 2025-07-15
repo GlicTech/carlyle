@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__SDAmountPositive</fullName>
+    <active>true</active>
+    <description>The field SD Slip Amount must not be less than zero. If the value of SD Slip Amount is negative, the validation will trigger.</description>
+    <errorConditionFormula>AND(
+!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c,
+leaseworks__SD_Slip_Amount__c &lt;=0)</errorConditionFormula>
+    <errorDisplayField>leaseworks__SD_Slip_Amount__c</errorDisplayField>
+    <errorMessage>The SD Slip Amount must be positive.</errorMessage>
+</ValidationRule>

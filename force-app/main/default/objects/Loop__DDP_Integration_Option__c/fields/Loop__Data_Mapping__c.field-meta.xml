@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Loop__Data_Mapping__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <formula>IF( ISBLANK( Loop__Data_Mapping_Id__c ) , &quot;None&quot; ,  HYPERLINK(&quot;/&quot; &amp; Loop__Data_Mapping_Id__c ,  IF( ISBLANK( Loop__Data_Mapping_Name__c ) , &quot;Mapping&quot; ,  Loop__Data_Mapping_Name__c )  ) ) 
+&amp; &quot; [&quot; &amp; HYPERLINK(&quot;/apex/loop__ddpEdit?type=dataMapping&amp;cioId=&quot; &amp; Id , &quot;Change&quot; , &quot;_self&quot; ) &amp; &quot;]&quot;</formula>
+    <label>Data Mapping</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

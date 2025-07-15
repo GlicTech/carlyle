@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Adjustment_Percentage_Should_not_be_zero</fullName>
+    <active>true</active>
+    <description>This validation is used to Prevent user to enter zero Amount.</description>
+    <errorConditionFormula>AND(
+    !$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c,
+    NOT(
+       ISNULL(leaseworks__Adjustment__c )
+    ),
+    leaseworks__Adjustment__c  = 0
+)</errorConditionFormula>
+    <errorDisplayField>leaseworks__Adjustment__c</errorDisplayField>
+    <errorMessage>Adjustment % cannot be zero. Please enter a non-zero value.</errorMessage>
+</ValidationRule>

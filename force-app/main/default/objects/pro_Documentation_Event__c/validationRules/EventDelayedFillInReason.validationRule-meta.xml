@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>EventDelayedFillInReason</fullName>
+    <active>true</active>
+    <description>This rule forces users to enter a Missed Deadline Reason and Missed Deadline Comment when the Actual Date is later than the Projected Date.</description>
+    <errorConditionFormula>AND(
+     pro_Actual_Date__c &gt;  pro_Projected_Date__c,
+     OR(
+          ISBLANK(TEXT(pro_Primary_Delay__c )),
+           pro_Delay_Comment__c = Null
+     )
+)</errorConditionFormula>
+    <errorMessage>The Actual Date is later than the Projected Date. The fields Missed Deadline Reason and Missed Deadline Comment must be populated.</errorMessage>
+</ValidationRule>

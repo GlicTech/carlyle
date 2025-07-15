@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>63.0</apiVersion>
+    <environments>Default</environments>
+    <formulas>
+        <name>f_QueryRelatedTickets</name>
+        <dataType>String</dataType>
+        <expression>&quot;SELECT pro_Subject_Name__c, pro_Ticket_Level__c, pro_Priority__c, pro_Status__c, pro_Assigned_To_Formula__c, pro_Requested_By_Formula__c, pro_Owner_Formula__c, pro_Comments__c FROM pro_Ticket__c WHERE (&quot; &amp; 
+IF(NOT(ISBLANK({!recordId.pro_Asset__c})), &quot;pro_Asset__c = &#39;&quot; &amp; {!recordId.pro_Asset__c} &amp; &quot;&#39;&quot;, &quot;&quot;) &amp; 
+IF(AND(NOT(ISBLANK({!recordId.pro_Asset__c})), NOT(ISBLANK({!recordId.pro_Lease__c}))), &quot; OR &quot;, &quot;&quot;) &amp; 
+IF(NOT(ISBLANK({!recordId.pro_Lease__c})), &quot;pro_Lease__c = &#39;&quot; &amp; {!recordId.pro_Lease__c} &amp; &quot;&#39;&quot;, &quot;&quot;) &amp; 
+IF(AND(OR(NOT(ISBLANK({!recordId.pro_Asset__c})), NOT(ISBLANK({!recordId.pro_Lease__c}))), NOT(ISBLANK({!recordId.pro_Deal__c}))), &quot; OR &quot;, &quot;&quot;) &amp; 
+IF(NOT(ISBLANK({!recordId.pro_Deal__c})), &quot;pro_Deal__c = &#39;&quot; &amp; {!recordId.pro_Deal__c} &amp; &quot;&#39;&quot;, &quot;&quot;) &amp; 
+IF(AND(OR(NOT(ISBLANK({!recordId.pro_Asset__c})), NOT(ISBLANK({!recordId.pro_Lease__c})), NOT(ISBLANK({!recordId.pro_Deal__c}))), NOT(ISBLANK({!recordId.pro_Technical_Project__c}))), &quot; OR &quot;, &quot;&quot;) &amp; 
+IF(NOT(ISBLANK({!recordId.pro_Technical_Project__c})), &quot;pro_Technical_Project__c = &#39;&quot; &amp; {!recordId.pro_Technical_Project__c} &amp; &quot;&#39;&quot;, &quot;&quot;) &amp; 
+&quot;) AND Id != &#39;&quot; &amp; {!recordId.Id} &amp; &quot;&#39; ORDER BY pro_Expected_Due_Date__c DESC&quot;</expression>
+    </formulas>
+    <interviewLabel>Prodigy - Screen - Display Related Record Tickets {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Prodigy - Screen - Display Related Record Tickets</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <screens>
+        <name>TicketDisplayScreen</name>
+        <label>TicketDisplayScreen</label>
+        <locationX>176</locationX>
+        <locationY>134</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>dt_DisplayTickets</name>
+            <dataTypeMappings>
+                <typeName>T</typeName>
+                <typeValue>pro_Ticket__c</typeValue>
+            </dataTypeMappings>
+            <extensionName>flowruntime:datatable</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>selectionMode</name>
+                <value>
+                    <stringValue>NO_SELECTION</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>minRowSelection</name>
+                <value>
+                    <numberValue>0.0</numberValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>label</name>
+                <value>
+                    <stringValue>Data Table</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>tableData</name>
+                <value>
+                    <elementReference>df_FetchRelatedTickets.retrievedRecords</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>isShowSearchBar</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>maxRowSelection</name>
+                <value>
+                    <numberValue>0.0</numberValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>columns</name>
+                <value>
+                    <stringValue>[{&quot;apiName&quot;:&quot;pro_Subject_Name__c&quot;,&quot;guid&quot;:&quot;column-3a85&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:false,&quot;customHeaderLabel&quot;:&quot;&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:0,&quot;label&quot;:&quot;Subject Name&quot;,&quot;type&quot;:&quot;customRichText&quot;},{&quot;apiName&quot;:&quot;pro_Ticket_Level__c&quot;,&quot;guid&quot;:&quot;column-1a60&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:false,&quot;customHeaderLabel&quot;:&quot;&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:1,&quot;label&quot;:&quot;Ticket Level&quot;,&quot;type&quot;:&quot;customRichText&quot;},{&quot;apiName&quot;:&quot;pro_Priority__c&quot;,&quot;guid&quot;:&quot;column-c193&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:false,&quot;customHeaderLabel&quot;:&quot;&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:2,&quot;label&quot;:&quot;Priority&quot;,&quot;type&quot;:&quot;text&quot;},{&quot;apiName&quot;:&quot;pro_Status__c&quot;,&quot;guid&quot;:&quot;column-f889&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:false,&quot;customHeaderLabel&quot;:&quot;&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:3,&quot;label&quot;:&quot;Status&quot;,&quot;type&quot;:&quot;text&quot;},{&quot;apiName&quot;:&quot;pro_Requested_By_Formula__c&quot;,&quot;guid&quot;:&quot;column-675f&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:false,&quot;customHeaderLabel&quot;:&quot;&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:4,&quot;label&quot;:&quot;Requested By&quot;,&quot;type&quot;:&quot;customRichText&quot;},{&quot;apiName&quot;:&quot;pro_Assigned_To_Formula__c&quot;,&quot;guid&quot;:&quot;column-6fd6&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:false,&quot;customHeaderLabel&quot;:&quot;&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:5,&quot;label&quot;:&quot;Assigned To&quot;,&quot;type&quot;:&quot;customRichText&quot;},{&quot;apiName&quot;:&quot;pro_Owner_Formula__c&quot;,&quot;guid&quot;:&quot;column-8897&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:false,&quot;customHeaderLabel&quot;:&quot;&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:6,&quot;label&quot;:&quot;Owner&quot;,&quot;type&quot;:&quot;customRichText&quot;},{&quot;apiName&quot;:&quot;pro_Comments__c&quot;,&quot;guid&quot;:&quot;column-494e&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:false,&quot;customHeaderLabel&quot;:&quot;&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:7,&quot;label&quot;:&quot;Comments&quot;,&quot;type&quot;:&quot;text&quot;}]</stringValue>
+                </value>
+            </inputParameters>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <storeOutputAutomatically>true</storeOutputAutomatically>
+        </fields>
+        <fields>
+            <name>df_FetchRelatedTickets</name>
+            <dataTypeMappings>
+                <typeName>T</typeName>
+                <typeValue>pro_Ticket__c</typeValue>
+            </dataTypeMappings>
+            <dataTypeMappings>
+                <typeName>S</typeName>
+                <typeValue>Account</typeValue>
+            </dataTypeMappings>
+            <extensionName>joshdaymentlabs:dataFetcher</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>objectName1</name>
+                <value>
+                    <stringValue>pro_Ticket__c</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>queryString</name>
+                <value>
+                    <elementReference>f_QueryRelatedTickets</elementReference>
+                </value>
+            </inputParameters>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <storeOutputAutomatically>true</storeOutputAutomatically>
+        </fields>
+        <showFooter>false</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>TicketDisplayScreen</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>recordId</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>pro_Ticket__c</objectType>
+    </variables>
+</Flow>

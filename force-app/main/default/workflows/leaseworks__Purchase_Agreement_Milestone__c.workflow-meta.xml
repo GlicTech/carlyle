@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>leaseworks__PA_Milestone_Name_Override</fullName>
+        <description>Purchase Agreement Milestone Name = AC - Type - Order pos - Milestone Type</description>
+        <field>Name</field>
+        <formula>BLANKVALUE(TEXT(leaseworks__Milestone_Date__c), TEXT( leaseworks__Months_to_Delivery__c) )    &amp;   &#39; - &#39;    &amp; leaseworks__Y_Hidden_Applicability_Type__c   &amp;   &#39;-&#39;
+&amp;   TEXT(leaseworks__PA_Milestone_Type__c)</formula>
+        <name>PA Milestone Name Override</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>leaseworks__Purchase Agreement Milestone Name Override</fullName>
+        <actions>
+            <name>leaseworks__PA_Milestone_Name_Override</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>true</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+</Workflow>

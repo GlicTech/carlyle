@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Ageing__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <formula>IF(((TEXT(leaseworks__Status__c)==&#39;Paid&#39;)  ||  (leaseworks__Invoiced_Amount_Formula__c &lt;=0))  || (today()&lt;  BLANKVALUE(leaseworks__Date_Payment_Due__c, leaseworks__Invoice_Date__c)), null , today()- BLANKVALUE(leaseworks__Date_Payment_Due__c, leaseworks__Invoice_Date__c) )</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>_Ageing Days Outstanding</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

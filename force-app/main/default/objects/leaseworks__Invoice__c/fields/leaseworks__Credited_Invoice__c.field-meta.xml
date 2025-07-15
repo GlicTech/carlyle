@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Credited_Invoice__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <label>Z_Unused_2009 Y_Hidden Credited Invoice</label>
+    <lookupFilter>
+        <active>false</active>
+        <errorMessage>Credit Amount must be positive and not more than the Invoiced Amount of the invoice being credited. Credit Notes can be created for invoice of type Rent, MR or Security Deposit belonging to the same lease.</errorMessage>
+        <filterItems>
+            <field>$Source.leaseworks__Lease__c</field>
+            <operation>equals</operation>
+            <valueField>leaseworks__Invoice__c.leaseworks__Lease__c</valueField>
+        </filterItems>
+        <filterItems>
+            <field>leaseworks__Invoice__c.leaseworks__Invoice_Type__c</field>
+            <operation>equals</operation>
+            <value>Aircraft MR, Rent, Security Deposit,Intercompany Rent,Intercompany MR</value>
+        </filterItems>
+        <filterItems>
+            <field>leaseworks__Invoice__c.leaseworks__Total_Inclding_Tax__c</field>
+            <operation>greaterThan</operation>
+            <value>0</value>
+        </filterItems>
+        <infoMessage>Please choose an unpaid invoice of type Rent, MR or Security Deposit belonging to the same lease.</infoMessage>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>leaseworks__Invoice__c</referenceTo>
+    <relationshipLabel>(Unused)Credited Invoices</relationshipLabel>
+    <relationshipName>Credited_Invoices</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

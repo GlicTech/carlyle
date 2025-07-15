@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All</fullName>
+    <columns>NAME</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>leaseworks__Deal_Type__c</field>
+        <operation>equals</operation>
+        <value>Sale,Lease,Lease Amendment</value>
+    </filters>
+    <filters>
+        <field>LOI_Date__c</field>
+        <operation>notEqual</operation>
+    </filters>
+    <label>All</label>
+</ListView>

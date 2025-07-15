@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Approval request email to approve a customer when it is created in the system</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>leaseworks__Smart_Lease_Logo</letterhead>
+    <name>Customer Approval Request</name>
+    <style>freeForm</style>
+    <subject>Request: Approval Of Operator ({!leaseworks__Operator__c.Name}) Required</subject>
+    <textOnly>{!leaseworks__Operator__c.OwnerFullName} has created an operator {!leaseworks__Operator__c.Name}
+ {!IF(leaseworks__Operator__c.Name=&quot;&quot;,&quot;Operator__c.Name&quot;,&quot;revenue not specified&quot;)}  . 
+
+Your approval is required as company policy allows sales personnel to only create customers with revenue greater than $1bn  Your urgent attention to this matter is kindly appreciated:http://salesforce.com/login Sincerely,Company Management</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

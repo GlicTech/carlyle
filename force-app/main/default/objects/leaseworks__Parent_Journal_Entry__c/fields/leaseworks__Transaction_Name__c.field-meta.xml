@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Transaction_Name__c</fullName>
+    <deprecated>false</deprecated>
+    <description>To get the transaction name based on the transaction record</description>
+    <externalId>false</externalId>
+    <formula>if( leaseworks__Invoice__c != null ,leaseworks__Invoice__r.Name,
+if( leaseworks__Payments_Credits__c != null ,leaseworks__Payments_Credits__r.Name,
+if( leaseworks__Payables__c != null ,leaseworks__Payables__r.Name,
+if( leaseworks__Payouts__c != null , leaseworks__Payouts__r.Name,
+if( leaseworks__Credit_Memo__c != null , leaseworks__Payments_Credits__r.Name,
+if(  leaseworks__Payment_On_Account__c != null , leaseworks__Payment_On_Account__r.Name,
+if( leaseworks__LOC_Transactions__c != null, leaseworks__LOC_Transactions__r.Name,&#39;&#39;
+)
+
+)
+)
+)
+)
+)
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>_Transaction Name</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

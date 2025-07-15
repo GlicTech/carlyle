@@ -1,0 +1,55 @@
+<messaging:emailTemplate subject="Interaction Follow Up" recipientType="User" relatedToType="Task">
+
+<messaging:htmlEmailBody >
+<html>
+<body>
+
+
+This is a reminder to follow up on the below-listed Interaction Log. Please take necessary action.<br/><br/>
+
+
+<c:ILEmailData TaskILId="{!relatedTo.What.Id}"/>
+<b>Follow Up Action:</b> {!relatedTo.Subject} <br/>
+<b>Follow Up Due Date:</b> <apex:outputText value=" {!relatedTo.ActivityDate}"/><br/> <br/>
+
+Sent on behalf of LeaseWorks.
+
+<!--
+ Visualforce dateformat trick, put a whitespace character before the date expression and it will format in org's locale, not GMT
+ https://douglascayers.com/2014/05/27/salesforce-displaying-datetime-field-in-visualforce-in-users-timezone/
+-->
+ 
+<br/>
+
+</body>
+</html>
+</messaging:htmlEmailBody>
+
+
+<messaging:attachment filename="reminder.ics">
+
+BEGIN:VCALENDAR
+METHOD:REQUEST
+VERSION:2.0
+PRODID://Leaseworks//Reminder//EN
+CALSCALE:GREGORIAN
+BEGIN:VEVENT
+CLASS:PUBLIC
+STATUS:CONFIRMED
+ORGANIZER;CN="LeaseWorks Support":no-reply@lease-works.com
+ATTENDEE;RSVP=TRUE:mailto:{!relatedTo.Owner.email}
+DTSTAMP;TZID=GMT:<apex:outputText value="{0,date,MMddyyyy'T'HHmmssZ}"><apex:param value="{!relatedTo.ActivityDate}"/></apex:outputText>
+UID:<apex:outputText value="{!relatedTo.id}"/>@{!LEFT($Api.Partner_Server_URL_140,FIND('.com',$Api.Partner_Server_URL_140)+4)}
+SEQUENCE:<apex:outputText value="{!relatedTo.leaseworks__Y_Hidden_Sequence__c}"/>
+DTSTART;VALUE=DATE:<apex:outputText value="{!MID(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(TEXT(relatedTo.ActivityDate),':',''),'-',''),' ','T'),1,8)}"/>
+SUMMARY:<apex:outputText value="Subject {!relatedTo.Subject}"/>
+BEGIN:VALARM
+TRIGGER:-PT1D
+ACTION:DISPLAY
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+END:VCALENDAR 
+</messaging:attachment>
+
+</messaging:emailTemplate>

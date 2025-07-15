@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__ValidateFeeScheduleStartDateEndDate</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c, IF( leaseworks__Fee_Start_Date__c  &gt;  leaseworks__Fee_End_Date__c ,true, false))</errorConditionFormula>
+    <errorMessage>Start Date Cannot be later than End Date</errorMessage>
+</ValidationRule>

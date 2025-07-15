@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>leaseworks__Deal_Team__c$leaseworks__Marketing_Activity__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Deal_Team__c$leaseworks__Marketing_Activity__c.leaseworks__Deal_Status__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Deal_Team__c$Name</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Deal_Team__c$Id</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Deal_Team__c$leaseworks__Assigned_To__c</field>
+    </columns>
+    <filter>
+        <criteriaItems>
+            <column>leaseworks__Deal_Team__c$leaseworks__Assigned_To__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value></value>
+        </criteriaItems>
+    </filter>
+    <format>Tabular</format>
+    <name>Unassigned Deal Teams</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Deal_Teams__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <sortColumn>leaseworks__Deal_Team__c$leaseworks__Assigned_To__c</sortColumn>
+    <sortOrder>Asc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>leaseworks__Deal_Team__c$leaseworks__Completed_On__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

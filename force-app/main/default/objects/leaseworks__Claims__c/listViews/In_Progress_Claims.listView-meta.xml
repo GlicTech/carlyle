@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>In_Progress_Claims</fullName>
+    <columns>NAME</columns>
+    <columns>Associated_Lease__c</columns>
+    <columns>leaseworks__Assembly__c</columns>
+    <columns>leaseworks__Supplemental_Rent__c</columns>
+    <columns>leaseworks__Event__c</columns>
+    <columns>leaseworks__Release_Date__c</columns>
+    <columns>leaseworks__Approved_Claim_Amount__c</columns>
+    <columns>leaseworks__Claim_Status__c</columns>
+    <columns>leaseworks__Total_Claim_Payout_Amount__c</columns>
+    <columns>Assigned_To__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>leaseworks__Claim_Status__c</field>
+        <operation>equals</operation>
+        <value>Technical Review,Operator Engagement,Technical Head/CTO Review,Finance/Accounting Review,CTO Sign-off</value>
+    </filters>
+    <label>In-Progress Claims</label>
+</ListView>

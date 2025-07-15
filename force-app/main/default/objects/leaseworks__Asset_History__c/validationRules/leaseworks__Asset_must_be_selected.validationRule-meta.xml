@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Asset_must_be_selected</fullName>
+    <active>true</active>
+    <description>Either the aircraft or the assembly must be selected.</description>
+    <errorConditionFormula>AND( ISBLANK(leaseworks__Aircraft__c), ISBLANK(leaseworks__Assembly__c))</errorConditionFormula>
+    <errorMessage>Please select the aircraft or the assembly that this history record is related to.</errorMessage>
+</ValidationRule>

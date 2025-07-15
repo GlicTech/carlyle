@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Assigned_To__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Responsible for this checklist item</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Responsible for this checklist item</inlineHelpText>
+    <label>Assigned To</label>
+    <lookupFilter>
+        <active>true</active>
+        <filterItems>
+            <field>leaseworks__Project_Contact__c.leaseworks__Technical_Project__r.Id</field>
+            <operation>equals</operation>
+            <valueField>$Source.leaseworks__Technical_Project__c</valueField>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>leaseworks__Project_Contact__c</referenceTo>
+    <relationshipLabel>Technical Project Checklist</relationshipLabel>
+    <relationshipName>Technical_Project_Checklist</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

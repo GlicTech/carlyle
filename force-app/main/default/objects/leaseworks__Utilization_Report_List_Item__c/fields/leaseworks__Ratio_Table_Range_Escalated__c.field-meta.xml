@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Ratio_Table_Range_Escalated__c</fullName>
+    <deprecated>false</deprecated>
+    <description>As part of the MR 2.0 changes, this field will be deprecated shortly. However, due to its impact on forecasting, we will retain the field for now.</description>
+    <externalId>false</externalId>
+    <formula>IF(
+OR(ISNULL( leaseworks__Y_Hidden_Adjustment_Amount_Upper__c ),leaseworks__Y_Hidden_Adjustment_Amount_Upper__c == 0,ISNULL(leaseworks__MR_Rate_Esc__c),ISBLANK(leaseworks__MR_Rate_Esc__c),leaseworks__MR_Rate_Esc__c==0),
+NULL,
+&#39;$&#39; &amp; TEXT( ROUND(leaseworks__Y_Hidden_Adjustment_Amount_Lower__c , 0) ) &amp; &#39; - $&#39; &amp; TEXT(ROUND(leaseworks__Y_Hidden_Adjustment_Amount_Upper__c , 0) )
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>[OLD MR]Ratio Table Range (Escalated)</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

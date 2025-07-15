@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__TypeIsRequired</fullName>
+    <active>true</active>
+    <description>Type field value is required</description>
+    <errorConditionFormula>OR(ISPICKVAL(Type, &quot;None&quot;),ISPICKVAL(Type, &quot;&quot;))</errorConditionFormula>
+    <errorDisplayField>Type</errorDisplayField>
+    <errorMessage>Please select a Type for the Account</errorMessage>
+</ValidationRule>

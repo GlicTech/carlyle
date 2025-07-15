@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApprovalProcess xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <allowRecall>false</allowRecall>
+    <allowedSubmitters>
+        <type>owner</type>
+    </allowedSubmitters>
+    <approvalPageFields>
+        <field>Name</field>
+    </approvalPageFields>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <approvalActions>
+            <action>
+                <name>Status_Update_Approved</name>
+                <type>FieldUpdate</type>
+            </action>
+        </approvalActions>
+        <assignedApprover>
+            <approver>
+                <name>cillians@carlyle.aero</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>siggia@carlyle.aero</name>
+                <type>user</type>
+            </approver>
+            <whenMultipleApprovers>Unanimous</whenMultipleApprovers>
+        </assignedApprover>
+        <label>Step 1</label>
+        <name>Step_1</name>
+    </approvalStep>
+    <description>Used for Actual_Reimbursement__c &lt; 400K</description>
+    <emailTemplate>unfiled$public/Claim_Approval_Process</emailTemplate>
+    <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
+    <entryCriteria>
+        <criteriaItems>
+            <field>leaseworks__Claims__c.Actual_Reimbursement__c</field>
+            <operation>lessOrEqual</operation>
+            <value>400000</value>
+        </criteriaItems>
+    </entryCriteria>
+    <finalApprovalRecordLock>true</finalApprovalRecordLock>
+    <finalRejectionRecordLock>false</finalRejectionRecordLock>
+    <initialSubmissionActions>
+        <action>
+            <name>Claim_CC_Email</name>
+            <type>Alert</type>
+        </action>
+        <action>
+            <name>Finance_Sign_Off_1</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>Status_Update</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>Technical_User</name>
+            <type>FieldUpdate</type>
+        </action>
+    </initialSubmissionActions>
+    <label>Claim Approval Less Than 400K</label>
+    <processOrder>2</processOrder>
+    <recordEditability>AdminOnly</recordEditability>
+    <showApprovalHistory>true</showApprovalHistory>
+</ApprovalProcess>

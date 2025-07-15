@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Validation_for_Sd_Slip_invoice_creation</fullName>
+    <active>true</active>
+    <description>This validation is used to validate for Invoice creation</description>
+    <errorConditionFormula>AND(
+  !$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c,
+  ISNEW(), NOT(CONTAINS(TEXT(leaseworks__Invoice_Type__c), &quot;HL/SL&quot;)),
+  NOT(ISBLANK(leaseworks__Security_Deposit_Slip__c)),
+  OR(
+    ISPICKVAL(  leaseworks__Security_Deposit_Slip__r.leaseworks__Link_To_Invoice__r.leaseworks__Status__c  , &quot;Pending&quot;),
+    ISPICKVAL(leaseworks__Security_Deposit_Slip__r.leaseworks__Link_To_Invoice__r.leaseworks__Status__c, &quot;Submitted&quot;),
+    ISPICKVAL(leaseworks__Security_Deposit_Slip__r.leaseworks__Link_To_Invoice__r.leaseworks__Status__c, &quot;Approved&quot;),
+    ISPICKVAL(leaseworks__Security_Deposit_Slip__r.leaseworks__Link_To_Invoice__r.leaseworks__Status__c, &quot;Cancelled-Pending&quot;)
+  )
+)</errorConditionFormula>
+    <errorMessage>Cannot create an invoice as an approved/pending invoice is already associated. Please Decline/Cancel the invoice before generating a new invoice.</errorMessage>
+</ValidationRule>

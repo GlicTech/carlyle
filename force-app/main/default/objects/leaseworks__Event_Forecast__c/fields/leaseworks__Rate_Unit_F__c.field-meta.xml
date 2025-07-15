@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Rate_Unit_F__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <formula>case( leaseworks__Rate_Basis_As_Per_Lease__c, &#39;Months&#39; ,&#39;Calendar&#39;
+,&#39;Hours&#39; ,if(Text(leaseworks__Type__c)==&#39;APU&#39; ,&#39;Hours&#39; , &#39;FH&#39;)
+,&#39;FC&#39;
+)</formula>
+    <label>Rate Unit</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

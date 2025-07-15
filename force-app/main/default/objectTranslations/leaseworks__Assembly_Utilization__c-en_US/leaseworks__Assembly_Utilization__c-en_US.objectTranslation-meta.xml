@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>2023 Assembly Utilization</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Utilization Metrics --></label>
+            <section>Utilization Metrics</section>
+        </sections>
+        <sections>
+            <label><!-- Utilization Metrics(Engine Only) --></label>
+            <section>Utilization Metrics(Engine Only)</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Assembly_Utilization_Layout</layout>
+        <sections>
+            <label><!-- Utilization Metrics --></label>
+            <section>Utilization Metrics</section>
+        </sections>
+        <sections>
+            <label><!-- Utilization Metrics(APU Only) --></label>
+            <section>Utilization Metrics(APU Only)</section>
+        </sections>
+        <sections>
+            <label><!-- Utilization Metrics(Engine Only) --></label>
+            <section>Utilization Metrics(Engine Only)</section>
+        </sections>
+    </layouts>
+    <validationRules>
+        <errorMessage><!-- Utilization values should always be positive. Please use the True-up for correction if necessary --></errorMessage>
+        <name>leaseworks__Flight_Hours</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Utilization values should always be positive. Please use the True-up for correction if necessary --></errorMessage>
+        <name>leaseworks__Flight_cycles</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please unselect the Unknown FH/FC checkbox since FH, FC values are present. --></errorMessage>
+        <name>leaseworks__Invalid_Unknown_FH_FC_rule</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter values for FH, FC Or select the Unknown FH/FC checkbox --></errorMessage>
+        <name>leaseworks__Unknown_FH_FC_rule</name>
+    </validationRules>
+</CustomObjectTranslation>

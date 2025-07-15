@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DocumentLinkValidation</fullName>
+    <active>true</active>
+    <description>Rule fires if document link is changed by a user who is not on Commercial or System Admin profile. Used to enforce FLS when Document Link updated via screen flow.</description>
+    <errorConditionFormula>AND(
+  ISCHANGED( pro_Long_Document_Link__c ),
+  NOT($Profile.Name = &quot;System Administrator&quot;),
+  NOT($Profile.Name = &quot;Carlyle Commercial&quot;)
+)</errorConditionFormula>
+    <errorMessage>Your user does not have permission to update the Document Link field.</errorMessage>
+</ValidationRule>

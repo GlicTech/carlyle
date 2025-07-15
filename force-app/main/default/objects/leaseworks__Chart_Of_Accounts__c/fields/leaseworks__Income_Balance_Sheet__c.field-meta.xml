@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Income_Balance_Sheet__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <formula>CASE(  leaseworks__Account_Type__c ,
+			&#39;Asset&#39;,&#39;Balance Sheet&#39;,
+			&#39;Liability&#39;,&#39;Balance Sheet&#39;,
+				&#39;Equity&#39;,&#39;Balance Sheet&#39;,
+				&#39;Contra-Asset&#39;,&#39;Balance Sheet&#39;,
+				&#39;Expense&#39;,&#39;Income Statement&#39;,
+				&#39;Revenue&#39;,&#39;Income Statement&#39;,&#39;&#39;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Income/Balance Sheet</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

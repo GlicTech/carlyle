@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>Lease Option Layout - Extension</layout>
+        <sections>
+            <label><!-- Extension Option --></label>
+            <section>Extension Option</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Lease Option Layout - Purchase</layout>
+        <sections>
+            <label><!-- Purchase Option --></label>
+            <section>Purchase Option</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Lease Option Layout - Termination</layout>
+        <sections>
+            <label><!-- Termination Option --></label>
+            <section>Termination Option</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- Rollover --></label>
+        <name>Rollover</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Extension --></label>
+        <name>leaseworks__Extension</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Purchase --></label>
+        <name>leaseworks__Purchase</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Termination --></label>
+        <name>leaseworks__Termination</name>
+    </recordTypes>
+    <validationRules>
+        <errorMessage><!-- Exercised Date cannot be outside the range of the Option Start and End dates --></errorMessage>
+        <name>leaseworks__Exercised_Date_not_in_period</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Minimum Extension Months cannot be higher than Maximum Extension Months --></errorMessage>
+        <name>leaseworks__Min_Max_Extensions</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter valid number --></errorMessage>
+        <name>leaseworks__Notice_Period_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Value outside of Valid range on numeric field --></errorMessage>
+        <name>leaseworks__Notice_Period_Validation_2</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter valid date Option/Notice Start cannot be more than Lease End Date --></errorMessage>
+        <name>leaseworks__Option_Notice_Start_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Option/Notice Start cannot be later than Option/Notice End --></errorMessage>
+        <name>leaseworks__Option_Start_and_End_Date</name>
+    </validationRules>
+</CustomObjectTranslation>

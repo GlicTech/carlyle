@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__DepreciationScheduleBookValueRule</fullName>
+    <active>true</active>
+    <errorConditionFormula>!ISBLANK(leaseworks__Depreciation_Schedule__c)
+&amp;&amp; ISBLANK(leaseworks__Equipment_Cost__c) &amp;&amp; ISBLANK(leaseworks__Book_Value__c)</errorConditionFormula>
+    <errorMessage>Please enter Book Value or Equipment Cost.</errorMessage>
+</ValidationRule>

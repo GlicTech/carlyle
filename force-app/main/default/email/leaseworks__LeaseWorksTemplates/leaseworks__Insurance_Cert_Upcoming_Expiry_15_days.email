@@ -1,0 +1,71 @@
+<messaging:emailTemplate subject="Upcoming Insurance Certificate Expiry for the Lease {!relatedTo.leaseworks__Lease__r.name}"
+    recipientType="User"
+    relatedToType="leaseworks__Insurance_Cert__c">
+
+<messaging:htmlEmailBody >
+<html>
+<body>
+
+
+
+<b>REMINDER</b><br/>
+
+<p>This is an automatic notification to inform you that the certificate 
+    <apex:outputlink value="{!LEFT($Api.Partner_Server_URL_140,FIND('.com',$Api.Partner_Server_URL_140)+4)+relatedTo.Id}"> 
+    {!relatedTo.Name}</apex:outputlink>
+  for the lease {!relatedTo.leaseworks__Lease__r.name} is expiring in 15 days.</p><br/><br/>
+
+<b>Insurance Certificate Details:</b><br/><br/>
+
+<b>Insurance Certificate Name:</b> <apex:outputText value=" {!relatedTo.Name}"/><br/>
+<b>Insurer:</b> {!relatedTo.leaseworks__Insurer__c}<br/>
+<b>Re-Insurer:</b> {!relatedTo.leaseworks__Re_Insurer__c}<br/>
+<b>Other Parties:</b> {!relatedTo.leaseworks__Other_Parties__c} <br/>
+<b>Start Date: </b><apex:outputText value="{0, date, dd-MMM-yyyy}">
+                    <apex:Param value="{!relatedTo.leaseworks__Start_Date__c }" />
+                    </apex:OutputText><br/>
+<b>Expiry Date:</b><apex:outputText value="{0, date, dd-MMM-yyyy}">
+                    <apex:Param value="{!relatedTo.leaseworks__Expiry_Date__c}"/>
+                    </apex:OutputText><br/> 
+<b>Renewal Date:</b><apex:outputText value="{0, date, dd-MMM-yyyy}">
+                    <apex:Param value="{!relatedTo.leaseworks__Expiry_Date__c}"/>
+                    </apex:OutputText><br/>
+<b>Inactive:</b> {!IF(relatedTo.leaseworks__Inactive__c, 'Yes', 'No')}<br/>
+<b>Agreed Value:</b><apex:outputText value="{!relatedTo.leaseworks__Agreed_Value__c}"/> <br/>
+<b>Aggregate Limit:</b> {!relatedTo.leaseworks__Aggregate_limit__c} <br/>
+<b>Reinsurance Level:</b> {!relatedTo.leaseworks__Reinsurance_Level__c} <br/>
+<b>Comments:</b> {!relatedTo.leaseworks__Comment__c} <br/><br/>
+ 
+</body>
+</html>
+</messaging:htmlEmailBody>
+
+<messaging:attachment filename="insurance_expiry.ics">
+BEGIN:VCALENDAR
+METHOD:REQUEST
+VERSION:2.0
+PRODID://Leaseworks//Reminder//EN
+CALSCALE:GREGORIAN
+BEGIN:VEVENT
+CLASS:PUBLIC
+STATUS:CONFIRMED
+ORGANIZER:MAILTO:{!recipient.Email}
+DTSTAMP;TZID=GMT:<apex:outputText value="{0,date,MMddyyyy'T'HHmmssZ}"><apex:param value="{!relatedTo.leaseworks__Expiry_Date__c}"/></apex:outputText>
+UID:<apex:outputText value="{!relatedTo.id}"/>@{!LEFT($Api.Partner_Server_URL_140,FIND('.com',$Api.Partner_Server_URL_140)+4)}
+<!-- SEQUENCE:<apex:outputText value="{!relatedTo.leaseworks__Y_Hidden_Sequence__c}"/> -->
+DTSTART;VALUE=DATE:<apex:outputText value="{!MID(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(TEXT(relatedTo.leaseworks__Expiry_Date__c),':',''),'-',''),' ','T'),1,8)}"/>
+SUMMARY:<apex:outputText value="Subject {!relatedTo.name}"/>
+DESCRIPTION:This is an automatic notification to inform you that the certificate \n{!relatedTo.Name}\nfor the lease {!relatedTo.leaseworks__Lease__r.name} is expiring in 15 days\n
+Insurer:{!relatedTo.leaseworks__Insurer__c}\n
+Re-Insurer:{!relatedTo.leaseworks__Re_Insurer__c}\n
+Other Parties:{!relatedTo.leaseworks__Other_Parties__c}\n
+BEGIN:VALARM
+TRIGGER:-PT1D
+ACTION:DISPLAY
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+END:VCALENDAR 
+</messaging:attachment>
+
+</messaging:emailTemplate>

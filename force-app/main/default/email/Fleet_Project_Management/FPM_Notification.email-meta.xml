@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Alert when as Final Workscope Reviewer is assigned</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>leaseworks__Smart_Lease_Logo</letterhead>
+    <name>FPM Notification: Alert when as Final Workscope Reviewer is assigned</name>
+    <style>freeForm</style>
+    <subject>Notification: You have been added to {!leaseworks__Technical_Project__c.Name} as Final Workscope Reviewer</subject>
+    <textOnly>Dear {!leaseworks__Technical_Project__c.Final_Workscope_Reviewer__c}
+
+This is an automated notification to inform you that  you have been assigned as a Final Workscope Reviewer to a project.. Please see below for some information on this project, along with a direct link to it.
+
+
+Project Name: {!leaseworks__Technical_Project__c.Name}
+
+Project Type: {!leaseworks__Technical_Project__c.leaseworks__Project_Type__c}
+
+Associated Assembly: {!leaseworks__Technical_Project__c.Assembly_local__c}
+
+Project Description: {!leaseworks__Technical_Project__c.leaseworks__Project_Description__c}
+
+
+
+Thanks</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

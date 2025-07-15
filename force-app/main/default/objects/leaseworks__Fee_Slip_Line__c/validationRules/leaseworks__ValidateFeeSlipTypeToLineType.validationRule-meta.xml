@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__ValidateFeeSlipTypeToLineType</fullName>
+    <active>true</active>
+    <description>Fee Type on the Fee Slip Line must match the Fee Type on the related Fee Slip.</description>
+    <errorConditionFormula>IF(  AND(!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c,
+leaseworks__Fee_Slip__r.leaseworks__Fee_Type__c  &lt;&gt;  TEXT( leaseworks__Fee_Type__c ) ) , true, false)</errorConditionFormula>
+    <errorDisplayField>leaseworks__Fee_Type__c</errorDisplayField>
+    <errorMessage>Fee Type on the Fee Slip Line must match the Fee Type on the related Fee Slip.</errorMessage>
+</ValidationRule>

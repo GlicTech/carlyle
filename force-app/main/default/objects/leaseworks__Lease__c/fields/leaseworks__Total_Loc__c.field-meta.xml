@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Total_Loc__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <inlineHelpText>This is the amount of the Letter of Credit net of any drawdowns</inlineHelpText>
+    <label>Remaining Security Deposit (LoC)</label>
+    <summarizedField>leaseworks__Letter_Of_Credit__c.leaseworks__Remaining_Balance__c</summarizedField>
+    <summaryFilterItems>
+        <field>leaseworks__Letter_Of_Credit__c.leaseworks__LC_Coverage_Type__c</field>
+        <operation>equals</operation>
+        <value>Security Deposit</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>leaseworks__Letter_Of_Credit__c.leaseworks__Status__c</field>
+        <operation>equals</operation>
+        <value>Active</value>
+    </summaryFilterItems>
+    <summaryForeignKey>leaseworks__Letter_Of_Credit__c.leaseworks__Lease__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

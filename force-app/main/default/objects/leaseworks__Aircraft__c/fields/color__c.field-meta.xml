@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>color__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(leaseworks__Y_Hidden_Lease_End_Date__c - TODAY()&gt;451,IMAGE(&quot;/sfc/servlet.shepherd/version/renditionDownload?rendition=ORIGINAL_Jpg&amp;versionId=068aA000002OOL7&amp;operationContext=CHATTER&amp;contentId=05TaA0000037zWk&quot;, &quot;Green&quot;,30,60),
+IF(AND(leaseworks__Y_Hidden_Lease_End_Date__c - TODAY()&lt;=451,leaseworks__Y_Hidden_Lease_End_Date__c - TODAY()&gt;360),IMAGE(&quot;/sfc/servlet.shepherd/version/renditionDownload?rendition=ORIGINAL_Jpg&amp;versionId=068aA000002ORPK&amp;operationContext=CHATTER&amp;contentId=05TaA0000038BLI&quot;, &quot;Yellow&quot;,30,60),
+IF(AND(leaseworks__Y_Hidden_Lease_End_Date__c - TODAY()&lt;=360,leaseworks__Y_Hidden_Lease_End_Date__c - TODAY()&gt;270),IMAGE(&quot;/sfc/servlet.shepherd/version/renditionDownload?rendition=ORIGINAL_Jpg&amp;versionId=068aA000002OUOn&amp;operationContext=CHATTER&amp;contentId=05TaA0000038DBF&quot;, &quot;Orange&quot;,30,60),
+IF(leaseworks__Y_Hidden_Lease_End_Date__c - TODAY()&lt;=270,IMAGE(&quot;/sfc/servlet.shepherd/version/renditionDownload?rendition=ORIGINAL_Jpg&amp;versionId=068aA000002OUBy&amp;operationContext=CHATTER&amp;contentId=05TaA0000038Cwo&quot;, &quot;Red&quot;,30,60),
+NULL))))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>__</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

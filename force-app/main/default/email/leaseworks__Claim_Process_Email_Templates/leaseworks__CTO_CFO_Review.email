@@ -1,0 +1,166 @@
+<messaging:emailTemplate subject="A New {!relatedTo.leaseworks__Event__r.leaseworks__Event_Type_F__c} Claim Notification Is Received For MSN {!relatedTo.leaseworks__Assembly__r.leaseworks__Attached_Aircraft__r.name} - {!relatedTo.leaseworks__Assembly__r.name} {!relatedTo.leaseworks__Assembly__r.leaseworks__Type__c} For Your Approval As The Amount Is More Than The Threshold Set" recipientType="User" relatedToType="leaseworks__Claims__c">
+<messaging:htmlEmailBody >
+<html>
+    <header>
+       
+        
+      <apex:image id="theImage" value="{!'/servlet/servlet.FileDownload?file=0152o0000093rSj'}"/>
+    </header>
+
+    <body>
+
+<p></p>
+<p>Please review and approve the claim by Finance / Accounting</p>
+
+<table>
+  <tr>
+          <td>
+             <b>MSN for claim:</b>
+        </td>
+          <td>
+              {!relatedTo.leaseworks__Assembly__r.leaseworks__Attached_Aircraft__r.name}
+          </td>
+      </tr>
+       <tr>
+          <td>
+              <b>Assembly Name:</b>
+          </td>
+          <td >
+              {!relatedTo.leaseworks__Assembly__r.leaseworks__Type__c}
+          </td>
+      </tr>
+      <tr>
+          <td >
+              <b>Event Name:</b>
+          </td>
+          <td >
+              {!relatedTo.leaseworks__Event__r.Name}
+          </td>
+      </tr>
+      <tr>
+          <td >
+              <b>Event Type:</b>
+          </td>
+          <td >
+             {!relatedTo.leaseworks__Event__r.leaseworks__Event_Type_F__c}
+          </td>
+      </tr>
+      <tr>
+          <td >
+              <b>Claim:</b>
+          </td>
+          <td >
+              {!relatedTo.Name}
+          </td>
+      </tr>
+       <tr>
+          <td >
+              <b>Date of receipt of notification from Lessee:</b>
+          </td>
+          <td >
+              <apex:outputField value="{!relatedTo.leaseworks__Date_Receipt_Notification_From_Lessee__c}"/>
+          </td>
+      </tr>
+      <tr>
+          <td >
+              <b>Confirmed the receipt to Lessee:</b>
+          </td>
+          <td >
+             {!IF(relatedTo.leaseworks__Confirmed_the_Receipt_to_Lessee__c, 'Yes', 'No')}
+          </td>
+      </tr>
+      <tr>
+          <td >
+              <b>Tech Review Approval Date :</b>
+          </td>
+          <td >
+             <apex:outputField value="{!relatedTo.leaseworks__Tech_Review_Approval_Date__c}"/>
+          </td>
+      </tr>
+      <tr>
+          <td >
+              <b>Technical Manager Comment:</b>
+          </td>
+          <td >
+              {!relatedTo.leaseworks__Technical_Manager_Comment__c}
+          </td>
+      </tr>
+       <tr>
+          <td >
+              <b>Estimated Claim Amount:</b>
+          </td>
+          <td >
+            <apex:outputField value="{!relatedTo.leaseworks__Estimated_Claim_Amount__c}"/>
+          </td>
+      </tr>
+      <tr>
+          <td >
+              <b>Approved Claim Amount:</b>
+          </td>
+          <td >
+            <apex:outputField value=" {!relatedTo.leaseworks__Approved_Claim_Amount__c}"/>
+          </td>
+      </tr>
+      <tr>
+          <td >
+              <b>Contract/Legal Review Approval Date :</b>
+          </td>
+          <td >
+            <apex:outputField value="{!relatedTo.leaseworks__Contract_Legal_Review_Approval_Date__c}"/>
+          </td>
+      </tr>
+      <tr>
+          <td >
+              <b>Contract Manager Sign-off:</b>
+          </td>
+          <td >
+             {!IF(relatedTo.leaseworks__Contract_Manager_Sign_Off__c, 'Yes', 'No')}
+          </td>
+      </tr>
+          <tr>
+          <td >
+              <b>Contract Manager Comments:</b>
+          </td>
+          <td >
+             {!relatedTo.leaseworks__Contract_Manager_Comments__c}
+          </td>
+      </tr>
+      <tr>
+          <td >
+              <b>Legal Sign-off:</b>
+          </td>
+          <td >
+             {!IF(relatedTo.leaseworks__Legal_Sign_Off__c, 'Yes', 'No')}
+          </td>
+      </tr>
+      <tr>
+          <td >
+              <b>Legal Comments:</b>
+          </td>
+          <td >
+             {!relatedTo.leaseworks__Legal_Comments__c}
+          </td>
+      </tr>
+      <tr>
+          <td >
+              <b>Fund Balance available at Date of Induction:</b>
+          </td>
+          <td >
+             <apex:outputField value="{!relatedTo.leaseworks__Fund_Balance_at_Date_of_Induction__c}"/>
+          </td>
+      </tr>
+      <tr>
+          <td >
+              <b>Finance / Accounting Review Date:</b>
+          </td>
+          <td >
+            <apex:outputField value=" {!relatedTo.leaseworks__Finance_Accounting_Review_Date__c}"/>
+          </td>
+      </tr>
+     
+ 
+     </table>
+    </body>
+   </html>
+</messaging:htmlEmailBody> 
+</messaging:emailTemplate>

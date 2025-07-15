@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Project_State_picture__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <formula>IF( text(leaseworks__Project_Status__c) = &quot;Closed&quot;,
+
+IMAGE(CASE(leaseworks__Project_State__c,
+
+&quot;On Track&quot;, &quot;/resource/&quot;+ $Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Package_Prefix__c + &quot;Closed&quot;,
+
+&quot;At Risk&quot;, &quot;/resource/&quot;+ $Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Package_Prefix__c + &quot;Closed&quot;,
+
+&quot;Delayed&quot;, &quot;/resource/&quot;+ $Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Package_Prefix__c + &quot;Closed&quot;,
+
+&quot;/s.gif&quot;), &quot;status color&quot;),
+
+IF( text(leaseworks__Project_Status__c) = &quot;In Progress&quot;,
+
+IMAGE(CASE(leaseworks__Project_State__c,
+
+&quot;On Track&quot;, &quot;/resource/&quot;+ $Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Package_Prefix__c + &quot;OnTrack&quot;,
+
+&quot;At Risk&quot;, &quot;/resource/&quot;+ $Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Package_Prefix__c + &quot;AtRisk&quot;,
+
+&quot;Delayed&quot;, &quot;/resource/&quot;+ $Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Package_Prefix__c + &quot;Delayed&quot;,
+
+&quot;/s.gif&quot;), &quot;status color&quot;),
+
+IF( text(leaseworks__Project_Status__c) = &quot;Open&quot;,
+
+IMAGE(CASE(leaseworks__Project_State__c,
+
+&quot;On Track&quot;, &quot;/resource/&quot;+ $Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Package_Prefix__c + &quot;OnTrack&quot;,
+
+&quot;At Risk&quot;, &quot;/resource/&quot;+ $Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Package_Prefix__c + &quot;AtRisk&quot;,
+
+&quot;Delayed&quot;, &quot;/resource/&quot;+ $Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Package_Prefix__c + &quot;Delayed&quot;,
+
+&quot;/s.gif&quot;), &quot;status color&quot;),
+
+Null)))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Project State (Img)</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

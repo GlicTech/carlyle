@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Fee_Due_Type__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Enter the number of days in &#39;Fee Due Day&#39; to push the fee due date from the invoice or fee start date</description>
+    <externalId>false</externalId>
+    <inlineHelpText>If selected, you must enter a value in the &quot;Fee Due Day&quot; field. Fixed Day in a Week: If selected, provide values for both the &quot;Day&quot; and &quot;Weekday Number&quot; fields. Relative: If selected, enter the number of days in the &quot;Fee Due Day&quot; field. This will push the fee due date by the specified number of days from the Invoice Date/fee start date.</inlineHelpText>
+    <label>Fee Due Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Fixed Date</fullName>
+                <default>true</default>
+                <label>Fixed Date</label>
+            </value>
+            <value>
+                <fullName>Fixed Day in a week</fullName>
+                <default>false</default>
+                <label>Fixed Day in a week</label>
+            </value>
+            <value>
+                <fullName>Relative Based On fee period Start Date</fullName>
+                <default>false</default>
+                <label>Relative Based On fee period Start Date</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

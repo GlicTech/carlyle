@@ -1,0 +1,1 @@
+trigger Notify_leaseworks_O_Marketing_Activity_AutoTrigger on leaseworks__Marketing_Activity__c (before insert, before update, before delete, after insert, after update, after delete, after undelete) { leaseworks.Notify_NotificationScheduler.triggerHandler(leaseworks__Marketing_Activity__c.sObjectType); }

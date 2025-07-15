@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Require_Reason_For_Hold_Release</fullName>
+    <active>true</active>
+    <description>Ensure you fill in the Hold Release Reason when the record is placed on hold.</description>
+    <errorConditionFormula>AND(
+    !$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c,
+    leaseworks__On_Hold__c, 
+    ISBLANK(leaseworks__Hold_Release_Reason__c)
+)</errorConditionFormula>
+    <errorDisplayField>leaseworks__Hold_Release_Reason__c</errorDisplayField>
+    <errorMessage>A reason is required to proceed with placing or releasing a hold. Please enter the details in the &quot;Hold/Release Reason&quot; field.</errorMessage>
+</ValidationRule>

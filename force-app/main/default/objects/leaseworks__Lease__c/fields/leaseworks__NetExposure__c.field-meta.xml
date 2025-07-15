@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__NetExposure__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Outstanding balance that exceeds the remaining Security Deposit, Cash, or Letter of Credit.</description>
+    <externalId>false</externalId>
+    <formula>IF( leaseworks__Total_Outstanding_Balance__c  &lt; leaseworks__Remaining_SD_Cash_LoC__c, 0,  leaseworks__Total_Outstanding_Balance__c  - leaseworks__Remaining_SD_Cash_LoC__c)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Outstanding balance that exceeds the remaining Security Deposit, Cash, or Letter of Credit.</inlineHelpText>
+    <label>NetExposure</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

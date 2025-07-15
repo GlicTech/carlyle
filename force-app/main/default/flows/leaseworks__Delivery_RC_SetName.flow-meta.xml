@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>63.0</apiVersion>
+    <description>Flow to set name field when Delivery/Return Condition Life record is created or updated.</description>
+    <environments>Default</environments>
+    <formulas>
+        <description>Formula to update &#39;Delivery/Return Condition Life&#39; object record name</description>
+        <name>UpdateDelivery_RCNameFormula</name>
+        <dataType>String</dataType>
+        <expression>Text($Record.leaseworks__Assembly_Type__c) +&#39; - &#39;+ Text($Record.leaseworks__Event_Type__c) + &#39; - &#39;+ Text($Record.leaseworks__Applicability__c)</expression>
+    </formulas>
+    <interviewLabel>Delivery/RC_SetName {!$Flow.CurrentDateTime}</interviewLabel>
+    <isTemplate>true</isTemplate>
+    <label>Delivery/RC_SetName</label>
+    <migratedFromWorkflowRuleName>Delivery/RC_SetName</migratedFromWorkflowRuleName>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <description>Update Delivery/Return Condition Life Name to &lt;Assembly Type&gt;+&lt;Event Type&gt;+&lt;Calculation Method&gt;</description>
+        <name>Update_Fields</name>
+        <label>Update Fields</label>
+        <locationX>176</locationX>
+        <locationY>323</locationY>
+        <inputAssignments>
+            <field>Name</field>
+            <value>
+                <elementReference>UpdateDelivery_RCNameFormula</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Update_Fields</targetReference>
+        </connector>
+        <object>leaseworks__Assembly_RC_Info__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>InvalidDraft</status>
+</Flow>

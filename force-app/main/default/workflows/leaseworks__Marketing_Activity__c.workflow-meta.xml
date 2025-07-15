@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>leaseworks__PCM_Review_Complete</fullName>
+        <description>PCM Review Complete</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>leaseworks__LeaseWorks_CRM_EmailTemplates/leaseworks__PCM_Email_Template</template>
+    </alerts>
+    <alerts>
+        <fullName>leaseworks__PCM_Team_Review</fullName>
+        <description>PCM Team Review</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>leaseworks__LeaseWorks_CRM_EmailTemplates/leaseworks__PCM_Email_Template</template>
+    </alerts>
+    <alerts>
+        <fullName>leaseworks__Pricing_Analysis_Complete_Email_Alert</fullName>
+        <description>Pricing Analysis Complete Email Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>leaseworks__LeaseWorks_CRM_EmailTemplates/leaseworks__PCM_Email_Template</template>
+    </alerts>
+    <alerts>
+        <fullName>leaseworks__Pricing_Review</fullName>
+        <description>Pricing Review</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>leaseworks__LeaseWorks_CRM_EmailTemplates/leaseworks__PCM_Email_Template</template>
+    </alerts>
+    <alerts>
+        <fullName>leaseworks__Pricing_Review_Rejected</fullName>
+        <description>Pricing Review Rejected</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>leaseworks__LeaseWorks_CRM_EmailTemplates/leaseworks__PCM_Email_Template</template>
+    </alerts>
+    <alerts>
+        <fullName>leaseworks__Reject_Review_by_PCM</fullName>
+        <description>Reject Review by PCM</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>leaseworks__LeaseWorks_CRM_EmailTemplates/leaseworks__PCM_Email_Template</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>leaseworks__MA_SetLastStatus</fullName>
+        <description>Z_Unused : Not using now</description>
+        <field>leaseworks__Last_Status__c</field>
+        <formula>leaseworks__Last_Status__c</formula>
+        <name>MA_SetLastStatus</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Populate_Deal_Name_for_deals_in_Campaign</fullName>
+        <description>Campaign Name + Prospect Name</description>
+        <field>Name</field>
+        <formula>Left(leaseworks__Campaign__r.Name + &#39; (&#39; +  leaseworks__Prospect_Name__c  + &#39;)&#39;,80)</formula>
+        <name>Populate Deal Name for deals in Campaign</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Set_Status_to_Open_Approved</fullName>
+        <description>Z_Unused</description>
+        <field>leaseworks__Pricing_Analysis_Status__c</field>
+        <literalValue>Pricing Analysis Complete</literalValue>
+        <name>Set Status to Open Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Set_Status_to_Pricing_Analysis</fullName>
+        <description>Z_Unused</description>
+        <field>leaseworks__Pricing_Analysis_Status__c</field>
+        <literalValue>Pricing Analysis</literalValue>
+        <name>Set Status to Pricing Analysis</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Set_Status_to_Pricing_Analysis_Complete</fullName>
+        <description>Z_Unused</description>
+        <field>leaseworks__Pricing_Analysis_Status__c</field>
+        <literalValue>Pricing Analysis Complete</literalValue>
+        <name>Set Status to Pricing Analysis Complete</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Set_Status_to_Rejected_by_Pricing_Team</fullName>
+        <description>Z_Unused</description>
+        <field>leaseworks__Pricing_Analysis_Status__c</field>
+        <literalValue>Rejected by PCM Team</literalValue>
+        <name>Set Status to Rejected by PCM Team</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Set_Status_to_Rejecyted_by_Pricing_Team</fullName>
+        <description>Z_Unused</description>
+        <field>leaseworks__Pricing_Analysis_Status__c</field>
+        <literalValue>Rejected by Pricing Team</literalValue>
+        <name>Set Status to Rejected by Pricing Team</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Set_Status_to_Submitted_Approval</fullName>
+        <description>Z_Unused</description>
+        <field>leaseworks__Pricing_Analysis_Status__c</field>
+        <literalValue>PCM Review</literalValue>
+        <name>Set Status to PCM Review</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>leaseworks__MA_InsUpd</fullName>
+        <actions>
+            <name>leaseworks__MA_SetLastStatus</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Z_Unused : now we are not using this WF</description>
+        <formula>true</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__Populate Deal Name for deals in Campaigns</fullName>
+        <actions>
+            <name>leaseworks__Populate_Deal_Name_for_deals_in_Campaign</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Campaign Name + (Prospect Name)</description>
+        <formula>AND(!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c,NOT(ISBLANK(leaseworks__Campaign__c)))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

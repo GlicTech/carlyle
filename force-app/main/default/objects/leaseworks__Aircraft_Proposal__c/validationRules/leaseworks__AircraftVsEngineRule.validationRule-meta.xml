@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__AircraftVsEngineRule</fullName>
+    <active>true</active>
+    <description>Please select either  Aircraft or Engine but not both.</description>
+    <errorConditionFormula>AND( !$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c
+, OR(
+!isblank(leaseworks__Aircraft__c) 
+, !isblank( leaseworks__World_Fleet_Aircraft__c ))
+,!isblank( leaseworks__Engine__c )
+)</errorConditionFormula>
+    <errorMessage>Please select either  Aircraft or Engine but not both.</errorMessage>
+</ValidationRule>

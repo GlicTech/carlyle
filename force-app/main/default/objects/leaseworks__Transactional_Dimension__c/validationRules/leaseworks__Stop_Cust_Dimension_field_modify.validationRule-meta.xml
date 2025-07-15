@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Stop_Cust_Dimension_field_modify</fullName>
+    <active>true</active>
+    <description>Under Custom Dimension Application we should stop the user from editing the field values</description>
+    <errorConditionFormula>!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c &amp;&amp; 
+NOT( leaseworks__Is_Standard_Dimension__c ) &amp;&amp; (ISCHANGED(Name) || ISCHANGED(leaseworks__Dimension__c))</errorConditionFormula>
+    <errorMessage>You cannot modify this field.</errorMessage>
+</ValidationRule>

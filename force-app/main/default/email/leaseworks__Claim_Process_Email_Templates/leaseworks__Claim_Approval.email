@@ -1,0 +1,230 @@
+<messaging:emailTemplate subject="{!relatedTo.leaseworks__Event__r.leaseworks__Event_Type_F__c} Claim For MSN {!relatedTo.leaseworks__Assembly__r.leaseworks__Attached_Aircraft__r.name} - {!relatedTo.leaseworks__Assembly__r.name} {!relatedTo.leaseworks__Assembly__r.leaseworks__Type__c}  Is Approved For Payment" recipientType="User" relatedToType="leaseworks__Claims__c">
+<messaging:htmlEmailBody >
+<html>
+    <header>
+     
+        
+        <apex:image id="theImage" value="{!'/servlet/servlet.FileDownload?file=0152o0000093rSj'}"/> 
+    </header>
+
+    <body>
+
+<p></p>
+<p>Please find the payment clearance approval for the claim.</p>
+
+<table>
+  <tr>
+          <td>
+             <b>MSN for claim:</b>
+          </td>
+          <td>
+              {!relatedTo.leaseworks__Assembly__r.leaseworks__Attached_Aircraft__r.name}
+          </td>
+      </tr>
+       <tr>
+          <td>
+              <b>Assembly Name:</b>
+          </td>
+          <td >
+              {!relatedTo.leaseworks__Assembly__r.leaseworks__Type__c}
+          </td>
+      </tr>
+      <tr>
+          <td >
+              <b>Event Name:</b>
+          </td>
+          <td >
+              {!relatedTo.leaseworks__Event__r.Name}
+          </td>
+      </tr>
+      <tr>
+          <td >
+              <b>Event Type:</b>
+          </td>
+          <td >
+             {!relatedTo.leaseworks__Event__r.leaseworks__Event_Type_F__c}
+          </td>
+      </tr>
+      <tr>
+          <td >
+              <b>Claim:</b>
+          </td>
+          <td >
+              {!relatedTo.Name}
+          </td>
+      </tr>
+       <tr>
+          <td >
+              <b>Date of receipt of notification from Lessee:</b>
+          </td>
+          <td >
+              <apex:outputField value="{!relatedTo.leaseworks__Date_Receipt_Notification_From_Lessee__c}"/>
+          </td>
+      </tr>
+      <tr>
+          <td >
+              <b>Confirmed the receipt to Lessee:</b>
+          </td>
+          <td >
+             {!IF(relatedTo.leaseworks__Confirmed_the_Receipt_to_Lessee__c, 'Yes', 'No')}
+          </td>
+      </tr>
+      <tr>
+          <td >
+              <b>Tech Review Approval Date :</b>
+          </td>
+          <td >
+             <apex:outputField value="{!relatedTo.leaseworks__Tech_Review_Approval_Date__c}"/>
+          </td>
+      </tr>
+      <tr>
+          <td >
+              <b>Technical Manager Comment:</b>
+          </td>
+          <td >
+              {!relatedTo.leaseworks__Technical_Manager_Comment__c}
+          </td>
+      </tr>
+      <tr>
+          <td >
+              <b>Dispute Signed Off by Technical Head:</b>
+          </td>
+          <td >
+              {!IF(relatedTo.leaseworks__Dispute_Signed_Off_by_Technical_Head__c, 'Yes', 'No')}
+          </td>
+      </tr>
+      <tr>
+          <td >
+              <b>Technical Head Comment:</b>
+          </td>
+          <td >
+              {!relatedTo.leaseworks__Technical_Head_Comment__c}
+          </td>
+      </tr>
+      <tr>
+          <td >
+              <b>Technical Head Review Approval Date:</b>
+          </td>
+          <td >
+             <apex:outputField value=" {!relatedTo.leaseworks__Technical_Head_Review_Approval_Date__c}"/>
+          </td>
+      </tr>
+       <tr>
+          <td >
+              <b>Contract/Legal Review Approval Date :</b>
+          </td>
+          <td >
+             <apex:outputField value="{!relatedTo.leaseworks__Contract_Legal_Review_Approval_Date__c}"/>
+          </td>
+      </tr>
+      <tr>
+          <td >
+              <b>Contract Manager Sign-off:</b>
+          </td>
+          <td >
+             {!IF(relatedTo.leaseworks__Contract_Manager_Sign_Off__c, 'Yes', 'No')}
+          </td>
+      </tr>
+          <tr>
+          <td >
+              <b>Contract Manager Comments:</b>
+          </td>
+          <td >
+             {!relatedTo.leaseworks__Contract_Manager_Comments__c}
+          </td>
+      </tr>
+      <tr>
+          <td >
+              <b>Legal Sign-off:</b>
+          </td>
+          <td >
+             {!IF(relatedTo.leaseworks__Legal_Sign_Off__c, 'Yes', 'No')}
+          </td>
+      </tr>
+      <tr>
+          <td >
+              <b>Legal Comments:</b>
+          </td>
+          <td >
+             {!relatedTo.leaseworks__Legal_Comments__c}
+          </td>
+      </tr>
+      <tr>
+          <td >
+              <b>Fund Balance available at Date of Induction:</b>
+          </td>
+          <td >
+             <apex:outputField value="{!relatedTo.leaseworks__Fund_Balance_at_Date_of_Induction__c}"/>
+          </td>
+      </tr>
+       <tr>
+          <td >
+              <b>Release Claim Amount?:</b>
+          </td>
+          <td >
+             {!IF(relatedTo.leaseworks__Release_Claim_Amount__c, 'Yes', 'No')}
+          </td>
+      </tr>
+      <tr>
+          <td >
+              <b>Finance / Accounting Review Date:</b>
+          </td>
+          <td >
+             <apex:outputField value="{!relatedTo.leaseworks__Finance_Accounting_Review_Date__c}"/>
+          </td>
+      </tr>
+      <tr>
+          <td >
+              <b>Finance Comment:</b>
+          </td>
+          <td >
+             {!relatedTo.leaseworks__Finance_Comment__c}
+          </td>
+      </tr>
+      <tr>
+          <td >
+              <b>Accounting Comment:</b>
+          </td>
+          <td >
+             {!relatedTo.leaseworks__Accounting_Comment__c}
+          </td>
+      </tr>
+      <tr>
+          <td >
+              <b>CTO Sign-off Date:</b>
+          </td>
+          <td >
+             <apex:outputField value="{!relatedTo.leaseworks__CTO_Sign_off_Date__c}"/>
+          </td>
+      </tr>
+      <tr>
+          <td >
+              <b>CFO Sign-off Date:</b>
+          </td>
+          <td >
+           <apex:outputField value=" {!relatedTo.leaseworks__CFO_Sign_off_Date__c}"/>
+          </td>
+      </tr>
+      <tr>
+          <td >
+              <b>CTO Comment:</b>
+          </td>
+          <td >
+             {!relatedTo.leaseworks__CTO_Comment__c}
+          </td>
+      </tr>
+      <tr>
+          <td >
+              <b>CFO Comment:</b>
+          </td>
+          <td >
+             {!relatedTo.leaseworks__CFO_Comment__c}
+          </td>
+      </tr>
+     
+ 
+     </table>
+    </body>
+   </html>
+</messaging:htmlEmailBody> 
+</messaging:emailTemplate>

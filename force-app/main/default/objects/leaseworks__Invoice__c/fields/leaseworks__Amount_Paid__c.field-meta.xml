@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Amount_Paid__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <label>Z_Unused_202406 Amount Paid</label>
+    <summarizedField>leaseworks__Payment__c.leaseworks__Amount__c</summarizedField>
+    <summaryFilterItems>
+        <field>leaseworks__Payment__c.leaseworks__Payment_Status__c</field>
+        <operation>notEqual</operation>
+        <value>Cancelled, Pending, Declined, Submitted for Approval</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>leaseworks__Payment__c.leaseworks__Payment_Type__c</field>
+        <operation>notEqual</operation>
+        <value>Credit Memo</value>
+    </summaryFilterItems>
+    <summaryForeignKey>leaseworks__Payment__c.leaseworks__Invoice__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

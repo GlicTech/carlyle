@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Seller_Name__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Not making it hyperlink as Other will not be pointing to any object and secondly, the lookup for Airline and Lessor will anyway have a hyperlink.</description>
+    <externalId>false</externalId>
+    <formula>CASE(leaseworks__Seller_Type__c, 
+&#39;Airline&#39;, leaseworks__Seller_Airline__r.Name, 
+&#39;Lessor&#39;, leaseworks__Lessor__r.Name, 
+leaseworks__Seller__c )</formula>
+    <inlineHelpText>Airline/Lessor/OEM</inlineHelpText>
+    <label>Seller Name</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Adjusted_Invoices</fullName>
+    <columns>NAME</columns>
+    <columns>CMS_Invoice_Number__c</columns>
+    <columns>leaseworks__Lease__c</columns>
+    <columns>leaseworks__Invoice_Type__c</columns>
+    <columns>leaseworks__Invoice_Category__c</columns>
+    <columns>leaseworks__Date_of_MR_Payment_Due__c</columns>
+    <columns>leaseworks__Status__c</columns>
+    <columns>leaseworks__Adjusted__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>leaseworks__Adjusted__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <label>Adjusted Invoices</label>
+</ListView>

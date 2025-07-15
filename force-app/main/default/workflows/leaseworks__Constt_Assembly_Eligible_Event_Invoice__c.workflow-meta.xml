@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>leaseworks__CAEE_invoice_Approval_Email_Alert</fullName>
+        <description>CAEE invoice Approval Email Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>leaseworks__LeaseWorksTemplates/leaseworks__CAEE_Approval_Flow_Approval_Req</template>
+    </alerts>
+    <alerts>
+        <fullName>leaseworks__CAEE_invoice_Deline_Email_Alert</fullName>
+        <description>CAEE invoice Deline Email Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>leaseworks__LeaseWorksTemplates/leaseworks__CAEE_Invoice_Approval_Flow_Rejection</template>
+    </alerts>
+    <alerts>
+        <fullName>leaseworks__Constt_Assembly_Eligible_Event_Invoice_Approval_Request</fullName>
+        <description>Constt Assembly Eligible Event Invoice - Approval Request</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>leaseworks__LeaseWorksTemplates/leaseworks__CAEE_Approval_Flow_Approval_Req</template>
+    </alerts>
+    <alerts>
+        <fullName>leaseworks__Constt_Assembly_Eligible_Event_Invoice_Rejection_Email</fullName>
+        <description>Constt Assembly Eligible Event Invoice - Rejection Email</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>leaseworks__LeaseWorksTemplates/leaseworks__CAEE_Invoice_Approval_Flow_Rejection</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>leaseworks__AssemblyEEInvUpdateTotalInvAmount</fullName>
+        <field>leaseworks__Invoice_Amount__c</field>
+        <formula>BLANKVALUE(leaseworks__Invoice_Amount__c , 0)</formula>
+        <name>AssemblyEEInvUpdateTotalInvAmount</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_AEE_Status_To_Open</fullName>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Pending</literalValue>
+        <name>Update AEE Status To Open</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_CAEE_Status_To_Approved</fullName>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Approved</literalValue>
+        <name>Update CAEE Status To Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_CAEE_Status_To_Declined</fullName>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Declined</literalValue>
+        <name>Update CAEE Status To Declined</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_CAEE_Status_To_Pending</fullName>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Pending</literalValue>
+        <name>Update CAEE Status To Pending</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_CAEE_invoice_Declined</fullName>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Declined</literalValue>
+        <name>Update CAEE status Declined</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_CAEE_invoice_status_Approved</fullName>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Approved</literalValue>
+        <name>Update CAEE invoice status Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_CAEE_invoice_status_Pending</fullName>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Pending</literalValue>
+        <name>Update CAEE invoice status Pending</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_CAEE_status_Open</fullName>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Pending</literalValue>
+        <name>Update CAEE status Open</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>leaseworks__AssemblyEEInvUpdateTotalInvAmount</fullName>
+        <actions>
+            <name>leaseworks__AssemblyEEInvUpdateTotalInvAmount</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Depricated</description>
+        <formula>FALSE</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

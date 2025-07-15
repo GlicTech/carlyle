@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>pro_Rent_Sort_Order__c</fullName>
+    <externalId>false</externalId>
+    <formula>CASE(
+    TEXT(leaseworks__Invoice_Line_Type__c),
+    &quot;Fixed Rent&quot;, 1,
+    &quot;Manual Rent&quot;, 1,
+    &quot;Seasonal Rent&quot;, 1,
+    &quot;Deferred - Rent&quot;, 2,
+    &quot;Rebate Rental&quot;, 2,
+    &quot;Interest&quot;, 3,
+    &quot;Other Charges&quot;, 4,
+    &quot;Other&quot;, 4,
+    &quot;Service Fee&quot;, 5,
+    &quot;Ad-hoc&quot;, 6,
+    &quot;Tax&quot;, 100,
+    90
+)</formula>
+    <label>Rent Sort Order</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

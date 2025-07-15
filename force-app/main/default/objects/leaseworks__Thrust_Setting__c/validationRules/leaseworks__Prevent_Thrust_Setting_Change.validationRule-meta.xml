@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Prevent_Thrust_Setting_Change</fullName>
+    <active>true</active>
+    <description>The user is not allowed to change the Thrust Setting after the record is created.</description>
+    <errorConditionFormula>AND(
+NOT(ISNEW()),
+ISCHANGED(leaseworks__Thrust_Setting_Nam__c)
+)</errorConditionFormula>
+    <errorDisplayField>leaseworks__Thrust_Setting_Nam__c</errorDisplayField>
+    <errorMessage>Cannot update or delete the Thrust usage at individual LLP level. Please delete the entire thrust setting from the LLP disk sheet.</errorMessage>
+</ValidationRule>

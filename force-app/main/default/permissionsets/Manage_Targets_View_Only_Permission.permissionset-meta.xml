@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Manage Targets View Only Permission</label>
+    <customPermissions>
+        <enabled>true</enabled>
+        <name>pro_View_Only_Manage_Targets_Flow</name>
+    </customPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>leaseworks__Aircraft__c.pro_Omit_From_Targets__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <objectPermissions>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>leaseworks__Aircraft__c</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>leaseworks__Lease__c</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
+    <recordTypeVisibilities>
+        <recordType>leaseworks__Aircraft__c.leaseworks__Aircraft</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>leaseworks__Aircraft__c.leaseworks__Engine</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <tabSettings>
+        <tab>Manage_Targets</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+</PermissionSet>

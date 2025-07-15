@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <buckets>
+        <bucketType>picklist</bucketType>
+        <developerName>BucketField_46107915</developerName>
+        <masterLabel>Deal Status</masterLabel>
+        <nullTreatment>n</nullTreatment>
+        <sourceColumnName>leaseworks__Marketing_Activity__c.leaseworks__Deals_in_Days__r$leaseworks__Current_Deal_Stage__c</sourceColumnName>
+        <useOther>false</useOther>
+        <values>
+            <sourceValues>
+                <sourceValue>Pipeline</sourceValue>
+            </sourceValues>
+            <value>1. Pipeline</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>LOI in works</sourceValue>
+            </sourceValues>
+            <value>2. LOI in Works</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>LOI</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Spec Sent</sourceValue>
+            </sourceValues>
+            <value>3. LOI Sent</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>ADM Approval</sourceValue>
+            </sourceValues>
+            <value>4. ADM Approval</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>LOI Signed</sourceValue>
+            </sourceValues>
+            <value>5. LOI Signed</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>BAC Approval</sourceValue>
+            </sourceValues>
+            <value>6. BAC Approval</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Documentation</sourceValue>
+            </sourceValues>
+            <value>7. Documentation</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Closed - Won</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Closed - Lost</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Delivered</sourceValue>
+            </sourceValues>
+            <value>8. Closed</value>
+        </values>
+    </buckets>
+    <chart>
+        <backgroundColor1>#FFFFFF</backgroundColor1>
+        <backgroundColor2>#FFFFFF</backgroundColor2>
+        <backgroundFadeDir>Diagonal</backgroundFadeDir>
+        <chartSummaries>
+            <axisBinding>y</axisBinding>
+            <column>RowCount</column>
+        </chartSummaries>
+        <chartType>HorizontalBar</chartType>
+        <enableHoverLabels>false</enableHoverLabels>
+        <expandOthers>true</expandOthers>
+        <groupingColumn>leaseworks__Marketing_Activity__c$leaseworks__Deal_Type__c</groupingColumn>
+        <location>CHART_BOTTOM</location>
+        <showAxisLabels>true</showAxisLabels>
+        <showPercentage>false</showPercentage>
+        <showTotal>false</showTotal>
+        <showValues>false</showValues>
+        <size>Medium</size>
+        <summaryAxisRange>Auto</summaryAxisRange>
+        <textColor>#000000</textColor>
+        <textSize>12</textSize>
+        <titleColor>#000000</titleColor>
+        <titleSize>18</titleSize>
+    </chart>
+    <columns>
+        <field>leaseworks__Marketing_Activity__c$Deal_Unique_ID__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Marketing_Activity__c.leaseworks__Deals_in_Days__r$Name</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Marketing_Activity__c$leaseworks__Y_Hidden_MSN_Report__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Marketing_Activity__c$leaseworks__Marketing_Representative_User__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>leaseworks__Marketing_Activity__c.leaseworks__Deals_in_Days__r$leaseworks__Number_of_days_since_assignment__c</field>
+    </columns>
+    <filter>
+        <criteriaItems>
+            <column>leaseworks__Marketing_Activity__c$leaseworks__Deal_Status__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>,Pipeline,LOI in works,LOI,ADM Approval,LOI Signed,BAC Approval,Documentation,Closed - Won,Closed - Lost</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>leaseworks__Marketing_Activity__c$leaseworks__Marketing_Representative_User__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>Nessa Harney,simon leader,kate holohan,aisling power</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>leaseworks__Marketing_Activity__c.leaseworks__Deals_in_Days__r$leaseworks__Date_of_Removal__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value></value>
+        </criteriaItems>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>leaseworks__Marketing_Activity__c$leaseworks__Deal_Status__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>leaseworks__Marketing_Activity__c$leaseworks__Deal_Type__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>leaseworks__Marketing_Activity__c$leaseworks__Probability_N__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>All Deals by phase</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Deals_with_Deal_Aging__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>leaseworks__Marketing_Activity__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

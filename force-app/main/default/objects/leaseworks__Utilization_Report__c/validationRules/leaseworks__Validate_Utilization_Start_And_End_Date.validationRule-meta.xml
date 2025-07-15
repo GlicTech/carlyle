@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Validate_Utilization_Start_And_End_Date</fullName>
+    <active>true</active>
+    <description>Utilization end date cannot be earlier than utilization start date</description>
+    <errorConditionFormula>leaseworks__End_Date__c &lt;  leaseworks__Start_Date__c</errorConditionFormula>
+    <errorMessage>Utilization end date cannot be earlier than utilization start date</errorMessage>
+</ValidationRule>

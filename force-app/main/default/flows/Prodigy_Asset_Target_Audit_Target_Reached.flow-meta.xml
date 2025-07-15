@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>63.0</apiVersion>
+    <environments>Default</environments>
+    <formulas>
+        <name>f_TodayPlusAYear</name>
+        <dataType>Date</dataType>
+        <expression>DATE(YEAR(TODAY()) + 1, MONTH(TODAY()), DAY(TODAY()))</expression>
+    </formulas>
+    <interviewLabel>Prodigy - Asset Target Audit Reached Date {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Prodigy - Asset Target Audit - Target Reached</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Target_For_Month_Of_Close</name>
+        <label>Get Target For Month Of Close</label>
+        <locationX>176</locationX>
+        <locationY>323</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Set_Target_Reached</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>pro_Start_Date__c</field>
+            <operator>LessThan</operator>
+            <value>
+                <elementReference>f_TodayPlusAYear</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>pro_End_Date__c</field>
+            <operator>GreaterThan</operator>
+            <value>
+                <elementReference>f_TodayPlusAYear</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>pro_Target__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <name>Set_Target_Reached</name>
+        <label>Set Target Reached</label>
+        <locationX>176</locationX>
+        <locationY>431</locationY>
+        <inputAssignments>
+            <field>pro_Target_Reached__c</field>
+            <value>
+                <elementReference>Get_Target_For_Month_Of_Close.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Target_For_Month_Of_Close</targetReference>
+        </connector>
+        <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+        <filterLogic>or</filterLogic>
+        <filters>
+            <field>pro_Outcome__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Closed - LOI</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>pro_Outcome__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Closed - LOI Other</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>pro_Outcome__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Closed - Contract Extended</stringValue>
+            </value>
+        </filters>
+        <object>pro_Asset_Target_Audit__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

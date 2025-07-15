@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <fieldSets>
+        <label><!-- SkipFieldsFromValidations --></label>
+        <name>leaseworks__SkipFieldsFromValidations</name>
+    </fieldSets>
+    <layouts>
+        <layout>Credit Memo Layout</layout>
+        <sections>
+            <label><!-- Accounting Details --></label>
+            <section>Accounting Details</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Credit Memo MR Layout</layout>
+        <sections>
+            <label><!-- Accounting Details --></label>
+            <section>Accounting Details</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Payment Layout</layout>
+        <sections>
+            <label><!-- Accounting --></label>
+            <section>Accounting</section>
+        </sections>
+        <sections>
+            <label><!-- Accounting Details --></label>
+            <section>Accounting Details</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Payment Layout Aircraft MR</layout>
+        <sections>
+            <label><!-- Accounting --></label>
+            <section>Accounting</section>
+        </sections>
+        <sections>
+            <label><!-- Accounting Details --></label>
+            <section>Accounting Details</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Payment Layout Assembly MR</layout>
+        <sections>
+            <label><!-- Accounting Details --></label>
+            <section>Accounting Details</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Payment Layout Rent</layout>
+        <sections>
+            <label><!-- Accounting Details --></label>
+            <section>Accounting Details</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- Cancel Credit --></label>
+        <name>leaseworks__Cancel_Credit</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Cancel Payment --></label>
+        <name>leaseworks__Reverse_Payment</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Unapply Cash --></label>
+        <name>leaseworks__Unapply_Cash</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Reject Cancellation --></label>
+        <name>leaseworks__Undo_Cancellation</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Unpost Payment --></label>
+        <name>leaseworks__Unpost_Payment</name>
+    </quickActions>
+    <recordTypes>
+        <label><!-- Payment --></label>
+        <name>leaseworks__Aircraft_MR</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Z_Unused_2012 Assembly MR --></label>
+        <name>leaseworks__Assembly_MR</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Credit --></label>
+        <name>leaseworks__Credit_Memo_MR</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Z_Unused_2012 Credit Memo Non MR --></label>
+        <name>leaseworks__Credit_Memo_Non_MR</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Finance Lease Payments --></description>
+        <label><!-- Z_Unused_2012 Finance Lease --></label>
+        <name>leaseworks__Finance_Lease</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Interest Payment --></description>
+        <label><!-- Z_Unused_2012 Interest --></label>
+        <name>leaseworks__Interest</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Z_Unused_2012 Manual --></label>
+        <name>leaseworks__Other</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Z_Unused_2012 Rent --></label>
+        <name>leaseworks__Rent</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Z_Unused_2012 Security Deposit --></label>
+        <name>leaseworks__Security_Deposit</name>
+    </recordTypes>
+    <validationRules>
+        <errorMessage><!-- Bank Account is a required field. --></errorMessage>
+        <name>leaseworks__Bank_Account_is_Required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Cancellation Date cannot be prior to the payment received date. --></errorMessage>
+        <name>leaseworks__CancellationDateNotPrioToPaymentDate</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Bank charges cannot be modified when applying a payment on account to an invoice. --></errorMessage>
+        <name>leaseworks__CannotEditBankChargesForPOA_Application</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The Accounting Period is Closed. Please reopen the period or select a new Accounting Period --></errorMessage>
+        <name>leaseworks__CheckForAccountingPeriod</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Amount exceeds the Available Balance on the payment on account. --></errorMessage>
+        <name>leaseworks__Check_Pmt_amt_greater_than_POA_balance</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Payments can only be created on approved unpaid invoices. --></errorMessage>
+        <name>leaseworks__CreatePyOnlyForApprovedInv</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Unable to proceed with transactions: The related invoice is associated with an inactive entity. Please ensure the entity is active to continue. --></errorMessage>
+        <name>leaseworks__Entity_Is_Inactive</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter the date on which the payment is received. It cannot be a future date. --></errorMessage>
+        <name>leaseworks__NoFutureDatedPayments</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The  amount paid/credited should be less than or
+equal to the invoice balance due. If this is a deferred invoice, please check
+the balance amount after deferral. --></errorMessage>
+        <name>leaseworks__NoOverPayments</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Payment not allowed for provision invoice. --></errorMessage>
+        <name>leaseworks__NoPaymentsForProvisionUR</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Status of Approved payment cannot be changed. --></errorMessage>
+        <name>leaseworks__NoUpdateAftrApprovedStatus</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The amount received should not be less than zero. --></errorMessage>
+        <name>leaseworks__PaymentAmountGreaterThanZero</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Payment date can not be before invoice date. --></errorMessage>
+        <name>leaseworks__PaymentDateRule</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The amount received should be greater than zero --></errorMessage>
+        <name>leaseworks__Payment_Amount_Not_Zero</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Unable to proceed with approval/cancellation. Entity on the Payment is inactive. Please link it to an active entity to continue. --></errorMessage>
+        <name>leaseworks__Status_is_Apprved_and_Entity_Is_Inactive</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Amount must be greater than zero. --></errorMessage>
+        <name>leaseworks__Total_Invoice_Amount_Not_Negative</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Payment Type must be the same as Invoice Type. --></errorMessage>
+        <name>leaseworks__Type_Mismatch</name>
+    </validationRules>
+</CustomObjectTranslation>

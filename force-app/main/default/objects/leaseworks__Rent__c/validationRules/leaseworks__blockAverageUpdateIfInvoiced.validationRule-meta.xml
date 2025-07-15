@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__blockAverageUpdateIfInvoiced</fullName>
+    <active>true</active>
+    <description>Restrict the Average SLR Amount field update, when the rent slip is already Invoiced</description>
+    <errorConditionFormula>AND(!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c,OR(!ISBLANK(leaseworks__Link_to_Invoice__c), leaseworks__Override_SLR_Amount__c = true ) ,  ISCHANGED(leaseworks__Average_SLR_Amount__c )    )</errorConditionFormula>
+    <errorDisplayField>leaseworks__Average_SLR_Amount__c</errorDisplayField>
+    <errorMessage>Modifying the Average SLR Amount is not possible once an invoice has been generated or Override SLR Amount? is checked.</errorMessage>
+</ValidationRule>

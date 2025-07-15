@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>leaseworks__Lease_Sections__c$Name</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Lease_Sections__c$leaseworks__Lease__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Lease_Sections__c$Lease_Extract_Local__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Lease_Sections__c$Right_to_Sub_Lease_Comments_Local__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Lease_Sections__c$Right_to_Wet_Lease_Comments_Local__c</field>
+    </columns>
+    <format>Tabular</format>
+    <name>New Lease Agreement Sections Report</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Lease_Agreement_Sections__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>leaseworks__Lease_Sections__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CURRENT</interval>
+    </timeFrameFilter>
+</Report>

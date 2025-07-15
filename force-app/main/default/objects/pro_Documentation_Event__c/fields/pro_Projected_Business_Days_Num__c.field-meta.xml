@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>pro_Projected_Business_Days_Num__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(
+Name = &#39;1 Engage Law Firm&#39;, 1,
+IF(Name = &#39;2 Initial Draft&#39;, 4,
+IF(Name = &#39;3 Review &amp; Comment&#39;, 3, 2)))</formula>
+    <label>Projected Business Days</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

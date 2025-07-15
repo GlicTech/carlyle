@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Period_Calculated__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Since we are hitting the limit of 10 object references, moving the Period calculation to trigger. This field will be set from InvoiceCopyRefInfo trigger.
+
+Here is the logic from existing Period field:
+
+CASE( TEXT(leaseworks__Invoice_Type__c) ,
+&#39;Rent&#39;, leaseworks__Rent__r.leaseworks__Period_Since_Lease_Start__c,
+&#39;Assembly MR&#39;, leaseworks__Utilization_Report_List_Item__r.leaseworks__Utilization_Report__r.leaseworks__Period__c,
+&#39;Aircraft MR&#39;, leaseworks__Utilization_Report__r.leaseworks__leaseworks__Period__c,
+MONTH(leaseworks__Invoice_Date__c) + 12 - MONTH(DATEVALUE(leaseworks__Lease__r.leaseworks__Lease_Start_Date_New__c)) +
+12 * (YEAR(leaseworks__Invoice_Date__c) - YEAR(DATEVALUE(leaseworks__Lease__r.leaseworks__Lease_Start_Date_New__c)) -1 ) + 1
+)</description>
+    <externalId>false</externalId>
+    <label>_Period</label>
+    <precision>3</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

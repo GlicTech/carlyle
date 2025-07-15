@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__FollowUpActionBlank</fullName>
+    <active>true</active>
+    <description>validation on Follow Up Action field that 
+Follow up action has to be filled in order to enter a follow up due date</description>
+    <errorConditionFormula>AND(!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c, OR(!ISBLANK(leaseworks__Follow_Up_Due_Date__c),!ISBLANK( leaseworks__Assigned_To__c )),ISBLANK(  leaseworks__Follow_Up_Action__c  ))</errorConditionFormula>
+    <errorDisplayField>leaseworks__Follow_Up_Action__c</errorDisplayField>
+    <errorMessage>Please enter the follow up action</errorMessage>
+</ValidationRule>

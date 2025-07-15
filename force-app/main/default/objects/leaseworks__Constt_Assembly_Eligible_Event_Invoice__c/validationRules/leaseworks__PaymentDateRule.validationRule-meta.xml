@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__PaymentDateRule</fullName>
+    <active>true</active>
+    <description>If the status is Paid, then you must enter payment Date on or after Invoice Date.</description>
+    <errorConditionFormula>AND( 
+!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c ,
+AND( 
+text(leaseworks__Status__c)==&#39;Paid&#39; , 
+OR (isBlank(leaseworks__Payment_Date__c), leaseworks__Payment_Date__c &lt; leaseworks__Invoice_Date__c) 
+)
+)</errorConditionFormula>
+    <errorMessage>Please enter Payment Date and must be on or after the Invoice Date.</errorMessage>
+</ValidationRule>

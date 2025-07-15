@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>2023 Rent Schedule</layout>
+        <sections>
+            <label><!-- Escalation --></label>
+            <section>Escalation</section>
+        </sections>
+        <sections>
+            <label><!-- Extension --></label>
+            <section>Extension</section>
+        </sections>
+        <sections>
+            <label><!-- Floating Rent --></label>
+            <section>Floating Rent</section>
+        </sections>
+        <sections>
+            <label><!-- Low Season --></label>
+            <section>Low Season</section>
+        </sections>
+        <sections>
+            <label><!-- New Section --></label>
+            <section>New Section</section>
+        </sections>
+        <sections>
+            <label><!-- PBH --></label>
+            <section>PBH</section>
+        </sections>
+        <sections>
+            <label><!-- Rent Amounts --></label>
+            <section>Rent Amounts</section>
+        </sections>
+        <sections>
+            <label><!-- Rent calculation --></label>
+            <section>Rent calculation</section>
+        </sections>
+        <sections>
+            <label><!-- Stepped Rent --></label>
+            <section>Stepped Rent</section>
+        </sections>
+        <sections>
+            <label><!-- Straight Line Revenue --></label>
+            <section>Straight Line Revenue</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- Mark Schedule as ad hoc --></label>
+        <name>Mark_Schedule_as_ad_hoc</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Set Transaction Currency --></label>
+        <name>Set_Local_Currency</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- SLR Amount for Journals --></label>
+        <name>leaseworks__Average_SLR</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Z_Unused Generate Rent Schedule --></label>
+        <name>leaseworks__Generate_Rent_Period</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Generate Straight Line Revenue --></label>
+        <name>leaseworks__Generate_Straight_Line_Revenue</name>
+    </quickActions>
+    <validationRules>
+        <errorMessage><!-- Disabling &apos;Ad hoc Schedule&apos; through this button is not allowed. For further assistance, please reach out to leaseworks support. --></errorMessage>
+        <name>Adhoc_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Only numbers from 0 to 31 are allowed, please check your entry. --></errorMessage>
+        <name>leaseworks__Business_Days_Prior</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please Enter %Increase/Decrease --></errorMessage>
+        <name>leaseworks__DolAmt_False_IncreaseDecrease_Needed</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please Enter Rent Amount. --></errorMessage>
+        <name>leaseworks__DollarAmt_True_RentAmt_Needed</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Escalation Start date must fall between the Rent Start date &amp; Rent End Date (inclusive). --></errorMessage>
+        <name>leaseworks__EscalationDateValidation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Escalation Start Date and Percentage must be entered together --></errorMessage>
+        <name>leaseworks__Escalation_Required_Check</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- If the &quot;Extended Rent Period?&quot; checkbox is checked, a value must be selected for Extended Rent Type. --></errorMessage>
+        <name>leaseworks__ExtRentTypemandatory</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- If the &quot;Extended Rent Period?&quot; checkbox is NOT checked, Extended Rent Type value can only be null. --></errorMessage>
+        <name>leaseworks__ExtRentVsExtRentType</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- If Rent Type is &apos;Power By The Hour&apos;, Month Thresholds and PBH Rates must be specified. --></errorMessage>
+        <name>leaseworks__Hour_Rates_and_Month_Thresholds_Needed</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Low Season start and end month must be within the range of the Rent Start and Rent End Dates. --></errorMessage>
+        <name>leaseworks__LowSeasonDatesvsRentDates</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Low Season ending date must be later than Low Season starting date. Please correct your date selections. --></errorMessage>
+        <name>leaseworks__LowSeasonStartvsEndDates</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Low season start and end month cannot be same --></errorMessage>
+        <name>leaseworks__LowSeasonStartvsEndMonth</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Low Season start and end year must be within the range of the Rent Start and Rent End Dates. --></errorMessage>
+        <name>leaseworks__LowSeasonYearvsRentYear</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter the Low Season Rent. --></errorMessage>
+        <name>leaseworks__Low_Season_Rent</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Low Season End Date must be on or after Low Season start Date and Low season cannot span more than 12 months. --></errorMessage>
+        <name>leaseworks__Low_Season_Start_End_Dates</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please provide Floating Formula for Floating Rent Type --></errorMessage>
+        <name>leaseworks__ProvideFloatingFormulaForFloatingRent</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Rent Due Type &apos;Fixed&apos; has been selected, therefore value in Rent Due Day field must be between 1 and 31 (days in the calendar month) --></errorMessage>
+        <name>leaseworks__RentDueTypeFixed</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Rent End Date cannot be after Lease End Date, except when ‘Extended Rent Period?’ checkbox is checked --></errorMessage>
+        <name>leaseworks__RentEndDateVsLeaseEndDate</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Rent End Date cannot be before Lease Start Date --></errorMessage>
+        <name>leaseworks__RentEndDateVsLeaseStartDate</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Rent End Date is before the Lease End Date. To use the Extended Rent Period option, please select a date that is after the Lease End Date. --></errorMessage>
+        <name>leaseworks__RentEndDt_LeaseEndDt_RedlvryDt</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Rent Start Date is before the Lease End Date. To use the Extended Rent Period option, please select a date that is after the Lease End Date. --></errorMessage>
+        <name>leaseworks__RentStartDt_LeaseEndDt_RedlvryDt</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Rent Start Date cannot be later than Rent End Date. --></errorMessage>
+        <name>leaseworks__Rent_Start_Date_End_Date</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Rent start date cannot be before lease start date --></errorMessage>
+        <name>leaseworks__Rent_Start_vs_Lease_Start_Date</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The Second Rent Period Start Date must be between the actual Rent Start and End Date. --></errorMessage>
+        <name>leaseworks__SecondRentStartDatevsActualRentDates</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The difference between the Rent Start Date and Second Rent Period Start Date is longer than the periodicity selected --></errorMessage>
+        <name>leaseworks__SecondRentStartDatevsRentStartDate</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Rent Start Date Must Be Between Lease Start Date And Lease End Date Of The Lease. --></errorMessage>
+        <name>leaseworks__Step_Start_Cannot_be_Before_Rent_Start</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Value cannot be zero or negative --></errorMessage>
+        <name>leaseworks__ValidatePositiveValueInAverageSLRAmont</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Average SLR Amount is required when SLR Applicable? is marked as yes --></errorMessage>
+        <name>leaseworks__validateSLRApplicableANDSLRAmount</name>
+    </validationRules>
+</CustomObjectTranslation>

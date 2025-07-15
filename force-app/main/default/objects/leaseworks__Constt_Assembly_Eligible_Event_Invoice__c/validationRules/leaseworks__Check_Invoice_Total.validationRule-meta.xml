@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Check_Invoice_Total</fullName>
+    <active>false</active>
+    <description>Checks to make sure that the balance amount will cover this invoice amount</description>
+    <errorConditionFormula>false /*(Invoice_Amount__c -
+IF(ISNEW(),0,
+PRIORVALUE(Invoice_Amount__c))
+)&gt;Constt_Assembly_Eligible_Event__r.Balance_Amount__c */</errorConditionFormula>
+    <errorDisplayField>leaseworks__Invoice_Amount__c</errorDisplayField>
+    <errorMessage>Once you create this invoice, your total invoiced value will be greater than the claim amount. Your claim amount has to cover the invoice amount. Please correct the condition before saving.</errorMessage>
+</ValidationRule>

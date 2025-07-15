@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Assembly__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <label>Assembly</label>
+    <lookupFilter>
+        <active>true</active>
+        <filterItems>
+            <field>$Source.leaseworks__Aircraft__c</field>
+            <operation>equals</operation>
+            <valueField>leaseworks__Constituent_Assembly__c.leaseworks__Attached_Aircraft__c</valueField>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>leaseworks__Constituent_Assembly__c</referenceTo>
+    <relationshipLabel>Event Forecast</relationshipLabel>
+    <relationshipName>Event_Forecast</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

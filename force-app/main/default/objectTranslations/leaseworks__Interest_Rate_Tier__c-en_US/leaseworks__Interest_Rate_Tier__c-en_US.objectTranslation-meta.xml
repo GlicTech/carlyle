@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>Interest Rate Tier Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <validationRules>
+        <errorMessage><!-- Please enter the applicable interest rate for the selected period. The interest rate can be specified as either fixed, floating, or a combination of both --></errorMessage>
+        <name>leaseworks__Either_Fix_Or_Float_Rate_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The End date cannot be after the lease end date. --></errorMessage>
+        <name>leaseworks__End_Date_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The End date cannot be before the lease start date. --></errorMessage>
+        <name>leaseworks__Enddate_NotBefore_Startdate</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- End Date cannot be prior to Start Date. --></errorMessage>
+        <name>leaseworks__Enddate_Startdate</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Fixed rate can&apos;t have negative value. --></errorMessage>
+        <name>leaseworks__Negative_Fixed_Rate</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The Start date cannot be after the lease end date. --></errorMessage>
+        <name>leaseworks__StartDate_NotAfter_EndDate</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The Start date cannot be before the lease start date. --></errorMessage>
+        <name>leaseworks__Start_Date_Validation</name>
+    </validationRules>
+</CustomObjectTranslation>

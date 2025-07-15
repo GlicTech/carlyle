@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <fieldSets>
+        <label><!-- SkipFieldsFromValidations --></label>
+        <name>leaseworks__SkipFieldsFromValidations</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Supplemental Rent Rate FieldSet --></label>
+        <name>leaseworks__Supplemental_Rent_Rate_FieldSet</name>
+    </fieldSets>
+    <layouts>
+        <layout>Supplemental Rent Rate Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <validationRules>
+        <errorMessage><!-- The entered escalation percentage (Esc% value) results in a negative rate, or a negative rate has been entered directly, which is not allowed. Please adjust the escalation percentage or enter a valid rate to proceed. --></errorMessage>
+        <name>leaseworks__Negative_numbers_validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please select the &quot;Rate Based On&quot; option according to the values entered in the &quot;Rate&quot; or &quot;Ratio Table&quot; fields. Select &quot;Rate&quot; if a rate is entered, and select &quot;Ratio Table&quot; if the ratio table is entered. The &quot;None&quot; value is not valid for MR calculation. --></errorMessage>
+        <name>leaseworks__Rate_Based_On_none_validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please provide either a Rate or a Ratio Table for MR calculation based on the selected &apos;Rate Based On&apos; option. --></errorMessage>
+        <name>leaseworks__Rate_Based_On_options_validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Since &apos;Rate Based On&apos; is set to Rate, please remove the Ratio Table to ensure the correct MR calculation --></errorMessage>
+        <name>leaseworks__Rate_Based_On_rate_validation</name>
+    </validationRules>
+</CustomObjectTranslation>

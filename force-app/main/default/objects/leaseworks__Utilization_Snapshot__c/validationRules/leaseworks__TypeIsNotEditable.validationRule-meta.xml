@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__TypeIsNotEditable</fullName>
+    <active>true</active>
+    <errorConditionFormula>ISCHANGED( leaseworks__Type__c )</errorConditionFormula>
+    <errorMessage>The snapshot type cannot be changed after creation as it defines unique behavior.
+Note: A validation snapshot causes a conflict if units misalign with utilization, while a correction snapshot adjusts TSN/CSN end values for future utilization.</errorMessage>
+</ValidationRule>

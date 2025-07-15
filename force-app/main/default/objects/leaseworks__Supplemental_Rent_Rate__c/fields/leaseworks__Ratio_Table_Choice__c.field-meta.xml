@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Ratio_Table_Choice__c</fullName>
+    <deprecated>false</deprecated>
+    <description>When the FH utilization ratio does not exactly match a ratio in the table, the system will use either the lower or upper ratio based on your picklist selection. In the nearest &amp; interpolate case the system will use the nearest limit or interpolate if the ratio is equidistant from both limits.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>When the FH:FC utilization ratio does not exactly match a ratio in the table, the system will use either the lower or upper ratio based on your picklist selection. In the Nearest and Interpolate case the system will use the nearest limit or interpolate if the ratio is equidistant from both limits.</inlineHelpText>
+    <label>Ratio Table Choice</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Interpolate</fullName>
+                <default>true</default>
+                <label>Interpolate</label>
+            </value>
+            <value>
+                <fullName>Lower Limit</fullName>
+                <default>false</default>
+                <label>Lower Limit</label>
+            </value>
+            <value>
+                <fullName>Upper Limit</fullName>
+                <default>false</default>
+                <label>Upper Limit</label>
+            </value>
+            <value>
+                <fullName>Nearest &amp; Interpolate</fullName>
+                <default>false</default>
+                <label>Nearest &amp; Interpolate</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

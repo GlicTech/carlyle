@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Exercised_Date_not_in_period</fullName>
+    <active>true</active>
+    <errorConditionFormula>OR( leaseworks__Exercised_Date__c &gt; leaseworks__Option_Notice_End__c, leaseworks__Exercised_Date__c &lt; leaseworks__Option_Notice_Start__c )</errorConditionFormula>
+    <errorDisplayField>leaseworks__Exercised_Date__c</errorDisplayField>
+    <errorMessage>Exercised Date cannot be outside the range of the Option Start and End dates</errorMessage>
+</ValidationRule>

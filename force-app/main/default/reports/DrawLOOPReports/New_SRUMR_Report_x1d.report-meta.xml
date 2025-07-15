@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>leaseworks__Utilization_Report_List_Item__c$leaseworks__Assembly_MR_Info__c.Id</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Utilization_Report_List_Item__c.leaseworks__MR_Calculations__r$leaseworks__True_up_Invoice_Calculation__c</field>
+    </columns>
+    <filter>
+        <criteriaItems>
+            <column>leaseworks__Utilization_Report_List_Item__c$leaseworks__Utilization_Report__c.Id</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value></value>
+        </criteriaItems>
+    </filter>
+    <format>Tabular</format>
+    <name>SRU-MR Report (Do No Edit)</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>SRU_MR__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>leaseworks__Utilization_Report_List_Item__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

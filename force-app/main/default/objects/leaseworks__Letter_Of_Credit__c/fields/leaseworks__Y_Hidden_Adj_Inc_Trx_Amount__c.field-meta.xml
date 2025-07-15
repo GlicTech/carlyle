@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Y_Hidden_Adj_Inc_Trx_Amount__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <label>_Adjustment Increased Trx Amount</label>
+    <summarizedField>leaseworks__LOC_Transactions__c.leaseworks__Amount__c</summarizedField>
+    <summaryFilterItems>
+        <field>leaseworks__LOC_Transactions__c.RecordTypeId</field>
+        <operation>equals</operation>
+        <value>Adjustment</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>leaseworks__LOC_Transactions__c.leaseworks__Action__c</field>
+        <operation>equals</operation>
+        <value>Increase</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>leaseworks__LOC_Transactions__c.leaseworks__Issued__c</field>
+        <operation>equals</operation>
+        <value>True</value>
+    </summaryFilterItems>
+    <summaryForeignKey>leaseworks__LOC_Transactions__c.leaseworks__Letter_Of_Credit__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

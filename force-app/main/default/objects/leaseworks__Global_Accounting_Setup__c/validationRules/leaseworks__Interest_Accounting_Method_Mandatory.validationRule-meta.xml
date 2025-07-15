@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Interest_Accounting_Method_Mandatory</fullName>
+    <active>true</active>
+    <description>If the Accounting is ON, the Default Interest Accounting Method is mandatory</description>
+    <errorConditionFormula>AND(!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c,leaseworks__Accounting_ON__c,   OR(OR(ISBLANK(TEXT(leaseworks__Default_Interest_Accounting_Method__c)), 
+ ISNULL(TEXT(leaseworks__Default_Interest_Accounting_Method__c) )),
+OR(ISBLANK(TEXT( leaseworks__Default_Maintenance_Accounting_Method__c )), 
+ ISNULL(TEXT( leaseworks__Default_Maintenance_Accounting_Method__c ) )),
+OR(ISBLANK(TEXT( leaseworks__Default_Security_Deposit_Account_Method__c )), 
+ ISNULL(TEXT( leaseworks__Default_Security_Deposit_Account_Method__c ) ))
+))</errorConditionFormula>
+    <errorMessage>Interest, MR and SD Accounting Methods are required to proceed.</errorMessage>
+</ValidationRule>

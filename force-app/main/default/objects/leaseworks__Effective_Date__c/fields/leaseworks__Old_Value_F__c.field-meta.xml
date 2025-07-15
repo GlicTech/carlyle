@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Old_Value_F__c</fullName>
+    <deprecated>false</deprecated>
+    <description>This formula field helps in displayig the data for different fields in the desired format</description>
+    <externalId>false</externalId>
+    <formula>if(leaseworks__Field_Type__c == &quot;reference&quot;, HYPERLINK(&#39;/&#39; &amp; leaseworks__Y_Hidden_Old_Record_Id__c, leaseworks__Y_Hidden_Old_Value__c,&#39;_blank&#39;),
+if(leaseworks__Field_Type__c == &quot;url&quot;, HYPERLINK(leaseworks__Y_Hidden_Old_Value__c, &quot;Click Here&quot;,&#39;_blank&#39;),
+if(leaseworks__Field_Type__c == &quot;email&quot;, HYPERLINK(&#39;mailto:&#39; &amp; leaseworks__Y_Hidden_Old_Value__c, leaseworks__Y_Hidden_Old_Value__c,&#39;_blank&#39;),
+if(leaseworks__Field_Type__c == &quot;phone&quot;, HYPERLINK(&#39;tel:&#39; &amp; leaseworks__Y_Hidden_Old_Value__c, leaseworks__Y_Hidden_Old_Value__c,&#39;_blank&#39;),
+if(leaseworks__Field_Type__c == &quot;date&quot;, TEXT(DATEVALUE(LEFT(leaseworks__Y_Hidden_Old_Value__c, 10))),
+if(leaseworks__Field_Type__c == &quot;datetime&quot;, TEXT(DATETIMEVALUE(leaseworks__Y_Hidden_Old_Value__c)),
+if(leaseworks__Field_Type__c == &quot;currency&quot;,
+	IF(ISNULL(leaseworks__Y_Hidden_Old_Value__c ), &#39;&#39;, &#39;$&#39; + 
+		IF(VALUE(leaseworks__Y_Hidden_Old_Value__c) &gt;= 1000000, 
+			TEXT(FLOOR(VALUE(leaseworks__Y_Hidden_Old_Value__c) / 1000000)) &amp; &quot;,&quot;, &quot;&quot;
+		) 
+		&amp; 
+		IF(VALUE(leaseworks__Y_Hidden_Old_Value__c) &gt;= 1000, 
+			RIGHT(TEXT(FLOOR(VALUE(leaseworks__Y_Hidden_Old_Value__c) / 1000)), 3) &amp; &quot;,&quot;, &quot;&quot;
+		) 
+		&amp; 
+			RIGHT(TEXT(FLOOR(VALUE(leaseworks__Y_Hidden_Old_Value__c) )), 3) &amp; &quot;.&quot; 
+		&amp; 
+		IF(MOD(VALUE(leaseworks__Y_Hidden_Old_Value__c) , 1) * 100 &lt; 10, &quot;0&quot; &amp; 
+			TEXT(ROUND(MOD(VALUE(leaseworks__Y_Hidden_Old_Value__c) , 1), 2) * 100), 
+			TEXT(MIN(ROUND(MOD(VALUE(leaseworks__Y_Hidden_Old_Value__c) , 1), 2) * 100, 99)) 
+		)
+	),
+	leaseworks__Y_Hidden_Old_Value__c
+)))))))</formula>
+    <label>Old Value</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

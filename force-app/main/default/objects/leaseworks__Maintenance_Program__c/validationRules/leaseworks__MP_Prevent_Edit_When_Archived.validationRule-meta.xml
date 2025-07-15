@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__MP_Prevent_Edit_When_Archived</fullName>
+    <active>true</active>
+    <description>Prevents editing of Maintenance Program fields once the program is archived. Displays an error message instructing users to unarchive the program to make changes.</description>
+    <errorConditionFormula>AND(
+    leaseworks__Archive_Maintenance_Program__c = TRUE,
+    NOT(ISNEW()),   NOT( ISCHANGED( leaseworks__Archive_Maintenance_Program__c )) 
+)</errorConditionFormula>
+    <errorMessage>This Maintenance Program is Archived. Please Unarchive the Maintenance Program to edit the values.</errorMessage>
+</ValidationRule>

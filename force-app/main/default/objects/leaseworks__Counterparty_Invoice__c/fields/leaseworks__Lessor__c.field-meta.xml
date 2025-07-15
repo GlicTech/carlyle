@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Lessor__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <label>Lessor</label>
+    <lookupFilter>
+        <active>false</active>
+        <filterItems>
+            <field>leaseworks__Counterparty__c.leaseworks__Subsidiary_Entity__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </filterItems>
+        <isOptional>true</isOptional>
+    </lookupFilter>
+    <referenceTo>leaseworks__Counterparty__c</referenceTo>
+    <relationshipLabel>Counterparty Invoices</relationshipLabel>
+    <relationshipName>Counterparty_Invoices</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

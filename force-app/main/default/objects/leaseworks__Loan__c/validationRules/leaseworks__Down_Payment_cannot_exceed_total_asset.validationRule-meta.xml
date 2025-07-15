@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Down_Payment_cannot_exceed_total_asset</fullName>
+    <active>true</active>
+    <description>Down payment cannot exceed the total asset purchase cost</description>
+    <errorConditionFormula>(leaseworks__Down_Payment__c &gt;  leaseworks__Total_Asset_Cost__c) &amp;&amp;  ( leaseworks__Down_Payment__c &lt; 0)</errorConditionFormula>
+    <errorMessage>The down payment must be less than the Total Asset Purchase Price and cannot be negative.</errorMessage>
+</ValidationRule>

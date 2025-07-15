@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>leaseworks__Approval_Status_Approved</fullName>
+        <description>Updating the Approval Status field to Approved</description>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Approved</literalValue>
+        <name>Approval Status Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Approval_Status_Rejected</fullName>
+        <description>Update the Approval Status Field to Declined</description>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Declined</literalValue>
+        <name>Approval Status Rejected</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Approval_Status_Submitted</fullName>
+        <description>Update Approval Status as Submitted</description>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Submitted</literalValue>
+        <name>Approval Status Submitted</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Approve_Invoice_Record</fullName>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Approved</literalValue>
+        <name>Approve Invoice Record</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__InvoiceStatusUpdatedBy</fullName>
+        <field>leaseworks__Last_Status_Update_By__c</field>
+        <formula>/*$User.FirstName + &#39; &#39;+ $User.LastName+ &#39; from &#39;+ TEXT(priorvalue( Status__c )) +&#39; On &#39; +  TEXT(TODAY())*/leaseworks__Last_Status_Update_By__c</formula>
+        <name>InvoiceStatusUpdatedBy</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Invoice_Mark_Credited</fullName>
+        <field>leaseworks__Status__c</field>
+        <name>Invoice Mark Credited</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Invoice_Set_Availed_Credit_Amount</fullName>
+        <field>leaseworks__Y_Hidden_Availed_Credit_Amount__c</field>
+        <formula>leaseworks__Availed_Credit_Amount__c</formula>
+        <name>Invoice Set Availed Credit Amount</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Invoice_Set_Invoice_Number</fullName>
+        <field>leaseworks__Invoice_Number__c</field>
+        <formula>IF(CONTAINS(TEXT(leaseworks__Invoice_Type__c) , &#39;HL/SL&#39;) ,  Name ,TEXT(YEAR( leaseworks__Invoice_Date__c )) &amp; &#39;-&#39; &amp;
+
+Case(TEXT(leaseworks__Invoice_Type__c), 
+
+&#39;Aircraft MR&#39;,&#39;U&#39; , 
+
+&#39;Rent&#39;, &#39;R&#39;, 
+&#39;Loan&#39; , &#39;L&#39;,
+
+&#39;Security Deposit&#39;, &#39;S&#39;, 
+
+&#39;Interest&#39;,&#39;I&#39;,
+&#39;Fee&#39;, &#39;F&#39;,
+
+&#39;M&#39;
+
+)
+&amp;
+
+&#39;I&#39; &amp; &#39;-&#39;
+&amp;
+
+
+Case(leaseworks__Monthly_Utilization_Type_F__c, 
+
+&#39;True Up Gross&#39;,&#39;TU&#39; , 
+
+&#39;Assumed/Estimated&#39;, &#39;AE&#39;, 
+
+&#39;Manual Credits/Adjustments&#39;, &#39;MC&#39;, 
+
+&#39;Provision&#39;,&#39;PR&#39;,
+
+&#39;&#39;
+
+)
+
+&amp;
+
+IF( !ISBLANK(leaseworks__Y_Hidden_Sequence_Number__c), 
+
+(&#39;-&#39;&amp;RIGHT(&#39;00000&#39; &amp; TEXT( leaseworks__Y_Hidden_Sequence_Number__c ),6)), &#39;&#39;))</formula>
+        <name>Invoice Set Invoice Number</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Invoice_Set_Name</fullName>
+        <field>Name</field>
+        <formula>if(Contains(TEXT(leaseworks__Invoice_Type__c),&#39;HL/SL-&#39;), leaseworks__Lessor_Level__c &amp; &#39;-&#39;,&#39;&#39;)&amp; TEXT(YEAR( leaseworks__Invoice_Date__c )) &amp; &#39;-&#39;
+&amp;
+Case(TEXT(leaseworks__Invoice_Type__c),
+&#39;Aircraft MR&#39;,&#39;U&#39; ,
+&#39;Rent&#39;, &#39;R&#39;,
+&#39;Loan&#39;, &#39;L&#39;,
+&#39;Security Deposit&#39;, &#39;S&#39;,
+&#39;Interest&#39;,&#39;I&#39;,
+&#39;HL/SL-Rent&#39;,&#39;R&#39;,
+&#39;HL/SL-MR&#39;,&#39;U&#39;,
+&#39;HL/SL-SD&#39;,&#39;S&#39;,
+&#39;Fee&#39;,&#39;F&#39;,
+&#39;HL/SL-Interest&#39;,&#39;I&#39;,
+&#39;M&#39;
+)
+&amp;
+&#39;I&#39; &amp; &#39;-&#39; 
+&amp;
+Case(leaseworks__Monthly_Utilization_Type_F__c,
+&#39;True Up Gross&#39;,&#39;TU&#39; ,
+&#39;Assumed/Estimated&#39;, &#39;AE&#39;,
+&#39;Manual Credits/Adjustments&#39;, &#39;MC&#39;,
+&#39;Provision&#39;,&#39;PR&#39;,
+&#39;&#39;
+)
+&amp;
+IF( !ISBLANK(leaseworks__Y_Hidden_Sequence_Number__c),
+(&#39;-&#39;&amp;RIGHT(&#39;00000&#39; &amp; TEXT( leaseworks__Y_Hidden_Sequence_Number__c ),6)), &#39;&#39;)
+&amp;
+if(leaseworks__Y_Hidden_Record_Type__c == &#39;MR_Reconciliation&#39;
+, &#39;(Reconciliation)&#39; , &#39;&#39;)</formula>
+        <name>Invoice Set Name</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Invoice_Update_Date_Paid</fullName>
+        <field>leaseworks__Date_Paid__c</field>
+        <formula>leaseworks__Date_Paid__c</formula>
+        <name>Invoice Update Date Paid</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Invoice_Update_Status_to_Paid</fullName>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Pending</literalValue>
+        <name>Invoice Update Status to Paid</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Payment_Status_To_Credited</fullName>
+        <description>Set the payment status to Credited</description>
+        <field>leaseworks__Payment_Status__c</field>
+        <literalValue>Credited</literalValue>
+        <name>Payment Status To Credited</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Payment_Status_To_Open</fullName>
+        <description>Updates payment status to Open</description>
+        <field>leaseworks__Payment_Status__c</field>
+        <literalValue>Open</literalValue>
+        <name>Payment Status To Open</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Payment_Status_To_Paid</fullName>
+        <description>Payment status field is updated  to Paid</description>
+        <field>leaseworks__Payment_Status__c</field>
+        <literalValue>Paid</literalValue>
+        <name>Payment Status To Paid</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Payment_Status_To_Partially_Credited</fullName>
+        <description>Set payment status to Partially Credited</description>
+        <field>leaseworks__Payment_Status__c</field>
+        <literalValue>Partially Credited</literalValue>
+        <name>Payment Status To Partially Credited</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Payment_Status_To_Partially_Paid</fullName>
+        <description>Set payment status to Partially Paid</description>
+        <field>leaseworks__Payment_Status__c</field>
+        <literalValue>Partially Paid</literalValue>
+        <name>Payment Status To Partially Paid</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_Status_Partially_Paid</fullName>
+        <description>Update Status field to Partially Paid</description>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Pending</literalValue>
+        <name>Update Status Partially Paid</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_status_Approved</fullName>
+        <description>Update Status to Approved</description>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Approved</literalValue>
+        <name>Update status Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>leaseworks__InvioceCreatedUpdated</fullName>
+        <actions>
+            <name>leaseworks__Invoice_Set_Name</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Used for setting name.</description>
+        <formula>NOT(CONTAINS(TEXT(leaseworks__Invoice_Type__c), &#39;Deferred&#39;))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__Invoice Mark Credited</fullName>
+        <actions>
+            <name>leaseworks__Invoice_Mark_Credited</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <formula>/*AND(!$Setup.LeaseWorksSettings__c.Disable_All_WFs__c,  			 Balance_Due__c = 0, Amount_Paid_Remaining__c =0,Total_Amount_Due__c!=0, 			Total_Amount_Due__c = Availed_Credit_Amount_Cm__c 			)*/false</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__Invoice Mark Paid</fullName>
+        <actions>
+            <name>leaseworks__Invoice_Update_Date_Paid</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>leaseworks__Invoice_Update_Status_to_Paid</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <formula>/*AND(!$Setup.LeaseWorksSettings__c.Disable_All_WFs__c,  				Total_Amount_Due__c != 0, Balance_Due__c = 0, 			Total_Amount_Due__c != Availed_Credit_Amount_Cm__c )*/false</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__Invoice Payment Status To Credited</fullName>
+        <actions>
+            <name>leaseworks__Payment_Status_To_Credited</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>When condition is true , the payment status is set to Credited</description>
+        <formula>AND(!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c,leaseworks__Balance_Due__c = 0, leaseworks__Amount_Paid_Remaining__c =0,leaseworks__Total_Amount_Due__c!=0,leaseworks__Total_Amount_Due__c = leaseworks__Availed_Credit_Amount_Cm__c)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__Invoice Payment Status To Open</fullName>
+        <actions>
+            <name>leaseworks__Payment_Status_To_Open</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Update payment status after Cancellation</description>
+        <formula>AND(!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c,  				NOT(ISNEW()),  				 				NOT( OR(ISPICKVAL(leaseworks__Status__c,&quot;Declined&quot;), 												ISPICKVAL(leaseworks__Status__c,&quot;Cancelled-Pending&quot;), 												ISPICKVAL(leaseworks__Status__c,&quot;Cancelled&quot;))),  				leaseworks__Availed_Credit_Amount_Cm__c = 0, 				leaseworks__Amount_Paid_Remaining__c =0, 	 				leaseworks__Total_Amount_Due__c = leaseworks__Balance_Due__c 			 )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__Invoice Payment Status To Paid</fullName>
+        <actions>
+            <name>leaseworks__Payment_Status_To_Paid</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Sets Payment Status to Paid</description>
+        <formula>AND(!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c, leaseworks__Total_Amount_Due__c != 0, leaseworks__Balance_Due__c = 0,leaseworks__Total_Amount_Due__c != leaseworks__Availed_Credit_Amount_Cm__c, leaseworks__Total_Amount_Due__c = leaseworks__Amount_Paid_Remaining__c + leaseworks__Availed_Credit_Amount_Cm__c)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__Invoice Payment Status To Partially Paid</fullName>
+        <actions>
+            <name>leaseworks__Payment_Status_To_Partially_Paid</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Update payment status to Partially Paid</description>
+        <formula>AND(!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c, (((leaseworks__Availed_Credit_Amount_Cm__c ==0) &amp;&amp;          (leaseworks__Amount_Paid_Remaining__c !=0)) || ((leaseworks__Availed_Credit_Amount_Cm__c !=0) &amp;&amp;(leaseworks__Amount_Paid_Remaining__c !=0) &amp;&amp; (leaseworks__Balance_Due__c != 0))), 				         or(leaseworks__Amount_Paid_Remaining__c &lt; leaseworks__Total_Amount_Due__c))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__Invoice Payment status to Partially Credited</fullName>
+        <actions>
+            <name>leaseworks__Payment_Status_To_Partially_Credited</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Update payment status to Partially Credited</description>
+        <formula>AND(!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c, AND(leaseworks__Amount_Paid_Remaining__c==0, leaseworks__Availed_Credit_Amount_Cm__c &gt;0), leaseworks__Balance_Due__c != 0, leaseworks__Availed_Credit_Amount_Cm__c&lt;leaseworks__Total_Amount_Due__c)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__Invoice Set Invoice Name</fullName>
+        <actions>
+            <name>leaseworks__Invoice_Set_Invoice_Number</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <formula>!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__Invoice Status to Partially Paid</fullName>
+        <actions>
+            <name>leaseworks__Update_Status_Partially_Paid</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Update Invoice status to Partially Paid</description>
+        <formula>/*AND(!$Setup.LeaseWorksSettings__c.Disable_All_WFs__c, or(Amount_Paid_Remaining__c!=0, Availed_Credit_Amount_Cm__c !=0),	Balance_Due__c != 0, 				or(Amount_Paid_Remaining__c &lt; Total_Amount_Due__c,Availed_Credit_Amount_Cm__c&lt;Total_Amount_Due__c))*/false</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__InvoiceMarkedApproved</fullName>
+        <actions>
+            <name>leaseworks__Update_status_Approved</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Update status after Cancellation</description>
+        <formula>/*AND(!$Setup.LeaseWorksSettings__c.Disable_All_WFs__c, NOT(ISNEW()),  NOT(ISPICKVAL(PRIORVALUE(Status__c),&quot;Pending&quot;)), NOT( OR(ISPICKVAL(Status__c,&quot;Declined&quot;),ISPICKVAL(Status__c,&quot;Cancelled-Pending&quot;),ISPICKVAL(Status__c,&quot;Cancelled&quot;))), Availed_Credit_Amount_Cm__c = 0, Amount_Paid_Remaining__c =0, 	Total_Amount_Due__c = Balance_Due__c)*/false</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__InvoiceStatusChanged</fullName>
+        <actions>
+            <name>leaseworks__InvoiceStatusUpdatedBy</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>A workflow that captures the user name and date when the invoice status is updated/changed</description>
+        <formula>/*AND(!ISNEW(), TEXT(PRIORVALUE( Status__c) ) &lt;&gt; TEXT( Status__c))*/ false</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__Set Availed Credit Amount</fullName>
+        <actions>
+            <name>leaseworks__Invoice_Set_Availed_Credit_Amount</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Set Availed Credit Amount</description>
+        <formula>/*AND(!$Setup.LeaseWorksSettings__c.Disable_All_WFs__c,   OR(ISCHANGED(Availed_Credit_Amount__c)))*/false</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

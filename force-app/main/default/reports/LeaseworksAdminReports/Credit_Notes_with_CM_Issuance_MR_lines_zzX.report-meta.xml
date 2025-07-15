@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>leaseworks__Credit_Memo__c.leaseworks__Credit_Memo_Date__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Credit_Memo__c.leaseworks__Credit_Memo_Reason__c</field>
+    </columns>
+    <columns>
+        <field>CHILD_NAME</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Credit_Memo_Issuance__c.leaseworks__Amount__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Credit_Memo_Issuance__c.leaseworks__Comment__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Credit_Memo_Issuance__c.leaseworks__Reconciliation_Line_Item__c</field>
+    </columns>
+    <description>To review Credit Notes typically issued for a lookback reconciliation that was calculated outside of the system</description>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>CUST_NAME</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Credit Notes with CM Issuance (MR lines)</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntityCustomEntity$leaseworks__Credit_Memo__c$leaseworks__Credit_Memo_Issuance__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>CUST_CREATED_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

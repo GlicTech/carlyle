@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Forecast Generation Failed</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>leaseworks__Smart_Lease_Logo</letterhead>
+    <name>Forecast Fail Notification</name>
+    <style>freeForm</style>
+    <subject>Failed to generate forecast {FORECAST_ID_TOKEN}</subject>
+    <textOnly>An attempt by LeaseWorks to generate forecast has failed (error = {ERROR_MESSAGE_TOKEN}). Please find attached a detailed log of the results(ResultsLog.csv).
+
+Please contact LeaseWorks at support@lease-works.com to address this exception.
+
+Sincerely,
+LeaseWorks Support</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,49 @@
+<apex:page standardController="leaseworks__Invoice__c" extensions="leaseworks.InvoiceController">
+
+    <apex:includeLightning />
+   
+    <div id="LcDisplayId"></div> 
+    
+    <script>
+    
+            $Lightning.use("leaseworks:GenerateInvoiceApp", function() {
+            $Lightning.createComponent("leaseworks:GenerateInvoice",
+            { 
+                recordId : '{!recordId}'
+            },
+           "LcDisplayId",
+            function(component) {
+                  $A.eventService.addHandler({
+                  event: 'force:navigateToObjectHome',
+                  handler: function(event) {
+                    if (sforce && sforce.one) {
+                        sforce.one.navigateToObjectHome(event.getParam('scope'));
+                    } 
+                  }
+                });
+                $A.eventService.addHandler({
+                  event: 'force:navigateToSObject',
+                  handler: function(event) {
+                    if (sforce && sforce.one) {
+                        sforce.one.navigateToSObject(event.getParam('recordId'));
+                    } 
+                  }
+                });
+                
+                $A.eventService.addHandler({
+                    event: 'force:showToast',
+                    handler: function(event) {
+                        if (sforce && sforce.one) { 
+                             sforce.one.showToast({
+                                "title": event.getParam('title'),
+                                "message": event.getParam('message'),
+                                "type": event.getParam('type')
+                            });
+                        }       
+                    }
+                }); 
+            });
+         });
+         
+    </script>
+</apex:page>

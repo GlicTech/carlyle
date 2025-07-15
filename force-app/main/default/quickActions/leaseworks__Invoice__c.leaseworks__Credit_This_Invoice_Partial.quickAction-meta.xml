@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldOverrides>
+        <field>leaseworks__Accounting_Period__c</field>
+        <formula>leaseworks__Invoice__c.leaseworks__Accounting_Period__c</formula>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>leaseworks__Amount__c</field>
+        <formula>leaseworks__Invoice__c.leaseworks__Amount__c + blankvalue(leaseworks__Invoice__c.leaseworks__Total_Adjustment_Amount__c, 0)
++ (leaseworks__Invoice__c.leaseworks__Amount__c + blankvalue(leaseworks__Invoice__c.leaseworks__Total_Adjustment_Amount__c, 0) ) * blankvalue(leaseworks__Invoice__c.leaseworks__Tax_Rate__c, 0) * IF(leaseworks__Invoice__c.leaseworks__Tax_Applicable__c, 1, 0) - leaseworks__Invoice__c.leaseworks__Amount_Paid__c - leaseworks__Invoice__c.leaseworks__Availed_Credit_Amount_Cm__c</formula>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>leaseworks__Balance_Due_On_Invoice__c</field>
+        <formula>leaseworks__Invoice__c.leaseworks__Amount__c + blankvalue(leaseworks__Invoice__c.leaseworks__Total_Adjustment_Amount__c, 0) 
++ (leaseworks__Invoice__c.leaseworks__Amount__c + blankvalue(leaseworks__Invoice__c.leaseworks__Total_Adjustment_Amount__c, 0) ) * blankvalue(leaseworks__Invoice__c.leaseworks__Tax_Rate__c, 0) * IF(leaseworks__Invoice__c.leaseworks__Tax_Applicable__c, 1, 0) - leaseworks__Invoice__c.leaseworks__Amount_Paid__c - leaseworks__Invoice__c.leaseworks__Availed_Credit_Amount_Cm__c</formula>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>leaseworks__Invoice_Balance__c</field>
+        <formula>&#39;$&#39; +TEXT(leaseworks__Invoice__c.leaseworks__Amount__c + blankvalue(leaseworks__Invoice__c.leaseworks__Total_Adjustment_Amount__c, 0)
++ (leaseworks__Invoice__c.leaseworks__Amount__c + blankvalue(leaseworks__Invoice__c.leaseworks__Total_Adjustment_Amount__c, 0)) * blankvalue(leaseworks__Invoice__c.leaseworks__Tax_Rate__c, 0) * IF(leaseworks__Invoice__c.leaseworks__Tax_Applicable__c, 1, 0) - leaseworks__Invoice__c.leaseworks__Amount_Paid__c - leaseworks__Invoice__c.leaseworks__Availed_Credit_Amount_Cm__c)</formula>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>leaseworks__Payment_Date__c</field>
+        <formula>today()</formula>
+    </fieldOverrides>
+    <label>Z_Unused_2109 Credit This Invoice</label>
+    <optionsCreateFeedItem>true</optionsCreateFeedItem>
+    <quickActionLayout>
+        <layoutSectionStyle>TwoColumnsLeftToRight</layoutSectionStyle>
+        <quickActionLayoutColumns>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>leaseworks__Invoice__c</field>
+                <uiBehavior>Required</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>leaseworks__Amount__c</field>
+                <uiBehavior>Required</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>leaseworks__Accounting_Period__c</field>
+                <uiBehavior>Edit</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>leaseworks__Memo__c</field>
+                <uiBehavior>Edit</uiBehavior>
+            </quickActionLayoutItems>
+        </quickActionLayoutColumns>
+        <quickActionLayoutColumns>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>leaseworks__Invoice_Balance__c</field>
+                <uiBehavior>Readonly</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>leaseworks__Payment_Date__c</field>
+                <uiBehavior>Required</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>leaseworks__Credit_Memo_Reason__c</field>
+                <uiBehavior>Required</uiBehavior>
+            </quickActionLayoutItems>
+        </quickActionLayoutColumns>
+    </quickActionLayout>
+    <successMessage>Invoice Credited Successfully</successMessage>
+    <targetObject>leaseworks__Payment__c</targetObject>
+    <targetParentField>leaseworks__Invoice__c</targetParentField>
+    <targetRecordType>leaseworks__Payment__c.leaseworks__Credit_Memo_MR</targetRecordType>
+    <type>Create</type>
+</QuickAction>

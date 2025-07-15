@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Effective_Rate_Docgen_Local__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(leaseworks__Net_Units_F__c = 0,
+	IF( Text(leaseworks__Supplemental_Rent_Rate__r.leaseworks__Rate_Based_On__c) = &#39;Rate&#39;,
+		IF(leaseworks__Supplemental_Rent_Rate__r.leaseworks__MR_Rate_Schedule__c &lt;&gt; null,
+			leaseworks__Supplemental_Rent_Rate__r.leaseworks__Rate__c ,leaseworks__Y_Hidden_Effective_Rate_Before_Prorate__c ) ,
+	0),
+leaseworks__Effective_Rate__c)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Local field to assist with Net Units=0 scenario</inlineHelpText>
+    <label>Effective Rate Docgen Local</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

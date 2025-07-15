@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>leaseworks__Stepped_Rent__c$Name</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Stepped_Rent__c$leaseworks__Rent_End_Date__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Stepped_Rent__c$leaseworks__Start_Date__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Stepped_Rent__c$leaseworks__Rent_Type__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>leaseworks__Stepped_Rent__c$leaseworks__Base_Rent__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>leaseworks__Stepped_Rent__c$leaseworks__Status__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Stepped_Rent__c$Active_Inactive_Flag_Local__c</field>
+    </columns>
+    <description>To identify lease that have PBH Rent Schedules</description>
+    <filter>
+        <booleanFilter>1 AND 2</booleanFilter>
+        <criteriaItems>
+            <column>leaseworks__Stepped_Rent__c$leaseworks__Rent_Type__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Power By The Hour</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>leaseworks__Stepped_Rent__c$Active_Inactive_Flag_Local__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>Inactive</value>
+        </criteriaItems>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>leaseworks__Stepped_Rent__c$leaseworks__Lease__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Rent Schedule V2 (PBH filter)</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Rent_Schedule__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>leaseworks__Stepped_Rent__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

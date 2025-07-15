@@ -1,0 +1,886 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Utilisation_Report_Decline_Email_Alert</fullName>
+        <description>Utilisation Report Decline Email Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>leaseworks__URA_Email_Templates/leaseworks__URA_Rejection_Email</template>
+    </alerts>
+    <alerts>
+        <fullName>leaseworks__Util_Report_Approval_Request_Msg</fullName>
+        <description>Util Report - Approval Request Msg</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>leaseworks__URA_Email_Templates/leaseworks__Utilization_Report_Approval</template>
+    </alerts>
+    <alerts>
+        <fullName>leaseworks__Util_Report_Rejection_Email</fullName>
+        <description>Util Report - Rejection Email</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>leaseworks__URA_Email_Templates/leaseworks__URA_Rejection_Email</template>
+    </alerts>
+    <alerts>
+        <fullName>leaseworks__Utilisation_Report_Decline_Email_Alert</fullName>
+        <description>Utilisation Report Decline Email Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>leaseworks__URA_Email_Templates/leaseworks__URA_Rejection_Email</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>SetUtilizationApprovedDate</fullName>
+        <field>leaseworks__Utilization_Approved_Date__c</field>
+        <formula>TODAY()</formula>
+        <name>SetUtilizationApprovedDate</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>UR_Set_Date_Of_Submission</fullName>
+        <field>leaseworks__Date_of_Submission__c</field>
+        <name>UR_Set Date Of Submission</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Null</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Submitted_By_Id</fullName>
+        <field>SubmittedByID__c</field>
+        <formula>$User.Id</formula>
+        <name>Update Submitted By Id</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_UR_status_Approved</fullName>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Approved By Lessor</literalValue>
+        <name>Update UR status Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_UR_status_Declined</fullName>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Rejected By Lessor</literalValue>
+        <name>Update UR status Declined</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_UR_status_Open</fullName>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Open</literalValue>
+        <name>Update UR status Open</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_UR_status_Pending</fullName>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Submitted To Lessor</literalValue>
+        <name>Update UR status Pending</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__CopyMRRField20CFromLease</fullName>
+        <description>deprecated</description>
+        <field>leaseworks__Base_MRR_20_Month_C_Check__c</field>
+        <formula>null</formula>
+        <name>CopyMRRField20CFromLease</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__CopyMRRFieldAPUFromLease</fullName>
+        <description>deprecated</description>
+        <field>leaseworks__Base_MRR_APU__c</field>
+        <formula>null</formula>
+        <name>CopyMRRFieldAPUFromLease</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__CopyMRRFieldEngine2FromLease</fullName>
+        <description>deprecated</description>
+        <field>leaseworks__Base_MRR_Engine_2__c</field>
+        <formula>null</formula>
+        <name>CopyMRRFieldEngine2FromLease</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__CopyMRRFieldEngine3FromLease</fullName>
+        <description>deprecated</description>
+        <field>leaseworks__Base_MRR_Engine_3__c</field>
+        <formula>null</formula>
+        <name>CopyMRRFieldEngine3FromLease</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__CopyMRRFieldEngine4FromLease</fullName>
+        <description>deprecated</description>
+        <field>leaseworks__Base_MRR_Engine_4__c</field>
+        <formula>null</formula>
+        <name>CopyMRRFieldEngine4FromLease</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__CopyMRRFieldEngineFromLease</fullName>
+        <description>deprecated</description>
+        <field>leaseworks__Base_MRR_Engine__c</field>
+        <formula>null</formula>
+        <name>CopyMRRFieldEngineFromLease</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__CopyMRRFieldHM1FromLease</fullName>
+        <description>deprecated</description>
+        <field>leaseworks__BaseMRR_Airframe_Heavy_Maint_1__c</field>
+        <formula>null</formula>
+        <name>CopyMRRFieldHm1FromLease</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__CopyMRRFieldHM3FromLease</fullName>
+        <description>deprecated</description>
+        <field>leaseworks__Base_MRR_Airframe_Heavy_Maint_3__c</field>
+        <formula>null</formula>
+        <name>CopyMRRFieldHm3FromLease</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__CopyMRRFieldHM4FromLease</fullName>
+        <description>deprecated</description>
+        <field>leaseworks__Base_MRR_Airframe_Heavy_Maint_4__c</field>
+        <formula>null</formula>
+        <name>CopyMRRFieldHm4FromLease</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__CopyMRRFieldHMFromLease</fullName>
+        <description>deprecated</description>
+        <field>leaseworks__Base_MRR_Airframe_Heavy_Maint_Check__c</field>
+        <formula>null</formula>
+        <name>CopyMRRFieldHMFromLease</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__CopyMRRFieldLGHrFromLease</fullName>
+        <description>deprecated</description>
+        <field>leaseworks__Base_MRR_Landing_Gear_Per_Hr__c</field>
+        <formula>null</formula>
+        <name>CopyMRRFieldLgHrFromLease</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__CopyMRRFieldLHMnthFromLease</fullName>
+        <description>deprecated</description>
+        <field>leaseworks__Base_MRR_Landing_Gear_Per_Mo__c</field>
+        <formula>null</formula>
+        <name>CopyMRRFieldLGMnthFromLease</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__CopyMRRFieldLLP2FromLease</fullName>
+        <description>deprecated</description>
+        <field>leaseworks__Base_MRR_Engine_2_LLP__c</field>
+        <formula>null</formula>
+        <name>CopyMRRFieldLLP2FromLease</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__CopyMRRFieldLLP3FromLease</fullName>
+        <description>deprecated</description>
+        <field>leaseworks__Base_MRR_Engine_3_LLP__c</field>
+        <formula>null</formula>
+        <name>CopyMRRFieldLLP3FromLease</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__CopyMRRFieldLLP4FromLease</fullName>
+        <description>deprecated</description>
+        <field>leaseworks__Base_MRR_Engine_4_LLP__c</field>
+        <formula>null</formula>
+        <name>CopyMRRFieldLLP4FromLease</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__CopyMRRFieldLLPFromLease</fullName>
+        <description>deprecated</description>
+        <field>leaseworks__Base_MRR_Engine_LLP__c</field>
+        <formula>null</formula>
+        <name>CopyMRRFieldLLPFromLease</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__CopyMRRFieldOtherFromLease</fullName>
+        <description>deprecated</description>
+        <field>leaseworks__Base_MRR_Other__c</field>
+        <formula>null</formula>
+        <name>CopyMRRFieldOtherFromLease</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Lessor_Tech_Ops_Rejected</fullName>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Open</literalValue>
+        <name>Lessor Tech Ops Rejected</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Open2SubmitToLessor</fullName>
+        <description>Step that moves the status to &quot;Submitted To Lessor&quot;</description>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Submitted To Lessor</literalValue>
+        <name>Open2SubmitToLessor</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Set</fullName>
+        <description>Z_UnusedInvoice Date Depricated</description>
+        <field>leaseworks__Invoice_Date__c</field>
+        <formula>NOW()</formula>
+        <name>Set Invoice Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Set_Approval_Status</fullName>
+        <description>If approved by the lessor, then set to &quot;Approved by lessor&quot;</description>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Approved by lessor</literalValue>
+        <name>Set Approval Status</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Set_Approval_Status1</fullName>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Approved By Lessor</literalValue>
+        <name>Set Approval Status</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Set_Cycles_Since_C_Check</fullName>
+        <description>Airframe Cycles Since C-Check to be derived from the aircraft at the time of creation and not to be updated each time the aircraft is updated</description>
+        <field>leaseworks__Airframe_Cycles_Since_C_Check__c</field>
+        <formula>IF( ISNEW() ,  leaseworks__Aircraft__r.leaseworks__Cycles_Since_Last_C_Check__c,  leaseworks__Airframe_Cycles_Since_C_Check__c )</formula>
+        <name>Set Airframe Cycles Since C-Check</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Set_Final_Rejection_Status</fullName>
+        <description>If Approver rejects, set the status back to Pending</description>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Open</literalValue>
+        <name>Set Final Rejection Status</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Set_Final_Rejection_Status1</fullName>
+        <description>Set status to &quot;Rejected By Lessor&quot; when done so by lessor</description>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Rejected By Lessor</literalValue>
+        <name>Set Rejection Status</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Set_Initial_Approval_Status</fullName>
+        <description>When the Utilization report is initially submitted, set status to &quot;Submitted to lessor&quot;</description>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Submitted to lessor</literalValue>
+        <name>Set Initial Approval Status</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Set_Initial_Approval_Status1</fullName>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Open</literalValue>
+        <name>SetOpen2TechOpsStatus</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Set_Time_Since_C_Check</fullName>
+        <field>leaseworks__Airframe_Time_Since_C_Check__c</field>
+        <formula>IF( ISNEW() ,  leaseworks__Aircraft__r.leaseworks__Time_Since_Last_C_Check__c , leaseworks__Airframe_Time_Since_C_Check__c )</formula>
+        <name>Set Time Since C-Check</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__URCopyTotalNMRFromAircraft</fullName>
+        <description>Copy Total NMR from the Aircraft at the time of UR creation.</description>
+        <field>leaseworks__Y_Hidden_NMR_On_UR_Creation__c</field>
+        <formula>null</formula>
+        <name>URCopyTotalNMRFromAircraft</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__UR_Month_Ending</fullName>
+        <field>leaseworks__Month_Ending__c</field>
+        <formula>date(
+		year(leaseworks__Month_Ending__c)+
+			(if(month(leaseworks__Month_Ending__c)==12,1,0)
+			),
+			(mod(month(leaseworks__Month_Ending__c),12)+1
+			),		1
+	)-1</formula>
+        <name>UR Month Ending</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__UR_Set_CSN</fullName>
+        <description>We are not using now. We will update through trigger: This is used to get a snapshot of the Aircraft CSN at the time of creation of UR. Beginning of month value.</description>
+        <field>leaseworks__Current_CSN__c</field>
+        <formula>leaseworks__Current_CSN__c</formula>
+        <name>UR Set CSN</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__UR_Set_Date_Of_Submission</fullName>
+        <field>leaseworks__Date_of_Submission__c</field>
+        <formula>TODAY()</formula>
+        <name>UR_Set Date Of Submission</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__UR_Set_TSN</fullName>
+        <description>We are not using now. We will update through trigger: Used to get a snapshot of TSN on Aircraft at the time of UR creation. Beginning of month value.</description>
+        <field>leaseworks__Current_TSN__c</field>
+        <formula>leaseworks__Current_TSN__c</formula>
+        <name>UR Set TSN</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__UR_Set_Total_NMR</fullName>
+        <description>Get a snapshot of Total NMR on Aircraft. Beginning of month value.</description>
+        <field>leaseworks__Total_NMR_At_BoM__c</field>
+        <formula>null</formula>
+        <name>UR Set Total NMR</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__UR_Update_DoSumission</fullName>
+        <field>leaseworks__Date_of_Submission__c</field>
+        <formula>today()</formula>
+        <name>UR Update DoSubmission</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_12_Yr_Airframe</fullName>
+        <description>Unused--- Update MR for 12 yr airframe when new UR is created</description>
+        <field>leaseworks__Maint_Reserve_Heavy_Maint_2_Airframe__c</field>
+        <formula>-1</formula>
+        <name>Update 12 Yr Airframe</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_20_Mo_C_Check</fullName>
+        <description>Unused---</description>
+        <field>leaseworks__MR_20_Month_C_Check__c</field>
+        <name>Update 20 Mo C-Check</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Null</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_6_Yr_Airframe</fullName>
+        <description>Unused--- Updates 6 yr airframe MR when new UR is created</description>
+        <field>leaseworks__Maint_Reserve_Heavy_Maint_1_Airframe__c</field>
+        <formula>-1</formula>
+        <name>Update 6 Yr Airframe</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_CSLV</fullName>
+        <description>Unused--- If the month on UR&gt;month on C-check then {if this is a new UR ( take cycles from aircraft and add the cycles on this UR, else this is an update , so take the value on AC and back out old value and add new value}</description>
+        <field>leaseworks__Cycles_Since_Last_C_Check__c</field>
+        <name>Update CSLV</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Null</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>leaseworks__Aircraft__c</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_CSN</fullName>
+        <description>Update CSN with current FC. BM 24-Oct-12: This is obsolete and should not be used. Logic moved to trigger URHandleAfterInsert.</description>
+        <field>leaseworks__CSN__c</field>
+        <formula>if (ISNEW(), leaseworks__Aircraft__r.leaseworks__CSN__c  + leaseworks__Airframe_Cycles_Landing_During_Month__c, leaseworks__Aircraft__r.leaseworks__CSN__c  - (PRIORVALUE(leaseworks__Airframe_Cycles_Landing_During_Month__c)) + (leaseworks__Airframe_Cycles_Landing_During_Month__c))</formula>
+        <name>Update CSN</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>leaseworks__Aircraft__c</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_Date_of_Submission</fullName>
+        <description>Updates the date of submission on UR</description>
+        <field>leaseworks__Date_of_Submission__c</field>
+        <formula>NOW()</formula>
+        <name>Update Date of Submission</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_Heavy_Maint_1</fullName>
+        <description>Z_Unused---Updates heavy maintenance 1 value, when UR is changed</description>
+        <field>leaseworks__Maint_Reserve_Heavy_Maint_1_Airframe__c</field>
+        <name>Update Heavy Maint 1</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Null</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_Heavy_Maint_2</fullName>
+        <description>Z_Unused---Update heavy maintenance 2 value whenever MRR is updated</description>
+        <field>leaseworks__Maint_Reserve_Heavy_Maint_2_Airframe__c</field>
+        <name>Update Heavy Maint 2</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Null</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_Heavy_Maint_3</fullName>
+        <description>Z_Unused---Updates heavy maintenance 3 value, when UR is changed</description>
+        <field>leaseworks__Maint_Reserve_Heavy_Maint_3_Airframe__c</field>
+        <name>Update Heavy Maint 3</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Null</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_Heavy_Maint_4</fullName>
+        <description>Z_Unused---Update heavy maintenance 4 value whenever MRR is updated</description>
+        <field>leaseworks__Maint_Reserve_Heavy_Maint_4_Airframe__c</field>
+        <name>Update Heavy Maint 4</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Null</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_Submission_Date</fullName>
+        <description>Updates the submission date field on UR</description>
+        <field>leaseworks__Date_of_Submission__c</field>
+        <formula>NOW()</formula>
+        <name>Update Submission Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_TSLV</fullName>
+        <description>Checks to see if the date of UR is &gt; date on last C-Check. If so, increment TSLV. Also if new AC and no C-Check date is available, then we need to update as well.
+BM 24-Oct-12 : Don&#39;t use this. Logic moved to trigger URHandleAfterInsert.</description>
+        <field>leaseworks__Time_Since_Last_C_Check__c</field>
+        <formula>IF(OR(leaseworks__Month_Ending__c &gt;leaseworks__Aircraft__r.leaseworks__Last_C_Check__c, ISBLANK(leaseworks__Aircraft__r.leaseworks__Last_C_Check__c)) , 
+IF(ISNEW(), 
+leaseworks__Aircraft__r.leaseworks__Time_Since_Last_C_Check__c + leaseworks__Airframe_Flight_Hours_Month__c, leaseworks__Aircraft__r.leaseworks__Time_Since_Last_C_Check__c-PRIORVALUE(leaseworks__Airframe_Flight_Hours_Month__c) + leaseworks__Airframe_Flight_Hours_Month__c), leaseworks__Aircraft__r.leaseworks__Time_Since_Last_C_Check__c)</formula>
+        <name>Update TSLV</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>leaseworks__Aircraft__c</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_TSN</fullName>
+        <description>Update TSN. BM 24-Oct-12: This is obsolete and should not be used. Logic moved to trigger URHandleAfterInsert.</description>
+        <field>leaseworks__TSN__c</field>
+        <formula>if (ISNEW(), leaseworks__Aircraft__r.leaseworks__TSN__c + leaseworks__Airframe_Flight_Hours_Month__c, leaseworks__Aircraft__r.leaseworks__TSN__c - PRIORVALUE(leaseworks__Airframe_Flight_Hours_Month__c) + leaseworks__Airframe_Flight_Hours_Month__c)</formula>
+        <name>Update TSN</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>leaseworks__Aircraft__c</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_Total_LG</fullName>
+        <description>Set the Total LG MR adding up all the individual LG MRs.</description>
+        <field>leaseworks__Maintenance_Reserve_Landing_Gear__c</field>
+        <formula>BLANKVALUE( leaseworks__Maintenance_Reserve_LG_Center_Main__c , 0) +
+BLANKVALUE( leaseworks__Maintenance_Reserve_LG_Left_Main__c , 0) +
+BLANKVALUE( leaseworks__Maintenance_Reserve_LG_Right_Main__c , 0) +
+BLANKVALUE( leaseworks__Maintenance_Reserve_LG_Nose__c , 0) +
+BLANKVALUE( leaseworks__Maintenance_Reserve_LG_Left_Wing__c , 0) +
+BLANKVALUE( leaseworks__Maintenance_Reserve_LG_Right_Wing__c , 0)</formula>
+        <name>Update Total LG</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_UR_Name</fullName>
+        <description>Wf that gets kicked off when UR is created or changed - Deprecated in June 2020 release</description>
+        <field>Name</field>
+        <formula>Name</formula>
+        <name>Update UR Name</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_UR_stats_Declined</fullName>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Rejected By Lessor</literalValue>
+        <name>Update UR status Declined</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_UR_status_Approved</fullName>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Approved By Lessor</literalValue>
+        <name>Update UR status Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_UR_status_Declined</fullName>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Open</literalValue>
+        <name>Update UR status Declined</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_UR_status_Open</fullName>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Open</literalValue>
+        <name>Update UR status Open</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_UR_status_Pending</fullName>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Submitted To Lessor</literalValue>
+        <name>Update UR status Pending</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>leaseworks__UR - Update Total LG</fullName>
+        <actions>
+            <name>leaseworks__Update_Total_LG</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Workflow to use when UR is updated</description>
+        <formula>!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__UR Copy Base MRR Fields</fullName>
+        <actions>
+            <name>leaseworks__CopyMRRFieldEngine2FromLease</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>leaseworks__CopyMRRFieldEngine3FromLease</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>leaseworks__CopyMRRFieldEngine4FromLease</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>leaseworks__CopyMRRFieldEngineFromLease</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>leaseworks__CopyMRRFieldLLP2FromLease</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>leaseworks__CopyMRRFieldLLP3FromLease</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>leaseworks__CopyMRRFieldLLP4FromLease</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>leaseworks__CopyMRRFieldLLPFromLease</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Workflow to use when UR is Created or updated. Copy over MRR fields.</description>
+        <formula>!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__UR Created</fullName>
+        <actions>
+            <name>leaseworks__Update_UR_Name</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Set name on UR Creation
+Set NMR at the beginning of the month by copying it over from aircraft.</description>
+        <formula>!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__UR Set Month Ending Date</fullName>
+        <actions>
+            <name>leaseworks__UR_Month_Ending</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__Utilization Report Created</fullName>
+        <actions>
+            <name>leaseworks__Set_Cycles_Since_C_Check</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>leaseworks__Set_Time_Since_C_Check</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>leaseworks__URCopyTotalNMRFromAircraft</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>leaseworks__UR_Set_CSN</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>leaseworks__UR_Set_TSN</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Fields to be set on URA when a new URA is created (copied over from AC)</description>
+        <formula>!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__Utilization Report Created Or Updated</fullName>
+        <actions>
+            <name>leaseworks__CopyMRRField20CFromLease</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>leaseworks__CopyMRRFieldAPUFromLease</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>leaseworks__CopyMRRFieldHM1FromLease</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>leaseworks__CopyMRRFieldHM3FromLease</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>leaseworks__CopyMRRFieldHM4FromLease</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>leaseworks__CopyMRRFieldHMFromLease</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>leaseworks__CopyMRRFieldLGHrFromLease</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>leaseworks__CopyMRRFieldLHMnthFromLease</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>leaseworks__CopyMRRFieldOtherFromLease</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Workflow to use when UR is Created or updated. Copy over MRR fields.</description>
+        <formula>!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__Utilization Report Updated</fullName>
+        <actions>
+            <name>leaseworks__Update_20_Mo_C_Check</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>leaseworks__Update_Heavy_Maint_1</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>leaseworks__Update_Heavy_Maint_2</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>leaseworks__Update_Heavy_Maint_3</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>leaseworks__Update_Heavy_Maint_4</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Update Airframe MRs. Disabled from Dec 2016</description>
+        <formula>false /* !$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c */</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Latest_Payment_Info__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <formula>IF( ISBLANK(leaseworks__Latest_Payment_Date__c), &#39;&#39;,
+    &#39;$&#39; +  TEXT(ROUND((leaseworks__Latest_Payment__c/1000), 2)) + &#39;K  paid on &#39; + 
+TEXT(MONTH(leaseworks__Latest_Payment_Date__c))+&quot;/&quot; +TEXT(DAY(leaseworks__Latest_Payment_Date__c))+&quot;/&quot; +TEXT(YEAR(leaseworks__Latest_Payment_Date__c))
+  )</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Latest Payment Info</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

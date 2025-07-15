@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__BankAssociatedToLeaseHeaderCompany</fullName>
+    <active>true</active>
+    <description>The Bank should be associated to the Header Company on the lease</description>
+    <errorConditionFormula>/*AND(!$Setup.LeaseWorksSettings__c.Disable_All_WFs__c,isNEW(),Lease__c !=null, Lease__r.Legal_Entity__c != Bnk_Account_Lkp__r.BA_Legal_Entity__c, Prepayment__c )*/false</errorConditionFormula>
+    <errorMessage>Please select a Bank associated with the Header Company of the selected Lease</errorMessage>
+</ValidationRule>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Refresh_Aging</fullName>
+    <availability>online</availability>
+    <description>Do recalculation of receivables buckets.</description>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Z_Unused Refresh Aging</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>{!REQUIRESCRIPT(&quot;/soap/ajax/57.0/connection.js&quot;)}
+{!REQUIRESCRIPT(&quot;/soap/ajax/57.0/apex.js&quot;)}
+
+var curLease = new sforce.SObject(&quot;Lease__c&quot;);
+curLease.id = &quot;{!leaseworks__Lease__c.Id}&quot;;
+
+curLease.Y_Hidden_Recalc_Buckets__c=true;
+var Result = sforce.connection.update([curLease]);
+
+if(Result[0].getBoolean(&quot;success&quot;)) {
+window.location.reload();
+} else {
+
+alert(Result[0].errors.message);
+}</url>
+</WebLink>

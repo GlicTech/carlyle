@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>63.0</apiVersion>
+    <environments>Default</environments>
+    <formulas>
+        <name>f_MapSubTypeBasedOnApprovalType</name>
+        <dataType>String</dataType>
+        <expression>IF(
+  ISPICKVAL({!$Record.Approval_Type__c}, &quot;Waiver / Rebate&quot;) ||
+  ISPICKVAL({!$Record.Approval_Type__c}, &quot;Deferral Request&quot;) ||
+  ISPICKVAL({!$Record.Approval_Type__c}, &quot;LPI Waiver / Discount&quot;) ||
+  ISPICKVAL({!$Record.Approval_Type__c}, &quot;Credit Actions&quot;) ||
+  ISPICKVAL({!$Record.Approval_Type__c}, &quot;Subleasing Request&quot;) ||
+  ISPICKVAL({!$Record.Approval_Type__c}, &quot;Change of Ownership&quot;)||
+  ISPICKVAL({!$Record.Approval_Type__c}, &quot;LoC Drawdown&quot;),
+  &quot;Credit&quot;,
+  
+  IF(
+    ISPICKVAL({!$Record.Approval_Type__c}, &quot;Part Exchanges (LG / APU)&quot;) ||
+    ISPICKVAL({!$Record.Approval_Type__c}, &quot;Operational Requests&quot;) ||
+    ISPICKVAL({!$Record.Approval_Type__c}, &quot;Cash to LoC Conversion&quot;) ||
+    ISPICKVAL({!$Record.Approval_Type__c}, &quot;Tripartite Agreement&quot;),
+    &quot;Lease Management&quot;,
+    
+    IF(
+      ISPICKVAL({!$Record.Approval_Type__c}, &quot;Redelivery Buy-outs&quot;) ||
+      ISPICKVAL({!$Record.Approval_Type__c}, &quot;Other Lease Amendments&quot;),
+      &quot;Lease Transaction&quot;,
+      
+
+        IF(
+          ISPICKVAL({!$Record.Approval_Type__c}, &quot;Novation Fees (internal)&quot;) ||
+          ISPICKVAL({!$Record.Approval_Type__c}, &quot;Novation Fees (external)&quot;) ||
+          ISPICKVAL({!$Record.Approval_Type__c}, &quot;Bond Repurchase&quot;),
+          &quot;Liability Management&quot;,
+          
+          IF(
+            ISPICKVAL({!$Record.Approval_Type__c}, &quot;Change in Technical Budgets&quot;),
+            &quot;Technical&quot;,
+            &quot;&quot;
+          )
+        )
+      )
+    )
+  )</expression>
+    </formulas>
+    <interviewLabel>Prodigy - Deal Approval - Map Sub Type Based On Approval Type {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Prodigy - Deal Approval - Map Sub Type Based On Approval Type</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Prodigy_Deal_Approval_Map_Subtype_Based_On_Approval_Type</name>
+        <label>Prodigy - Deal Approval - Map Subtype Based On Approval Type</label>
+        <locationX>176</locationX>
+        <locationY>287</locationY>
+        <inputAssignments>
+            <field>Sub_Type__c</field>
+            <value>
+                <elementReference>f_MapSubTypeBasedOnApprovalType</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Prodigy_Deal_Approval_Map_Subtype_Based_On_Approval_Type</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>leaseworks__Deal_Type__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Approval</stringValue>
+            </value>
+        </filters>
+        <object>leaseworks__Marketing_Activity__c</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

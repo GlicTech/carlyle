@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>WhenNAAssetNoAssetsCanBeLinked</fullName>
+    <active>false</active>
+    <description>Restrict users from linking Assets to a Ticket when NA Asset checkbox is checked.</description>
+    <errorConditionFormula>AND(
+     pro_Asset__c != Null,
+      pro_Non_Carlyle_Asset__c = True
+
+
+)</errorConditionFormula>
+    <errorDisplayField>pro_Asset__c</errorDisplayField>
+    <errorMessage>Once NA Asset is checked, no Assets can be linked to a Ticket.</errorMessage>
+</ValidationRule>

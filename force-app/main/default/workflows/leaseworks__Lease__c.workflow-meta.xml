@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Send_email_for_missing_UR</fullName>
+        <description>Send email for missing UR</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>GT_Back_Office</recipient>
+            <type>group</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Notify_Missiing_UR</template>
+    </alerts>
+    <alerts>
+        <fullName>leaseworks__Email_Alert_For_Approval</fullName>
+        <description>Email Alert For Approval</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>leaseworks__LeaseWorksTemplates/leaseworks__Lease_Approval_Flow</template>
+    </alerts>
+    <alerts>
+        <fullName>leaseworks__Lease_Approval_Email_Alert</fullName>
+        <description>Lease Approval Email Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>leaseworks__LeaseWorksTemplates/leaseworks__Lease_Approval_Flow</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>leaseworks__Contractual_Redelivery</fullName>
+        <field>leaseworks__Contractual_Redelivery_Date__c</field>
+        <name>Contractual Redelivery</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Null</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__LeaseSetDataVerifiedBy</fullName>
+        <field>leaseworks__Data_Verified_By__c</field>
+        <formula>$User.FirstName + &#39; &#39; + $User.LastName +&#39;, &#39; +
+
+Text(MONTH(TODAY())) + &#39;/&#39; + Text(Day(TODAY())) + &#39;/&#39; + Text(year(TODAY()))</formula>
+        <name>LeaseSetDataVerifiedBy</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Lease_End_Date_Update</fullName>
+        <field>leaseworks__Lease_End_Date__c</field>
+        <formula>DATETIMEVALUE(  leaseworks__Lease_End_Date_New__c  ) + 0.4166667</formula>
+        <name>Lease End Date Update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Lease_Set_CurrentRent</fullName>
+        <description>going forward we&#39;ll not use this.</description>
+        <field>leaseworks__Rent__c</field>
+        <formula>NULLVALUE( leaseworks__Rent__c  , leaseworks__Base_Rent__c)</formula>
+        <name>Lease_Set_CurrentRent</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Lease_Set_Name</fullName>
+        <description>Lease name :
+msn/esn | lessee/operator name | aircraft/engine type</description>
+        <field>Name</field>
+        <formula>IF(TEXT(leaseworks__Type__c) == &#39;Loan&#39; , Name , left(leaseworks__Aircraft__r.leaseworks__MSN_Number__c  &amp; &#39; | &#39; &amp; IF(ISBLANK(leaseworks__Lessee_New__r.Name), leaseworks__Operator_New__r.Name , leaseworks__Lessee_New__r.Name) &amp; &#39; | &#39;&amp;   
+
+            IF( leaseworks__Aircraft__r.leaseworks__RecordTypeDevName__c == &#39;Aircraft&#39;, TEXT(leaseworks__Aircraft__r.leaseworks__Asset_Type_GP__c),  
+           if( isblank(TEXT(leaseworks__Aircraft__r.leaseworks__Engine_Type_GP__c)),TEXT(leaseworks__Aircraft__r.leaseworks__Asset_Type_GP__c) ,TEXT(leaseworks__Aircraft__r.leaseworks__Engine_Type_GP__c))
+            )
+           ,79))</formula>
+        <name>Lease Set Name</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Lease_Set_Placement_By</fullName>
+        <field>leaseworks__Placement_By_Date__c</field>
+        <formula>IF(OR(ISBLANK(leaseworks__Placement_By_Date__c), 
+PRIORVALUE( leaseworks__Lease_End_Date_New__c ) == leaseworks__Placement_By_Date__c),
+leaseworks__Lease_End_Date_New__c,
+leaseworks__Placement_By_Date__c)</formula>
+        <name>Lease Set Placement By</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Lease_Start_Date_Update</fullName>
+        <field>leaseworks__Lease_Start_Date__c</field>
+        <formula>DATETIMEVALUE(  leaseworks__Lease_Start_Date_New__c  ) + 0.4166667</formula>
+        <name>Lease Start Date Update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Rent_Update_End_Date</fullName>
+        <description>Rent End date is optional. If the user leaves it blank, assume that and set the end date same as Lease start date.</description>
+        <field>leaseworks__Rent_End_Date__c</field>
+        <formula>leaseworks__Lease_End_Date_New__c</formula>
+        <name>Rent Update End Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Rent_Update_Start_Date</fullName>
+        <description>Start date for the rent is optional. If the user leaves it blank, assume that and set the start date same as Lease start date.</description>
+        <field>leaseworks__Rent_Date__c</field>
+        <formula>leaseworks__Lease_Start_Date_New__c</formula>
+        <name>Rent Update Start Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_Contractual_Redelivery_date</fullName>
+        <field>leaseworks__Contractual_Redelivery_Date__c</field>
+        <formula>IF( ISNULL(leaseworks__Lease_Term_in_Months__c),leaseworks__Delivery_Date__c, ADDMONTHS(leaseworks__Delivery_Date__c,leaseworks__Lease_Term_in_Months__c)-1 )</formula>
+        <name>Update Contractual Redelivery date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_Lease_Status</fullName>
+        <description>Updates the status to &#39;Pending Approval&#39;</description>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Pending Approval</literalValue>
+        <name>Update Lease Status</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_Lease_Status_Declined</fullName>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Open</literalValue>
+        <name>Update Lease Status Declined</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_Lease_Status_To_Approved</fullName>
+        <description>Set lease status to Approved</description>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Approved</literalValue>
+        <name>Update Lease Status To Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_Lease_Status_To_Rejected</fullName>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Rejected</literalValue>
+        <name>Update Lease Status To Rejected</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_Lease_stats_open</fullName>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Open</literalValue>
+        <name>Update Lease status open</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_Lease_status_Approved</fullName>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Approved</literalValue>
+        <name>Update Lease status Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_Lease_status_open</fullName>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Pending Approval</literalValue>
+        <name>Update Lease status Pending</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>leaseworks__Contractual Redelivery date based on Redelivery Terms</fullName>
+        <actions>
+            <name>leaseworks__Update_Contractual_Redelivery_date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>leaseworks__Lease__c.leaseworks__Redelivery_Terms__c</field>
+            <operation>equals</operation>
+            <value>Lease Term Driven</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>leaseworks__Lease__c.leaseworks__Delivery_Date__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__Lease Aircraft  Changed</fullName>
+        <active>false</active>
+        <description>Workflow actions when aircraft has changed</description>
+        <formula>ISCHANGED( leaseworks__Aircraft__c )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__Lease Data Verifed By</fullName>
+        <actions>
+            <name>leaseworks__LeaseSetDataVerifiedBy</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>OR ( AND (ISNEW(), leaseworks__Data_Verified_For_Accuracy__c ), ISCHANGED(leaseworks__Data_Verified_For_Accuracy__c))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__Lease Rent Schedule</fullName>
+        <active>false</active>
+        <booleanFilter>1</booleanFilter>
+        <criteriaItems>
+            <field>leaseworks__Lease__c.leaseworks__Lease_Term__c</field>
+            <operation>greaterThan</operation>
+            <value>0</value>
+        </criteriaItems>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__LeaseSetName</fullName>
+        <actions>
+            <name>leaseworks__Lease_Set_Name</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>leaseworks__Lease__c.RecordTypeId</field>
+            <operation>notEqual</operation>
+            <value>Non-Lease Agreement</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__Lease_onCreate_SetCurRent</fullName>
+        <actions>
+            <name>leaseworks__Lease_Set_CurrentRent</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>going forward we&#39;ll not use this.</description>
+        <formula>false</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__RedeliveryTerms</fullName>
+        <active>false</active>
+        <criteriaItems>
+            <field>leaseworks__Lease__c.leaseworks__Redelivery_Terms__c</field>
+            <operation>equals</operation>
+            <value>Lease Term Driven</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__Rent Update Start %26 End Date If Null</fullName>
+        <actions>
+            <name>leaseworks__Rent_Update_End_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>leaseworks__Rent_Update_Start_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <criteriaItems>
+            <field>leaseworks__Lease__c.leaseworks__Rent_Date__c</field>
+            <operation>equals</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>leaseworks__Lease__c.leaseworks__Rent_End_Date__c</field>
+            <operation>equals</operation>
+        </criteriaItems>
+        <description>Always ensure that the rent start date end date is set.</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

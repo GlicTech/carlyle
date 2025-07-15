@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Re_Delivery_Status__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <formula>IF(
+  ISPICKVAL(leaseworks__Re_Delivery_Condition_Status__c, &#39;Red&#39;),
+  IMAGE(
+    &quot;/resource/&quot; + $Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Package_Prefix__c + &quot;RedeliveryStatusImages/Red.png&quot;,
+    &quot;Red&quot;,
+    18,
+    18
+  ),
+  IF(
+    ISPICKVAL(leaseworks__Re_Delivery_Condition_Status__c, &#39;Green&#39;),
+    IMAGE(
+      &quot;/resource/&quot; + $Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Package_Prefix__c + &quot;RedeliveryStatusImages/Green.png&quot;,
+      &quot;Green&quot;,
+      18,
+      18
+    ),
+    IF(
+      ISPICKVAL(leaseworks__Re_Delivery_Condition_Status__c, &#39;Orange&#39;),
+      IMAGE(
+        &quot;/resource/&quot; + $Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Package_Prefix__c + &quot;RedeliveryStatusImages/Orange.png&quot;,
+        &quot;Orange&quot;,
+        18,
+        18
+      ),
+      &#39;&#39;
+    )
+  )
+)</formula>
+    <label>Re-Delivery Status</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

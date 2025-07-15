@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Trading_Asset_Management_Tickets_pro_Ticket</fullName>
+    <columns>NAME</columns>
+    <columns>pro_Parent_Ticket__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>pro_Asset__c</columns>
+    <columns>RECORDTYPE</columns>
+    <columns>pro_Assigned_To__c</columns>
+    <columns>pro_Requested_By__c</columns>
+    <columns>pro_Type__c</columns>
+    <columns>pro_Comments__c</columns>
+    <columns>pro_Status__c</columns>
+    <columns>pro_Priority__c</columns>
+    <columns>pro_Expected_Due_Date__c</columns>
+    <filterScope>Queue</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>pro_Ticket__c.Trading_Asset_Management</value>
+    </filters>
+    <label>All Trading &amp; Asset Management Tickets</label>
+    <queue>pro_Trading_Asset_Management_Tickets</queue>
+</ListView>

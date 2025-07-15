@@ -1,0 +1,18 @@
+<apex:page showHeader="false" sidebar="false" controller="Loop.DownloadLightningFileController">
+    <script>
+        var downloadUrl = '{!JSENCODE($Request.url)}';
+        var isRdlc = '{!JSENCODE($Request.isRdlc)}' === 'true';
+        var isLightning = '{!JSENCODE($Request.isLightning)}' === 'true';
+        var isOAuthEnabled = '{!JSENCODE($Request.isOAuthEnabled)}' === 'true';
+
+        downloadUrl += '&sessionId=' + encodeURIComponent('{!JSENCODE(sessionId)}');
+        downloadUrl += '&location=' + encodeURIComponent('{!JSENCODE(location)}');
+
+        if (isRdlc || isLightning || isOAuthEnabled) {
+            downloadUrl += '&userId=' + '{!userId}';
+            downloadUrl += '&sandbox=' + '{!sandbox}';
+        }
+
+        window.location = downloadUrl;
+    </script>
+</apex:page>

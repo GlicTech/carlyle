@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Maintenance_Event_Task__c</fullName>
+    <deleteConstraint>Restrict</deleteConstraint>
+    <deprecated>false</deprecated>
+    <description>Maintenance Program Event Task associated with this requirement. To be defined on the Maintenance Program Event level</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Maintenance Program Event Task associated with this requirement. To be defined on the Maintenance Program Event level</inlineHelpText>
+    <label>Maintenance Event Tasks</label>
+    <lookupFilter>
+        <active>true</active>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <filterItems>
+            <field>$Source.leaseworks__Y_Hidden_MPE_LKP__c</field>
+            <operation>equals</operation>
+            <valueField>leaseworks__Maintenance_Event_Task__c.leaseworks__Maintenance_Program_Event__c</valueField>
+        </filterItems>
+        <filterItems>
+            <field>$Source.leaseworks__Y_Hidden_MPE_LKP__c</field>
+            <operation>equals</operation>
+            <value>Null</value>
+        </filterItems>
+        <isOptional>true</isOptional>
+    </lookupFilter>
+    <referenceTo>leaseworks__Maintenance_Event_Task__c</referenceTo>
+    <relationshipLabel>Supplemental Rent Event Requirements</relationshipLabel>
+    <relationshipName>Supplemental_Rent_Event_Requirements</relationshipName>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

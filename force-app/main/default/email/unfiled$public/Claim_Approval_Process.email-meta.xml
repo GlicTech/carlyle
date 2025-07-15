@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <name>Claim Approval Process</name>
+    <style>none</style>
+    <subject>Last utilization report not found for {!leaseworks__Lease__c.leaseworks__Operator_New__r.name}   , {!leaseworks__Lease__c.Name} .</subject>
+    <textOnly>Hi Approval Team,
+
+The above-named claim has been submitted for your review and approval.
+
+Assembly: {!leaseworks__Claims__c.leaseworks__Assembly__c}
+Asset (Titled/Owned): {!leaseworks__Claims__c.leaseworks__Assembly__r__leaseworks__Attached_Aircraft__c}
+Lease: {!leaseworks__Claims__c.leaseworks__Assembly__r__leaseworks__Asset__r__leaseworks__Lease__c}
+Induction Date: {!leaseworks__Claims__c.leaseworks__Date_Receipt_Notification_From_Lessee__c}
+Induction Date: {!leaseworks__Claims__c.leaseworks__Induction_Date__c}
+
+Link – {!leaseworks__Claims__c.Link}
+
+Regards,
+
+Aviation Lease Management</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Is_Deferred_Rent__c</fullName>
+    <deprecated>false</deprecated>
+    <description>This field is used for accounting to identify whether the rent or Fee slip is spanning across different months</description>
+    <externalId>false</externalId>
+    <formula>IF(AND(MONTH( leaseworks__Rent__r.leaseworks__Start_Date__c )!= MONTH( leaseworks__Rent__r.leaseworks__For_Month_Ending__c ), (ISPICKVAL(leaseworks__Invoice_Type__c, &#39;Rent&#39;)|| ISPICKVAL(leaseworks__Invoice_Type__c, &#39;HL/SL-Rent&#39;))), true, 
+        IF(AND(MONTH(leaseworks__Period_Start_Date__c ) != MONTH(leaseworks__Period_End_Date__c),(ISPICKVAL(leaseworks__Invoice_Type__c, &#39;Fee&#39;))), true, false))</formula>
+    <inlineHelpText>Read-only formula field, used for accounting to identify whether the rent slip is spanning across different months.</inlineHelpText>
+    <label>_Is Deferred Rent</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

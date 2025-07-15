@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>pro_Lease_Documentation_Approval_Prog__c</fullName>
+    <externalId>false</externalId>
+    <formula>/* Create an opening border of grey on the far left, 18 px high and 2 px wide */
+IMAGE(&quot;/resource/1750086837000/Grey?&quot;, &quot;Grey&quot;, 18, 2)
+&amp;
+/* Create a green bar to represent completeness of the task, 18 px high and of a width of the % field value (1% = 1px) */
+IMAGE(&quot;/resource/1750086966000/GreenProgress?&quot;, &quot;GreenProgress&quot;, 18,  pro_Lease_Documentation_Approval_per__c * 100)
+&amp;
+/* Create a grey bar to represent incompleteness of the task, 18 px high and of a width controlled by 1-% field value */
+IMAGE(&quot;/resource/1750086837000/Grey?&quot;, &quot;Grey&quot;, 18, (1 - pro_Lease_Documentation_Approval_per__c ) * 100)
+&amp;
+/* Create a closing border of grey on the far right, 18 pixels high and 2 px wide */ IMAGE(&quot;/resource/1725630466000/Grey?&quot;, &quot;Grey&quot;, 18, 2)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Lease Documentation Approval Progress</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

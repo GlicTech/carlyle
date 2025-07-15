@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__TAT_Impact__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <formula>If(IsBlank(leaseworks__Final_TAT__c),null,if(IsBlank(leaseworks__Initial_TAT__c), null, if( leaseworks__Final_TAT__c &gt; leaseworks__Initial_TAT__c , IMAGE(&#39;/img/samples/flag_red.gif&#39;, &#39;Red Flag&#39;),IMAGE(&#39;/img/samples/flag_green.gif&#39;,&#39;Green Flag&#39;))))</formula>
+    <label>TAT Impact?</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

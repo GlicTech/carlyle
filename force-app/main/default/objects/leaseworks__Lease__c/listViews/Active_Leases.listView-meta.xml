@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Active_Leases</fullName>
+    <columns>Unique_Lease_ID_Local__c</columns>
+    <columns>NAME</columns>
+    <columns>leaseworks__Aircraft__c</columns>
+    <columns>leaseworks__Lessee_New__c</columns>
+    <columns>Transaction_Code__c</columns>
+    <columns>leaseworks__Lease_Type_Status__c</columns>
+    <columns>leaseworks__Lease_Start_Date_New__c</columns>
+    <columns>leaseworks__Lease_End_Date_New__c</columns>
+    <columns>leaseworks__Rent_Type__c</columns>
+    <columns>leaseworks__Remaining_Lease_Term_Mos__c</columns>
+    <columns>leaseworks__Base_Rent__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>leaseworks__Lease_Type_Status__c</field>
+        <operation>equals</operation>
+        <value>LOI,Awaiting Delivery,On Lease,On Lease [R]</value>
+    </filters>
+    <label>Active Leases</label>
+</ListView>

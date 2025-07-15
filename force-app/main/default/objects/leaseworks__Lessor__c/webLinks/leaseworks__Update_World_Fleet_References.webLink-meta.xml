@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Update_World_Fleet_References</fullName>
+    <availability>online</availability>
+    <description>Update World Fleet References to Operators and Lessors</description>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Z_unused Update World Fleet References</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>{!REQUIRESCRIPT(&quot;/soap/ajax/57.0/connection.js&quot;)}
+{!REQUIRESCRIPT(&quot;/soap/ajax/57.0/apex.js&quot;)}
+
+var pkgPrefix = &#39;&#39;;
+if(&#39;{!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Package_Prefix__c}&#39;!= &#39;&#39;) pkgPrefix = &#39;leaseworks/&#39;;
+
+
+try{
+    var result = sforce.apex.execute(pkgPrefix + &quot;LWGlobalUtils&quot;, &quot;UpdateWorldFleetReferences&quot;, {});
+}catch(e){
+    var result = &#39;Error While Scheduling The Job! &#39; + e;
+}
+alert(result);</url>
+</WebLink>

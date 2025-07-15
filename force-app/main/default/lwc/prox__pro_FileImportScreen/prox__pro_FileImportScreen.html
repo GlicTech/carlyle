@@ -1,0 +1,91 @@
+<template>
+    <div class="container">
+        <h2 class="slds-text-heading_medium slds-m-bottom_medium">File Uploader - {configName}</h2>
+
+        <template if:true={formatsAccepted}>
+            <div class="slds-theme_info slds-box slds-box_xx-small slds-m-bottom_medium formats-banner">
+                <lightning-icon icon-name="utility:info" size="x-small" class="slds-m-right_x-small"></lightning-icon>
+                Accepted File Formats: {formatsAccepted}
+            </div>
+        </template>
+
+        <template if:false={showResults}>
+            <template if:true={isConfigActive}>
+                <div class="drop-zone" onclick={openFileDialog}>
+                    <lightning-icon icon-name="utility:upload" size="medium"></lightning-icon>
+                    <p>Click or Drag File Here</p>
+                    <input type="file" accept=".csv" class="hidden-file-input" onchange={handleFileChange} />
+                </div>
+            </template>
+            <template if:false={isConfigActive}>
+                <div class="drop-zone disabled">
+                    <p>Configuration is Inactive</p>
+                </div>
+            </template>
+
+            <div class="button-section slds-m-vertical_medium">
+                <lightning-button
+                    variant="neutral"
+                    label="Download Sample"
+                    onclick={downloadSampleFile}
+                    class="sample-btn"
+                    disabled={isSampleDisabled}>
+                </lightning-button>
+
+                <lightning-button
+                    variant="brand"
+                    label="Process File"
+                    onclick={processFile}
+                    class="upload-btn"
+                    disabled={isDisabled}>
+                </lightning-button>
+            </div>
+
+            <template if:true={showSampleHeaderMismatch}>
+                <div class="slds-theme_error slds-box slds-box_xx-small slds-text-color_error slds-m-bottom_small">
+                    Configuration headers and Sample File headers are not matching. Please contact your admin.
+                </div>
+            </template>
+
+            <template if:true={fileName}>
+                <div class="attached-file">
+                    <lightning-icon icon-name="doctype:csv" size="small"></lightning-icon>
+                    <span>{fileName}</span>
+                </div>
+            </template>
+
+            <template if:true={errorMessage}>
+                <div class="slds-text-color_error slds-m-vertical_x-small">{errorMessage}</div>
+            </template>
+
+            <template if:true={successMessage}>
+                <div class="slds-text-color_success slds-m-vertical_x-small">{successMessage}</div>
+            </template>
+        </template>
+
+        <template if:true={showResults}>
+            <div class="slds-m-around_medium">
+                <lightning-combobox
+                    label="Filter by Status"
+                    value={filterText}
+                    options={filterOptions}
+                    onchange={handleFilterChange}>
+                </lightning-combobox>
+
+                <lightning-button-group class="slds-m-top_small">
+                    <lightning-button label="Download Filtered" onclick={downloadFiltered}></lightning-button>
+                    <lightning-button label="Back" variant="destructive" onclick={resetAll}></lightning-button>
+                </lightning-button-group>
+
+                <lightning-datatable
+                    key-field="originalLine"
+                    data={filteredResults}
+                    columns={columns}
+                    hide-checkbox-column="true"
+                    class="slds-m-top_large">
+                </lightning-datatable>
+
+            </div>
+        </template>
+    </div>
+</template>

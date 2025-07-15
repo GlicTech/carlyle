@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Availability__c</fullName>
+    <externalId>false</externalId>
+    <formula>If( Text(leaseworks__Status__c )=&#39;Pending&#39;,&quot;On Order&quot;,if(Text(leaseworks__Status__c)=&#39;AOG&#39;,&quot;AOG&quot;,if(Text(leaseworks__Status__c)=&#39;Available&#39;,&quot;-&quot;,If(Text(leaseworks__Status__c)= &#39;Assigned&#39;, 
+Text(YEAR( leaseworks__Y_Hidden_Lease_End_Date__c ))&amp; &quot;-&quot; &amp; Text(MONTH(leaseworks__Y_Hidden_Lease_End_Date__c)),&quot;-&quot;))))</formula>
+    <label>Availability</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Y_Hidden_Importance_of_Deal__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <formula>IF(TEXT( leaseworks__Importance_of_Deal__c ) = &#39;None or limited importance to relevant evaluators&#39;,0,
+IF(TEXT(leaseworks__Importance_of_Deal__c ) = &#39;Deal has support from the relevant evaluators and meets customer requirements&#39;,25,
+IF(TEXT(leaseworks__Importance_of_Deal__c ) = &#39;Deal meets significant customer requirements and has support among decision makers&#39;,50,
+IF(TEXT(leaseworks__Importance_of_Deal__c ) = &#39;Critical importance to customer and required approvals to proceed have been secured&#39;,100,null))))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>_Importance_of_Deal</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

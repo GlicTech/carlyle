@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Event_Due_TSN_Validation</fullName>
+    <active>false</active>
+    <errorConditionFormula>OR(leaseworks__Event_Due_TSN_Override__c &lt;  leaseworks__Event_Last_TSN__c ,leaseworks__Event_Due_TSN_Override__c &lt;  0 )</errorConditionFormula>
+    <errorDisplayField>leaseworks__Event_Due_TSN_Override__c</errorDisplayField>
+    <errorMessage>Please enter value higher than Event Last TSN</errorMessage>
+</ValidationRule>

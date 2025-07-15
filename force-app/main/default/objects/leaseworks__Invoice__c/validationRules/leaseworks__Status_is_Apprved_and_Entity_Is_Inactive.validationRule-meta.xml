@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Status_is_Apprved_and_Entity_Is_Inactive</fullName>
+    <active>true</active>
+    <description>To Check Entity is Inactive when invoice is approved.</description>
+    <errorConditionFormula>AND(
+!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c,
+NOT(ISNEW()),
+ISCHANGED(leaseworks__Status__c),
+OR(
+AND(
+ISPICKVAL(PRIORVALUE(leaseworks__Status__c), &#39;Pending&#39;),
+ISPICKVAL(leaseworks__Status__c, &#39;Approved&#39;)),
+AND(
+ISPICKVAL(PRIORVALUE(leaseworks__Status__c), &#39;Cancelled-Pending&#39;),
+ISPICKVAL(leaseworks__Status__c, &#39;Cancelled&#39;))),
+leaseworks__Y_hidden_AccEnabled__c,
+leaseworks__Entity__r.leaseworks__Inactive__c
+)</errorConditionFormula>
+    <errorMessage>Unable to proceed with approval/cancellation. Entity on the Invoice is inactive. Please link it to an active entity to continue.</errorMessage>
+</ValidationRule>

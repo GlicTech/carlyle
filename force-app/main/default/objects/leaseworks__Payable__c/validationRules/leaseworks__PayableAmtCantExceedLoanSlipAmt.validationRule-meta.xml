@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__PayableAmtCantExceedLoanSlipAmt</fullName>
+    <active>true</active>
+    <description>Payable Amount cannot exceed Loan Slip Amount</description>
+    <errorConditionFormula>leaseworks__Payable_Amount__c &gt; leaseworks__Loan_Slip__r.leaseworks__Total_Loan_Slip_Payable_Amount__c</errorConditionFormula>
+    <errorMessage>Total Payable Amount cannot exceed the Loan Slip Amount</errorMessage>
+</ValidationRule>

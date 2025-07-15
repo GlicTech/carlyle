@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__TSN_CSN_Mandatory_if_Certified</fullName>
+    <active>false</active>
+    <errorConditionFormula>false /*AND( TSN_CSN_Certified__c , OR( NULLVALUE( TSN__c , 0) &lt;=0,  NULLVALUE( CSN__c , 0) &lt;=0 ))*/</errorConditionFormula>
+    <errorDisplayField>leaseworks__TSN_CSN_Certified__c</errorDisplayField>
+    <errorMessage>Please ensure TSN and CSN are valid values.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>pro_Asset_in_Deal__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>The asset in deal which has the LOI Date field populated.</description>
+    <externalId>false</externalId>
+    <label>Asset in Deal</label>
+    <lookupFilter>
+        <active>true</active>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <filterItems>
+            <field>leaseworks__Aircraft_Proposal__c.LOI_Date__c</field>
+            <operation>notEqual</operation>
+            <value />
+        </filterItems>
+        <filterItems>
+            <field>leaseworks__Aircraft_Proposal__c.pro_LOI_Required__c</field>
+            <operation>equals</operation>
+            <value>False</value>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>leaseworks__Aircraft_Proposal__c</referenceTo>
+    <relationshipLabel>Asset Target Audits</relationshipLabel>
+    <relationshipName>Asset_Target_Audits</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

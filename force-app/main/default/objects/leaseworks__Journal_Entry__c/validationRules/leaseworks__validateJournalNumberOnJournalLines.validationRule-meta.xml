@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__validateJournalNumberOnJournalLines</fullName>
+    <active>true</active>
+    <description>User cannot update the auto-generated Journal names</description>
+    <errorConditionFormula>AND(
+NOT(ISBLANK(Name)),
+ISCHANGED(Name)
+)</errorConditionFormula>
+    <errorDisplayField>Name</errorDisplayField>
+    <errorMessage>You cannot modify a system-generated sequence.</errorMessage>
+</ValidationRule>

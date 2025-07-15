@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Days_Since_Marketing_Status_Update__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Number of days since marketing status was updated last.</description>
+    <externalId>false</externalId>
+    <formula>if ( (ISBLANK(leaseworks__Y_marketing_status_changed_date__c) || ISNULL(leaseworks__Y_marketing_status_changed_date__c)), NULL, (TODAY()-leaseworks__Y_marketing_status_changed_date__c) )</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Number of days since marketing status was updated last.</inlineHelpText>
+    <label>Days Since Marketing Status  Update</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Restrict_Completion_To_Owner</fullName>
+    <active>true</active>
+    <description>This validation restricts non-owners of Tasks from marking the task as completed (Unless they have the &quot;pro_Complete_Tasks_Override_Permission&quot; permission assign to them</description>
+    <errorConditionFormula>AND(
+    ISPICKVAL(Status, &quot;Completed&quot;),
+    $User.Id &lt;&gt; OwnerId,
+    NOT( $Permission.pro_Complete_Tasks_Override_Permission )
+    
+)</errorConditionFormula>
+    <errorDisplayField>Status</errorDisplayField>
+    <errorMessage>You Cannot Complete This Task Unless You Are The Owner</errorMessage>
+</ValidationRule>

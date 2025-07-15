@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>Monthly Utilization Staging Layout</layout>
+        <sections>
+            <label><!-- Assemblies --></label>
+            <section>Assemblies</section>
+        </sections>
+    </layouts>
+    <validationRules>
+        <errorMessage><!-- Utilization cannot be created for Non-Lease Agreement contract. --></errorMessage>
+        <name>Validate_Lease_Type_local</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Date Payment Due is earlier than the Invoice Date. In order to proceed, please update the values so that the Date Payment Due is later than the Invoice Date. --></errorMessage>
+        <name>leaseworks__Payment_Date_earlier_than_Invoice_date</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Payment Received Date is earlier than the Invoice Date. In order to proceed, please update the values so that the Payment Received Date is later than the Invoice Date. --></errorMessage>
+        <name>leaseworks__Payment_recieved_earlier_than_Invoice</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Editing Complete records is not allowed as it is saved as a history log --></errorMessage>
+        <name>leaseworks__Restrict_Edit_OnCompletedRecord</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Utilization cannot be created for Non-Lease Agreement contract. --></errorMessage>
+        <name>leaseworks__Validate_Lease_Type</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Value should be equal or above zero --></errorMessage>
+        <name>leaseworks__Value_cannot_be_negative</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Staging status cannot be changed once the record processing is complete. --></errorMessage>
+        <name>leaseworks__staging_status_check</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- Process_Utilization --></label>
+        <name>leaseworks__Process_Utilization</name>
+    </webLinks>
+</CustomObjectTranslation>

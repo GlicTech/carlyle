@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Total_Contract_Amount__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Maximum Rent times Lease Term or Assumed Utilization during the Term</description>
+    <externalId>false</externalId>
+    <formula>CASE(  TEXT(leaseworks__Rent_Up_To__c),
+&#39;MO&#39;,  ROUND(leaseworks__Lease_Term_MO__c,1)  *  leaseworks__Rent_Up_To_Amount__c ,
+&#39;FH&#39;,  leaseworks__Assumed_Monthly_FH__c * ROUND(leaseworks__Lease_Term_MO__c,1) *  leaseworks__Rent_Up_To_Amount__c,
+&#39;FC&#39;, leaseworks__Assumed_Monthly_FC__c * ROUND(leaseworks__Lease_Term_MO__c,1) *  leaseworks__Rent_Up_To_Amount__c,
+null)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Maximum Rent times Lease Term or Assumed Utilization during the Term</inlineHelpText>
+    <label>Total Contract Amount</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

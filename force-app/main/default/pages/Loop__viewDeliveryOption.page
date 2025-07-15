@@ -1,0 +1,190 @@
+<apex:page tabstyle="Loop__DDP__c" extensions="Loop.DeliveryOptionExt" title="{!deliveryOptionObjectName}: {!Loop__DDP_Integration_Option__c.Name}" standardController="Loop__DDP_Integration_Option__c">
+    <style>
+        .metadataKey {
+            padding: 0px 5px 5px 0px;
+        }
+        .metadataValue {
+            padding: 0px 0px 5px 4px;
+        }
+    </style>
+    <script src="{!URLFOR($Resource.Scripts, 'jQuery.js')}"></script>
+    <script src="{!URLFOR($Resource.Scripts, 'jquery.drawloop.js')}"></script>
+    <script>
+        jQuery.noConflict(); // Can not use $ because prototype and jQuery will have naming issues.
+                             // This command fixes that, but you must use "jQuery" instead of "$"
+                             // for jQuery commands.
+
+        jQuery(function() {
+            //The Loop__Custom_Delete button has been deprecated. This removes it if is still on a layout.
+            jQuery('.pbButton input[name="loop__custom_delete"], .pbButtonb input[name="loop__custom_delete"]').remove();
+            //For moving the custom markup delete button to the right of the standard edit button
+            //pbButton is the container for the top set of buttons. pbButtonb is the container for the bottom set of buttons.
+            jQuery('.pbButton input.deleteButton').insertAfter(jQuery('.pbButton input[name="edit"]')).css('margin-left', '4px');
+            jQuery('.pbButtonb input.deleteButton').insertAfter(jQuery('.pbButtonb input[name="edit"]')).css('margin-left', '4px');
+        });
+    </script>
+
+    <apex:outputPanel id="incompleteO365MessagePanel" layout="block">
+        <apex:pageMessage id="incompleteO365Message" rendered="{! deliveryOption.Attach_As__c == 'Office 365' && !isValidO365DeliveryOption}" severity="info" strength="2"
+                          summary="You must set up a storage location to use this delivery." />
+    </apex:outputPanel>
+
+    <apex:form >
+        <apex:actionFunction name="deleteDeliveryOption" action="{!deleteDeliveryOption}"/>
+        <div style="display:none;">
+            <apex:pageBlock >
+                <apex:pageBlockButtons >
+                    <apex:commandButton styleClass="deleteButton" value="Delete" onclick="return confirm('Are you sure?') ? deleteDeliveryOption() : false;" />
+                </apex:pageBlockButtons>
+            </apex:pageBlock>
+        </div>
+    </apex:form>
+    <!-- Standard Delivery Option Fields -->
+    <apex:detail subject="{!Loop__DDP_Integration_Option__c.Id}" rendered="{!NOT(OR(isSmtp, isNwc))}" inlineEdit="true" />
+
+    <!-- SMTP Delivery Option Fields -->
+    <apex:outputPanel rendered="{!isSmtp}">
+        <apex:sectionHeader title="{!deliveryOptionObjectName}" subtitle="{!Loop__DDP_Integration_Option__c.Name}" />
+        <apex:form >
+            <apex:inputHidden value="{!Loop__DDP_Integration_Option__c.Loop__Type__c}" />
+            <apex:pageBlock mode="maindetail" title="{!deliveryOptionObjectName} Detail">
+                <apex:pageBlockButtons >
+                    <apex:commandButton value=" Save " id="saveBtn" style="display:none;" action="{!save}" />
+                    <apex:commandButton value=" Cancel " id="cancelBtn" style="display:none;" onclick="sfdcPage.revert();" />
+                    <apex:commandButton value=" Edit " id="editBtn" action="{!edit}" />
+                    <apex:commandButton value=" Delete " id="deleteBtn" action="{!deleteDeliveryOption}" onClick="if (!confirm('Are you sure?')) {return false;}"/>
+                    <apex:commandButton value=" Clone " id="cloneBtn" action="{!URLFOR($Action.DDP_Integration_Option__c.Edit,DDP_Integration_Option__c.Id,[clone=1,retURL='/'+DDP_Integration_Option__c.Id])}" />
+                </apex:pageBlockButtons>
+                <apex:pageBlockSection >
+                    <apex:inlineEditSupport showOnEdit="saveBtn,cancelBtn" hideOnEdit="editBtn,deleteBtn,cloneBtn" disabled="false" resetFunction="resetInlineEdit" />
+
+                    <apex:outputField value="{!deliveryOption.Name}"/>
+                    <apex:outputField value="{!deliveryOption.Loop__DDP__c}" >
+                        <apex:inlineEditSupport disabled="true" />
+                    </apex:outputField>
+                    <apex:pageBlockSectionItem rendered="{! !ISBLANK(deliveryOption.SMTPDomain__c) && !ISBLANK(deliveryOption.SMTP_Username__c ) }">
+                        <apex:outputLabel value="SMTP Credentials"/>
+                        <apex:outputText >{!selectedIntegrationInfo} <apex:commandLink value="[Change]" action="/apex/loop__smtpPassword?id={!deliveryOption.Id}" /></apex:outputText>
+                    </apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem rendered="{! ISBLANK(deliveryOption.SMTPDomain__c) || ISBLANK(deliveryOption.SMTP_Username__c) }">
+                        <apex:outputLabel value="SMTP Credentials"/>
+                        <apex:commandLink value="Select SMTP Credentials" action="/apex/loop__smtpPassword?id={!deliveryOption.Id}" />
+                    </apex:pageBlockSectionItem>
+                    <apex:outputField value="{!deliveryOption.RecordTypeId}" >
+                        <apex:inlineEditSupport disabled="true" />
+                        <apex:commandLink value="[Change]" action="/setup/ui/recordtypeselect.jsp?id={!LEFT(deliveryOption.Id,15)}&retURL=%2F{!deliveryOption.Id}" />
+                    </apex:outputField>
+                    <apex:outputField value="{!deliveryOption.Loop__SMTPUserName__c}" />
+                    <apex:outputField value="{!deliveryOption.Loop__Order__c}" />
+                    <apex:outputField value="{!deliveryOption.Loop__Wait__c}" />
+                    <apex:outputField value="{!deliveryOption.Loop__Limit_Availability__c}" />
+                    <apex:outputField value="{!deliveryOption.Loop__SkipPreview__c}" />
+                    <apex:outputField value="{!deliveryOption.Loop__Output__c}"/>
+                    <apex:outputField value="{!deliveryOption.Loop__Org_Wide_Email__c}"/>
+                    <apex:outputField value="{!deliveryOption.Loop__TurnTrackingOn__c}" />
+                    <apex:pageBlockSectionItem />
+                    <apex:outputField value="{!deliveryOption.Loop__Description_Hover__c}" />
+                    <apex:pageBlockSectionItem />
+                    <apex:outputField value="{!deliveryOption.Loop__Preview_Step_Help_Text__c}" />
+                </apex:pageBlockSection>
+                <apex:pageBlockSection title="Custom Links">
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel />
+                        <apex:outputLink onclick="window.open('/apex/loop__fieldTagger?id={!deliveryOption.Loop__DDP__c}', '_blank', 'width=840, height=675'); return false;">Field Tagger</apex:outputLink>
+                    </apex:pageBlockSectionItem>
+                </apex:pageBlockSection>
+                <apex:pageBlockSection title="Email Options">
+                    <apex:outputField value="{!deliveryOption.Loop__dsAllowEmailCustomizations__c}" />
+                    <apex:outputField value="{!deliveryOption.Loop__Internal_Email__c}" />
+                    <apex:outputField value="{!deliveryOption.Loop__HTML_Email__c}" />
+                    <apex:outputField value="{!deliveryOption.Loop__CI_Additional_To__c}" />
+                    <apex:outputField value="{!deliveryOption.Loop__Email_Template__c}" />
+                    <apex:outputField value="{!deliveryOption.Loop__CI_CC__c}" />
+                    <apex:outputField value="{!deliveryOption.Loop__dsSubject__c}" />
+                    <apex:outputField value="{!deliveryOption.Loop__CI_BCC__c}" />
+                    <apex:outputField value="{!deliveryOption.Loop__dsEmailText__c}" />
+                </apex:pageBlockSection>
+                <apex:pageBlockSection title="Attach Options">
+                    <apex:outputField value="{!deliveryOption.Loop__AllowOutputAttachment__c}" />
+                    <apex:outputField value="{!deliveryOption.Loop__Attach_As__c}" />
+                    <apex:outputField value="{!deliveryOption.Loop__RequireOutputAttachment__c}" />
+                    <apex:outputField value="{!deliveryOption.Loop__Storage_Location__c}" />
+                    <apex:pageBlockSectionItem />
+                    <apex:outputField value="{!deliveryOption.Loop__Email_Doc_Links__c}" />
+                    <apex:outputField value="{!Loop__DDP_Integration_Option__c.CreatedById}">,&nbsp;
+                        <apex:outputField value="{!Loop__DDP_Integration_Option__c.CreatedDate}" />
+                    </apex:outputField>
+                    <apex:outputField value="{!Loop__DDP_Integration_Option__c.LastModifiedById}">,&nbsp;
+                        <apex:outputField value="{!Loop__DDP_Integration_Option__c.LastModifiedDate}" />
+                    </apex:outputField>
+                </apex:pageBlockSection>
+            </apex:pageBlock>
+        </apex:form>
+    </apex:outputPanel>
+
+    <!--NWC External Start Delivery Option Fields-->
+    <apex:outputPanel rendered="{!isNwc}">
+        <apex:sectionHeader title="{!deliveryOptionObjectName}" subtitle="{!Loop__DDP_Integration_Option__c.Name}"/>
+        <apex:form >
+            <apex:inputHidden value="{!Loop__DDP_Integration_Option__c.Loop__Type__c}"/>
+            <apex:pageBlock mode="maindetail" title="{!deliveryOptionObjectName} Detail">
+                <apex:pageBlockButtons >
+                    <apex:commandButton value=" Save " id="saveBtn" style="display:none;" action="{!save}"/>
+                    <apex:commandButton value=" Cancel " id="cancelBtn" style="display:none;" onclick="sfdcPage.revert();"/>
+                    <apex:commandButton value=" Edit " id="editBtn" action="{!edit}"/>
+                    <apex:commandButton value=" Delete " id="deleteBtn" action="{!deleteDeliveryOption}" onClick="if (!confirm('Are you sure?')) {return false;}"/>
+                    <apex:commandButton value=" Clone " id="cloneBtn" action="{!URLFOR($Action.DDP_Integration_Option__c.Edit,DDP_Integration_Option__c.Id,[clone=1,retURL='/'+DDP_Integration_Option__c.Id])}"/>
+                </apex:pageBlockButtons>
+                <apex:pageBlockSection >
+                    <apex:inlineEditSupport showOnEdit="saveBtn,cancelBtn" hideOnEdit="editBtn,deleteBtn,cloneBtn" disabled="false" resetFunction="resetInlineEdit"/>
+
+                    <apex:outputField value="{!deliveryOption.Name}"/>
+                    <apex:outputField value="{!deliveryOption.Loop__DDP__c}">
+                        <apex:inlineEditSupport disabled="true"/>
+                    </apex:outputField>
+                    <apex:outputField value="{!deliveryOption.Loop__Output__c}"/>
+                    <apex:outputField value="{!deliveryOption.RecordTypeId}">
+                        <apex:inlineEditSupport disabled="true"/>
+                    </apex:outputField>
+                    <apex:outputField value="{!deliveryOption.Loop__Wait__c}"/>
+                    <apex:outputField value="{!deliveryOption.Loop__Order__c}"/>
+                    <apex:outputField value="{!deliveryOption.Loop__SkipPreview__c}"/>
+                    <apex:outputField value="{!deliveryOption.Loop__Limit_Availability__c}"/>
+                    <apex:outputField value="{!deliveryOption.Loop__TurnTrackingOn__c}"/>
+                    <apex:outputField value="{!deliveryOption.Loop__Description_Hover__c}"/>
+                    <apex:pageBlockSectionItem />
+                    <apex:outputField value="{!deliveryOption.Loop__Preview_Step_Help_Text__c}"/>
+                </apex:pageBlockSection>
+                <apex:pageBlockSection title="Nintex Workflow Cloud Start Inputs" columns="1">
+                    <apex:inlineEditSupport disabled="true"/>
+                    <apex:outputField value="{!deliveryOption.Loop__Location__c}" label="Swagger URL"/>
+                    <apex:repeat value="{!externalStartFields}" var="externalStartField">
+                        <apex:pageBlockSectionItem rendered="{!externalStartFields[externalStartField].type != 'array'}">
+                            <apex:outputText value="{!externalStartFields[externalStartField].title}"/>
+                            <apex:outputText value="{!externalStartData[externalStartField]}"/>
+                        </apex:pageBlockSectionItem>
+                        <apex:pageBlockSectionItem rendered="{!externalStartFields[externalStartField].type == 'array'}">
+                            <apex:outputText value="{!externalStartFields[externalStartField].title}"/>
+                            <apex:outputText value="{!IF(externalStartData[externalStartField] == '[[output_files]]','Output Files', '--None--')}"/>
+                        </apex:pageBlockSectionItem>
+                    </apex:repeat>
+                    <apex:pageBlockSectionItem />
+                </apex:pageBlockSection>
+                <apex:pageBlockSection title="Attach Options">
+                    <apex:outputField value="{!deliveryOption.Loop__AllowOutputAttachment__c}"/>
+                    <apex:outputField value="{!deliveryOption.Loop__Attach_As__c}"/>
+                    <apex:outputField value="{!deliveryOption.Loop__RequireOutputAttachment__c}"/>
+                    <apex:outputField value="{!deliveryOption.Loop__Storage_Location__c}"/>
+                </apex:pageBlockSection>
+                <apex:pageBlockSection showHeader="false">
+                    <apex:outputField value="{!Loop__DDP_Integration_Option__c.CreatedById}">,&nbsp;
+                        <apex:outputField value="{!Loop__DDP_Integration_Option__c.CreatedDate}"/>
+                    </apex:outputField>
+                    <apex:outputField value="{!Loop__DDP_Integration_Option__c.LastModifiedById}">,&nbsp;
+                        <apex:outputField value="{!Loop__DDP_Integration_Option__c.LastModifiedDate}"/>
+                    </apex:outputField>
+                </apex:pageBlockSection>
+            </apex:pageBlock>
+        </apex:form>
+    </apex:outputPanel>
+</apex:page>
