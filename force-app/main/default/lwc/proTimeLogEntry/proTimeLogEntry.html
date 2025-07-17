@@ -58,13 +58,13 @@
           class={onsiteButtonClass}
           onclick={setOnsite}
           title="OnSite">
-          ✈️ Onsite
+          🛬 Onsite
         </button>
         <button
           class={offsiteButtonClass}
           onclick={setOffsite}
           title="OffSite">
-           🛬Offsite
+           ✈️ Offsite
         </button>
       </div>
       </div>
@@ -93,11 +93,11 @@
   </div>
 
     <!-- TABLE -->
-    <div class="slds-p-horizontal_medium slds-scrollable_x">
+    <div class="slds-p-horizontal_small slds-scrollable_x">
       <table class="slds-table slds-table_cell-buffer slds-table_bordered">
         <thead class={tableHeaderClass}>
         <tr>
-          <th>Consultant</th>
+          <th class="consultant-header sticky-column">Consultant</th>
           <template for:each={dateHeaders} for:item="day">
             <th key={day.key} class={day.className}>
               <div>{day.day}</div>
@@ -111,9 +111,9 @@
         <tbody>
           <template for:each={timeLogRows} for:item="row">
             <tr key={row.consultantId} class={row.styleClass}>
-              <td>👨‍💼 {row.consultantName}</td>
+              <td class="sticky-column" style="width: 304px;">👨‍💼 {row.consultantName}</td>
               <template for:each={row.entries} for:item="entry" for:index="index">
-              <td key={entry.entryDate} class={entry.cellClass}>
+              <td key={entry.entryDate} class={entry.cellClass} style="width: 80px;">
               <div class="compact-input-wrapper">
                 <lightning-input
                   type="number"
@@ -167,7 +167,7 @@
     <!-- FOOTER -->
     <div class="slds-align_absolute-center slds-m-around_medium">
       <lightning-button variant="brand" label="Save" onclick={handleSave}></lightning-button>
-      <!--<lightning-button variant="destructive" label="Cancel" class="slds-m-left_small" onclick={handleCancel}></lightning-button>-->
+      <lightning-button variant="neutral" class="slds-m-left_small" label="Back to Project" onclick={navigateToProject}></lightning-button>
     </div>
   </div>
 </template>

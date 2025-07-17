@@ -5,9 +5,10 @@ import getTimeLogData from '@salesforce/apex/proTimeLogController.getTimeLogData
 import saveTimeLogs from '@salesforce/apex/proTimeLogController.saveTimeLogs';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import getProjectInfo from '@salesforce/apex/proTimeLogController.getProjectInfo';
+import { NavigationMixin } from 'lightning/navigation';
 
 
-export default class ProTimeLogEntry extends LightningElement {
+export default class ProTimeLogEntry extends NavigationMixin(LightningElement) {
   @track isWeekView = true;
   @track selectedDate;
   @track dateHeaders = [];
@@ -119,6 +120,18 @@ export default class ProTimeLogEntry extends LightningElement {
     });
   }
 
+  navigateToProject() {
+  if (!this.recordId) return;
+
+  this[NavigationMixin.Navigate]({
+    type: 'standard__recordPage',
+    attributes: {
+      recordId: this.recordId,
+      objectApiName: 'leaseworks__Technical_Project__c', 
+      actionName: 'view'
+    }
+  });
+}
 
   
   applyWorkModeClass() {
@@ -186,26 +199,39 @@ export default class ProTimeLogEntry extends LightningElement {
 
   setWeekView() {
     this.isWeekView = true;
-    this.setDefaultWeekRange(new Date(this.selectedDate));
+
+    const selected = new Date(this.selectedDate);
+    this.setDefaultWeekRange(selected);
+    this.generateDateHeaders(); 
     this.loadData();
   }
 
   setMonthView() {
     this.isWeekView = false;
-    this.setMonthRange(new Date(this.selectedDate));
+
+    const selected = new Date(this.selectedDate);
+    this.setMonthRange(selected);
+    this.generateDateHeaders();
     this.loadData();
   }
 
+
   handleStartDateChange(event) {
-    this.selectedDate = event.target.value;
-    const selected = new Date(this.selectedDate);
+    const newDate = event.target.value;
+    this.selectedDate = newDate;
+
+    const selected = new Date(newDate);
+
     if (this.isWeekView) {
       this.setDefaultWeekRange(selected);
     } else {
       this.setMonthRange(selected);
     }
+
+    this.generateDateHeaders();
     this.loadData();
   }
+
 
   setDefaultWeekRange(date) {
     const day = date.getDay();
@@ -260,9 +286,14 @@ export default class ProTimeLogEntry extends LightningElement {
 
 
   loadData() {
-    if (!this.recordId || !this.startDate || !this.endDate) return;
+    if (!this.recordId || !this.startDate || !this.endDate) {
+    console.warn('Skipping loadData due to missing input');
+    return;
+  }
 
+     if (!this.dateHeaders || this.dateHeaders.length === 0) {
     this.generateDateHeaders();
+  }
 
     getTimeLogData({
       technicalProjectId: this.recordId,

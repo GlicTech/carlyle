@@ -1,21 +1,47 @@
 .time-log-container {
   background: #f9fcff;
 }
+.slds-table {
+  table-layout: auto; /* change from fixed to auto */
+  width: 100%;
+}
+
+.slds-table td,
+.slds-table th {
+  padding: 2px 2px !important; /* reduce horizontal spacing */
+}
 
 .onsite-row {
   background-color: #f4faff; /* Light sky */
+    place-items: center;
 }
 
 .offsite-row {
   background-color: #fdf7f1; /* Light peach */
+  place-items: center;
 }
+
+.sticky-column {
+  position: sticky;
+  left: 0;
+  background-color: #f3f6fa; /* or match row bg color */
+  z-index: 2;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.08);
+  min-width: 180px;
+}
+
+.consultant-header {
+  z-index: 3;
+  background-color: #0070d2; /* same as your header color */
+  color: white;
+}
+
 
 /* For Onsite - Blue */
 .custom-header-onsite th {
   background-color: #0070d2;
   color: white;
   text-align: center;
-  min-width: 120px;
   padding: 8px;
 }
 
@@ -24,7 +50,6 @@
   background-color: #333333;
   color: white;
   text-align: center;
-  min-width: 120px;
   padding: 8px;
 }
 
@@ -73,7 +98,6 @@
 .project-card .card-line span {
   margin-left: 0.4rem;
 }
-
 
 .weekend-cell {
   background-color: #f3cc85;
@@ -152,4 +176,16 @@
   --slds-c-input-radius-border: 6px;
   font-size: 0.8rem;
   font-weight: 500;
+}
+.compact-input-wrapper {
+  width: 50px;
+  margin: 0 auto;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.compact-input lightning-input {
+  --slds-c-input-spacing-horizontal: 0;
+  --slds-c-input-spacing-vertical: 0;
 }
