@@ -117,6 +117,16 @@
         </itemInstances>
         <itemInstances>
             <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Rate_Schedule_Manual_Approval_Required__c</fieldItem>
+                <identifier>RecordRate_Schedule_Manual_Approval_Required__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
                 <fieldItem>Record.leaseworks__MR_Schedule_End_Date__c</fieldItem>
                 <identifier>RecordMR_Schedule_End_Date__cField</identifier>
             </fieldInstance>
@@ -179,6 +189,16 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.leaseworks__Y_Hidden_Asset__c</fieldItem>
                 <identifier>RecordY_Hidden_Asset_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Current_Rate_Details_Overview__c</fieldItem>
+                <identifier>RecordCurrent_Rate_Details_Overview_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-afe87c53-b58e-49e3-8214-622de36a54bd</name>
@@ -830,6 +850,10 @@
                     <value>Facet-21b04e69-a8ee-46e5-990f-6a7f967c5e3c</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Information</value>
                 </componentInstanceProperties>
@@ -842,6 +866,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-c9b7cafd-a6ec-4453-83a6-4cd33164ebc5</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -858,6 +886,10 @@
                     <value>Facet-9e381d7b-cb7c-4fb8-8eab-e2003ce9355e</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Thresholds and Caps</value>
                 </componentInstanceProperties>
@@ -872,6 +904,10 @@
                     <value>Facet-9cbae3d8-a7a9-4844-9f41-c49e7f4ade64</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Escalation</value>
                 </componentInstanceProperties>
@@ -884,6 +920,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-5f4ea199-6206-4785-a4ef-5283903746e3</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -906,6 +946,10 @@
                     <value>Facet-a1afe098-a320-4bd9-9bc2-c6a0ee3653f1</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Claims &amp; Contribution</value>
                 </componentInstanceProperties>
@@ -920,6 +964,10 @@
                     <value>Facet-703bfb92-8049-45bf-a2ba-e7feb0f52c91</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Balances and Invoices</value>
                 </componentInstanceProperties>
@@ -932,6 +980,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-6b9160f0-f31a-4808-8fb4-d3f01b10ee77</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -1107,6 +1159,9 @@
                         <valueListItems>
                             <value>leaseworks__Is_Current_SRR__c|EQUALS|true</value>
                         </valueListItems>
+                        <valueListItems>
+                            <value>leaseworks__Inactive__c|EQUALS|false</value>
+                        </valueListItems>
                     </valueList>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
@@ -1220,6 +1275,9 @@
                             <value>leaseworks__Esc_Per__c</value>
                         </valueListItems>
                         <valueListItems>
+                            <value>leaseworks__Rate_Details_Overview__c</value>
+                        </valueListItems>
+                        <valueListItems>
                             <value>leaseworks__MR_Rate_Start_Date__c</value>
                         </valueListItems>
                         <valueListItems>
@@ -1245,6 +1303,98 @@
                 </componentInstanceProperties>
                 <componentName>lst:dynamicRelatedList</componentName>
                 <identifier>lst_dynamicRelatedList2</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Rate_Schedule_Manual_Approval_Required__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>false</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>actionNames</name>
+                    <valueList>
+                        <valueListItems>
+                            <value>New</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>CustomButton.leaseworks__MR_Rate__c.leaseworks__ApproveAll</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>CustomButton.leaseworks__MR_Rate__c.leaseworks__Un_Approve_All</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>CustomButton.leaseworks__MR_Rate__c.leaseworks__Generate_Escalation_Rate_Schedule</value>
+                        </valueListItems>
+                    </valueList>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>adminFilters</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>maxRecordsToDisplay</name>
+                    <value>10</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>parentFieldApiName</name>
+                    <value>leaseworks__Assembly_MR_Rate__c.Id</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListApiName</name>
+                    <value>leaseworks__MR_Rates__r</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListDisplayType</name>
+                    <value>ADVGRID</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListFieldAliases</name>
+                    <valueList>
+                        <valueListItems>
+                            <value>NAME</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>leaseworks__Esc_Per__c</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>leaseworks__MR_Rate_Start_Date__c</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>leaseworks__MR_Rate_End_Date__c</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>leaseworks__Approval_Status__c</value>
+                        </valueListItems>
+                    </valueList>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListLabel</name>
+                    <value>Rates Schedule</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>showActionBar</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>sortFieldAlias</name>
+                    <value>__DEFAULT__</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>sortFieldOrder</name>
+                    <value>Default</value>
+                </componentInstanceProperties>
+                <componentName>lst:dynamicRelatedList</componentName>
+                <identifier>lst_dynamicRelatedList4</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Rate_Schedule_Manual_Approval_Required__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                </visibilityRule>
             </componentInstance>
         </itemInstances>
         <name>rightcol</name>

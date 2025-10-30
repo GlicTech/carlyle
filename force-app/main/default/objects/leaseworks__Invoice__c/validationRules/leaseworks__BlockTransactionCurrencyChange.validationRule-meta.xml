@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__BlockTransactionCurrencyChange</fullName>
+    <active>true</active>
+    <description>This field is system-driven and cannot be updated manually.</description>
+    <errorConditionFormula>AND(
+!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c,ISCHANGED( leaseworks__Transaction_Currency__c ))</errorConditionFormula>
+    <errorDisplayField>leaseworks__Transaction_Currency__c</errorDisplayField>
+    <errorMessage>The fields you are attempting to modify are either calculated or logic driven. These field values cannot be changed manually.</errorMessage>
+</ValidationRule>

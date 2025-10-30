@@ -179,7 +179,7 @@
                 <field>leaseworks__Monthly_Threshold__c</field>
             </layoutItems>
         </layoutColumns>
-        <layoutColumns/>
+        <layoutColumns />
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
     <layoutSections>
@@ -410,9 +410,9 @@
         <detailHeading>false</detailHeading>
         <editHeading>true</editHeading>
         <label>Custom Links</label>
-        <layoutColumns/>
-        <layoutColumns/>
-        <layoutColumns/>
+        <layoutColumns />
+        <layoutColumns />
+        <layoutColumns />
         <style>CustomLinks</style>
     </layoutSections>
     <platformActionList>
@@ -431,6 +431,11 @@
             <actionName>Clone</actionName>
             <actionType>StandardButton</actionType>
             <sortOrder>2</sortOrder>
+        </platformActionListItems>
+        <platformActionListItems>
+            <actionName>leaseworks__Assembly_MR_Rate__c.leaseworks__Generate_Escalation_Rate_Schedule</actionName>
+            <actionType>QuickAction</actionType>
+            <sortOrder>3</sortOrder>
         </platformActionListItems>
     </platformActionList>
     <relatedLists>
@@ -510,7 +515,6 @@
         <relatedList>leaseworks__Payment_Line_Item__c.leaseworks__Assembly_MR_Info__c</relatedList>
     </relatedLists>
     <relatedLists>
-        <customButtons>leaseworks__Generate_Escalation_Rate_Schedule</customButtons>
         <fields>NAME</fields>
         <fields>leaseworks__MR_Rate_Start_Date__c</fields>
         <fields>leaseworks__MR_Rate_End_Date__c</fields>
@@ -519,6 +523,7 @@
         <fields>leaseworks__Override__c</fields>
         <fields>leaseworks__Comments__c</fields>
         <fields>leaseworks__Utilization__c</fields>
+        <fields>leaseworks__Rate_Details_Overview__c</fields>
         <relatedList>leaseworks__MR_Rate__c.leaseworks__Assembly_MR_Info__c</relatedList>
         <sortField>leaseworks__MR_Rate_Start_Date__c</sortField>
         <sortOrder>Asc</sortOrder>

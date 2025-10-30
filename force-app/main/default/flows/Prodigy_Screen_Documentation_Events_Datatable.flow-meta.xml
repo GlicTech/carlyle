@@ -2,105 +2,9 @@
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>63.0</apiVersion>
     <assignments>
-        <name>Assign_Draft_To_Counterparty</name>
-        <label>Assign Draft To Counterparty</label>
-        <locationX>138</locationX>
-        <locationY>2696</locationY>
-        <assignmentItems>
-            <assignToReference>varDraftToCounterparty</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Loop_Updated_Events</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Loop_Updated_Events</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Assign_Engage_Law_Firm</name>
-        <label>Assign Engage Law Firm</label>
-        <locationX>138</locationX>
-        <locationY>1796</locationY>
-        <assignmentItems>
-            <assignToReference>varEngageLawFirm</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Loop_Updated_Events</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Initial_Draft</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Assign_Initial_Draft</name>
-        <label>Assign Initial Draft</label>
-        <locationX>138</locationX>
-        <locationY>2096</locationY>
-        <assignmentItems>
-            <assignToReference>varInitialDraft</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Loop_Updated_Events</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Review_Comment</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Assign_Review_Comment</name>
-        <label>Assign Review &amp; Comment</label>
-        <locationX>138</locationX>
-        <locationY>2396</locationY>
-        <assignmentItems>
-            <assignToReference>varReviewComment</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Loop_Updated_Events</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Draft_To_Counterparty</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Assign_Updated_Events</name>
-        <label>Assign Updated Events</label>
-        <locationX>974</locationX>
-        <locationY>974</locationY>
-        <assignmentItems>
-            <assignToReference>varUpdatedDocumentationEvents</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>dt_DisplayRelatedDocumentationEvents.outputRemainingRows</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Update_Documentation_Event_Sync_Status</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Assign_Updated_Events_Missed_Deadline</name>
-        <label>Assign Updated Events - Missed Deadline</label>
-        <locationX>446</locationX>
-        <locationY>974</locationY>
-        <assignmentItems>
-            <assignToReference>varUpdatedDocumentationEvents</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Copy_1_of_dt_DisplayRelatedDocumentationEvents.outputRemainingRows</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Update_Documentation_Event_Sync_Status</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
         <name>Assign_varDocEventsFound</name>
         <label>Assign varDocEventsFound</label>
-        <locationX>578</locationX>
+        <locationX>182</locationX>
         <locationY>350</locationY>
         <assignmentItems>
             <assignToReference>varDocEventsFound</assignToReference>
@@ -116,7 +20,7 @@
     <assignments>
         <name>Reset_Variables</name>
         <label>Reset Variables</label>
-        <locationX>710</locationX>
+        <locationX>314</locationX>
         <locationY>542</locationY>
         <assignmentItems>
             <assignToReference>dt_DisplayRelatedDocumentationEvents.numberOfRowsEdited</assignToReference>
@@ -137,33 +41,10 @@
         </connector>
     </assignments>
     <assignments>
-        <name>Set_LOI_Date_on_Related_AiDs</name>
-        <label>Set LOI Date on Related AiDs</label>
-        <locationX>314</locationX>
-        <locationY>3404</locationY>
-        <assignmentItems>
-            <assignToReference>Loop_Related_AiDs.LOI_Date__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>recordId.LOI_Date__c</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>varAiDsToSetLoiDate</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>Loop_Related_AiDs</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Loop_Related_AiDs</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
         <name>Set_Missed_Deadline_Reason_Required</name>
         <label>Set Missed Deadline Reason Required</label>
-        <locationX>1238</locationX>
-        <locationY>974</locationY>
+        <locationX>842</locationX>
+        <locationY>1082</locationY>
         <assignmentItems>
             <assignToReference>varMissedDeadlineReasonRequired</assignToReference>
             <operator>Assign</operator>
@@ -178,7 +59,7 @@
     <decisions>
         <name>Documentation_Events_Found</name>
         <label>Documentation Events Found?</label>
-        <locationX>710</locationX>
+        <locationX>314</locationX>
         <locationY>242</locationY>
         <defaultConnector>
             <targetReference>Reset_Variables</targetReference>
@@ -201,136 +82,10 @@
         </rules>
     </decisions>
     <decisions>
-        <name>Draft_To_Counterparty</name>
-        <label>Draft To Counterparty</label>
-        <locationX>270</locationX>
-        <locationY>2588</locationY>
-        <defaultConnector>
-            <targetReference>Loop_Updated_Events</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
-        <rules>
-            <name>Yes_Draft_To_Counterparty</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>Loop_Updated_Events.pro_Documentation_Event_Type__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Draft To Counterparty</stringValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Assign_Draft_To_Counterparty</targetReference>
-            </connector>
-            <label>Yes - Draft To Counterparty</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <name>Engage_Law_Firm</name>
-        <label>Engage Law Firm?</label>
-        <locationX>270</locationX>
-        <locationY>1688</locationY>
-        <defaultConnector>
-            <targetReference>Initial_Draft</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
-        <rules>
-            <name>Yes_Engage_Law_Firm</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>Loop_Updated_Events.pro_Documentation_Event_Type__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Engage Law Firm</stringValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Assign_Engage_Law_Firm</targetReference>
-            </connector>
-            <label>Yes - Engage Law Firm</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <name>Initial_Draft</name>
-        <label>Initial Draft?</label>
-        <locationX>270</locationX>
-        <locationY>1988</locationY>
-        <defaultConnector>
-            <targetReference>Review_Comment</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
-        <rules>
-            <name>Yes_Initial_Draft</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>Loop_Updated_Events.pro_Documentation_Event_Type__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Initial Draft</stringValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Assign_Initial_Draft</targetReference>
-            </connector>
-            <label>Yes - Initial Draft</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <name>Is_Deal_Documentation_Synced</name>
-        <label>Is Deal Documentation Synced?</label>
-        <locationX>710</locationX>
-        <locationY>1472</locationY>
-        <defaultConnector>
-            <isGoTo>true</isGoTo>
-            <targetReference>Get_Related_Documentation_Events</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
-        <rules>
-            <name>Yes_Documentation_Synced</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>SyncEventsToggle.value</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Loop_Updated_Events</targetReference>
-            </connector>
-            <label>Yes - Documentation Synced</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <name>Is_LOI_Date_Populated</name>
-        <label>Is LOI Date Populated?</label>
-        <locationX>226</locationX>
-        <locationY>3296</locationY>
-        <defaultConnector>
-            <targetReference>Set_LOI_Date_on_Related_AiDs</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>No - Blank</defaultConnectorLabel>
-        <rules>
-            <name>Yes_Populated</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>Loop_Related_AiDs.LOI_Date__c</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Loop_Related_AiDs</targetReference>
-            </connector>
-            <label>Yes - Populated</label>
-        </rules>
-    </decisions>
-    <decisions>
         <name>Is_Missed_Deadline_Reason_Requried</name>
         <label>Is Missed Deadline Reason Requried?</label>
-        <locationX>710</locationX>
-        <locationY>758</locationY>
+        <locationX>314</locationX>
+        <locationY>866</locationY>
         <defaultConnector>
             <targetReference>Update_Documentation_Events</targetReference>
         </defaultConnector>
@@ -351,62 +106,12 @@
             <label>Required</label>
         </rules>
     </decisions>
-    <decisions>
-        <name>Review_Comment</name>
-        <label>Review &amp; Comment?</label>
-        <locationX>270</locationX>
-        <locationY>2288</locationY>
-        <defaultConnector>
-            <targetReference>Draft_To_Counterparty</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
-        <rules>
-            <name>Yes_Review_Comment</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>Loop_Updated_Events.pro_Documentation_Event_Type__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Review &amp; Comment</stringValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Assign_Review_Comment</targetReference>
-            </connector>
-            <label>Yes - Review &amp; Comment</label>
-        </rules>
-    </decisions>
+    <description>Tracking Lease Documentation Events
+
+Datatable allows users to input the date of execution of key events in the Lease Documentation process.</description>
     <environments>Default</environments>
     <interviewLabel>Prodigy - Screen - Documentation Events Datatable {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Prodigy - Screen - Documentation Events Datatable</label>
-    <loops>
-        <name>Loop_Related_AiDs</name>
-        <label>Loop Related AiDs</label>
-        <locationX>50</locationX>
-        <locationY>3188</locationY>
-        <collectionReference>Get_Related_AiDs</collectionReference>
-        <iterationOrder>Asc</iterationOrder>
-        <nextValueConnector>
-            <targetReference>Is_LOI_Date_Populated</targetReference>
-        </nextValueConnector>
-        <noMoreValuesConnector>
-            <targetReference>Set_LOI_Date_On_Related_Assets</targetReference>
-        </noMoreValuesConnector>
-    </loops>
-    <loops>
-        <name>Loop_Updated_Events</name>
-        <label>Loop Updated Events</label>
-        <locationX>50</locationX>
-        <locationY>1580</locationY>
-        <collectionReference>varUpdatedDocumentationEvents</collectionReference>
-        <iterationOrder>Asc</iterationOrder>
-        <nextValueConnector>
-            <targetReference>Engage_Law_Firm</targetReference>
-        </nextValueConnector>
-        <noMoreValuesConnector>
-            <targetReference>Create_Updated_Event_Id_Collection</targetReference>
-        </noMoreValuesConnector>
-    </loops>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
@@ -427,30 +132,9 @@
     </processMetadataValues>
     <processType>Flow</processType>
     <recordLookups>
-        <name>Get_Related_AiDs</name>
-        <label>Get Related AiDs</label>
-        <locationX>50</locationX>
-        <locationY>3080</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Loop_Related_AiDs</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>leaseworks__Marketing_Activity__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>recordId.leaseworks__Marketing_Activity__c</elementReference>
-            </value>
-        </filters>
-        <getFirstRecordOnly>false</getFirstRecordOnly>
-        <object>leaseworks__Aircraft_Proposal__c</object>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </recordLookups>
-    <recordLookups>
         <name>Get_Related_Documentation_Events</name>
         <label>Get Related Documentation Events</label>
-        <locationX>710</locationX>
+        <locationX>314</locationX>
         <locationY>134</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -468,51 +152,14 @@
         <object>pro_Documentation_Event__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
-    <recordLookups>
-        <name>Get_Synced_Documentation_Events</name>
-        <label>Get Synced Documentation Events</label>
-        <locationX>50</locationX>
-        <locationY>3896</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Created_Documentation_Event_Id_Collection</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>pro_Asset_in_Deal__c</field>
-            <operator>In</operator>
-            <value>
-                <elementReference>Create_AiD_Id_Collection</elementReference>
-            </value>
-        </filters>
-        <filters>
-            <field>Id</field>
-            <operator>NotIn</operator>
-            <value>
-                <elementReference>Create_Updated_Event_Id_Collection</elementReference>
-            </value>
-        </filters>
-        <getFirstRecordOnly>false</getFirstRecordOnly>
-        <object>pro_Documentation_Event__c</object>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </recordLookups>
-    <recordUpdates>
-        <name>Set_LOI_Date_On_Related_Assets</name>
-        <label>Set LOI Date On Related Assets</label>
-        <locationX>50</locationX>
-        <locationY>3680</locationY>
-        <connector>
-            <targetReference>Create_AiD_Id_Collection</targetReference>
-        </connector>
-        <inputReference>varAiDsToSetLoiDate</inputReference>
-    </recordUpdates>
     <recordUpdates>
         <name>Update_Doc_Events_With_Missed_Deadline_Reason</name>
         <label>Update Doc Events With Missed Deadline Reason</label>
-        <locationX>446</locationX>
-        <locationY>866</locationY>
+        <locationX>50</locationX>
+        <locationY>974</locationY>
         <connector>
-            <targetReference>Assign_Updated_Events_Missed_Deadline</targetReference>
+            <isGoTo>true</isGoTo>
+            <targetReference>Get_Related_Documentation_Events</targetReference>
         </connector>
         <faultConnector>
             <isGoTo>true</isGoTo>
@@ -523,10 +170,10 @@
     <recordUpdates>
         <name>Update_Documentation_Event_Sync_Status</name>
         <label>Update Documentation Event Sync Status</label>
-        <locationX>710</locationX>
-        <locationY>1364</locationY>
+        <locationX>314</locationX>
+        <locationY>758</locationY>
         <connector>
-            <targetReference>Is_Deal_Documentation_Synced</targetReference>
+            <targetReference>Is_Missed_Deadline_Reason_Requried</targetReference>
         </connector>
         <faultConnector>
             <targetReference>DealSyncUpdateError</targetReference>
@@ -550,215 +197,28 @@
     <recordUpdates>
         <name>Update_Documentation_Events</name>
         <label>Update Documentation Events</label>
-        <locationX>974</locationX>
-        <locationY>866</locationY>
+        <locationX>578</locationX>
+        <locationY>974</locationY>
         <connector>
-            <targetReference>Assign_Updated_Events</targetReference>
+            <isGoTo>true</isGoTo>
+            <targetReference>Get_Related_Documentation_Events</targetReference>
         </connector>
         <faultConnector>
             <targetReference>Set_Missed_Deadline_Reason_Required</targetReference>
         </faultConnector>
         <inputReference>dt_DisplayRelatedDocumentationEvents.outputEditedRows</inputReference>
     </recordUpdates>
-    <recordUpdates>
-        <name>Update_Draft_To_Counterparty_Events</name>
-        <label>Update Draft To Counterparty Events</label>
-        <locationX>50</locationX>
-        <locationY>4436</locationY>
-        <connector>
-            <isGoTo>true</isGoTo>
-            <targetReference>Get_Related_Documentation_Events</targetReference>
-        </connector>
-        <faultConnector>
-            <isGoTo>true</isGoTo>
-            <targetReference>SyncedEventUpdateErrorScreen</targetReference>
-        </faultConnector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>Id</field>
-            <operator>In</operator>
-            <value>
-                <elementReference>Created_Documentation_Event_Id_Collection</elementReference>
-            </value>
-        </filters>
-        <filters>
-            <field>pro_Documentation_Event_Type__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>Draft To Counterparty</stringValue>
-            </value>
-        </filters>
-        <inputAssignments>
-            <field>pro_Actual_Date__c</field>
-            <value>
-                <elementReference>varDraftToCounterparty.pro_Actual_Date__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>pro_Delay_Comment__c</field>
-            <value>
-                <elementReference>varDraftToCounterparty.pro_Delay_Comment__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>pro_Primary_Delay__c</field>
-            <value>
-                <elementReference>varDraftToCounterparty.pro_Primary_Delay__c</elementReference>
-            </value>
-        </inputAssignments>
-        <object>pro_Documentation_Event__c</object>
-    </recordUpdates>
-    <recordUpdates>
-        <name>Update_Engage_Law_Firm_Events</name>
-        <label>Update Engage Law Firm Events</label>
-        <locationX>50</locationX>
-        <locationY>4112</locationY>
-        <connector>
-            <targetReference>Update_Initital_Draft_Events</targetReference>
-        </connector>
-        <faultConnector>
-            <targetReference>SyncedEventUpdateErrorScreen</targetReference>
-        </faultConnector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>Id</field>
-            <operator>In</operator>
-            <value>
-                <elementReference>Created_Documentation_Event_Id_Collection</elementReference>
-            </value>
-        </filters>
-        <filters>
-            <field>pro_Documentation_Event_Type__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>Engage Law Firm</stringValue>
-            </value>
-        </filters>
-        <inputAssignments>
-            <field>pro_Actual_Date__c</field>
-            <value>
-                <elementReference>varEngageLawFirm.pro_Actual_Date__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>pro_Delay_Comment__c</field>
-            <value>
-                <elementReference>varEngageLawFirm.pro_Delay_Comment__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>pro_Primary_Delay__c</field>
-            <value>
-                <elementReference>varEngageLawFirm.pro_Primary_Delay__c</elementReference>
-            </value>
-        </inputAssignments>
-        <object>pro_Documentation_Event__c</object>
-    </recordUpdates>
-    <recordUpdates>
-        <name>Update_Initital_Draft_Events</name>
-        <label>Update Initital Draft Events</label>
-        <locationX>50</locationX>
-        <locationY>4220</locationY>
-        <connector>
-            <targetReference>Update_Review_Comment_Events</targetReference>
-        </connector>
-        <faultConnector>
-            <isGoTo>true</isGoTo>
-            <targetReference>SyncedEventUpdateErrorScreen</targetReference>
-        </faultConnector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>Id</field>
-            <operator>In</operator>
-            <value>
-                <elementReference>Created_Documentation_Event_Id_Collection</elementReference>
-            </value>
-        </filters>
-        <filters>
-            <field>pro_Documentation_Event_Type__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>Initial Draft</stringValue>
-            </value>
-        </filters>
-        <inputAssignments>
-            <field>pro_Actual_Date__c</field>
-            <value>
-                <elementReference>varInitialDraft.pro_Actual_Date__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>pro_Delay_Comment__c</field>
-            <value>
-                <elementReference>varInitialDraft.pro_Delay_Comment__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>pro_Primary_Delay__c</field>
-            <value>
-                <elementReference>varInitialDraft.pro_Primary_Delay__c</elementReference>
-            </value>
-        </inputAssignments>
-        <object>pro_Documentation_Event__c</object>
-    </recordUpdates>
-    <recordUpdates>
-        <name>Update_Review_Comment_Events</name>
-        <label>Update Review &amp; Comment Events</label>
-        <locationX>50</locationX>
-        <locationY>4328</locationY>
-        <connector>
-            <targetReference>Update_Draft_To_Counterparty_Events</targetReference>
-        </connector>
-        <faultConnector>
-            <isGoTo>true</isGoTo>
-            <targetReference>SyncedEventUpdateErrorScreen</targetReference>
-        </faultConnector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>Id</field>
-            <operator>In</operator>
-            <value>
-                <elementReference>Created_Documentation_Event_Id_Collection</elementReference>
-            </value>
-        </filters>
-        <filters>
-            <field>pro_Documentation_Event_Type__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>Review &amp; Comment</stringValue>
-            </value>
-        </filters>
-        <inputAssignments>
-            <field>pro_Actual_Date__c</field>
-            <value>
-                <elementReference>varReviewComment.pro_Actual_Date__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>pro_Delay_Comment__c</field>
-            <value>
-                <elementReference>varReviewComment.pro_Delay_Comment__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>pro_Primary_Delay__c</field>
-            <value>
-                <elementReference>varReviewComment.pro_Primary_Delay__c</elementReference>
-            </value>
-        </inputAssignments>
-        <object>pro_Documentation_Event__c</object>
-    </recordUpdates>
     <runInMode>SystemModeWithoutSharing</runInMode>
     <screens>
         <name>DatatableScreen</name>
         <label>DatatableScreen</label>
-        <locationX>710</locationX>
+        <locationX>314</locationX>
         <locationY>650</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <connector>
-            <targetReference>Is_Missed_Deadline_Reason_Requried</targetReference>
+            <targetReference>Update_Documentation_Event_Sync_Status</targetReference>
         </connector>
         <fields>
             <name>SyncEventsToggle</name>
@@ -825,7 +285,7 @@
             <inputParameters>
                 <name>columnEdits</name>
                 <value>
-                    <stringValue>pro_Actual_Date__c:true, pro_Primary_Delay__c:true, pro_Secondary_Delay__c:true, pro_Additional_Delay__c:true, pro_Delay_Comment__c:true</stringValue>
+                    <stringValue>pro_Actual_Date__c:true, pro_Primary_Delay__c:true, pro_Missed_Deadline_Reason__c:true, pro_Secondary_Delay__c:true, pro_Additional_Delay__c:true, pro_Delay_Comment__c:true</stringValue>
                 </value>
             </inputParameters>
             <inputParameters>
@@ -843,7 +303,7 @@
             <inputParameters>
                 <name>columnWidths</name>
                 <value>
-                    <stringValue>Name:189, pro_Projected_Business_Days__c:134, pro_Projected_Date__c:148, pro_Actual_Date__c:134, pro_Variance_Indicator__c:96, pro_Variance_Working_Days_Formula__c:128, pro_Primary_Delay__c:160, pro_Secondary_Delay__c:157, pro_Additional_Delay__c:155, pro_Delay_Comment__c:267</stringValue>
+                    <stringValue>Name:189, pro_Projected_Business_Days__c:134, pro_Projected_Date__c:148, pro_Actual_Date__c:134, pro_Variance_Indicator__c:96, pro_Variance_Working_Days_Formula__c:128, pro_Primary_Delay__c:144, pro_Secondary_Delay__c:157, pro_Additional_Delay__c:155, pro_Delay_Comment__c:267</stringValue>
                 </value>
             </inputParameters>
             <inputParameters>
@@ -909,7 +369,7 @@
             <inputParameters>
                 <name>columnWraps</name>
                 <value>
-                    <stringValue>Name:false, pro_Projected_Date__c:false, pro_Actual_Date__c:false, pro_Variance_Indicator__c:false, pro_Variance_Days__c:false, pro_Missed_Deadline_Reason__c:true</stringValue>
+                    <stringValue>Name:true, pro_Projected_Business_Days__c:false, pro_Projected_Date__c:false, pro_Actual_Date__c:false, pro_Variance_Indicator__c:false, pro_Variance_Working_Days_Formula__c:false, pro_Primary_Delay__c:true, pro_Missed_Deadline_Reason__c:false, pro_Secondary_Delay__c:true, pro_Additional_Delay__c:true, pro_Delay_Comment__c:false</stringValue>
                 </value>
             </inputParameters>
             <inputParameters>
@@ -931,9 +391,27 @@
                 </value>
             </inputParameters>
             <inputParameters>
-                <name>tableHeight</name>
+                <name>hideHeaderActions</name>
                 <value>
-                    <stringValue>50rem</stringValue>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>cb_hideHeaderActions</name>
+                <value>
+                    <stringValue>CB_TRUE</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>allowOverflow</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>cb_allowOverflow</name>
+                <value>
+                    <stringValue>CB_TRUE</stringValue>
                 </value>
             </inputParameters>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
@@ -978,7 +456,7 @@
             <isRequired>true</isRequired>
             <storeOutputAutomatically>true</storeOutputAutomatically>
             <visibilityRule>
-                <conditionLogic>or</conditionLogic>
+                <conditionLogic>(1 OR 2) AND 3</conditionLogic>
                 <conditions>
                     <leftValueReference>dt_DisplayRelatedDocumentationEvents.numberOfRowsEdited</leftValueReference>
                     <operator>GreaterThan</operator>
@@ -993,6 +471,13 @@
                         <elementReference>recordId.leaseworks__Marketing_Activity__r.pro_Sync_Documentation__c</elementReference>
                     </rightValue>
                 </conditions>
+                <conditions>
+                    <leftValueReference>varDocEventsFound</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
             </visibilityRule>
         </fields>
         <nextOrFinishButtonLabel>Save Changes</nextOrFinishButtonLabel>
@@ -1002,8 +487,8 @@
     <screens>
         <name>DatatableScreenProvideReason</name>
         <label>DatatableScreenProvideReason</label>
-        <locationX>1238</locationX>
-        <locationY>1082</locationY>
+        <locationX>842</locationX>
+        <locationY>1190</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -1013,7 +498,7 @@
         </connector>
         <fields>
             <name>Copy_1_of_ErrorMissedDeadlineReason</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 16px; color: rgb(255, 0, 0);&quot;&gt;Error saving records. Check the following:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px; color: rgb(255, 0, 0);&quot;&gt;1) If Actual Date is later than Projected Date, fill in Missed Deadline Reason &amp;amp; Missed Deadline Comment fields&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px; color: rgb(255, 0, 0);&quot;&gt;2) Choose an Missed Deadline Reason for the documentation event stage&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgb(255, 0, 0); font-size: 16px;&quot;&gt;Error saving records. Check the following:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(255, 0, 0); font-size: 16px;&quot;&gt;1) Primary Delay is populated with a value appropriate to the documentation event stage. &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(255, 0, 0); font-size: 16px;&quot;&gt;2) Delay Comment is populated&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
@@ -1156,6 +641,18 @@
                     <elementReference>dt_DisplayRelatedDocumentationEvents.outputRemainingRows</elementReference>
                 </value>
             </inputParameters>
+            <inputParameters>
+                <name>allowOverflow</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>cb_allowOverflow</name>
+                <value>
+                    <stringValue>CB_TRUE</stringValue>
+                </value>
+            </inputParameters>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
             <storeOutputAutomatically>true</storeOutputAutomatically>
@@ -1215,8 +712,8 @@
     <screens>
         <name>DealSyncUpdateError</name>
         <label>DealSyncUpdateError</label>
-        <locationX>1634</locationX>
-        <locationY>1472</locationY>
+        <locationX>1106</locationX>
+        <locationY>866</locationY>
         <allowBack>true</allowBack>
         <allowFinish>false</allowFinish>
         <allowPause>false</allowPause>
@@ -1228,24 +725,8 @@
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
     </screens>
-    <screens>
-        <name>SyncedEventUpdateErrorScreen</name>
-        <label>SyncedEventUpdateErrorScreen</label>
-        <locationX>1106</locationX>
-        <locationY>4220</locationY>
-        <allowBack>true</allowBack>
-        <allowFinish>false</allowFinish>
-        <allowPause>false</allowPause>
-        <fields>
-            <name>SynedEventUpdateErrorDisplay</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgb(255, 0, 0);&quot;&gt;Error updating synchronized Documentation Events:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(255, 0, 0);&quot;&gt;{!$Flow.FaultMessage}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-        </fields>
-        <showFooter>true</showFooter>
-        <showHeader>false</showHeader>
-    </screens>
     <start>
-        <locationX>584</locationX>
+        <locationX>188</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Get_Related_Documentation_Events</targetReference>

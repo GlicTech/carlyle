@@ -4,7 +4,7 @@
         <name>Send_Email_to_Deal_Team_Revised</name>
         <label>Send Email to Deal Team (Revised)</label>
         <locationX>50</locationX>
-        <locationY>839</locationY>
+        <locationY>947</locationY>
         <actionName>SendBetterEmail</actionName>
         <actionType>apex</actionType>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
@@ -12,6 +12,18 @@
             <name>HTMLbody</name>
             <value>
                 <elementReference>EmailTemplate</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>orgWideEmailAddressId</name>
+            <value>
+                <elementReference>varOrgWideEmailId</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderDisplayName</name>
+            <value>
+                <stringValue>LeaseWorks Notification</stringValue>
             </value>
         </inputParameters>
         <inputParameters>
@@ -33,7 +45,7 @@
         <name>Assignment_1</name>
         <label>Assignment 1</label>
         <locationX>270</locationX>
-        <locationY>539</locationY>
+        <locationY>647</locationY>
         <assignmentItems>
             <assignToReference>AssignedToUserId</assignToReference>
             <operator>Add</operator>
@@ -49,7 +61,7 @@
         <name>If_Deal_Team_has_user</name>
         <label>If Deal Team has user</label>
         <locationX>182</locationX>
-        <locationY>731</locationY>
+        <locationY>839</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>Send_Email</name>
@@ -79,7 +91,7 @@
         <name>Loop_1</name>
         <label>Loop 1</label>
         <locationX>182</locationX>
-        <locationY>431</locationY>
+        <locationY>539</locationY>
         <collectionReference>Get_Related_Deal_Team_Assignees</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
@@ -109,10 +121,33 @@
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
     <recordLookups>
+        <name>Get_Org_Wide_Email</name>
+        <label>Get Org Wide Email</label>
+        <locationX>182</locationX>
+        <locationY>323</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_Related_Deal_Team_Assignees</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Address</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>leaseworks@carlyle.aero</stringValue>
+            </value>
+        </filters>
+        <object>OrgWideEmailAddress</object>
+        <outputAssignments>
+            <assignToReference>varOrgWideEmailId</assignToReference>
+            <field>Id</field>
+        </outputAssignments>
+    </recordLookups>
+    <recordLookups>
         <name>Get_Related_Deal_Team_Assignees</name>
         <label>Get Related Deal Team Assignees</label>
         <locationX>182</locationX>
-        <locationY>323</locationY>
+        <locationY>431</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Loop_1</targetReference>
@@ -140,7 +175,7 @@
         <locationX>56</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Get_Related_Deal_Team_Assignees</targetReference>
+            <targetReference>Get_Org_Wide_Email</targetReference>
         </connector>
         <filterFormula>(OR((ISNEW() &amp;&amp;  ISPICKVAL({!$Record.leaseworks__Deal_Status__c}, &#39;Documentation&#39;)),    
  (NOT(ISPICKVAL({!$Record__Prior.leaseworks__Deal_Status__c}, &#39;Documentation&#39;)) &amp;&amp;(ISPICKVAL({!$Record.leaseworks__Deal_Status__c}, &#39;Documentation&#39;))))) &amp;&amp; ( {!$Record.leaseworks__Inactive_MA__c}=False)</filterFormula>
@@ -148,7 +183,7 @@
         <recordTriggerType>CreateAndUpdate</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>
     </start>
-    <status>Obsolete</status>
+    <status>Active</status>
     <textTemplates>
         <name>EmailTemplate</name>
         <isViewedAsPlainText>false</isViewedAsPlainText>
@@ -158,6 +193,13 @@
         <name>AssignedToUserId</name>
         <dataType>String</dataType>
         <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>varOrgWideEmailId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
     </variables>

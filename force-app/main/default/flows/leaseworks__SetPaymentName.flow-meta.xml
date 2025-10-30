@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>64.0</apiVersion>
+    <description>This flow will update the payment name while a payment is created and updated.</description>
+    <environments>Default</environments>
+    <formulas>
+        <description>This flow will update the Payment Name.</description>
+        <name>UpdatePaymentName</name>
+        <dataType>String</dataType>
+        <expression>{!$Record.leaseworks__Invoice_Type_F__c} &amp; &quot;-&quot; &amp; TEXT(YEAR({!$Record.leaseworks__Payment_Date__c})) &amp; &quot;-&quot; &amp; 
+RIGHT(&quot;0&quot; &amp; TEXT(MONTH({!$Record.leaseworks__Payment_Date__c})), 2)</expression>
+    </formulas>
+    <interviewLabel>SetPaymentName {!$Flow.CurrentDateTime}</interviewLabel>
+    <isTemplate>true</isTemplate>
+    <label>SetPaymentName</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <description>This flow will update the Payment Name.</description>
+        <name>PaymentName</name>
+        <label>PaymentName</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <inputAssignments>
+            <field>Name</field>
+            <value>
+                <elementReference>UpdatePaymentName</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>PaymentName</targetReference>
+        </connector>
+        <object>leaseworks__Payment__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

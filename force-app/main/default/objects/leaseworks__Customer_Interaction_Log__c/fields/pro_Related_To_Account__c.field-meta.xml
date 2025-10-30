@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>pro_Related_To_Account__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <externalId>false</externalId>
+    <label>Related To Account</label>
+    <lookupFilter>
+        <active>true</active>
+        <errorMessage>You Can Only Select Accounts of &quot;Type&quot; that are not equal to Parties or Carlyle Entity</errorMessage>
+        <filterItems>
+            <field>Account.Type</field>
+            <operation>notEqual</operation>
+            <value>Parties, Carlyle Entity</value>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>Account</referenceTo>
+    <relationshipLabel>Interaction Logs (Related To Account)</relationshipLabel>
+    <relationshipName>Interaction_Logs</relationshipName>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

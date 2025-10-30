@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <excludeButtons>OpenSlackRecordChannel</excludeButtons>
     <layoutSections>
         <customLabel>false</customLabel>
         <detailHeading>false</detailHeading>
@@ -58,6 +59,18 @@
                 <behavior>Edit</behavior>
                 <field>Approval_Date__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>leaseworks__On_Hold__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>leaseworks__Hold_Release_Reason__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>leaseworks__Amount_Paid_Ledger__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -111,14 +124,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>leaseworks__Adjustment_Amount__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>leaseworks__On_Hold__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>leaseworks__Hold_Release_Reason__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -206,15 +211,11 @@
         <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
         <label>Currency Conversion</label>
-        <layoutColumns/>
+        <layoutColumns />
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>leaseworks__Exchange_Rate__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>leaseworks__Converted_Currency_Amount__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -410,9 +411,9 @@
         <detailHeading>false</detailHeading>
         <editHeading>true</editHeading>
         <label>Custom Links</label>
-        <layoutColumns/>
-        <layoutColumns/>
-        <layoutColumns/>
+        <layoutColumns />
+        <layoutColumns />
+        <layoutColumns />
         <style>CustomLinks</style>
     </layoutSections>
     <platformActionList>
@@ -511,19 +512,22 @@
         <customButtons>leaseworks__Edit_Lines</customButtons>
         <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
-        <fields>leaseworks__Assembly_MR_Info__c</fields>
-        <fields>leaseworks__Amount_Due__c</fields>
-        <fields>leaseworks__Balance_Due__c</fields>
-        <fields>leaseworks__Total_Amount_Paid__c</fields>
+        <fields>leaseworks__Line_Currency__c</fields>
+        <fields>leaseworks__Invoice_Line_Amount_Number__c</fields>
+        <fields>leaseworks__Line_Amount_Balance_Due_Number__c</fields>
+        <fields>leaseworks__Line_Amount_Paid_Number__c</fields>
+        <fields>leaseworks__Converted_Currency_Line_Amount__c</fields>
         <fields>leaseworks__Invoice_Type__c</fields>
         <fields>leaseworks__Invoice_Line_Type__c</fields>
+        <fields>leaseworks__Comments__c</fields>
         <relatedList>leaseworks__Invoice_Line_Item__c.leaseworks__Invoice__c</relatedList>
     </relatedLists>
     <relatedLists>
         <excludeButtons>MassChangeOwner</excludeButtons>
         <fields>NAME</fields>
-        <fields>leaseworks__Adjustment_Amount__c</fields>
+        <fields>leaseworks__Invoice_Adjustment_Amt__c</fields>
         <fields>leaseworks__Approval_Status__c</fields>
+        <fields>leaseworks__Transaction_Currency__c</fields>
         <relatedList>leaseworks__Invoice_Adjustment__c.leaseworks__Linked_Invoice__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -534,8 +538,8 @@
         <fields>leaseworks__Transaction_Type__c</fields>
         <fields>leaseworks__GL_Account_Code__c</fields>
         <fields>leaseworks__Calendar_Period__c</fields>
-        <fields>leaseworks__Credit_F__c</fields>
-        <fields>leaseworks__Debit_F__c</fields>
+        <fields>leaseworks__Debit_Number__c</fields>
+        <fields>leaseworks__Credit_Number__c</fields>
         <fields>leaseworks__Journal_Status__c</fields>
         <fields>leaseworks__Transaction_Type_F__c</fields>
         <relatedList>leaseworks__Journal_Entry__c.leaseworks__Invoice__c</relatedList>
@@ -545,22 +549,12 @@
     <relatedLists>
         <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
-        <fields>leaseworks__Sequence__c</fields>
-        <fields>leaseworks__Date__c</fields>
-        <fields>leaseworks__Transaction__c</fields>
-        <fields>leaseworks__Amount__c</fields>
-        <fields>leaseworks__Balance_Due__c</fields>
-        <relatedList>leaseworks__Late_Payment_Activity__c.leaseworks__Invoice__c</relatedList>
-        <sortField>leaseworks__Sequence__c</sortField>
-        <sortOrder>Asc</sortOrder>
-    </relatedLists>
-    <relatedLists>
-        <excludeButtons>New</excludeButtons>
-        <fields>NAME</fields>
         <fields>leaseworks__Payment_Type__c</fields>
         <fields>leaseworks__Payment_Date__c</fields>
         <fields>leaseworks__Payment_Status__c</fields>
-        <fields>leaseworks__Remaining_Payment_Amount__c</fields>
+        <fields>leaseworks__Amount_Applied_To_Invoice_num__c</fields>
+        <fields>leaseworks__Transaction_Currency__c</fields>
+        <fields>leaseworks__Amount_number__c</fields>
         <relatedList>leaseworks__Payment__c.leaseworks__Invoice__c</relatedList>
     </relatedLists>
     <relatedLists>

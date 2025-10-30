@@ -264,6 +264,25 @@ leaseworks__Placement_By_Date__c)</formula>
         <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
+        <fullName>leaseworks__Lease Start and End Date Fields Update</fullName>
+        <actions>
+            <name>leaseworks__Lease_End_Date_Update</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>leaseworks__Lease_Set_Placement_By</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>leaseworks__Lease_Start_Date_Update</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>To copy over the Lease Start Date and Lease End Date from the new Lease date fields to the old existing lease Date and Time fields</description>
+        <formula>OR(ISNEW(), AND(ISBLANK(PRIORVALUE(leaseworks__Lease_Start_Date_New__c)), !ISBLANK(leaseworks__Lease_Start_Date_New__c)), PRIORVALUE(leaseworks__Lease_Start_Date_New__c) != leaseworks__Lease_Start_Date_New__c,  AND(ISBLANK(PRIORVALUE(leaseworks__Lease_End_Date_New__c)), !ISBLANK(leaseworks__Lease_End_Date_New__c)),  PRIORVALUE(leaseworks__Lease_End_Date_New__c) != leaseworks__Lease_End_Date_New__c )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
         <fullName>leaseworks__LeaseSetName</fullName>
         <actions>
             <name>leaseworks__Lease_Set_Name</name>

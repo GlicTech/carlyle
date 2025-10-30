@@ -121,6 +121,22 @@
                 <behavior>Edit</behavior>
                 <field>Lessor_Bank_for_Euro__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>pro_Floating_Rent__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>pro_Power_By_The_Hour__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>pro_Seasonal_Rent__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>pro_Base_Rent_Formula__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -637,7 +653,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>leaseworks__Total_Outstanding_Balance__c</field>
+                <field>leaseworks__Total_Outstanding_Balance_Num__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -762,9 +778,9 @@
         <detailHeading>false</detailHeading>
         <editHeading>true</editHeading>
         <label>Custom Links</label>
-        <layoutColumns/>
-        <layoutColumns/>
-        <layoutColumns/>
+        <layoutColumns />
+        <layoutColumns />
+        <layoutColumns />
         <style>CustomLinks</style>
     </layoutSections>
     <platformActionList>
@@ -790,33 +806,53 @@
             <sortOrder>3</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
-            <actionName>Edit</actionName>
-            <actionType>StandardButton</actionType>
+            <actionName>leaseworks__Lease__c.Create_Party</actionName>
+            <actionType>QuickAction</actionType>
             <sortOrder>4</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
-            <actionName>Delete</actionName>
+            <actionName>Edit</actionName>
             <actionType>StandardButton</actionType>
             <sortOrder>5</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
-            <actionName>Clone</actionName>
+            <actionName>Delete</actionName>
             <actionType>StandardButton</actionType>
             <sortOrder>6</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
-            <actionName>leaseworks__Head_Lease_Sub_Lease_Setup</actionName>
-            <actionType>CustomButton</actionType>
+            <actionName>Clone</actionName>
+            <actionType>StandardButton</actionType>
             <sortOrder>7</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
-            <actionName>leaseworks__Lease__c.leaseworks__Update_Analysis_Code</actionName>
-            <actionType>QuickAction</actionType>
+            <actionName>leaseworks__Head_Lease_Sub_Lease_Setup</actionName>
+            <actionType>CustomButton</actionType>
             <sortOrder>8</sortOrder>
         </platformActionListItems>
     </platformActionList>
     <relatedLists>
+        <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
+        <fields>leaseworks__Type__c</fields>
+        <fields>leaseworks__Link__c</fields>
+        <fields>leaseworks__Due_Date__c</fields>
+        <fields>leaseworks__Event_Status__c</fields>
+        <relatedList>leaseworks__Contract_Diary__c.leaseworks__Contract__c</relatedList>
+        <sortField>leaseworks__Due_Date__c</sortField>
+        <sortOrder>Asc</sortOrder>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>RECORDTYPE</fields>
+        <fields>pro_Assigned_To__c</fields>
+        <fields>pro_Requested_By__c</fields>
+        <fields>pro_Type__c</fields>
+        <fields>pro_Title__c</fields>
+        <fields>pro_Comments__c</fields>
+        <fields>pro_Status__c</fields>
+        <fields>pro_Priority__c</fields>
+        <fields>pro_Expected_Due_Date__c</fields>
         <relatedList>pro_Ticket__c.pro_Lease__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -826,6 +862,8 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>pro_Likely_Outcome__c</fields>
+        <fields>pro_Target_Forecast__c</fields>
         <relatedList>pro_Asset_Target_Audit__c.pro_Contract__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -887,6 +925,8 @@
         <fields>leaseworks__Servicing_Fee_Entity__c</fields>
         <fields>leaseworks__Service_Fee_Bank_Account__c</fields>
         <fields>leaseworks__Service_Fee_Pct__c</fields>
+        <fields>leaseworks__Billing_Currency__c</fields>
+        <fields>leaseworks__Fee_Flat_Amount_New__c</fields>
         <relatedList>leaseworks__Service_Fee__c.leaseworks__Lease__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -895,13 +935,13 @@
         <fields>NAME</fields>
         <fields>leaseworks__Date_of_MR_Payment_Due__c</fields>
         <fields>leaseworks__Invoice_Date__c</fields>
-        <fields>leaseworks__Invoice_Category__c</fields>
         <fields>leaseworks__Status__c</fields>
         <fields>leaseworks__Deferred__c</fields>
-        <fields>leaseworks__Invoiced_Amount_Formula__c</fields>
         <fields>leaseworks__Payment_Status__c</fields>
-        <fields>leaseworks__Amount_Paid_Remaining__c</fields>
-        <fields>leaseworks__Balance_Due__c</fields>
+        <fields>leaseworks__Adjusted_Invoiced_Amnt__c</fields>
+        <fields>leaseworks__Amnt_Paid__c</fields>
+        <fields>leaseworks__Balnce_Due__c</fields>
+        <fields>leaseworks__Transaction_Currency__c</fields>
         <relatedList>leaseworks__Invoice__c.leaseworks__Lease__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -1038,8 +1078,11 @@
         <fields>leaseworks__Rent_Type__c</fields>
         <fields>leaseworks__Start_Date__c</fields>
         <fields>leaseworks__Rent_End_Date__c</fields>
-        <fields>leaseworks__Base_Rent__c</fields>
         <fields>leaseworks__Status__c</fields>
+        <fields>leaseworks__Billing_Currency__c</fields>
+        <fields>leaseworks__Base_Rent_New__c</fields>
+        <fields>pro_Base_Rent_Target__c</fields>
+        <fields>pro_Is_Current__c</fields>
         <relatedList>leaseworks__Stepped_Rent__c.leaseworks__Lease__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -1066,6 +1109,7 @@
         <fields>leaseworks__Transactions_Total_Cash__c</fields>
         <fields>leaseworks__Transactions_Total_Unpaid__c</fields>
         <fields>leaseworks__Inactive__c</fields>
+        <fields>leaseworks__Current_Rate_Details_Overview__c</fields>
         <relatedList>leaseworks__Assembly_MR_Rate__c.leaseworks__Lease__c</relatedList>
         <sortField>NAME</sortField>
         <sortOrder>Asc</sortOrder>
@@ -1120,6 +1164,10 @@
         <fields>leaseworks__Extension_Period_End_date__c</fields>
         <fields>leaseworks__Extension_Period_Start_date__c</fields>
         <relatedList>leaseworks__Lease_Extension_History__c.leaseworks__Lease__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>leaseworks__Claims__c.Associated_Contract__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>true</showHighlightsPanel>

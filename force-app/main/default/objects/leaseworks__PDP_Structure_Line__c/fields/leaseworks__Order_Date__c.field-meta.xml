@@ -3,23 +3,23 @@
     <fullName>leaseworks__Order_Date__c</fullName>
     <deprecated>false</deprecated>
     <externalId>false</externalId>
-    <formula>IF( 
+    <formula>/*IF( 
 RecordType.DeveloperName = &#39;Variable&#39; 
 ,
    IF(
- leaseworks__Signature__c,
+ Signature__c,
  DATE(2000,01,01),
- ADDMONTHS(DATE(2100,01,01), leaseworks__Month_Prior_Delivery__c *-1)
+ ADDMONTHS(DATE(2100,01,01), Month_Prior_Delivery__c *-1)
  )
 ,
    IF(
- leaseworks__Signature__c,
+ Signature__c,
  DATE(2000,01,01),
- leaseworks__Fixed_Date__c 
+ Fixed_Date__c 
  )
-)</formula>
+)*/null</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-    <label>Order Date</label>
+    <label>Z_Unused_2507 Order Date</label>
     <required>false</required>
     <trackTrending>false</trackTrending>
     <type>Date</type>

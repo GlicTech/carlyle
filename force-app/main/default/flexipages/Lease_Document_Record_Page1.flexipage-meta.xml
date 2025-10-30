@@ -100,13 +100,6 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.leaseworks__Details_Key_Changes__c</fieldItem>
                 <identifier>RecordDetails_Key_Changes_cField</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.leaseworks__Type__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>RORA</rightValue>
-                    </criteria>
-                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -332,6 +325,10 @@
                     <value>Facet-7a924f92-5dd7-4f62-b81a-c1d03dc780ff</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Information</value>
                 </componentInstanceProperties>
@@ -344,6 +341,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-1ac622e1-1ae4-46fe-b667-743a8a4ac47e</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -416,7 +417,7 @@
         <name>rightcol</name>
         <type>Region</type>
     </flexiPageRegions>
-    <masterLabel>Lease Document Record Page</masterLabel>
+    <masterLabel>Lease Document Record Page (dynamic)</masterLabel>
     <sobjectType>leaseworks__Lease_Document__c</sobjectType>
     <template>
         <name>flexipage:recordHomeTwoColEqualHeaderTemplateDesktop</name>

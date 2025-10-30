@@ -46,6 +46,10 @@
                 <behavior>Edit</behavior>
                 <field>Approval_Date__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>leaseworks__Amount_Paid_Ledger__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -148,7 +152,7 @@
                 <field>leaseworks__Cash_Security_Deposit__c</field>
             </layoutItems>
         </layoutColumns>
-        <layoutColumns/>
+        <layoutColumns />
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
     <layoutSections>
@@ -275,10 +279,6 @@
                 <behavior>Edit</behavior>
                 <field>leaseworks__Withholding_Tax_Amount__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>leaseworks__Converted_Currency_Amount__c</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -367,8 +367,8 @@
         <detailHeading>false</detailHeading>
         <editHeading>true</editHeading>
         <label>System Information</label>
-        <layoutColumns/>
-        <layoutColumns/>
+        <layoutColumns />
+        <layoutColumns />
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
     <layoutSections>
@@ -376,9 +376,9 @@
         <detailHeading>false</detailHeading>
         <editHeading>true</editHeading>
         <label>Custom Links</label>
-        <layoutColumns/>
-        <layoutColumns/>
-        <layoutColumns/>
+        <layoutColumns />
+        <layoutColumns />
+        <layoutColumns />
         <style>CustomLinks</style>
     </layoutSections>
     <platformActionList>
@@ -425,13 +425,14 @@
         <excludeButtons>MassChangeOwner</excludeButtons>
         <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
-        <fields>leaseworks__Amount_Due__c</fields>
-        <fields>leaseworks__Assembly__c</fields>
-        <fields>leaseworks__Invoice_Line_Type__c</fields>
-        <fields>leaseworks__Total_Amount_Paid__c</fields>
-        <fields>leaseworks__Balance_Due__c</fields>
-        <fields>leaseworks__Assembly_MR_Info__c</fields>
+        <fields>leaseworks__Line_Currency__c</fields>
+        <fields>leaseworks__Invoice_Line_Amount_Number__c</fields>
+        <fields>leaseworks__Line_Amount_Balance_Due_Number__c</fields>
+        <fields>leaseworks__Line_Amount_Paid_Number__c</fields>
+        <fields>leaseworks__Converted_Currency_Line_Amount__c</fields>
         <fields>leaseworks__Invoice_Type__c</fields>
+        <fields>leaseworks__Invoice_Line_Type__c</fields>
+        <fields>leaseworks__Comments__c</fields>
         <relatedList>leaseworks__Invoice_Line_Item__c.leaseworks__Invoice__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -440,7 +441,9 @@
         <fields>leaseworks__Payment_Type__c</fields>
         <fields>leaseworks__Payment_Date__c</fields>
         <fields>leaseworks__Payment_Status__c</fields>
-        <fields>leaseworks__Remaining_Payment_Amount__c</fields>
+        <fields>leaseworks__Amount_Applied_To_Invoice_num__c</fields>
+        <fields>leaseworks__Transaction_Currency__c</fields>
+        <fields>leaseworks__Amount_number__c</fields>
         <relatedList>leaseworks__Payment__c.leaseworks__Invoice__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -467,8 +470,8 @@
         <fields>leaseworks__Calendar_Period__c</fields>
         <fields>leaseworks__GL_Account_Code__c</fields>
         <fields>leaseworks__JE_Description__c</fields>
-        <fields>leaseworks__Debit_F__c</fields>
-        <fields>leaseworks__Credit_F__c</fields>
+        <fields>leaseworks__Debit_Number__c</fields>
+        <fields>leaseworks__Credit_Number__c</fields>
         <fields>leaseworks__Transaction_Type__c</fields>
         <fields>leaseworks__Journal_Status__c</fields>
         <relatedList>leaseworks__Journal_Entry__c.leaseworks__Invoice__c</relatedList>

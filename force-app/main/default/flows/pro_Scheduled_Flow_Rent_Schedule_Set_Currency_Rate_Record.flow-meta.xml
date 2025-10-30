@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>65.0</apiVersion>
+    <decisions>
+        <name>Currency_Rate_Record_Found</name>
+        <label>Currency Rate Record Found?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>No - End</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Update_Rent_Schedule</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Latest_Matching_Currency_Record</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Rent_Schedule</targetReference>
+            </connector>
+            <label>Yes - Update Rent Schedule</label>
+        </rules>
+    </decisions>
+    <description>This Scheduled flow is used to set the latest Currency Rate Record into a Rent Schedule where the Billing Currency is not USD.
+Prodigy - PC 14/12/25</description>
+    <environments>Default</environments>
+    <interviewLabel>Prodigy - Scheduled Flow - Rent Schedule - Set Currency Rate Record {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Scheduled Flow - Rent Schedule - Set Currency Rate Record</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Latest_Matching_Currency_Record</name>
+        <label>Get Latest Matching Currency Record</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Currency_Rate_Record_Found</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>leaseworks__Source_Currency__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.leaseworks__Billing_Currency__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>leaseworks__Currency_Rates__c</object>
+        <sortField>leaseworks__Date__c</sortField>
+        <sortOrder>Desc</sortOrder>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <description>Sets the Currency rate Record id onto the Rent Schedule record</description>
+        <name>Update_Rent_Schedule</name>
+        <label>Update Rent Schedule</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>pro_Currency_Rates__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <elementReference>Get_Latest_Matching_Currency_Record.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>pro_Currency_Rates__c</field>
+            <value>
+                <elementReference>Get_Latest_Matching_Currency_Record.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Latest_Matching_Currency_Record</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>leaseworks__Billing_Currency__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>USD</stringValue>
+            </value>
+        </filters>
+        <object>leaseworks__Stepped_Rent__c</object>
+        <schedule>
+            <frequency>Daily</frequency>
+            <startDate>2025-10-14</startDate>
+            <startTime>14:40:00.000Z</startTime>
+        </schedule>
+        <triggerType>Scheduled</triggerType>
+    </start>
+    <status>Obsolete</status>
+</Flow>

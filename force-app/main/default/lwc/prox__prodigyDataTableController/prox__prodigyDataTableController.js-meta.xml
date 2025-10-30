@@ -18,6 +18,13 @@
 
         <targetConfig targets="lightning__FlowScreen">
             <property name="configDevName" type="String" label="Config Developer Name" required="true"/>
+			<propertyType name="T" extends="SObject" label="Input Type" description="Generic sObject data type used for input sObject properties" />
+            <property name="recordsFromFlow" type="{T[]}" label="inputDataFromFlow" role="inputOnly" />
+                        <property name="isFlowContext" type="Boolean" label="Use Flow Data?" description="Check this to use data from Flow input instead of querying Apex"/>
+
+                        <property name="selectedRecordsFromTable" type="{T[]}" label="Selected Records" role="outputOnly"/>
+
+
         </targetConfig>
     </targetConfigs>
 </LightningComponentBundle>

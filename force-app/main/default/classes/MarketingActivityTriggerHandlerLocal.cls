@@ -68,14 +68,13 @@
                 referenceIdx = idx;
             }
         }
-        System.debug('Reference Idx==' + referenceIdx);
-        
-        for(leaseworks__Marketing_Activity__c tempDeal: (List<leaseworks__Marketing_Activity__c>)trigger.new){
-            leaseworks__Marketing_Activity__c oldDeal = (leaseworks__Marketing_Activity__c)trigger.oldmap.get(tempDeal.id);
-            // Bypass validation if Deal Type is 'Non Deal Approval'
-            if (String.valueOf(tempDeal.leaseworks__Deal_Type__c).equalsIgnoreCase('Approval')) {
-                continue;
-            }
+        for (leaseworks__Marketing_Activity__c tempDeal : (List<leaseworks__Marketing_Activity__c>) Trigger.new) {
+        leaseworks__Marketing_Activity__c oldDeal = (leaseworks__Marketing_Activity__c) Trigger.oldMap.get(tempDeal.Id);
+
+        // Skip validation if Deal Type = 'Approval'
+        if (tempDeal.leaseworks__Deal_Type__c == 'Approval') {
+            continue;
+        }
             /*For High probability deals, user has to get 'ADM Approval' to set any status post 'ADM Approval'.
             However, user can update the deal status to 'Closed-Lost' without any restrictions*/
             if(oldDeal.leaseworks__deal_status__c != tempDeal.leaseworks__deal_status__c && tempDeal.leaseworks__deal_status__c != 'Closed - Lost')

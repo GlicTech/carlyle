@@ -35,9 +35,6 @@
         <field>leaseworks__Aircraft__c$leaseworks__Asset_Variant_GP__c</field>
     </columns>
     <columns>
-        <field>leaseworks__Aircraft__c$leaseworks__Manufacturer__c</field>
-    </columns>
-    <columns>
         <field>leaseworks__Aircraft__c$leaseworks__Date_of_Manufacture__c</field>
     </columns>
     <columns>
@@ -56,9 +53,6 @@
         <field>leaseworks__Aircraft__c$leaseworks__Lease__c</field>
     </columns>
     <columns>
-        <field>leaseworks__Aircraft__c$leaseworks__Y_Hidden_Lease_End_Date__c</field>
-    </columns>
-    <columns>
         <field>leaseworks__Aircraft__c$leaseworks__Registration_Number__c</field>
     </columns>
     <columns>
@@ -75,11 +69,16 @@
             <column>leaseworks__Aircraft__c$leaseworks__Status__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
-            <operator>notEqual</operator>
+            <operator>notContain</operator>
             <value>Sold,Consigned</value>
         </criteriaItems>
     </filter>
     <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Month</dateGranularity>
+        <field>leaseworks__Aircraft__c$leaseworks__Y_Hidden_Lease_End_Date__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
         <field>leaseworks__Aircraft__c$pro_Reporting_Region__c</field>

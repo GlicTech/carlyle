@@ -1,31 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <layouts>
         <layout>Service Fee Layout</layout>
         <sections>
@@ -74,6 +48,14 @@
         <name>leaseworks__ValidateIntercompanyServiceFee</name>
     </validationRules>
     <validationRules>
+        <errorMessage><!-- Manual Fee Slip Entry cannot be used for fee schedules linked to a rent schedule. Please disable manual entry or unlink the rent schedule to continue. --></errorMessage>
+        <name>leaseworks__ValidateManualEntryWhenRentSchedule</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The Manual Fee Slip Entry setting cannot be changed after the fee schedule has been saved. Please create a new fee schedule if you need to change this setting. --></errorMessage>
+        <name>leaseworks__ValidateManualFeeSlipEntryEdit</name>
+    </validationRules>
+    <validationRules>
         <errorMessage><!-- Selected &apos;Rent Schedule&apos; is not associated with the contract, please select a different rent schedule. --></errorMessage>
         <name>leaseworks__ValidateRentScheduleAndLeaseRelation</name>
     </validationRules>
@@ -85,4 +67,35 @@
         <errorMessage><!-- The difference between the Fee Start Date and Second Fee Period Start Date is longer than the frequency selected --></errorMessage>
         <name>leaseworks__ValidateSecondRentPeriodStartDate</name>
     </validationRules>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 </CustomObjectTranslation>

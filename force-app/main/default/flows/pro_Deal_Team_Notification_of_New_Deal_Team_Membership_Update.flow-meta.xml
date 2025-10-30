@@ -59,7 +59,13 @@
         <inputParameters>
             <name>senderType</name>
             <value>
-                <stringValue>CurrentUser</stringValue>
+                <stringValue>OrgWideEmailAddress</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderAddress</name>
+            <value>
+                <stringValue>leaseworks@carlyle.aero</stringValue>
             </value>
         </inputParameters>
         <inputParameters>
@@ -135,6 +141,11 @@
     <description>Modified the Entry Criteria Logic to ensure this notification only runs when a Deal team Assignee is changed, and the related Deal is not in a Status of &quot;Pipeline&quot;</description>
     <environments>Default</environments>
     <formulas>
+        <name>f_DocumentLinkOrNull</name>
+        <dataType>String</dataType>
+        <expression>IF(ISPICKVAL({!$Record.leaseworks__Marketing_Activity__r.leaseworks__Deal_Type__c}, &#39;Approval&#39;), Null, BR() + &#39;Draft LOI Link: &#39; + {!$Record.leaseworks__Marketing_Activity__r.pro_Long_Document_Link__c})</expression>
+    </formulas>
+    <formulas>
         <name>f_Email_Subject</name>
         <dataType>String</dataType>
         <expression>&quot;Deal Team Membership Notification - &quot; &amp; {!$Record.leaseworks__Marketing_Activity__r.Name}</expression>
@@ -193,6 +204,7 @@
             <targetReference>Assign_Email_Recipient</targetReference>
         </connector>
         <filterFormula>AND(
+{!$Setup.pro_Notification_Control__c.pro_Disable_Notifications__c} = False,
 {!$Record.leaseworks__Assigned_To__c} &lt;&gt; {!$Record__Prior.leaseworks__Assigned_To__c},
 NOT(ISPICKVAL({!$Record.leaseworks__Marketing_Activity__r.leaseworks__Deal_Status__c}, &quot;Pipeline&quot;))
 )</filterFormula>
@@ -200,11 +212,11 @@ NOT(ISPICKVAL({!$Record.leaseworks__Marketing_Activity__r.leaseworks__Deal_Statu
         <recordTriggerType>Update</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>
     </start>
-    <status>Obsolete</status>
+    <status>Active</status>
     <textTemplates>
         <name>TT_EmailBody</name>
         <isViewedAsPlainText>false</isViewedAsPlainText>
-        <text>&lt;p&gt;Hi {!$Record.leaseworks__Assigned_To__r.FirstName},&lt;/p&gt;&lt;p&gt;You have just been assigned as a Deal Team Member to the following Deal:&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;https://leaseworks-carlyle.lightning.force.com/{!$Record.leaseworks__Marketing_Activity__c}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;{!$Record.leaseworks__Marketing_Activity__r.Name}&lt;/a&gt;&lt;/li&gt;&lt;li&gt;Role: &lt;a href=&quot;https://leaseworks-carlyle.lightning.force.com/{!$Record.Id}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;{!$Record.Name}&lt;/a&gt;&lt;/li&gt;&lt;li&gt;Draft LOI Link: {{!$Record.leaseworks__Marketing_Activity__r.pro_Long_Document_Link__c}&lt;/li&gt;&lt;li&gt;Deal Unique Id: {!$Record.leaseworks__Marketing_Activity__r.Deal_Unique_ID__c}&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong style=&quot;font-size: 10px;&quot;&gt;&lt;em&gt;**This is an automated Email from Salesforce&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;</text>
+        <text>&lt;p&gt;Hi {!$Record.leaseworks__Assigned_To__r.FirstName},&lt;/p&gt;&lt;p&gt;You have just been assigned as a Deal Team Member to the following Deal:&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;https://leaseworks-carlyle.lightning.force.com/{!$Record.leaseworks__Marketing_Activity__c}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;{!$Record.leaseworks__Marketing_Activity__r.Name}&lt;/a&gt;&lt;/li&gt;&lt;li&gt;Role: &lt;a href=&quot;https://leaseworks-carlyle.lightning.force.com/{!$Record.Id}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;{!$Record.Name}&lt;/a&gt;&lt;/li&gt;&lt;li&gt;Draft LOI Link: {!$Record.leaseworks__Marketing_Activity__r.pro_Long_Document_Link__c}&lt;/li&gt;&lt;li&gt;Deal Unique Id: {!$Record.leaseworks__Marketing_Activity__r.Deal_Unique_ID__c}&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong style=&quot;font-size: 10px;&quot;&gt;&lt;em&gt;**This is an automated Email from Salesforce&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;</text>
     </textTemplates>
     <textTemplates>
         <name>TT_Notification_Body</name>
@@ -212,8 +224,7 @@ NOT(ISPICKVAL({!$Record.leaseworks__Marketing_Activity__r.leaseworks__Deal_Statu
         <text>You have just been assigned as a Deal Team Member to the following Deal:
 
 {!$Record.leaseworks__Marketing_Activity__r.Name}
-Role: {!$Record.Name}
-Draft LOI Link: {{!$Record.leaseworks__Marketing_Activity__r.pro_Long_Document_Link__c}
+Role: {!$Record.Name}{!f_DocumentLinkOrNull}
 Deal Unique Id: {!$Record.leaseworks__Marketing_Activity__r.Deal_Unique_ID__c}</text>
     </textTemplates>
     <variables>

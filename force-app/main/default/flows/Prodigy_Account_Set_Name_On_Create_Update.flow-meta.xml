@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>64.0</apiVersion>
+    <description>Sets the Account Name in an external id field which is used in  the Team Manager mass update feature.</description>
     <environments>Default</environments>
     <interviewLabel>Prodigy - Account Set Name On Create / Update {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Prodigy - Account Set Name On Create / Update</label>
@@ -42,6 +43,10 @@
         <connector>
             <targetReference>Set_Account_Name_External_Id</targetReference>
         </connector>
+        <filterFormula>AND(
+        {!$Setup.pro_Notification_Control__c.pro_Disable_Notifications__c} = False,
+         ISCHANGED({!$Record.Name})
+)</filterFormula>
         <object>Account</object>
         <recordTriggerType>CreateAndUpdate</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>

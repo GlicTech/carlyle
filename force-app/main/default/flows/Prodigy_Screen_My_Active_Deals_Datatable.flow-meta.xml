@@ -31,7 +31,11 @@
     <formulas>
         <name>f_QueryActiveDeals</name>
         <dataType>String</dataType>
-        <expression>&quot;SELECT Id, Name, leaseworks__Deal_Status__c, leaseworks__Aircraft_Type_Qty_List__c, leaseworks__Date_Of_Last_Interaction__c FROM leaseworks__Marketing_Activity__c WHERE leaseworks__Inactive_MA__c = False AND Id IN (&quot; &amp; {!varDealIdsInString} &amp; &quot;)&quot;</expression>
+        <expression>IF(
+  ISBLANK({!varDealIdsInString}),
+  &quot;SELECT Id, Name, leaseworks__Deal_Status__c, leaseworks__Aircraft_Type_Qty_List__c, leaseworks__Date_Of_Last_Interaction__c FROM leaseworks__Marketing_Activity__c WHERE Id = &#39;&#39;&quot;,
+  &quot;SELECT Id, Name, leaseworks__Deal_Status__c, leaseworks__Aircraft_Type_Qty_List__c, leaseworks__Date_Of_Last_Interaction__c FROM leaseworks__Marketing_Activity__c WHERE leaseworks__Inactive_MA__c = False AND Id IN (&quot; &amp; {!varDealIdsInString} &amp; &quot;)&quot;
+)</expression>
     </formulas>
     <interviewLabel>Prodigy - Screen - My Active Deals Datatable {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Prodigy - Screen - My Active Deals Datatable</label>
@@ -207,9 +211,37 @@
                     <stringValue>CB_TRUE</stringValue>
                 </value>
             </inputParameters>
+            <inputParameters>
+                <name>showPagination</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>cb_showPagination</name>
+                <value>
+                    <stringValue>CB_TRUE</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>recordsPerPage</name>
+                <value>
+                    <numberValue>15.0</numberValue>
+                </value>
+            </inputParameters>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
             <storeOutputAutomatically>true</storeOutputAutomatically>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>df_FetchActiveDeals.firstRetrievedRecord.Id</leftValueReference>
+                    <operator>IsNull</operator>
+                    <rightValue>
+                        <booleanValue>false</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
         </fields>
         <fields>
             <name>df_FetchActiveDeals</name>
@@ -256,6 +288,13 @@
         </connector>
     </start>
     <status>Active</status>
+    <variables>
+        <name>varActiveDealsFound</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
     <variables>
         <name>varDealIdsInString</name>
         <dataType>String</dataType>

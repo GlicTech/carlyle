@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-        <help><!-- Fixed Date: If selected, you must enter a value in the &quot;Rent Due Day (Fixed)&quot; field. Fixed Day in a Week: If selected, provide values for both the &quot;Day&quot; and &quot;Weekday Number&quot; fields. Relative: If selected, enter the number of days in the &quot;Rent Due Day&quot; field. This will push the rent due date by the specified number of days from the Invoice Date/rent start date. --></help>
+        <help><!-- &quot;Fixed Date&quot;: Enter a specific day(1-31) in the &apos;Rent Due Day&apos; field. &quot;Fixed Day in a Week&quot;: Select both a &apos;Day&apos; and a &apos;Weekday Number&apos; to specify, for e.g., the 2nd Tuesday of the month. &quot;Relative&quot;: Enter a number of days in the &apos;Rent Due Day&apos; field to set the due date relative to the Invoice Date, Rent Start/End Date. --></help>
         <label><!-- Rent Due Type --></label>
         <name>leaseworks__Rent_Due_Type__c</name>
         <picklistValues>
@@ -14,6 +14,10 @@
         <picklistValues>
             <masterLabel>Relative Based On Invoice Date</masterLabel>
             <translation><!-- Relative Based On Invoice Date --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Relative Based On Rent Period End Date</masterLabel>
+            <translation><!-- Relative Based On Rent Period End Date --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Relative Based On Rent Period Start Date</masterLabel>

@@ -9,7 +9,7 @@
         <locationY>0</locationY>
         <assignNextValueToReference>currentItem_Filter_For_100_Lease_Documentation_Approval</assignNextValueToReference>
         <collectionProcessorType>FilterCollectionProcessor</collectionProcessorType>
-        <collectionReference>Get_Related_AiDs</collectionReference>
+        <collectionReference>Get_AiDs_on_Deal</collectionReference>
         <conditionLogic>and</conditionLogic>
         <conditions>
             <leftValueReference>currentItem_Filter_For_100_Lease_Documentation_Approval.pro_Lease_Documentation_Approval_per__c</leftValueReference>
@@ -23,32 +23,13 @@
         </connector>
     </collectionProcessors>
     <decisions>
-        <name>Is_Documentation_Approval_At_100_For_This_AiD</name>
-        <label>Is Documentation Approval At 100% For This AiD?</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
-        <rules>
-            <name>Yes_100</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>$Record.pro_Lease_Documentation_Approval_per__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <numberValue>100.0</numberValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Get_Related_AiDs</targetReference>
-            </connector>
-            <label>Yes - 100%</label>
-        </rules>
-    </decisions>
-    <decisions>
         <name>Is_Lease_Documentation_100_Approved_For_All_AiDs</name>
         <label>Is Lease Documentation 100% Approved For All AiDs?</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Set_Full_Documentation_Approval_Incomplete_On_Deal</targetReference>
+        </defaultConnector>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>Yes_100_Approved</name>
@@ -90,8 +71,8 @@
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
     <recordLookups>
-        <name>Get_Related_AiDs</name>
-        <label>Get Related AiDs</label>
+        <name>Get_AiDs_on_Deal</name>
+        <label>Get AiDs on Deal</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
@@ -104,13 +85,6 @@
             <operator>EqualTo</operator>
             <value>
                 <elementReference>$Record.leaseworks__Marketing_Activity__c</elementReference>
-            </value>
-        </filters>
-        <filters>
-            <field>Id</field>
-            <operator>NotEqualTo</operator>
-            <value>
-                <elementReference>$Record.Id</elementReference>
             </value>
         </filters>
         <getFirstRecordOnly>false</getFirstRecordOnly>
@@ -130,11 +104,24 @@
         </inputAssignments>
         <inputReference>$Record.leaseworks__Marketing_Activity__r</inputReference>
     </recordUpdates>
+    <recordUpdates>
+        <name>Set_Full_Documentation_Approval_Incomplete_On_Deal</name>
+        <label>Set Full Documentation Approval Incomplete On Deal</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <inputAssignments>
+            <field>pro_Full_Documentation_Approval_Achieved__c</field>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record.leaseworks__Marketing_Activity__r</inputReference>
+    </recordUpdates>
     <start>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Is_Documentation_Approval_At_100_For_This_AiD</targetReference>
+            <targetReference>Get_AiDs_on_Deal</targetReference>
         </connector>
         <object>leaseworks__Aircraft_Proposal__c</object>
         <recordTriggerType>Update</recordTriggerType>

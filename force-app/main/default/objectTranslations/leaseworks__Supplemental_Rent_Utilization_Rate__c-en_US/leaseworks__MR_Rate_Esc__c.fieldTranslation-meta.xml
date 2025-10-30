@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-        <help><!-- Effective Rate after interpolation/base rate and escalation. In case utilization is below threshold and this rate was not used, field is null. --></help>
+        <help><!-- This field is similar to the Effective Rate, with one key difference — it always takes the value directly from the respective Rate Schedule, even if a Threshold configuration exists. The field is editable, allowing users to override the value if required. However, updating this field will not impact the MR Total. It is recommended to update this field as well whenever the Effective Rate is changed to keep both values aligned. Note: In certain cases, this field may be mapped on the Invoice PDF. --></help>
         <label><!-- MR Rate(Esc) --></label>
         <name>leaseworks__MR_Rate_Esc__c</name>
     </CustomFieldTranslation>

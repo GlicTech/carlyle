@@ -6,6 +6,10 @@
     <excludeButtons>CreateCallList</excludeButtons>
     <excludeButtons>CreatePartnerChannelQuickAction</excludeButtons>
     <excludeButtons>CreateSurveyInvitation</excludeButtons>
+    <excludeButtons>DataDotComAccountInsights</excludeButtons>
+    <excludeButtons>DataDotComClean</excludeButtons>
+    <excludeButtons>DataDotComCompanyHierarchy</excludeButtons>
+    <excludeButtons>OpenSlackRecordChannel</excludeButtons>
     <excludeButtons>PartnerScorecard</excludeButtons>
     <excludeButtons>XClean</excludeButtons>
     <layoutSections>
@@ -44,10 +48,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>leaseworks__Financial_Risk_Profile__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>Customer_Target__c</field>
             </layoutItems>
         </layoutColumns>
@@ -62,7 +62,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>leaseworks__Customer_Tier__c</field>
+                <field>pro_Credit_Score__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
@@ -91,6 +91,14 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>leaseworks__Invoice_Types__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>pro_KYC_Approved__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>pro_KYC_Approved_As_Of__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -163,6 +171,10 @@
                 <behavior>Edit</behavior>
                 <field>Invoiced_Party_Attn__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>GCC_Comments__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>OneColumn</style>
     </layoutSections>
@@ -211,6 +223,10 @@
                 <behavior>Edit</behavior>
                 <field>RecordTypeId</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Accounting__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -229,9 +245,9 @@
         <detailHeading>false</detailHeading>
         <editHeading>false</editHeading>
         <label>Custom Links</label>
-        <layoutColumns/>
-        <layoutColumns/>
-        <layoutColumns/>
+        <layoutColumns />
+        <layoutColumns />
+        <layoutColumns />
         <style>CustomLinks</style>
     </layoutSections>
     <platformActionList>
@@ -271,11 +287,6 @@
             <actionType>QuickAction</actionType>
             <sortOrder>6</sortOrder>
         </platformActionListItems>
-        <platformActionListItems>
-            <actionName>leaseworks__LWC_Utilization_Studio</actionName>
-            <actionType>CustomButton</actionType>
-            <sortOrder>7</sortOrder>
-        </platformActionListItems>
     </platformActionList>
     <quickActionList>
         <quickActionListItems>
@@ -305,6 +316,15 @@
     </quickActionList>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>RECORDTYPE</fields>
+        <fields>pro_Assigned_To__c</fields>
+        <fields>pro_Requested_By__c</fields>
+        <fields>pro_Type__c</fields>
+        <fields>pro_Title__c</fields>
+        <fields>pro_Comments__c</fields>
+        <fields>pro_Status__c</fields>
+        <fields>pro_Priority__c</fields>
+        <fields>pro_Expected_Due_Date__c</fields>
         <relatedList>pro_Ticket__c.pro_External_Party__c</relatedList>
     </relatedLists>
     <relatedLists>

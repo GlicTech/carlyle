@@ -1,4 +1,4 @@
-// powerbi-client v2.23.1
+// powerbi-client v2.18.4
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -10,18 +10,275 @@
 		exports["powerbi-client"] = factory();
 	else
 		root["powerbi-client"] = factory();
-})(this, () => {
-return /******/ (() => { // webpackBootstrap
-/******/ 	var __webpack_modules__ = ({
+})(this, function() {
+return /******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/powerbi-client.ts");
+/******/ })
+/************************************************************************/
+/******/ ({
 
-/***/ "../http-post-message/dist/httpPostMessage.js":
-/*!****************************************************!*\
-  !*** ../http-post-message/dist/httpPostMessage.js ***!
-  \****************************************************/
-/***/ ((module) => {
+/***/ "./node_modules/http-post-message/dist/httpPostMessage.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/http-post-message/dist/httpPostMessage.js ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
-/*! For license information please see httpPostMessage.js.LICENSE.txt */
-!function(e,t){ true?module.exports=t():0}(self,(()=>(()=>{"use strict";var e={};return(()=>{var t=e;Object.defineProperty(t,"__esModule",{value:!0}),t.HttpPostMessage=void 0;var o=function(){function e(e,t,o){void 0===t&&(t={}),this.defaultHeaders=t,this.defaultTargetWindow=o,this.windowPostMessageProxy=e}return e.addTrackingProperties=function(e,t){return e.headers=e.headers||{},t&&t.id&&(e.headers.id=t.id),e},e.getTrackingProperties=function(e){return{id:e.headers&&e.headers.id}},e.isErrorMessage=function(e){return"number"==typeof(e&&e.statusCode)&&!(200<=e.statusCode&&e.statusCode<300)},e.prototype.get=function(e,t,o,r){return void 0===t&&(t={}),void 0===o&&(o=this.defaultTargetWindow),this.send({method:"GET",url:e,headers:t},o,r)},e.prototype.post=function(e,t,o,r,s){return void 0===o&&(o={}),void 0===r&&(r=this.defaultTargetWindow),this.send({method:"POST",url:e,headers:o,body:t},r,s)},e.prototype.put=function(e,t,o,r,s){return void 0===o&&(o={}),void 0===r&&(r=this.defaultTargetWindow),this.send({method:"PUT",url:e,headers:o,body:t},r,s)},e.prototype.patch=function(e,t,o,r,s){return void 0===o&&(o={}),void 0===r&&(r=this.defaultTargetWindow),this.send({method:"PATCH",url:e,headers:o,body:t},r,s)},e.prototype.delete=function(e,t,o,r,s){return void 0===t&&(t=null),void 0===o&&(o={}),void 0===r&&(r=this.defaultTargetWindow),this.send({method:"DELETE",url:e,headers:o,body:t},r,s)},e.prototype.send=function(e,t,o){if(void 0===t&&(t=this.defaultTargetWindow),e.headers=this.assign({},this.defaultHeaders,e.headers),!t)throw new Error("target window is not provided.  You must either provide the target window explicitly as argument to request, or specify default target window when constructing instance of this class.");return this.windowPostMessageProxy.postMessage(t,e,o)},e.prototype.assign=function(e){for(var t=[],o=1;o<arguments.length;o++)t[o-1]=arguments[o];if(null==e)throw new TypeError("Cannot convert undefined or null to object");var r=Object(e);return t.forEach((function(e){if(null!=e)for(var t in e)Object.prototype.hasOwnProperty.call(e,t)&&(r[t]=e[t])})),r},e}();t.HttpPostMessage=o})(),e})()));
+/*! http-post-message v0.2.3 | (c) 2016 Microsoft Corporation MIT */
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(true)
+		module.exports = factory();
+	else {}
+})(this, function() {
+return /******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId])
+/******/ 			return installedModules[moduleId].exports;
+/******/
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			exports: {},
+/******/ 			id: moduleId,
+/******/ 			loaded: false
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.loaded = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(0);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ function(module, exports) {
+
+	"use strict";
+	var HttpPostMessage = (function () {
+	    function HttpPostMessage(windowPostMessageProxy, defaultHeaders, defaultTargetWindow) {
+	        if (defaultHeaders === void 0) { defaultHeaders = {}; }
+	        this.defaultHeaders = defaultHeaders;
+	        this.defaultTargetWindow = defaultTargetWindow;
+	        this.windowPostMessageProxy = windowPostMessageProxy;
+	    }
+	    // TODO: See if it's possible to share tracking properties interface?
+	    // The responsibility of knowing how to configure windowPostMessageProxy for http should
+	    // live in this http class, but the configuration would need ITrackingProperties
+	    // interface which lives in WindowPostMessageProxy. Use <any> type as workaround
+	    HttpPostMessage.addTrackingProperties = function (message, trackingProperties) {
+	        message.headers = message.headers || {};
+	        if (trackingProperties && trackingProperties.id) {
+	            message.headers.id = trackingProperties.id;
+	        }
+	        return message;
+	    };
+	    HttpPostMessage.getTrackingProperties = function (message) {
+	        return {
+	            id: message.headers && message.headers.id
+	        };
+	    };
+	    HttpPostMessage.isErrorMessage = function (message) {
+	        if (typeof (message && message.statusCode) !== 'number') {
+	            return false;
+	        }
+	        return !(200 <= message.statusCode && message.statusCode < 300);
+	    };
+	    HttpPostMessage.prototype.get = function (url, headers, targetWindow) {
+	        if (headers === void 0) { headers = {}; }
+	        if (targetWindow === void 0) { targetWindow = this.defaultTargetWindow; }
+	        return this.send({
+	            method: "GET",
+	            url: url,
+	            headers: headers
+	        }, targetWindow);
+	    };
+	    HttpPostMessage.prototype.post = function (url, body, headers, targetWindow) {
+	        if (headers === void 0) { headers = {}; }
+	        if (targetWindow === void 0) { targetWindow = this.defaultTargetWindow; }
+	        return this.send({
+	            method: "POST",
+	            url: url,
+	            headers: headers,
+	            body: body
+	        }, targetWindow);
+	    };
+	    HttpPostMessage.prototype.put = function (url, body, headers, targetWindow) {
+	        if (headers === void 0) { headers = {}; }
+	        if (targetWindow === void 0) { targetWindow = this.defaultTargetWindow; }
+	        return this.send({
+	            method: "PUT",
+	            url: url,
+	            headers: headers,
+	            body: body
+	        }, targetWindow);
+	    };
+	    HttpPostMessage.prototype.patch = function (url, body, headers, targetWindow) {
+	        if (headers === void 0) { headers = {}; }
+	        if (targetWindow === void 0) { targetWindow = this.defaultTargetWindow; }
+	        return this.send({
+	            method: "PATCH",
+	            url: url,
+	            headers: headers,
+	            body: body
+	        }, targetWindow);
+	    };
+	    HttpPostMessage.prototype.delete = function (url, body, headers, targetWindow) {
+	        if (body === void 0) { body = null; }
+	        if (headers === void 0) { headers = {}; }
+	        if (targetWindow === void 0) { targetWindow = this.defaultTargetWindow; }
+	        return this.send({
+	            method: "DELETE",
+	            url: url,
+	            headers: headers,
+	            body: body
+	        }, targetWindow);
+	    };
+	    HttpPostMessage.prototype.send = function (request, targetWindow) {
+	        if (targetWindow === void 0) { targetWindow = this.defaultTargetWindow; }
+	        request.headers = this.assign({}, this.defaultHeaders, request.headers);
+	        if (!targetWindow) {
+	            throw new Error("target window is not provided.  You must either provide the target window explicitly as argument to request, or specify default target window when constructing instance of this class.");
+	        }
+	        return this.windowPostMessageProxy.postMessage(targetWindow, request);
+	    };
+	    /**
+	     * Object.assign() polyfill
+	     * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign
+	     */
+	    HttpPostMessage.prototype.assign = function (target) {
+	        var sources = [];
+	        for (var _i = 1; _i < arguments.length; _i++) {
+	            sources[_i - 1] = arguments[_i];
+	        }
+	        if (target === undefined || target === null) {
+	            throw new TypeError('Cannot convert undefined or null to object');
+	        }
+	        var output = Object(target);
+	        sources.forEach(function (source) {
+	            if (source !== undefined && source !== null) {
+	                for (var nextKey in source) {
+	                    if (Object.prototype.hasOwnProperty.call(source, nextKey)) {
+	                        output[nextKey] = source[nextKey];
+	                    }
+	                }
+	            }
+	        });
+	        return output;
+	    };
+	    return HttpPostMessage;
+	}());
+	exports.HttpPostMessage = HttpPostMessage;
+
+
+/***/ }
+/******/ ])
+});
+;
 //# sourceMappingURL=httpPostMessage.js.map
 
 /***/ }),
@@ -30,20 +287,106 @@ return /******/ (() => { // webpackBootstrap
 /*!****************************************************!*\
   !*** ./node_modules/powerbi-models/dist/models.js ***!
   \****************************************************/
-/***/ (function(module) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
-// powerbi-models v1.14.0
+// powerbi-models v1.9.3
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(true)
 		module.exports = factory();
 	else {}
-})(this, () => {
-return /******/ (() => { // webpackBootstrap
-/******/ 	var __webpack_modules__ = ([
+})(this, function() {
+return /******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ })
+/************************************************************************/
+/******/ ([
 /* 0 */
-/***/ (function(__unused_webpack_module, exports, __nested_webpack_require_612__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -51,22 +394,18 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.TextAlignment = exports.CommonErrorCodes = exports.BookmarksPlayMode = exports.ExportDataType = exports.QnaMode = exports.PageNavigationPosition = exports.BrowserPrintAdjustmentsMode = exports.AggregateFunction = exports.DataCacheMode = exports.CredentialType = exports.isPercentOfGrandTotal = exports.isColumnAggr = exports.isHierarchyLevelAggr = exports.isHierarchyLevel = exports.isColumn = exports.isMeasure = exports.getFilterType = exports.isBasicFilterWithKeys = exports.isFilterKeyColumnsTarget = exports.HierarchyFilter = exports.AdvancedFilter = exports.TupleFilter = exports.IdentityFilter = exports.BasicFilterWithKeys = exports.BasicFilter = exports.RelativeTimeFilter = exports.RelativeDateFilter = exports.TopNFilter = exports.IncludeExcludeFilter = exports.NotSupportedFilter = exports.Filter = exports.RelativeDateOperators = exports.RelativeDateFilterTimeUnit = exports.FilterType = exports.FiltersLevel = exports.FiltersOperations = exports.MenuLocation = exports.ContrastMode = exports.TokenType = exports.ViewMode = exports.Permissions = exports.SectionVisibility = exports.ReportAlignment = exports.HyperlinkClickBehavior = exports.LayoutType = exports.VisualContainerDisplayMode = exports.BackgroundType = exports.DisplayOption = exports.PageSizeType = exports.TraceType = void 0;
-exports.validateVisualHeader = exports.validateExportDataRequest = exports.validateQnaInterpretInputData = exports.validateLoadQnaConfiguration = exports.validateSaveAsParameters = exports.validateUpdateFiltersRequest = exports.validateFilter = exports.validatePage = exports.validateTileLoad = exports.validateDashboardLoad = exports.validateQuickCreate = exports.validateCreateReport = exports.validatePaginatedReportLoad = exports.validateReportLoad = exports.validateMenuGroupExtension = exports.validateExtension = exports.validateCustomPageSize = exports.validateVisualizationsPane = exports.validateSyncSlicersPane = exports.validateSelectionPane = exports.validatePageNavigationPane = exports.validateFieldsPane = exports.validateFiltersPane = exports.validateBookmarksPane = exports.validatePanes = exports.validateSettings = exports.validateCaptureBookmarkRequest = exports.validateApplyBookmarkStateRequest = exports.validateApplyBookmarkByNameRequest = exports.validateAddBookmarkRequest = exports.validatePlayBookmarkRequest = exports.validateSlicerState = exports.validateSlicer = exports.validateVisualSelector = exports.isIExtensionArray = exports.isIExtensions = exports.isGroupedMenuExtension = exports.isFlatMenuExtension = exports.isReportFiltersArray = exports.isOnLoadFilters = exports.VisualDataRoleKindPreference = exports.VisualDataRoleKind = exports.CommandDisplayOption = exports.SlicerTargetSelector = exports.VisualTypeSelector = exports.VisualSelector = exports.PageSelector = exports.Selector = exports.SortDirection = exports.LegendPosition = void 0;
-exports.validatePrintSettings = exports.validateZoomLevel = exports.validateCustomTheme = exports.validateCommandsSettings = exports.validateVisualSettings = void 0;
-var validator_1 = __nested_webpack_require_612__(1);
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.validateCustomTheme = exports.validateCommandsSettings = exports.validateVisualSettings = exports.validateVisualHeader = exports.validateExportDataRequest = exports.validateQnaInterpretInputData = exports.validateLoadQnaConfiguration = exports.validateSaveAsParameters = exports.validateUpdateFiltersRequest = exports.validateFilter = exports.validatePage = exports.validateTileLoad = exports.validateDashboardLoad = exports.validateCreateReport = exports.validatePaginatedReportLoad = exports.validateReportLoad = exports.validateMenuGroupExtension = exports.validateExtension = exports.validateCustomPageSize = exports.validateVisualizationsPane = exports.validateSyncSlicersPane = exports.validateSelectionPane = exports.validatePageNavigationPane = exports.validateFieldsPane = exports.validateFiltersPane = exports.validateBookmarksPane = exports.validatePanes = exports.validateSettings = exports.validateCaptureBookmarkRequest = exports.validateApplyBookmarkStateRequest = exports.validateApplyBookmarkByNameRequest = exports.validateAddBookmarkRequest = exports.validatePlayBookmarkRequest = exports.validateSlicerState = exports.validateSlicer = exports.validateVisualSelector = exports.isIExtensionArray = exports.isIExtensions = exports.isGroupedMenuExtension = exports.isFlatMenuExtension = exports.isReportFiltersArray = exports.isOnLoadFilters = exports.VisualDataRoleKindPreference = exports.VisualDataRoleKind = exports.CommandDisplayOption = exports.SlicerTargetSelector = exports.VisualTypeSelector = exports.VisualSelector = exports.PageSelector = exports.Selector = exports.SortDirection = exports.LegendPosition = exports.TextAlignment = exports.CommonErrorCodes = exports.BookmarksPlayMode = exports.ExportDataType = exports.QnaMode = exports.PageNavigationPosition = exports.isColumnAggr = exports.isHierarchyLevelAggr = exports.isHierarchyLevel = exports.isColumn = exports.isMeasure = exports.getFilterType = exports.isBasicFilterWithKeys = exports.isFilterKeyColumnsTarget = exports.AdvancedFilter = exports.TupleFilter = exports.IdentityFilter = exports.BasicFilterWithKeys = exports.BasicFilter = exports.RelativeTimeFilter = exports.RelativeDateFilter = exports.TopNFilter = exports.IncludeExcludeFilter = exports.NotSupportedFilter = exports.Filter = exports.RelativeDateOperators = exports.RelativeDateFilterTimeUnit = exports.FilterType = exports.FiltersLevel = exports.FiltersOperations = exports.MenuLocation = exports.ContrastMode = exports.TokenType = exports.ViewMode = exports.Permissions = exports.SectionVisibility = exports.HyperlinkClickBehavior = exports.LayoutType = exports.VisualContainerDisplayMode = exports.BackgroundType = exports.DisplayOption = exports.PageSizeType = exports.TraceType = void 0;
+var validator_1 = __webpack_require__(1);
 var TraceType;
 (function (TraceType) {
     TraceType[TraceType["Information"] = 0] = "Information";
@@ -115,13 +454,6 @@ var HyperlinkClickBehavior;
     HyperlinkClickBehavior[HyperlinkClickBehavior["NavigateAndRaiseEvent"] = 1] = "NavigateAndRaiseEvent";
     HyperlinkClickBehavior[HyperlinkClickBehavior["RaiseEvent"] = 2] = "RaiseEvent";
 })(HyperlinkClickBehavior = exports.HyperlinkClickBehavior || (exports.HyperlinkClickBehavior = {}));
-var ReportAlignment;
-(function (ReportAlignment) {
-    ReportAlignment[ReportAlignment["Left"] = 0] = "Left";
-    ReportAlignment[ReportAlignment["Center"] = 1] = "Center";
-    ReportAlignment[ReportAlignment["Right"] = 2] = "Right";
-    ReportAlignment[ReportAlignment["None"] = 3] = "None";
-})(ReportAlignment = exports.ReportAlignment || (exports.ReportAlignment = {}));
 var SectionVisibility;
 (function (SectionVisibility) {
     SectionVisibility[SectionVisibility["AlwaysVisible"] = 0] = "AlwaysVisible";
@@ -182,7 +514,6 @@ var FilterType;
     FilterType[FilterType["Tuple"] = 6] = "Tuple";
     FilterType[FilterType["RelativeTime"] = 7] = "RelativeTime";
     FilterType[FilterType["Identity"] = 8] = "Identity";
-    FilterType[FilterType["Hierarchy"] = 9] = "Hierarchy";
 })(FilterType = exports.FilterType || (exports.FilterType = {}));
 var RelativeDateFilterTimeUnit;
 (function (RelativeDateFilterTimeUnit) {
@@ -344,7 +675,6 @@ var BasicFilter = /** @class */ (function (_super) {
          * new BasicFilter('a', 'b', [1,2]);
          */
         if (Array.isArray(values[0])) {
-            // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
             _this.values = values[0];
         }
         else {
@@ -371,7 +701,7 @@ var BasicFilterWithKeys = /** @class */ (function (_super) {
         _this.target = target;
         var numberOfKeys = target.keys ? target.keys.length : 0;
         if (numberOfKeys > 0 && !keyValues) {
-            throw new Error("You should pass the values to be filtered for each key. You passed: no values and ".concat(numberOfKeys, " keys"));
+            throw new Error("You should pass the values to be filtered for each key. You passed: no values and " + numberOfKeys + " keys");
         }
         if (numberOfKeys === 0 && keyValues && keyValues.length > 0) {
             throw new Error("You passed key values but your target object doesn't contain the keys to be filtered");
@@ -381,7 +711,7 @@ var BasicFilterWithKeys = /** @class */ (function (_super) {
             if (keyValue) {
                 var lengthOfArray = keyValue.length;
                 if (lengthOfArray !== numberOfKeys) {
-                    throw new Error("Each tuple of key values should contain a value for each of the keys. You passed: ".concat(lengthOfArray, " values and ").concat(numberOfKeys, " keys"));
+                    throw new Error("Each tuple of key values should contain a value for each of the keys. You passed: " + lengthOfArray + " values and " + numberOfKeys + " keys");
                 }
             }
         }
@@ -445,7 +775,7 @@ var AdvancedFilter = /** @class */ (function (_super) {
         // Guard statements
         if (typeof logicalOperator !== "string" || logicalOperator.length === 0) {
             // TODO: It would be nicer to list out the possible logical operators.
-            throw new Error("logicalOperator must be a valid operator, You passed: ".concat(logicalOperator));
+            throw new Error("logicalOperator must be a valid operator, You passed: " + logicalOperator);
         }
         _this.logicalOperator = logicalOperator;
         var extractedConditions;
@@ -455,14 +785,16 @@ var AdvancedFilter = /** @class */ (function (_super) {
          * new AdvancedFilter('a', 'b', "And", [{ value: 1, operator: "Equals" }, { value: 2, operator: "IsGreaterThan" }]);
          */
         if (Array.isArray(conditions[0])) {
-            // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
             extractedConditions = conditions[0];
         }
         else {
             extractedConditions = conditions;
         }
+        if (extractedConditions.length === 0) {
+            throw new Error("conditions must be a non-empty array. You passed: " + conditions);
+        }
         if (extractedConditions.length > 2) {
-            throw new Error("AdvancedFilters may not have more than two conditions. You passed: ".concat(conditions.length));
+            throw new Error("AdvancedFilters may not have more than two conditions. You passed: " + conditions.length);
         }
         if (extractedConditions.length === 1 && logicalOperator !== "And") {
             throw new Error("Logical Operator must be \"And\" when there is only one condition provided");
@@ -480,24 +812,6 @@ var AdvancedFilter = /** @class */ (function (_super) {
     return AdvancedFilter;
 }(Filter));
 exports.AdvancedFilter = AdvancedFilter;
-var HierarchyFilter = /** @class */ (function (_super) {
-    __extends(HierarchyFilter, _super);
-    function HierarchyFilter(target, hierarchyData) {
-        var _this = _super.call(this, target, FilterType.Hierarchy) || this;
-        _this.schemaUrl = HierarchyFilter.schemaUrl;
-        _this.hierarchyData = hierarchyData;
-        return _this;
-    }
-    HierarchyFilter.prototype.toJSON = function () {
-        var filter = _super.prototype.toJSON.call(this);
-        filter.hierarchyData = this.hierarchyData;
-        filter.target = this.target;
-        return filter;
-    };
-    HierarchyFilter.schemaUrl = "http://powerbi.com/product/schema#hierarchy";
-    return HierarchyFilter;
-}(Filter));
-exports.HierarchyFilter = HierarchyFilter;
 function isFilterKeyColumnsTarget(target) {
     return isColumn(target) && !!target.keys;
 }
@@ -545,37 +859,6 @@ function isColumnAggr(arg) {
     return !!(arg.table && arg.column && arg.aggregationFunction);
 }
 exports.isColumnAggr = isColumnAggr;
-function isPercentOfGrandTotal(arg) {
-    return !!arg.percentOfGrandTotal;
-}
-exports.isPercentOfGrandTotal = isPercentOfGrandTotal;
-var CredentialType;
-(function (CredentialType) {
-    CredentialType[CredentialType["NoConnection"] = 0] = "NoConnection";
-    CredentialType[CredentialType["OnBehalfOf"] = 1] = "OnBehalfOf";
-    CredentialType[CredentialType["Anonymous"] = 2] = "Anonymous";
-})(CredentialType = exports.CredentialType || (exports.CredentialType = {}));
-var DataCacheMode;
-(function (DataCacheMode) {
-    DataCacheMode[DataCacheMode["Import"] = 0] = "Import";
-    DataCacheMode[DataCacheMode["DirectQuery"] = 1] = "DirectQuery";
-})(DataCacheMode = exports.DataCacheMode || (exports.DataCacheMode = {}));
-var AggregateFunction;
-(function (AggregateFunction) {
-    AggregateFunction[AggregateFunction["Default"] = 1] = "Default";
-    AggregateFunction[AggregateFunction["None"] = 2] = "None";
-    AggregateFunction[AggregateFunction["Sum"] = 3] = "Sum";
-    AggregateFunction[AggregateFunction["Min"] = 4] = "Min";
-    AggregateFunction[AggregateFunction["Max"] = 5] = "Max";
-    AggregateFunction[AggregateFunction["Count"] = 6] = "Count";
-    AggregateFunction[AggregateFunction["Average"] = 7] = "Average";
-    AggregateFunction[AggregateFunction["DistinctCount"] = 8] = "DistinctCount";
-})(AggregateFunction = exports.AggregateFunction || (exports.AggregateFunction = {}));
-var BrowserPrintAdjustmentsMode;
-(function (BrowserPrintAdjustmentsMode) {
-    BrowserPrintAdjustmentsMode[BrowserPrintAdjustmentsMode["Default"] = 0] = "Default";
-    BrowserPrintAdjustmentsMode[BrowserPrintAdjustmentsMode["NoAdjustments"] = 1] = "NoAdjustments";
-})(BrowserPrintAdjustmentsMode = exports.BrowserPrintAdjustmentsMode || (exports.BrowserPrintAdjustmentsMode = {}));
 var PageNavigationPosition;
 (function (PageNavigationPosition) {
     PageNavigationPosition[PageNavigationPosition["Bottom"] = 0] = "Bottom";
@@ -753,7 +1036,7 @@ exports.isIExtensionArray = isIExtensionArray;
 function normalizeError(error) {
     var message = error.message;
     if (!message) {
-        message = "".concat(error.path, " is invalid. Not meeting ").concat(error.keyword, " constraint");
+        message = error.path + " is invalid. Not meeting " + error.keyword + " constraint";
     }
     return {
         message: message
@@ -874,11 +1157,6 @@ function validateCreateReport(input) {
     return errors ? errors.map(normalizeError) : undefined;
 }
 exports.validateCreateReport = validateCreateReport;
-function validateQuickCreate(input) {
-    var errors = validator_1.Validators.quickCreateValidator.validate(input);
-    return errors ? errors.map(normalizeError) : undefined;
-}
-exports.validateQuickCreate = validateQuickCreate;
 function validateDashboardLoad(input) {
     var errors = validator_1.Validators.dashboardLoadValidator.validate(input);
     return errors ? errors.map(normalizeError) : undefined;
@@ -944,67 +1222,52 @@ function validateCustomTheme(input) {
     return errors ? errors.map(normalizeError) : undefined;
 }
 exports.validateCustomTheme = validateCustomTheme;
-function validateZoomLevel(input) {
-    var errors = validator_1.Validators.zoomLevelValidator.validate(input);
-    return errors ? errors.map(normalizeError) : undefined;
-}
-exports.validateZoomLevel = validateZoomLevel;
-function validatePrintSettings(input) {
-    var errors = validator_1.Validators.printSettingsValidator.validate(input);
-    return errors ? errors.map(normalizeError) : undefined;
-}
-exports.validatePrintSettings = validatePrintSettings;
 
 
 /***/ }),
 /* 1 */
-/***/ ((__unused_webpack_module, exports, __nested_webpack_require_46167__) => {
+/***/ (function(module, exports, __webpack_require__) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
-Object.defineProperty(exports, "__esModule", ({ value: true }));
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.Validators = void 0;
-var barsValidator_1 = __nested_webpack_require_46167__(2);
-var bookmarkValidator_1 = __nested_webpack_require_46167__(5);
-var commandsSettingsValidator_1 = __nested_webpack_require_46167__(6);
-var customThemeValidator_1 = __nested_webpack_require_46167__(7);
-var dashboardLoadValidator_1 = __nested_webpack_require_46167__(8);
-var datasetBindingValidator_1 = __nested_webpack_require_46167__(9);
-var exportDataValidator_1 = __nested_webpack_require_46167__(10);
-var extensionsValidator_1 = __nested_webpack_require_46167__(11);
-var filtersValidator_1 = __nested_webpack_require_46167__(12);
-var layoutValidator_1 = __nested_webpack_require_46167__(13);
-var pageValidator_1 = __nested_webpack_require_46167__(14);
-var panesValidator_1 = __nested_webpack_require_46167__(15);
-var qnaValidator_1 = __nested_webpack_require_46167__(16);
-var reportCreateValidator_1 = __nested_webpack_require_46167__(17);
-var reportLoadValidator_1 = __nested_webpack_require_46167__(18);
-var paginatedReportLoadValidator_1 = __nested_webpack_require_46167__(19);
-var saveAsParametersValidator_1 = __nested_webpack_require_46167__(20);
-var selectorsValidator_1 = __nested_webpack_require_46167__(21);
-var settingsValidator_1 = __nested_webpack_require_46167__(22);
-var slicersValidator_1 = __nested_webpack_require_46167__(23);
-var tileLoadValidator_1 = __nested_webpack_require_46167__(24);
-var visualSettingsValidator_1 = __nested_webpack_require_46167__(25);
-var anyOfValidator_1 = __nested_webpack_require_46167__(26);
-var fieldForbiddenValidator_1 = __nested_webpack_require_46167__(27);
-var fieldRequiredValidator_1 = __nested_webpack_require_46167__(28);
-var mapValidator_1 = __nested_webpack_require_46167__(29);
-var typeValidator_1 = __nested_webpack_require_46167__(4);
-var parameterPanelValidator_1 = __nested_webpack_require_46167__(30);
-var datasetCreateConfigValidator_1 = __nested_webpack_require_46167__(31);
-var quickCreateValidator_1 = __nested_webpack_require_46167__(32);
-var printSettingsValidator_1 = __nested_webpack_require_46167__(33);
-var paginatedReportDatasetBindingValidator_1 = __nested_webpack_require_46167__(34);
+var barsValidator_1 = __webpack_require__(2);
+var bookmarkValidator_1 = __webpack_require__(5);
+var commandsSettingsValidator_1 = __webpack_require__(6);
+var customThemeValidator_1 = __webpack_require__(7);
+var dashboardLoadValidator_1 = __webpack_require__(8);
+var datasetBindingValidator_1 = __webpack_require__(9);
+var exportDataValidator_1 = __webpack_require__(10);
+var extensionsValidator_1 = __webpack_require__(11);
+var filtersValidator_1 = __webpack_require__(12);
+var layoutValidator_1 = __webpack_require__(13);
+var pageValidator_1 = __webpack_require__(14);
+var panesValidator_1 = __webpack_require__(15);
+var qnaValidator_1 = __webpack_require__(16);
+var reportCreateValidator_1 = __webpack_require__(17);
+var reportLoadValidator_1 = __webpack_require__(18);
+var paginatedReportLoadValidator_1 = __webpack_require__(19);
+var saveAsParametersValidator_1 = __webpack_require__(20);
+var selectorsValidator_1 = __webpack_require__(21);
+var settingsValidator_1 = __webpack_require__(22);
+var slicersValidator_1 = __webpack_require__(23);
+var tileLoadValidator_1 = __webpack_require__(24);
+var visualSettingsValidator_1 = __webpack_require__(25);
+var anyOfValidator_1 = __webpack_require__(26);
+var fieldForbiddenValidator_1 = __webpack_require__(27);
+var fieldRequiredValidator_1 = __webpack_require__(28);
+var mapValidator_1 = __webpack_require__(29);
+var typeValidator_1 = __webpack_require__(4);
+var parameterPanelValidator_1 = __webpack_require__(30);
 exports.Validators = {
     addBookmarkRequestValidator: new bookmarkValidator_1.AddBookmarkRequestValidator(),
     advancedFilterTypeValidator: new typeValidator_1.EnumValidator([0]),
     advancedFilterValidator: new filtersValidator_1.AdvancedFilterValidator(),
     anyArrayValidator: new typeValidator_1.ArrayValidator([new anyOfValidator_1.AnyOfValidator([new typeValidator_1.StringValidator(), new typeValidator_1.NumberValidator(), new typeValidator_1.BooleanValidator()])]),
-    anyFilterValidator: new anyOfValidator_1.AnyOfValidator([new filtersValidator_1.BasicFilterValidator(), new filtersValidator_1.AdvancedFilterValidator(), new filtersValidator_1.IncludeExcludeFilterValidator(), new filtersValidator_1.NotSupportedFilterValidator(), new filtersValidator_1.RelativeDateFilterValidator(), new filtersValidator_1.TopNFilterValidator(), new filtersValidator_1.RelativeTimeFilterValidator(), new filtersValidator_1.HierarchyFilterValidator()]),
+    anyFilterValidator: new anyOfValidator_1.AnyOfValidator([new filtersValidator_1.BasicFilterValidator(), new filtersValidator_1.AdvancedFilterValidator(), new filtersValidator_1.IncludeExcludeFilterValidator(), new filtersValidator_1.NotSupportedFilterValidator(), new filtersValidator_1.RelativeDateFilterValidator(), new filtersValidator_1.TopNFilterValidator(), new filtersValidator_1.RelativeTimeFilterValidator()]),
     anyValueValidator: new anyOfValidator_1.AnyOfValidator([new typeValidator_1.StringValidator(), new typeValidator_1.NumberValidator(), new typeValidator_1.BooleanValidator()]),
     actionBarValidator: new barsValidator_1.ActionBarValidator(),
-    statusBarValidator: new barsValidator_1.StatusBarValidator(),
     applyBookmarkByNameRequestValidator: new bookmarkValidator_1.ApplyBookmarkByNameRequestValidator(),
     applyBookmarkStateRequestValidator: new bookmarkValidator_1.ApplyBookmarkStateRequestValidator(),
     applyBookmarkValidator: new anyOfValidator_1.AnyOfValidator([new bookmarkValidator_1.ApplyBookmarkByNameRequestValidator(), new bookmarkValidator_1.ApplyBookmarkStateRequestValidator()]),
@@ -1016,7 +1279,6 @@ exports.Validators = {
     bookmarksPaneValidator: new panesValidator_1.BookmarksPaneValidator(),
     captureBookmarkOptionsValidator: new bookmarkValidator_1.CaptureBookmarkOptionsValidator(),
     captureBookmarkRequestValidator: new bookmarkValidator_1.CaptureBookmarkRequestValidator(),
-    columnSchemaArrayValidator: new typeValidator_1.ArrayValidator([new datasetCreateConfigValidator_1.ColumnSchemaValidator()]),
     commandDisplayOptionValidator: new typeValidator_1.EnumValidator([0, 1, 2]),
     commandExtensionSelectorValidator: new anyOfValidator_1.AnyOfValidator([new selectorsValidator_1.VisualSelectorValidator(), new selectorsValidator_1.VisualTypeSelectorValidator()]),
     commandExtensionArrayValidator: new typeValidator_1.ArrayValidator([new extensionsValidator_1.CommandExtensionValidator()]),
@@ -1025,18 +1287,12 @@ exports.Validators = {
     commandsSettingsValidator: new commandsSettingsValidator_1.CommandsSettingsValidator(),
     conditionItemValidator: new filtersValidator_1.ConditionItemValidator(),
     contrastModeValidator: new typeValidator_1.EnumValidator([0, 1, 2, 3, 4]),
-    credentialDetailsValidator: new mapValidator_1.MapValidator([new typeValidator_1.StringValidator()], [new typeValidator_1.StringValidator()]),
-    credentialsValidator: new datasetCreateConfigValidator_1.CredentialsValidator(),
-    credentialTypeValidator: new typeValidator_1.EnumValidator([0, 1, 2]),
     customLayoutDisplayOptionValidator: new typeValidator_1.EnumValidator([0, 1, 2]),
     customLayoutValidator: new layoutValidator_1.CustomLayoutValidator(),
     customPageSizeValidator: new pageValidator_1.CustomPageSizeValidator(),
     customThemeValidator: new customThemeValidator_1.CustomThemeValidator(),
     dashboardLoadValidator: new dashboardLoadValidator_1.DashboardLoadValidator(),
-    dataCacheModeValidator: new typeValidator_1.EnumValidator([0, 1]),
     datasetBindingValidator: new datasetBindingValidator_1.DatasetBindingValidator(),
-    datasetCreateConfigValidator: new datasetCreateConfigValidator_1.DatasetCreateConfigValidator(),
-    datasourceConnectionConfigValidator: new datasetCreateConfigValidator_1.DatasourceConnectionConfigValidator(),
     displayStateModeValidator: new typeValidator_1.EnumValidator([0, 1]),
     displayStateValidator: new layoutValidator_1.DisplayStateValidator(),
     exportDataRequestValidator: new exportDataValidator_1.ExportDataRequestValidator(),
@@ -1052,9 +1308,9 @@ exports.Validators = {
     filterConditionsValidator: new typeValidator_1.ArrayValidator([new filtersValidator_1.ConditionItemValidator()]),
     filterHierarchyTargetValidator: new filtersValidator_1.FilterHierarchyTargetValidator(),
     filterMeasureTargetValidator: new filtersValidator_1.FilterMeasureTargetValidator(),
-    filterTargetValidator: new anyOfValidator_1.AnyOfValidator([new filtersValidator_1.FilterColumnTargetValidator(), new filtersValidator_1.FilterHierarchyTargetValidator(), new filtersValidator_1.FilterMeasureTargetValidator(), new typeValidator_1.ArrayValidator([new anyOfValidator_1.AnyOfValidator([new filtersValidator_1.FilterColumnTargetValidator(), new filtersValidator_1.FilterHierarchyTargetValidator(), new filtersValidator_1.FilterMeasureTargetValidator(), new filtersValidator_1.FilterKeyColumnsTargetValidator(), new filtersValidator_1.FilterKeyHierarchyTargetValidator()])])]),
+    filterTargetValidator: new anyOfValidator_1.AnyOfValidator([new filtersValidator_1.FilterColumnTargetValidator(), new filtersValidator_1.FilterHierarchyTargetValidator(), new filtersValidator_1.FilterMeasureTargetValidator()]),
     filterValidator: new filtersValidator_1.FilterValidator(),
-    filterTypeValidator: new typeValidator_1.EnumValidator([0, 1, 2, 3, 4, 5, 6, 7, 9]),
+    filterTypeValidator: new typeValidator_1.EnumValidator([0, 1, 2, 3, 4, 5, 6, 7]),
     filtersArrayValidator: new typeValidator_1.ArrayValidator([new filtersValidator_1.FilterValidator()]),
     filtersOperationsUpdateValidator: new typeValidator_1.EnumValidator([1, 2, 3]),
     filtersOperationsRemoveAllValidator: new typeValidator_1.EnumValidator([0]),
@@ -1062,8 +1318,6 @@ exports.Validators = {
     hyperlinkClickBehaviorValidator: new typeValidator_1.EnumValidator([0, 1, 2]),
     includeExcludeFilterValidator: new filtersValidator_1.IncludeExcludeFilterValidator(),
     includeExludeFilterTypeValidator: new typeValidator_1.EnumValidator([3]),
-    hierarchyFilterTypeValidator: new typeValidator_1.EnumValidator([9]),
-    hierarchyFilterValuesValidator: new typeValidator_1.ArrayValidator([new filtersValidator_1.HierarchyFilterNodeValidator()]),
     layoutTypeValidator: new typeValidator_1.EnumValidator([0, 1, 2, 3]),
     loadQnaValidator: new qnaValidator_1.LoadQnaValidator(),
     menuExtensionValidator: new anyOfValidator_1.AnyOfValidator([new extensionsValidator_1.FlatMenuExtensionValidator(), new extensionsValidator_1.GroupedMenuExtensionValidator()]),
@@ -1084,19 +1338,14 @@ exports.Validators = {
     pageViewFieldValidator: new pageValidator_1.PageViewFieldValidator(),
     pagesLayoutValidator: new mapValidator_1.MapValidator([new typeValidator_1.StringValidator()], [new layoutValidator_1.PageLayoutValidator()]),
     paginatedReportCommandsValidator: new commandsSettingsValidator_1.PaginatedReportCommandsValidator(),
-    paginatedReportDatasetBindingArrayValidator: new typeValidator_1.ArrayValidator([new paginatedReportDatasetBindingValidator_1.PaginatedReportDatasetBindingValidator()]),
     paginatedReportLoadValidator: new paginatedReportLoadValidator_1.PaginatedReportLoadValidator(),
     paginatedReportsettingsValidator: new settingsValidator_1.PaginatedReportSettingsValidator(),
-    parameterValuesArrayValidator: new typeValidator_1.ArrayValidator([new paginatedReportLoadValidator_1.ReportParameterFieldsValidator()]),
     parametersPanelValidator: new parameterPanelValidator_1.ParametersPanelValidator(),
     permissionsValidator: new typeValidator_1.EnumValidator([0, 1, 2, 4, 7]),
     playBookmarkRequestValidator: new bookmarkValidator_1.PlayBookmarkRequestValidator(),
-    printSettingsValidator: new printSettingsValidator_1.PrintSettingsValidator(),
     qnaInterpretInputDataValidator: new qnaValidator_1.QnaInterpretInputDataValidator(),
     qnaPanesValidator: new panesValidator_1.QnaPanesValidator(),
     qnaSettingValidator: new qnaValidator_1.QnaSettingsValidator(),
-    quickCreateValidator: new quickCreateValidator_1.QuickCreateValidator(),
-    rawDataValidator: new typeValidator_1.ArrayValidator([new typeValidator_1.ArrayValidator([new typeValidator_1.StringValidator()])]),
     relativeDateFilterOperatorValidator: new typeValidator_1.EnumValidator([0, 1, 2]),
     relativeDateFilterTimeUnitTypeValidator: new typeValidator_1.EnumValidator([0, 1, 2, 3, 4, 5, 6]),
     relativeDateFilterTypeValidator: new typeValidator_1.EnumValidator([4]),
@@ -1122,8 +1371,6 @@ exports.Validators = {
     stringArrayValidator: new typeValidator_1.StringArrayValidator(),
     stringValidator: new typeValidator_1.StringValidator(),
     syncSlicersPaneValidator: new panesValidator_1.SyncSlicersPaneValidator(),
-    tableDataArrayValidator: new typeValidator_1.ArrayValidator([new datasetCreateConfigValidator_1.TableDataValidator()]),
-    tableSchemaListValidator: new typeValidator_1.ArrayValidator([new datasetCreateConfigValidator_1.TableSchemaValidator()]),
     tileLoadValidator: new tileLoadValidator_1.TileLoadValidator(),
     tokenTypeValidator: new typeValidator_1.EnumValidator([0, 1]),
     topNFilterTypeValidator: new typeValidator_1.EnumValidator([5]),
@@ -1140,13 +1387,12 @@ exports.Validators = {
     visualSelectorValidator: new selectorsValidator_1.VisualSelectorValidator(),
     visualSettingsValidator: new visualSettingsValidator_1.VisualSettingsValidator(),
     visualTypeSelectorValidator: new selectorsValidator_1.VisualTypeSelectorValidator(),
-    zoomLevelValidator: new typeValidator_1.RangeValidator(0.25, 4),
 };
 
 
 /***/ }),
 /* 2 */
-/***/ (function(__unused_webpack_module, exports, __nested_webpack_require_63300__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -1154,22 +1400,20 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.StatusBarValidator = exports.ActionBarValidator = exports.ReportBarsValidator = void 0;
-var multipleFieldsValidator_1 = __nested_webpack_require_63300__(3);
-var typeValidator_1 = __nested_webpack_require_63300__(4);
-var validator_1 = __nested_webpack_require_63300__(1);
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ActionBarValidator = exports.ReportBarsValidator = void 0;
+var multipleFieldsValidator_1 = __webpack_require__(3);
+var typeValidator_1 = __webpack_require__(4);
+var validator_1 = __webpack_require__(1);
 var ReportBarsValidator = /** @class */ (function (_super) {
     __extends(ReportBarsValidator, _super);
     function ReportBarsValidator() {
@@ -1187,10 +1431,6 @@ var ReportBarsValidator = /** @class */ (function (_super) {
             {
                 field: "actionBar",
                 validators: [validator_1.Validators.actionBarValidator]
-            },
-            {
-                field: "statusBar",
-                validators: [validator_1.Validators.statusBarValidator]
             }
         ];
         var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
@@ -1224,40 +1464,15 @@ var ActionBarValidator = /** @class */ (function (_super) {
     return ActionBarValidator;
 }(typeValidator_1.ObjectValidator));
 exports.ActionBarValidator = ActionBarValidator;
-var StatusBarValidator = /** @class */ (function (_super) {
-    __extends(StatusBarValidator, _super);
-    function StatusBarValidator() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    StatusBarValidator.prototype.validate = function (input, path, field) {
-        if (input == null) {
-            return null;
-        }
-        var errors = _super.prototype.validate.call(this, input, path, field);
-        if (errors) {
-            return errors;
-        }
-        var fields = [
-            {
-                field: "visible",
-                validators: [validator_1.Validators.booleanValidator]
-            },
-        ];
-        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
-        return multipleFieldsValidator.validate(input, path, field);
-    };
-    return StatusBarValidator;
-}(typeValidator_1.ObjectValidator));
-exports.StatusBarValidator = StatusBarValidator;
 
 
 /***/ }),
 /* 3 */
-/***/ ((__unused_webpack_module, exports) => {
+/***/ (function(module, exports) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
-Object.defineProperty(exports, "__esModule", ({ value: true }));
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.MultipleFieldsValidator = void 0;
 var MultipleFieldsValidator = /** @class */ (function () {
     function MultipleFieldsValidator(fieldValidatorsPairs) {
@@ -1287,7 +1502,7 @@ exports.MultipleFieldsValidator = MultipleFieldsValidator;
 
 /***/ }),
 /* 4 */
-/***/ (function(__unused_webpack_module, exports) {
+/***/ (function(module, exports) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -1295,19 +1510,17 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.RangeValidator = exports.NumberArrayValidator = exports.BooleanArrayValidator = exports.StringArrayValidator = exports.EnumValidator = exports.SchemaValidator = exports.ValueValidator = exports.NumberValidator = exports.BooleanValidator = exports.StringValidator = exports.TypeValidator = exports.ArrayValidator = exports.ObjectValidator = void 0;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.NumberArrayValidator = exports.BooleanArrayValidator = exports.StringArrayValidator = exports.EnumValidator = exports.SchemaValidator = exports.ValueValidator = exports.NumberValidator = exports.BooleanValidator = exports.StringValidator = exports.TypeValidator = exports.ArrayValidator = exports.ObjectValidator = void 0;
 var ObjectValidator = /** @class */ (function () {
     function ObjectValidator() {
     }
@@ -1343,7 +1556,7 @@ var ArrayValidator = /** @class */ (function () {
                 }];
         }
         for (var i = 0; i < input.length; i++) {
-            var fieldsPath = (path ? path + "." : "") + field + "." + i.toString();
+            var fieldsPath = (path ? path + "." : "") + field + "." + i;
             for (var _i = 0, _a = this.itemValidators; _i < _a.length; _i++) {
                 var validator = _a[_i];
                 var errors = validator.validate(input[i], fieldsPath, field);
@@ -1516,40 +1729,11 @@ var NumberArrayValidator = /** @class */ (function (_super) {
     return NumberArrayValidator;
 }(ArrayValidator));
 exports.NumberArrayValidator = NumberArrayValidator;
-var RangeValidator = /** @class */ (function (_super) {
-    __extends(RangeValidator, _super);
-    function RangeValidator(minValue, maxValue) {
-        var _this = _super.call(this) || this;
-        _this.minValue = minValue;
-        _this.maxValue = maxValue;
-        return _this;
-    }
-    RangeValidator.prototype.validate = function (input, path, field) {
-        if (input == null) {
-            return null;
-        }
-        var errors = _super.prototype.validate.call(this, input, path, field);
-        if (errors) {
-            return errors;
-        }
-        // input is a number, now check if it's in the given range
-        if (input > this.maxValue || input < this.minValue) {
-            return [{
-                    message: field + " must be a number between " + this.minValue.toString() + " and " + this.maxValue.toString(),
-                    path: (path ? path + "." : "") + field,
-                    keyword: "range"
-                }];
-        }
-        return null;
-    };
-    return RangeValidator;
-}(NumberValidator));
-exports.RangeValidator = RangeValidator;
 
 
 /***/ }),
 /* 5 */
-/***/ (function(__unused_webpack_module, exports, __nested_webpack_require_79179__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -1557,22 +1741,20 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-Object.defineProperty(exports, "__esModule", ({ value: true }));
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.CaptureBookmarkRequestValidator = exports.CaptureBookmarkOptionsValidator = exports.ApplyBookmarkStateRequestValidator = exports.ApplyBookmarkByNameRequestValidator = exports.AddBookmarkRequestValidator = exports.PlayBookmarkRequestValidator = void 0;
-var multipleFieldsValidator_1 = __nested_webpack_require_79179__(3);
-var typeValidator_1 = __nested_webpack_require_79179__(4);
-var validator_1 = __nested_webpack_require_79179__(1);
+var multipleFieldsValidator_1 = __webpack_require__(3);
+var typeValidator_1 = __webpack_require__(4);
+var validator_1 = __webpack_require__(1);
 var PlayBookmarkRequestValidator = /** @class */ (function (_super) {
     __extends(PlayBookmarkRequestValidator, _super);
     function PlayBookmarkRequestValidator() {
@@ -1739,7 +1921,7 @@ exports.CaptureBookmarkRequestValidator = CaptureBookmarkRequestValidator;
 
 /***/ }),
 /* 6 */
-/***/ (function(__unused_webpack_module, exports, __nested_webpack_require_87655__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -1747,22 +1929,20 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-Object.defineProperty(exports, "__esModule", ({ value: true }));
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.PaginatedReportCommandsValidator = exports.SingleCommandSettingsValidator = exports.CommandsSettingsValidator = void 0;
-var multipleFieldsValidator_1 = __nested_webpack_require_87655__(3);
-var typeValidator_1 = __nested_webpack_require_87655__(4);
-var validator_1 = __nested_webpack_require_87655__(1);
+var multipleFieldsValidator_1 = __webpack_require__(3);
+var typeValidator_1 = __webpack_require__(4);
+var validator_1 = __webpack_require__(1);
 var CommandsSettingsValidator = /** @class */ (function (_super) {
     __extends(CommandsSettingsValidator, _super);
     function CommandsSettingsValidator() {
@@ -1821,26 +2001,6 @@ var CommandsSettingsValidator = /** @class */ (function (_super) {
                 field: "spotlight",
                 validators: [validator_1.Validators.singleCommandSettingsValidator]
             },
-            {
-                field: "insightsAnalysis",
-                validators: [validator_1.Validators.singleCommandSettingsValidator]
-            },
-            {
-                field: "addComment",
-                validators: [validator_1.Validators.singleCommandSettingsValidator]
-            },
-            {
-                field: "groupVisualContainers",
-                validators: [validator_1.Validators.singleCommandSettingsValidator]
-            },
-            {
-                field: "summarize",
-                validators: [validator_1.Validators.singleCommandSettingsValidator]
-            },
-            {
-                field: "clearSelection",
-                validators: [validator_1.Validators.singleCommandSettingsValidator]
-            }
         ];
         var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
         return multipleFieldsValidator.validate(input, path, field);
@@ -1906,7 +2066,7 @@ exports.PaginatedReportCommandsValidator = PaginatedReportCommandsValidator;
 
 /***/ }),
 /* 7 */
-/***/ (function(__unused_webpack_module, exports, __nested_webpack_require_94688__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -1914,21 +2074,19 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-Object.defineProperty(exports, "__esModule", ({ value: true }));
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.CustomThemeValidator = void 0;
-var multipleFieldsValidator_1 = __nested_webpack_require_94688__(3);
-var typeValidator_1 = __nested_webpack_require_94688__(4);
+var multipleFieldsValidator_1 = __webpack_require__(3);
+var typeValidator_1 = __webpack_require__(4);
 var CustomThemeValidator = /** @class */ (function (_super) {
     __extends(CustomThemeValidator, _super);
     function CustomThemeValidator() {
@@ -1958,7 +2116,7 @@ exports.CustomThemeValidator = CustomThemeValidator;
 
 /***/ }),
 /* 8 */
-/***/ (function(__unused_webpack_module, exports, __nested_webpack_require_96842__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -1966,22 +2124,20 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-Object.defineProperty(exports, "__esModule", ({ value: true }));
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.DashboardLoadValidator = void 0;
-var multipleFieldsValidator_1 = __nested_webpack_require_96842__(3);
-var typeValidator_1 = __nested_webpack_require_96842__(4);
-var validator_1 = __nested_webpack_require_96842__(1);
+var multipleFieldsValidator_1 = __webpack_require__(3);
+var typeValidator_1 = __webpack_require__(4);
+var validator_1 = __webpack_require__(1);
 var DashboardLoadValidator = /** @class */ (function (_super) {
     __extends(DashboardLoadValidator, _super);
     function DashboardLoadValidator() {
@@ -2031,7 +2187,7 @@ exports.DashboardLoadValidator = DashboardLoadValidator;
 
 /***/ }),
 /* 9 */
-/***/ (function(__unused_webpack_module, exports, __nested_webpack_require_99841__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -2039,22 +2195,20 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-Object.defineProperty(exports, "__esModule", ({ value: true }));
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.DatasetBindingValidator = void 0;
-var multipleFieldsValidator_1 = __nested_webpack_require_99841__(3);
-var typeValidator_1 = __nested_webpack_require_99841__(4);
-var validator_1 = __nested_webpack_require_99841__(1);
+var multipleFieldsValidator_1 = __webpack_require__(3);
+var typeValidator_1 = __webpack_require__(4);
+var validator_1 = __webpack_require__(1);
 var DatasetBindingValidator = /** @class */ (function (_super) {
     __extends(DatasetBindingValidator, _super);
     function DatasetBindingValidator() {
@@ -2068,21 +2222,10 @@ var DatasetBindingValidator = /** @class */ (function (_super) {
         if (errors) {
             return errors;
         }
-        if (!input["datasetId"] && !input["paginatedReportBindings"]) {
-            return [{
-                    message: "datasetBinding cannot be empty",
-                    path: (path ? path + "." : "") + field,
-                    keyword: "invalid"
-                }];
-        }
         var fields = [
             {
                 field: "datasetId",
-                validators: [validator_1.Validators.stringValidator]
-            },
-            {
-                field: "paginatedReportBindings",
-                validators: [validator_1.Validators.paginatedReportDatasetBindingArrayValidator]
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.stringValidator]
             }
         ];
         var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
@@ -2095,7 +2238,7 @@ exports.DatasetBindingValidator = DatasetBindingValidator;
 
 /***/ }),
 /* 10 */
-/***/ (function(__unused_webpack_module, exports, __nested_webpack_require_102537__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -2103,21 +2246,19 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-Object.defineProperty(exports, "__esModule", ({ value: true }));
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.ExportDataRequestValidator = void 0;
-var multipleFieldsValidator_1 = __nested_webpack_require_102537__(3);
-var typeValidator_1 = __nested_webpack_require_102537__(4);
+var multipleFieldsValidator_1 = __webpack_require__(3);
+var typeValidator_1 = __webpack_require__(4);
 var ExportDataRequestValidator = /** @class */ (function (_super) {
     __extends(ExportDataRequestValidator, _super);
     function ExportDataRequestValidator() {
@@ -2151,7 +2292,7 @@ exports.ExportDataRequestValidator = ExportDataRequestValidator;
 
 /***/ }),
 /* 11 */
-/***/ (function(__unused_webpack_module, exports, __nested_webpack_require_104881__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -2159,22 +2300,20 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-Object.defineProperty(exports, "__esModule", ({ value: true }));
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.ExtensionsValidator = exports.MenuGroupExtensionValidator = exports.ExtensionValidator = exports.CommandExtensionValidator = exports.ExtensionItemValidator = exports.ExtensionPointsValidator = exports.GroupedMenuExtensionValidator = exports.FlatMenuExtensionValidator = exports.MenuExtensionBaseValidator = void 0;
-var multipleFieldsValidator_1 = __nested_webpack_require_104881__(3);
-var typeValidator_1 = __nested_webpack_require_104881__(4);
-var validator_1 = __nested_webpack_require_104881__(1);
+var multipleFieldsValidator_1 = __webpack_require__(3);
+var typeValidator_1 = __webpack_require__(4);
+var validator_1 = __webpack_require__(1);
 var MenuExtensionBaseValidator = /** @class */ (function (_super) {
     __extends(MenuExtensionBaseValidator, _super);
     function MenuExtensionBaseValidator() {
@@ -2444,7 +2583,7 @@ exports.ExtensionsValidator = ExtensionsValidator;
 
 /***/ }),
 /* 12 */
-/***/ (function(__unused_webpack_module, exports, __nested_webpack_require_117372__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -2452,22 +2591,20 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.OnLoadFiltersValidator = exports.OnLoadFiltersBaseRemoveOperationValidator = exports.OnLoadFiltersBaseValidator = exports.ConditionItemValidator = exports.RemoveFiltersRequestValidator = exports.UpdateFiltersRequestValidator = exports.FilterValidator = exports.HierarchyFilterNodeValidator = exports.HierarchyFilterValidator = exports.IncludeExcludeFilterValidator = exports.NotSupportedFilterValidator = exports.TopNFilterValidator = exports.RelativeTimeFilterValidator = exports.RelativeDateFilterValidator = exports.RelativeDateTimeFilterValidator = exports.AdvancedFilterValidator = exports.BasicFilterValidator = exports.FilterValidatorBase = exports.FilterDisplaySettingsValidator = exports.FilterMeasureTargetValidator = exports.FilterKeyHierarchyTargetValidator = exports.FilterHierarchyTargetValidator = exports.FilterKeyColumnsTargetValidator = exports.FilterColumnTargetValidator = void 0;
-var multipleFieldsValidator_1 = __nested_webpack_require_117372__(3);
-var typeValidator_1 = __nested_webpack_require_117372__(4);
-var validator_1 = __nested_webpack_require_117372__(1);
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.OnLoadFiltersValidator = exports.OnLoadFiltersBaseRemoveOperationValidator = exports.OnLoadFiltersBaseValidator = exports.ConditionItemValidator = exports.RemoveFiltersRequestValidator = exports.UpdateFiltersRequestValidator = exports.FilterValidator = exports.IncludeExcludeFilterValidator = exports.NotSupportedFilterValidator = exports.TopNFilterValidator = exports.RelativeTimeFilterValidator = exports.RelativeDateFilterValidator = exports.RelativeDateTimeFilterValidator = exports.AdvancedFilterValidator = exports.BasicFilterValidator = exports.FilterValidatorBase = exports.FilterDisplaySettingsValidator = exports.FilterMeasureTargetValidator = exports.FilterKeyHierarchyTargetValidator = exports.FilterHierarchyTargetValidator = exports.FilterKeyColumnsTargetValidator = exports.FilterColumnTargetValidator = void 0;
+var multipleFieldsValidator_1 = __webpack_require__(3);
+var typeValidator_1 = __webpack_require__(4);
+var validator_1 = __webpack_require__(1);
 var FilterColumnTargetValidator = /** @class */ (function (_super) {
     __extends(FilterColumnTargetValidator, _super);
     function FilterColumnTargetValidator() {
@@ -2736,7 +2873,7 @@ var AdvancedFilterValidator = /** @class */ (function (_super) {
             },
             {
                 field: "conditions",
-                validators: [validator_1.Validators.filterConditionsValidator]
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.filterConditionsValidator]
             },
             {
                 field: "filterType",
@@ -2951,72 +3088,6 @@ var IncludeExcludeFilterValidator = /** @class */ (function (_super) {
     return IncludeExcludeFilterValidator;
 }(FilterValidatorBase));
 exports.IncludeExcludeFilterValidator = IncludeExcludeFilterValidator;
-var HierarchyFilterValidator = /** @class */ (function (_super) {
-    __extends(HierarchyFilterValidator, _super);
-    function HierarchyFilterValidator() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    HierarchyFilterValidator.prototype.validate = function (input, path, field) {
-        if (input == null) {
-            return null;
-        }
-        var errors = _super.prototype.validate.call(this, input, path, field);
-        if (errors) {
-            return errors;
-        }
-        var fields = [
-            {
-                field: "hierarchyData",
-                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.hierarchyFilterValuesValidator]
-            },
-            {
-                field: "filterType",
-                validators: [validator_1.Validators.hierarchyFilterTypeValidator]
-            },
-        ];
-        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
-        return multipleFieldsValidator.validate(input, path, field);
-    };
-    return HierarchyFilterValidator;
-}(FilterValidatorBase));
-exports.HierarchyFilterValidator = HierarchyFilterValidator;
-var HierarchyFilterNodeValidator = /** @class */ (function (_super) {
-    __extends(HierarchyFilterNodeValidator, _super);
-    function HierarchyFilterNodeValidator() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    HierarchyFilterNodeValidator.prototype.validate = function (input, path, field) {
-        if (input == null) {
-            return null;
-        }
-        var errors = _super.prototype.validate.call(this, input, path, field);
-        if (errors) {
-            return errors;
-        }
-        var fields = [
-            {
-                field: "value",
-                validators: [validator_1.Validators.anyValueValidator]
-            },
-            {
-                field: "keyValues",
-                validators: [validator_1.Validators.anyArrayValidator]
-            },
-            {
-                field: "children",
-                validators: [validator_1.Validators.hierarchyFilterValuesValidator]
-            },
-            {
-                field: "operator",
-                validators: [validator_1.Validators.stringValidator]
-            }
-        ];
-        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
-        return multipleFieldsValidator.validate(input, path, field);
-    };
-    return HierarchyFilterNodeValidator;
-}(typeValidator_1.ObjectValidator));
-exports.HierarchyFilterNodeValidator = HierarchyFilterNodeValidator;
 var FilterValidator = /** @class */ (function (_super) {
     __extends(FilterValidator, _super);
     function FilterValidator() {
@@ -3213,7 +3284,7 @@ exports.OnLoadFiltersValidator = OnLoadFiltersValidator;
 
 /***/ }),
 /* 13 */
-/***/ (function(__unused_webpack_module, exports, __nested_webpack_require_151344__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -3221,22 +3292,20 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-Object.defineProperty(exports, "__esModule", ({ value: true }));
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.PageLayoutValidator = exports.DisplayStateValidator = exports.VisualLayoutValidator = exports.CustomLayoutValidator = void 0;
-var multipleFieldsValidator_1 = __nested_webpack_require_151344__(3);
-var typeValidator_1 = __nested_webpack_require_151344__(4);
-var validator_1 = __nested_webpack_require_151344__(1);
+var multipleFieldsValidator_1 = __webpack_require__(3);
+var typeValidator_1 = __webpack_require__(4);
+var validator_1 = __webpack_require__(1);
 var CustomLayoutValidator = /** @class */ (function (_super) {
     __extends(CustomLayoutValidator, _super);
     function CustomLayoutValidator() {
@@ -3373,7 +3442,7 @@ exports.PageLayoutValidator = PageLayoutValidator;
 
 /***/ }),
 /* 14 */
-/***/ (function(__unused_webpack_module, exports, __nested_webpack_require_157823__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -3381,22 +3450,20 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-Object.defineProperty(exports, "__esModule", ({ value: true }));
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.PageViewFieldValidator = exports.PageValidator = exports.CustomPageSizeValidator = exports.PageSizeValidator = void 0;
-var multipleFieldsValidator_1 = __nested_webpack_require_157823__(3);
-var typeValidator_1 = __nested_webpack_require_157823__(4);
-var validator_1 = __nested_webpack_require_157823__(1);
+var multipleFieldsValidator_1 = __webpack_require__(3);
+var typeValidator_1 = __webpack_require__(4);
+var validator_1 = __webpack_require__(1);
 var PageSizeValidator = /** @class */ (function (_super) {
     __extends(PageSizeValidator, _super);
     function PageSizeValidator() {
@@ -3504,7 +3571,7 @@ exports.PageViewFieldValidator = PageViewFieldValidator;
 
 /***/ }),
 /* 15 */
-/***/ (function(__unused_webpack_module, exports, __nested_webpack_require_163263__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -3512,22 +3579,20 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-Object.defineProperty(exports, "__esModule", ({ value: true }));
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.VisualizationsPaneValidator = exports.SyncSlicersPaneValidator = exports.SelectionPaneValidator = exports.PageNavigationPaneValidator = exports.FiltersPaneValidator = exports.FieldsPaneValidator = exports.BookmarksPaneValidator = exports.QnaPanesValidator = exports.ReportPanesValidator = void 0;
-var multipleFieldsValidator_1 = __nested_webpack_require_163263__(3);
-var typeValidator_1 = __nested_webpack_require_163263__(4);
-var validator_1 = __nested_webpack_require_163263__(1);
+var multipleFieldsValidator_1 = __webpack_require__(3);
+var typeValidator_1 = __webpack_require__(4);
+var validator_1 = __webpack_require__(1);
 var ReportPanesValidator = /** @class */ (function (_super) {
     __extends(ReportPanesValidator, _super);
     function ReportPanesValidator() {
@@ -3789,7 +3854,7 @@ exports.VisualizationsPaneValidator = VisualizationsPaneValidator;
 
 /***/ }),
 /* 16 */
-/***/ (function(__unused_webpack_module, exports, __nested_webpack_require_175009__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -3797,22 +3862,20 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-Object.defineProperty(exports, "__esModule", ({ value: true }));
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.QnaInterpretInputDataValidator = exports.QnaSettingsValidator = exports.LoadQnaValidator = void 0;
-var multipleFieldsValidator_1 = __nested_webpack_require_175009__(3);
-var typeValidator_1 = __nested_webpack_require_175009__(4);
-var validator_1 = __nested_webpack_require_175009__(1);
+var multipleFieldsValidator_1 = __webpack_require__(3);
+var typeValidator_1 = __webpack_require__(4);
+var validator_1 = __webpack_require__(1);
 var LoadQnaValidator = /** @class */ (function (_super) {
     __extends(LoadQnaValidator, _super);
     function LoadQnaValidator() {
@@ -3928,7 +3991,7 @@ exports.QnaInterpretInputDataValidator = QnaInterpretInputDataValidator;
 
 /***/ }),
 /* 17 */
-/***/ (function(__unused_webpack_module, exports, __nested_webpack_require_180720__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -3936,22 +3999,20 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-Object.defineProperty(exports, "__esModule", ({ value: true }));
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.ReportCreateValidator = void 0;
-var multipleFieldsValidator_1 = __nested_webpack_require_180720__(3);
-var typeValidator_1 = __nested_webpack_require_180720__(4);
-var validator_1 = __nested_webpack_require_180720__(1);
+var multipleFieldsValidator_1 = __webpack_require__(3);
+var typeValidator_1 = __webpack_require__(4);
+var validator_1 = __webpack_require__(1);
 var ReportCreateValidator = /** @class */ (function (_super) {
     __extends(ReportCreateValidator, _super);
     function ReportCreateValidator() {
@@ -3997,7 +4058,7 @@ exports.ReportCreateValidator = ReportCreateValidator;
 
 /***/ }),
 /* 18 */
-/***/ (function(__unused_webpack_module, exports, __nested_webpack_require_183578__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -4005,22 +4066,20 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-Object.defineProperty(exports, "__esModule", ({ value: true }));
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.ReportLoadValidator = void 0;
-var multipleFieldsValidator_1 = __nested_webpack_require_183578__(3);
-var typeValidator_1 = __nested_webpack_require_183578__(4);
-var validator_1 = __nested_webpack_require_183578__(1);
+var multipleFieldsValidator_1 = __webpack_require__(3);
+var typeValidator_1 = __webpack_require__(4);
+var validator_1 = __webpack_require__(1);
 var ReportLoadValidator = /** @class */ (function (_super) {
     __extends(ReportLoadValidator, _super);
     function ReportLoadValidator() {
@@ -4102,7 +4161,7 @@ exports.ReportLoadValidator = ReportLoadValidator;
 
 /***/ }),
 /* 19 */
-/***/ (function(__unused_webpack_module, exports, __nested_webpack_require_187699__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -4110,22 +4169,20 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.ReportParameterFieldsValidator = exports.PaginatedReportLoadValidator = void 0;
-var multipleFieldsValidator_1 = __nested_webpack_require_187699__(3);
-var typeValidator_1 = __nested_webpack_require_187699__(4);
-var validator_1 = __nested_webpack_require_187699__(1);
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.PaginatedReportLoadValidator = void 0;
+var multipleFieldsValidator_1 = __webpack_require__(3);
+var typeValidator_1 = __webpack_require__(4);
+var validator_1 = __webpack_require__(1);
 var PaginatedReportLoadValidator = /** @class */ (function (_super) {
     __extends(PaginatedReportLoadValidator, _super);
     function PaginatedReportLoadValidator() {
@@ -4159,22 +4216,6 @@ var PaginatedReportLoadValidator = /** @class */ (function (_super) {
             {
                 field: "tokenType",
                 validators: [validator_1.Validators.tokenTypeValidator]
-            },
-            {
-                field: "embedUrl",
-                validators: [validator_1.Validators.stringValidator]
-            },
-            {
-                field: "type",
-                validators: [validator_1.Validators.stringValidator]
-            },
-            {
-                field: "parameterValues",
-                validators: [validator_1.Validators.parameterValuesArrayValidator]
-            },
-            {
-                field: "datasetBindings",
-                validators: [validator_1.Validators.paginatedReportDatasetBindingArrayValidator]
             }
         ];
         var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
@@ -4183,34 +4224,11 @@ var PaginatedReportLoadValidator = /** @class */ (function (_super) {
     return PaginatedReportLoadValidator;
 }(typeValidator_1.ObjectValidator));
 exports.PaginatedReportLoadValidator = PaginatedReportLoadValidator;
-var ReportParameterFieldsValidator = /** @class */ (function () {
-    function ReportParameterFieldsValidator() {
-    }
-    ReportParameterFieldsValidator.prototype.validate = function (input, path, field) {
-        if (input == null) {
-            return null;
-        }
-        var fields = [
-            {
-                field: "name",
-                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.stringValidator]
-            },
-            {
-                field: "value",
-                validators: [validator_1.Validators.stringValidator]
-            },
-        ];
-        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
-        return multipleFieldsValidator.validate(input, path, field);
-    };
-    return ReportParameterFieldsValidator;
-}());
-exports.ReportParameterFieldsValidator = ReportParameterFieldsValidator;
 
 
 /***/ }),
 /* 20 */
-/***/ (function(__unused_webpack_module, exports, __nested_webpack_require_192195__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -4218,22 +4236,20 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-Object.defineProperty(exports, "__esModule", ({ value: true }));
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.SaveAsParametersValidator = void 0;
-var multipleFieldsValidator_1 = __nested_webpack_require_192195__(3);
-var typeValidator_1 = __nested_webpack_require_192195__(4);
-var validator_1 = __nested_webpack_require_192195__(1);
+var multipleFieldsValidator_1 = __webpack_require__(3);
+var typeValidator_1 = __webpack_require__(4);
+var validator_1 = __webpack_require__(1);
 var SaveAsParametersValidator = /** @class */ (function (_super) {
     __extends(SaveAsParametersValidator, _super);
     function SaveAsParametersValidator() {
@@ -4263,7 +4279,7 @@ exports.SaveAsParametersValidator = SaveAsParametersValidator;
 
 /***/ }),
 /* 21 */
-/***/ (function(__unused_webpack_module, exports, __nested_webpack_require_194476__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -4271,23 +4287,21 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-Object.defineProperty(exports, "__esModule", ({ value: true }));
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.SlicerTargetSelectorValidator = exports.VisualTypeSelectorValidator = exports.VisualSelectorValidator = void 0;
-var multipleFieldsValidator_1 = __nested_webpack_require_194476__(3);
-var typeValidator_1 = __nested_webpack_require_194476__(4);
-var typeValidator_2 = __nested_webpack_require_194476__(4);
-var validator_1 = __nested_webpack_require_194476__(1);
+var multipleFieldsValidator_1 = __webpack_require__(3);
+var typeValidator_1 = __webpack_require__(4);
+var typeValidator_2 = __webpack_require__(4);
+var validator_1 = __webpack_require__(1);
 var VisualSelectorValidator = /** @class */ (function (_super) {
     __extends(VisualSelectorValidator, _super);
     function VisualSelectorValidator() {
@@ -4380,7 +4394,7 @@ exports.SlicerTargetSelectorValidator = SlicerTargetSelectorValidator;
 
 /***/ }),
 /* 22 */
-/***/ (function(__unused_webpack_module, exports, __nested_webpack_require_199934__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -4388,22 +4402,20 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-Object.defineProperty(exports, "__esModule", ({ value: true }));
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.PaginatedReportSettingsValidator = exports.SettingsValidator = void 0;
-var multipleFieldsValidator_1 = __nested_webpack_require_199934__(3);
-var typeValidator_1 = __nested_webpack_require_199934__(4);
-var validator_1 = __nested_webpack_require_199934__(1);
+var multipleFieldsValidator_1 = __webpack_require__(3);
+var typeValidator_1 = __webpack_require__(4);
+var validator_1 = __webpack_require__(1);
 var SettingsValidator = /** @class */ (function (_super) {
     __extends(SettingsValidator, _super);
     function SettingsValidator() {
@@ -4489,10 +4501,6 @@ var SettingsValidator = /** @class */ (function (_super) {
             {
                 field: "authoringHintsEnabled",
                 validators: [validator_1.Validators.booleanValidator]
-            },
-            {
-                field: "printSettings",
-                validators: [validator_1.Validators.printSettingsValidator]
             }
         ];
         var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
@@ -4530,7 +4538,7 @@ exports.PaginatedReportSettingsValidator = PaginatedReportSettingsValidator;
 
 /***/ }),
 /* 23 */
-/***/ (function(__unused_webpack_module, exports, __nested_webpack_require_205930__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -4538,22 +4546,20 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-Object.defineProperty(exports, "__esModule", ({ value: true }));
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.SlicerStateValidator = exports.SlicerValidator = void 0;
-var multipleFieldsValidator_1 = __nested_webpack_require_205930__(3);
-var typeValidator_1 = __nested_webpack_require_205930__(4);
-var validator_1 = __nested_webpack_require_205930__(1);
+var multipleFieldsValidator_1 = __webpack_require__(3);
+var typeValidator_1 = __webpack_require__(4);
+var validator_1 = __webpack_require__(1);
 var SlicerValidator = /** @class */ (function (_super) {
     __extends(SlicerValidator, _super);
     function SlicerValidator() {
@@ -4612,7 +4618,7 @@ exports.SlicerStateValidator = SlicerStateValidator;
 
 /***/ }),
 /* 24 */
-/***/ (function(__unused_webpack_module, exports, __nested_webpack_require_209360__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -4620,22 +4626,20 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-Object.defineProperty(exports, "__esModule", ({ value: true }));
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.TileLoadValidator = void 0;
-var multipleFieldsValidator_1 = __nested_webpack_require_209360__(3);
-var typeValidator_1 = __nested_webpack_require_209360__(4);
-var validator_1 = __nested_webpack_require_209360__(1);
+var multipleFieldsValidator_1 = __webpack_require__(3);
+var typeValidator_1 = __webpack_require__(4);
+var validator_1 = __webpack_require__(1);
 var TileLoadValidator = /** @class */ (function (_super) {
     __extends(TileLoadValidator, _super);
     function TileLoadValidator() {
@@ -4693,7 +4697,7 @@ exports.TileLoadValidator = TileLoadValidator;
 
 /***/ }),
 /* 25 */
-/***/ (function(__unused_webpack_module, exports, __nested_webpack_require_212632__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -4701,22 +4705,20 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-Object.defineProperty(exports, "__esModule", ({ value: true }));
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.VisualHeaderValidator = exports.VisualHeaderSettingsValidator = exports.VisualSettingsValidator = void 0;
-var multipleFieldsValidator_1 = __nested_webpack_require_212632__(3);
-var typeValidator_1 = __nested_webpack_require_212632__(4);
-var validator_1 = __nested_webpack_require_212632__(1);
+var multipleFieldsValidator_1 = __webpack_require__(3);
+var typeValidator_1 = __webpack_require__(4);
+var validator_1 = __webpack_require__(1);
 var VisualSettingsValidator = /** @class */ (function (_super) {
     __extends(VisualSettingsValidator, _super);
     function VisualSettingsValidator() {
@@ -4800,11 +4802,11 @@ exports.VisualHeaderValidator = VisualHeaderValidator;
 
 /***/ }),
 /* 26 */
-/***/ ((__unused_webpack_module, exports) => {
+/***/ (function(module, exports) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
-Object.defineProperty(exports, "__esModule", ({ value: true }));
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.AnyOfValidator = void 0;
 var AnyOfValidator = /** @class */ (function () {
     function AnyOfValidator(validators) {
@@ -4839,11 +4841,11 @@ exports.AnyOfValidator = AnyOfValidator;
 
 /***/ }),
 /* 27 */
-/***/ ((__unused_webpack_module, exports) => {
+/***/ (function(module, exports) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
-Object.defineProperty(exports, "__esModule", ({ value: true }));
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.FieldForbiddenValidator = void 0;
 var FieldForbiddenValidator = /** @class */ (function () {
     function FieldForbiddenValidator() {
@@ -4865,11 +4867,11 @@ exports.FieldForbiddenValidator = FieldForbiddenValidator;
 
 /***/ }),
 /* 28 */
-/***/ ((__unused_webpack_module, exports) => {
+/***/ (function(module, exports) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
-Object.defineProperty(exports, "__esModule", ({ value: true }));
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.FieldRequiredValidator = void 0;
 var FieldRequiredValidator = /** @class */ (function () {
     function FieldRequiredValidator() {
@@ -4891,7 +4893,7 @@ exports.FieldRequiredValidator = FieldRequiredValidator;
 
 /***/ }),
 /* 29 */
-/***/ (function(__unused_webpack_module, exports, __nested_webpack_require_220041__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -4899,20 +4901,18 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-Object.defineProperty(exports, "__esModule", ({ value: true }));
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.MapValidator = void 0;
-var typeValidator_1 = __nested_webpack_require_220041__(4);
+var typeValidator_1 = __webpack_require__(4);
 var MapValidator = /** @class */ (function (_super) {
     __extends(MapValidator, _super);
     function MapValidator(keyValidators, valueValidators) {
@@ -4957,7 +4957,7 @@ exports.MapValidator = MapValidator;
 
 /***/ }),
 /* 30 */
-/***/ (function(__unused_webpack_module, exports, __nested_webpack_require_222725__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -4965,22 +4965,20 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-Object.defineProperty(exports, "__esModule", ({ value: true }));
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.ParametersPanelValidator = void 0;
-var multipleFieldsValidator_1 = __nested_webpack_require_222725__(3);
-var typeValidator_1 = __nested_webpack_require_222725__(4);
-var validator_1 = __nested_webpack_require_222725__(1);
+var multipleFieldsValidator_1 = __webpack_require__(3);
+var typeValidator_1 = __webpack_require__(4);
+var validator_1 = __webpack_require__(1);
 var ParametersPanelValidator = /** @class */ (function (_super) {
     __extends(ParametersPanelValidator, _super);
     function ParametersPanelValidator() {
@@ -5012,803 +5010,10 @@ var ParametersPanelValidator = /** @class */ (function (_super) {
 exports.ParametersPanelValidator = ParametersPanelValidator;
 
 
-/***/ }),
-/* 31 */
-/***/ (function(__unused_webpack_module, exports, __nested_webpack_require_225093__) {
-
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.TableDataValidator = exports.TableSchemaValidator = exports.ColumnSchemaValidator = exports.CredentialsValidator = exports.DatasourceConnectionConfigValidator = exports.DatasetCreateConfigValidator = void 0;
-var multipleFieldsValidator_1 = __nested_webpack_require_225093__(3);
-var typeValidator_1 = __nested_webpack_require_225093__(4);
-var validator_1 = __nested_webpack_require_225093__(1);
-var DatasetCreateConfigValidator = /** @class */ (function (_super) {
-    __extends(DatasetCreateConfigValidator, _super);
-    function DatasetCreateConfigValidator() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    DatasetCreateConfigValidator.prototype.validate = function (input, path, field) {
-        if (input == null) {
-            return null;
-        }
-        var errors = _super.prototype.validate.call(this, input, path, field);
-        if (errors) {
-            return errors;
-        }
-        var fields = [
-            {
-                field: "locale",
-                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.stringValidator]
-            },
-            {
-                field: "mashupDocument",
-                validators: [validator_1.Validators.stringValidator]
-            },
-            {
-                field: "datasourceConnectionConfig",
-                validators: [validator_1.Validators.datasourceConnectionConfigValidator]
-            },
-            {
-                field: "tableSchemaList",
-                validators: [validator_1.Validators.tableSchemaListValidator]
-            },
-            {
-                field: "data",
-                validators: [validator_1.Validators.tableDataArrayValidator]
-            },
-        ];
-        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
-        errors = multipleFieldsValidator.validate(input, path, field);
-        if (errors) {
-            return errors;
-        }
-        if (input["datasourceConnectionConfig"] && input["mashupDocument"] == null) {
-            return [{
-                    message: "mashupDocument cannot be empty when datasourceConnectionConfig is presented"
-                }];
-        }
-        if (input["data"] && input["tableSchemaList"] == null) {
-            return [{
-                    message: "tableSchemaList cannot be empty when data is provided"
-                }];
-        }
-        if (input["data"] == null && input["mashupDocument"] == null) {
-            return [{
-                    message: "At least one of data or mashupDocument must be provided"
-                }];
-        }
-    };
-    return DatasetCreateConfigValidator;
-}(typeValidator_1.ObjectValidator));
-exports.DatasetCreateConfigValidator = DatasetCreateConfigValidator;
-var DatasourceConnectionConfigValidator = /** @class */ (function (_super) {
-    __extends(DatasourceConnectionConfigValidator, _super);
-    function DatasourceConnectionConfigValidator() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    DatasourceConnectionConfigValidator.prototype.validate = function (input, path, field) {
-        if (input == null) {
-            return null;
-        }
-        var errors = _super.prototype.validate.call(this, input, path, field);
-        if (errors) {
-            return errors;
-        }
-        var fields = [
-            {
-                field: "dataCacheMode",
-                validators: [validator_1.Validators.dataCacheModeValidator]
-            },
-            {
-                field: "credentials",
-                validators: [validator_1.Validators.credentialsValidator]
-            }
-        ];
-        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
-        return multipleFieldsValidator.validate(input, path, field);
-    };
-    return DatasourceConnectionConfigValidator;
-}(typeValidator_1.ObjectValidator));
-exports.DatasourceConnectionConfigValidator = DatasourceConnectionConfigValidator;
-var CredentialsValidator = /** @class */ (function (_super) {
-    __extends(CredentialsValidator, _super);
-    function CredentialsValidator() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    CredentialsValidator.prototype.validate = function (input, path, field) {
-        if (input == null) {
-            return null;
-        }
-        var errors = _super.prototype.validate.call(this, input, path, field);
-        if (errors) {
-            return errors;
-        }
-        var fields = [
-            {
-                field: "credentialType",
-                validators: [validator_1.Validators.credentialTypeValidator]
-            },
-            {
-                field: "credentialDetails",
-                validators: [validator_1.Validators.credentialDetailsValidator]
-            }
-        ];
-        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
-        return multipleFieldsValidator.validate(input, path, field);
-    };
-    return CredentialsValidator;
-}(typeValidator_1.ObjectValidator));
-exports.CredentialsValidator = CredentialsValidator;
-var ColumnSchemaValidator = /** @class */ (function (_super) {
-    __extends(ColumnSchemaValidator, _super);
-    function ColumnSchemaValidator() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    ColumnSchemaValidator.prototype.validate = function (input, path, field) {
-        if (input == null) {
-            return null;
-        }
-        var errors = _super.prototype.validate.call(this, input, path, field);
-        if (errors) {
-            return errors;
-        }
-        var fields = [
-            {
-                field: "name",
-                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.stringValidator]
-            },
-            {
-                field: "displayName",
-                validators: [validator_1.Validators.stringValidator]
-            },
-            {
-                field: "dataType",
-                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.stringValidator]
-            }
-        ];
-        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
-        return multipleFieldsValidator.validate(input, path, field);
-    };
-    return ColumnSchemaValidator;
-}(typeValidator_1.ObjectValidator));
-exports.ColumnSchemaValidator = ColumnSchemaValidator;
-var TableSchemaValidator = /** @class */ (function (_super) {
-    __extends(TableSchemaValidator, _super);
-    function TableSchemaValidator() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    TableSchemaValidator.prototype.validate = function (input, path, field) {
-        if (input == null) {
-            return null;
-        }
-        var errors = _super.prototype.validate.call(this, input, path, field);
-        if (errors) {
-            return errors;
-        }
-        var fields = [
-            {
-                field: "name",
-                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.stringValidator]
-            },
-            {
-                field: "columns",
-                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.columnSchemaArrayValidator]
-            }
-        ];
-        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
-        return multipleFieldsValidator.validate(input, path, field);
-    };
-    return TableSchemaValidator;
-}(typeValidator_1.ObjectValidator));
-exports.TableSchemaValidator = TableSchemaValidator;
-var TableDataValidator = /** @class */ (function (_super) {
-    __extends(TableDataValidator, _super);
-    function TableDataValidator() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    TableDataValidator.prototype.validate = function (input, path, field) {
-        if (input == null) {
-            return null;
-        }
-        var errors = _super.prototype.validate.call(this, input, path, field);
-        if (errors) {
-            return errors;
-        }
-        var fields = [
-            {
-                field: "name",
-                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.stringValidator]
-            },
-            {
-                field: "rows",
-                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.rawDataValidator]
-            }
-        ];
-        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
-        return multipleFieldsValidator.validate(input, path, field);
-    };
-    return TableDataValidator;
-}(typeValidator_1.ObjectValidator));
-exports.TableDataValidator = TableDataValidator;
-
-
-/***/ }),
-/* 32 */
-/***/ (function(__unused_webpack_module, exports, __nested_webpack_require_235148__) {
-
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.QuickCreateValidator = void 0;
-var multipleFieldsValidator_1 = __nested_webpack_require_235148__(3);
-var typeValidator_1 = __nested_webpack_require_235148__(4);
-var validator_1 = __nested_webpack_require_235148__(1);
-var QuickCreateValidator = /** @class */ (function (_super) {
-    __extends(QuickCreateValidator, _super);
-    function QuickCreateValidator() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    QuickCreateValidator.prototype.validate = function (input, path, field) {
-        if (input == null) {
-            return null;
-        }
-        var errors = _super.prototype.validate.call(this, input, path, field);
-        if (errors) {
-            return errors;
-        }
-        var fields = [
-            {
-                field: "accessToken",
-                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.stringValidator]
-            },
-            {
-                field: "groupId",
-                validators: [validator_1.Validators.stringValidator]
-            },
-            {
-                field: "tokenType",
-                validators: [validator_1.Validators.tokenTypeValidator]
-            },
-            {
-                field: "theme",
-                validators: [validator_1.Validators.customThemeValidator]
-            },
-            {
-                field: "datasetCreateConfig",
-                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.datasetCreateConfigValidator]
-            },
-        ];
-        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
-        return multipleFieldsValidator.validate(input, path, field);
-    };
-    return QuickCreateValidator;
-}(typeValidator_1.ObjectValidator));
-exports.QuickCreateValidator = QuickCreateValidator;
-
-
-/***/ }),
-/* 33 */
-/***/ (function(__unused_webpack_module, exports, __nested_webpack_require_238021__) {
-
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.PrintSettingsValidator = void 0;
-var multipleFieldsValidator_1 = __nested_webpack_require_238021__(3);
-var typeValidator_1 = __nested_webpack_require_238021__(4);
-var PrintSettingsValidator = /** @class */ (function (_super) {
-    __extends(PrintSettingsValidator, _super);
-    function PrintSettingsValidator() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    PrintSettingsValidator.prototype.validate = function (input, path, field) {
-        if (input == null) {
-            return null;
-        }
-        var errors = _super.prototype.validate.call(this, input, path, field);
-        if (errors) {
-            return errors;
-        }
-        var fields = [
-            {
-                field: "browserPrintAdjustmentsMode",
-                validators: [new typeValidator_1.EnumValidator([0, 1])]
-            }
-        ];
-        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
-        return multipleFieldsValidator.validate(input, path, field);
-    };
-    return PrintSettingsValidator;
-}(typeValidator_1.ObjectValidator));
-exports.PrintSettingsValidator = PrintSettingsValidator;
-
-
-/***/ }),
-/* 34 */
-/***/ (function(__unused_webpack_module, exports, __nested_webpack_require_240214__) {
-
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.PaginatedReportDatasetBindingValidator = void 0;
-var multipleFieldsValidator_1 = __nested_webpack_require_240214__(3);
-var typeValidator_1 = __nested_webpack_require_240214__(4);
-var validator_1 = __nested_webpack_require_240214__(1);
-var PaginatedReportDatasetBindingValidator = /** @class */ (function (_super) {
-    __extends(PaginatedReportDatasetBindingValidator, _super);
-    function PaginatedReportDatasetBindingValidator() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    PaginatedReportDatasetBindingValidator.prototype.validate = function (input, path, field) {
-        if (input == null) {
-            return null;
-        }
-        var errors = _super.prototype.validate.call(this, input, path, field);
-        if (errors) {
-            return errors;
-        }
-        var fields = [
-            {
-                field: "sourceDatasetId",
-                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.stringValidator]
-            },
-            {
-                field: "targetDatasetId",
-                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.stringValidator]
-            }
-        ];
-        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
-        return multipleFieldsValidator.validate(input, path, field);
-    };
-    return PaginatedReportDatasetBindingValidator;
-}(typeValidator_1.ObjectValidator));
-exports.PaginatedReportDatasetBindingValidator = PaginatedReportDatasetBindingValidator;
-
-
 /***/ })
-/******/ 	]);
-/************************************************************************/
-/******/ 	// The module cache
-/******/ 	var __webpack_module_cache__ = {};
-/******/ 	
-/******/ 	// The require function
-/******/ 	function __nested_webpack_require_242960__(moduleId) {
-/******/ 		// Check if module is in cache
-/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
-/******/ 		if (cachedModule !== undefined) {
-/******/ 			return cachedModule.exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
-/******/ 			exports: {}
-/******/ 		};
-/******/ 	
-/******/ 		// Execute the module function
-/******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __nested_webpack_require_242960__);
-/******/ 	
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/ 	
-/************************************************************************/
-/******/ 	
-/******/ 	// startup
-/******/ 	// Load entry module and return exports
-/******/ 	// This entry module is referenced by other modules so it can't be inlined
-/******/ 	var __nested_webpack_exports__ = __nested_webpack_require_242960__(0);
-/******/ 	
-/******/ 	return __nested_webpack_exports__;
-/******/ })()
-;
+/******/ ]);
 });
 //# sourceMappingURL=models.js.map
-// SIG // Begin signature block
-// SIG // MIIr4gYJKoZIhvcNAQcCoIIr0zCCK88CAQExDzANBglg
-// SIG // hkgBZQMEAgEFADB3BgorBgEEAYI3AgEEoGkwZzAyBgor
-// SIG // BgEEAYI3AgEeMCQCAQEEEBDgyQbOONQRoqMAEEvTUJAC
-// SIG // AQACAQACAQACAQACAQAwMTANBglghkgBZQMEAgEFAAQg
-// SIG // WNb2+8Nx7D6LpbfhohPb+cdkaBYb+kv1f6wvqYYucZ+g
-// SIG // ghFuMIIIfjCCB2agAwIBAgITNgAAAchkggAwtCOCeAAC
-// SIG // AAAByDANBgkqhkiG9w0BAQsFADBBMRMwEQYKCZImiZPy
-// SIG // LGQBGRYDR0JMMRMwEQYKCZImiZPyLGQBGRYDQU1FMRUw
-// SIG // EwYDVQQDEwxBTUUgQ1MgQ0EgMDEwHhcNMjMwMzIwMjAw
-// SIG // MDMxWhcNMjQwMzE5MjAwMDMxWjAkMSIwIAYDVQQDExlN
-// SIG // aWNyb3NvZnQgQXp1cmUgQ29kZSBTaWduMIIBIjANBgkq
-// SIG // hkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArKhH7cINkFWa
-// SIG // NPbW4CGpQwfhD2vWIwm5iDQIGjc5Siq9Ay9yIB0MPvck
-// SIG // Xnp402u+fVvy8Zb+cPXCyiemnyFG7wYwKgPF4+x2awd4
-// SIG // beHkFvcWtTV+Yz5oEKVVT0oWR5NfsUHuqEGDlIVFAYB/
-// SIG // 7FIlZQWRiC4emeka+jYoFTl50U2mDQ/CvdCquvAd+dBc
-// SIG // hoH0BLXWh00rK3NqRoqQj50vTHl+EB5HCer6+uP7iFKi
-// SIG // a3vFw1uDonKVKmcz4x8GJo4y5p7plcr4VAB5FdwTpZrz
-// SIG // hFObBzJxcxdIT3qMm07RYM6K1EbUn3AKKTEG2O9etQ06
-// SIG // oIKCcGHltvj0NZp37NkEJwIDAQABo4IFijCCBYYwKQYJ
-// SIG // KwYBBAGCNxUKBBwwGjAMBgorBgEEAYI3WwEBMAoGCCsG
-// SIG // AQUFBwMDMD0GCSsGAQQBgjcVBwQwMC4GJisGAQQBgjcV
-// SIG // CIaQ4w2E1bR4hPGLPoWb3RbOnRKBYIPdzWaGlIwyAgFk
-// SIG // AgEMMIICdgYIKwYBBQUHAQEEggJoMIICZDBiBggrBgEF
-// SIG // BQcwAoZWaHR0cDovL2NybC5taWNyb3NvZnQuY29tL3Br
-// SIG // aWluZnJhL0NlcnRzL0JZMlBLSUNTQ0EwMS5BTUUuR0JM
-// SIG // X0FNRSUyMENTJTIwQ0ElMjAwMSgyKS5jcnQwUgYIKwYB
-// SIG // BQUHMAKGRmh0dHA6Ly9jcmwxLmFtZS5nYmwvYWlhL0JZ
-// SIG // MlBLSUNTQ0EwMS5BTUUuR0JMX0FNRSUyMENTJTIwQ0El
-// SIG // MjAwMSgyKS5jcnQwUgYIKwYBBQUHMAKGRmh0dHA6Ly9j
-// SIG // cmwyLmFtZS5nYmwvYWlhL0JZMlBLSUNTQ0EwMS5BTUUu
-// SIG // R0JMX0FNRSUyMENTJTIwQ0ElMjAwMSgyKS5jcnQwUgYI
-// SIG // KwYBBQUHMAKGRmh0dHA6Ly9jcmwzLmFtZS5nYmwvYWlh
-// SIG // L0JZMlBLSUNTQ0EwMS5BTUUuR0JMX0FNRSUyMENTJTIw
-// SIG // Q0ElMjAwMSgyKS5jcnQwUgYIKwYBBQUHMAKGRmh0dHA6
-// SIG // Ly9jcmw0LmFtZS5nYmwvYWlhL0JZMlBLSUNTQ0EwMS5B
-// SIG // TUUuR0JMX0FNRSUyMENTJTIwQ0ElMjAwMSgyKS5jcnQw
-// SIG // ga0GCCsGAQUFBzAChoGgbGRhcDovLy9DTj1BTUUlMjBD
-// SIG // UyUyMENBJTIwMDEsQ049QUlBLENOPVB1YmxpYyUyMEtl
-// SIG // eSUyMFNlcnZpY2VzLENOPVNlcnZpY2VzLENOPUNvbmZp
-// SIG // Z3VyYXRpb24sREM9QU1FLERDPUdCTD9jQUNlcnRpZmlj
-// SIG // YXRlP2Jhc2U/b2JqZWN0Q2xhc3M9Y2VydGlmaWNhdGlv
-// SIG // bkF1dGhvcml0eTAdBgNVHQ4EFgQUskGhjtP5WCMqHOBI
-// SIG // YEqYPR0vFkMwDgYDVR0PAQH/BAQDAgeAMEUGA1UdEQQ+
-// SIG // MDykOjA4MR4wHAYDVQQLExVNaWNyb3NvZnQgQ29ycG9y
-// SIG // YXRpb24xFjAUBgNVBAUTDTIzNjE2Nys1MDAzNjAwggHm
-// SIG // BgNVHR8EggHdMIIB2TCCAdWgggHRoIIBzYY/aHR0cDov
-// SIG // L2NybC5taWNyb3NvZnQuY29tL3BraWluZnJhL0NSTC9B
-// SIG // TUUlMjBDUyUyMENBJTIwMDEoMikuY3JshjFodHRwOi8v
-// SIG // Y3JsMS5hbWUuZ2JsL2NybC9BTUUlMjBDUyUyMENBJTIw
-// SIG // MDEoMikuY3JshjFodHRwOi8vY3JsMi5hbWUuZ2JsL2Ny
-// SIG // bC9BTUUlMjBDUyUyMENBJTIwMDEoMikuY3JshjFodHRw
-// SIG // Oi8vY3JsMy5hbWUuZ2JsL2NybC9BTUUlMjBDUyUyMENB
-// SIG // JTIwMDEoMikuY3JshjFodHRwOi8vY3JsNC5hbWUuZ2Js
-// SIG // L2NybC9BTUUlMjBDUyUyMENBJTIwMDEoMikuY3JshoG9
-// SIG // bGRhcDovLy9DTj1BTUUlMjBDUyUyMENBJTIwMDEoMiks
-// SIG // Q049QlkyUEtJQ1NDQTAxLENOPUNEUCxDTj1QdWJsaWMl
-// SIG // MjBLZXklMjBTZXJ2aWNlcyxDTj1TZXJ2aWNlcyxDTj1D
-// SIG // b25maWd1cmF0aW9uLERDPUFNRSxEQz1HQkw/Y2VydGlm
-// SIG // aWNhdGVSZXZvY2F0aW9uTGlzdD9iYXNlP29iamVjdENs
-// SIG // YXNzPWNSTERpc3RyaWJ1dGlvblBvaW50MB8GA1UdIwQY
-// SIG // MBaAFJZRhOBrb3v+2Aarw/KF5imuavnUMB8GA1UdJQQY
-// SIG // MBYGCisGAQQBgjdbAQEGCCsGAQUFBwMDMA0GCSqGSIb3
-// SIG // DQEBCwUAA4IBAQDG1533NPfZ4bL0nuae9PWCGH0ZmNci
-// SIG // CejMn71r/igTKxx635KmcI38lYY/vhbu++jhMlN3V3Ke
-// SIG // AJEmuUdbTxtaXlhhJwWW/3i4GfQGjFIot6N3F9OuXURf
-// SIG // 8jc4LypadrWJV1l1bmZ/G75FiqMoEDF7DYjyYJ9BNUU3
-// SIG // alOgYyXygBJJjSfJR/8Vgd8hYCExm9DJgXDlSuKZ7ZeD
-// SIG // ailP2EGIO5+m0QGI1tyMKdc/YgPrJUw7NI9wmx8ET/J5
-// SIG // fxrrh21fdowYoGCYnphYtGhGBvnqDdaHXbVECC3gzbU+
-// SIG // nLfeFF30rr/jHxoXWzKfFcYCj5Xnw52bu5mDZB8jF/dH
-// SIG // vhlPMIII6DCCBtCgAwIBAgITHwAAAFHqj/accwyoOwAA
-// SIG // AAAAUTANBgkqhkiG9w0BAQsFADA8MRMwEQYKCZImiZPy
-// SIG // LGQBGRYDR0JMMRMwEQYKCZImiZPyLGQBGRYDQU1FMRAw
-// SIG // DgYDVQQDEwdhbWVyb290MB4XDTIxMDUyMTE4NDQxNFoX
-// SIG // DTI2MDUyMTE4NTQxNFowQTETMBEGCgmSJomT8ixkARkW
-// SIG // A0dCTDETMBEGCgmSJomT8ixkARkWA0FNRTEVMBMGA1UE
-// SIG // AxMMQU1FIENTIENBIDAxMIIBIjANBgkqhkiG9w0BAQEF
-// SIG // AAOCAQ8AMIIBCgKCAQEAyZpSCX0Bno1W1yqXMhT6BUlJ
-// SIG // ZWpa4p3xFeiTHO4vm2Q6C/azR5xwxnyYHrkSGDtS2P9X
-// SIG // +KDE64V20mmEQkubxnPNeOVnE2RvdPGxgwlq+BhS3ONd
-// SIG // VsQPj79q7XgHM9HhzB9+qk0PC9KN1zm9p/seyiRS6JF1
-// SIG // dbOqRf1pUl7FAVxmgiCFgV8hHIb/rDPXig7FDi3S0yEx
-// SIG // 2CUDVpIq8jEhG8anUFE1WYxM+ni0S5KHwwKPKV4qyGDo
-// SIG // DO+9AmDoma3Chyu5WDlW5cdtqXTWsGPE3umtnX6Amlld
-// SIG // UFLms4OVR4guKf+n5LIBCC6bTiocfXPomqYjYTKx7AGM
-// SIG // faVLaaXmhQIDAQABo4IE3DCCBNgwEgYJKwYBBAGCNxUB
-// SIG // BAUCAwIAAjAjBgkrBgEEAYI3FQIEFgQUEmgkQiFHy9Rr
-// SIG // vjHPIKTACyN/P0cwHQYDVR0OBBYEFJZRhOBrb3v+2Aar
-// SIG // w/KF5imuavnUMIIBBAYDVR0lBIH8MIH5BgcrBgEFAgMF
-// SIG // BggrBgEFBQcDAQYIKwYBBQUHAwIGCisGAQQBgjcUAgEG
-// SIG // CSsGAQQBgjcVBgYKKwYBBAGCNwoDDAYJKwYBBAGCNxUG
-// SIG // BggrBgEFBQcDCQYIKwYBBQUIAgIGCisGAQQBgjdAAQEG
-// SIG // CysGAQQBgjcKAwQBBgorBgEEAYI3CgMEBgkrBgEEAYI3
-// SIG // FQUGCisGAQQBgjcUAgIGCisGAQQBgjcUAgMGCCsGAQUF
-// SIG // BwMDBgorBgEEAYI3WwEBBgorBgEEAYI3WwIBBgorBgEE
-// SIG // AYI3WwMBBgorBgEEAYI3WwUBBgorBgEEAYI3WwQBBgor
-// SIG // BgEEAYI3WwQCMBkGCSsGAQQBgjcUAgQMHgoAUwB1AGIA
-// SIG // QwBBMAsGA1UdDwQEAwIBhjASBgNVHRMBAf8ECDAGAQH/
-// SIG // AgEAMB8GA1UdIwQYMBaAFCleUV5krjS566ycDaeMdQHR
-// SIG // CQsoMIIBaAYDVR0fBIIBXzCCAVswggFXoIIBU6CCAU+G
-// SIG // MWh0dHA6Ly9jcmwubWljcm9zb2Z0LmNvbS9wa2lpbmZy
-// SIG // YS9jcmwvYW1lcm9vdC5jcmyGI2h0dHA6Ly9jcmwyLmFt
-// SIG // ZS5nYmwvY3JsL2FtZXJvb3QuY3JshiNodHRwOi8vY3Js
-// SIG // My5hbWUuZ2JsL2NybC9hbWVyb290LmNybIYjaHR0cDov
-// SIG // L2NybDEuYW1lLmdibC9jcmwvYW1lcm9vdC5jcmyGgaps
-// SIG // ZGFwOi8vL0NOPWFtZXJvb3QsQ049QU1FUm9vdCxDTj1D
-// SIG // RFAsQ049UHVibGljJTIwS2V5JTIwU2VydmljZXMsQ049
-// SIG // U2VydmljZXMsQ049Q29uZmlndXJhdGlvbixEQz1BTUUs
-// SIG // REM9R0JMP2NlcnRpZmljYXRlUmV2b2NhdGlvbkxpc3Q/
-// SIG // YmFzZT9vYmplY3RDbGFzcz1jUkxEaXN0cmlidXRpb25Q
-// SIG // b2ludDCCAasGCCsGAQUFBwEBBIIBnTCCAZkwRwYIKwYB
-// SIG // BQUHMAKGO2h0dHA6Ly9jcmwubWljcm9zb2Z0LmNvbS9w
-// SIG // a2lpbmZyYS9jZXJ0cy9BTUVSb290X2FtZXJvb3QuY3J0
-// SIG // MDcGCCsGAQUFBzAChitodHRwOi8vY3JsMi5hbWUuZ2Js
-// SIG // L2FpYS9BTUVSb290X2FtZXJvb3QuY3J0MDcGCCsGAQUF
-// SIG // BzAChitodHRwOi8vY3JsMy5hbWUuZ2JsL2FpYS9BTUVS
-// SIG // b290X2FtZXJvb3QuY3J0MDcGCCsGAQUFBzAChitodHRw
-// SIG // Oi8vY3JsMS5hbWUuZ2JsL2FpYS9BTUVSb290X2FtZXJv
-// SIG // b3QuY3J0MIGiBggrBgEFBQcwAoaBlWxkYXA6Ly8vQ049
-// SIG // YW1lcm9vdCxDTj1BSUEsQ049UHVibGljJTIwS2V5JTIw
-// SIG // U2VydmljZXMsQ049U2VydmljZXMsQ049Q29uZmlndXJh
-// SIG // dGlvbixEQz1BTUUsREM9R0JMP2NBQ2VydGlmaWNhdGU/
-// SIG // YmFzZT9vYmplY3RDbGFzcz1jZXJ0aWZpY2F0aW9uQXV0
-// SIG // aG9yaXR5MA0GCSqGSIb3DQEBCwUAA4ICAQBQECO3Tw/o
-// SIG // 317Rrd7yadqcswPx1LvIYymkaTN6KcmuRt6HKa0Xe73U
-// SIG // x2/AQ30TfgA9GBJngweRykKBusRzyOU17iIubJvy3gA2
-// SIG // 1dwtqtB0DsoEv1U/ptVu2v++doTCJ/i+GbssVXkgaX8H
-// SIG // +6EOGEmT4evp4GbwR4HwWlc+Dvf8HH8PdUA2Z04CvcwI
-// SIG // fckSipbNm84jxJ8XjmTFTWscldL9edj2NsY6iGnyJFIy
-// SIG // ur2PS7VRYyV3p1VAJp91gj1jRQtWEyCB8P5g9nE3z8u0
-// SIG // ANaU/hjwEQCrdGyravWgnf2JtG+bT26YAokbc8m+32zU
-// SIG // tXRO+NK3tAjhOu2FdsG3qNrF4sc7y37R/C+7Pcb/cFfh
-// SIG // ttqsirepZii4xStcjMODYuXzGm3IJs0b0owHG6oKd7ZO
-// SIG // GvHpmmh9K8/DLriD/sq8bURD10qi/wuW8zM7IpLg1vcR
-// SIG // 9dIK2mc0pj44pc6UX0XbttP/VEJgu3lT2eI9VjWtaKjx
-// SIG // 38xE9woSMyekPRtzTwgfuysF9DkJisr+yA4po/FPxpbB
-// SIG // w9c/hBf32DH/GFxteS2pmjgKIbMP8sDukmEq3lVvuWNJ
-// SIG // sybrZwQvQpvaM49fv+JKpLK5YWYEfwksYRR9wU8Hh/ID
-// SIG // 9hRCEkbUoQ2W7mMpsp2Nbp/kcn4ivfolUy3Q9Yf0scsQ
-// SIG // 6WTLYpm+AoCUJTGCGcwwghnIAgEBMFgwQTETMBEGCgmS
-// SIG // JomT8ixkARkWA0dCTDETMBEGCgmSJomT8ixkARkWA0FN
-// SIG // RTEVMBMGA1UEAxMMQU1FIENTIENBIDAxAhM2AAAByGSC
-// SIG // ADC0I4J4AAIAAAHIMA0GCWCGSAFlAwQCAQUAoIGuMBkG
-// SIG // CSqGSIb3DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQB
-// SIG // gjcCAQsxDjAMBgorBgEEAYI3AgEVMC8GCSqGSIb3DQEJ
-// SIG // BDEiBCDVsRlmuqGGWLZSefk2CBRUhBuBOD+bHy0Gwl8T
-// SIG // 0JKkqjBCBgorBgEEAYI3AgEMMTQwMqAUgBIATQBpAGMA
-// SIG // cgBvAHMAbwBmAHShGoAYaHR0cDovL3d3dy5taWNyb3Nv
-// SIG // ZnQuY29tMA0GCSqGSIb3DQEBAQUABIIBADFsQE1+4mJA
-// SIG // S6P65AMT7BcL1WNe0RUuA0Bt+CuVtbwa1zq+ZGDtexdb
-// SIG // CWxBr5U4oZF6mHY6AyKf+NTFgvZczY3QqYh19SMKGujp
-// SIG // FgxBvG0aQ/dVQDtKC5Le2cce15l4X6SAsYk+8q0xMjti
-// SIG // QgSfBIEkJZ8FtDwtFaHO5GN/OkEt8M7NEzQOZQcfvSgb
-// SIG // lMV8hY3Lf0dAPg4jyay3bQcPjOLsPs5G4GmTDM4qdPYM
-// SIG // w5+IzUudbU8mNTmPppT3u2A2xGoQ8Ky5/mava+b11bSM
-// SIG // GaJ1QFVCATVph88Fw/958W9et3okjG8TffdVb9J/KW09
-// SIG // +oUXuBUjmljUn2ExNxJUxGyhgheUMIIXkAYKKwYBBAGC
-// SIG // NwMDATGCF4Awghd8BgkqhkiG9w0BBwKgghdtMIIXaQIB
-// SIG // AzEPMA0GCWCGSAFlAwQCAQUAMIIBUgYLKoZIhvcNAQkQ
-// SIG // AQSgggFBBIIBPTCCATkCAQEGCisGAQQBhFkKAwEwMTAN
-// SIG // BglghkgBZQMEAgEFAAQgVH8KNp+SiwyXjVpLA60gPo3S
-// SIG // 9GbqNxZ81BNBirXMZRMCBmVWyBjWNBgTMjAyMzExMjkx
-// SIG // MDA3MTguNDMyWjAEgAIB9KCB0aSBzjCByzELMAkGA1UE
-// SIG // BhMCVVMxEzARBgNVBAgTCldhc2hpbmd0b24xEDAOBgNV
-// SIG // BAcTB1JlZG1vbmQxHjAcBgNVBAoTFU1pY3Jvc29mdCBD
-// SIG // b3Jwb3JhdGlvbjElMCMGA1UECxMcTWljcm9zb2Z0IEFt
-// SIG // ZXJpY2EgT3BlcmF0aW9uczEnMCUGA1UECxMeblNoaWVs
-// SIG // ZCBUU1MgRVNOOkEwMDAtMDVFMC1EOTQ3MSUwIwYDVQQD
-// SIG // ExxNaWNyb3NvZnQgVGltZS1TdGFtcCBTZXJ2aWNloIIR
-// SIG // 6jCCByAwggUIoAMCAQICEzMAAAHQdwiq76MXxt0AAQAA
-// SIG // AdAwDQYJKoZIhvcNAQELBQAwfDELMAkGA1UEBhMCVVMx
-// SIG // EzARBgNVBAgTCldhc2hpbmd0b24xEDAOBgNVBAcTB1Jl
-// SIG // ZG1vbmQxHjAcBgNVBAoTFU1pY3Jvc29mdCBDb3Jwb3Jh
-// SIG // dGlvbjEmMCQGA1UEAxMdTWljcm9zb2Z0IFRpbWUtU3Rh
-// SIG // bXAgUENBIDIwMTAwHhcNMjMwNTI1MTkxMjE0WhcNMjQw
-// SIG // MjAxMTkxMjE0WjCByzELMAkGA1UEBhMCVVMxEzARBgNV
-// SIG // BAgTCldhc2hpbmd0b24xEDAOBgNVBAcTB1JlZG1vbmQx
-// SIG // HjAcBgNVBAoTFU1pY3Jvc29mdCBDb3Jwb3JhdGlvbjEl
-// SIG // MCMGA1UECxMcTWljcm9zb2Z0IEFtZXJpY2EgT3BlcmF0
-// SIG // aW9uczEnMCUGA1UECxMeblNoaWVsZCBUU1MgRVNOOkEw
-// SIG // MDAtMDVFMC1EOTQ3MSUwIwYDVQQDExxNaWNyb3NvZnQg
-// SIG // VGltZS1TdGFtcCBTZXJ2aWNlMIICIjANBgkqhkiG9w0B
-// SIG // AQEFAAOCAg8AMIICCgKCAgEA3zJX59+X7zNFwFEpiOao
-// SIG // htFMT4tuR5EsgYM5N86WDt9dXdThBBc9EKQCtt7NXSRa
-// SIG // 4weYA/kjMOc+hMMQuAq11PSmkOFjR6h64Vn7aYKNzJCX
-// SIG // sfX65jvTJXVH41BuerCFumFRemI1/va09SQ3Qgx26OZ2
-// SIG // YmrDIoBimsBm9h6g+/5I0Ueu0b1Ye0OJ2rQFbuOmX+TC
-// SIG // 74kdMTeXDRttMcAcILbWmBJOV5VC2gR+Tp189nlqCMfk
-// SIG // owzuwbeQbgAVmPEr5kUHwck9nKaRM047f37NMaeAdXAB
-// SIG // 1Q8JRsGbr/UX3N53XcYBaygPDFh2yRdPmllFGCAUfBct
-// SIG // oLhVR6B3js3uyLG8r0a2sf//N4GKqPHOWf9f7u5Iy3E4
-// SIG // IqYsmfFxEbCxBAieaMdQQS2OgI5m4AMw3TZdi3no/qiG
-// SIG // 3Qa/0lLyhAvl8OMYxTDk1FVilnprdpIcJ3VHwTUezc7t
-// SIG // c/S9Fr+0wGP7/r+qTYQHqITzAhSXPmpOrjA/Eyks1hY8
-// SIG // OWgA5Jg/ZhrgvOsr0ipCCODGss6FHbHk9J35PGNHz47X
-// SIG // cNlp3o5esyx7mF8HA2rtjtQzLqInnTVY0xd+1BJmE/qM
-// SIG // QvzhV1BjwxELfbc4G0fYPBy7VHxHljrDhA+cYG+a8Mn7
-// SIG // yLLOx/3HRxXCIiHM80IGJ7C8hBnqaGQ5CoUjEeXggein
-// SIG // L/0CAwEAAaOCAUkwggFFMB0GA1UdDgQWBBQz4QGFktKA
-// SIG // PpTrSE34ybcpdJJ0UTAfBgNVHSMEGDAWgBSfpxVdAF5i
-// SIG // XYP05dJlpxtTNRnpcjBfBgNVHR8EWDBWMFSgUqBQhk5o
-// SIG // dHRwOi8vd3d3Lm1pY3Jvc29mdC5jb20vcGtpb3BzL2Ny
-// SIG // bC9NaWNyb3NvZnQlMjBUaW1lLVN0YW1wJTIwUENBJTIw
-// SIG // MjAxMCgxKS5jcmwwbAYIKwYBBQUHAQEEYDBeMFwGCCsG
-// SIG // AQUFBzAChlBodHRwOi8vd3d3Lm1pY3Jvc29mdC5jb20v
-// SIG // cGtpb3BzL2NlcnRzL01pY3Jvc29mdCUyMFRpbWUtU3Rh
-// SIG // bXAlMjBQQ0ElMjAyMDEwKDEpLmNydDAMBgNVHRMBAf8E
-// SIG // AjAAMBYGA1UdJQEB/wQMMAoGCCsGAQUFBwMIMA4GA1Ud
-// SIG // DwEB/wQEAwIHgDANBgkqhkiG9w0BAQsFAAOCAgEAl4fn
-// SIG // JApGWgNOkjVvqsbUvYB0KeMexvoHYpJ4CiLRK/KLZFyK
-// SIG // 5lj2K2q0VgZWPdZahoopR8iJWd4jQVG2jRJmigBjGeWH
-// SIG // EuyGVCj2qtY1NJrMpfvKINLfQv2duvmrcd77IR6xULko
-// SIG // MEx2Vac7+5PAmJwWKMXYSNbhoah+feZqi77TLMRDf9bK
-// SIG // O1Pm91Oiwq8ubsMHM+fo/Do9BlF92/omYPgLNMUzek9E
-// SIG // GvATXnPy8HMqmDRGjJFtlQCq5ob1h/Dgg03F4DjZ5wAU
-// SIG // BwX1yv3ywGxxRktVzTra+tv4mhwRgJKwhpegYvD38LOn
-// SIG // 7PsPrBPa94V/VYNILETKB0bjGol7KxphrLmJy59wME4L
-// SIG // jGrcPUfFObybVkpbtQhTuT9CxL0EIjGddrEErEAJDQ07
-// SIG // Pa041TY4yFIKGelzzMZXDyA3I8cPG33m+MuMAMTNkUaF
-// SIG // nMaZMfuiCH9i/m+4Cx7QcVwlieWzFu1sFAti5bW7q1MA
-// SIG // b9EoI6Q7WxKsP7g4FgXqwk/mbctzXPeu4hmkI8mEB+h/
-// SIG // 4fV3PLJptp+lY8kkcdrMJ1t4a+kMet1P8WPRy+hTYaxo
-// SIG // hRA+2USq58L717zFUFCBJAexlBHjeoXmPIBy7dIy1d8s
-// SIG // w4kAPEfKeWBoBgFbfTBMIACTWNYh7x//L84SUmRTZB/L
-// SIG // L0c7Tv4t07yq42/GccIwggdxMIIFWaADAgECAhMzAAAA
-// SIG // FcXna54Cm0mZAAAAAAAVMA0GCSqGSIb3DQEBCwUAMIGI
-// SIG // MQswCQYDVQQGEwJVUzETMBEGA1UECBMKV2FzaGluZ3Rv
-// SIG // bjEQMA4GA1UEBxMHUmVkbW9uZDEeMBwGA1UEChMVTWlj
-// SIG // cm9zb2Z0IENvcnBvcmF0aW9uMTIwMAYDVQQDEylNaWNy
-// SIG // b3NvZnQgUm9vdCBDZXJ0aWZpY2F0ZSBBdXRob3JpdHkg
-// SIG // MjAxMDAeFw0yMTA5MzAxODIyMjVaFw0zMDA5MzAxODMy
-// SIG // MjVaMHwxCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpXYXNo
-// SIG // aW5ndG9uMRAwDgYDVQQHEwdSZWRtb25kMR4wHAYDVQQK
-// SIG // ExVNaWNyb3NvZnQgQ29ycG9yYXRpb24xJjAkBgNVBAMT
-// SIG // HU1pY3Jvc29mdCBUaW1lLVN0YW1wIFBDQSAyMDEwMIIC
-// SIG // IjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEA5OGm
-// SIG // TOe0ciELeaLL1yR5vQ7VgtP97pwHB9KpbE51yMo1V/YB
-// SIG // f2xK4OK9uT4XYDP/XE/HZveVU3Fa4n5KWv64NmeFRiMM
-// SIG // tY0Tz3cywBAY6GB9alKDRLemjkZrBxTzxXb1hlDcwUTI
-// SIG // cVxRMTegCjhuje3XD9gmU3w5YQJ6xKr9cmmvHaus9ja+
-// SIG // NSZk2pg7uhp7M62AW36MEBydUv626GIl3GoPz130/o5T
-// SIG // z9bshVZN7928jaTjkY+yOSxRnOlwaQ3KNi1wjjHINSi9
-// SIG // 47SHJMPgyY9+tVSP3PoFVZhtaDuaRr3tpK56KTesy+uD
-// SIG // RedGbsoy1cCGMFxPLOJiss254o2I5JasAUq7vnGpF1tn
-// SIG // YN74kpEeHT39IM9zfUGaRnXNxF803RKJ1v2lIH1+/Nme
-// SIG // Rd+2ci/bfV+AutuqfjbsNkz2K26oElHovwUDo9Fzpk03
-// SIG // dJQcNIIP8BDyt0cY7afomXw/TNuvXsLz1dhzPUNOwTM5
-// SIG // TI4CvEJoLhDqhFFG4tG9ahhaYQFzymeiXtcodgLiMxhy
-// SIG // 16cg8ML6EgrXY28MyTZki1ugpoMhXV8wdJGUlNi5UPkL
-// SIG // iWHzNgY1GIRH29wb0f2y1BzFa/ZcUlFdEtsluq9QBXps
-// SIG // xREdcu+N+VLEhReTwDwV2xo3xwgVGD94q0W29R6HXtqP
-// SIG // nhZyacaue7e3PmriLq0CAwEAAaOCAd0wggHZMBIGCSsG
-// SIG // AQQBgjcVAQQFAgMBAAEwIwYJKwYBBAGCNxUCBBYEFCqn
-// SIG // Uv5kxJq+gpE8RjUpzxD/LwTuMB0GA1UdDgQWBBSfpxVd
-// SIG // AF5iXYP05dJlpxtTNRnpcjBcBgNVHSAEVTBTMFEGDCsG
-// SIG // AQQBgjdMg30BATBBMD8GCCsGAQUFBwIBFjNodHRwOi8v
-// SIG // d3d3Lm1pY3Jvc29mdC5jb20vcGtpb3BzL0RvY3MvUmVw
-// SIG // b3NpdG9yeS5odG0wEwYDVR0lBAwwCgYIKwYBBQUHAwgw
-// SIG // GQYJKwYBBAGCNxQCBAweCgBTAHUAYgBDAEEwCwYDVR0P
-// SIG // BAQDAgGGMA8GA1UdEwEB/wQFMAMBAf8wHwYDVR0jBBgw
-// SIG // FoAU1fZWy4/oolxiaNE9lJBb186aGMQwVgYDVR0fBE8w
-// SIG // TTBLoEmgR4ZFaHR0cDovL2NybC5taWNyb3NvZnQuY29t
-// SIG // L3BraS9jcmwvcHJvZHVjdHMvTWljUm9vQ2VyQXV0XzIw
-// SIG // MTAtMDYtMjMuY3JsMFoGCCsGAQUFBwEBBE4wTDBKBggr
-// SIG // BgEFBQcwAoY+aHR0cDovL3d3dy5taWNyb3NvZnQuY29t
-// SIG // L3BraS9jZXJ0cy9NaWNSb29DZXJBdXRfMjAxMC0wNi0y
-// SIG // My5jcnQwDQYJKoZIhvcNAQELBQADggIBAJ1VffwqreEs
-// SIG // H2cBMSRb4Z5yS/ypb+pcFLY+TkdkeLEGk5c9MTO1OdfC
-// SIG // cTY/2mRsfNB1OW27DzHkwo/7bNGhlBgi7ulmZzpTTd2Y
-// SIG // urYeeNg2LpypglYAA7AFvonoaeC6Ce5732pvvinLbtg/
-// SIG // SHUB2RjebYIM9W0jVOR4U3UkV7ndn/OOPcbzaN9l9qRW
-// SIG // qveVtihVJ9AkvUCgvxm2EhIRXT0n4ECWOKz3+SmJw7wX
-// SIG // sFSFQrP8DJ6LGYnn8AtqgcKBGUIZUnWKNsIdw2FzLixr
-// SIG // e24/LAl4FOmRsqlb30mjdAy87JGA0j3mSj5mO0+7hvoy
-// SIG // GtmW9I/2kQH2zsZ0/fZMcm8Qq3UwxTSwethQ/gpY3UA8
-// SIG // x1RtnWN0SCyxTkctwRQEcb9k+SS+c23Kjgm9swFXSVRk
-// SIG // 2XPXfx5bRAGOWhmRaw2fpCjcZxkoJLo4S5pu+yFUa2pF
-// SIG // EUep8beuyOiJXk+d0tBMdrVXVAmxaQFEfnyhYWxz/gq7
-// SIG // 7EFmPWn9y8FBSX5+k77L+DvktxW/tM4+pTFRhLy/AsGC
-// SIG // onsXHRWJjXD+57XQKBqJC4822rpM+Zv/Cuk0+CQ1Zyvg
-// SIG // DbjmjJnW4SLq8CdCPSWU5nR0W2rRnj7tfqAxM328y+l7
-// SIG // vzhwRNGQ8cirOoo6CGJ/2XBjU02N7oJtpQUQwXEGahC0
-// SIG // HVUzWLOhcGbyoYIDTTCCAjUCAQEwgfmhgdGkgc4wgcsx
-// SIG // CzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpXYXNoaW5ndG9u
-// SIG // MRAwDgYDVQQHEwdSZWRtb25kMR4wHAYDVQQKExVNaWNy
-// SIG // b3NvZnQgQ29ycG9yYXRpb24xJTAjBgNVBAsTHE1pY3Jv
-// SIG // c29mdCBBbWVyaWNhIE9wZXJhdGlvbnMxJzAlBgNVBAsT
-// SIG // Hm5TaGllbGQgVFNTIEVTTjpBMDAwLTA1RTAtRDk0NzEl
-// SIG // MCMGA1UEAxMcTWljcm9zb2Z0IFRpbWUtU3RhbXAgU2Vy
-// SIG // dmljZaIjCgEBMAcGBSsOAwIaAxUAvLfIU/CilF/dZVOR
-// SIG // akT/Qn7vTImggYMwgYCkfjB8MQswCQYDVQQGEwJVUzET
-// SIG // MBEGA1UECBMKV2FzaGluZ3RvbjEQMA4GA1UEBxMHUmVk
-// SIG // bW9uZDEeMBwGA1UEChMVTWljcm9zb2Z0IENvcnBvcmF0
-// SIG // aW9uMSYwJAYDVQQDEx1NaWNyb3NvZnQgVGltZS1TdGFt
-// SIG // cCBQQ0EgMjAxMDANBgkqhkiG9w0BAQsFAAIFAOkRFtcw
-// SIG // IhgPMjAyMzExMjkwMTQ4MDdaGA8yMDIzMTEzMDAxNDgw
-// SIG // N1owdDA6BgorBgEEAYRZCgQBMSwwKjAKAgUA6REW1wIB
-// SIG // ADAHAgEAAgIVNTAHAgEAAgITvDAKAgUA6RJoVwIBADA2
-// SIG // BgorBgEEAYRZCgQCMSgwJjAMBgorBgEEAYRZCgMCoAow
-// SIG // CAIBAAIDB6EgoQowCAIBAAIDAYagMA0GCSqGSIb3DQEB
-// SIG // CwUAA4IBAQBDRkay9YCY6kJnV49gl7qHdAW9dEHIdQJ7
-// SIG // 8yScGB6ENXSC13GxUFyytoxGBQuLs+Do9DZQSOP/HfOq
-// SIG // w2K4SIOd4ewrz11vl9nl2lgufCXAWW81VM4r0tFNbjA0
-// SIG // yD7gRQRBuEGiAqS/Vfa7ECvQFT3fRsQzK5X4u755LI0e
-// SIG // +XskhL+1sOYwu5DPyUzbMKWilqtTRJBmQr/o7Cy5WqQj
-// SIG // kLyW2jR4B8HEoKwozp/j8/RViWSSjRpwa6JVyglX6eVR
-// SIG // Qwd9K9+7ry7q6q+UEB89aV7eZw+BtGsnJXK8QMpXhOm9
-// SIG // 2ksvWCSb6T56pCKmyOh5qljtvtwH0Vcl3zqxoGLk3YPG
-// SIG // MYIEDTCCBAkCAQEwgZMwfDELMAkGA1UEBhMCVVMxEzAR
-// SIG // BgNVBAgTCldhc2hpbmd0b24xEDAOBgNVBAcTB1JlZG1v
-// SIG // bmQxHjAcBgNVBAoTFU1pY3Jvc29mdCBDb3Jwb3JhdGlv
-// SIG // bjEmMCQGA1UEAxMdTWljcm9zb2Z0IFRpbWUtU3RhbXAg
-// SIG // UENBIDIwMTACEzMAAAHQdwiq76MXxt0AAQAAAdAwDQYJ
-// SIG // YIZIAWUDBAIBBQCgggFKMBoGCSqGSIb3DQEJAzENBgsq
-// SIG // hkiG9w0BCRABBDAvBgkqhkiG9w0BCQQxIgQgsygGDo1N
-// SIG // QTgwixwnk3X7lr4fEQUSawZLdl+M2Eq4GN4wgfoGCyqG
-// SIG // SIb3DQEJEAIvMYHqMIHnMIHkMIG9BCAIlUAGX7TT/zHd
-// SIG // RNmMPnwV2vcOn45k2eVgHq600j8J1zCBmDCBgKR+MHwx
-// SIG // CzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpXYXNoaW5ndG9u
-// SIG // MRAwDgYDVQQHEwdSZWRtb25kMR4wHAYDVQQKExVNaWNy
-// SIG // b3NvZnQgQ29ycG9yYXRpb24xJjAkBgNVBAMTHU1pY3Jv
-// SIG // c29mdCBUaW1lLVN0YW1wIFBDQSAyMDEwAhMzAAAB0HcI
-// SIG // qu+jF8bdAAEAAAHQMCIEIJIeQdfA4XjI5/3kM0OGSarc
-// SIG // drYw3rRohew8uLY7gBZSMA0GCSqGSIb3DQEBCwUABIIC
-// SIG // AEB1eCPx7oSkWVD/gJDRN3f6QS/1B4Cg6YJ3wuB6H3si
-// SIG // 0G6esnx2UWYfPxhqmvqnebeRPY9yHvAuMNhEqOa0z1xP
-// SIG // /ezMKbdyZZ1KSnpf+G30pg7OvBkxoBT+y0w4TuXct76M
-// SIG // R8AhK40oE6Lcom5sbvRvimzKlh3vgQkZWknZ5zqUsidp
-// SIG // O8+TBvf9vQG1StTehatPSf2sH/bAwcw20gRij6ozBD2D
-// SIG // l7oi0W5UhaO5GrsdLe14Y8POi2aqY+fPZlRtM5ocAJ2a
-// SIG // nfyCChsYbzcM1+lgBEJMu2qSsERBeq9lbVFCJ7NMwH/N
-// SIG // a/ztGKzpDIJz81dhqX/GgGmFzEGc1/1jMkLLbWYoKgaa
-// SIG // e6ZIAbgkmW4ezZ6hU2GZhcetbId1rJMmtaZw/yos3goK
-// SIG // Shrmfk/OBTUMs9wh2NqrSVDD8YHPPKO9Uh9igKw8TXXD
-// SIG // Ld2LM20WU7t52keJNmptgb6//7mOc2f4jhX6gpQTYAmb
-// SIG // iBco7ZsIPLnBEXeo3tqZY3x/9eJ3yWiXwOreceKo0xMN
-// SIG // Om+ijo4ghC9Ud0aY8hTLm6NrmmbwR5KjtFBMRs0+jNIP
-// SIG // Asg7HDJ2NpLpA08AG+1XOSKghGxm+UQMbuNFMeLlK+QX
-// SIG // 55chb2/UprBeGk83G+GHOM7Hr4fuUN1JAUM3zwt3GpXo
-// SIG // 0BNZKjbAXaYgx1eeh6dNirnW
-// SIG // End signature block
-
 
 /***/ }),
 
@@ -5816,7 +5021,8 @@ exports.PaginatedReportDatasetBindingValidator = PaginatedReportDatasetBindingVa
 /*!****************************************************!*\
   !*** ./node_modules/powerbi-router/dist/router.js ***!
   \****************************************************/
-/***/ (function(module) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 /*! powerbi-router v0.1.5 | (c) 2016 Microsoft Corporation MIT */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -5829,7 +5035,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	var installedModules = {};
 /******/
 /******/ 	// The require function
-/******/ 	function __nested_webpack_require_617__(moduleId) {
+/******/ 	function __webpack_require__(moduleId) {
 /******/
 /******/ 		// Check if module is in cache
 /******/ 		if(installedModules[moduleId])
@@ -5843,7 +5049,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 		};
 /******/
 /******/ 		// Execute the module function
-/******/ 		modules[moduleId].call(module.exports, module, module.exports, __nested_webpack_require_617__);
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
 /******/
 /******/ 		// Flag the module as loaded
 /******/ 		module.loaded = true;
@@ -5854,24 +5060,24 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__nested_webpack_require_617__.m = modules;
+/******/ 	__webpack_require__.m = modules;
 /******/
 /******/ 	// expose the module cache
-/******/ 	__nested_webpack_require_617__.c = installedModules;
+/******/ 	__webpack_require__.c = installedModules;
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__nested_webpack_require_617__.p = "";
+/******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __nested_webpack_require_617__(0);
+/******/ 	return __webpack_require__(0);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ function(module, exports, __nested_webpack_require_1897__) {
+/***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var RouteRecognizer = __nested_webpack_require_1897__(1);
+	var RouteRecognizer = __webpack_require__(1);
 	var Router = (function () {
 	    function Router(handlers) {
 	        this.handlers = handlers;
@@ -5967,7 +5173,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 1 */
-/***/ function(module, exports, __nested_webpack_require_6218__) {
+/***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(module) {(function() {
 	    "use strict";
@@ -6591,8 +5797,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var $$route$recognizer$$default = $$route$recognizer$$RouteRecognizer;
 	
 	    /* global define:true module:true window: true */
-	    if ( true && __nested_webpack_require_6218__(3)['amd']) {
-	      !(__WEBPACK_AMD_DEFINE_RESULT__ = function() { return $$route$recognizer$$default; }.call(exports, __nested_webpack_require_6218__, exports, module), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	    if ( true && __webpack_require__(3)['amd']) {
+	      !(__WEBPACK_AMD_DEFINE_RESULT__ = function() { return $$route$recognizer$$default; }.call(exports, __webpack_require__, exports, module), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 	    } else if (typeof module !== 'undefined' && module['exports']) {
 	      module['exports'] = $$route$recognizer$$default;
 	    } else if (typeof this !== 'undefined') {
@@ -6601,7 +5807,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}).call(this);
 	
 	//# sourceMappingURL=route-recognizer.js.map
-	/* WEBPACK VAR INJECTION */}.call(exports, __nested_webpack_require_6218__(2)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)(module)))
 
 /***/ },
 /* 2 */
@@ -6634,11 +5840,317 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ }),
 
+/***/ "./node_modules/window-post-message-proxy/dist/windowPostMessageProxy.js":
+/*!*******************************************************************************!*\
+  !*** ./node_modules/window-post-message-proxy/dist/windowPostMessageProxy.js ***!
+  \*******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*! window-post-message-proxy v0.2.6 | (c) 2016 Microsoft Corporation MIT */
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(true)
+		module.exports = factory();
+	else {}
+})(this, function() {
+return /******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId])
+/******/ 			return installedModules[moduleId].exports;
+/******/
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			exports: {},
+/******/ 			id: moduleId,
+/******/ 			loaded: false
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.loaded = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(0);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, exports) {
+
+	"use strict";
+	var WindowPostMessageProxy = (function () {
+	    function WindowPostMessageProxy(options) {
+	        var _this = this;
+	        if (options === void 0) { options = {
+	            processTrackingProperties: {
+	                addTrackingProperties: WindowPostMessageProxy.defaultAddTrackingProperties,
+	                getTrackingProperties: WindowPostMessageProxy.defaultGetTrackingProperties
+	            },
+	            isErrorMessage: WindowPostMessageProxy.defaultIsErrorMessage,
+	            receiveWindow: window,
+	            name: WindowPostMessageProxy.createRandomString()
+	        }; }
+	        this.pendingRequestPromises = {};
+	        // save options with defaults
+	        this.addTrackingProperties = (options.processTrackingProperties && options.processTrackingProperties.addTrackingProperties) || WindowPostMessageProxy.defaultAddTrackingProperties;
+	        this.getTrackingProperties = (options.processTrackingProperties && options.processTrackingProperties.getTrackingProperties) || WindowPostMessageProxy.defaultGetTrackingProperties;
+	        this.isErrorMessage = options.isErrorMessage || WindowPostMessageProxy.defaultIsErrorMessage;
+	        this.receiveWindow = options.receiveWindow || window;
+	        this.name = options.name || WindowPostMessageProxy.createRandomString();
+	        this.logMessages = options.logMessages || false;
+	        this.eventSourceOverrideWindow = options.eventSourceOverrideWindow;
+	        this.suppressWarnings = options.suppressWarnings || false;
+	        if (this.logMessages) {
+	            console.log("new WindowPostMessageProxy created with name: " + this.name + " receiving on window: " + this.receiveWindow.document.title);
+	        }
+	        // Initialize
+	        this.handlers = [];
+	        this.windowMessageHandler = function (event) { return _this.onMessageReceived(event); };
+	        this.start();
+	    }
+	    // Static
+	    WindowPostMessageProxy.defaultAddTrackingProperties = function (message, trackingProperties) {
+	        message[WindowPostMessageProxy.messagePropertyName] = trackingProperties;
+	        return message;
+	    };
+	    WindowPostMessageProxy.defaultGetTrackingProperties = function (message) {
+	        return message[WindowPostMessageProxy.messagePropertyName];
+	    };
+	    WindowPostMessageProxy.defaultIsErrorMessage = function (message) {
+	        return !!message.error;
+	    };
+	    /**
+	     * Utility to create a deferred object.
+	     */
+	    // TODO: Look to use RSVP library instead of doing this manually.
+	    // From what I searched RSVP would work better because it has .finally and .deferred; however, it doesn't have Typings information. 
+	    WindowPostMessageProxy.createDeferred = function () {
+	        var deferred = {
+	            resolve: null,
+	            reject: null,
+	            promise: null
+	        };
+	        var promise = new Promise(function (resolve, reject) {
+	            deferred.resolve = resolve;
+	            deferred.reject = reject;
+	        });
+	        deferred.promise = promise;
+	        return deferred;
+	    };
+	    /**
+	     * Utility to generate random sequence of characters used as tracking id for promises.
+	     */
+	    WindowPostMessageProxy.createRandomString = function () {
+	        // window.msCrypto for IE
+	        var cryptoObj = window.crypto || window.msCrypto;
+	        var randomValueArray = new Uint32Array(1);
+	        cryptoObj.getRandomValues(randomValueArray);
+	        return randomValueArray[0].toString(36).substring(1);
+	    };
+	    /**
+	     * Adds handler.
+	     * If the first handler whose test method returns true will handle the message and provide a response.
+	     */
+	    WindowPostMessageProxy.prototype.addHandler = function (handler) {
+	        this.handlers.push(handler);
+	    };
+	    /**
+	     * Removes handler.
+	     * The reference must match the original object that was provided when adding the handler.
+	     */
+	    WindowPostMessageProxy.prototype.removeHandler = function (handler) {
+	        var handlerIndex = this.handlers.indexOf(handler);
+	        if (handlerIndex === -1) {
+	            throw new Error("You attempted to remove a handler but no matching handler was found.");
+	        }
+	        this.handlers.splice(handlerIndex, 1);
+	    };
+	    /**
+	     * Start listening to message events.
+	     */
+	    WindowPostMessageProxy.prototype.start = function () {
+	        this.receiveWindow.addEventListener('message', this.windowMessageHandler);
+	    };
+	    /**
+	     * Stops listening to message events.
+	     */
+	    WindowPostMessageProxy.prototype.stop = function () {
+	        this.receiveWindow.removeEventListener('message', this.windowMessageHandler);
+	    };
+	    /**
+	     * Post message to target window with tracking properties added and save deferred object referenced by tracking id.
+	     */
+	    WindowPostMessageProxy.prototype.postMessage = function (targetWindow, message) {
+	        // Add tracking properties to indicate message came from this proxy
+	        var trackingProperties = { id: WindowPostMessageProxy.createRandomString() };
+	        this.addTrackingProperties(message, trackingProperties);
+	        if (this.logMessages) {
+	            console.log(this.name + " Posting message:");
+	            console.log(JSON.stringify(message, null, '  '));
+	        }
+	        targetWindow.postMessage(message, "*");
+	        var deferred = WindowPostMessageProxy.createDeferred();
+	        this.pendingRequestPromises[trackingProperties.id] = deferred;
+	        return deferred.promise;
+	    };
+	    /**
+	     * Send response message to target window.
+	     * Response messages re-use tracking properties from a previous request message.
+	     */
+	    WindowPostMessageProxy.prototype.sendResponse = function (targetWindow, message, trackingProperties) {
+	        this.addTrackingProperties(message, trackingProperties);
+	        if (this.logMessages) {
+	            console.log(this.name + " Sending response:");
+	            console.log(JSON.stringify(message, null, '  '));
+	        }
+            var removeProxyMessage = JSON.parse(JSON.stringify(message));
+	        targetWindow.postMessage(removeProxyMessage, "*");
+	    };
+	    /**
+	     * Message handler.
+	     */
+	    WindowPostMessageProxy.prototype.onMessageReceived = function (event) {
+	        var _this = this;
+	        if (this.logMessages) {
+	            console.log(this.name + " Received message:");
+	            console.log("type: " + event.type);
+	            console.log(JSON.stringify(event.data, null, '  '));
+	        }
+	        var sendingWindow = this.eventSourceOverrideWindow || event.source;
+	        var message = event.data;
+	        if (typeof message !== "object") {
+	            if (!this.suppressWarnings) {
+	                console.warn("Proxy(" + this.name + "): Received message that was not an object. Discarding message");
+	            }
+	            return;
+	        }
+	        var trackingProperties;
+	        try {
+	            trackingProperties = this.getTrackingProperties(message);
+	        }
+	        catch (e) {
+	            if (!this.suppressWarnings) {
+	                console.warn("Proxy(" + this.name + "): Error occurred when attempting to get tracking properties from incoming message:", JSON.stringify(message, null, '  '), "Error: ", e);
+	            }
+	        }
+	        var deferred;
+	        if (trackingProperties) {
+	            deferred = this.pendingRequestPromises[trackingProperties.id];
+	        }
+	        // If message does not have a known ID, treat it as a request
+	        // Otherwise, treat message as response
+	        if (!deferred) {
+	            var handled = this.handlers.some(function (handler) {
+	                var canMessageBeHandled = false;
+	                try {
+	                    canMessageBeHandled = handler.test(message);
+	                }
+	                catch (e) {
+	                    if (!_this.suppressWarnings) {
+	                        console.warn("Proxy(" + _this.name + "): Error occurred when handler was testing incoming message:", JSON.stringify(message, null, '  '), "Error: ", e);
+	                    }
+	                }
+	                if (canMessageBeHandled) {
+	                    var responseMessagePromise = void 0;
+	                    try {
+	                        responseMessagePromise = Promise.resolve(handler.handle(message));
+	                    }
+	                    catch (e) {
+	                        if (!_this.suppressWarnings) {
+	                            console.warn("Proxy(" + _this.name + "): Error occurred when handler was processing incoming message:", JSON.stringify(message, null, '  '), "Error: ", e);
+	                        }
+	                        responseMessagePromise = Promise.resolve();
+	                    }
+	                    responseMessagePromise
+	                        .then(function (responseMessage) {
+	                        if (!responseMessage) {
+	                            var warningMessage = "Handler for message: " + JSON.stringify(message, null, '  ') + " did not return a response message. The default response message will be returned instead.";
+	                            if (!_this.suppressWarnings) {
+	                                console.warn("Proxy(" + _this.name + "): " + warningMessage);
+	                            }
+	                            responseMessage = {
+	                                warning: warningMessage
+	                            };
+	                        }
+	                        _this.sendResponse(sendingWindow, responseMessage, trackingProperties);
+	                    });
+	                    return true;
+	                }
+	            });
+	            /**
+	             * TODO: Consider returning an error message if nothing handled the message.
+	             * In the case of the Report receiving messages all of them should be handled,
+	             * however, in the case of the SDK receiving messages it's likely it won't register handlers
+	             * for all events. Perhaps make this an option at construction time.
+	             */
+	            if (!handled && !this.suppressWarnings) {
+	                console.warn("Proxy(" + this.name + ") did not handle message. Handlers: " + this.handlers.length + "  Message: " + JSON.stringify(message, null, '') + ".");
+	            }
+	        }
+	        else {
+	            /**
+	             * If error message reject promise,
+	             * Otherwise, resolve promise
+	             */
+	            var isErrorMessage = true;
+	            try {
+	                isErrorMessage = this.isErrorMessage(message);
+	            }
+	            catch (e) {
+	                console.warn("Proxy(" + this.name + ") Error occurred when trying to determine if message is consider an error response. Message: ", JSON.stringify(message, null, ''), 'Error: ', e);
+	            }
+	            if (isErrorMessage) {
+	                deferred.reject(message);
+	            }
+	            else {
+	                deferred.resolve(message);
+	            }
+	            // TODO: Move to .finally clause up where promise is created for better maitenance like original proxy code.
+	            delete this.pendingRequestPromises[trackingProperties.id];
+	        }
+	    };
+	    WindowPostMessageProxy.messagePropertyName = "windowPostMessageProxy";
+	    return WindowPostMessageProxy;
+	}());
+	exports.WindowPostMessageProxy = WindowPostMessageProxy;
+
+
+/***/ })
+/******/ ])
+});
+;
+//# sourceMappingURL=windowPostMessageProxy.js.map
+
+/***/ }),
+
 /***/ "./src/FilterBuilders/advancedFilterBuilder.ts":
 /*!*****************************************************!*\
   !*** ./src/FilterBuilders/advancedFilterBuilder.ts ***!
   \*****************************************************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -6657,7 +6169,7 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-Object.defineProperty(exports, "__esModule", ({ value: true }));
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.AdvancedFilterBuilder = void 0;
 var powerbi_models_1 = __webpack_require__(/*! powerbi-models */ "./node_modules/powerbi-models/dist/models.js");
 var filterBuilder_1 = __webpack_require__(/*! ./filterBuilder */ "./src/FilterBuilders/filterBuilder.ts");
@@ -6747,7 +6259,8 @@ exports.AdvancedFilterBuilder = AdvancedFilterBuilder;
 /*!**************************************************!*\
   !*** ./src/FilterBuilders/basicFilterBuilder.ts ***!
   \**************************************************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -6766,7 +6279,7 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-Object.defineProperty(exports, "__esModule", ({ value: true }));
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.BasicFilterBuilder = void 0;
 var powerbi_models_1 = __webpack_require__(/*! powerbi-models */ "./node_modules/powerbi-models/dist/models.js");
 var filterBuilder_1 = __webpack_require__(/*! ./filterBuilder */ "./src/FilterBuilders/filterBuilder.ts");
@@ -6870,11 +6383,12 @@ exports.BasicFilterBuilder = BasicFilterBuilder;
 /*!*********************************************!*\
   !*** ./src/FilterBuilders/filterBuilder.ts ***!
   \*********************************************/
-/***/ ((__unused_webpack_module, exports) => {
+/*! no static exports found */
+/***/ (function(module, exports) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
-Object.defineProperty(exports, "__esModule", ({ value: true }));
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.FilterBuilder = void 0;
 /**
  * Generic filter builder for BasicFilter, AdvancedFilter, RelativeDate, RelativeTime and TopN
@@ -6978,22 +6492,23 @@ exports.FilterBuilder = FilterBuilder;
 /*!*************************************!*\
   !*** ./src/FilterBuilders/index.ts ***!
   \*************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
-Object.defineProperty(exports, "__esModule", ({ value: true }));
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.RelativeTimeFilterBuilder = exports.RelativeDateFilterBuilder = exports.TopNFilterBuilder = exports.AdvancedFilterBuilder = exports.BasicFilterBuilder = void 0;
 var basicFilterBuilder_1 = __webpack_require__(/*! ./basicFilterBuilder */ "./src/FilterBuilders/basicFilterBuilder.ts");
-Object.defineProperty(exports, "BasicFilterBuilder", ({ enumerable: true, get: function () { return basicFilterBuilder_1.BasicFilterBuilder; } }));
+Object.defineProperty(exports, "BasicFilterBuilder", { enumerable: true, get: function () { return basicFilterBuilder_1.BasicFilterBuilder; } });
 var advancedFilterBuilder_1 = __webpack_require__(/*! ./advancedFilterBuilder */ "./src/FilterBuilders/advancedFilterBuilder.ts");
-Object.defineProperty(exports, "AdvancedFilterBuilder", ({ enumerable: true, get: function () { return advancedFilterBuilder_1.AdvancedFilterBuilder; } }));
+Object.defineProperty(exports, "AdvancedFilterBuilder", { enumerable: true, get: function () { return advancedFilterBuilder_1.AdvancedFilterBuilder; } });
 var topNFilterBuilder_1 = __webpack_require__(/*! ./topNFilterBuilder */ "./src/FilterBuilders/topNFilterBuilder.ts");
-Object.defineProperty(exports, "TopNFilterBuilder", ({ enumerable: true, get: function () { return topNFilterBuilder_1.TopNFilterBuilder; } }));
+Object.defineProperty(exports, "TopNFilterBuilder", { enumerable: true, get: function () { return topNFilterBuilder_1.TopNFilterBuilder; } });
 var relativeDateFilterBuilder_1 = __webpack_require__(/*! ./relativeDateFilterBuilder */ "./src/FilterBuilders/relativeDateFilterBuilder.ts");
-Object.defineProperty(exports, "RelativeDateFilterBuilder", ({ enumerable: true, get: function () { return relativeDateFilterBuilder_1.RelativeDateFilterBuilder; } }));
+Object.defineProperty(exports, "RelativeDateFilterBuilder", { enumerable: true, get: function () { return relativeDateFilterBuilder_1.RelativeDateFilterBuilder; } });
 var relativeTimeFilterBuilder_1 = __webpack_require__(/*! ./relativeTimeFilterBuilder */ "./src/FilterBuilders/relativeTimeFilterBuilder.ts");
-Object.defineProperty(exports, "RelativeTimeFilterBuilder", ({ enumerable: true, get: function () { return relativeTimeFilterBuilder_1.RelativeTimeFilterBuilder; } }));
+Object.defineProperty(exports, "RelativeTimeFilterBuilder", { enumerable: true, get: function () { return relativeTimeFilterBuilder_1.RelativeTimeFilterBuilder; } });
 
 
 /***/ }),
@@ -7002,7 +6517,8 @@ Object.defineProperty(exports, "RelativeTimeFilterBuilder", ({ enumerable: true,
 /*!*********************************************************!*\
   !*** ./src/FilterBuilders/relativeDateFilterBuilder.ts ***!
   \*********************************************************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -7021,7 +6537,7 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-Object.defineProperty(exports, "__esModule", ({ value: true }));
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.RelativeDateFilterBuilder = void 0;
 var powerbi_models_1 = __webpack_require__(/*! powerbi-models */ "./node_modules/powerbi-models/dist/models.js");
 var filterBuilder_1 = __webpack_require__(/*! ./filterBuilder */ "./src/FilterBuilders/filterBuilder.ts");
@@ -7133,7 +6649,8 @@ exports.RelativeDateFilterBuilder = RelativeDateFilterBuilder;
 /*!*********************************************************!*\
   !*** ./src/FilterBuilders/relativeTimeFilterBuilder.ts ***!
   \*********************************************************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -7152,7 +6669,7 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-Object.defineProperty(exports, "__esModule", ({ value: true }));
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.RelativeTimeFilterBuilder = void 0;
 var powerbi_models_1 = __webpack_require__(/*! powerbi-models */ "./node_modules/powerbi-models/dist/models.js");
 var filterBuilder_1 = __webpack_require__(/*! ./filterBuilder */ "./src/FilterBuilders/filterBuilder.ts");
@@ -7247,7 +6764,8 @@ exports.RelativeTimeFilterBuilder = RelativeTimeFilterBuilder;
 /*!*************************************************!*\
   !*** ./src/FilterBuilders/topNFilterBuilder.ts ***!
   \*************************************************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -7266,7 +6784,7 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-Object.defineProperty(exports, "__esModule", ({ value: true }));
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.TopNFilterBuilder = void 0;
 var powerbi_models_1 = __webpack_require__(/*! powerbi-models */ "./node_modules/powerbi-models/dist/models.js");
 var filterBuilder_1 = __webpack_require__(/*! ./filterBuilder */ "./src/FilterBuilders/filterBuilder.ts");
@@ -7351,7 +6869,8 @@ exports.TopNFilterBuilder = TopNFilterBuilder;
 /*!*********************************!*\
   !*** ./src/bookmarksManager.ts ***!
   \*********************************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -7391,7 +6910,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-Object.defineProperty(exports, "__esModule", ({ value: true }));
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.BookmarksManager = void 0;
 var util_1 = __webpack_require__(/*! ./util */ "./src/util.ts");
 var errors_1 = __webpack_require__(/*! ./errors */ "./src/errors.ts");
@@ -7430,7 +6949,7 @@ var BookmarksManager = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if ((0, util_1.isRDLEmbed)(this.config.embedUrl)) {
+                        if (util_1.isRDLEmbed(this.config.embedUrl)) {
                             return [2 /*return*/, Promise.reject(errors_1.APINotSupportedForRDLError)];
                         }
                         _a.label = 1;
@@ -7464,7 +6983,7 @@ var BookmarksManager = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if ((0, util_1.isRDLEmbed)(this.config.embedUrl)) {
+                        if (util_1.isRDLEmbed(this.config.embedUrl)) {
                             return [2 /*return*/, Promise.reject(errors_1.APINotSupportedForRDLError)];
                         }
                         request = {
@@ -7500,7 +7019,7 @@ var BookmarksManager = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if ((0, util_1.isRDLEmbed)(this.config.embedUrl)) {
+                        if (util_1.isRDLEmbed(this.config.embedUrl)) {
                             return [2 /*return*/, Promise.reject(errors_1.APINotSupportedForRDLError)];
                         }
                         playBookmarkRequest = {
@@ -7535,7 +7054,7 @@ var BookmarksManager = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if ((0, util_1.isRDLEmbed)(this.config.embedUrl)) {
+                        if (util_1.isRDLEmbed(this.config.embedUrl)) {
                             return [2 /*return*/, Promise.reject(errors_1.APINotSupportedForRDLError)];
                         }
                         request = {
@@ -7572,7 +7091,7 @@ var BookmarksManager = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if ((0, util_1.isRDLEmbed)(this.config.embedUrl)) {
+                        if (util_1.isRDLEmbed(this.config.embedUrl)) {
                             return [2 /*return*/, Promise.reject(errors_1.APINotSupportedForRDLError)];
                         }
                         request = {
@@ -7602,17 +7121,18 @@ exports.BookmarksManager = BookmarksManager;
 /*!***********************!*\
   !*** ./src/config.ts ***!
   \***********************/
-/***/ ((__unused_webpack_module, exports) => {
+/*! no static exports found */
+/***/ (function(module, exports) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
-Object.defineProperty(exports, "__esModule", ({ value: true }));
+Object.defineProperty(exports, "__esModule", { value: true });
 /** @ignore */ /** */
 var config = {
-    version: '2.23.1',
+    version: '2.18.4',
     type: 'js'
 };
-exports["default"] = config;
+exports.default = config;
 
 
 /***/ }),
@@ -7621,7 +7141,8 @@ exports["default"] = config;
 /*!***********************!*\
   !*** ./src/create.ts ***!
   \***********************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -7676,7 +7197,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-Object.defineProperty(exports, "__esModule", ({ value: true }));
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.Create = void 0;
 var powerbi_models_1 = __webpack_require__(/*! powerbi-models */ "./node_modules/powerbi-models/dist/models.js");
 var embed_1 = __webpack_require__(/*! ./embed */ "./src/embed.ts");
@@ -7712,7 +7233,7 @@ var Create = /** @class */ (function (_super) {
      * Validate create report configuration.
      */
     Create.prototype.validate = function (config) {
-        return (0, powerbi_models_1.validateCreateReport)(config);
+        return powerbi_models_1.validateCreateReport(config);
     };
     /**
      * Handle config changes.
@@ -7780,51 +7301,6 @@ var Create = /** @class */ (function (_super) {
         }
         return datasetId;
     };
-    /**
-     * Sends create configuration data.
-     *
-     * ```javascript
-     * create ({
-     *   datasetId: '5dac7a4a-4452-46b3-99f6-a25915e0fe55',
-     *   accessToken: 'eyJ0eXA ... TaE2rTSbmg',
-     * ```
-     *
-     * @hidden
-     * @returns {Promise<void>}
-     */
-    Create.prototype.create = function () {
-        var _a;
-        return __awaiter(this, void 0, void 0, function () {
-            var errors, headers, response, response_1;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
-                    case 0:
-                        errors = (0, powerbi_models_1.validateCreateReport)(this.createConfig);
-                        if (errors) {
-                            throw errors;
-                        }
-                        _b.label = 1;
-                    case 1:
-                        _b.trys.push([1, 3, , 4]);
-                        headers = {
-                            uid: this.config.uniqueId,
-                            sdkSessionId: this.service.getSdkSessionId()
-                        };
-                        if (!!((_a = this.eventHooks) === null || _a === void 0 ? void 0 : _a.accessTokenProvider)) {
-                            headers.tokenProviderSupplied = true;
-                        }
-                        return [4 /*yield*/, this.service.hpm.post("/report/create", this.createConfig, headers, this.iframe.contentWindow)];
-                    case 2:
-                        response = _b.sent();
-                        return [2 /*return*/, response.body];
-                    case 3:
-                        response_1 = _b.sent();
-                        throw response_1.body;
-                    case 4: return [2 /*return*/];
-                }
-            });
-        });
-    };
     return Create;
 }(embed_1.Embed));
 exports.Create = Create;
@@ -7836,7 +7312,8 @@ exports.Create = Create;
 /*!**************************!*\
   !*** ./src/dashboard.ts ***!
   \**************************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -7855,7 +7332,7 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-Object.defineProperty(exports, "__esModule", ({ value: true }));
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.Dashboard = void 0;
 var powerbi_models_1 = __webpack_require__(/*! powerbi-models */ "./node_modules/powerbi-models/dist/models.js");
 var embed_1 = __webpack_require__(/*! ./embed */ "./src/embed.ts");
@@ -7912,7 +7389,7 @@ var Dashboard = /** @class */ (function (_super) {
         var config = this.config;
         var dashboardId = config.id || this.element.getAttribute(Dashboard.dashboardIdAttribute) || Dashboard.findIdFromEmbedUrl(config.embedUrl);
         if (typeof dashboardId !== 'string' || dashboardId.length === 0) {
-            throw new Error("Dashboard id is required, but it was not found. You must provide an id either as part of embed configuration or as attribute '".concat(Dashboard.dashboardIdAttribute, "'."));
+            throw new Error("Dashboard id is required, but it was not found. You must provide an id either as part of embed configuration or as attribute '" + Dashboard.dashboardIdAttribute + "'.");
         }
         return dashboardId;
     };
@@ -7923,7 +7400,7 @@ var Dashboard = /** @class */ (function (_super) {
      */
     Dashboard.prototype.validate = function (baseConfig) {
         var config = baseConfig;
-        var error = (0, powerbi_models_1.validateDashboardLoad)(config);
+        var error = powerbi_models_1.validateDashboardLoad(config);
         return error ? error : this.validatePageView(config.pageView);
     };
     /**
@@ -7975,7 +7452,8 @@ exports.Dashboard = Dashboard;
 /*!**********************!*\
   !*** ./src/embed.ts ***!
   \**********************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -8015,7 +7493,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-Object.defineProperty(exports, "__esModule", ({ value: true }));
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.Embed = void 0;
 var models = __webpack_require__(/*! powerbi-models */ "./node_modules/powerbi-models/dist/models.js");
 var sdkConfig = __webpack_require__(/*! ./config */ "./src/config.ts");
@@ -8042,9 +7520,10 @@ var Embed = /** @class */ (function () {
      * @hidden
      */
     function Embed(service, element, config, iframe, phasedRender, isBootstrap) {
+        var _a;
         /** @hidden */
         this.allowedEvents = [];
-        if ((0, util_1.autoAuthInEmbedUrl)(config.embedUrl)) {
+        if (util_1.autoAuthInEmbedUrl(config.embedUrl)) {
             throw new Error(errors_1.EmbedUrlNotSupported);
         }
         Array.prototype.push.apply(this.allowedEvents, Embed.allowedEvents);
@@ -8056,22 +7535,53 @@ var Embed = /** @class */ (function () {
         this.embedtype = config.type.toLowerCase();
         this.commands = [];
         this.groups = [];
+        var registerQueryCallback = !!((_a = config.eventHooks) === null || _a === void 0 ? void 0 : _a.applicationContextProvider);
+        delete config.eventHooks;
         this.populateConfig(config, isBootstrap);
-        if ((0, util_1.isCreate)(this.embedtype)) {
-            this.setIframe(false /* set EventListener to call create() on 'load' event*/, phasedRender, isBootstrap);
+        if (this.embedtype === 'create') {
+            this.setIframe(false /* set EventListener to call create() on 'load' event*/, phasedRender, isBootstrap, registerQueryCallback);
         }
         else {
-            this.setIframe(true /* set EventListener to call load() on 'load' event*/, phasedRender, isBootstrap);
+            this.setIframe(true /* set EventListener to call load() on 'load' event*/, phasedRender, isBootstrap, registerQueryCallback);
         }
     }
     /**
-     * Create is not supported by default
+     * Sends createReport configuration data.
+     *
+     * ```javascript
+     * createReport({
+     *   datasetId: '5dac7a4a-4452-46b3-99f6-a25915e0fe55',
+     *   accessToken: 'eyJ0eXA ... TaE2rTSbmg',
+     * ```
      *
      * @hidden
+     * @param {models.IReportCreateConfiguration} config
      * @returns {Promise<void>}
      */
-    Embed.prototype.create = function () {
-        throw new Error("no create support");
+    Embed.prototype.createReport = function (config) {
+        return __awaiter(this, void 0, void 0, function () {
+            var errors, response, response_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        errors = models.validateCreateReport(config);
+                        if (errors) {
+                            throw errors;
+                        }
+                        _a.label = 1;
+                    case 1:
+                        _a.trys.push([1, 3, , 4]);
+                        return [4 /*yield*/, this.service.hpm.post("/report/create", config, { uid: this.config.uniqueId, sdkSessionId: this.service.getSdkSessionId() }, this.iframe.contentWindow)];
+                    case 2:
+                        response = _a.sent();
+                        return [2 /*return*/, response.body];
+                    case 3:
+                        response_1 = _a.sent();
+                        throw response_1.body;
+                    case 4: return [2 /*return*/];
+                }
+            });
+        });
     };
     /**
      * Saves Report.
@@ -8080,7 +7590,7 @@ var Embed = /** @class */ (function () {
      */
     Embed.prototype.save = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var response, response_1;
+            var response, response_2;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -8090,8 +7600,8 @@ var Embed = /** @class */ (function () {
                         response = _a.sent();
                         return [2 /*return*/, response.body];
                     case 2:
-                        response_1 = _a.sent();
-                        throw response_1.body;
+                        response_2 = _a.sent();
+                        throw response_2.body;
                     case 3: return [2 /*return*/];
                 }
             });
@@ -8104,7 +7614,7 @@ var Embed = /** @class */ (function () {
      */
     Embed.prototype.saveAs = function (saveAsParameters) {
         return __awaiter(this, void 0, void 0, function () {
-            var response, response_2;
+            var response, response_3;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -8114,8 +7624,8 @@ var Embed = /** @class */ (function () {
                         response = _a.sent();
                         return [2 /*return*/, response.body];
                     case 2:
-                        response_2 = _a.sent();
-                        throw response_2.body;
+                        response_3 = _a.sent();
+                        throw response_3.body;
                     case 3: return [2 /*return*/];
                 }
             });
@@ -8136,7 +7646,7 @@ var Embed = /** @class */ (function () {
      */
     Embed.prototype.getCorrelationId = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var response, response_3;
+            var response, response_4;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -8146,8 +7656,8 @@ var Embed = /** @class */ (function () {
                         response = _a.sent();
                         return [2 /*return*/, response.body];
                     case 2:
-                        response_3 = _a.sent();
-                        throw response_3.body;
+                        response_4 = _a.sent();
+                        throw response_4.body;
                     case 3: return [2 /*return*/];
                 }
             });
@@ -8180,11 +7690,10 @@ var Embed = /** @class */ (function () {
      * @returns {Promise<void>}
      */
     Embed.prototype.load = function (phasedRender) {
-        var _a;
         return __awaiter(this, void 0, void 0, function () {
-            var path, headers, timeNow, response, response_4;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
+            var path, headers, timeNow, response, response_5;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
                     case 0:
                         if (!this.config.accessToken) {
                             console.debug("Power BI SDK iframe is loaded but powerbi.embed is not called yet.");
@@ -8201,25 +7710,22 @@ var Embed = /** @class */ (function () {
                             bootstrapped: this.config.bootstrapped,
                             sdkVersion: sdkConfig.default.version
                         };
-                        if (!!((_a = this.eventHooks) === null || _a === void 0 ? void 0 : _a.accessTokenProvider)) {
-                            headers.tokenProviderSupplied = true;
-                        }
                         timeNow = new Date();
-                        if (this.lastLoadRequest && (0, util_1.getTimeDiffInMilliseconds)(this.lastLoadRequest, timeNow) < 100) {
+                        if (this.lastLoadRequest && util_1.getTimeDiffInMilliseconds(this.lastLoadRequest, timeNow) < 100) {
                             console.debug("Power BI SDK sent more than two /report/load requests in the last 100ms interval.");
                             return [2 /*return*/];
                         }
                         this.lastLoadRequest = timeNow;
-                        _b.label = 1;
+                        _a.label = 1;
                     case 1:
-                        _b.trys.push([1, 3, , 4]);
+                        _a.trys.push([1, 3, , 4]);
                         return [4 /*yield*/, this.service.hpm.post(path, this.config, headers, this.iframe.contentWindow)];
                     case 2:
-                        response = _b.sent();
+                        response = _a.sent();
                         return [2 /*return*/, response.body];
                     case 3:
-                        response_4 = _b.sent();
-                        throw response_4.body;
+                        response_5 = _a.sent();
+                        throw response_5.body;
                     case 4: return [2 /*return*/];
                 }
             });
@@ -8250,7 +7756,7 @@ var Embed = /** @class */ (function () {
         var _this = this;
         var fakeEvent = { name: eventName, type: null, id: null, value: null };
         if (handler) {
-            (0, util_1.remove)(function (eventHandler) { return eventHandler.test(fakeEvent) && (eventHandler.handle === handler); }, this.eventHandlers);
+            util_1.remove(function (eventHandler) { return eventHandler.test(fakeEvent) && (eventHandler.handle === handler); }, this.eventHandlers);
             this.element.removeEventListener(eventName, handler);
         }
         else {
@@ -8258,7 +7764,7 @@ var Embed = /** @class */ (function () {
                 .filter(function (eventHandler) { return eventHandler.test(fakeEvent); });
             eventHandlersToRemove
                 .forEach(function (eventHandlerToRemove) {
-                (0, util_1.remove)(function (eventHandler) { return eventHandler === eventHandlerToRemove; }, _this.eventHandlers);
+                util_1.remove(function (eventHandler) { return eventHandler === eventHandlerToRemove; }, _this.eventHandlers);
                 _this.element.removeEventListener(eventName, eventHandlerToRemove.handle);
             });
         }
@@ -8278,7 +7784,7 @@ var Embed = /** @class */ (function () {
      */
     Embed.prototype.on = function (eventName, handler) {
         if (this.allowedEvents.indexOf(eventName) === -1) {
-            throw new Error("eventName must be one of ".concat(this.allowedEvents, ". You passed: ").concat(eventName));
+            throw new Error("eventName must be one of " + this.allowedEvents + ". You passed: " + eventName);
         }
         this.eventHandlers.push({
             test: function (event) { return event.name === eventName; },
@@ -8311,7 +7817,7 @@ var Embed = /** @class */ (function () {
      */
     Embed.prototype.setAccessToken = function (accessToken) {
         return __awaiter(this, void 0, void 0, function () {
-            var embedType, response, response_5;
+            var embedType, response, response_6;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -8319,7 +7825,7 @@ var Embed = /** @class */ (function () {
                             throw new Error("Access token cannot be empty");
                         }
                         embedType = this.config.type;
-                        embedType = (embedType === 'create' || embedType === 'visual' || embedType === 'qna' || embedType === 'quickCreate') ? 'report' : embedType;
+                        embedType = (embedType === 'create' || embedType === 'visual' || embedType === 'qna') ? 'report' : embedType;
                         _a.label = 1;
                     case 1:
                         _a.trys.push([1, 3, , 4]);
@@ -8331,8 +7837,8 @@ var Embed = /** @class */ (function () {
                         this.service.accessToken = accessToken;
                         return [2 /*return*/, response.body];
                     case 3:
-                        response_5 = _a.sent();
-                        throw response_5.body;
+                        response_6 = _a.sent();
+                        throw response_6.body;
                     case 4: return [2 /*return*/];
                 }
             });
@@ -8349,7 +7855,7 @@ var Embed = /** @class */ (function () {
     Embed.prototype.getAccessToken = function (globalAccessToken) {
         var accessToken = this.config.accessToken || this.element.getAttribute(Embed.accessTokenAttribute) || globalAccessToken;
         if (!accessToken) {
-            throw new Error("No access token was found for element. You must specify an access token directly on the element using attribute '".concat(Embed.accessTokenAttribute, "' or specify a global token at: powerbi.accessToken."));
+            throw new Error("No access token was found for element. You must specify an access token directly on the element using attribute '" + Embed.accessTokenAttribute + "' or specify a global token at: powerbi.accessToken.");
         }
         return accessToken;
     };
@@ -8364,14 +7870,14 @@ var Embed = /** @class */ (function () {
         var _this = this;
         var _a, _b, _c, _d, _e, _f, _g, _h, _j;
         if (this.bootstrapConfig) {
-            this.config = (0, util_1.assign)({}, this.bootstrapConfig, config);
+            this.config = util_1.assign({}, this.bootstrapConfig, config);
             // reset bootstrapConfig because we do not want to merge it in re-embed scenario.
             this.bootstrapConfig = null;
         }
         else {
             // Copy config - important for multiple iframe scenario.
             // Otherwise, if a user uses the same config twice, same unique Id which will be used in different iframes.
-            this.config = (0, util_1.assign)({}, config);
+            this.config = util_1.assign({}, config);
         }
         this.config.embedUrl = this.getEmbedUrl(isBootstrap);
         this.config.groupId = this.getGroupId();
@@ -8397,40 +7903,7 @@ var Embed = /** @class */ (function () {
         else {
             this.config.accessToken = this.getAccessToken(this.service.accessToken);
         }
-        this.eventHooks = this.config.eventHooks;
-        this.validateEventHooks(this.eventHooks);
-        delete this.config.eventHooks;
         this.configChanged(isBootstrap);
-    };
-    /**
-     * Validate EventHooks
-     *
-     * @private
-     * @param {models.EventHooks} eventHooks
-     * @hidden
-     */
-    Embed.prototype.validateEventHooks = function (eventHooks) {
-        if (!eventHooks) {
-            return;
-        }
-        for (var key in eventHooks) {
-            if (eventHooks.hasOwnProperty(key) && typeof eventHooks[key] !== 'function') {
-                throw new Error(key + " must be a function");
-            }
-        }
-        var applicationContextProvider = eventHooks.applicationContextProvider;
-        if (!!applicationContextProvider) {
-            if (this.embedtype.toLowerCase() !== "report") {
-                throw new Error("applicationContextProvider is only supported in report embed");
-            }
-            this.config.embedUrl = (0, util_1.addParamToUrl)(this.config.embedUrl, "registerQueryCallback", "true");
-        }
-        var accessTokenProvider = eventHooks.accessTokenProvider;
-        if (!!accessTokenProvider) {
-            if ((['create', 'quickcreate', 'report'].indexOf(this.embedtype.toLowerCase()) === -1) || this.config.tokenType !== models.TokenType.Aad) {
-                throw new Error("accessTokenProvider is only supported in report SaaS embed");
-            }
-        }
     };
     /**
      * Adds locale parameters to embedUrl
@@ -8445,10 +7918,10 @@ var Embed = /** @class */ (function () {
         }
         var localeSettings = config.settings.localeSettings;
         if (localeSettings && localeSettings.language) {
-            this.config.embedUrl = (0, util_1.addParamToUrl)(this.config.embedUrl, 'language', localeSettings.language);
+            this.config.embedUrl = util_1.addParamToUrl(this.config.embedUrl, 'language', localeSettings.language);
         }
         if (localeSettings && localeSettings.formatLocale) {
-            this.config.embedUrl = (0, util_1.addParamToUrl)(this.config.embedUrl, 'formatLocale', localeSettings.formatLocale);
+            this.config.embedUrl = util_1.addParamToUrl(this.config.embedUrl, 'formatLocale', localeSettings.formatLocale);
         }
     };
     /**
@@ -8465,7 +7938,7 @@ var Embed = /** @class */ (function () {
             embedUrl = this.getDefaultEmbedUrl(this.config.hostname);
         }
         if (typeof embedUrl !== 'string' || embedUrl.length === 0) {
-            throw new Error("Embed Url is required, but it was not found. You must provide an embed url either as part of embed configuration or as attribute '".concat(Embed.embedUrlAttribute, "'."));
+            throw new Error("Embed Url is required, but it was not found. You must provide an embed url either as part of embed configuration or as attribute '" + Embed.embedUrlAttribute + "'.");
         }
         return embedUrl;
     };
@@ -8479,10 +7952,13 @@ var Embed = /** @class */ (function () {
         var endpoint = this.getDefaultEmbedUrlEndpoint();
         // Trim spaces to fix user mistakes.
         hostname = hostname.toLowerCase().trim();
-        if (hostname.indexOf("https://") === 0) {
-            return "".concat(hostname, "/").concat(endpoint);
+        if (hostname.indexOf("http://") === 0) {
+            throw new Error("HTTP is not allowed. HTTPS is required");
         }
-        return "https://".concat(hostname, "/").concat(endpoint);
+        if (hostname.indexOf("https://") === 0) {
+            return hostname + "/" + endpoint;
+        }
+        return "https://" + hostname + "/" + endpoint;
     };
     /**
      * Gets a unique ID from the first available location: options, attribute.
@@ -8493,7 +7969,7 @@ var Embed = /** @class */ (function () {
      * @hidden
      */
     Embed.prototype.getUniqueId = function () {
-        return this.config.uniqueId || this.element.getAttribute(Embed.nameAttribute) || (0, util_1.createRandomString)();
+        return this.config.uniqueId || this.element.getAttribute(Embed.nameAttribute) || util_1.createRandomString();
     };
     /**
      * Gets the group ID from the first available location: options, embeddedUrl.
@@ -8540,14 +8016,13 @@ var Embed = /** @class */ (function () {
      *
      * @hidden
      */
-    Embed.prototype.setIframe = function (isLoad, phasedRender, isBootstrap) {
+    Embed.prototype.setIframe = function (isLoad, phasedRender, isBootstrap, registerQueryCallback) {
         var _this = this;
         if (!this.iframe) {
             var iframeContent = document.createElement("iframe");
-            var embedUrl = this.config.uniqueId ? (0, util_1.addParamToUrl)(this.config.embedUrl, 'uid', this.config.uniqueId) : this.config.embedUrl;
-            if (!(0, util_1.validateEmbedUrl)(embedUrl)) {
-                throw new Error(errors_1.invalidEmbedUrlErrorMessage);
-            }
+            var embedUrl = this.config.uniqueId ? util_1.addParamToUrl(this.config.embedUrl, 'uid', this.config.uniqueId) : this.config.embedUrl;
+            if (!isBootstrap && registerQueryCallback)
+                embedUrl = util_1.addParamToUrl(embedUrl, "registerQueryCallback", "true");
             iframeContent.style.width = '100%';
             iframeContent.style.height = '100%';
             iframeContent.setAttribute("src", embedUrl);
@@ -8581,7 +8056,7 @@ var Embed = /** @class */ (function () {
             }
         }
         else {
-            this.iframe.addEventListener('load', function () { return _this.create(); }, false);
+            this.iframe.addEventListener('load', function () { return _this.createReport(_this.createConfig); }, false);
         }
     };
     /**
@@ -8641,7 +8116,7 @@ var Embed = /** @class */ (function () {
      */
     Embed.prototype.frontLoadSendConfig = function (config) {
         return __awaiter(this, void 0, void 0, function () {
-            var errors, response, response_6;
+            var errors, response, response_7;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -8664,15 +8139,15 @@ var Embed = /** @class */ (function () {
                         response = _a.sent();
                         return [2 /*return*/, response.body];
                     case 3:
-                        response_6 = _a.sent();
-                        throw response_6.body;
+                        response_7 = _a.sent();
+                        throw response_7.body;
                     case 4: return [2 /*return*/];
                 }
             });
         });
     };
     /** @hidden */
-    Embed.allowedEvents = ["loaded", "saved", "rendered", "saveAsTriggered", "error", "dataSelected", "buttonClicked", "info"];
+    Embed.allowedEvents = ["loaded", "saved", "rendered", "saveAsTriggered", "error", "dataSelected", "buttonClicked"];
     /** @hidden */
     Embed.accessTokenAttribute = 'powerbi-access-token';
     /** @hidden */
@@ -8696,15 +8171,15 @@ exports.Embed = Embed;
 /*!***********************!*\
   !*** ./src/errors.ts ***!
   \***********************/
-/***/ ((__unused_webpack_module, exports) => {
+/*! no static exports found */
+/***/ (function(module, exports) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.invalidEmbedUrlErrorMessage = exports.EmbedUrlNotSupported = exports.APINotSupportedForRDLError = void 0;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.EmbedUrlNotSupported = exports.APINotSupportedForRDLError = void 0;
 exports.APINotSupportedForRDLError = "This API is currently not supported for RDL reports";
 exports.EmbedUrlNotSupported = "Embed URL is invalid for this scenario. Please use Power BI REST APIs to get the valid URL";
-exports.invalidEmbedUrlErrorMessage = "Invalid embed URL detected. Either URL hostname or protocol are invalid. Please use Power BI REST APIs to get the valid URL";
 
 
 /***/ }),
@@ -8713,26 +8188,26 @@ exports.invalidEmbedUrlErrorMessage = "Invalid embed URL detected. Either URL ho
 /*!**************************!*\
   !*** ./src/factories.ts ***!
   \**************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
-Object.defineProperty(exports, "__esModule", ({ value: true }));
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.routerFactory = exports.wpmpFactory = exports.hpmFactory = void 0;
 /**
  * TODO: Need to find better place for these factory functions or refactor how we handle dependency injection
  */
-var window_post_message_proxy_1 = __webpack_require__(/*! window-post-message-proxy */ "../window-post-message-proxy/dist/windowPostMessageProxy.js");
-var http_post_message_1 = __webpack_require__(/*! http-post-message */ "../http-post-message/dist/httpPostMessage.js");
+var window_post_message_proxy_1 = __webpack_require__(/*! window-post-message-proxy */ "./node_modules/window-post-message-proxy/dist/windowPostMessageProxy.js");
+var http_post_message_1 = __webpack_require__(/*! http-post-message */ "./node_modules/http-post-message/dist/httpPostMessage.js");
 var powerbi_router_1 = __webpack_require__(/*! powerbi-router */ "./node_modules/powerbi-router/dist/router.js");
 var config_1 = __webpack_require__(/*! ./config */ "./src/config.ts");
-var hpmFactory = function (wpmp, defaultTargetWindow, sdkVersion, sdkType, sdkWrapperVersion) {
+var hpmFactory = function (wpmp, defaultTargetWindow, sdkVersion, sdkType) {
     if (sdkVersion === void 0) { sdkVersion = config_1.default.version; }
     if (sdkType === void 0) { sdkType = config_1.default.type; }
     return new http_post_message_1.HttpPostMessage(wpmp, {
         'x-sdk-type': sdkType,
-        'x-sdk-version': sdkVersion,
-        'x-sdk-wrapper-version': sdkWrapperVersion,
+        'x-sdk-version': sdkVersion
     }, defaultTargetWindow);
 };
 exports.hpmFactory = hpmFactory;
@@ -8762,7 +8237,8 @@ exports.routerFactory = routerFactory;
 /*!*********************!*\
   !*** ./src/page.ts ***!
   \*********************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -8802,7 +8278,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-Object.defineProperty(exports, "__esModule", ({ value: true }));
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.Page = void 0;
 var powerbi_models_1 = __webpack_require__(/*! powerbi-models */ "./node_modules/powerbi-models/dist/models.js");
 var visualDescriptor_1 = __webpack_require__(/*! ./visualDescriptor */ "./src/visualDescriptor.ts");
@@ -8827,7 +8303,7 @@ var Page = /** @class */ (function () {
      * @param {SectionVisibility} [visibility]
      * @hidden
      */
-    function Page(report, name, displayName, isActivePage, visibility, defaultSize, defaultDisplayOption, mobileSize, background, wallpaper) {
+    function Page(report, name, displayName, isActivePage, visibility, defaultSize, defaultDisplayOption, mobileSize) {
         this.report = report;
         this.name = name;
         this.displayName = displayName;
@@ -8836,42 +8312,7 @@ var Page = /** @class */ (function () {
         this.defaultSize = defaultSize;
         this.mobileSize = mobileSize;
         this.defaultDisplayOption = defaultDisplayOption;
-        this.background = background;
-        this.wallpaper = wallpaper;
     }
-    /**
-     * Get insights for report page
-     *
-     * ```javascript
-     * page.getSmartNarrativeInsights();
-     * ```
-     *
-     * @returns {Promise<ISmartNarratives>}
-     */
-    Page.prototype.getSmartNarrativeInsights = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var response, response_1;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        if ((0, util_1.isRDLEmbed)(this.report.config.embedUrl)) {
-                            return [2 /*return*/, Promise.reject(errors_1.APINotSupportedForRDLError)];
-                        }
-                        _a.label = 1;
-                    case 1:
-                        _a.trys.push([1, 3, , 4]);
-                        return [4 /*yield*/, this.report.service.hpm.get("/report/pages/".concat(this.name, "/smartNarrativeInsights"), { uid: this.report.config.uniqueId }, this.report.iframe.contentWindow)];
-                    case 2:
-                        response = _a.sent();
-                        return [2 /*return*/, response.body];
-                    case 3:
-                        response_1 = _a.sent();
-                        throw response_1.body;
-                    case 4: return [2 /*return*/];
-                }
-            });
-        });
-    };
     /**
      * Gets all page level filters within the report.
      *
@@ -8884,18 +8325,18 @@ var Page = /** @class */ (function () {
      */
     Page.prototype.getFilters = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var response, response_2;
+            var response, response_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, this.report.service.hpm.get("/report/pages/".concat(this.name, "/filters"), { uid: this.report.config.uniqueId }, this.report.iframe.contentWindow)];
+                        return [4 /*yield*/, this.report.service.hpm.get("/report/pages/" + this.name + "/filters", { uid: this.report.config.uniqueId }, this.report.iframe.contentWindow)];
                     case 1:
                         response = _a.sent();
                         return [2 /*return*/, response.body];
                     case 2:
-                        response_2 = _a.sent();
-                        throw response_2.body;
+                        response_1 = _a.sent();
+                        throw response_1.body;
                     case 3: return [2 /*return*/];
                 }
             });
@@ -8914,7 +8355,7 @@ var Page = /** @class */ (function () {
      */
     Page.prototype.updateFilters = function (operation, filters) {
         return __awaiter(this, void 0, void 0, function () {
-            var updateFiltersRequest, response_3;
+            var updateFiltersRequest, response_2;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -8925,11 +8366,11 @@ var Page = /** @class */ (function () {
                         _a.label = 1;
                     case 1:
                         _a.trys.push([1, 3, , 4]);
-                        return [4 /*yield*/, this.report.service.hpm.post("/report/pages/".concat(this.name, "/filters"), updateFiltersRequest, { uid: this.report.config.uniqueId }, this.report.iframe.contentWindow)];
+                        return [4 /*yield*/, this.report.service.hpm.post("/report/pages/" + this.name + "/filters", updateFiltersRequest, { uid: this.report.config.uniqueId }, this.report.iframe.contentWindow)];
                     case 2: return [2 /*return*/, _a.sent()];
                     case 3:
-                        response_3 = _a.sent();
-                        throw response_3.body;
+                        response_2 = _a.sent();
+                        throw response_2.body;
                     case 4: return [2 /*return*/];
                 }
             });
@@ -8967,16 +8408,16 @@ var Page = /** @class */ (function () {
      */
     Page.prototype.setFilters = function (filters) {
         return __awaiter(this, void 0, void 0, function () {
-            var response_4;
+            var response_3;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, this.report.service.hpm.put("/report/pages/".concat(this.name, "/filters"), filters, { uid: this.report.config.uniqueId }, this.report.iframe.contentWindow)];
+                        return [4 /*yield*/, this.report.service.hpm.put("/report/pages/" + this.name + "/filters", filters, { uid: this.report.config.uniqueId }, this.report.iframe.contentWindow)];
                     case 1: return [2 /*return*/, _a.sent()];
                     case 2:
-                        response_4 = _a.sent();
-                        throw response_4.body;
+                        response_3 = _a.sent();
+                        throw response_3.body;
                     case 3: return [2 /*return*/];
                 }
             });
@@ -8994,18 +8435,18 @@ var Page = /** @class */ (function () {
      */
     Page.prototype.delete = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var response, response_5;
+            var response, response_4;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, this.report.service.hpm.delete("/report/pages/".concat(this.name), {}, { uid: this.report.config.uniqueId }, this.report.iframe.contentWindow)];
+                        return [4 /*yield*/, this.report.service.hpm.delete("/report/pages/" + this.name, {}, { uid: this.report.config.uniqueId }, this.report.iframe.contentWindow)];
                     case 1:
                         response = _a.sent();
                         return [2 /*return*/, response.body];
                     case 2:
-                        response_5 = _a.sent();
-                        throw response_5.body;
+                        response_4 = _a.sent();
+                        throw response_4.body;
                     case 3: return [2 /*return*/];
                 }
             });
@@ -9022,7 +8463,7 @@ var Page = /** @class */ (function () {
      */
     Page.prototype.setActive = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var page, response_6;
+            var page, response_5;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -9037,8 +8478,8 @@ var Page = /** @class */ (function () {
                         return [4 /*yield*/, this.report.service.hpm.put('/report/pages/active', page, { uid: this.report.config.uniqueId }, this.report.iframe.contentWindow)];
                     case 2: return [2 /*return*/, _a.sent()];
                     case 3:
-                        response_6 = _a.sent();
-                        throw response_6.body;
+                        response_5 = _a.sent();
+                        throw response_5.body;
                     case 4: return [2 /*return*/];
                 }
             });
@@ -9055,7 +8496,7 @@ var Page = /** @class */ (function () {
      */
     Page.prototype.setDisplayName = function (displayName) {
         return __awaiter(this, void 0, void 0, function () {
-            var page, response_7;
+            var page, response_6;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -9066,11 +8507,11 @@ var Page = /** @class */ (function () {
                         _a.label = 1;
                     case 1:
                         _a.trys.push([1, 3, , 4]);
-                        return [4 /*yield*/, this.report.service.hpm.put("/report/pages/".concat(this.name, "/name"), page, { uid: this.report.config.uniqueId }, this.report.iframe.contentWindow)];
+                        return [4 /*yield*/, this.report.service.hpm.put("/report/pages/" + this.name + "/name", page, { uid: this.report.config.uniqueId }, this.report.iframe.contentWindow)];
                     case 2: return [2 /*return*/, _a.sent()];
                     case 3:
-                        response_7 = _a.sent();
-                        throw response_7.body;
+                        response_6 = _a.sent();
+                        throw response_6.body;
                     case 4: return [2 /*return*/];
                 }
             });
@@ -9088,25 +8529,25 @@ var Page = /** @class */ (function () {
      */
     Page.prototype.getVisuals = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var response, response_8;
+            var response, response_7;
             var _this = this;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if ((0, util_1.isRDLEmbed)(this.report.config.embedUrl)) {
+                        if (util_1.isRDLEmbed(this.report.config.embedUrl)) {
                             return [2 /*return*/, Promise.reject(errors_1.APINotSupportedForRDLError)];
                         }
                         _a.label = 1;
                     case 1:
                         _a.trys.push([1, 3, , 4]);
-                        return [4 /*yield*/, this.report.service.hpm.get("/report/pages/".concat(this.name, "/visuals"), { uid: this.report.config.uniqueId }, this.report.iframe.contentWindow)];
+                        return [4 /*yield*/, this.report.service.hpm.get("/report/pages/" + this.name + "/visuals", { uid: this.report.config.uniqueId }, this.report.iframe.contentWindow)];
                     case 2:
                         response = _a.sent();
                         return [2 /*return*/, response.body
                                 .map(function (visual) { return new visualDescriptor_1.VisualDescriptor(_this, visual.name, visual.title, visual.type, visual.layout); })];
                     case 3:
-                        response_8 = _a.sent();
-                        throw response_8.body;
+                        response_7 = _a.sent();
+                        throw response_7.body;
                     case 4: return [2 /*return*/];
                 }
             });
@@ -9127,17 +8568,17 @@ var Page = /** @class */ (function () {
      */
     Page.prototype.getVisualByName = function (visualName) {
         return __awaiter(this, void 0, void 0, function () {
-            var response, visual, response_9;
+            var response, visual, response_8;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if ((0, util_1.isRDLEmbed)(this.report.config.embedUrl)) {
+                        if (util_1.isRDLEmbed(this.report.config.embedUrl)) {
                             return [2 /*return*/, Promise.reject(errors_1.APINotSupportedForRDLError)];
                         }
                         _a.label = 1;
                     case 1:
                         _a.trys.push([1, 3, , 4]);
-                        return [4 /*yield*/, this.report.service.hpm.get("/report/pages/".concat(this.name, "/visuals"), { uid: this.report.config.uniqueId }, this.report.iframe.contentWindow)];
+                        return [4 /*yield*/, this.report.service.hpm.get("/report/pages/" + this.name + "/visuals", { uid: this.report.config.uniqueId }, this.report.iframe.contentWindow)];
                     case 2:
                         response = _a.sent();
                         visual = response.body.find(function (v) { return v.name === visualName; });
@@ -9146,8 +8587,8 @@ var Page = /** @class */ (function () {
                         }
                         return [2 /*return*/, new visualDescriptor_1.VisualDescriptor(this, visual.name, visual.title, visual.type, visual.layout)];
                     case 3:
-                        response_9 = _a.sent();
-                        throw response_9.body;
+                        response_8 = _a.sent();
+                        throw response_8.body;
                     case 4: return [2 /*return*/];
                 }
             });
@@ -9261,26 +8702,26 @@ var Page = /** @class */ (function () {
      */
     Page.prototype.getSlicers = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var response, response_10;
+            var response, response_9;
             var _this = this;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if ((0, util_1.isRDLEmbed)(this.report.config.embedUrl)) {
+                        if (util_1.isRDLEmbed(this.report.config.embedUrl)) {
                             return [2 /*return*/, Promise.reject(errors_1.APINotSupportedForRDLError)];
                         }
                         _a.label = 1;
                     case 1:
                         _a.trys.push([1, 3, , 4]);
-                        return [4 /*yield*/, this.report.service.hpm.get("/report/pages/".concat(this.name, "/visuals"), { uid: this.report.config.uniqueId }, this.report.iframe.contentWindow)];
+                        return [4 /*yield*/, this.report.service.hpm.get("/report/pages/" + this.name + "/visuals", { uid: this.report.config.uniqueId }, this.report.iframe.contentWindow)];
                     case 2:
                         response = _a.sent();
                         return [2 /*return*/, response.body
                                 .filter(function (visual) { return visual.type === 'slicer'; })
                                 .map(function (visual) { return new visualDescriptor_1.VisualDescriptor(_this, visual.name, visual.title, visual.type, visual.layout); })];
                     case 3:
-                        response_10 = _a.sent();
-                        throw response_10.body;
+                        response_9 = _a.sent();
+                        throw response_9.body;
                     case 4: return [2 /*return*/];
                 }
             });
@@ -9298,24 +8739,24 @@ var Page = /** @class */ (function () {
      */
     Page.prototype.hasLayout = function (layoutType) {
         return __awaiter(this, void 0, void 0, function () {
-            var layoutTypeEnum, response, response_11;
+            var layoutTypeEnum, response, response_10;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if ((0, util_1.isRDLEmbed)(this.report.config.embedUrl)) {
+                        if (util_1.isRDLEmbed(this.report.config.embedUrl)) {
                             return [2 /*return*/, Promise.reject(errors_1.APINotSupportedForRDLError)];
                         }
                         layoutTypeEnum = powerbi_models_1.LayoutType[layoutType];
                         _a.label = 1;
                     case 1:
                         _a.trys.push([1, 3, , 4]);
-                        return [4 /*yield*/, this.report.service.hpm.get("/report/pages/".concat(this.name, "/layoutTypes/").concat(layoutTypeEnum), { uid: this.report.config.uniqueId }, this.report.iframe.contentWindow)];
+                        return [4 /*yield*/, this.report.service.hpm.get("/report/pages/" + this.name + "/layoutTypes/" + layoutTypeEnum, { uid: this.report.config.uniqueId }, this.report.iframe.contentWindow)];
                     case 2:
                         response = _a.sent();
                         return [2 /*return*/, response.body];
                     case 3:
-                        response_11 = _a.sent();
-                        throw response_11.body;
+                        response_10 = _a.sent();
+                        throw response_10.body;
                     case 4: return [2 /*return*/];
                 }
             });
@@ -9328,11 +8769,65 @@ exports.Page = Page;
 
 /***/ }),
 
+/***/ "./src/powerbi-client.ts":
+/*!*******************************!*\
+  !*** ./src/powerbi-client.ts ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.RelativeTimeFilterBuilder = exports.RelativeDateFilterBuilder = exports.TopNFilterBuilder = exports.AdvancedFilterBuilder = exports.BasicFilterBuilder = exports.VisualDescriptor = exports.Visual = exports.Qna = exports.Page = exports.Embed = exports.Tile = exports.Dashboard = exports.Report = exports.models = exports.factories = exports.service = void 0;
+/**
+ * @hidden
+ */
+var models = __webpack_require__(/*! powerbi-models */ "./node_modules/powerbi-models/dist/models.js");
+exports.models = models;
+var service = __webpack_require__(/*! ./service */ "./src/service.ts");
+exports.service = service;
+var factories = __webpack_require__(/*! ./factories */ "./src/factories.ts");
+exports.factories = factories;
+var report_1 = __webpack_require__(/*! ./report */ "./src/report.ts");
+Object.defineProperty(exports, "Report", { enumerable: true, get: function () { return report_1.Report; } });
+var dashboard_1 = __webpack_require__(/*! ./dashboard */ "./src/dashboard.ts");
+Object.defineProperty(exports, "Dashboard", { enumerable: true, get: function () { return dashboard_1.Dashboard; } });
+var tile_1 = __webpack_require__(/*! ./tile */ "./src/tile.ts");
+Object.defineProperty(exports, "Tile", { enumerable: true, get: function () { return tile_1.Tile; } });
+var embed_1 = __webpack_require__(/*! ./embed */ "./src/embed.ts");
+Object.defineProperty(exports, "Embed", { enumerable: true, get: function () { return embed_1.Embed; } });
+var page_1 = __webpack_require__(/*! ./page */ "./src/page.ts");
+Object.defineProperty(exports, "Page", { enumerable: true, get: function () { return page_1.Page; } });
+var qna_1 = __webpack_require__(/*! ./qna */ "./src/qna.ts");
+Object.defineProperty(exports, "Qna", { enumerable: true, get: function () { return qna_1.Qna; } });
+var visual_1 = __webpack_require__(/*! ./visual */ "./src/visual.ts");
+Object.defineProperty(exports, "Visual", { enumerable: true, get: function () { return visual_1.Visual; } });
+var visualDescriptor_1 = __webpack_require__(/*! ./visualDescriptor */ "./src/visualDescriptor.ts");
+Object.defineProperty(exports, "VisualDescriptor", { enumerable: true, get: function () { return visualDescriptor_1.VisualDescriptor; } });
+var FilterBuilders_1 = __webpack_require__(/*! ./FilterBuilders */ "./src/FilterBuilders/index.ts");
+Object.defineProperty(exports, "BasicFilterBuilder", { enumerable: true, get: function () { return FilterBuilders_1.BasicFilterBuilder; } });
+Object.defineProperty(exports, "AdvancedFilterBuilder", { enumerable: true, get: function () { return FilterBuilders_1.AdvancedFilterBuilder; } });
+Object.defineProperty(exports, "TopNFilterBuilder", { enumerable: true, get: function () { return FilterBuilders_1.TopNFilterBuilder; } });
+Object.defineProperty(exports, "RelativeDateFilterBuilder", { enumerable: true, get: function () { return FilterBuilders_1.RelativeDateFilterBuilder; } });
+Object.defineProperty(exports, "RelativeTimeFilterBuilder", { enumerable: true, get: function () { return FilterBuilders_1.RelativeTimeFilterBuilder; } });
+/**
+ * Makes Power BI available to the global object for use in applications that don't have module loading support.
+ *
+ * Note: create an instance of the class with the default configuration for normal usage, or save the class so that you can create an instance of the service.
+ */
+var powerbi = new service.Service(factories.hpmFactory, factories.wpmpFactory, factories.routerFactory);
+window.powerbi = powerbi;
+
+
+/***/ }),
+
 /***/ "./src/qna.ts":
 /*!********************!*\
   !*** ./src/qna.ts ***!
   \********************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -9387,7 +8882,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-Object.defineProperty(exports, "__esModule", ({ value: true }));
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.Qna = void 0;
 var powerbi_models_1 = __webpack_require__(/*! powerbi-models */ "./node_modules/powerbi-models/dist/models.js");
 var embed_1 = __webpack_require__(/*! ./embed */ "./src/embed.ts");
@@ -9465,7 +8960,7 @@ var Qna = /** @class */ (function (_super) {
      * Validate load configuration.
      */
     Qna.prototype.validate = function (config) {
-        return (0, powerbi_models_1.validateLoadQnaConfiguration)(config);
+        return powerbi_models_1.validateLoadQnaConfiguration(config);
     };
     /** @hidden */
     Qna.type = "Qna";
@@ -9478,200 +8973,12 @@ exports.Qna = Qna;
 
 /***/ }),
 
-/***/ "./src/quickCreate.ts":
-/*!****************************!*\
-  !*** ./src/quickCreate.ts ***!
-  \****************************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
-
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.QuickCreate = void 0;
-var powerbi_models_1 = __webpack_require__(/*! powerbi-models */ "./node_modules/powerbi-models/dist/models.js");
-var embed_1 = __webpack_require__(/*! ./embed */ "./src/embed.ts");
-/**
- * A Power BI Quick Create component
- *
- * @export
- * @class QuickCreate
- * @extends {Embed}
- */
-var QuickCreate = /** @class */ (function (_super) {
-    __extends(QuickCreate, _super);
-    /*
-     * @hidden
-     */
-    function QuickCreate(service, element, config, phasedRender, isBootstrap) {
-        var _this = _super.call(this, service, element, config, /* iframe */ undefined, phasedRender, isBootstrap) || this;
-        service.router.post("/reports/".concat(_this.config.uniqueId, "/eventHooks/:eventName"), function (req, _res) { return __awaiter(_this, void 0, void 0, function () {
-            var _a;
-            var _b;
-            return __generator(this, function (_c) {
-                switch (_c.label) {
-                    case 0:
-                        _a = req.params.eventName;
-                        switch (_a) {
-                            case "newAccessToken": return [3 /*break*/, 1];
-                        }
-                        return [3 /*break*/, 3];
-                    case 1:
-                        req.body = req.body || {};
-                        req.body.report = this;
-                        return [4 /*yield*/, service.invokeSDKHook((_b = this.eventHooks) === null || _b === void 0 ? void 0 : _b.accessTokenProvider, req, _res)];
-                    case 2:
-                        _c.sent();
-                        return [3 /*break*/, 4];
-                    case 3: return [3 /*break*/, 4];
-                    case 4: return [2 /*return*/];
-                }
-            });
-        }); });
-        return _this;
-    }
-    /**
-     * Override the getId abstract function
-     * QuickCreate does not need any ID
-     *
-     * @returns {string}
-     */
-    QuickCreate.prototype.getId = function () {
-        return null;
-    };
-    /**
-     * Validate create report configuration.
-     */
-    QuickCreate.prototype.validate = function (config) {
-        return (0, powerbi_models_1.validateQuickCreate)(config);
-    };
-    /**
-     * Handle config changes.
-     *
-     * @hidden
-     * @returns {void}
-     */
-    QuickCreate.prototype.configChanged = function (isBootstrap) {
-        if (isBootstrap) {
-            return;
-        }
-        this.createConfig = this.config;
-    };
-    /**
-     * @hidden
-     * @returns {string}
-     */
-    QuickCreate.prototype.getDefaultEmbedUrlEndpoint = function () {
-        return "quickCreate";
-    };
-    /**
-     * Sends quickCreate configuration data.
-     *
-     * ```javascript
-     * quickCreate({
-     *   accessToken: 'eyJ0eXA ... TaE2rTSbmg',
-     *   datasetCreateConfig: {}})
-     * ```
-     *
-     * @hidden
-     * @param {IQuickCreateConfiguration} createConfig
-     * @returns {Promise<void>}
-     */
-    QuickCreate.prototype.create = function () {
-        var _a;
-        return __awaiter(this, void 0, void 0, function () {
-            var errors, headers, response, response_1;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
-                    case 0:
-                        errors = (0, powerbi_models_1.validateQuickCreate)(this.createConfig);
-                        if (errors) {
-                            throw errors;
-                        }
-                        _b.label = 1;
-                    case 1:
-                        _b.trys.push([1, 3, , 4]);
-                        headers = {
-                            uid: this.config.uniqueId,
-                            sdkSessionId: this.service.getSdkSessionId()
-                        };
-                        if (!!((_a = this.eventHooks) === null || _a === void 0 ? void 0 : _a.accessTokenProvider)) {
-                            headers.tokenProviderSupplied = true;
-                        }
-                        return [4 /*yield*/, this.service.hpm.post("/quickcreate", this.createConfig, headers, this.iframe.contentWindow)];
-                    case 2:
-                        response = _b.sent();
-                        return [2 /*return*/, response.body];
-                    case 3:
-                        response_1 = _b.sent();
-                        throw response_1.body;
-                    case 4: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    return QuickCreate;
-}(embed_1.Embed));
-exports.QuickCreate = QuickCreate;
-
-
-/***/ }),
-
 /***/ "./src/report.ts":
 /*!***********************!*\
   !*** ./src/report.ts ***!
   \***********************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -9726,16 +9033,12 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
-    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
-        if (ar || !(i in from)) {
-            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
-            ar[i] = from[i];
-        }
-    }
-    return to.concat(ar || Array.prototype.slice.call(from));
+var __spreadArray = (this && this.__spreadArray) || function (to, from) {
+    for (var i = 0, il = from.length, j = to.length; i < il; i++, j++)
+        to[j] = from[i];
+    return to;
 };
-Object.defineProperty(exports, "__esModule", ({ value: true }));
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.Report = void 0;
 var powerbi_models_1 = __webpack_require__(/*! powerbi-models */ "./node_modules/powerbi-models/dist/models.js");
 var embed_1 = __webpack_require__(/*! ./embed */ "./src/embed.ts");
@@ -9770,37 +9073,6 @@ var Report = /** @class */ (function (_super) {
         _this.phasedLoadPath = "/report/prepare";
         Array.prototype.push.apply(_this.allowedEvents, Report.allowedEvents);
         _this.bookmarksManager = new bookmarksManager_1.BookmarksManager(service, config, _this.iframe);
-        service.router.post("/reports/".concat(_this.config.uniqueId, "/eventHooks/:eventName"), function (req, _res) { return __awaiter(_this, void 0, void 0, function () {
-            var _a;
-            var _b, _c;
-            return __generator(this, function (_d) {
-                switch (_d.label) {
-                    case 0:
-                        _a = req.params.eventName;
-                        switch (_a) {
-                            case "preQuery": return [3 /*break*/, 1];
-                            case "newAccessToken": return [3 /*break*/, 3];
-                        }
-                        return [3 /*break*/, 5];
-                    case 1:
-                        req.body = req.body || {};
-                        req.body.report = this;
-                        return [4 /*yield*/, service.invokeSDKHook((_b = this.eventHooks) === null || _b === void 0 ? void 0 : _b.applicationContextProvider, req, _res)];
-                    case 2:
-                        _d.sent();
-                        return [3 /*break*/, 6];
-                    case 3:
-                        req.body = req.body || {};
-                        req.body.report = this;
-                        return [4 /*yield*/, service.invokeSDKHook((_c = this.eventHooks) === null || _c === void 0 ? void 0 : _c.accessTokenProvider, req, _res)];
-                    case 4:
-                        _d.sent();
-                        return [3 /*break*/, 6];
-                    case 5: return [3 /*break*/, 6];
-                    case 6: return [2 /*return*/];
-                }
-            });
-        }); });
         return _this;
     }
     /**
@@ -9909,7 +9181,7 @@ var Report = /** @class */ (function (_super) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, this.service.hpm.delete("/report/pages/".concat(pageName), {}, { uid: this.config.uniqueId }, this.iframe.contentWindow)];
+                        return [4 /*yield*/, this.service.hpm.delete("/report/pages/" + pageName, {}, { uid: this.config.uniqueId }, this.iframe.contentWindow)];
                     case 1:
                         response = _a.sent();
                         return [2 /*return*/, response.body];
@@ -9944,7 +9216,7 @@ var Report = /** @class */ (function (_super) {
                         _a.label = 1;
                     case 1:
                         _a.trys.push([1, 3, , 4]);
-                        return [4 /*yield*/, this.service.hpm.put("/report/pages/".concat(pageName, "/name"), page, { uid: this.config.uniqueId }, this.iframe.contentWindow)];
+                        return [4 /*yield*/, this.service.hpm.put("/report/pages/" + pageName + "/name", page, { uid: this.config.uniqueId }, this.iframe.contentWindow)];
                     case 2:
                         response = _a.sent();
                         return [2 /*return*/, response.body];
@@ -9975,7 +9247,7 @@ var Report = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if ((0, util_1.isRDLEmbed)(this.config.embedUrl)) {
+                        if (util_1.isRDLEmbed(this.config.embedUrl)) {
                             return [2 /*return*/, Promise.reject(errors_1.APINotSupportedForRDLError)];
                         }
                         _a.label = 1;
@@ -10039,7 +9311,7 @@ var Report = /** @class */ (function (_super) {
     Report.prototype.removeFilters = function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                if ((0, util_1.isRDLEmbed)(this.config.embedUrl)) {
+                if (util_1.isRDLEmbed(this.config.embedUrl)) {
                     return [2 /*return*/, Promise.reject(errors_1.APINotSupportedForRDLError)];
                 }
                 return [2 /*return*/, this.updateFilters(powerbi_models_1.FiltersOperations.RemoveAll)];
@@ -10069,7 +9341,7 @@ var Report = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if ((0, util_1.isRDLEmbed)(this.config.embedUrl)) {
+                        if (util_1.isRDLEmbed(this.config.embedUrl)) {
                             return [2 /*return*/, Promise.reject(errors_1.APINotSupportedForRDLError)];
                         }
                         _a.label = 1;
@@ -10094,7 +9366,7 @@ var Report = /** @class */ (function (_super) {
         var config = this.config;
         var reportId = config.id || this.element.getAttribute(Report.reportIdAttribute) || Report.findIdFromEmbedUrl(config.embedUrl);
         if (typeof reportId !== 'string' || reportId.length === 0) {
-            throw new Error("Report id is required, but it was not found. You must provide an id either as part of embed configuration or as attribute '".concat(Report.reportIdAttribute, "'."));
+            throw new Error("Report id is required, but it was not found. You must provide an id either as part of embed configuration or as attribute '" + Report.reportIdAttribute + "'.");
         }
         return reportId;
     };
@@ -10117,7 +9389,7 @@ var Report = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if ((0, util_1.isRDLEmbed)(this.config.embedUrl)) {
+                        if (util_1.isRDLEmbed(this.config.embedUrl)) {
                             return [2 /*return*/, Promise.reject(errors_1.APINotSupportedForRDLError)];
                         }
                         _a.label = 1;
@@ -10127,7 +9399,7 @@ var Report = /** @class */ (function (_super) {
                     case 2:
                         response = _a.sent();
                         return [2 /*return*/, response.body
-                                .map(function (page) { return new page_1.Page(_this, page.name, page.displayName, page.isActive, page.visibility, page.defaultSize, page.defaultDisplayOption, page.mobileSize, page.background, page.wallpaper); })];
+                                .map(function (page) { return new page_1.Page(_this, page.name, page.displayName, page.isActive, page.visibility, page.defaultSize, page.defaultDisplayOption, page.mobileSize); })];
                     case 3:
                         response_8 = _a.sent();
                         throw response_8.body;
@@ -10155,7 +9427,7 @@ var Report = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if ((0, util_1.isRDLEmbed)(this.config.embedUrl)) {
+                        if (util_1.isRDLEmbed(this.config.embedUrl)) {
                             return [2 /*return*/, Promise.reject(errors_1.APINotSupportedForRDLError)];
                         }
                         _a.label = 1;
@@ -10168,7 +9440,7 @@ var Report = /** @class */ (function (_super) {
                         if (!page) {
                             return [2 /*return*/, Promise.reject(powerbi_models_1.CommonErrorCodes.NotFound)];
                         }
-                        return [2 /*return*/, new page_1.Page(this, page.name, page.displayName, page.isActive, page.visibility, page.defaultSize, page.defaultDisplayOption, page.mobileSize, page.background, page.wallpaper)];
+                        return [2 /*return*/, new page_1.Page(this, page.name, page.displayName, page.isActive, page.visibility, page.defaultSize, page.defaultDisplayOption, page.mobileSize)];
                     case 3:
                         response_9 = _a.sent();
                         throw response_9.body;
@@ -10195,7 +9467,7 @@ var Report = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if ((0, util_1.isRDLEmbed)(this.config.embedUrl)) {
+                        if (util_1.isRDLEmbed(this.config.embedUrl)) {
                             return [2 /*return*/, Promise.reject(errors_1.APINotSupportedForRDLError)];
                         }
                         _a.label = 1;
@@ -10205,7 +9477,7 @@ var Report = /** @class */ (function (_super) {
                     case 2:
                         response = _a.sent();
                         activePage = response.body.find(function (page) { return page.isActive; });
-                        return [2 /*return*/, new page_1.Page(this, activePage.name, activePage.displayName, activePage.isActive, activePage.visibility, activePage.defaultSize, activePage.defaultDisplayOption, activePage.mobileSize, activePage.background, activePage.wallpaper)];
+                        return [2 /*return*/, new page_1.Page(this, activePage.name, activePage.displayName, activePage.isActive, activePage.visibility, activePage.defaultSize, activePage.defaultDisplayOption, activePage.mobileSize)];
                     case 3:
                         response_10 = _a.sent();
                         throw response_10.body;
@@ -10241,7 +9513,7 @@ var Report = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if ((0, util_1.isRDLEmbed)(this.config.embedUrl)) {
+                        if (util_1.isRDLEmbed(this.config.embedUrl)) {
                             return [2 /*return*/, Promise.reject(errors_1.APINotSupportedForRDLError)];
                         }
                         _a.label = 1;
@@ -10276,7 +9548,7 @@ var Report = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if ((0, util_1.isRDLEmbed)(this.config.embedUrl)) {
+                        if (util_1.isRDLEmbed(this.config.embedUrl)) {
                             return [2 /*return*/, Promise.reject(errors_1.APINotSupportedForRDLError)];
                         }
                         page = {
@@ -10324,7 +9596,7 @@ var Report = /** @class */ (function (_super) {
             return __generator(this, function (_c) {
                 switch (_c.label) {
                     case 0:
-                        if ((0, util_1.isRDLEmbed)(this.config.embedUrl) && settings.customLayout != null) {
+                        if (util_1.isRDLEmbed(this.config.embedUrl) && settings.customLayout != null) {
                             return [2 /*return*/, Promise.reject(errors_1.APINotSupportedForRDLError)];
                         }
                         _c.label = 1;
@@ -10358,10 +9630,10 @@ var Report = /** @class */ (function (_super) {
      * @hidden
      */
     Report.prototype.validate = function (config) {
-        if ((0, util_1.isRDLEmbed)(this.config.embedUrl)) {
-            return (0, powerbi_models_1.validatePaginatedReportLoad)(config);
+        if (util_1.isRDLEmbed(this.config.embedUrl)) {
+            return powerbi_models_1.validatePaginatedReportLoad(config);
         }
-        return (0, powerbi_models_1.validateReportLoad)(config);
+        return powerbi_models_1.validateReportLoad(config);
     };
     /**
      * Handle config changes.
@@ -10371,7 +9643,7 @@ var Report = /** @class */ (function (_super) {
     Report.prototype.configChanged = function (isBootstrap) {
         var config = this.config;
         if (this.isMobileSettings(config.settings)) {
-            config.embedUrl = (0, util_1.addParamToUrl)(config.embedUrl, "isMobile", "true");
+            config.embedUrl = util_1.addParamToUrl(config.embedUrl, "isMobile", "true");
         }
         // Calculate settings from HTML element attributes if available.
         var filterPaneEnabledAttribute = this.element.getAttribute(Report.filterPaneEnabledAttribute);
@@ -10381,7 +9653,7 @@ var Report = /** @class */ (function (_super) {
             navContentPaneEnabled: (navContentPaneEnabledAttribute == null) ? undefined : (navContentPaneEnabledAttribute !== "false")
         };
         // Set the settings back into the config.
-        this.config.settings = (0, util_1.assign)({}, elementAttrSettings, config.settings);
+        this.config.settings = util_1.assign({}, elementAttrSettings, config.settings);
         if (isBootstrap) {
             return;
         }
@@ -10440,20 +9712,15 @@ var Report = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if ((0, util_1.isRDLEmbed)(this.config.embedUrl)) {
-                            return [2 /*return*/, Promise.reject(errors_1.APINotSupportedForRDLError)];
-                        }
-                        _a.label = 1;
-                    case 1:
-                        _a.trys.push([1, 3, , 4]);
+                        _a.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, this.service.hpm.post('/report/refresh', null, { uid: this.config.uniqueId }, this.iframe.contentWindow)];
-                    case 2:
+                    case 1:
                         response = _a.sent();
                         return [2 /*return*/, response.body];
-                    case 3:
+                    case 2:
                         response_15 = _a.sent();
                         throw response_15.body;
-                    case 4: return [2 /*return*/];
+                    case 3: return [2 /*return*/];
                 }
             });
         });
@@ -10472,10 +9739,10 @@ var Report = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if ((0, util_1.isRDLEmbed)(this.config.embedUrl)) {
+                        if (util_1.isRDLEmbed(this.config.embedUrl)) {
                             return [2 /*return*/, Promise.reject(errors_1.APINotSupportedForRDLError)];
                         }
-                        return [4 /*yield*/, (0, util_1.isSavedInternal)(this.service.hpm, this.config.uniqueId, this.iframe.contentWindow)];
+                        return [4 /*yield*/, util_1.isSavedInternal(this.service.hpm, this.config.uniqueId, this.iframe.contentWindow)];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });
@@ -10493,7 +9760,7 @@ var Report = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if ((0, util_1.isRDLEmbed)(this.config.embedUrl)) {
+                        if (util_1.isRDLEmbed(this.config.embedUrl)) {
                             return [2 /*return*/, Promise.reject(errors_1.APINotSupportedForRDLError)];
                         }
                         return [4 /*yield*/, this.applyThemeInternal(theme)];
@@ -10514,42 +9781,11 @@ var Report = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if ((0, util_1.isRDLEmbed)(this.config.embedUrl)) {
+                        if (util_1.isRDLEmbed(this.config.embedUrl)) {
                             return [2 /*return*/, Promise.reject(errors_1.APINotSupportedForRDLError)];
                         }
                         return [4 /*yield*/, this.applyThemeInternal({})];
                     case 1: return [2 /*return*/, _a.sent()];
-                }
-            });
-        });
-    };
-    /**
-     * get the theme of the report
-     *
-     * ```javascript
-     * report.getTheme();
-     * ```
-     */
-    Report.prototype.getTheme = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var response, response_16;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        if ((0, util_1.isRDLEmbed)(this.config.embedUrl)) {
-                            return [2 /*return*/, Promise.reject(errors_1.APINotSupportedForRDLError)];
-                        }
-                        _a.label = 1;
-                    case 1:
-                        _a.trys.push([1, 3, , 4]);
-                        return [4 /*yield*/, this.service.hpm.get("/report/theme", { uid: this.config.uniqueId }, this.iframe.contentWindow)];
-                    case 2:
-                        response = _a.sent();
-                        return [2 /*return*/, response.body];
-                    case 3:
-                        response_16 = _a.sent();
-                        throw response_16.body;
-                    case 4: return [2 /*return*/];
                 }
             });
         });
@@ -10563,7 +9799,7 @@ var Report = /** @class */ (function (_super) {
      */
     Report.prototype.resetPersistentFilters = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var response_17;
+            var response_16;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -10571,8 +9807,8 @@ var Report = /** @class */ (function (_super) {
                         return [4 /*yield*/, this.service.hpm.delete("/report/userState", null, { uid: this.config.uniqueId }, this.iframe.contentWindow)];
                     case 1: return [2 /*return*/, _a.sent()];
                     case 2:
-                        response_17 = _a.sent();
-                        throw response_17.body;
+                        response_16 = _a.sent();
+                        throw response_16.body;
                     case 3: return [2 /*return*/];
                 }
             });
@@ -10587,7 +9823,7 @@ var Report = /** @class */ (function (_super) {
      */
     Report.prototype.savePersistentFilters = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var response_18;
+            var response_17;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -10595,8 +9831,8 @@ var Report = /** @class */ (function (_super) {
                         return [4 /*yield*/, this.service.hpm.post("/report/userState", null, { uid: this.config.uniqueId }, this.iframe.contentWindow)];
                     case 1: return [2 /*return*/, _a.sent()];
                     case 2:
-                        response_18 = _a.sent();
-                        throw response_18.body;
+                        response_17 = _a.sent();
+                        throw response_17.body;
                     case 3: return [2 /*return*/];
                 }
             });
@@ -10614,7 +9850,7 @@ var Report = /** @class */ (function (_super) {
      */
     Report.prototype.arePersistentFiltersApplied = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var response, response_19;
+            var response, response_18;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -10624,8 +9860,8 @@ var Report = /** @class */ (function (_super) {
                         response = _a.sent();
                         return [2 /*return*/, response.body];
                     case 2:
-                        response_19 = _a.sent();
-                        throw response_19.body;
+                        response_18 = _a.sent();
+                        throw response_18.body;
                     case 3: return [2 /*return*/];
                 }
             });
@@ -10651,7 +9887,7 @@ var Report = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if ((0, util_1.isRDLEmbed)(this.config.embedUrl)) {
+                        if (util_1.isRDLEmbed(this.config.embedUrl)) {
                             return [2 /*return*/, Promise.reject(errors_1.APINotSupportedForRDLError)];
                         }
                         commandCopy = JSON.parse(JSON.stringify(this.commands));
@@ -10702,7 +9938,7 @@ var Report = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if ((0, util_1.isRDLEmbed)(this.config.embedUrl)) {
+                        if (util_1.isRDLEmbed(this.config.embedUrl)) {
                             return [2 /*return*/, Promise.reject(errors_1.APINotSupportedForRDLError)];
                         }
                         newCommands = this.createMenuCommand("visualContextMenu", commandName, commandTitle, contextMenuTitle, menuLocation, visualName, visualType, groupName);
@@ -10738,7 +9974,7 @@ var Report = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if ((0, util_1.isRDLEmbed)(this.config.embedUrl)) {
+                        if (util_1.isRDLEmbed(this.config.embedUrl)) {
                             return [2 /*return*/, Promise.reject(errors_1.APINotSupportedForRDLError)];
                         }
                         commandCopy = JSON.parse(JSON.stringify(this.commands));
@@ -10793,7 +10029,7 @@ var Report = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if ((0, util_1.isRDLEmbed)(this.config.embedUrl)) {
+                        if (util_1.isRDLEmbed(this.config.embedUrl)) {
                             return [2 /*return*/, Promise.reject(errors_1.APINotSupportedForRDLError)];
                         }
                         newCommands = this.createMenuCommand("visualOptionsMenu", commandName, commandTitle, optionsMenuTitle, menuLocation, visualName, visualType, groupName, commandIcon);
@@ -11016,7 +10252,7 @@ var Report = /** @class */ (function (_super) {
                 visualType: visualType
             };
         }
-        return __spreadArray(__spreadArray([], this.commands, true), [newCommandObj], false);
+        return __spreadArray(__spreadArray([], this.commands), [newCommandObj]);
     };
     /**
      * @hidden
@@ -11067,7 +10303,7 @@ var Report = /** @class */ (function (_super) {
      */
     Report.prototype.applyThemeInternal = function (theme) {
         return __awaiter(this, void 0, void 0, function () {
-            var response, response_20;
+            var response, response_19;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -11077,8 +10313,8 @@ var Report = /** @class */ (function (_super) {
                         response = _a.sent();
                         return [2 /*return*/, response.body];
                     case 2:
-                        response_20 = _a.sent();
-                        throw response_20.body;
+                        response_19 = _a.sent();
+                        throw response_19.body;
                     case 3: return [2 /*return*/];
                 }
             });
@@ -11105,125 +10341,8 @@ var Report = /** @class */ (function (_super) {
     Report.prototype.isMobileSettings = function (settings) {
         return settings && (settings.layoutType === powerbi_models_1.LayoutType.MobileLandscape || settings.layoutType === powerbi_models_1.LayoutType.MobilePortrait);
     };
-    /**
-     * Return the current zoom level of the report.
-     *
-     * @returns {Promise<number>}
-     */
-    Report.prototype.getZoom = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var response, response_21;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, this.service.hpm.get("/report/zoom", { uid: this.config.uniqueId }, this.iframe.contentWindow)];
-                    case 1:
-                        response = _a.sent();
-                        return [2 /*return*/, response.body];
-                    case 2:
-                        response_21 = _a.sent();
-                        throw response_21.body;
-                    case 3: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    /**
-     * Sets the report's zoom level.
-     *
-     * @param zoomLevel zoom level to set
-     */
-    Report.prototype.setZoom = function (zoomLevel) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.updateSettings({ zoomLevel: zoomLevel })];
-                    case 1:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    /**
-     * Closes all open context menus and tooltips.
-     *
-     * ```javascript
-     * report.closeAllOverlays()
-     *  .then(() => {
-     *      ...
-     *  });
-     * ```
-     *
-     * @returns {Promise<void>}
-     */
-    Report.prototype.closeAllOverlays = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var response, error_1;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        if ((0, util_1.isRDLEmbed)(this.config.embedUrl)) {
-                            return [2 /*return*/, Promise.reject(errors_1.APINotSupportedForRDLError)];
-                        }
-                        _a.label = 1;
-                    case 1:
-                        _a.trys.push([1, 3, , 4]);
-                        return [4 /*yield*/, this.service.hpm.post('/report/closeAllOverlays', null, { uid: this.config.uniqueId }, this.iframe.contentWindow)];
-                    case 2:
-                        response = _a.sent();
-                        return [2 /*return*/, response.body];
-                    case 3:
-                        error_1 = _a.sent();
-                        return [2 /*return*/, Promise.reject(error_1)];
-                    case 4: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    /**
-     * Clears selected not popped out visuals, if flag is passed, all visuals selections will be cleared.
-     *
-     * ```javascript
-     * report.clearSelectedVisuals()
-     *  .then(() => {
-     *      ...
-     *  });
-     * ```
-     *
-     * @param {Boolean} [clearPopOutState=false]
-     *    If false / undefined visuals selection will not be cleared if one of visuals
-     *    is in popped out state (in focus, show as table, spotlight...)
-     * @returns {Promise<void>}
-     */
-    Report.prototype.clearSelectedVisuals = function (clearPopOutState) {
-        return __awaiter(this, void 0, void 0, function () {
-            var response, error_2;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        clearPopOutState = clearPopOutState === true;
-                        if ((0, util_1.isRDLEmbed)(this.config.embedUrl)) {
-                            return [2 /*return*/, Promise.reject(errors_1.APINotSupportedForRDLError)];
-                        }
-                        _a.label = 1;
-                    case 1:
-                        _a.trys.push([1, 3, , 4]);
-                        return [4 /*yield*/, this.service.hpm.post("/report/clearSelectedVisuals/".concat(clearPopOutState.toString()), null, { uid: this.config.uniqueId }, this.iframe.contentWindow)];
-                    case 2:
-                        response = _a.sent();
-                        return [2 /*return*/, response.body];
-                    case 3:
-                        error_2 = _a.sent();
-                        return [2 /*return*/, Promise.reject(error_2)];
-                    case 4: return [2 /*return*/];
-                }
-            });
-        });
-    };
     /** @hidden */
-    Report.allowedEvents = ["filtersApplied", "pageChanged", "commandTriggered", "swipeStart", "swipeEnd", "bookmarkApplied", "dataHyperlinkClicked", "visualRendered", "visualClicked", "selectionChanged", "renderingStarted", "blur"];
+    Report.allowedEvents = ["filtersApplied", "pageChanged", "commandTriggered", "swipeStart", "swipeEnd", "bookmarkApplied", "dataHyperlinkClicked", "visualRendered", "visualClicked", "selectionChanged", "renderingStarted"];
     /** @hidden */
     Report.reportIdAttribute = 'powerbi-report-id';
     /** @hidden */
@@ -11245,21 +10364,11 @@ exports.Report = Report;
 /*!************************!*\
   !*** ./src/service.ts ***!
   \************************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -11296,7 +10405,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-Object.defineProperty(exports, "__esModule", ({ value: true }));
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.Service = void 0;
 var embed_1 = __webpack_require__(/*! ./embed */ "./src/embed.ts");
 var report_1 = __webpack_require__(/*! ./report */ "./src/report.ts");
@@ -11307,9 +10416,6 @@ var page_1 = __webpack_require__(/*! ./page */ "./src/page.ts");
 var qna_1 = __webpack_require__(/*! ./qna */ "./src/qna.ts");
 var visual_1 = __webpack_require__(/*! ./visual */ "./src/visual.ts");
 var utils = __webpack_require__(/*! ./util */ "./src/util.ts");
-var quickCreate_1 = __webpack_require__(/*! ./quickCreate */ "./src/quickCreate.ts");
-var sdkConfig = __webpack_require__(/*! ./config */ "./src/config.ts");
-var errors_1 = __webpack_require__(/*! ./errors */ "./src/errors.ts");
 /**
  * The Power BI Service embed component, which is the entry point to embed all other Power BI components into your application
  *
@@ -11328,14 +10434,10 @@ var Service = /** @class */ (function () {
      * @hidden
      */
     function Service(hpmFactory, wpmpFactory, routerFactory, config) {
-        if (config === void 0) { config = {}; }
         var _this = this;
-        /**
-         * @hidden
-         */
-        this.registeredComponents = {};
+        if (config === void 0) { config = {}; }
         this.wpmp = wpmpFactory(config.wpmpName, config.logMessages);
-        this.hpm = hpmFactory(this.wpmp, null, config.version, config.type, config.sdkWrapperVersion);
+        this.hpm = hpmFactory(this.wpmp, null, config.version, config.type);
         this.router = routerFactory(this.wpmp);
         this.uniqueSessionId = utils.generateUUID();
         /**
@@ -11433,21 +10535,6 @@ var Service = /** @class */ (function () {
         return component;
     };
     /**
-     * Creates new dataset
-     *
-     * @param {HTMLElement} element
-     * @param {IEmbedConfiguration} [config={}]
-     * @returns {Embed}
-     */
-    Service.prototype.quickCreate = function (element, config) {
-        config.type = 'quickCreate';
-        var powerBiElement = element;
-        var component = new quickCreate_1.QuickCreate(this, powerBiElement, config);
-        powerBiElement.powerBiEmbed = component;
-        this.addOrOverwriteEmbed(component, element);
-        return component;
-    };
-    /**
      * TODO: Add a description here
      *
      * @param {HTMLElement} [container]
@@ -11459,7 +10546,7 @@ var Service = /** @class */ (function () {
         var _this = this;
         if (config === void 0) { config = undefined; }
         container = (container && container instanceof HTMLElement) ? container : document.body;
-        var elements = Array.prototype.slice.call(container.querySelectorAll("[".concat(embed_1.Embed.embedUrlAttribute, "]")));
+        var elements = Array.prototype.slice.call(container.querySelectorAll("[" + embed_1.Embed.embedUrlAttribute + "]"));
         return elements.map(function (element) { return _this.embed(element, config); });
     };
     /**
@@ -11473,6 +10560,7 @@ var Service = /** @class */ (function () {
      */
     Service.prototype.embed = function (element, config) {
         if (config === void 0) { config = {}; }
+        this.registerApplicationContextHook(config);
         return this.embedInternal(element, config);
     };
     /**
@@ -11487,6 +10575,7 @@ var Service = /** @class */ (function () {
      */
     Service.prototype.load = function (element, config) {
         if (config === void 0) { config = {}; }
+        this.registerApplicationContextHook(config);
         return this.embedInternal(element, config, /* phasedRender */ true, /* isBootstrap */ false);
     };
     /**
@@ -11505,7 +10594,7 @@ var Service = /** @class */ (function () {
         var powerBiElement = element;
         if (powerBiElement.powerBiEmbed) {
             if (isBootstrap) {
-                throw new Error("Attempted to bootstrap element ".concat(element.outerHTML, ", but the element is already a powerbi element."));
+                throw new Error("Attempted to bootstrap element " + element.outerHTML + ", but the element is already a powerbi element.");
             }
             component = this.embedExisting(powerBiElement, config, phasedRender);
         }
@@ -11526,60 +10615,29 @@ var Service = /** @class */ (function () {
         return this.uniqueSessionId;
     };
     /**
-     * Returns the Power BI Client SDK version
-     *
-     * @hidden
-     */
-    Service.prototype.getSDKVersion = function () {
-        return sdkConfig.default.version;
-    };
-    /**
      * Given a configuration based on a Power BI element, saves the component instance that reference the element for later lookup.
      *
      * @private
      * @param {IPowerBiElement} element
      * @param {IEmbedConfigurationBase} config
-     * @param {boolean} phasedRender
-     * @param {boolean} isBootstrap
      * @returns {Embed}
      * @hidden
      */
     Service.prototype.embedNew = function (element, config, phasedRender, isBootstrap) {
         var componentType = config.type || element.getAttribute(embed_1.Embed.typeAttribute);
         if (!componentType) {
-            var scrubbedConfig = __assign(__assign({}, config), { accessToken: "" });
-            throw new Error("Attempted to embed using config ".concat(JSON.stringify(scrubbedConfig), " on element ").concat(element.outerHTML, ", but could not determine what type of component to embed. You must specify a type in the configuration or as an attribute such as '").concat(embed_1.Embed.typeAttribute, "=\"").concat(report_1.Report.type.toLowerCase(), "\"'."));
+            throw new Error("Attempted to embed using config " + JSON.stringify(config) + " on element " + element.outerHTML + ", but could not determine what type of component to embed. You must specify a type in the configuration or as an attribute such as '" + embed_1.Embed.typeAttribute + "=\"" + report_1.Report.type.toLowerCase() + "\"'.");
         }
         // Saves the type as part of the configuration so that it can be referenced later at a known location.
         config.type = componentType;
-        var component = this.createEmbedComponent(componentType, element, config, phasedRender, isBootstrap);
+        var Component = utils.find(function (embedComponent) { return componentType === embedComponent.type.toLowerCase(); }, Service.components);
+        if (!Component) {
+            throw new Error("Attempted to embed component of type: " + componentType + " but did not find any matching component.  Please verify the type you specified is intended.");
+        }
+        var component = new Component(this, element, config, phasedRender, isBootstrap);
         element.powerBiEmbed = component;
         this.addOrOverwriteEmbed(component, element);
         return component;
-    };
-    /**
-     * Given component type, creates embed component instance
-     *
-     * @private
-     * @param {string} componentType
-     * @param {HTMLElement} element
-     * @param {IEmbedConfigurationBase} config
-     * @param {boolean} phasedRender
-     * @param {boolean} isBootstrap
-     * @returns {Embed}
-     * @hidden
-     */
-    Service.prototype.createEmbedComponent = function (componentType, element, config, phasedRender, isBootstrap) {
-        var Component = utils.find(function (embedComponent) { return componentType === embedComponent.type.toLowerCase(); }, Service.components);
-        if (Component) {
-            return new Component(this, element, config, phasedRender, isBootstrap);
-        }
-        // If component type is not legacy, search in registered components
-        var registeredComponent = utils.find(function (registeredComponentType) { return componentType.toLowerCase() === registeredComponentType.toLowerCase(); }, Object.keys(this.registeredComponents));
-        if (!registeredComponent) {
-            throw new Error("Attempted to embed component of type: ".concat(componentType, " but did not find any matching component.  Please verify the type you specified is intended."));
-        }
-        return this.registeredComponents[registeredComponent](this, element, config, phasedRender, isBootstrap);
     };
     /**
      * Given an element that already contains an embed component, load with a new configuration.
@@ -11593,8 +10651,7 @@ var Service = /** @class */ (function () {
     Service.prototype.embedExisting = function (element, config, phasedRender) {
         var component = utils.find(function (x) { return x.element === element; }, this.embeds);
         if (!component) {
-            var scrubbedConfig = __assign(__assign({}, config), { accessToken: "" });
-            throw new Error("Attempted to embed using config ".concat(JSON.stringify(scrubbedConfig), " on element ").concat(element.outerHTML, " which already has embedded component associated, but could not find the existing component in the list of active components. This could indicate the embeds list is out of sync with the DOM, or the component is referencing the incorrect HTML element."));
+            throw new Error("Attempted to embed using config " + JSON.stringify(config) + " on element " + element.outerHTML + " which already has embedded component associated, but could not find the existing component in the list of active components. This could indicate the embeds list is out of sync with the DOM, or the component is referencing the incorrect HTML element.");
         }
         // TODO: Multiple embedding to the same iframe is not supported in QnA
         if (config.type && config.type.toLowerCase() === "qna") {
@@ -11609,7 +10666,7 @@ var Service = /** @class */ (function () {
             /**
              * When loading report after create we want to use existing Iframe to optimize load period
              */
-            if (config.type === "report" && utils.isCreate(component.config.type)) {
+            if (config.type === "report" && component.config.type === "create") {
                 var report = new report_1.Report(this, element, config, /* phasedRender */ false, /* isBootstrap */ false, element.powerBiEmbed.iframe);
                 component.populateConfig(config, /* isBootstrap */ false);
                 report.load();
@@ -11617,12 +10674,45 @@ var Service = /** @class */ (function () {
                 this.addOrOverwriteEmbed(component, element);
                 return report;
             }
-            var scrubbedConfig = __assign(__assign({}, config), { accessToken: "" });
-            throw new Error("Embedding on an existing element with a different type than the previous embed object is not supported.  Attempted to embed using config ".concat(JSON.stringify(scrubbedConfig), " on element ").concat(element.outerHTML, ", but the existing element contains an embed of type: ").concat(this.config.type, " which does not match the new type: ").concat(config.type));
+            throw new Error("Embedding on an existing element with a different type than the previous embed object is not supported.  Attempted to embed using config " + JSON.stringify(config) + " on element " + element.outerHTML + ", but the existing element contains an embed of type: " + this.config.type + " which does not match the new type: " + config.type);
         }
         component.populateConfig(config, /* isBootstrap */ false);
         component.load(phasedRender);
         return component;
+    };
+    /**
+     * @hidden
+     */
+    Service.prototype.registerApplicationContextHook = function (config) {
+        var _this = this;
+        var _a;
+        var applicationContextProvider = (_a = config === null || config === void 0 ? void 0 : config.eventHooks) === null || _a === void 0 ? void 0 : _a.applicationContextProvider;
+        if (!applicationContextProvider) {
+            return;
+        }
+        if (typeof applicationContextProvider !== 'function') {
+            throw new Error("applicationContextProvider must be a function");
+        }
+        this.router.post("preQuery", function (req, _res) { return __awaiter(_this, void 0, void 0, function () {
+            var result, error_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, applicationContextProvider(req.body)];
+                    case 1:
+                        result = _a.sent();
+                        _res.send(200, result);
+                        return [3 /*break*/, 3];
+                    case 2:
+                        error_1 = _a.sent();
+                        _res.send(400, null);
+                        console.error(error_1);
+                        return [3 /*break*/, 3];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        }); });
     };
     /**
      * Adds an event handler for DOMContentLoaded, which searches the DOM for elements that have the 'powerbi-embed-url' attribute,
@@ -11646,7 +10736,7 @@ var Service = /** @class */ (function () {
     Service.prototype.get = function (element) {
         var powerBiElement = element;
         if (!powerBiElement.powerBiEmbed) {
-            throw new Error("You attempted to get an instance of powerbi component associated with element: ".concat(element.outerHTML, " but there was no associated instance."));
+            throw new Error("You attempted to get an instance of powerbi component associated with element: " + element.outerHTML + " but there was no associated instance.");
         }
         return powerBiElement.powerBiEmbed;
     };
@@ -11722,34 +10812,6 @@ var Service = /** @class */ (function () {
             this.handleEvent(event);
         }
     };
-    Service.prototype.invokeSDKHook = function (hook, req, res) {
-        return __awaiter(this, void 0, void 0, function () {
-            var result, error_1;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        if (!hook) {
-                            res.send(404, null);
-                            return [2 /*return*/];
-                        }
-                        _a.label = 1;
-                    case 1:
-                        _a.trys.push([1, 3, , 4]);
-                        return [4 /*yield*/, hook(req.body)];
-                    case 2:
-                        result = _a.sent();
-                        res.send(200, result);
-                        return [3 /*break*/, 4];
-                    case 3:
-                        error_1 = _a.sent();
-                        res.send(400, null);
-                        console.error(error_1);
-                        return [3 /*break*/, 4];
-                    case 4: return [2 /*return*/];
-                }
-            });
-        });
-    };
     /**
      * Given an event object, finds the embed component with the matching type and ID, and invokes its handleEvent method with the event object.
      *
@@ -11767,7 +10829,7 @@ var Service = /** @class */ (function () {
                 var pageKey = 'newPage';
                 var page = value[pageKey];
                 if (!page) {
-                    throw new Error("Page model not found at 'event.value.".concat(pageKey, "'."));
+                    throw new Error("Page model not found at 'event.value." + pageKey + "'.");
                 }
                 value[pageKey] = new page_1.Page(embed, page.name, page.displayName, true /* isActive */);
             }
@@ -11783,9 +10845,6 @@ var Service = /** @class */ (function () {
      * @param {HTMLElement} [element=undefined]
      */
     Service.prototype.preload = function (config, element) {
-        if (!utils.validateEmbedUrl(config.embedUrl)) {
-            throw new Error(errors_1.invalidEmbedUrlErrorMessage);
-        }
         var iframeContent = document.createElement("iframe");
         iframeContent.setAttribute("style", "display:none;");
         iframeContent.setAttribute("src", config.embedUrl);
@@ -11800,49 +10859,6 @@ var Service = /** @class */ (function () {
             utils.raiseCustomEvent(iframeContent, "preloaded", {});
         };
         return iframeContent;
-    };
-    /**
-     * Use this API to set SDK info
-     *
-     * @hidden
-     * @param {string} type
-     * @returns {void}
-     */
-    Service.prototype.setSdkInfo = function (type, version) {
-        this.hpm.defaultHeaders['x-sdk-type'] = type;
-        this.hpm.defaultHeaders['x-sdk-wrapper-version'] = version;
-    };
-    /**
-     * API for registering external components
-     *
-     * @hidden
-     * @param {string} componentType
-     * @param {EmbedComponentFactory} embedComponentFactory
-     * @param {string[]} routerEventUrls
-     */
-    Service.prototype.register = function (componentType, embedComponentFactory, routerEventUrls) {
-        var _this = this;
-        if (utils.find(function (embedComponent) { return componentType.toLowerCase() === embedComponent.type.toLowerCase(); }, Service.components)) {
-            throw new Error('The component name is reserved. Cannot register a component with this name.');
-        }
-        if (utils.find(function (registeredComponentType) { return componentType.toLowerCase() === registeredComponentType.toLowerCase(); }, Object.keys(this.registeredComponents))) {
-            throw new Error('A component with this type is already registered.');
-        }
-        this.registeredComponents[componentType] = embedComponentFactory;
-        routerEventUrls.forEach(function (url) {
-            if (!url.includes(':uniqueId') || !url.includes(':eventName')) {
-                throw new Error('Invalid router event URL');
-            }
-            _this.router.post(url, function (req, _res) {
-                var event = {
-                    type: componentType,
-                    id: req.params.uniqueId,
-                    name: req.params.eventName,
-                    value: req.body
-                };
-                _this.handleEvent(event);
-            });
-        });
     };
     /**
      * A list of components that this service can embed
@@ -11878,7 +10894,8 @@ exports.Service = Service;
 /*!*********************!*\
   !*** ./src/tile.ts ***!
   \*********************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -11897,7 +10914,7 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-Object.defineProperty(exports, "__esModule", ({ value: true }));
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.Tile = void 0;
 var powerbi_models_1 = __webpack_require__(/*! powerbi-models */ "./node_modules/powerbi-models/dist/models.js");
 var embed_1 = __webpack_require__(/*! ./embed */ "./src/embed.ts");
@@ -11939,7 +10956,7 @@ var Tile = /** @class */ (function (_super) {
      */
     Tile.prototype.validate = function (config) {
         var embedConfig = config;
-        return (0, powerbi_models_1.validateTileLoad)(embedConfig);
+        return powerbi_models_1.validateTileLoad(embedConfig);
     };
     /**
      * Handle config changes.
@@ -11993,7 +11010,8 @@ exports.Tile = Tile;
 /*!*********************!*\
   !*** ./src/util.ts ***!
   \*********************/
-/***/ (function(__unused_webpack_module, exports) {
+/*! no static exports found */
+/***/ (function(module, exports) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -12033,20 +11051,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.validateEmbedUrl = exports.isCreate = exports.getTimeDiffInMilliseconds = exports.getRandomValue = exports.autoAuthInEmbedUrl = exports.isRDLEmbed = exports.isSavedInternal = exports.addParamToUrl = exports.generateUUID = exports.createRandomString = exports.assign = exports.remove = exports.find = exports.findIndex = exports.raiseCustomEvent = void 0;
-/**
- * @hidden
- */
-var allowedPowerBiHostsRegex = new RegExp(/(.+\.powerbi\.com$)|(.+\.fabric\.microsoft\.com$)|(.+\.analysis\.windows-int\.net$)|(.+\.analysis-df\.windows\.net$)/);
-/**
- * @hidden
- */
-var allowedPowerBiHostsSovRegex = new RegExp(/^app\.powerbi\.cn$|^app(\.mil\.|\.high\.|\.)powerbigov\.us$|^app\.powerbi\.eaglex\.ic\.gov$|^app\.powerbi\.microsoft\.scloud$/);
-/**
- * @hidden
- */
-var expectedEmbedUrlProtocol = "https:";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.getTimeDiffInMilliseconds = exports.getRandomValue = exports.autoAuthInEmbedUrl = exports.isRDLEmbed = exports.isSavedInternal = exports.addParamToUrl = exports.generateUUID = exports.createRandomString = exports.assign = exports.remove = exports.find = exports.findIndex = exports.raiseCustomEvent = void 0;
 /**
  * Raises a custom event with event data on the specified HTML element.
  *
@@ -12082,7 +11088,7 @@ exports.raiseCustomEvent = raiseCustomEvent;
  */
 function findIndex(predicate, xs) {
     if (!Array.isArray(xs)) {
-        throw new Error("You attempted to call find with second parameter that was not an array. You passed: ".concat(xs));
+        throw new Error("You attempted to call find with second parameter that was not an array. You passed: " + xs);
     }
     var index;
     xs.some(function (x, i) {
@@ -12167,7 +11173,7 @@ function generateUUID() {
     if (typeof performance !== 'undefined' && typeof performance.now === 'function') {
         d += performance.now();
     }
-    return 'xxxxxxxxxxxxxxxxxxxx'.replace(/[xy]/g, function (_c) {
+    return 'xxxxxxxxxxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
         // Generate a random number, scaled from 0 to 15.
         var r = (getRandomValue() % 16);
         // Shift 4 times to divide by 16
@@ -12265,36 +11271,6 @@ function getTimeDiffInMilliseconds(start, end) {
     return Math.abs(start.getTime() - end.getTime());
 }
 exports.getTimeDiffInMilliseconds = getTimeDiffInMilliseconds;
-/**
- * Checks if the embed type is for create
- *
- * @export
- * @param {string} embedType
- * @returns {boolean}
- */
-function isCreate(embedType) {
-    return embedType === 'create' || embedType === 'quickcreate';
-}
-exports.isCreate = isCreate;
-/**
- * Checks if the embedUrl has an allowed power BI domain
- * @hidden
- */
-function validateEmbedUrl(embedUrl) {
-    if (embedUrl) {
-        var url = void 0;
-        try {
-            url = new URL(embedUrl.toLowerCase());
-        }
-        catch (e) {
-            // invalid URL
-            return false;
-        }
-        return url.protocol === expectedEmbedUrlProtocol &&
-            (allowedPowerBiHostsRegex.test(url.hostname) || allowedPowerBiHostsSovRegex.test(url.hostname));
-    }
-}
-exports.validateEmbedUrl = validateEmbedUrl;
 
 
 /***/ }),
@@ -12303,7 +11279,8 @@ exports.validateEmbedUrl = validateEmbedUrl;
 /*!***********************!*\
   !*** ./src/visual.ts ***!
   \***********************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -12358,7 +11335,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-Object.defineProperty(exports, "__esModule", ({ value: true }));
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.Visual = void 0;
 var powerbi_models_1 = __webpack_require__(/*! powerbi-models */ "./node_modules/powerbi-models/dist/models.js");
 var report_1 = __webpack_require__(/*! ./report */ "./src/report.ts");
@@ -12486,7 +11463,7 @@ var Visual = /** @class */ (function (_super) {
                         _a.label = 1;
                     case 1:
                         _a.trys.push([1, 3, , 4]);
-                        return [4 /*yield*/, this.service.hpm.get("/report/pages/".concat(config.pageName, "/visuals"), { uid: this.config.uniqueId }, this.iframe.contentWindow)];
+                        return [4 /*yield*/, this.service.hpm.get("/report/pages/" + config.pageName + "/visuals", { uid: this.config.uniqueId }, this.iframe.contentWindow)];
                     case 2:
                         response = _a.sent();
                         embeddedVisuals = response.body.filter(function (pageVisual) { return pageVisual.name === config.visualName; });
@@ -12652,9 +11629,9 @@ var Visual = /** @class */ (function (_super) {
             case powerbi_models_1.FiltersLevel.Report:
                 return "/report/filters";
             case powerbi_models_1.FiltersLevel.Page:
-                return "/report/pages/".concat(config.pageName, "/filters");
+                return "/report/pages/" + config.pageName + "/filters";
             default:
-                return "/report/pages/".concat(config.pageName, "/visuals/").concat(config.visualName, "/filters");
+                return "/report/pages/" + config.pageName + "/visuals/" + config.visualName + "/filters";
         }
     };
     /** @hidden */
@@ -12676,7 +11653,8 @@ exports.Visual = Visual;
 /*!*********************************!*\
   !*** ./src/visualDescriptor.ts ***!
   \*********************************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -12716,7 +11694,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-Object.defineProperty(exports, "__esModule", ({ value: true }));
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.VisualDescriptor = void 0;
 var powerbi_models_1 = __webpack_require__(/*! powerbi-models */ "./node_modules/powerbi-models/dist/models.js");
 /**
@@ -12754,7 +11732,7 @@ var VisualDescriptor = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, this.page.report.service.hpm.get("/report/pages/".concat(this.page.name, "/visuals/").concat(this.name, "/filters"), { uid: this.page.report.config.uniqueId }, this.page.report.iframe.contentWindow)];
+                        return [4 /*yield*/, this.page.report.service.hpm.get("/report/pages/" + this.page.name + "/visuals/" + this.name + "/filters", { uid: this.page.report.config.uniqueId }, this.page.report.iframe.contentWindow)];
                     case 1:
                         response = _a.sent();
                         return [2 /*return*/, response.body];
@@ -12790,7 +11768,7 @@ var VisualDescriptor = /** @class */ (function () {
                         _a.label = 1;
                     case 1:
                         _a.trys.push([1, 3, , 4]);
-                        return [4 /*yield*/, this.page.report.service.hpm.post("/report/pages/".concat(this.page.name, "/visuals/").concat(this.name, "/filters"), updateFiltersRequest, { uid: this.page.report.config.uniqueId }, this.page.report.iframe.contentWindow)];
+                        return [4 /*yield*/, this.page.report.service.hpm.post("/report/pages/" + this.page.name + "/visuals/" + this.name + "/filters", updateFiltersRequest, { uid: this.page.report.config.uniqueId }, this.page.report.iframe.contentWindow)];
                     case 2: return [2 /*return*/, _a.sent()];
                     case 3:
                         response_2 = _a.sent();
@@ -12837,7 +11815,7 @@ var VisualDescriptor = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, this.page.report.service.hpm.put("/report/pages/".concat(this.page.name, "/visuals/").concat(this.name, "/filters"), filters, { uid: this.page.report.config.uniqueId }, this.page.report.iframe.contentWindow)];
+                        return [4 /*yield*/, this.page.report.service.hpm.put("/report/pages/" + this.page.name + "/visuals/" + this.name + "/filters", filters, { uid: this.page.report.config.uniqueId }, this.page.report.iframe.contentWindow)];
                     case 1: return [2 /*return*/, _a.sent()];
                     case 2:
                         response_3 = _a.sent();
@@ -12873,7 +11851,7 @@ var VisualDescriptor = /** @class */ (function () {
                         _a.label = 1;
                     case 1:
                         _a.trys.push([1, 3, , 4]);
-                        return [4 /*yield*/, this.page.report.service.hpm.post("/report/pages/".concat(this.page.name, "/visuals/").concat(this.name, "/exportData"), exportDataRequestBody, { uid: this.page.report.config.uniqueId }, this.page.report.iframe.contentWindow)];
+                        return [4 /*yield*/, this.page.report.service.hpm.post("/report/pages/" + this.page.name + "/visuals/" + this.name + "/exportData", exportDataRequestBody, { uid: this.page.report.config.uniqueId }, this.page.report.iframe.contentWindow)];
                     case 2:
                         response = _a.sent();
                         return [2 /*return*/, response.body];
@@ -12902,7 +11880,7 @@ var VisualDescriptor = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, this.page.report.service.hpm.put("/report/pages/".concat(this.page.name, "/visuals/").concat(this.name, "/slicer"), state, { uid: this.page.report.config.uniqueId }, this.page.report.iframe.contentWindow)];
+                        return [4 /*yield*/, this.page.report.service.hpm.put("/report/pages/" + this.page.name + "/visuals/" + this.name + "/slicer", state, { uid: this.page.report.config.uniqueId }, this.page.report.iframe.contentWindow)];
                     case 1: return [2 /*return*/, _a.sent()];
                     case 2:
                         response_5 = _a.sent();
@@ -12930,7 +11908,7 @@ var VisualDescriptor = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, this.page.report.service.hpm.get("/report/pages/".concat(this.page.name, "/visuals/").concat(this.name, "/slicer"), { uid: this.page.report.config.uniqueId }, this.page.report.iframe.contentWindow)];
+                        return [4 /*yield*/, this.page.report.service.hpm.get("/report/pages/" + this.page.name + "/visuals/" + this.name + "/slicer", { uid: this.page.report.config.uniqueId }, this.page.report.iframe.contentWindow)];
                     case 1:
                         response = _a.sent();
                         return [2 /*return*/, response.body];
@@ -12955,7 +11933,7 @@ var VisualDescriptor = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, this.page.report.service.hpm.post("/report/pages/".concat(this.page.name, "/visuals/").concat(this.name, "/clone"), request, { uid: this.page.report.config.uniqueId }, this.page.report.iframe.contentWindow)];
+                        return [4 /*yield*/, this.page.report.service.hpm.post("/report/pages/" + this.page.name + "/visuals/" + this.name + "/clone", request, { uid: this.page.report.config.uniqueId }, this.page.report.iframe.contentWindow)];
                     case 1:
                         response = _a.sent();
                         return [2 /*return*/, response.body];
@@ -12984,7 +11962,7 @@ var VisualDescriptor = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, this.page.report.service.hpm.put("/report/pages/".concat(this.page.name, "/visuals/").concat(this.name, "/sortBy"), request, { uid: this.page.report.config.uniqueId }, this.page.report.iframe.contentWindow)];
+                        return [4 /*yield*/, this.page.report.service.hpm.put("/report/pages/" + this.page.name + "/visuals/" + this.name + "/sortBy", request, { uid: this.page.report.config.uniqueId }, this.page.report.iframe.contentWindow)];
                     case 1: return [2 /*return*/, _a.sent()];
                     case 2:
                         response_8 = _a.sent();
@@ -13063,145 +12041,13 @@ var VisualDescriptor = /** @class */ (function () {
             });
         });
     };
-    /**
-     * Get insights for single visual
-     *
-     * ```javascript
-     * visual.getSmartNarrativeInsights();
-     * ```
-     *
-     * @returns {Promise<ISmartNarratives>}
-     */
-    VisualDescriptor.prototype.getSmartNarrativeInsights = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var response, response_9;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, this.page.report.service.hpm.get("/report/pages/".concat(this.page.name, "/visuals/").concat(this.name, "/smartNarrativeInsights"), { uid: this.page.report.config.uniqueId }, this.page.report.iframe.contentWindow)];
-                    case 1:
-                        response = _a.sent();
-                        return [2 /*return*/, response.body];
-                    case 2:
-                        response_9 = _a.sent();
-                        throw response_9.body;
-                    case 3: return [2 /*return*/];
-                }
-            });
-        });
-    };
     return VisualDescriptor;
 }());
 exports.VisualDescriptor = VisualDescriptor;
 
 
-/***/ }),
-
-/***/ "../window-post-message-proxy/dist/windowPostMessageProxy.js":
-/*!*******************************************************************!*\
-  !*** ../window-post-message-proxy/dist/windowPostMessageProxy.js ***!
-  \*******************************************************************/
-/***/ ((module) => {
-
-/*! For license information please see windowPostMessageProxy.js.LICENSE.txt */
-!function(e,r){ true?module.exports=r():0}(self,(()=>(()=>{"use strict";var e={};return(()=>{var r=e;Object.defineProperty(r,"__esModule",{value:!0}),r.WindowPostMessageProxy=void 0;var s=function(){function e(r){void 0===r&&(r={processTrackingProperties:{addTrackingProperties:e.defaultAddTrackingProperties,getTrackingProperties:e.defaultGetTrackingProperties},isErrorMessage:e.defaultIsErrorMessage,receiveWindow:window,name:e.createRandomString()});var s=this;this.pendingRequestPromises={},this.addTrackingProperties=r.processTrackingProperties&&r.processTrackingProperties.addTrackingProperties||e.defaultAddTrackingProperties,this.getTrackingProperties=r.processTrackingProperties&&r.processTrackingProperties.getTrackingProperties||e.defaultGetTrackingProperties,this.isErrorMessage=r.isErrorMessage||e.defaultIsErrorMessage,this.receiveWindow=r.receiveWindow||window,this.name=r.name||e.createRandomString(),this.logMessages=r.logMessages||!1,this.eventSourceOverrideWindow=r.eventSourceOverrideWindow,this.suppressWarnings=r.suppressWarnings||!1,this.logMessages&&console.log("new WindowPostMessageProxy created with name: ".concat(this.name," receiving on window: ").concat(this.receiveWindow.document.title)),this.handlers=[],this.windowMessageHandler=function(e){return s.onMessageReceived(e)},this.start()}return e.defaultAddTrackingProperties=function(r,s){return r[e.messagePropertyName]=s,r},e.defaultGetTrackingProperties=function(r){return r[e.messagePropertyName]},e.defaultIsErrorMessage=function(e){return!!e.error},e.createDeferred=function(){var e={resolve:null,reject:null,promise:null},r=new Promise((function(r,s){e.resolve=r,e.reject=s}));return e.promise=r,e},e.createRandomString=function(){var e=window.crypto||window.msCrypto,r=new Uint32Array(1);return e.getRandomValues(r),r[0].toString(36).substring(1)},e.prototype.addHandler=function(e){this.handlers.push(e)},e.prototype.removeHandler=function(e){var r=this.handlers.indexOf(e);if(-1===r)throw new Error("You attempted to remove a handler but no matching handler was found.");this.handlers.splice(r,1)},e.prototype.start=function(){this.receiveWindow.addEventListener("message",this.windowMessageHandler)},e.prototype.stop=function(){this.receiveWindow.removeEventListener("message",this.windowMessageHandler)},e.prototype.postMessage=function(r,s,n){var o={id:e.createRandomString()};this.addTrackingProperties(s,o),console.log("".concat(this.name," Posting message:")),console.log(JSON.stringify(s,null,"  ")),console.log("target origin: ".concat(n)),r.postMessage(s,null!=n?n:"*");var t=e.createDeferred();return this.pendingRequestPromises[o.id]=t,t.promise},e.prototype.sendResponse=function(e,r,s,n){this.addTrackingProperties(r,s),this.logMessages&&(console.log("".concat(this.name," Sending response:")),console.log(JSON.stringify(r,null,"  "))),e.postMessage(r,null!=n?n:"*")},e.prototype.onMessageReceived=function(e){var r=this;this.logMessages&&(console.log("".concat(this.name," Received message:")),console.log("type: ".concat(e.type)),console.log(JSON.stringify(e.data,null,"  ")));var s=this.eventSourceOverrideWindow||e.source;if(s){var n=e.data;if("object"==typeof n){var o,t;try{o=this.getTrackingProperties(n)}catch(e){this.suppressWarnings||console.warn("Proxy(".concat(this.name,"): Error occurred when attempting to get tracking properties from incoming message:"),JSON.stringify(n,null,"  "),"Error: ",e)}if(o&&(t=this.pendingRequestPromises[o.id]),t){var i=!0;try{i=this.isErrorMessage(n)}catch(e){console.warn("Proxy(".concat(this.name,") Error occurred when trying to determine if message is consider an error response. Message: "),JSON.stringify(n,null,""),"Error: ",e)}i?t.reject(n):t.resolve(n),delete this.pendingRequestPromises[o.id]}else this.handlers.some((function(e){var t=!1;try{t=e.test(n)}catch(e){r.suppressWarnings||console.warn("Proxy(".concat(r.name,"): Error occurred when handler was testing incoming message:"),JSON.stringify(n,null,"  "),"Error: ",e)}if(t){var i=void 0;try{i=Promise.resolve(e.handle(n))}catch(e){r.suppressWarnings||console.warn("Proxy(".concat(r.name,"): Error occurred when handler was processing incoming message:"),JSON.stringify(n,null,"  "),"Error: ",e),i=Promise.resolve()}return i.then((function(e){if(!e){var t="Handler for message: ".concat(JSON.stringify(n,null,"  ")," did not return a response message. The default response message will be returned instead.");r.suppressWarnings||console.warn("Proxy(".concat(r.name,"): ").concat(t)),e={warning:t}}r.sendResponse(s,e,o)})),!0}}))||this.suppressWarnings||console.warn("Proxy(".concat(this.name,") did not handle message. Handlers: ").concat(this.handlers.length,"  Message: ").concat(JSON.stringify(n,null,""),"."))}else this.suppressWarnings||console.warn("Proxy(".concat(this.name,"): Received message that was not an object. Discarding message"))}},e.messagePropertyName="windowPostMessageProxy",e}();r.WindowPostMessageProxy=s})(),e})()));
-//# sourceMappingURL=windowPostMessageProxy.js.map
-
 /***/ })
 
-/******/ 	});
-/************************************************************************/
-/******/ 	// The module cache
-/******/ 	var __webpack_module_cache__ = {};
-/******/ 	
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/ 		// Check if module is in cache
-/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
-/******/ 		if (cachedModule !== undefined) {
-/******/ 			return cachedModule.exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
-/******/ 			exports: {}
-/******/ 		};
-/******/ 	
-/******/ 		// Execute the module function
-/******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/ 	
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/ 	
-/************************************************************************/
-var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
-(() => {
-var exports = __webpack_exports__;
-/*!*******************************!*\
-  !*** ./src/powerbi-client.ts ***!
-  \*******************************/
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.RelativeTimeFilterBuilder = exports.RelativeDateFilterBuilder = exports.TopNFilterBuilder = exports.AdvancedFilterBuilder = exports.BasicFilterBuilder = exports.Create = exports.QuickCreate = exports.VisualDescriptor = exports.Visual = exports.Qna = exports.Page = exports.Embed = exports.Tile = exports.Dashboard = exports.Report = exports.models = exports.factories = exports.service = void 0;
-/**
- * @hidden
- */
-var models = __webpack_require__(/*! powerbi-models */ "./node_modules/powerbi-models/dist/models.js");
-exports.models = models;
-var service = __webpack_require__(/*! ./service */ "./src/service.ts");
-exports.service = service;
-var factories = __webpack_require__(/*! ./factories */ "./src/factories.ts");
-exports.factories = factories;
-var report_1 = __webpack_require__(/*! ./report */ "./src/report.ts");
-Object.defineProperty(exports, "Report", ({ enumerable: true, get: function () { return report_1.Report; } }));
-var dashboard_1 = __webpack_require__(/*! ./dashboard */ "./src/dashboard.ts");
-Object.defineProperty(exports, "Dashboard", ({ enumerable: true, get: function () { return dashboard_1.Dashboard; } }));
-var tile_1 = __webpack_require__(/*! ./tile */ "./src/tile.ts");
-Object.defineProperty(exports, "Tile", ({ enumerable: true, get: function () { return tile_1.Tile; } }));
-var embed_1 = __webpack_require__(/*! ./embed */ "./src/embed.ts");
-Object.defineProperty(exports, "Embed", ({ enumerable: true, get: function () { return embed_1.Embed; } }));
-var page_1 = __webpack_require__(/*! ./page */ "./src/page.ts");
-Object.defineProperty(exports, "Page", ({ enumerable: true, get: function () { return page_1.Page; } }));
-var qna_1 = __webpack_require__(/*! ./qna */ "./src/qna.ts");
-Object.defineProperty(exports, "Qna", ({ enumerable: true, get: function () { return qna_1.Qna; } }));
-var visual_1 = __webpack_require__(/*! ./visual */ "./src/visual.ts");
-Object.defineProperty(exports, "Visual", ({ enumerable: true, get: function () { return visual_1.Visual; } }));
-var visualDescriptor_1 = __webpack_require__(/*! ./visualDescriptor */ "./src/visualDescriptor.ts");
-Object.defineProperty(exports, "VisualDescriptor", ({ enumerable: true, get: function () { return visualDescriptor_1.VisualDescriptor; } }));
-var quickCreate_1 = __webpack_require__(/*! ./quickCreate */ "./src/quickCreate.ts");
-Object.defineProperty(exports, "QuickCreate", ({ enumerable: true, get: function () { return quickCreate_1.QuickCreate; } }));
-var create_1 = __webpack_require__(/*! ./create */ "./src/create.ts");
-Object.defineProperty(exports, "Create", ({ enumerable: true, get: function () { return create_1.Create; } }));
-var FilterBuilders_1 = __webpack_require__(/*! ./FilterBuilders */ "./src/FilterBuilders/index.ts");
-Object.defineProperty(exports, "BasicFilterBuilder", ({ enumerable: true, get: function () { return FilterBuilders_1.BasicFilterBuilder; } }));
-Object.defineProperty(exports, "AdvancedFilterBuilder", ({ enumerable: true, get: function () { return FilterBuilders_1.AdvancedFilterBuilder; } }));
-Object.defineProperty(exports, "TopNFilterBuilder", ({ enumerable: true, get: function () { return FilterBuilders_1.TopNFilterBuilder; } }));
-Object.defineProperty(exports, "RelativeDateFilterBuilder", ({ enumerable: true, get: function () { return FilterBuilders_1.RelativeDateFilterBuilder; } }));
-Object.defineProperty(exports, "RelativeTimeFilterBuilder", ({ enumerable: true, get: function () { return FilterBuilders_1.RelativeTimeFilterBuilder; } }));
-/**
- * Makes Power BI available to the global object for use in applications that don't have module loading support.
- *
- * Note: create an instance of the class with the default configuration for normal usage, or save the class so that you can create an instance of the service.
- */
-var powerbi = new service.Service(factories.hpmFactory, factories.wpmpFactory, factories.routerFactory);
-// powerBI SDK may use Power BI object under different key, in order to avoid name collisions
-if (window.powerbi && window.powerBISDKGlobalServiceInstanceName) {
-    window[window.powerBISDKGlobalServiceInstanceName] = powerbi;
-}
-else {
-    // Default to Power BI.
-    window.powerbi = powerbi;
-}
-
-})();
-
-/******/ 	return __webpack_exports__;
-/******/ })()
-;
+/******/ });
 });
 //# sourceMappingURL=powerbi.js.map

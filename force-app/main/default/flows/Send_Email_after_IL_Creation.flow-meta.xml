@@ -4,7 +4,7 @@
         <name>Send_Email_To_Collection</name>
         <label>Send Email To Collection</label>
         <locationX>440</locationX>
-        <locationY>2879</locationY>
+        <locationY>2987</locationY>
         <actionName>SendBetterEmail</actionName>
         <actionType>apex</actionType>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
@@ -12,6 +12,12 @@
             <name>cb_setTreatTargetObjectAsRecipient</name>
             <value>
                 <stringValue>CB_TRUE</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>orgWideEmailAddressId</name>
+            <value>
+                <elementReference>varOrgWideEmail</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -24,6 +30,12 @@
             <name>sendAsync</name>
             <value>
                 <booleanValue>true</booleanValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderDisplayName</name>
+            <value>
+                <stringValue>LeaseWorks Notification</stringValue>
             </value>
         </inputParameters>
         <inputParameters>
@@ -153,7 +165,7 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Send_Email_To_Collection</targetReference>
+            <targetReference>Get_Org_Wide_Email</targetReference>
         </connector>
     </assignments>
     <decisions>
@@ -399,6 +411,29 @@ PC (Prodigy) 16/07/24</description>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
+        <name>Get_Org_Wide_Email</name>
+        <label>Get Org Wide Email</label>
+        <locationX>440</locationX>
+        <locationY>2879</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Send_Email_To_Collection</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Address</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>leaseworks@carlyle.aero</stringValue>
+            </value>
+        </filters>
+        <object>OrgWideEmailAddress</object>
+        <outputAssignments>
+            <assignToReference>varOrgWideEmail</assignToReference>
+            <field>Id</field>
+        </outputAssignments>
+    </recordLookups>
+    <recordLookups>
         <name>Get_Public_Group_Id</name>
         <label>Get Public Group Id</label>
         <locationX>440</locationX>
@@ -526,6 +561,13 @@ PC (Prodigy) 16/07/24</description>
     </variables>
     <variables>
         <name>TemplateID</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>varOrgWideEmail</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>

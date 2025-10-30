@@ -1,24 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>pro_KYC_Approved__c</fullName>
+    <description>The value from the KYC Approved field from the related Counterparty For KYC.</description>
     <externalId>false</externalId>
-    <formula>IF(
-    ISBLANK(leaseworks__Aircraft__c),
-    CASE(
-        TEXT(leaseworks__World_Fleet_Aircraft__r.leaseworks__Aircraft_Operator_New__r.pro_KYC_Approved__c),
-        &quot;Yes&quot;, IMAGE(&quot;/resource/1719316089000/GraphicsPackNew/fatcow/farmfresh/16/tick.png&quot;, &quot;Yes&quot;),
-        &quot;No&quot;, IMAGE(&quot;/resource/1719316089000/GraphicsPackNew/fatcow/farmfresh/16/cross.png&quot;, &quot;No&quot;),
-        &quot;Not Applicable&quot;, &quot;Not Applicable&quot;,
-        &quot;&quot;
-    ),
-    CASE(
-        TEXT(leaseworks__Aircraft__r.leaseworks__Asset_Owner_new__r.pro_KYC_Approved__c),
-        &quot;Yes&quot;, IMAGE(&quot;/resource/1719316089000/GraphicsPackNew/fatcow/farmfresh/16/tick.png&quot;, &quot;Yes&quot;),
-        &quot;No&quot;, IMAGE(&quot;/resource/1719316089000/GraphicsPackNew/fatcow/farmfresh/16/cross.png&quot;, &quot;No&quot;),
-        &quot;Not Applicable&quot;, &quot;Not Applicable&quot;,
-        &quot;&quot;
-    )
-)</formula>
+    <formula>IF(ISBLANK(TEXT(   pro_Counterparty_For_KYC__r.pro_KYC_Approved__c )),
+&quot;Not Populated&quot;,
+TEXT(pro_Counterparty_For_KYC__r.pro_KYC_Approved__c))</formula>
     <label>KYC Approved</label>
     <required>false</required>
     <trackHistory>false</trackHistory>

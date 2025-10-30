@@ -1,21 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <layouts>
         <layout>Fee Slip Layout</layout>
         <sections>
@@ -28,6 +12,10 @@
         <name>leaseworks__Create_Invoice</name>
     </quickActions>
     <validationRules>
+        <errorMessage><!-- Due Date is required --></errorMessage>
+        <name>leaseworks__ValidateDueDateForManualSlips</name>
+    </validationRules>
+    <validationRules>
         <errorMessage><!-- Fee Slip Start Date cannot be later than Fee Slip End Date. --></errorMessage>
         <name>leaseworks__ValidateFeeSlipStartDateEndDate</name>
     </validationRules>
@@ -35,4 +23,28 @@
         <errorMessage><!-- Fee Slip Amount cannot be negative. --></errorMessage>
         <name>leaseworks__ValidationFinalFeeSlipAmt</name>
     </validationRules>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 </CustomObjectTranslation>

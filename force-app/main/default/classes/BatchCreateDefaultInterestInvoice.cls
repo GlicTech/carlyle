@@ -42,16 +42,13 @@ public class BatchCreateDefaultInterestInvoice implements Database.Batchable<sOb
         listofselectedInvoiceType = selectedInvoiceTypeLabelList; 
         currentUserEmail = currentUserMailId;
     }
-   // system.debug('selectedMonth'+selectedMonth);
     
     public Database.QueryLocator start(Database.BatchableContext BC) {        
         String query = 'Select Id,leaseworks__Lessee_New__c,leaseworks__Lessee_New__r.Name,leaseworks__Aircraft__r.Name,leaseworks__Bank_Account_For_Others__c,Name,leaseworks__Operator_New__c,leaseworks__Operator_New__r.Name,leaseworks__Interest_Base__c,leaseworks__Grace_Period_After_Due_Date__c,leaseworks__Interest_Calculation_Method__c,leaseworks__Compound_Interest__c from leaseworks__Lease__c where (leaseworks__Lessee_New__c IN :listofselectedLesseIds OR leaseworks__Operator_New__c IN :listofselectedLesseIds) And Include_In_Bulk_Interest_Calculation__c =true';
         return Database.getQueryLocator(query);
     }
     
-    public void execute(Database.BatchableContext BC, List<leaseworks__Lease__c> lease)
-    {
-        system.debug('lease'+lease);
+    public void execute(Database.BatchableContext BC, List<leaseworks__Lease__c> lease) {
           	Decimal totalInterest =0, totalOutstandingBalance =0, gracePeriodDays;
      		String lesseeNameToSend,leaseNameToSend, bankId,MSNName;
         	String interestCalculationMethodValue, interestBaseValue;
@@ -60,47 +57,29 @@ public class BatchCreateDefaultInterestInvoice implements Database.Batchable<sOb
         try{
             // get setup metadata to show interest calculation values
             Interest_Calculator_Parameter__mdt setupRecord = Interest_Calculator_Parameter__mdt.getInstance('Setup');
-            system.debug('setupRecord'+setupRecord);
             
             interestBaseValue = lease[0].leaseworks__Interest_Base__c != null ? lease[0].leaseworks__Interest_Base__c : setupRecord.Interest_Base__c;
-            system.debug('interestBaseValue'+interestBaseValue);
             gracePeriodDays = lease[0].leaseworks__Grace_Period_After_Due_Date__c != null ? lease[0].leaseworks__Grace_Period_After_Due_Date__c : setupRecord.Grace_Period__c;
-            system.debug('gracePeriodDays'+gracePeriodDays);
             interestCalculationMethodValue = lease[0].leaseworks__Interest_Calculation_Method__c != null ? lease[0].leaseworks__Interest_Calculation_Method__c : setupRecord.Interest_Calculation_Method__c;
-            system.debug('interestCalculationMethodValue'+interestCalculationMethodValue);
             compoundInterestVal = lease[0].leaseworks__Compound_Interest__c != null ? lease[0].leaseworks__Compound_Interest__c : setupRecord.Compound_Interest__c;
-            system.debug('compoundInterestVal'+compoundInterestVal);
             leaseNameToSend = lease[0].Name;
-           system.debug('leaseNameToSend'+leaseNameToSend);
             MSNName = lease[0].leaseworks__Aircraft__r.Name;
-            system.debug('MSNName'+MSNName);
-            
             if(lease[0].leaseworks__Bank_Account_For_Others__c !=null)
             	bankId = lease[0].leaseworks__Bank_Account_For_Others__c;
-            system.debug('bankId'+bankId);
             Date startDate = Date.newInstance(selectedYear, monthMap.get(selectedMonth), 1);
-             system.debug('startDate'+startDate);
             Integer daysInMonth = Date.daysInMonth(selectedYear, monthMap.get(selectedMonth)); 
-            system.debug('daysInMonth'+daysInMonth);
             Date endDate = Date.newInstance(selectedYear, monthMap.get(selectedMonth), daysInMonth);
-            system.debug('endDate'+endDate);
-            
             Integer daysInPreviousMonth = Date.daysInMonth(selectedYear, monthMap.get(selectedMonth)-1);
-             system.debug('daysInPreviousMonth'+daysInPreviousMonth);
             Integer daysInNextMonth = Date.daysInMonth(selectedYear, monthMap.get(selectedMonth)+1);
-            system.debug('daysInNextMonth'+daysInNextMonth);
             for (Integer day = (daysInPreviousMonth - Integer.valueOf(gracePeriodDays)); day <= daysInPreviousMonth; day++) {
                 list_dates.add(Date.newInstance(selectedYear, monthMap.get(selectedMonth)-1, day));            
             } 
-            System.debug('list_dates'+list_dates);
             for (Integer day = 1; day <= daysInMonth; day++) {
                 list_dates.add(Date.newInstance(selectedYear, monthMap.get(selectedMonth), day));            
             } 
-             System.debug('list_dates'+list_dates);
             for (Integer day = 1; day <= (daysInNextMonth - Integer.valueOf(gracePeriodDays)); day++) {
                 list_dates.add(Date.newInstance(selectedYear, monthMap.get(selectedMonth)+1, day));            
             }
-             System.debug('list_dates'+list_dates);
             
             List<leaseworks__Late_Payment_Activity__c> latePaymentActivitiesList = new List<leaseworks__Late_Payment_Activity__c>();
             Set<Id> invoiceIdSet =  new Set<Id>();
@@ -114,17 +93,13 @@ public class BatchCreateDefaultInterestInvoice implements Database.Batchable<sOb
             /*Logic for interestRate related to fixed rate */
             Set<Id> setOfFloatingRateId = new Set<Id>();
             for(leaseworks__Interest_Rate_Tier__c interestRateTier : [Select Id,leaseworks__End_Date__c,leaseworks__Start_Date__c,leaseworks__Floating_Rate__c,leaseworks__Fixed_Rate__c,leaseworks__Lease__c from leaseworks__Interest_Rate_Tier__c where leaseworks__Lease__c =: lease[0].Id ORDER BY leaseworks__Start_Date__c ASC ]){
-                system.debug('interestRateTier'+interestRateTier);
                setOfFloatingRateId.add(interestRateTier.leaseworks__Floating_Rate__c);
-                system.debug('setOfFloatingRateId'+setOfFloatingRateId);
                 if(interestRateTier.leaseworks__Start_Date__c <=  startDate &&  interestRateTier.leaseworks__End_Date__c >=  startDate){ 
                    /* In below loop we are preparing a map for daily rate index */
                     for(Date dt =  interestRateTier.leaseworks__Start_Date__c ;dt<=interestRateTier.leaseworks__End_Date__c; dt = dt.addDays(1)){
                         if(dt <= list_dates[list_dates.size()-1]){
-                            mapOfDateAndRespectiveFixedRate.put(dt,interestRateTier.leaseworks__Fixed_Rate__c);
-                             system.debug('mapOfDateAndRespectiveFixedRate'+mapOfDateAndRespectiveFixedRate);
+                            mapOfDateAndRespectiveFixedRate.put(dt,interestRateTier.leaseworks__Fixed_Rate__c); 
                         }
-                       
                         else{
                             break;
                         }
@@ -132,73 +107,50 @@ public class BatchCreateDefaultInterestInvoice implements Database.Batchable<sOb
                 }          
             }
             for(leaseworks__Interest_Rate_Index_Daily__c dailyInterestRate : [Select Id,leaseworks__Interest_Rate_Prcntg__c,leaseworks__Interest_Rate_Date__c,leaseworks__Interest_Rate_Index__c from leaseworks__Interest_Rate_Index_Daily__c where leaseworks__Interest_Rate_Index__c In : setOfFloatingRateId]){
-               System.debug('dailyInterestRate'+dailyInterestRate);
                 mapOfDateAndRespectiveFloatingRate.put(dailyInterestRate.leaseworks__Interest_Rate_Date__c,dailyInterestRate.leaseworks__Interest_Rate_Prcntg__c);
-          system.debug('mapOfDateAndRespectiveFloatingRate'+mapOfDateAndRespectiveFloatingRate);
             }
             Decimal totalOutInGracePeriod =0, floatingInterestPrev = 0, fixedInterestPrev = 0 ;
             List<leaseworks__Interest_Rate_Index_Daily__c> floatingInterestPrevList = new List<leaseworks__Interest_Rate_Index_Daily__c>();
             List<leaseworks__Interest_Rate_Tier__c> fixedInterestPrevList = new List<leaseworks__Interest_Rate_Tier__c>();
             floatingInterestPrevList = [Select Id,leaseworks__Interest_Rate_Prcntg__c,leaseworks__Interest_Rate_Date__c,leaseworks__Interest_Rate_Index__c from leaseworks__Interest_Rate_Index_Daily__c where leaseworks__Interest_Rate_Index__c In : setOfFloatingRateId AND leaseworks__Interest_Rate_Date__c <: startDate ORDER BY leaseworks__Interest_Rate_Date__c DESC LIMIT 1];
-            system.debug('floatingInterestPrevList'+floatingInterestPrevList);
             fixedInterestPrevList = [Select Id,leaseworks__End_Date__c,leaseworks__Start_Date__c,leaseworks__Floating_Rate__c,leaseworks__Fixed_Rate__c,leaseworks__Lease__c from leaseworks__Interest_Rate_Tier__c where leaseworks__Lease__c =: lease[0].Id AND leaseworks__Start_Date__c <: startDate ORDER BY leaseworks__Start_Date__c DESC LIMIT 1];
-            system.debug('fixedInterestPrevList'+fixedInterestPrevList);
             if(floatingInterestPrevList.size() > 0){
                 floatingInterestPrev = floatingInterestPrevList[0].leaseworks__Interest_Rate_Prcntg__c != null ? floatingInterestPrevList[0].leaseworks__Interest_Rate_Prcntg__c : 0;
-                system.debug('floatingInterestPrev'+floatingInterestPrev);
             }
             if(fixedInterestPrevList.size() > 0){
                 fixedInterestPrev = fixedInterestPrevList[0].leaseworks__Fixed_Rate__c != null ? fixedInterestPrevList[0].leaseworks__Fixed_Rate__c : 0;
-           System.debug('fixedInterestPrev'+fixedInterestPrev);
             }
             Boolean forwardFilling = false;
             for(Date dateObj: list_dates ){
                 Decimal floatingInterest  = mapOfDateAndRespectiveFloatingRate.get(dateObj) != null ? mapOfDateAndRespectiveFloatingRate.get(dateObj) : floatingInterestPrev;
-              	System.debug('floatingInterest'+floatingInterest);	
                 Decimal fixedInterest  = mapOfDateAndRespectiveFixedRate.get(dateObj) != null ? mapOfDateAndRespectiveFixedRate.get(dateObj) : fixedInterestPrev;
-              System.debug('fixedInterest'+fixedInterest);
                 if(mapOfDateAndRespectiveFloatingRate.get(dateObj) == null || mapOfDateAndRespectiveFixedRate.get(dateObj) == null){
                     forwardFilling = true;
                 }
                 floatingInterestPrev = floatingInterest;
-                system.debug('floatingInterestPrev164'+floatingInterestPrev);
                 fixedInterestPrev = fixedInterest;
-                  system.debug('fixedInterestPrev165'+fixedInterestPrev);
                 mapOfDateAndInterestRate.put(dateObj,(floatingInterest+fixedInterest));
-                system.debug('mapOfDateAndInterestRate168'+mapOfDateAndInterestRate);
-                
                 mapOfDateAndForwardFilling.put(dateObj,forwardFilling);
-                system.debug('mapOfDateAndForwardFilling170'+mapOfDateAndForwardFilling);
             }
             
             for(leaseworks__Invoice__c invoiceObj : [Select Id,leaseworks__Status__c ,leaseworks__Invoice_Type__c,leaseworks__Lease__r.leaseworks__Aircraft__r.Name,leaseworks__Lease__r.leaseworks__Lessee_New__c,leaseworks__Lease__r.leaseworks__Lessee_New__r.Name,leaseworks__Lease__c,leaseworks__Lease__r.leaseworks__Operator_New__c,leaseworks__Lease__r.leaseworks__Operator_New__r.Name,leaseworks__Overdue__c                                          
             from leaseworks__Invoice__c where leaseworks__Lease__c =:lease[0].Id and 
                 leaseworks__Overdue__c = true and (leaseworks__Status__c = 'Approved' OR  leaseworks__Status__c ='Cancelled-Pending') and leaseworks__Invoice_Type__c In:listofselectedInvoiceType]){
-                system.debug('invoiceObj'+invoiceObj);
-                    if(invoiceObj.leaseworks__Lease__r.leaseworks__Lessee_New__r.Name !=null){
+                if(invoiceObj.leaseworks__Lease__r.leaseworks__Lessee_New__r.Name !=null){
                     lesseeNameToSend = invoiceObj.leaseworks__Lease__r.leaseworks__Lessee_New__r.Name;
-                        system.debug('lesseeNameToSend'+lesseeNameToSend);
-                        
                 }
                 else{
                     lesseeNameToSend = invoiceObj.leaseworks__Lease__r.leaseworks__Operator_New__r.Name;
-                    system.debug('lesseeNameToSend'+lesseeNameToSend);
                 } 
-                MSNName = invoiceObj.leaseworks__Lease__r.leaseworks__Aircraft__r.Name ;
-                    system.debug('MSNName'+MSNName);
+                MSNName = invoiceObj.leaseworks__Lease__r.leaseworks__Aircraft__r.Name ; 
                 invoiceIdSet.add(invoiceObj.Id);
-                     system.debug('invoiceIdSet'+invoiceIdSet);
-                    
             }   
             latePaymentActivitiesList = [Select Id,Name,leaseworks__Balance_Due__c ,leaseworks__Payment__c,leaseworks__Invoice__c,leaseworks__Sequence__c,leaseworks__Date__c, leaseworks__Amount__c 
                                          from leaseworks__Late_Payment_Activity__c where Name != 'Grace Period End' AND leaseworks__Invoice__c In:invoiceIdSet AND leaseworks__Date__c In:list_dates ORDER BY leaseworks__Date__c ASC];
-           system.debug('latePaymentActivitiesList'+latePaymentActivitiesList);
             List<LatePaymentActivityWrapper> listOfAllLPAWrapper = new List<LatePaymentActivityWrapper>();
             
             totalOutstandingBalance = calculateTotalOut(lease[0].Id,startDate);
-            system.debug('totalOutstandingBalance'+totalOutstandingBalance);
             totalOutInGracePeriod = avoidGracePeriodLpa(lease[0].Id,startDate);
-            system.debug('totalOutInGracePeriod'+totalOutInGracePeriod);
             
             /* Below logic is to create a data of wrapper from late payment activities record */ 
             Integer count = 0;
@@ -216,72 +168,25 @@ public class BatchCreateDefaultInterestInvoice implements Database.Batchable<sOb
                 lpaWrapperObj.startBalance = 0;
                 lpaWrapperObj.endBalance = 0;
                 lpaWrapperObj.sequence = latePaymentObj.leaseworks__Sequence__c;
-                system.debug(' lpaWrapperObj.sequence'+ lpaWrapperObj.sequence);
                 lpaWrapperObj.invoiceId = latePaymentObj.leaseworks__Invoice__c;
-                 system.debug('lpaWrapperObj.invoiceId'+ lpaWrapperObj.invoiceId);
                 lpaWrapperObj.lpaId =  latePaymentObj.Id;
-                system.debug('lpaWrapperObj.lpaId'+ lpaWrapperObj.lpaId);
                 lpaWrapperObj.leaseWorkPaymentId = latePaymentObj.leaseworks__Payment__c;
-                 system.debug(' lpaWrapperObj.leaseWorkPaymentId '+ lpaWrapperObj.leaseWorkPaymentId );
                 lpaWrapperObj.lesseName = lesseeNameToSend;
-                system.debug(' lpaWrapperObj.lesseName '+  lpaWrapperObj.lesseName);
                 lpaWrapperObj.startDate = latePaymentObj.leaseworks__Date__c;
-                 system.debug(' lpaWrapperObj.startDate '+  lpaWrapperObj.startDate);
                 lpaWrapperObj.endBalance = latePaymentObj.leaseworks__Balance_Due__c != null ? latePaymentObj.leaseworks__Balance_Due__c : 0;
-              system.debug('  lpaWrapperObj.endBalance  '+ lpaWrapperObj.endBalance );
-                system.debug('latePaymentObj.leaseworks__Balance_Due__c '+latePaymentObj.leaseworks__Balance_Due__c );
                 // check if amount is payment due or amount paid
-                if(lpaWrapperObj.leaseWorkPaymentId != null  ){
-                    System.debug('latePaymentObj.leaseworks__Amount__c;'+latePaymentObj.leaseworks__Amount__c);
-                    lpaWrapperObj.startBalance =  lpaWrapperObj.endBalance - latePaymentObj.leaseworks__Amount__c;
-                    system.debug(' lpaWrapperObj.startBalance'+ lpaWrapperObj.startBalance);
-                }
-                else{
+                if(lpaWrapperObj.leaseWorkPaymentId != null){
+                    lpaWrapperObj.startBalance =  lpaWrapperObj.endBalance + latePaymentObj.leaseworks__Amount__c;
+                }else{
                     if(latePaymentObj.leaseworks__Amount__c != null){
                         lpaWrapperObj.startBalance = lpaWrapperObj.endBalance - latePaymentObj.leaseworks__Amount__c;
-                        system.debug(' lpaWrapperObj.startBalance239'+ lpaWrapperObj.startBalance);
                     }
                 }
-               
-                
-                
-                
-                
-                
- System.debug('latePaymentObj.leaseworks__Amount__c;'+latePaymentObj.leaseworks__Amount__c);
-                if(count == 0 && latePaymentObj.leaseworks__Amount__c!=null  ){
-                    System.debug('lpaWrapperObj.startBalance'+lpaWrapperObj.startBalance);
-                    System.debug('totalOutstandingBalance'+totalOutstandingBalance);
-                    System.debug('lpaWrapperObj.endBalance'+lpaWrapperObj.endBalance);
-                    System.debug('latePaymentObj.leaseworks__Amount__c'+latePaymentObj.leaseworks__Amount__c); 
-                    System.debug('latePaymentObj.leaseworks__Balance_Due__c'+latePaymentObj.leaseworks__Balance_Due__c);
 
-                    
-                    if(latePaymentObj.leaseworks__Balance_Due__c >0  ){
-                    lpaWrapperObj.startBalance =totalOutstandingBalance-totalOutInGracePeriod;
-                        lpaWrapperObj.endBalance =(totalOutstandingBalance-totalOutInGracePeriod)+latePaymentObj.leaseworks__Balance_Due__c;
-                    system.debug(' lpaWrapperObj.startBalance'+lpaWrapperObj.startBalance);
-                        System.debug('lpaWrapperObj.endBalance'+lpaWrapperObj.endBalance);
-                    }
-                   
-                    
-                   System.debug('latePaymentObj.leaseworks__Amount__c'+latePaymentObj.leaseworks__Amount__c); 
-                    if(latePaymentObj.leaseworks__Amount__c!=null){
-                    
-                    lpaWrapperObj.endBalance = (totalOutstandingBalance-totalOutInGracePeriod)-latePaymentObj.leaseworks__Amount__c;
-                   system.debug(' lpaWrapperObj.endBalance'+lpaWrapperObj.endBalance);
-                    }
+                if(count == 0){
+                    lpaWrapperObj.startBalance += (totalOutstandingBalance-totalOutInGracePeriod);
+                    lpaWrapperObj.endBalance += (totalOutstandingBalance-totalOutInGracePeriod);														
                     count++;
-                }
-                else{
-                    
-                      if(latePaymentObj.leaseworks__Balance_Due__c >0  ){
-                    lpaWrapperObj.startBalance =totalOutstandingBalance-totalOutInGracePeriod;
-                        lpaWrapperObj.endBalance =(totalOutstandingBalance-totalOutInGracePeriod)+latePaymentObj.leaseworks__Balance_Due__c;
-                    system.debug(' lpaWrapperObj.startBalance'+lpaWrapperObj.startBalance);
-                        System.debug('lpaWrapperObj.endBalance'+lpaWrapperObj.endBalance);
-                    }
-                    
                 }
                 if(lpaWrapperList.size() > 0){
                     /* Below we are filling end date of previous payment based upon next payment date */
@@ -291,31 +196,22 @@ public class BatchCreateDefaultInterestInvoice implements Database.Batchable<sOb
                         lpaWrapperList[lpaWrapperList.size()-1].endDate = latePaymentObj.leaseworks__Date__c;                    
                     }
                     lpaWrapperObj.amount = latePaymentObj.leaseworks__Amount__c !=null ? latePaymentObj.leaseworks__Amount__c : 0;
-                System.debug(' lpaWrapperObj.amount'+ lpaWrapperObj.amount);
                 } else{
                     lpaWrapperObj.amount = latePaymentObj.leaseworks__Amount__c !=null ? latePaymentObj.leaseworks__Amount__c : latePaymentObj.leaseworks__Balance_Due__c;
                 }
-                 System.debug(' lpaWrapperObj.amount'+ lpaWrapperObj.amount);
                 lpaWrapperList.add(lpaWrapperObj);
-                System.debug('lpaWrapperList'+ lpaWrapperList);
                 mapOfInvoiceIdAndLatePayment.put(latePaymentObj.leaseworks__Invoice__c,lpaWrapperList);
-                System.debug(' mapOfInvoiceIdAndLatePayment'+ mapOfInvoiceIdAndLatePayment);
-                
                 listOfAllLPAWrapper.add(lpaWrapperObj);
-                system.debug('listOfAllLPAWrapper'+listOfAllLPAWrapper);
                 
             }
             if(!thisMonthLPAs  && totalOutstandingBalance > 0){
                 listOfAllLPAWrapper = new List<LatePaymentActivityWrapper>();
                 LatePaymentActivityWrapper lpaWrapperObj = new LatePaymentActivityWrapper();
                 lpaWrapperObj.startBalance = totalOutstandingBalance;
-                // system.debug('lpaWrapperObj.startBalance'+lpaWrapperObj.startBalance);
                 lpaWrapperObj.endBalance = totalOutstandingBalance;
-               
                 lpaWrapperObj.lesseName = lesseeNameToSend;
                 lpaWrapperObj.startDate = startDate;
                 listOfAllLPAWrapper.add(lpaWrapperObj);
-                system.debug('listOfAllLPAWrapper'+listOfAllLPAWrapper);
             }
             Map<Id, LatePaymentActivityWrapper> mapOfFilledGapWithInvoiceIds = new Map<Id, LatePaymentActivityWrapper>();
             List<LatePaymentActivityWrapper> listOfLPAWrapper = new List<LatePaymentActivityWrapper>();
@@ -762,11 +658,9 @@ public class BatchCreateDefaultInterestInvoice implements Database.Batchable<sOb
         from leaseworks__Invoice__c where leaseworks__Lease__c =: leaseId and 
         leaseworks__Overdue__c = true and (leaseworks__Status__c = 'Approved' OR  leaseworks__Status__c ='Cancelled-Pending')
         and leaseworks__Invoice_Type__c In:listofselectedInvoiceType LIMIT 50000];
-        system.debug('invoiceList'+invoiceList);
         Map<Id,List<leaseworks__Late_Payment_Activity__c>> mapOfInvoiceAndLPAs = new Map<Id,List<leaseworks__Late_Payment_Activity__c>>();
         for(leaseworks__Invoice__c invoiceObj : invoiceList){ 
-            mapOfInvoiceAndLPAs.put(invoiceObj.Id,invoiceObj.leaseworks__Late_Payment_Activities__r);
-            system.debug(' mapOfInvoiceAndLPAs'+ mapOfInvoiceAndLPAs);
+            mapOfInvoiceAndLPAs.put(invoiceObj.Id,invoiceObj.leaseworks__Late_Payment_Activities__r); 
         }
 		
         Decimal totalOut = 0;
@@ -775,7 +669,6 @@ public class BatchCreateDefaultInterestInvoice implements Database.Batchable<sOb
             for(leaseworks__Late_Payment_Activity__c latePaymentObj : mapOfInvoiceAndLPAs.get(invoiceIdObj)){
                 if(i == 0){
                     totalOut += mapOfInvoiceAndLPAs.get(invoiceIdObj)[0].leaseworks__Balance_Due__c;
-                    System.debug('totalOut'+totalOut);
                 } i++;                
             }
         }
@@ -843,7 +736,7 @@ public class BatchCreateDefaultInterestInvoice implements Database.Batchable<sOb
      * @throws : NA
     */
     private void emailSend(String mailBody, String mailSubject) {
-     /*   Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();      
+        Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();      
         List<Group> publicGroupList = [SELECT Id,DeveloperName,Name FROM Group WHERE DeveloperName = 'Interest_Calculation_Notification_Group' LIMIT 1];
         List<GroupMember> publicGroupMemberList = [SELECT Id,UserOrGroup.Email FROM GroupMember WHERE GroupId =: publicGroupList[0].Id];
         List<String> toAddresses = new List<String>();
@@ -856,9 +749,6 @@ public class BatchCreateDefaultInterestInvoice implements Database.Batchable<sOb
         mail.setSubject(mailSubject);
         mail.setHtmlBody(mailBody);
         Messaging.sendEmail(new Messaging.SingleEmailMessage[] { mail });
-*/
-
-
     }
     
     private Decimal avoidGracePeriodLpa(Id leaseId , Date startDate) {
@@ -870,11 +760,9 @@ public class BatchCreateDefaultInterestInvoice implements Database.Batchable<sOb
         from leaseworks__Invoice__c where leaseworks__Lease__c =: leaseId and 
         leaseworks__Overdue__c = true and (leaseworks__Status__c = 'Approved' OR  leaseworks__Status__c ='Cancelled-Pending')
         and leaseworks__Invoice_Type__c In:listofselectedInvoiceType LIMIT 50000];
-        system.debug('invoiceList'+invoiceList);
         Map<Id,List<leaseworks__Late_Payment_Activity__c>> mapOfInvoiceAndLPAs = new Map<Id,List<leaseworks__Late_Payment_Activity__c>>();
         for(leaseworks__Invoice__c invoiceObj : invoiceList){ 
             mapOfInvoiceAndLPAs.put(invoiceObj.Id,invoiceObj.leaseworks__Late_Payment_Activities__r); 
-            system.debug('mapOfInvoiceAndLPAs'+mapOfInvoiceAndLPAs);
         }
 		
         Decimal totalOutwithoutGracePeriod = 0;
@@ -883,7 +771,6 @@ public class BatchCreateDefaultInterestInvoice implements Database.Batchable<sOb
             for(leaseworks__Late_Payment_Activity__c latePaymentObj : mapOfInvoiceAndLPAs.get(invoiceIdObj)){
                 if(i == 0 && mapOfInvoiceAndLPAs.get(invoiceIdObj)[0].leaseworks__Date__c>= list_dates[0]){
                     totalOutwithoutGracePeriod += mapOfInvoiceAndLPAs.get(invoiceIdObj)[0].leaseworks__Balance_Due__c;
-                    system.debug('totalOutwithoutGracePeriod'+totalOutwithoutGracePeriod);
                 } i++;                
             }
         }

@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Email_Approval_Sign_Off_Users</name>
+        <label>Email Approval Sign Off Users</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>recipientAddresses</name>
+            <value />
+        </inputParameters>
+        <inputParameters>
+            <name>senderType</name>
+            <value>
+                <stringValue>OrgWideEmailAddress</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderAddress</name>
+            <value>
+                <stringValue>leaseworks@carlyle.aero</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>composeEmailContent</name>
+            <value>
+                <stringValue>True</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <elementReference>f_EmailSubject</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <stringValue>&lt;p&gt;{!tt_EmailBody}&lt;/p&gt;</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>sendRichBody</name>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <apiVersion>65.0</apiVersion>
+    <assignments>
+        <name>Assign_Documentation_Approver_Mappings_To_Variable</name>
+        <label>Assign Documentation Approver Mappings To Variable</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>varApproverMappings</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Deal_Team_Mapping_CMDT_For_Documentation_Approval_Sign_Off</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Get_Assets_In_Deal</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_LOI_Approvers_Mappings_To_Variable</name>
+        <label>Assign LOI Approvers Mappings To Variable</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>varApproverMappings</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Deal_Team_Mapping_CMDT_For_LOI_Approval_Sign_Off</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Get_Assets_In_Deal</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>Approval_Sign_Off_Users_Found</name>
+        <label>Approval Sign Off Users Found?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Approval_Sign_Off_Users_Found</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Approval_Sign_Off_Users</leftValueReference>
+                <operator>IsEmpty</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Create_User_Email_Collection</targetReference>
+            </connector>
+            <label>Yes - Approval Sign Off Users Found</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Depending on the type of approval completed, populate a variable with the approproate Deal Team Mapping record</description>
+        <name>LOI_or_Lease_Documentation_Approval_Completed</name>
+        <label>LOI or Lease Documentation Approval Completed?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Get_Assets_In_Deal</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>LOI_Approval_Completed</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>varTriggeringDeal.pro_LOI_Approval__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <numberValue>100.0</numberValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>varTriggeringDeal.pro_Lease_Documentation_Fully_Approved__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Deal_Team_Mapping_CMDT_For_LOI_Approval_Sign_Off</targetReference>
+            </connector>
+            <label>LOI Approval Completed</label>
+        </rules>
+        <rules>
+            <name>Lease_Documentataion_Approval_Completed</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>varTriggeringDeal.pro_Lease_Documentation_Fully_Approved__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Deal_Team_Mapping_CMDT_For_Documentation_Approval_Sign_Off</targetReference>
+            </connector>
+            <label>Lease Documentataion Approval Completed</label>
+        </rules>
+    </decisions>
+    <description>Flow run when either LOI or Lease Documentation approval gets completed on a Deal. Flow gathers designated users for approval sign off and emails them.</description>
+    <environments>Default</environments>
+    <formulas>
+        <description>Returns a dynamic subject based on whether LOI or Lease Documentation approval received.</description>
+        <name>f_EmailSubject</name>
+        <dataType>String</dataType>
+        <expression>IF(TEXT({!varTriggeringDeal.leaseworks__Deal_Status__c}) = &#39;LOI Signed&#39;, &#39;LOI Approval Complete on Deal &#39; + {!varTriggeringDeal.Name},  &#39;Lease Documentation Approval Complete on Deal &#39; + {!varTriggeringDeal.Name})</expression>
+    </formulas>
+    <formulas>
+        <name>f_LoiOrDocumentation</name>
+        <dataType>String</dataType>
+        <expression>IF(TEXT({!varTriggeringDeal.leaseworks__Deal_Status__c}) = &#39;LOI Signed&#39;, &#39;LOI Approval&#39;,  &#39;Lease Documentation Approval &#39;)</expression>
+    </formulas>
+    <formulas>
+        <name>f_LoiOrDocumentationTeamApproval</name>
+        <dataType>String</dataType>
+        <expression>IF(
+    TEXT({!varTriggeringDeal.leaseworks__Deal_Status__c}) = &quot;LOI Signed&quot;,
+    &quot;LOI Team Approval: &quot; &amp;  {!varTriggeringDeal.pro_LOI_Team_Approval__c},
+    &quot;Asset Documentation Approval: &quot; &amp; {!Create_Collection_Of_Team_Approval_On_AiDs}
+)</expression>
+    </formulas>
+    <interviewLabel>Autolaunched - Approval Completed Email For Sign Off {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Autolaunched - Approval Completed Email For Sign Off</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Approval_Sign_Off_Users</name>
+        <label>Get Approval Sign Off Users</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Approval_Sign_Off_Users_Found</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Username</field>
+            <operator>In</operator>
+            <value>
+                <elementReference>Create_Approval_Signoff_Username_Collection</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>User</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <description>Get the Assets in Deal in order to be able to include their AiD Team Approval field in the email</description>
+        <name>Get_Assets_In_Deal</name>
+        <label>Get Assets In Deal</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Create_Collection_Of_Team_Approval_On_AiDs</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>leaseworks__Marketing_Activity__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>varTriggeringDeal.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>leaseworks__Aircraft_Proposal__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Deal_Team_Mapping_CMDT_For_Documentation_Approval_Sign_Off</name>
+        <label>Get Deal Team Mapping CMDT For Documentation Approval Sign Off</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Assign_Documentation_Approver_Mappings_To_Variable</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Type__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Lease Documentation Approval Signoff</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>Deal_Team_Mapping__mdt</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Deal_Team_Mapping_CMDT_For_LOI_Approval_Sign_Off</name>
+        <label>Get Deal Team Mapping CMDT For LOI Approval Sign Off</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Assign_LOI_Approvers_Mappings_To_Variable</targetReference>
+        </connector>
+        <filterLogic>or</filterLogic>
+        <filters>
+            <field>Type__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>LOI Approval Signoff</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>Deal_Team_Mapping__mdt</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>LOI_or_Lease_Documentation_Approval_Completed</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <textTemplates>
+        <name>tt_EmailBody</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>&lt;p&gt;Dear user,&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;{!f_LoiOrDocumentation} has been completed for the Deal: {!varTriggeringDeal.Name}. The Deal&#39;s status may now be moved forward.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;{!f_LoiOrDocumentationTeamApproval}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;You can view the full details and take action by clicking the link:&amp;nbsp;&lt;a href=&quot;https://leaseworks-carlyle--full.sandbox.lightning.force.com/{!varTriggeringDeal.Id}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;View Deal in Salesforce&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Kind regards,&lt;/p&gt;&lt;p&gt;Salesforce System Notification&lt;/p&gt;</text>
+    </textTemplates>
+    <variables>
+        <name>varApproverMappings</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Deal_Team_Mapping__mdt</objectType>
+    </variables>
+    <variables>
+        <description>The Deal record which has reached full LOI or Documentation approval.</description>
+        <name>varTriggeringDeal</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>leaseworks__Marketing_Activity__c</objectType>
+    </variables>
+</Flow>

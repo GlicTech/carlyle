@@ -27,7 +27,10 @@
         <name>Create_Asset_Target_Audit</name>
         <label>Create Asset Target Audit</label>
         <locationX>176</locationX>
-        <locationY>242</locationY>
+        <locationY>350</locationY>
+        <connector>
+            <targetReference>Autolaunched_Update_Target_Information_On_Asset_Flow_1</targetReference>
+        </connector>
         <inputAssignments>
             <field>pro_Asset__c</field>
             <value>
@@ -53,7 +56,7 @@
         <name>Get_Target_Record</name>
         <label>Get Target Record</label>
         <locationX>176</locationX>
-        <locationY>134</locationY>
+        <locationY>242</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Create_Asset_Target_Audit</targetReference>
@@ -77,15 +80,59 @@
         <object>pro_Target__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
+    <recordUpdates>
+        <name>Close_Any_Open_Audit_Records_For_Same_Asset</name>
+        <label>Close Any Open Audit Records For Same Asset</label>
+        <locationX>176</locationX>
+        <locationY>134</locationY>
+        <connector>
+            <targetReference>Get_Target_Record</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>pro_Asset__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>varContract.leaseworks__Aircraft__c</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>pro_Progress__c</field>
+            <operator>Contains</operator>
+            <value>
+                <stringValue>Open</stringValue>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>pro_New_Contract_Signed__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <object>pro_Asset_Target_Audit__c</object>
+    </recordUpdates>
     <runInMode>SystemModeWithoutSharing</runInMode>
     <start>
         <locationX>50</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Get_Target_Record</targetReference>
+            <targetReference>Close_Any_Open_Audit_Records_For_Same_Asset</targetReference>
         </connector>
     </start>
     <status>Active</status>
+    <subflows>
+        <name>Autolaunched_Update_Target_Information_On_Asset_Flow_1</name>
+        <label>Autolaunched - Update Target Information On Asset Flow 1</label>
+        <locationX>176</locationX>
+        <locationY>458</locationY>
+        <flowName>pro_Autolaunched_Update_Target_Information_On_Asset</flowName>
+        <inputAssignments>
+            <name>varTriggeringTargetId</name>
+            <value>
+                <elementReference>Create_Asset_Target_Audit</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
     <variables>
         <name>varContract</name>
         <dataType>SObject</dataType>

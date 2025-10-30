@@ -82,6 +82,10 @@
                 <behavior>Edit</behavior>
                 <field>Approval_Date__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>leaseworks__Amount_Paid_Ledger__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -185,10 +189,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>leaseworks__Converted_Currency_Amount__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
                 <field>pro_Lessor_Tax_Registration_Number__c</field>
             </layoutItems>
         </layoutColumns>
@@ -217,7 +217,7 @@
                 <field>leaseworks__Date_of_MR_Payment_Due__c</field>
             </layoutItems>
         </layoutColumns>
-        <layoutColumns/>
+        <layoutColumns />
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
     <layoutSections>
@@ -298,9 +298,9 @@
         <detailHeading>false</detailHeading>
         <editHeading>true</editHeading>
         <label>Custom Links</label>
-        <layoutColumns/>
-        <layoutColumns/>
-        <layoutColumns/>
+        <layoutColumns />
+        <layoutColumns />
+        <layoutColumns />
         <style>CustomLinks</style>
     </layoutSections>
     <platformActionList>
@@ -354,12 +354,14 @@
     </quickActionList>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>leaseworks__Assembly_MR_Info__c</fields>
-        <fields>leaseworks__Amount_Due__c</fields>
-        <fields>leaseworks__Balance_Due__c</fields>
-        <fields>leaseworks__Total_Amount_Paid__c</fields>
+        <fields>leaseworks__Line_Currency__c</fields>
+        <fields>leaseworks__Invoice_Line_Amount_Number__c</fields>
+        <fields>leaseworks__Line_Amount_Balance_Due_Number__c</fields>
+        <fields>leaseworks__Line_Amount_Paid_Number__c</fields>
+        <fields>leaseworks__Converted_Currency_Line_Amount__c</fields>
         <fields>leaseworks__Invoice_Type__c</fields>
         <fields>leaseworks__Invoice_Line_Type__c</fields>
+        <fields>leaseworks__Comments__c</fields>
         <relatedList>leaseworks__Invoice_Line_Item__c.leaseworks__Invoice__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -403,8 +405,9 @@
     <relatedLists>
         <excludeButtons>MassChangeOwner</excludeButtons>
         <fields>NAME</fields>
-        <fields>leaseworks__Adjustment_Amount__c</fields>
+        <fields>leaseworks__Invoice_Adjustment_Amt__c</fields>
         <fields>leaseworks__Approval_Status__c</fields>
+        <fields>leaseworks__Transaction_Currency__c</fields>
         <relatedList>leaseworks__Invoice_Adjustment__c.leaseworks__Linked_Invoice__c</relatedList>
     </relatedLists>
     <relatedLists>

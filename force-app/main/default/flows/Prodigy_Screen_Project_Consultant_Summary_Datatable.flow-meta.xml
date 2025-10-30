@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>64.0</apiVersion>
-    <description>Displays roll up data related to time log entries for project consultant</description>
+    <description>Project Consultant Days Worked
+
+Displays roll up data related to time log entries for project consultant</description>
     <environments>Default</environments>
     <interviewLabel>Prodigy - {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Prodigy - Screen - Project Consultant Summary Datatable</label>
@@ -55,7 +57,7 @@
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
         <fields>
-            <name>dt_Display</name>
+            <name>dt_DisplayConsultants</name>
             <dataTypeMappings>
                 <typeName>T</typeName>
                 <typeValue>pro_Project_Consultant__c</typeValue>
@@ -81,12 +83,6 @@
                 </value>
             </inputParameters>
             <inputParameters>
-                <name>shouldDisplayLabel</name>
-                <value>
-                    <booleanValue>true</booleanValue>
-                </value>
-            </inputParameters>
-            <inputParameters>
                 <name>tableData</name>
                 <value>
                     <elementReference>Get_Project_Consultants</elementReference>
@@ -101,7 +97,7 @@
             <inputParameters>
                 <name>columns</name>
                 <value>
-                    <stringValue>[{&quot;apiName&quot;:&quot;pro_Account_Name__c&quot;,&quot;guid&quot;:&quot;column-bc8f&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:true,&quot;customHeaderLabel&quot;:&quot;Vendor&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:0,&quot;label&quot;:&quot;Account Name&quot;,&quot;type&quot;:&quot;customRichText&quot;},{&quot;apiName&quot;:&quot;Name&quot;,&quot;guid&quot;:&quot;column-db0e&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:true,&quot;customHeaderLabel&quot;:&quot;Consultant &amp; Task&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:1,&quot;label&quot;:&quot;Project Consultant Name&quot;,&quot;type&quot;:&quot;text&quot;},{&quot;apiName&quot;:&quot;pro_On_Site_Day_Rate__c&quot;,&quot;guid&quot;:&quot;column-1f7c&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:false,&quot;customHeaderLabel&quot;:&quot;&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:2,&quot;label&quot;:&quot;On-Site Day Rate&quot;,&quot;type&quot;:&quot;currency&quot;},{&quot;apiName&quot;:&quot;pro_Off_Site_Day_Rate__c&quot;,&quot;guid&quot;:&quot;column-3609&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:false,&quot;customHeaderLabel&quot;:&quot;&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:3,&quot;label&quot;:&quot;Off-Site Day Rate&quot;,&quot;type&quot;:&quot;currency&quot;},{&quot;apiName&quot;:&quot;pro_Days_Onsite__c&quot;,&quot;guid&quot;:&quot;column-45c3&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:false,&quot;customHeaderLabel&quot;:&quot;&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:4,&quot;label&quot;:&quot;Days Onsite&quot;,&quot;type&quot;:&quot;number&quot;},{&quot;apiName&quot;:&quot;pro_Days_Offsite__c&quot;,&quot;guid&quot;:&quot;column-da57&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:false,&quot;customHeaderLabel&quot;:&quot;&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:5,&quot;label&quot;:&quot;Days Offsite&quot;,&quot;type&quot;:&quot;number&quot;},{&quot;apiName&quot;:&quot;pro_Days_Total__c&quot;,&quot;guid&quot;:&quot;column-c7ea&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:false,&quot;customHeaderLabel&quot;:&quot;&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:6,&quot;label&quot;:&quot;Days Total&quot;,&quot;type&quot;:&quot;number&quot;},{&quot;apiName&quot;:&quot;pro_Total_Charges__c&quot;,&quot;guid&quot;:&quot;column-5476&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:false,&quot;customHeaderLabel&quot;:&quot;&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:7,&quot;label&quot;:&quot;Total Charges&quot;,&quot;type&quot;:&quot;currency&quot;},{&quot;apiName&quot;:&quot;pro_Currency__c&quot;,&quot;guid&quot;:&quot;column-524f&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:false,&quot;customHeaderLabel&quot;:&quot;&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:8,&quot;label&quot;:&quot;Currency&quot;,&quot;type&quot;:&quot;text&quot;}]</stringValue>
+                    <stringValue>[{&quot;apiName&quot;:&quot;pro_Account_Name__c&quot;,&quot;guid&quot;:&quot;column-0712&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:true,&quot;customHeaderLabel&quot;:&quot;Vendor&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:0,&quot;label&quot;:&quot;Account Name&quot;,&quot;type&quot;:&quot;customRichText&quot;},{&quot;apiName&quot;:&quot;pro_Name_Role__c&quot;,&quot;guid&quot;:&quot;column-b617&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:false,&quot;customHeaderLabel&quot;:&quot;&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:1,&quot;label&quot;:&quot;Name &amp; Role&quot;,&quot;type&quot;:&quot;customRichText&quot;},{&quot;apiName&quot;:&quot;pro_On_Site_Day_Rate__c&quot;,&quot;guid&quot;:&quot;column-1da0&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:false,&quot;customHeaderLabel&quot;:&quot;&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:2,&quot;label&quot;:&quot;On-Site Day Rate&quot;,&quot;type&quot;:&quot;number&quot;},{&quot;apiName&quot;:&quot;pro_Off_Site_Day_Rate__c&quot;,&quot;guid&quot;:&quot;column-f7c5&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:false,&quot;customHeaderLabel&quot;:&quot;&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:3,&quot;label&quot;:&quot;Off-Site Day Rate&quot;,&quot;type&quot;:&quot;number&quot;},{&quot;apiName&quot;:&quot;pro_Days_Onsite__c&quot;,&quot;guid&quot;:&quot;column-5add&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:false,&quot;customHeaderLabel&quot;:&quot;&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:4,&quot;label&quot;:&quot;Days Onsite&quot;,&quot;type&quot;:&quot;number&quot;},{&quot;apiName&quot;:&quot;pro_Days_Offsite__c&quot;,&quot;guid&quot;:&quot;column-2eb7&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:false,&quot;customHeaderLabel&quot;:&quot;&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:5,&quot;label&quot;:&quot;Days Offsite&quot;,&quot;type&quot;:&quot;number&quot;},{&quot;apiName&quot;:&quot;pro_Days_Total__c&quot;,&quot;guid&quot;:&quot;column-4787&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:false,&quot;customHeaderLabel&quot;:&quot;&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:6,&quot;label&quot;:&quot;Days Total&quot;,&quot;type&quot;:&quot;number&quot;},{&quot;apiName&quot;:&quot;pro_Total_Charges__c&quot;,&quot;guid&quot;:&quot;column-3b07&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:false,&quot;customHeaderLabel&quot;:&quot;&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:7,&quot;label&quot;:&quot;Total Charges&quot;,&quot;type&quot;:&quot;number&quot;},{&quot;apiName&quot;:&quot;pro_Currency__c&quot;,&quot;guid&quot;:&quot;column-7d02&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:false,&quot;customHeaderLabel&quot;:&quot;&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:8,&quot;label&quot;:&quot;Currency&quot;,&quot;type&quot;:&quot;text&quot;}]</stringValue>
                 </value>
             </inputParameters>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>

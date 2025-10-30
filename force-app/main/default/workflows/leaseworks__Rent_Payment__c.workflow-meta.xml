@@ -30,7 +30,7 @@
             <name>leaseworks__SetRentPaid</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <formula>leaseworks__Rent__r.leaseworks__Amount_Paid__c + leaseworks__Amount__c - If( ISNEW(), 0, PRIORVALUE(leaseworks__Amount__c)) &gt;=  leaseworks__Rent__r.leaseworks__Total_Due__c</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>

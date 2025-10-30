@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Send_Error_Email</name>
+        <label>Send Error Email</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>emailAddresses</name>
+        </inputParameters>
+        <inputParameters>
+            <name>senderType</name>
+            <value>
+                <stringValue>OrgWideEmailAddress</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderAddress</name>
+            <value>
+                <stringValue>leaseworks@carlyle.aero</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>composeEmailContent</name>
+            <value>
+                <stringValue>True</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <stringValue>Error With Flow : Prodigy - Documentation Event - Update Synced Events  </stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <stringValue>&lt;p&gt;There has been an error processing your request:&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;{!$Flow.FaultMessage}&lt;/p&gt;</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>recipientId</name>
+            <value>
+                <elementReference>$User.Id</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <apiVersion>64.0</apiVersion>
+    <assignments>
+        <name>Set_LOI_Date_on_Related_AiDs</name>
+        <label>Set LOI Date on Related AiDs</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>Loop_Related_AiDs.LOI_Date__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.pro_Asset_in_Deal__r.LOI_Date__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varAidsToUpdate</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Loop_Related_AiDs</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_Related_AiDs</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <description>Check if the Sync Documentation Events checkbox is checked on the parent Deal</description>
+        <name>Are_Documentation_Events_Synced_On_The_Deal</name>
+        <label>Are Documentation Events Synced On The Deal?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Synced</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.pro_Asset_in_Deal__r.leaseworks__Marketing_Activity__r.pro_Sync_Documentation__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_All_Assets_In_Deal</targetReference>
+            </connector>
+            <label>Yes - Synced</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>If running user has a valid email, send error information.</description>
+        <name>Does_Running_User_Have_An_Invalid_Email</name>
+        <label>Does Running User Have An Invalid Email?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Send_Error_Email</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Invalid_Email</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$User.Email</leftValueReference>
+                <operator>EndsWith</operator>
+                <rightValue>
+                    <stringValue>invalid</stringValue>
+                </rightValue>
+            </conditions>
+            <label>Yes - Invalid Email</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>If LOI Date is not populated, set it to the same value as on the parent AiD to the triggering Documentation Event</description>
+        <name>Is_LOI_Date_Populated</name>
+        <label>Is LOI Date Populated?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Set_LOI_Date_on_Related_AiDs</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No - Blank</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Populated</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Loop_Related_AiDs.LOI_Date__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Loop_Related_AiDs</targetReference>
+            </connector>
+            <label>Yes - Populated</label>
+        </rules>
+    </decisions>
+    <description>Documentation Event Tracking
+
+Flow runs on update of Documentation Event records and if Documentation Events are synced on the Deal, updates related Documentation Events to reflect the values of the triggering record.</description>
+    <environments>Default</environments>
+    <interviewLabel>Prodigy - Documentation Event {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Prodigy - Documentation Event - Update Synced Events</label>
+    <loops>
+        <name>Loop_Related_AiDs</name>
+        <label>Loop Related AiDs</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <collectionReference>Get_All_Assets_In_Deal</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Is_LOI_Date_Populated</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Set_LOI_On_AiDs</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <description>Get all Asset In Deal records under the same deal as the triggering Documentation Event</description>
+        <name>Get_All_Assets_In_Deal</name>
+        <label>Get All Assets In Deal</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Loop_Related_AiDs</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>leaseworks__Marketing_Activity__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.pro_Asset_in_Deal__r.leaseworks__Marketing_Activity__c</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Id</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <elementReference>$Record.pro_Asset_in_Deal__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>leaseworks__Aircraft_Proposal__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <description>Get all documentation events of the same type under the same deal</description>
+        <name>Get_Related_Documentation_Events</name>
+        <label>Get Related Documentation Events</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Create_Documentation_Event_Id_Collection</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>pro_Asset_in_Deal__c</field>
+            <operator>In</operator>
+            <value>
+                <elementReference>Create_AiD_ID_Collection</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>pro_Documentation_Event_Type__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.pro_Documentation_Event_Type__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>pro_Documentation_Event__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <name>Set_LOI_On_AiDs</name>
+        <label>Set LOI On AiDs</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Create_AiD_ID_Collection</targetReference>
+        </connector>
+        <faultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Does_Running_User_Have_An_Invalid_Email</targetReference>
+        </faultConnector>
+        <inputReference>varAidsToUpdate</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <description>Update the related documentation event records to have the same values as the triggering record.</description>
+        <name>Sync_Related_Documentation_Events</name>
+        <label>Sync Related Documentation Events</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <faultConnector>
+            <targetReference>Does_Running_User_Have_An_Invalid_Email</targetReference>
+        </faultConnector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>In</operator>
+            <value>
+                <elementReference>Create_Documentation_Event_Id_Collection</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>pro_Actual_Date__c</field>
+            <value>
+                <elementReference>$Record.pro_Actual_Date__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>pro_Additional_Delay__c</field>
+            <value>
+                <elementReference>$Record.pro_Additional_Delay__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>pro_Delay_Comment__c</field>
+            <value>
+                <elementReference>$Record.pro_Delay_Comment__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>pro_Law_Firm__c</field>
+            <value>
+                <elementReference>$Record.pro_Law_Firm__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>pro_Primary_Delay__c</field>
+            <value>
+                <elementReference>$Record.pro_Primary_Delay__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>pro_Secondary_Delay__c</field>
+            <value>
+                <elementReference>$Record.pro_Secondary_Delay__c</elementReference>
+            </value>
+        </inputAssignments>
+        <object>pro_Documentation_Event__c</object>
+    </recordUpdates>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Are_Documentation_Events_Synced_On_The_Deal</targetReference>
+        </connector>
+        <object>pro_Documentation_Event__c</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <variables>
+        <description>Collection of AiD records whose LOI Date is to be set</description>
+        <name>varAidsToUpdate</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>leaseworks__Aircraft_Proposal__c</objectType>
+    </variables>
+</Flow>

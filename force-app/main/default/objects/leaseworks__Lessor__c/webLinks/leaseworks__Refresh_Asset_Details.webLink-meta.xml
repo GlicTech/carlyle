@@ -4,24 +4,10 @@
     <availability>online</availability>
     <displayType>button</displayType>
     <linkType>javascript</linkType>
-    <masterLabel>Refresh Asset Details</masterLabel>
+    <masterLabel>Z_Unused_2506 Refresh Asset Details</masterLabel>
     <openType>onClickJavaScript</openType>
     <protected>false</protected>
     <url>{!REQUIRESCRIPT(&quot;/soap/ajax/57.0/connection.js&quot;)}
 {!REQUIRESCRIPT(&quot;/soap/ajax/57.0/apex.js&quot;)}
-
-try{
-if(&#39;{!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Package_Prefix__c}&#39;== &quot;&quot;){
-var retVal =sforce.apex.execute(&quot;AerDataService&quot;,&quot;executeAerDataBatch&quot;, {});
-}
-else{
-var retVal =sforce.apex.execute(&quot;leaseworks/AerDataService&quot;,&quot;executeAerDataBatch&quot;, {});
-}
-
-window.location.reload();
-}catch(err){
-retVal=&quot;Unable to cRefresh Asset Details, probably because you don&#39;t have necessary permission.&quot; + err;
-}
-
 window.alert(&#39;Batch Initialized successfully. You will receive an email on batch Completion!&#39;);</url>
 </WebLink>

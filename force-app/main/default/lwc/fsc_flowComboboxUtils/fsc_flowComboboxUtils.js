@@ -11,7 +11,6 @@ const flowComboboxDefaults = {
     actionType: 'actionCalls',
     screenComponentType: 'screenComponent',
     screenActionType: 'screenAction',
-    regionContainerName: 'Screen_Section',
 
 }
 

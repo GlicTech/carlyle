@@ -66,6 +66,9 @@
         <label>Has Group Members To Delete?</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Is_User_Active</targetReference>
+        </defaultConnector>
         <defaultConnectorLabel>No</defaultConnectorLabel>
         <rules>
             <name>YesDelete</name>
@@ -97,9 +100,16 @@
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>Loop_Through_GroupMemberships.GroupId</leftValueReference>
-                <operator>NotEqualTo</operator>
+                <operator>EqualTo</operator>
                 <rightValue>
-                    <elementReference>Get_Target_Public_Group.Id</elementReference>
+                    <elementReference>Get_Previous_Public_group.Id</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Get_Previous_cmdt_mappings.Profile_Name__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -299,6 +309,27 @@
         <locationY>0</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
+            <targetReference>Get_Previous_cmdt_mappings</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Profile_Name__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Get_User.Profile.Name</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Pro_Profile_to_Group_Mapping__mdt</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Previous_cmdt_mappings</name>
+        <label>Get Previous cmdt mappings</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
             <targetReference>Get_Target_Public_Group</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
@@ -306,11 +337,32 @@
             <field>Profile_Name__c</field>
             <operator>EqualTo</operator>
             <value>
-                <elementReference>$Record.Profile.Name</elementReference>
+                <elementReference>$Record__Prior.Profile.Name</elementReference>
             </value>
         </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
         <object>Pro_Profile_to_Group_Mapping__mdt</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Previous_Public_group</name>
+        <label>Get Previous Public group</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_All_User_GroupMemberships</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>DeveloperName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Get_Previous_cmdt_mappings.Group_Name__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Group</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
@@ -320,7 +372,7 @@
         <locationY>0</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Get_All_User_GroupMemberships</targetReference>
+            <targetReference>Get_Previous_Public_group</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -375,6 +427,13 @@
         <triggerType>RecordAfterSave</triggerType>
     </start>
     <status>Active</status>
+    <variables>
+        <name>PreviousProfileName</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
     <variables>
         <name>varGroupMembersToDelete</name>
         <dataType>SObject</dataType>

@@ -67,41 +67,50 @@ public class proTimeLogController {
     }
     
     @AuraEnabled
-    public static void saveTimeLogs( String submissionsJson, Id technicalProjectId, String workMode) {
-   
+    public static void saveTimeLogs(String submissionsJson, Id technicalProjectId, String workMode) {
         if (String.isBlank(submissionsJson) || technicalProjectId == null) return;
-    
+
         List<TimeLogSubmission> submissions = 
-            (List<TimeLogSubmission>) JSON.deserialize(submissionsJson, List<TimeLogSubmission>.class);    
+        (List<TimeLogSubmission>) JSON.deserialize(submissionsJson, List<TimeLogSubmission>.class);    
+
         List<pro_Time_Log_Entry__c> recordsToUpsert = new List<pro_Time_Log_Entry__c>();
-    
+        Set<String> keysToDelete = new Set<String>();
+
         for (TimeLogSubmission sub : submissions) {
             if (sub.entries == null || sub.consultantId == null) continue;
-    
+
             for (TimeLogDay entry : sub.entries) {
-                if (entry.value != null && entry.value > 0 && String.isNotBlank(entry.entryDate)) {
+                if (String.isNotBlank(entry.entryDate)) {
                     Date logDate = Date.valueOf(entry.entryDate);
                     String formattedDate = DateTime.newInstance(logDate, Time.newInstance(0, 0, 0, 0)).format('yyyy-MM-dd');
                     String extId = technicalProjectId + '-' + sub.consultantId + '-' + formattedDate + '-' + workMode;
-    
-                    pro_Time_Log_Entry__c log = new pro_Time_Log_Entry__c();
-                    log.pro_Technical_Project__c = technicalProjectId;
-                    log.pro_Project_Consultant__c = sub.consultantId;
-                    log.pro_Time_Log_Date__c = logDate;
-                    log.pro_Day_Worked__c = entry.value;
-                    log.pro_Work_Location__c = workMode;
-                    log.Pro_Time_Log_Ext_Id__c = extId;
-                    recordsToUpsert.add(log);
+
+                    if (entry.value != null && entry.value > 0) {
+                        pro_Time_Log_Entry__c log = new pro_Time_Log_Entry__c();
+                        log.pro_Technical_Project__c = technicalProjectId;
+                        log.pro_Project_Consultant__c = sub.consultantId;
+                        log.pro_Time_Log_Date__c = logDate;
+                        log.pro_Day_Worked__c = entry.value;
+                        log.pro_Work_Location__c = workMode;
+                        log.Pro_Time_Log_Ext_Id__c = extId;
+                        recordsToUpsert.add(log);
+                    } else {
+                        keysToDelete.add(extId);
+                    }
                 }
             }
-        }    
+        }
         if (!recordsToUpsert.isEmpty()) {
-            upsert recordsToUpsert Pro_Time_Log_Ext_Id__c; 
-        } else {
-            System.debug('No records to upsert.');
+            upsert recordsToUpsert Pro_Time_Log_Ext_Id__c;
+        }
+        if (!keysToDelete.isEmpty()) {
+            List<pro_Time_Log_Entry__c> toDelete = [
+                SELECT Id FROM pro_Time_Log_Entry__c
+                WHERE Pro_Time_Log_Ext_Id__c IN :keysToDelete
+            ];
+            delete toDelete;
         }
     }
-
     
     @AuraEnabled(cacheable=true)
     public static Map<String, String> getProjectInfo(Id projectId) {
@@ -117,8 +126,13 @@ public class proTimeLogController {
             FROM pro_Time_Log_Entry__c
             WHERE pro_Technical_Project__c = :projectId
         ];
-        Decimal totalLogged = (Decimal) result.get('totalLogged');
-        Decimal budgeted = project.pro_Total_Days_Budgeted__c != null ? project.pro_Total_Days_Budgeted__c : 0;
+         Decimal totalLogged = (result != null && result.get('totalLogged') != null) 
+            ? (Decimal) result.get('totalLogged') 
+            : 0;
+    
+        Decimal budgeted = project.pro_Total_Days_Budgeted__c != null 
+            ? project.pro_Total_Days_Budgeted__c 
+            : 0;
         Decimal remaining = budgeted - totalLogged;
         
         return new Map<String, String>{

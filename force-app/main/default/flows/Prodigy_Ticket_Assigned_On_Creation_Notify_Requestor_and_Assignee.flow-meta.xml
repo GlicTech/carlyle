@@ -15,6 +15,24 @@
             </value>
         </inputParameters>
         <inputParameters>
+            <name>ccRecipientAddressList</name>
+            <value>
+                <elementReference>$Record.pro_Requested_By__r.Email</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderType</name>
+            <value>
+                <stringValue>OrgWideEmailAddress</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderAddress</name>
+            <value>
+                <stringValue>leaseworks@carlyle.aero</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
             <name>emailSubject</name>
             <value>
                 <elementReference>tt_AssigneeEmailSubject</elementReference>
@@ -30,12 +48,6 @@
             <name>sendRichBody</name>
             <value>
                 <booleanValue>true</booleanValue>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>ccRecipientAddressList</name>
-            <value>
-                <elementReference>$Record.pro_Requested_By__r.Email</elementReference>
             </value>
         </inputParameters>
     </actionCalls>
@@ -59,7 +71,7 @@
         <inputParameters>
             <name>recipientIds</name>
             <value>
-                <elementReference>varRequestorIds</elementReference>
+                <elementReference>varAssigneeIds</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -267,12 +279,12 @@
     <textTemplates>
         <name>tt_AssigneeEmailBody</name>
         <isViewedAsPlainText>false</isViewedAsPlainText>
-        <text>&lt;p&gt;Hi {!$Record.pro_Assigned_To__r.FirstName} {!$Record.pro_Assigned_To__r.LastName},&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;A new support ticket has been created and assigned to you in Salesforce.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Ticket Details:&lt;/strong&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;strong&gt;MSN: &lt;/strong&gt;{!$Record.pro_Asset__r.Name}&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Assigned Operator: &lt;/strong&gt;{!varAssignedOperator}﻿&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Type:&lt;/strong&gt; {!$Record.pro_Type__c}&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Priority: &lt;/strong&gt;{!$Record.pro_Priority__c}&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Status:&lt;/strong&gt; {!$Record.pro_Status__c}&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Created Date:&lt;/strong&gt; {!$Record.CreatedDate}&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Expected Due Date: &lt;/strong&gt;{!$Record.pro_Expected_Due_Date__c}&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Title: &lt;/strong&gt;{!$Record.pro_Title__c}&lt;span class=&quot;ql-cursor&quot;&gt;﻿&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Description:&lt;/strong&gt; {!$Record.pro_Comments__c}&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;You can view the full details and take action by clicking the link: &lt;a href=&quot;https://leaseworks-carlyle.lightning.force.com/{!$Record.Id}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;View Ticket in Salesforce&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Kind regards,&lt;/p&gt;&lt;p&gt;Salesforce System Notification&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;em&gt;This message was generated automatically. For assistance, please contact your Salesforce administrator.&lt;/em&gt;&lt;/p&gt;</text>
+        <text>&lt;p&gt;Hi {!$Record.pro_Assigned_To__r.FirstName} {!$Record.pro_Assigned_To__r.LastName},&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;A new support ticket has been created and assigned to you in Salesforce.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Ticket Details:&lt;/strong&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;strong&gt;MSN: &lt;/strong&gt;{!$Record.pro_Asset__r.Name}&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Assigned Operator: &lt;/strong&gt;{!varAssignedOperator}&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Requested By: &lt;/strong&gt;{!$Record.pro_Requested_By__r.FirstName} &lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;{!$Record.pro_Requested_By__r.LastName}&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Type:&lt;/strong&gt; {!$Record.pro_Type__c}&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Priority: &lt;/strong&gt;{!$Record.pro_Priority__c}&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Status:&lt;/strong&gt; {!$Record.pro_Status__c}&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Created Date:&lt;/strong&gt; {!$Record.CreatedDate}&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Expected Due Date: &lt;/strong&gt;{!$Record.pro_Expected_Due_Date__c}&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Title: &lt;/strong&gt;{!$Record.pro_Title__c}﻿&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Description:&lt;/strong&gt; {!$Record.pro_Comments__c}&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;You can view the full details and take action by clicking the link: &lt;a href=&quot;https://leaseworks-carlyle.lightning.force.com/{!$Record.Id}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;View Ticket in Salesforce&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Kind regards,&lt;/p&gt;&lt;p&gt;Salesforce System Notification&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;em&gt;This message was generated automatically. For assistance, please contact your Salesforce administrator.&lt;/em&gt;&lt;/p&gt;</text>
     </textTemplates>
     <textTemplates>
         <name>tt_AssigneeEmailBodyNoAsset</name>
         <isViewedAsPlainText>false</isViewedAsPlainText>
-        <text>&lt;p&gt;Hi {!$Record.pro_Assigned_To__r.FirstName} {!$Record.pro_Assigned_To__r.LastName},&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;A new support ticket has been created and assigned to you in Salesforce.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Ticket Details:&lt;/strong&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;strong&gt;Non Carlyle Asset MSN: &lt;/strong&gt;{!$Record.pro_Non_Carlyle_Asset_MSN__c}﻿&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Type:&lt;/strong&gt; {!$Record.pro_Type__c}&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Priority: &lt;/strong&gt;{!$Record.pro_Priority__c}&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Status:&lt;/strong&gt; {!$Record.pro_Status__c}&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Created Date:&lt;/strong&gt; {!$Record.CreatedDate}&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Expected Due Date: &lt;/strong&gt;{!$Record.pro_Expected_Due_Date__c}&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Title: &lt;/strong&gt;{!$Record.pro_Title__c}&lt;span class=&quot;ql-cursor&quot;&gt;﻿&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Description:&lt;/strong&gt; {!$Record.pro_Comments__c}&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;You can view the full details and take action by clicking the link: &lt;a href=&quot;https://leaseworks-carlyle.lightning.force.com/{!$Record.Id}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;View Ticket in Salesforce&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Kind regards,&lt;/p&gt;&lt;p&gt;Salesforce System Notification&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;em&gt;This message was generated automatically. For assistance, please contact your Salesforce administrator.&lt;/em&gt;&lt;/p&gt;</text>
+        <text>&lt;p&gt;Hi {!$Record.pro_Assigned_To__r.FirstName} {!$Record.pro_Assigned_To__r.LastName},&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;A new support ticket has been created and assigned to you in Salesforce.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Ticket Details:&lt;/strong&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;strong&gt;Non Carlyle Asset MSN: &lt;/strong&gt;{!$Record.pro_Non_Carlyle_Asset_MSN__c}&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Requested By: &lt;/strong&gt;{!$Record.pro_Requested_By__r.FirstName} &lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;{!$Record.pro_Requested_By__r.LastName}&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Type:&lt;/strong&gt; {!$Record.pro_Type__c}&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Priority: &lt;/strong&gt;{!$Record.pro_Priority__c}&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Status:&lt;/strong&gt; {!$Record.pro_Status__c}&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Created Date:&lt;/strong&gt; {!$Record.CreatedDate}&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Expected Due Date: &lt;/strong&gt;{!$Record.pro_Expected_Due_Date__c}&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Title: &lt;/strong&gt;{!$Record.pro_Title__c}﻿&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Description:&lt;/strong&gt; {!$Record.pro_Comments__c}&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;You can view the full details and take action by clicking the link: &lt;a href=&quot;https://leaseworks-carlyle.lightning.force.com/{!$Record.Id}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;View Ticket in Salesforce&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Kind regards,&lt;/p&gt;&lt;p&gt;Salesforce System Notification&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;em&gt;This message was generated automatically. For assistance, please contact your Salesforce administrator.&lt;/em&gt;&lt;/p&gt;</text>
     </textTemplates>
     <textTemplates>
         <name>tt_AssigneeEmailSubject</name>

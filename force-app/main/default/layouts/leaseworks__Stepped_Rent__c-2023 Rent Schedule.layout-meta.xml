@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
-    <excludeButtons>OpenSlackRecordChannel</excludeButtons>
     <excludeButtons>Submit</excludeButtons>
     <layoutSections>
         <customLabel>false</customLabel>
@@ -39,6 +38,18 @@
                 <behavior>Edit</behavior>
                 <field>leaseworks__Floating_Rent_Margin__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>pro_Is_Current__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>pro_Currency_Rates__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>pro_Base_Rent_Target__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -67,6 +78,10 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>Ad_hoc_Schedule_Local__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>leaseworks__Lessor_Bank_Account__c</field>
             </layoutItems>
         </layoutColumns>
@@ -90,7 +105,7 @@
         <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
         <label>Extension</label>
-        <layoutColumns/>
+        <layoutColumns />
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -114,7 +129,7 @@
                 <field>leaseworks__Off_Wing_Rent__c</field>
             </layoutItems>
         </layoutColumns>
-        <layoutColumns/>
+        <layoutColumns />
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
     <layoutSections>
@@ -167,7 +182,7 @@
                 <field>leaseworks__Escalation__c</field>
             </layoutItems>
         </layoutColumns>
-        <layoutColumns/>
+        <layoutColumns />
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
     <layoutSections>
@@ -298,7 +313,7 @@
                 <field>leaseworks__Rent_Percent__c</field>
             </layoutItems>
         </layoutColumns>
-        <layoutColumns/>
+        <layoutColumns />
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
     <layoutSections>
@@ -348,9 +363,9 @@
         <detailHeading>false</detailHeading>
         <editHeading>true</editHeading>
         <label>Custom Links</label>
-        <layoutColumns/>
-        <layoutColumns/>
-        <layoutColumns/>
+        <layoutColumns />
+        <layoutColumns />
+        <layoutColumns />
         <style>CustomLinks</style>
     </layoutSections>
     <platformActionList>
@@ -387,18 +402,37 @@
         </platformActionListItems>
     </platformActionList>
     <relatedLists>
+        <fields>NAME</fields>
+        <fields>leaseworks__Selection__c</fields>
+        <fields>leaseworks__Rate_Basis_F__c</fields>
+        <fields>leaseworks__Associated_Assembly__c</fields>
+        <fields>leaseworks__PBH_Rate__c</fields>
+        <fields>leaseworks__PBH_Rate_FC__c</fields>
+        <relatedList>leaseworks__PBH_Rent_Rate__c.leaseworks__Multi_Rent_Schedule__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <customButtons>Delete_Rent_Slips</customButtons>
+        <excludeButtons>MassChangeOwner</excludeButtons>
         <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
         <fields>leaseworks__Start_Date__c</fields>
         <fields>leaseworks__For_Month_Ending__c</fields>
         <fields>leaseworks__Rent_Due_Date__c</fields>
         <fields>leaseworks__Period_Days__c</fields>
+        <fields>leaseworks__Billing_Currency__c</fields>
+        <fields>leaseworks__Rent_Slip_Amount__c</fields>
+        <fields>leaseworks__New_Rent_Slip_Adjustments__c</fields>
         <fields>leaseworks__Rent_Reset_Date__c</fields>
         <fields>leaseworks__Actual_Interest_Rate__c</fields>
-        <fields>leaseworks__Rent_Due_Amount__c</fields>
-        <fields>leaseworks__Rent_Slip_Adjustments__c</fields>
-        <fields>leaseworks__Link_to_Invoice__c</fields>
         <relatedList>leaseworks__Rent__c.leaseworks__Stepped_Rent__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>leaseworks__Stepped_Rent_Start_Date__c</fields>
+        <fields>leaseworks__Rent_Percent__c</fields>
+        <fields>leaseworks__Billing_Currency__c</fields>
+        <fields>leaseworks__New_Rent_Amount__c</fields>
+        <relatedList>leaseworks__SteppedMultiRent__c.leaseworks__Multi_Rent_Schedule__c</relatedList>
     </relatedLists>
     <relatedLists>
         <excludeButtons>MassChangeOwner</excludeButtons>
@@ -413,22 +447,6 @@
         <fields>leaseworks__SLR_Adjustment__c</fields>
         <fields>leaseworks__SLR_Bal_End_Prd__c</fields>
         <relatedList>leaseworks__Straight_Line_Revenue__c.leaseworks__Multi_Rent_Schedule__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>leaseworks__Stepped_Rent_Start_Date__c</fields>
-        <fields>leaseworks__Rent_Percent__c</fields>
-        <fields>leaseworks__Rent_Amount__c</fields>
-        <relatedList>leaseworks__SteppedMultiRent__c.leaseworks__Multi_Rent_Schedule__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>leaseworks__Selection__c</fields>
-        <fields>leaseworks__Rate_Basis_F__c</fields>
-        <fields>leaseworks__Associated_Assembly__c</fields>
-        <fields>leaseworks__PBH_Rate__c</fields>
-        <fields>leaseworks__PBH_Rate_FC__c</fields>
-        <relatedList>leaseworks__PBH_Rent_Rate__c.leaseworks__Multi_Rent_Schedule__c</relatedList>
     </relatedLists>
     <relatedLists>
         <relatedList>RelatedEntityHistoryList</relatedList>

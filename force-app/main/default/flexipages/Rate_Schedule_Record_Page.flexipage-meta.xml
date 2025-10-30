@@ -75,6 +75,44 @@
                 <identifier>Recordleaseworks_Comments_cField</identifier>
             </fieldInstance>
         </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>conditionalFormatRuleset</name>
+                    <value>Pending_Status</value>
+                </fieldInstanceProperties>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Approval_Status__c</fieldItem>
+                <identifier>Recordleaseworks_Approval_Status_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Assembly_MR_Info__r.leaseworks__Rate_Schedule_Manual_Approval_Required__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Approved_By__c</fieldItem>
+                <identifier>Recordleaseworks_Approved_By_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Assembly_MR_Info__r.leaseworks__Rate_Schedule_Manual_Approval_Required__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
         <name>Facet-05a7124f-acde-4dc0-abc5-5b722f13890d</name>
         <type>Facet</type>
     </flexiPageRegions>
@@ -110,6 +148,16 @@
                         <rightValue>jonathanh@carlyle.aero</rightValue>
                     </criteria>
                 </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Rate_Details_Overview__c</fieldItem>
+                <identifier>Recordleaseworks_Rate_Details_Overview_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-251e66f9-d700-4d3f-af24-41766d987e22</name>
@@ -303,8 +351,12 @@
                     <value>Facet-5f007dc1-4d2c-4135-8b42-01654b2dd1d3</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
-                    <value>Section</value>
+                    <value>Details</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:fieldSection</componentName>
                 <identifier>flexipage_fieldSection</identifier>
@@ -315,6 +367,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-10925abd-bc40-4000-a6b6-004079148510</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -331,6 +387,10 @@
                     <value>Facet-896ce46c-bec2-40cf-bc1b-6546533b1f53</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Rates</value>
                 </componentInstanceProperties>
@@ -343,6 +403,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-bed87300-f290-4e26-a6de-e0918776fe75</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>

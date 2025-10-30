@@ -1,5 +1,50 @@
 <template>
-    <lightning-card title={config.Name}>
+    <lightning-card >
+         <template if:true={isLoading}>
+        <div class="slds-is-relative">
+            <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+        </div>
+    </template>
+         <h3 slot="title">
+             <template if:true={relatedListUrl}>
+    <a href={relatedListUrl} >{config.Name}</a>
+  </template>
+  <template if:false={relatedListUrl}>
+    {config.Name}
+  </template>
+            <template if:true={showcount}>
+                 ({totalsize})
+            </template>
+        </h3>
+        <template if:true={showPagination}>
+    <div class="slds-m-top_medium slds-align_absolute-center">
+       <template if:true={showPagination}>
+    <div class="pagination-controls">
+       <div class="slds-p-around_small slds-align_absolute-center">
+        <lightning-button 
+            label="Previous" 
+            onclick={handlePreviousPage} 
+            disabled={isPreviousDisabled} 
+            variant="brand-outline"
+            class="slds-m-right_small">
+        </lightning-button>
+
+        <span class="slds-text-body_regular slds-m-horizontal_small">
+            Page {currentPage} of {totalPages}
+        </span>
+
+        <lightning-button 
+            label="Next" 
+            onclick={handleNextPage} 
+            disabled={isNextDisabled} 
+            variant="brand-outline"
+            class="slds-m-left_small">
+        </lightning-button>
+    </div>
+    </div>
+</template>
+    </div>
+</template>
         <template if:true={searchable}>
             <div class="slds-grid slds-grid_align-end slds-p-right_medium slds-p-top_x-small">
                 <template if:true={countdownLabel}>
@@ -16,14 +61,34 @@
                     onchange={handleSearch}
                     class="slds-size_small">
                 </lightning-input>
+                
+                <template if:true={hasTopFlowActions}>
+    <div class="slds-m-bottom_medium">
+        <template for:each={topLevelActions} for:item="action">
+            <lightning-button 
+                key={action.flowApiName} 
+                label={action.label}
+                onclick={handleTopLevelAction}
+                data-flow-api={action.flowApiName}
+                class="slds-m-right_small">
+            </lightning-button>
+        </template>
+    </div>
+</template>
             </div>
         </template>
 
         <template if:true={records}>
-            <div class="slds-scrollable_x slds-p-horizontal_medium slds-p-bottom_small">
+            <div class={containerClass}>
+            <div class="slds-scrollable_x slds-p-horizontal_medium slds-p-bottom_small main-pane">
                 <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped">
                    <thead>
                 <tr>
+                    <template if:true={config.showselectionCheckbox}>
+    <th>
+        <lightning-input type="checkbox" onchange={toggleSelectAll}></lightning-input>
+    </th>
+</template>
                     <template for:each={columns} for:item="col">
                        <th key={col.fieldName}
     class={col.headerClass}
@@ -39,9 +104,27 @@
                     <tbody>
                         <template for:each={records} for:item="record">
                             <tr key={record.Id}>
+                                <template if:true={config.showselectionCheckbox}>
+    <td>
+        <lightning-input 
+            type="checkbox"
+            data-id={record.Id}
+            onchange={toggleRowSelection}
+           >
+        </lightning-input>
+    </td>
+</template>
                                 <template for:each={record.cells} for:item="cell">
 
-                                    <td key={cell.fieldName} style={cell.style}>{cell.value}</td>
+                                    <td key={cell.fieldName} style={cell.style}>
+                                        
+                                        <template if:true={cell.islink}>
+        <a href={cell.url} target="_blank">{cell.value}</a>
+    </template>
+    <template if:false={cell.islink}>
+        {cell.value}
+    </template>
+                                        </td>
                                 </template>
                                   <td if:true={hasFlowActions}>
                         <template for:each={flowActions} for:item="flow">
@@ -61,6 +144,28 @@
                     </tbody>
                 </table>
             </div>
+
+            <!-- Draggable divider and right-hand split pane for Flow when enabled -->
+            <template if:true={flowSplitScreen}>
+                <template if:true={showFlowPanel}>
+                    <div class="divider" onmousedown={startDrag} ontouchstart={startDrag}></div>
+                    <aside class="side-pane">
+                        <header class="side-pane__header slds-p-around_small slds-border_bottom">
+                            <h2 class="slds-text-heading_small">{currentFlowLabel}</h2>
+                            <lightning-button label="Close" icon-name="utility:close" icon-position="left" variant="neutral" onclick={closeFlowPanel} class="close-button"></lightning-button>
+                        </header>
+                        <div class="side-pane__content slds-p-around_small">
+                            <lightning-flow onstatuschange={handleFlowStatusChange}></lightning-flow>
+                        </div>
+                    </aside>
+                </template>
+            </template>
+            </div>
+            <template if:true={shouldShowViewAllButton}>
+    <div class="slds-align_absolute-center slds-p-around_small">
+        <lightning-button label="View All" onclick={handleViewAllClick}></lightning-button>
+    </div>
+</template>
         </template>
 
         <template if:true={error}>
@@ -70,14 +175,14 @@
         <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
             <div class="slds-modal__container">
                 <header class="slds-modal__header">
-                    <h2 class="slds-modal__title">{currentFlowName}</h2>
+                    <h2 class="slds-modal__title">{currentFlowLabel}</h2>
                     <button class="slds-button slds-button_icon slds-modal__close"
                             onclick={closeFlowModal}>
                         <lightning-icon icon-name="utility:close" alternative-text="Close"></lightning-icon>
                     </button>
                 </header>
                 <div class="slds-modal__content">
-                    <lightning-flow flow-api-name={currentFlowName}
+                    <lightning-flow flow-api-name={currentFlowName} 
                         flow-input-variables={flowInputVariables}
                         onstatuschange={handleFlowStatusChange}>
                     </lightning-flow>
@@ -86,5 +191,64 @@
         </section>
         <div class="slds-backdrop slds-backdrop_open"></div>
     </template>
+
+    <template if:true={showAllModal}>
+    <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container "  style="max-width: 95vw; width: auto;">
+            <header class="slds-modal__header">
+                <h2 class="slds-modal__title">All Records</h2>
+                <button class="slds-button slds-button_icon slds-modal__close" onclick={closeAllModal}>
+                    <lightning-icon icon-name="utility:close" alternative-text="Close"></lightning-icon>
+                </button>
+            </header>
+           <div class="slds-modal__content slds-p-around_medium" style="max-height: 80vh; overflow: auto;">
+
+                <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped">
+                    <thead>
+                        <tr>
+                            <template for:each={columns} for:item="col">
+                                <th key={col.fieldName}>{col.label}</th>
+                            </template>
+                            <th if:true={hasFlowActions}>Actions</th>
+                        </tr>
+                    </thead>
+                     <tbody>
+                        <template for:each={records} for:item="record">
+                            <tr key={record.Id}>
+                                <template for:each={record.cells} for:item="cell">
+
+                                    <td key={cell.fieldName} style={cell.style}>
+                                        
+                                        <template if:true={cell.islink}>
+        <a href={cell.url} target="_blank">{cell.value}</a>
+    </template>
+    <template if:false={cell.islink}>
+        {cell.value}
+    </template>
+                                        </td>
+                                </template>
+                                  <td if:true={hasFlowActions}>
+                        <template for:each={flowActions} for:item="flow">
+                              <lightning-button 
+        label={flow.label}
+        data-id={record.Id}
+        data-flow={flow.apiName}
+        onclick={handleRowActionClick}
+        variant="brand"
+        key={flow.apiName}>
+    </lightning-button>
+
+                        </template>
+                    </td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+</template>
+
     </lightning-card>
 </template>

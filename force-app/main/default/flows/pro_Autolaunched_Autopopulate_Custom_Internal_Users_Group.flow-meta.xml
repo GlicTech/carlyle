@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>65.0</apiVersion>
+    <decisions>
+        <description>If no Group Member record was found, then create a Group Member record</description>
+        <name>Group_Member_Record_Found</name>
+        <label>Group Member Record Found?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Create_Group_Member_Record_For_Triggering_User</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Group_Member_Record_Found</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Search_For_Current_Assignment_To_Group.Id</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <label>Yes - Group Member Record Found</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Include_User_In_Custom_All_Internal_Users_Group</name>
+        <label>Include User In Custom All Internal Users Group</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Was_A_Group_Member_Record_Found_For_The_Triggering_User</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No - Exclude From Group</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Include_In_Group</name>
+            <conditionLogic>(1 OR 2 OR 3 OR 4 OR 5 OR 6 OR 7 OR 8 OR 9 OR 10 OR 11 OR 12 OR 13 OR 14 OR 15 OR 16 )AND 17</conditionLogic>
+            <conditions>
+                <leftValueReference>varTriggeringUser.Profile.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Carlyle Commercial</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>varTriggeringUser.Profile.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Compliance</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>varTriggeringUser.Profile.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Contracts</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>varTriggeringUser.Profile.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Credit</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>varTriggeringUser.Profile.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Executive</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>varTriggeringUser.Profile.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Finance</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>varTriggeringUser.Profile.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Investment &amp; Strategy</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>varTriggeringUser.Profile.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Lease Management</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>varTriggeringUser.Profile.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Legal</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>varTriggeringUser.Profile.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Portfolio &amp; Fund Management</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>varTriggeringUser.Profile.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>System Administrator</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>varTriggeringUser.Profile.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Technical Admin</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>varTriggeringUser.Profile.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Technical Consultant</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>varTriggeringUser.Profile.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Technical Senior Consultant</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>varTriggeringUser.Profile.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Technical Senior Consultant (Access Persons)</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>varTriggeringUser.Profile.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Technical User</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>varTriggeringUser.IsActive</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Group_Member_Record_Found</targetReference>
+            </connector>
+            <label>Yes - Include In Group</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>If a Group Member record exists for the running user, it should be deleted.</description>
+        <name>Was_A_Group_Member_Record_Found_For_The_Triggering_User</name>
+        <label>Was A Group Member Record Found For The Triggering User?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Group_Member_Found</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Search_For_Current_Assignment_To_Group.Id</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Delete_Group_Member_Record</targetReference>
+            </connector>
+            <label>Yes - Group Member Found</label>
+        </rules>
+    </decisions>
+    <description>Whenever a user is created or updated, and is on one of the listed profile, this flow automatically adds the user to the public group Custom Internal Users. If user is on any other profile, the flow searches for membership to the group and, if found, removes that membership. 
+
+Carlyle Commercial, Compliance, Contracts, Credit, Executive, Finance, Investment &amp; Strategy, Lease Management, Legal, Portfolio &amp; Fund, Sys Admin, Tech Admin, Tech Consultant, Tech Senior Consultant, Tech User</description>
+    <environments>Default</environments>
+    <interviewLabel>Autolaunched - Autopopulate Custom Internal Users Group {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Autolaunched - Autopopulate Custom Internal Users Group</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordCreates>
+        <name>Create_Group_Member_Record_For_Triggering_User</name>
+        <label>Create Group Member Record For Triggering User</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <inputAssignments>
+            <field>GroupId</field>
+            <value>
+                <elementReference>Get_Custom_All_Internal_Users_Group.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>UserOrGroupId</field>
+            <value>
+                <elementReference>varTriggeringUser.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <object>GroupMember</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <recordDeletes>
+        <name>Delete_Group_Member_Record</name>
+        <label>Delete Group Member Record</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <inputReference>Search_For_Current_Assignment_To_Group</inputReference>
+    </recordDeletes>
+    <recordLookups>
+        <name>Get_Custom_All_Internal_Users_Group</name>
+        <label>Get Custom All Internal Users Group</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Search_For_Current_Assignment_To_Group</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>DeveloperName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>pro_Custom_Internal_Users</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Group</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <description>Search for Group Member records linking triggering user to Custom Internal Users Group</description>
+        <name>Search_For_Current_Assignment_To_Group</name>
+        <label>Search For Current Assignment To Group</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Include_User_In_Custom_All_Internal_Users_Group</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>GroupId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Get_Custom_All_Internal_Users_Group.Id</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>UserOrGroupId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>varTriggeringUser.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>GroupMember</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Custom_All_Internal_Users_Group</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <description>The users record from whose trigger this flow was called.</description>
+        <name>varTriggeringUser</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>User</objectType>
+    </variables>
+</Flow>

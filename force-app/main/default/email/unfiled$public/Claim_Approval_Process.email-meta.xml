@@ -4,7 +4,7 @@
     <encodingKey>UTF-8</encodingKey>
     <name>Claim Approval Process</name>
     <style>none</style>
-    <subject>Last utilization report not found for {!leaseworks__Lease__c.leaseworks__Operator_New__r.name}   , {!leaseworks__Lease__c.Name} .</subject>
+    <subject>Final Sign-off - MR Claim {!leaseworks__Claims__c.Unique_Claim_Number__c} {!leaseworks__Lease__c.leaseworks__Operator_New__r.name}, {!leaseworks__Lease__c.Name} .</subject>
     <textOnly>Hi Approval Team,
 
 The above-named claim has been submitted for your review and approval.
@@ -14,6 +14,7 @@ Asset (Titled/Owned): {!leaseworks__Claims__c.leaseworks__Assembly__r__leasework
 Lease: {!leaseworks__Claims__c.leaseworks__Assembly__r__leaseworks__Asset__r__leaseworks__Lease__c}
 Induction Date: {!leaseworks__Claims__c.leaseworks__Date_Receipt_Notification_From_Lessee__c}
 Induction Date: {!leaseworks__Claims__c.leaseworks__Induction_Date__c}
+Comments:
 
 Link – {!leaseworks__Claims__c.Link}
 

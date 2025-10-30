@@ -12,6 +12,9 @@
     <columns>
         <field>leaseworks__Aircraft_Proposal__c.Documentation_Events__r$pro_Variance_Indicator__c</field>
     </columns>
+    <description>Documentation Event Timelines
+
+Shows all open Documentation Event records of type &#39;Engage Law Firm&#39;</description>
     <filter>
         <criteriaItems>
             <column>leaseworks__Aircraft_Proposal__c$leaseworks__Status__c</column>
@@ -21,18 +24,25 @@
             <value>Closed</value>
         </criteriaItems>
         <criteriaItems>
-            <column>leaseworks__Aircraft_Proposal__c.Documentation_Events__r$Name</column>
-            <columnToColumn>false</columnToColumn>
-            <isUnlocked>true</isUnlocked>
-            <operator>equals</operator>
-            <value>Engage Law Firm</value>
-        </criteriaItems>
-        <criteriaItems>
-            <column>leaseworks__Aircraft_Proposal__c.Documentation_Events__r$pro_Documentation_Event_In_Progress__c</column>
+            <column>leaseworks__Aircraft_Proposal__c.Documentation_Events__r$pro_Documentation_Event_Open__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
             <value>1</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>leaseworks__Aircraft_Proposal__c.Documentation_Events__r$pro_Documentation_Event_Type__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>1 Engage Law Firm</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>leaseworks__Aircraft_Proposal__c$leaseworks__Inactive_AT__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>0</value>
         </criteriaItems>
     </filter>
     <format>Summary</format>
@@ -49,10 +59,10 @@
     <reportType>pro_Assets_in_Deal_with_Documentation_Events__c</reportType>
     <scope>organization</scope>
     <showDetails>true</showDetails>
-    <showGrandTotal>true</showGrandTotal>
-    <showSubTotals>true</showSubTotals>
+    <showGrandTotal>false</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
     <timeFrameFilter>
         <dateColumn>leaseworks__Aircraft_Proposal__c$CreatedDate</dateColumn>
-        <interval>INTERVAL_CUSTOM</interval>
+        <interval>INTERVAL_CURFY</interval>
     </timeFrameFilter>
 </Report>

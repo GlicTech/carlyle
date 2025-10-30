@@ -13,7 +13,6 @@
 var o = new sforce.SObject(&quot;leaseworks__Rent__c&quot;);
 o.id = &quot;{!leaseworks__Rent__c.Id}&quot;;
 
-o.leaseworks__Is_Recalculate_Interest__c=true;
 var Result = sforce.connection.update([o]);
 
 if(Result[0].getBoolean(&quot;success&quot;)) {

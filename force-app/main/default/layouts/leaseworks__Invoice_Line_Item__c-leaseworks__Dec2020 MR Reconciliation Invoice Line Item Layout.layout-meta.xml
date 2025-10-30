@@ -4,7 +4,7 @@
     <excludeButtons>ChangeRecordType</excludeButtons>
     <excludeButtons>Clone</excludeButtons>
     <excludeButtons>Delete</excludeButtons>
-    <excludeButtons>OpenSlackRecordChannel</excludeButtons>
+    <excludeButtons>IsotopeSubscription</excludeButtons>
     <excludeButtons>PrintableView</excludeButtons>
     <excludeButtons>Submit</excludeButtons>
     <layoutSections>
@@ -109,6 +109,10 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>leaseworks__Rate_Basis__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>leaseworks__MR_Reconciled__c</field>
             </layoutItems>
         </layoutColumns>
@@ -189,6 +193,10 @@
         <fields>leaseworks__Line_Adjustment_Amount__c</fields>
         <fields>leaseworks__Invoice_Adjustment_Status__c</fields>
         <relatedList>leaseworks__Invoice_Adjustment_Line_Item__c.leaseworks__Linked_Invoice_Line_Item__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>leaseworks__Utilization_Report_List_Item__c.pro_Invoice_Line_Item__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>

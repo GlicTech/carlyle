@@ -7,7 +7,7 @@
         <chartSummaries>
             <aggregate>Sum</aggregate>
             <axisBinding>y</axisBinding>
-            <column>leaseworks__Lease__c.leaseworks__Total_Outstanding_Balance__c</column>
+            <column>leaseworks__Lease__c.leaseworks__Remaining_SD_Cash_LoC__c</column>
         </chartSummaries>
         <chartType>HorizontalBar</chartType>
         <enableHoverLabels>false</enableHoverLabels>
@@ -30,27 +30,27 @@
     </columns>
     <columns>
         <aggregateTypes>Sum</aggregateTypes>
-        <field>leaseworks__Lease__c.leaseworks__Total_Outstanding_Balance__c</field>
+        <field>leaseworks__Lease__c.leaseworks__Remaining_SD_Cash_LoC__c</field>
     </columns>
     <columns>
         <aggregateTypes>Sum</aggregateTypes>
-        <field>leaseworks__Lease__c.leaseworks__Remaining_SD_Cash_LoC__c</field>
+        <field>leaseworks__Lease__c.leaseworks__Total_Outstanding_Balance_Num__c</field>
     </columns>
     <description>Net Exposure including Total Outstanding, Less Security on hand, less Total MR collected</description>
     <filter>
-        <criteriaItems>
-            <column>leaseworks__Lease__c.leaseworks__Total_Outstanding_Balance__c</column>
-            <columnToColumn>false</columnToColumn>
-            <isUnlocked>true</isUnlocked>
-            <operator>notEqual</operator>
-            <value>0</value>
-        </criteriaItems>
         <criteriaItems>
             <column>CUST_NAME</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>notContain</operator>
             <value>indigo,flyabo</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>leaseworks__Lease__c.leaseworks__Total_Outstanding_Balance_Num__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>0</value>
         </criteriaItems>
     </filter>
     <format>Summary</format>

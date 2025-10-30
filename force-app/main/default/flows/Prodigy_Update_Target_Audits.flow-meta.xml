@@ -2,45 +2,8 @@
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>62.0</apiVersion>
     <assignments>
-        <name>Fill_In_Target_Audit_To_Created_Variables</name>
-        <label>Fill In Target Audit To Create Variables</label>
-        <locationX>842</locationX>
-        <locationY>782</locationY>
-        <assignmentItems>
-            <assignToReference>varTargetAudit.pro_Asset__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Loop_Assets.Id</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>varTargetAudit.pro_Contract__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Loop_Assets.leaseworks__Lease__r.Id</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>varTargetAudit.pro_Target_Forecast__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>varTargetId2</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>varTargetAuditsToCreateCollection</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>varTargetAudit</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Loop_Assets</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Store_Ids</name>
-        <label>Store Ids</label>
+        <name>Build_Asset_Target_Audit_Variable</name>
+        <label>Build Asset Target Audit Variable</label>
         <locationX>314</locationX>
         <locationY>566</locationY>
         <assignmentItems>
@@ -79,6 +42,13 @@
             </value>
         </assignmentItems>
         <assignmentItems>
+            <assignToReference>varTargetAudit.pro_Connected_Target_Audit_Record__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_Audit_Records.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
             <assignToReference>varTargetAuditsToCreateCollection</assignToReference>
             <operator>Add</operator>
             <value>
@@ -89,13 +59,66 @@
             <targetReference>Loop_Audit_Records</targetReference>
         </connector>
     </assignments>
+    <assignments>
+        <name>Fill_In_Target_Audit_To_Created_Variables</name>
+        <label>Fill In Target Audit To Create Variables</label>
+        <locationX>1634</locationX>
+        <locationY>1274</locationY>
+        <assignmentItems>
+            <assignToReference>varTargetAudit.pro_Asset__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_Assets.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varTargetAudit.pro_Contract__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_Assets.leaseworks__Lease__r.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varTargetAudit.pro_Target_Forecast__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>varTargetId2</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varTargetAuditsToCreateCollection</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>varTargetAudit</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_Assets</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Relate_Old_Target_To_New</name>
+        <label>Relate Old Target To New</label>
+        <locationX>1634</locationX>
+        <locationY>890</locationY>
+        <assignmentItems>
+            <assignToReference>varTargetAudit.pro_Connected_Target_Audit_Record__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_Any_Audits_Related_To_Assets.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_Any_Audits_Related_To_Assets</targetReference>
+        </connector>
+    </assignments>
     <decisions>
         <name>Asset_Omitted_From_Targets</name>
         <label>Asset Omitted From Targets?</label>
         <locationX>226</locationX>
         <locationY>458</locationY>
         <defaultConnector>
-            <targetReference>Store_Ids</targetReference>
+            <targetReference>Build_Asset_Target_Audit_Variable</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Not Omitted</defaultConnectorLabel>
         <rules>
@@ -115,16 +138,16 @@
         </rules>
     </decisions>
     <decisions>
-        <name>Asset_Omitted_From_Targets_2</name>
-        <label>Asset Omitted From Targets?</label>
-        <locationX>754</locationX>
-        <locationY>674</locationY>
+        <name>Is_This_Asset_Omitted_From_Targets</name>
+        <label>Is This Asset Omitted From Targets?</label>
+        <locationX>1546</locationX>
+        <locationY>1166</locationY>
         <defaultConnector>
             <targetReference>Fill_In_Target_Audit_To_Created_Variables</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Not Omitted</defaultConnectorLabel>
         <rules>
-            <name>Omitted2</name>
+            <name>Yes_Omitted_From_Targets</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>Loop_Assets.pro_Omit_From_Targets__c</leftValueReference>
@@ -136,13 +159,39 @@
             <connector>
                 <targetReference>Loop_Assets</targetReference>
             </connector>
-            <label>Omitted</label>
+            <label>Yes - Omitted From Targets</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>If an old target was closed on an Asset before creating a new one, link this old target to the newly created one.</description>
+        <name>Relate_New_Asset_Target_Audit_To_Closed_Record</name>
+        <label>Relate New Asset Target Audit To Closed Record?</label>
+        <locationX>1766</locationX>
+        <locationY>782</locationY>
+        <defaultConnector>
+            <targetReference>Loop_Any_Audits_Related_To_Assets</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Relate_Old_Target_To_New</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Loop_Assets.Id</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>Loop_Any_Audits_Related_To_Assets.pro_Asset__c</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Relate_Old_Target_To_New</targetReference>
+            </connector>
+            <label>Yes - Relate Old Target To New?</label>
         </rules>
     </decisions>
     <decisions>
         <name>Update_Target_Audit_or_Asset</name>
         <label>Update Target Audit or Asset?</label>
-        <locationX>446</locationX>
+        <locationX>710</locationX>
         <locationY>134</locationY>
         <defaultConnectorLabel>Default</defaultConnectorLabel>
         <rules>
@@ -185,14 +234,28 @@
     <interviewLabel>Prodigy - Update Targets {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Prodigy - Update Target Audits</label>
     <loops>
+        <name>Loop_Any_Audits_Related_To_Assets</name>
+        <label>Loop Any Audits Related To Assets</label>
+        <locationX>1546</locationX>
+        <locationY>674</locationY>
+        <collectionReference>Get_Target_Audits</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Relate_New_Asset_Target_Audit_To_Closed_Record</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Is_This_Asset_Omitted_From_Targets</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <loops>
         <name>Loop_Assets</name>
         <label>Loop Assets</label>
-        <locationX>578</locationX>
+        <locationX>1106</locationX>
         <locationY>566</locationY>
         <collectionReference>varAssetCollection</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
-            <targetReference>Asset_Omitted_From_Targets_2</targetReference>
+            <targetReference>Loop_Any_Audits_Related_To_Assets</targetReference>
         </nextValueConnector>
         <noMoreValuesConnector>
             <targetReference>Update_Target_Audits_To_Manually_Closed</targetReference>
@@ -241,14 +304,14 @@
     <recordCreates>
         <name>Create_New_Audits_Via_Assets</name>
         <label>Create New Audits Via Assets</label>
-        <locationX>578</locationX>
-        <locationY>1166</locationY>
+        <locationX>1106</locationX>
+        <locationY>1658</locationY>
         <inputReference>varTargetAuditsToCreateCollection</inputReference>
     </recordCreates>
     <recordLookups>
         <name>Get_Target_Audits</name>
         <label>Get Target Audits</label>
-        <locationX>578</locationX>
+        <locationX>1106</locationX>
         <locationY>350</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -263,7 +326,7 @@
             </value>
         </filters>
         <filters>
-            <field>pro_Outcome__c</field>
+            <field>pro_Likely_Outcome__c</field>
             <operator>EqualTo</operator>
             <value>
                 <stringValue>Open</stringValue>
@@ -300,8 +363,8 @@
     <recordUpdates>
         <name>Update_Target_Audits_To_Manually_Closed</name>
         <label>Update Target Audits To Manually Closed</label>
-        <locationX>578</locationX>
-        <locationY>1058</locationY>
+        <locationX>1106</locationX>
+        <locationY>1550</locationY>
         <connector>
             <targetReference>Create_New_Audits_Via_Assets</targetReference>
         </connector>
@@ -323,7 +386,7 @@
     </recordUpdates>
     <runInMode>SystemModeWithoutSharing</runInMode>
     <start>
-        <locationX>320</locationX>
+        <locationX>584</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Update_Target_Audit_or_Asset</targetReference>

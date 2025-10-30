@@ -27,17 +27,6 @@
         </rules>
     </decisions>
     <environments>Default</environments>
-    <formulas>
-        <name>f_FirstApproval</name>
-        <dataType>Boolean</dataType>
-        <expression>IF({!$Record.pro_Number_Of_Times_Approved__c} =1, True, False)</expression>
-    </formulas>
-    <formulas>
-        <name>f_IncrementApprovalCount</name>
-        <dataType>Number</dataType>
-        <expression>IF({!$Record.pro_Number_Of_Times_Approved__c} = Null, 1, {!$Record.pro_Number_Of_Times_Approved__c} + 1)</expression>
-        <scale>2</scale>
-    </formulas>
     <interviewLabel>Prodigy - Bank Account - Approval Complete Populate Fields {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Prodigy - Bank Account - Approval Complete Populate Fields</label>
     <processMetadataValues>
@@ -204,5 +193,5 @@
         <recordTriggerType>Update</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>
     </start>
-    <status>Active</status>
+    <status>Obsolete</status>
 </Flow>

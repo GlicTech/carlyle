@@ -90,7 +90,7 @@
             <targetReference>Check_Defered_Amount</targetReference>
         </connector>
         <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
-        <filterFormula>AND(
+        <filterFormula>AND(!{!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c},
     NOT(
         OR(
             ISPICKVAL({!$Record.leaseworks__Status__c}, &quot;Declined&quot;),
@@ -106,5 +106,5 @@
         <recordTriggerType>Update</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>
     </start>
-    <status>Obsolete</status>
+    <status>Active</status>
 </Flow>

@@ -21,21 +21,10 @@
                         <valueListItems>
                             <value>leaseworks__Credit_Memo__c.leaseworks__Convert_to_Payable</value>
                             <visibilityRule>
-                                <booleanFilter>1 AND ( 2 OR 3 )</booleanFilter>
                                 <criteria>
                                     <leftValue>{!Record.leaseworks__Status__c}</leftValue>
                                     <operator>EQUAL</operator>
                                     <rightValue>Pending</rightValue>
-                                </criteria>
-                                <criteria>
-                                    <leftValue>{!Record.leaseworks__Credit_Memo_Reason__c}</leftValue>
-                                    <operator>EQUAL</operator>
-                                    <rightValue>Rent Reduction</rightValue>
-                                </criteria>
-                                <criteria>
-                                    <leftValue>{!Record.leaseworks__Credit_Memo_Reason__c}</leftValue>
-                                    <operator>EQUAL</operator>
-                                    <rightValue>MR TrueUp</rightValue>
                                 </criteria>
                             </visibilityRule>
                         </valueListItems>
@@ -213,6 +202,16 @@
                 <identifier>RecordExclude_from_Receivables_Reporting_cField</identifier>
             </fieldInstance>
         </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Converted_to_Payable__c</fieldItem>
+                <identifier>Recordleaseworks_Converted_to_Payable_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
         <name>Facet-4c9df5c5-5a54-4b2a-93a4-92b2242ceb4c</name>
         <type>Facet</type>
     </flexiPageRegions>
@@ -368,6 +367,10 @@
                     <value>Facet-f1fb3210-32ce-43ef-9472-f0d641731a0d</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Information</value>
                 </componentInstanceProperties>
@@ -382,6 +385,10 @@
                     <value>Facet-d7d45777-9497-4b62-acdf-9b2adb663166</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Comments</value>
                 </componentInstanceProperties>
@@ -394,6 +401,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-fb8f3475-6c4e-4147-8d6e-aaa00547b7e8</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>true</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -464,6 +475,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-686de277-f1dc-4abe-8bb6-d50b400777b2</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -624,6 +639,15 @@
                         </valueListItems>
                         <valueListItems>
                             <value>leaseworks__Balance_Available__c</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>leaseworks__Amount_Applied_To_Invoice_num__c</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>leaseworks__Amount_Unapplied__c</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>leaseworks__Reversed_Amount__c</value>
                         </valueListItems>
                     </valueList>
                 </componentInstanceProperties>

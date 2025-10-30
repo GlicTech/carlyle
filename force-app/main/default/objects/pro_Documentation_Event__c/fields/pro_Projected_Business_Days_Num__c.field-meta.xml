@@ -3,9 +3,18 @@
     <fullName>pro_Projected_Business_Days_Num__c</fullName>
     <externalId>false</externalId>
     <formula>IF(
-Name = &#39;1 Engage Law Firm&#39;, 1,
-IF(Name = &#39;2 Initial Draft&#39;, 4,
-IF(Name = &#39;3 Review &amp; Comment&#39;, 3, 2)))</formula>
+  ISPICKVAL(pro_Documentation_Event_Type__c, &quot;1 Engage Law Firm&quot;), 
+  1,
+  IF(
+    ISPICKVAL(pro_Documentation_Event_Type__c, &quot;2 Initial Draft&quot;), 
+    4,
+    IF(
+      ISPICKVAL(pro_Documentation_Event_Type__c, &quot;3 Review &amp; Comment&quot;), 
+      3, 
+      2
+    )
+  )
+)</formula>
     <label>Projected Business Days</label>
     <precision>18</precision>
     <required>false</required>

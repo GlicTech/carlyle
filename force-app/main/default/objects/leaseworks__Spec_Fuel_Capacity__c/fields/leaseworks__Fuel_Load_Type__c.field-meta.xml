@@ -3,7 +3,7 @@
     <fullName>leaseworks__Fuel_Load_Type__c</fullName>
     <deprecated>false</deprecated>
     <externalId>false</externalId>
-    <inlineHelpText>Select one option from the list. Users will create a record for EACH tank separately.</inlineHelpText>
+    <inlineHelpText>Sep-2025 redesign: Please select either Standard, ACT 1, or ACT 2 (not Auxiliary)</inlineHelpText>
     <label>Fuel Load Type</label>
     <required>false</required>
     <trackTrending>false</trackTrending>
@@ -18,6 +18,11 @@
                 <label>Standard</label>
             </value>
             <value>
+                <fullName>Auxiliary</fullName>
+                <default>false</default>
+                <label>Auxiliary</label>
+            </value>
+            <value>
                 <fullName>ACT 1</fullName>
                 <default>false</default>
                 <label>ACT 1</label>
@@ -26,12 +31,6 @@
                 <fullName>ACT 2</fullName>
                 <default>false</default>
                 <label>ACT 2</label>
-            </value>
-            <value>
-                <fullName>Auxiliary</fullName>
-                <default>false</default>
-                <isActive>false</isActive>
-                <label>Auxiliary</label>
             </value>
         </valueSetDefinition>
     </valueSet>

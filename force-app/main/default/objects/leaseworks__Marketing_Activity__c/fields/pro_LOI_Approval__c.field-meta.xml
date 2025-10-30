@@ -2,11 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>pro_LOI_Approval__c</fullName>
     <externalId>false</externalId>
-    <formula>IF(
-   pro_LOI_Approver_Count__c = 0,
-  1,
-  pro_LOI_Approved_Count__c /  pro_LOI_Approver_Count__c 
-)</formula>
+    <formula>IF( pro_LOI_Approver_Count__c = 0, 1, pro_Deal_Team_LOI_Approval__c /   pro_LOI_Approver_Count__c)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>LOI Approval %</label>
     <precision>18</precision>

@@ -1,52 +1,109 @@
+/* Page tone */
 .time-log-container {
-  background: #f9fcff;
+  background: var(--lwc-colorBackgroundAlt, #f3f2f2);
 }
 
+/* ---- Table ---- */
+.slds-table {
+  table-layout: auto;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.slds-table th,
+.slds-table td {
+  padding: 0.375rem 0.5rem !important;
+  border-color: var(--lwc-colorBorder, #dddbda);
+  background: var(--lwc-colorBackground, #ffffff);
+}
+
+/* Sticky first column */
+.sticky-column {
+  position: sticky;
+  left: 0;
+  background: var(--lwc-colorBackground, #ffffff);
+  z-index: 2;
+  box-shadow: 2px 0 4px rgba(0,0,0,0.04);
+  min-width: 180px;
+}
+
+/* Header (very light brand for onsite, light neutral for offsite) */
+.custom-header-onsite th {
+  background: #f5f9ff; /* very light brand tint */
+  color: var(--lwc-colorTextDefault, #181818);
+  border-bottom: 1px solid var(--lwc-brandAccessible, #0176d3);
+  text-align: center;
+}
+
+.custom-header-offsite th {
+  background: #f7f7f9; /* very light neutral */
+  color: var(--lwc-colorTextDefault, #181818);
+  border-bottom: 1px solid var(--lwc-colorBorder, #dddbda);
+  text-align: center;
+}
+
+/* Subtle row tints by work mode */
 .onsite-row {
-  background-color: #f4faff; /* Light sky */
+  background-color: #fbfdff; /* ultra-light blue wash */
 }
 
 .offsite-row {
-  background-color: #fdf7f1; /* Light peach */
+  background-color: #fcfbfa; /* ultra-light warm wash */
 }
 
-/* For Onsite - Blue */
-.custom-header-onsite th {
-  background-color: #0070d2;
-  color: white;
-  text-align: center;
-  min-width: 120px;
-  padding: 8px;
+/* Weekend cells: gentle highlight */
+.weekend-cell {
+  background-color: #fffaf0; /* soft cream */
 }
 
-/* For Offsite - Black */
-.custom-header-offsite th {
-  background-color: #333333;
-  color: white;
-  text-align: center;
-  min-width: 120px;
-  padding: 8px;
+/* Validation highlight (kept subtle) */
+.over-limit-cell {
+  background-color: #fff1f3;
+  border: 2px solid #ea001e;
+  border-radius: 6px;
 }
 
+/* Left header cell */
+.consultant-header {
+  z-index: 3;
+  background: var(--lwc-colorBackground, #ffffff);
+  color: var(--lwc-colorTextDefault, #181818);
+  border-bottom: 1px solid var(--lwc-colorBorder, #dddbda);
+}
 
+/* Footer totals look */
+tfoot td {
+  border-top: 2px solid var(--lwc-colorBorder, #dddbda);
+}
+
+/* Success row (you already use slds-theme_success) – keep text readable */
+.slds-theme_success td,
+.slds-theme_success th {
+  font-weight: 600;
+  background: #f0fff4;  /* lighter success tint */
+  color: #0b5;          /* readable green text */
+}
+
+/* ---- Cards (Project Overview / Utilization / Duration) ---- */
 .project-card {
-  background: linear-gradient(to bottom right, #ebf5fc, #dceefd);
-  border-left: 6px solid #1b75d0;
-  border-radius: 12px;
-  padding: 1rem 1.2rem;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  background: var(--lwc-colorBackground, #ffffff);
+  border: 1px solid var(--lwc-colorBorder, #dddbda);
+  border-radius: var(--lwc-borderRadiusMedium, 0.25rem);
+  padding: 0.75rem 1rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.04);
   font-size: 0.9rem;
   width: 100%;
-  max-width: 400px;
+  max-width: 420px;
   min-height: 160px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: transform 0.2s ease-in-out;
+  transition: box-shadow 0.15s ease-in-out;
 }
 
 .project-card:hover {
-  transform: scale(1.01);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
 }
 
 .project-card .card-header {
@@ -54,102 +111,116 @@
   align-items: center;
   font-weight: 700;
   font-size: 1rem;
-  color: #1b4f72;
-  margin-bottom: 0.6rem;
-}
-
-.project-card .card-header lightning-icon {
-  margin-right: 0.5rem;
+  color: var(--lwc-colorTextDefault, #181818);
+  margin-bottom: 0.5rem;
 }
 
 .project-card .card-line {
   display: flex;
   align-items: center;
-  margin: 0.25rem 0;
+  margin: 0.2rem 0;
   font-weight: 500;
-  color: #1c1c1c;
+  color: var(--lwc-colorTextDefault, #181818);
 }
 
-.project-card .card-line span {
-  margin-left: 0.4rem;
-}
-
-
-.weekend-cell {
-  background-color: #f3cc85;
-}
-
-.over-limit-cell {
-  background-color: #ffe5e5;
-  border: 2px solid #e60000;
-  border-radius: 6px;
-}
-.slds-align-middle {
-  vertical-align: middle !important;
-}
-
-.project-summary-graph {
-  background-color: #fff;
-  border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
-  padding: 1rem;
-  margin: 1rem;
-}
-
-.workmode-toggle {
+.compact-input-wrapper {
+  width: 60px;
+  margin: 0 auto;
   display: flex;
-  background: #e4f0fb;
-  border-radius: 24px;
-  overflow: hidden;
-  width: fit-content;
-  box-shadow: inset 0 0 0 1px #c2d8ec;
-  height: 36px;
+  justify-content: center;
+  align-items: center;
+}
+
+.compact-input lightning-input {
+  --slds-c-input-spacing-horizontal: 0.25rem;
+  --slds-c-input-spacing-vertical: 0.2rem;
+}
+
+/* Date picker shell */
+.styled-date-picker {
+  display: flex;
+  align-items: center;
+  background: var(--lwc-colorBackground, #ffffff);
+  border: 1px solid var(--lwc-colorBorder, #dddbda);
+  border-radius: var(--lwc-borderRadiusMedium, 0.25rem);
+  padding: 0.1rem 0.5rem;
+  box-shadow: none;
+  max-width: 160px;
+}
+
+.styled-date-picker:focus-within {
+  border-color: var(--lwc-brandAccessible, #0176d3);
+  box-shadow: 0 0 0 2px rgba(1,118,211,0.18);
+}
+
+.clean-date-input {
+  --slds-c-input-color-border: transparent;
+  --slds-c-input-radius-border: var(--lwc-borderRadiusMedium, 0.25rem);
+  font-size: 0.85rem;
+  font-weight: 500;
 }
 
 .workmode-button {
   flex: 1;
   border: none;
-  padding: 6px 14px;
+  padding: 0 14px;
   background: transparent;
   font-weight: 600;
   font-size: 0.85rem;
-  color: #357abd;
+  color: #444; /* dark gray so always visible */
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
-  line-height: 1;
+  transition: background 0.2s ease-in-out, color 0.2s ease-in-out;
+  line-height: 36px;
 }
 
+.workmode-button {
+  flex: 1;
+  border: none;
+  padding: 0 14px;
+  background: transparent;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--lwc-colorTextDefault, #181818);
+  cursor: pointer;
+  transition: background 0.2s ease-in-out, color 0.2s ease-in-out;
+  line-height: 36px;
+}
+
+/* Active button */
 .workmode-button.active {
-  background: #3491e2;
-  color: #ffffff;
-  border-radius: 24px;
+  background: #e7f2ff; /* light brand blue */
+  color: #0176d3;      /* Salesforce brand blue text */
 }
 
-.workmode-button:focus {
-  outline: none;
+/* Utility */
+.slds-align-middle { vertical-align: middle !important; }
+
+/* ----- FOOTER TOTAL ROWS ----- */
+
+/* Generic footer row background */
+tfoot tr {
+  background: #f3f2f2; /* light neutral gray for contrast */
 }
 
-/* Better Date Picker Styling */
-.styled-date-picker {
-  display: flex;
-  align-items: center;
-  background: white;
-  border: 1px solid #d8dde6;
-  border-radius: 8px;
-  padding: 2px 8px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-  max-width: 150px;
-  transition: border-color 0.2s ease-in-out;
+/* All footer text */
+tfoot td,
+tfoot th {
+  color: #181818 !important;   /* standard dark text */
+  font-weight: 600;
+  border-top: 2px solid #dddbda;
 }
 
-.styled-date-picker:focus-within {
-  border-color: #1b96ff;
-  box-shadow: 0 0 0 2px rgba(27, 150, 255, 0.2);
+/* Label column (Onsite Total, Offsite Total, Grand Total) */
+tfoot tr td:first-child {
+  background: #f3f2f2;
+  font-weight: 700;
+  color: #000; /* pure black for clarity */
 }
 
-.clean-date-input {
-  --slds-c-input-color-border: transparent;
-  --slds-c-input-radius-border: 6px;
-  font-size: 0.8rem;
-  font-weight: 500;
+/* Combined Total row (green theme) */
+.slds-theme_success td,
+.slds-theme_success th {
+  background: #e6f4ea !important; /* stronger green tint */
+  color: #145a32 !important;      /* dark green text */
+  font-weight: 700;
 }

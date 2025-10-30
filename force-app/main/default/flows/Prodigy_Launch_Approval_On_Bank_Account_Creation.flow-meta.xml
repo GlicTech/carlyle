@@ -2,13 +2,17 @@
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>63.0</apiVersion>
     <decisions>
-        <name>Approved_OR_Rejected</name>
-        <label>Approved OR Rejected</label>
+        <name>Approved_or_Rejected</name>
+        <label>Approved or Rejected&gt;?</label>
         <locationX>182</locationX>
         <locationY>395</locationY>
+        <defaultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Stage_1</targetReference>
+        </defaultConnector>
         <defaultConnectorLabel>Rejected</defaultConnectorLabel>
         <rules>
-            <name>Approved</name>
+            <name>First_Approval_Received</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>First_Approval.Outputs.approvalDecision</leftValueReference>
@@ -20,7 +24,7 @@
             <connector>
                 <targetReference>Stage_2</targetReference>
             </connector>
-            <label>Approved</label>
+            <label>First Approval Received</label>
         </rules>
     </decisions>
     <environments>Default</environments>
@@ -32,7 +36,7 @@
         <locationX>182</locationX>
         <locationY>287</locationY>
         <connector>
-            <targetReference>Approved_OR_Rejected</targetReference>
+            <targetReference>Approved_or_Rejected</targetReference>
         </connector>
         <exitConditionLogic>and</exitConditionLogic>
         <stageSteps>
@@ -96,8 +100,8 @@
         <locationY>503</locationY>
         <exitConditionLogic>and</exitConditionLogic>
         <stageSteps>
-            <name>Set_As_Approved</name>
-            <actionName>Prodigy_Bank_Account_Set_As_Approved</actionName>
+            <name>Set_Second_Approval_and_Approval_Status</name>
+            <actionName>Prodigy_Autolaunched_Second_Approval_On_Bank_Account</actionName>
             <actionType>stepBackground</actionType>
             <entryConditionLogic>and</entryConditionLogic>
             <inputParameters>
@@ -106,7 +110,7 @@
                     <elementReference>$Record.Id</elementReference>
                 </value>
             </inputParameters>
-            <label>Set As Approved</label>
+            <label>Set Second Approval and Approval Status</label>
             <requiresAsyncProcessing>false</requiresAsyncProcessing>
         </stageSteps>
     </orchestratedStages>
@@ -140,5 +144,5 @@
         <recordTriggerType>Create</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>
     </start>
-    <status>Obsolete</status>
+    <status>InvalidDraft</status>
 </Flow>

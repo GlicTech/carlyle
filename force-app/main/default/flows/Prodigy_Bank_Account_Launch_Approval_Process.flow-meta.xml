@@ -27,6 +27,11 @@
         </rules>
     </decisions>
     <environments>Default</environments>
+    <formulas>
+        <name>f_EmailSubject</name>
+        <dataType>String</dataType>
+        <expression>&quot;Approval Required: New Bank Account [&quot; + {!$Record.Name} + &quot;]&quot;</expression>
+    </formulas>
     <interviewLabel>Prodigy - Bank Account Launch Approval Process {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Prodigy - Bank Account Launch Approval Process</label>
     <orchestratedStages>
@@ -74,12 +79,39 @@
             <requiresAsyncProcessing>false</requiresAsyncProcessing>
         </stageSteps>
         <stageSteps>
+            <name>Email_Bank_Account_Approvers</name>
+            <actionName>pro_Autolaunched_Email_Bank_Account_Approvers</actionName>
+            <actionType>stepBackground</actionType>
+            <entryConditionLogic>and</entryConditionLogic>
+            <entryConditions>
+                <leftValueReference>Clear_Approver_Values.Status</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Completed</stringValue>
+                </rightValue>
+            </entryConditions>
+            <inputParameters>
+                <name>varBankAccountUpdated</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>varTriggeringBankAccount</name>
+                <value>
+                    <elementReference>$Record</elementReference>
+                </value>
+            </inputParameters>
+            <label>Email Bank Account Approvers</label>
+            <requiresAsyncProcessing>false</requiresAsyncProcessing>
+        </stageSteps>
+        <stageSteps>
             <name>Approval_Action</name>
             <actionName>Prodigy_Approval_Screen</actionName>
             <actionType>stepApproval</actionType>
             <assignees>
                 <assignee>
-                    <stringValue>pro_Bank_Account_Approvers</stringValue>
+                    <stringValue>Bank_Account_Approvers</stringValue>
                 </assignee>
                 <assigneeType>Group</assigneeType>
             </assignees>
@@ -105,9 +137,15 @@
             </inputParameters>
             <inputParameters>
                 <name>ActionInput__CustomEmailSubject</name>
+                <value>
+                    <elementReference>f_EmailSubject</elementReference>
+                </value>
             </inputParameters>
             <inputParameters>
                 <name>ActionInput__CustomEmailBody</name>
+                <value>
+                    <elementReference>tt_EmailBody</elementReference>
+                </value>
             </inputParameters>
             <label>Approval Action</label>
             <requiresAsyncProcessing>false</requiresAsyncProcessing>
@@ -165,4 +203,9 @@
         <triggerType>RecordAfterSave</triggerType>
     </start>
     <status>Active</status>
+    <textTemplates>
+        <name>tt_EmailBody</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>&lt;p&gt;Dear User,&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;A new Bank Account record has been created in Salesforce and requires approval from a user in the Bank Account Approvers group. &lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Bank Account Details:&lt;/strong&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;strong&gt;Name: &lt;/strong&gt;{!$Record.Name}&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Account Number: &lt;/strong&gt;{!$Record.leaseworks__Account_Number__c}&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Bank Branch:  &lt;/strong&gt;{!$Record.leaseworks__Bank_Branch__r.Name}&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Country: &lt;/strong&gt;{!$Record.leaseworks__Country__r.Name}&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Currency: &lt;/strong&gt;{!$Record.leaseworks__Account_Currency__c}&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;You can view the full details and take action by clicking the link: &lt;/span&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(11, 92, 171);&quot;&gt;View Bank Account in Salesforce.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span class=&quot;ql-cursor&quot;&gt;﻿&lt;/span&gt;Kind regards,&lt;/p&gt;&lt;p&gt;Salesforce System Notification&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;em&gt;This message was generated automatically. For assistance, please contact your Salesforce administrator.&lt;/em&gt;&lt;/p&gt;</text>
+    </textTemplates>
 </Flow>

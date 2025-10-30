@@ -7,18 +7,12 @@
         <chartSummaries>
             <aggregate>Sum</aggregate>
             <axisBinding>y</axisBinding>
-            <column>leaseworks__Lease__c.leaseworks__Total_Outstanding_Balance__c</column>
-        </chartSummaries>
-        <chartSummaries>
-            <aggregate>Sum</aggregate>
-            <axisBinding>y</axisBinding>
             <column>leaseworks__Lease__c.leaseworks__Remaining_SD_Cash_LoC__c</column>
         </chartSummaries>
         <chartType>HorizontalBar</chartType>
         <enableHoverLabels>false</enableHoverLabels>
         <expandOthers>true</expandOthers>
-        <groupingColumn>leaseworks__Lease__c.leaseworks__Lessee__c</groupingColumn>
-        <legendPosition>Right</legendPosition>
+        <groupingColumn>CUST_NAME</groupingColumn>
         <location>CHART_BOTTOM</location>
         <showAxisLabels>false</showAxisLabels>
         <showPercentage>false</showPercentage>
@@ -36,7 +30,7 @@
     </columns>
     <columns>
         <aggregateTypes>Sum</aggregateTypes>
-        <field>leaseworks__Lease__c.leaseworks__Total_Outstanding_Balance__c</field>
+        <field>leaseworks__Lease__c.leaseworks__Total_Outstanding_Balance_Num__c</field>
     </columns>
     <columns>
         <aggregateTypes>Sum</aggregateTypes>
@@ -55,7 +49,7 @@
             <value>0</value>
         </criteriaItems>
         <criteriaItems>
-            <column>leaseworks__Lease__c.leaseworks__Total_Outstanding_Balance__c</column>
+            <column>leaseworks__Lease__c.leaseworks__Total_Outstanding_Balance_Num__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>notEqual</operator>
@@ -63,11 +57,6 @@
         </criteriaItems>
     </filter>
     <format>Summary</format>
-    <groupingsDown>
-        <dateGranularity>Day</dateGranularity>
-        <field>leaseworks__Lease__c.leaseworks__Lessee__c</field>
-        <sortOrder>Asc</sortOrder>
-    </groupingsDown>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
         <field>CUST_NAME</field>

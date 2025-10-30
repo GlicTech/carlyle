@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>EntityDefinition.FieldDefinitions$Label</field>
+    </columns>
+    <columns>
+        <field>EntityDefinition.FieldDefinitions$QualifiedApiName</field>
+    </columns>
+    <columns>
+        <field>EntityDefinition.FieldDefinitions$DataType</field>
+    </columns>
+    <columns>
+        <field>EntityDefinition.FieldDefinitions$Description</field>
+    </columns>
+    <columns>
+        <field>EntityDefinition.FieldDefinitions$BusinessStatus</field>
+    </columns>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>EntityDefinition$MasterLabel</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Objects and Fields Report</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Entity_and_Field_Definitions__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>false</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>EntityDefinition$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

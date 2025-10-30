@@ -12,6 +12,18 @@
     <columns>
         <field>leaseworks__Aircraft_Proposal__c.Documentation_Events__r$pro_Variance_Indicator__c</field>
     </columns>
+    <columns>
+        <field>leaseworks__Aircraft_Proposal__c.Documentation_Events__r$pro_Primary_Delay__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Aircraft_Proposal__c.Documentation_Events__r$pro_Secondary_Delay__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Aircraft_Proposal__c.Documentation_Events__r$pro_Additional_Delay__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Aircraft_Proposal__c.Documentation_Events__r$pro_Delay_Comment__c</field>
+    </columns>
     <filter>
         <criteriaItems>
             <column>leaseworks__Aircraft_Proposal__c$leaseworks__Status__c</column>
@@ -20,8 +32,20 @@
             <operator>notEqual</operator>
             <value>Closed</value>
         </criteriaItems>
+        <criteriaItems>
+            <column>leaseworks__Aircraft_Proposal__c$leaseworks__Inactive_AT__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>0</value>
+        </criteriaItems>
     </filter>
     <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>leaseworks__Aircraft_Proposal__c$leaseworks__Marketing_Activity__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
         <field>leaseworks__Aircraft_Proposal__c$Name</field>
@@ -35,8 +59,8 @@
     <reportType>pro_Assets_in_Deal_with_Documentation_Events__c</reportType>
     <scope>organization</scope>
     <showDetails>true</showDetails>
-    <showGrandTotal>true</showGrandTotal>
-    <showSubTotals>true</showSubTotals>
+    <showGrandTotal>false</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
     <timeFrameFilter>
         <dateColumn>leaseworks__Aircraft_Proposal__c$CreatedDate</dateColumn>
         <interval>INTERVAL_CUSTOM</interval>

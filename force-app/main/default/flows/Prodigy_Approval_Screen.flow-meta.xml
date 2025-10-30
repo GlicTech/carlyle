@@ -27,6 +27,13 @@
                 <elementReference>Get_Running_User</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>approvalComments</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Approver_Comments</elementReference>
+            </value>
+        </assignmentItems>
     </assignments>
     <assignments>
         <name>Assign_Display_Values</name>
@@ -453,38 +460,12 @@
                     <isRequired>false</isRequired>
                 </fields>
                 <fields>
-                    <name>Financial_Institution_Pending</name>
-                    <dataType>String</dataType>
-                    <defaultValue>
-                        <elementReference>varBankAccountDisplay.leaseworks__Financial_Institution__c</elementReference>
-                    </defaultValue>
-                    <fieldText>Financial Institution (Pending)</fieldText>
-                    <fieldType>InputField</fieldType>
-                    <isReadOnly>
-                        <booleanValue>true</booleanValue>
-                    </isReadOnly>
-                    <isRequired>false</isRequired>
-                </fields>
-                <fields>
                     <name>Bank_Branch_Pending</name>
                     <dataType>String</dataType>
                     <defaultValue>
                         <elementReference>varBankBranchName</elementReference>
                     </defaultValue>
                     <fieldText>Bank Branch (Pending)</fieldText>
-                    <fieldType>InputField</fieldType>
-                    <isReadOnly>
-                        <booleanValue>true</booleanValue>
-                    </isReadOnly>
-                    <isRequired>false</isRequired>
-                </fields>
-                <fields>
-                    <name>Bank_Identification_Code_Pending</name>
-                    <dataType>String</dataType>
-                    <defaultValue>
-                        <elementReference>varBankAccountDisplay.leaseworks__Bank_Identification_Code__c</elementReference>
-                    </defaultValue>
-                    <fieldText>Bank Identification Code (Pending)</fieldText>
                     <fieldType>InputField</fieldType>
                     <isReadOnly>
                         <booleanValue>true</booleanValue>
@@ -540,6 +521,16 @@
                         <booleanValue>true</booleanValue>
                     </isReadOnly>
                     <isRequired>false</isRequired>
+                    <visibilityRule>
+                        <conditionLogic>and</conditionLogic>
+                        <conditions>
+                            <leftValueReference>varCountryName</leftValueReference>
+                            <operator>EqualTo</operator>
+                            <rightValue>
+                                <stringValue>United States of America</stringValue>
+                            </rightValue>
+                        </conditions>
+                    </visibilityRule>
                 </fields>
                 <fields>
                     <name>IBAN_Code_Pending</name>
@@ -553,19 +544,16 @@
                         <booleanValue>true</booleanValue>
                     </isReadOnly>
                     <isRequired>false</isRequired>
-                </fields>
-                <fields>
-                    <name>SWIFT_Code_Pending</name>
-                    <dataType>String</dataType>
-                    <defaultValue>
-                        <elementReference>varBankAccountDisplay.leaseworks__SWIFT_Code__c</elementReference>
-                    </defaultValue>
-                    <fieldText>SWIFT Code (Pending)</fieldText>
-                    <fieldType>InputField</fieldType>
-                    <isReadOnly>
-                        <booleanValue>true</booleanValue>
-                    </isReadOnly>
-                    <isRequired>false</isRequired>
+                    <visibilityRule>
+                        <conditionLogic>and</conditionLogic>
+                        <conditions>
+                            <leftValueReference>varCountryName</leftValueReference>
+                            <operator>NotEqualTo</operator>
+                            <rightValue>
+                                <stringValue>United States of America</stringValue>
+                            </rightValue>
+                        </conditions>
+                    </visibilityRule>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -635,6 +623,13 @@
         </connector>
     </start>
     <status>Active</status>
+    <variables>
+        <name>approvalComments</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
     <variables>
         <name>approvalDecision</name>
         <dataType>String</dataType>

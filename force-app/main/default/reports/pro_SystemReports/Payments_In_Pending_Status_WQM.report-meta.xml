@@ -6,20 +6,24 @@
     <columns>
         <field>CUST_CREATED_DATE</field>
     </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>leaseworks__Payment_Receipt__c.leaseworks__Payment_Amount_Cur__c</field>
+    </columns>
     <filter>
         <criteriaItems>
             <column>leaseworks__Payment_Receipt__c.leaseworks__Approval_Status__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
-            <value>Pending</value>
+            <value>Approved</value>
         </criteriaItems>
         <criteriaItems>
-            <column>leaseworks__Payment_Receipt__c.leaseworks__Payment_Date__c</column>
+            <column>CUST_CREATED_DATE</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
-            <operator>greaterOrEqual</operator>
-            <value>12/1/2024</value>
+            <operator>equals</operator>
+            <value>TODAY</value>
         </criteriaItems>
     </filter>
     <format>Summary</format>

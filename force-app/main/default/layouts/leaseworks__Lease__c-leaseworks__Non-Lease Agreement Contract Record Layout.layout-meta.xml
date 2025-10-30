@@ -4,6 +4,32 @@
     <excludeButtons>Submit</excludeButtons>
     <layoutSections>
         <customLabel>true</customLabel>
+        <detailHeading>true</detailHeading>
+        <editHeading>true</editHeading>
+        <label>Latest Lease Summary</label>
+        <layoutColumns>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>pro_Floating_Rent__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>pro_Power_By_The_Hour__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>pro_Seasonal_Rent__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>pro_Base_Rent_Formula__c</field>
+            </layoutItems>
+        </layoutColumns>
+        <layoutColumns />
+        <style>TwoColumnsLeftToRight</style>
+    </layoutSections>
+    <layoutSections>
+        <customLabel>true</customLabel>
         <detailHeading>false</detailHeading>
         <editHeading>false</editHeading>
         <label>Fields</label>
@@ -70,6 +96,10 @@
                 <behavior>Edit</behavior>
                 <field>leaseworks__Invoice_Types__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>leaseworks__Bank_Account_For_Others__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
@@ -102,12 +132,26 @@
     </layoutSections>
     <layoutSections>
         <customLabel>true</customLabel>
+        <detailHeading>true</detailHeading>
+        <editHeading>true</editHeading>
+        <label>Latest Lease Summary</label>
+        <layoutColumns>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>leaseworks__Total_Outstanding_Balance_Num__c</field>
+            </layoutItems>
+        </layoutColumns>
+        <layoutColumns />
+        <style>TwoColumnsLeftToRight</style>
+    </layoutSections>
+    <layoutSections>
+        <customLabel>true</customLabel>
         <detailHeading>false</detailHeading>
         <editHeading>false</editHeading>
         <label>Custom Links</label>
-        <layoutColumns/>
-        <layoutColumns/>
-        <layoutColumns/>
+        <layoutColumns />
+        <layoutColumns />
+        <layoutColumns />
         <style>CustomLinks</style>
     </layoutSections>
     <platformActionList>
@@ -128,50 +172,45 @@
             <sortOrder>2</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
-            <actionName>PrintableView</actionName>
-            <actionType>StandardButton</actionType>
+            <actionName>leaseworks__Lease__c.Create_Party</actionName>
+            <actionType>QuickAction</actionType>
             <sortOrder>3</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
-            <actionName>leaseworks__Lease__c.leaseworks__Update_Analysis_Code</actionName>
-            <actionType>QuickAction</actionType>
+            <actionName>PrintableView</actionName>
+            <actionType>StandardButton</actionType>
             <sortOrder>4</sortOrder>
         </platformActionListItems>
     </platformActionList>
     <relatedLists>
-        <fields>NAME</fields>
-        <fields>leaseworks__Type_Variant__c</fields>
-        <fields>leaseworks__Date_of_Manufacture__c</fields>
-        <fields>leaseworks__Assigned_To__c</fields>
-        <fields>leaseworks__Registration_Number__c</fields>
-        <fields>leaseworks__TSN__c</fields>
-        <fields>leaseworks__CSN__c</fields>
-        <relatedList>leaseworks__Aircraft__c.leaseworks__Lease__c</relatedList>
+        <relatedList>RelatedFileList</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
         <relatedList>leaseworks__Parties__c.leaseworks__Contract__c</relatedList>
     </relatedLists>
     <relatedLists>
-        <fields>NAME</fields>
-        <relatedList>pro_Ticket__c.pro_Lease__c</relatedList>
+        <fields>leaseworks__Aircraft__c.NAME</fields>
+        <fields>leaseworks__Aircraft__c.leaseworks__Asset_Type_GP__c</fields>
+        <fields>leaseworks__Aircraft__c.leaseworks__Date_of_Manufacture__c</fields>
+        <relatedList>leaseworks__Asset_Transaction__c.leaseworks__Contract__c</relatedList>
     </relatedLists>
     <relatedLists>
         <excludeButtons>MassChangeOwner</excludeButtons>
         <fields>NAME</fields>
         <fields>leaseworks__Date_of_MR_Payment_Due__c</fields>
         <fields>leaseworks__Invoice_Date__c</fields>
-        <fields>leaseworks__Invoice_Category__c</fields>
         <fields>leaseworks__Status__c</fields>
         <fields>leaseworks__Deferred__c</fields>
-        <fields>leaseworks__Invoiced_Amount_Formula__c</fields>
         <fields>leaseworks__Payment_Status__c</fields>
-        <fields>leaseworks__Amount_Paid_Remaining__c</fields>
-        <fields>leaseworks__Balance_Due__c</fields>
+        <fields>leaseworks__Adjusted_Invoiced_Amnt__c</fields>
+        <fields>leaseworks__Amnt_Paid__c</fields>
+        <fields>leaseworks__Balnce_Due__c</fields>
+        <fields>leaseworks__Transaction_Currency__c</fields>
         <relatedList>leaseworks__Invoice__c.leaseworks__Lease__c</relatedList>
     </relatedLists>
     <relatedLists>
-        <relatedList>RelatedFileList</relatedList>
+        <relatedList>RelatedEntityHistoryList</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>

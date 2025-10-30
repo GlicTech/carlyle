@@ -2,9 +2,9 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>leaseworks__Rent_Due_Type__c</fullName>
     <deprecated>false</deprecated>
-    <description>Due Date of the Rent Invoices calculated as Fixed or Relative. If Fixed is selected, user must enter a value in the field Rent Due Day (Fixed).</description>
+    <description>Specifies how the Rent Invoice due date is determined—either on a fixed calendar day or relative to the Invoice Date, Rent Start Date, or Rent End Date.</description>
     <externalId>false</externalId>
-    <inlineHelpText>Fixed Date: If selected, you must enter a value in the &quot;Rent Due Day (Fixed)&quot; field. Fixed Day in a Week: If selected, provide values for both the &quot;Day&quot; and &quot;Weekday Number&quot; fields. Relative: If selected, enter the number of days in the &quot;Rent Due Day&quot; field. This will push the rent due date by the specified number of days from the Invoice Date/rent start date.</inlineHelpText>
+    <inlineHelpText>&quot;Fixed Date&quot;: Enter a specific day(1-31) in the &#39;Rent Due Day&#39; field. &quot;Fixed Day in a Week&quot;: Select both a &#39;Day&#39; and a &#39;Weekday Number&#39; to specify, for e.g., the 2nd Tuesday of the month. &quot;Relative&quot;: Enter a number of days in the &#39;Rent Due Day&#39; field to set the due date relative to the Invoice Date, Rent Start/End Date.</inlineHelpText>
     <label>Rent Due Type</label>
     <required>false</required>
     <trackHistory>false</trackHistory>
@@ -33,6 +33,11 @@
                 <fullName>Relative Based On Rent Period Start Date</fullName>
                 <default>false</default>
                 <label>Relative Based On Rent Period Start Date</label>
+            </value>
+            <value>
+                <fullName>Relative Based On Rent Period End Date</fullName>
+                <default>false</default>
+                <label>Relative Based On Rent Period End Date</label>
             </value>
         </valueSetDefinition>
     </valueSet>

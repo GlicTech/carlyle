@@ -3,6 +3,9 @@
     <columns>
         <field>leaseworks__Lease__c.leaseworks__Assembly_MR_Rates__r.leaseworks__Supplemental_Rent_Rate__r$leaseworks__Rate_Unit__c</field>
     </columns>
+    <columns>
+        <field>leaseworks__Lease__c$leaseworks__Lease_End_Date_New__c</field>
+    </columns>
     <filter>
         <criteriaItems>
             <column>leaseworks__Lease__c$leaseworks__Lease_Type_Status__c</column>
@@ -24,6 +27,13 @@
             <isUnlocked>true</isUnlocked>
             <operator>contains</operator>
             <value>APU</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>leaseworks__Lease__c.leaseworks__Assembly_MR_Rates__r.leaseworks__Supplemental_Rent_Rate__r$leaseworks__Rate_Unit__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>APU C</value>
         </criteriaItems>
     </filter>
     <format>Summary</format>

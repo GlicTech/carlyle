@@ -12,7 +12,7 @@
                         <valueListItems>
                             <value>leaseworks__Bank_Account__c.pro_Submit_Update</value>
                             <visibilityRule>
-                                <booleanFilter>1 AND 2</booleanFilter>
+                                <booleanFilter>1 AND 2 AND ( 3 OR 4 OR 5)</booleanFilter>
                                 <criteria>
                                     <leftValue>{!Record.pro_Pending_Update__c}</leftValue>
                                     <operator>EQUAL</operator>
@@ -22,6 +22,21 @@
                                     <leftValue>{!Record.pro_First_Approval_Completed__c}</leftValue>
                                     <operator>EQUAL</operator>
                                     <rightValue>true</rightValue>
+                                </criteria>
+                                <criteria>
+                                    <leftValue>{!$User.Profile.Name}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>Back Office External</rightValue>
+                                </criteria>
+                                <criteria>
+                                    <leftValue>{!$User.Profile.Name}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>Lease Management</rightValue>
+                                </criteria>
+                                <criteria>
+                                    <leftValue>{!$User.Profile.Name}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>System Administrator</rightValue>
                                 </criteria>
                             </visibilityRule>
                         </valueListItems>
@@ -263,10 +278,10 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
-                    <value>readonly</value>
+                    <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Inactive__c</fieldItem>
-                <identifier>Recordleaseworks_Inactive_cField</identifier>
+                <fieldItem>Record.pro_Inactive_Formula__c</fieldItem>
+                <identifier>Recordpro_Inactive_Formula_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-b2251395-8955-4b39-8777-68d903c56f35</name>
@@ -356,6 +371,10 @@
                     <value>Facet-97930154-968a-43ea-badc-c37625475690</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>@@@SFDCInformationSFDC@@@</value>
                 </componentInstanceProperties>
@@ -370,6 +389,10 @@
                     <value>Facet-4efd9081-4af9-4f29-86aa-bc9043c13dfe</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Administrative Information</value>
                 </componentInstanceProperties>
@@ -382,6 +405,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-e673e1cb-d93a-4ed4-b67b-228a1781bd3e</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -473,6 +500,39 @@
                 </componentInstanceProperties>
                 <componentName>interaction_orchestrator:workGuide</componentName>
                 <identifier>interaction_orchestrator_workGuide</identifier>
+                <visibilityRule>
+                    <booleanFilter>(1 AND 2 AND 3) OR (4 AND 5 AND 6)</booleanFilter>
+                    <criteria>
+                        <leftValue>{!Record.pro_Approval_Submitted__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.pro_Pending_Update__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>false</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.pro_First_Approval_Completed__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>false</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.pro_Approval_Submitted__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.pro_Pending_Update__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.pro_First_Approval_Completed__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                </visibilityRule>
             </componentInstance>
         </itemInstances>
         <itemInstances>
@@ -632,39 +692,6 @@
                 </componentInstanceProperties>
                 <componentName>flexipage:tab</componentName>
                 <identifier>flexipage_tab</identifier>
-                <visibilityRule>
-                    <booleanFilter>(1 AND 2 AND 3 ) OR (4 AND 5 AND 6)</booleanFilter>
-                    <criteria>
-                        <leftValue>{!Record.pro_Approval_Submitted__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>true</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.pro_Pending_Update__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>false</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.pro_First_Approval_Completed__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>false</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.pro_Approval_Submitted__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>true</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.pro_Pending_Update__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>true</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.pro_First_Approval_Completed__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>true</rightValue>
-                    </criteria>
-                </visibilityRule>
             </componentInstance>
         </itemInstances>
         <name>maintabs</name>

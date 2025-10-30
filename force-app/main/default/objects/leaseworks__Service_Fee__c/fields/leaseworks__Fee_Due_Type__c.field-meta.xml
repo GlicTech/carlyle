@@ -2,9 +2,9 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>leaseworks__Fee_Due_Type__c</fullName>
     <deprecated>false</deprecated>
-    <description>Enter the number of days in &#39;Fee Due Day&#39; to push the fee due date from the invoice or fee start date</description>
+    <description>Enter the number of days in &#39;Fee Due Day&#39; to push the fee due date from the invoice or fee start/end date</description>
     <externalId>false</externalId>
-    <inlineHelpText>If selected, you must enter a value in the &quot;Fee Due Day&quot; field. Fixed Day in a Week: If selected, provide values for both the &quot;Day&quot; and &quot;Weekday Number&quot; fields. Relative: If selected, enter the number of days in the &quot;Fee Due Day&quot; field. This will push the fee due date by the specified number of days from the Invoice Date/fee start date.</inlineHelpText>
+    <inlineHelpText>&quot;Fixed Date&quot;: Enter a specific day(1-31) in the &#39;Fee Due Day&#39; field. &quot;Fixed Day in a Week&quot;: Select both a &#39;Day&#39; and a &#39;Weekday Number&#39; to specify, for e.g., the 2nd Tuesday of the month. &quot;Relative&quot;: Enter a number of days in the &#39;Rent Due Day&#39; field to set the due date relative to the Invoice Date, Rent Start/End Date.</inlineHelpText>
     <label>Fee Due Type</label>
     <required>false</required>
     <trackHistory>false</trackHistory>
@@ -25,9 +25,14 @@
                 <label>Fixed Day in a week</label>
             </value>
             <value>
-                <fullName>Relative Based On fee period Start Date</fullName>
+                <fullName>Relative Based On Fee Period Start Date</fullName>
                 <default>false</default>
-                <label>Relative Based On fee period Start Date</label>
+                <label>Relative Based On Fee Period Start Date</label>
+            </value>
+            <value>
+                <fullName>Relative Based On Fee Period End Date</fullName>
+                <default>false</default>
+                <label>Relative Based On Fee Period End Date</label>
             </value>
         </valueSetDefinition>
     </valueSet>

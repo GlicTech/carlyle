@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__MR_Accounting_Period_Based_On__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Determines how the Accounting Period is stamped for Maintenance Reserve invoices when using the Accrual method. Select &quot;Utilization Period&quot; to derive the accounting period based on the aircraft usage period. Select &quot;Invoice Date&quot; to derive it based on the invoice creation date.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Determines how the Accounting Period is stamped for Maintenance Reserve invoices when using the Accrual method. Select &quot;Utilization Period&quot; to derive the accounting period based on the aircraft usage period. Select &quot;Invoice Date&quot; to derive it based on the invoice creation date.</inlineHelpText>
+    <label>MR Accounting Period Based On</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Invoice Date</fullName>
+                <default>true</default>
+                <label>Invoice Date</label>
+            </value>
+            <value>
+                <fullName>Utilization Period</fullName>
+                <default>false</default>
+                <label>Utilization Period</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

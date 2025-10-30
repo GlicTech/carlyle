@@ -224,11 +224,13 @@
                 ISCHANGED({!$Record.leaseworks__Aircraft__c})
             )
         )
-    )
+    ),
+    NOT({!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c}),
+    NOT({!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c})
 )</filterFormula>
         <object>leaseworks__Lease__c</object>
         <recordTriggerType>CreateAndUpdate</recordTriggerType>
         <triggerType>RecordBeforeSave</triggerType>
     </start>
-    <status>Obsolete</status>
+    <status>Active</status>
 </Flow>

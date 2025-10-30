@@ -3,6 +3,7 @@
     <customButtons>leaseworks__Aircraft_Setup_Wizard</customButtons>
     <customButtons>leaseworks__Post_Journals_To_GL</customButtons>
     <customButtons>leaseworks__Refresh_Asset_Details</customButtons>
+    <excludeButtons>OpenSlackRecordChannel</excludeButtons>
     <excludeButtons>Submit</excludeButtons>
     <layoutSections>
         <customLabel>false</customLabel>
@@ -15,7 +16,7 @@
                 <field>Name</field>
             </layoutItems>
         </layoutColumns>
-        <layoutColumns/>
+        <layoutColumns />
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
     <layoutSections>
@@ -38,6 +39,14 @@
                 <behavior>Edit</behavior>
                 <field>leaseworks__TSN_CSN_Verification_Enabled__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>leaseworks__FX_Rate_Basis__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>leaseworks__Ledger_Currency__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
@@ -46,8 +55,8 @@
         <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
         <label>Accounting Setup</label>
-        <layoutColumns/>
-        <layoutColumns/>
+        <layoutColumns />
+        <layoutColumns />
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
     <layoutSections>
@@ -82,9 +91,9 @@
         <detailHeading>false</detailHeading>
         <editHeading>true</editHeading>
         <label>Custom Links</label>
-        <layoutColumns/>
-        <layoutColumns/>
-        <layoutColumns/>
+        <layoutColumns />
+        <layoutColumns />
+        <layoutColumns />
         <style>CustomLinks</style>
     </layoutSections>
     <platformActionList>
@@ -119,7 +128,6 @@
     <relatedLists>
         <excludeButtons>MassChangeOwner</excludeButtons>
         <fields>NAME</fields>
-        <fields>leaseworks__Year_New__c</fields>
         <fields>leaseworks__Country__c</fields>
         <fields>leaseworks__Weekend__c</fields>
         <relatedList>leaseworks__Holiday_Schedule__c.leaseworks__Lessor__c</relatedList>
@@ -130,7 +138,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h2w00000CZmoy</masterLabel>
+        <masterLabel>00h2o00000mGdHH</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

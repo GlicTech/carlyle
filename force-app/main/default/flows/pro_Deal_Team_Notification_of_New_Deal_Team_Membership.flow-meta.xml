@@ -3,8 +3,8 @@
     <actionCalls>
         <name>Send_Custom_Notification_Action_1</name>
         <label>Send Custom Notification Action 1</label>
-        <locationX>308</locationX>
-        <locationY>708</locationY>
+        <locationX>506</locationX>
+        <locationY>924</locationY>
         <actionName>customNotificationAction</actionName>
         <actionType>customNotificationAction</actionType>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
@@ -42,8 +42,8 @@
     <actionCalls>
         <name>Send_Email_To_Deal_Team_Member</name>
         <label>Send Email To Deal Team Member</label>
-        <locationX>308</locationX>
-        <locationY>384</locationY>
+        <locationX>506</locationX>
+        <locationY>600</locationY>
         <actionName>emailSimple</actionName>
         <actionType>emailSimple</actionType>
         <connector>
@@ -59,7 +59,13 @@
         <inputParameters>
             <name>senderType</name>
             <value>
-                <stringValue>CurrentUser</stringValue>
+                <stringValue>OrgWideEmailAddress</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderAddress</name>
+            <value>
+                <stringValue>leaseworks@carlyle.aero</stringValue>
             </value>
         </inputParameters>
         <inputParameters>
@@ -103,8 +109,8 @@
     <assignments>
         <name>Assign_Email_Recipient</name>
         <label>Assign Email Recipient</label>
-        <locationX>308</locationX>
-        <locationY>276</locationY>
+        <locationX>506</locationX>
+        <locationY>492</locationY>
         <assignmentItems>
             <assignToReference>col_Recipient_Emails</assignToReference>
             <operator>Add</operator>
@@ -119,8 +125,8 @@
     <assignments>
         <name>Assign_Recipient_ID</name>
         <label>Assign Recipient ID</label>
-        <locationX>308</locationX>
-        <locationY>600</locationY>
+        <locationX>506</locationX>
+        <locationY>816</locationY>
         <assignmentItems>
             <assignToReference>col_Recipient_ID</assignToReference>
             <operator>Add</operator>
@@ -132,8 +138,35 @@
             <targetReference>Send_Custom_Notification_Action_1</targetReference>
         </connector>
     </assignments>
+    <decisions>
+        <name>Were_Triggers_Disabled</name>
+        <label>Were Triggers Disabled?</label>
+        <locationX>374</locationX>
+        <locationY>384</locationY>
+        <defaultConnector>
+            <targetReference>Assign_Email_Recipient</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Disabled_Don_t_Send_Notification</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Disabled_Triggers</leftValueReference>
+                <operator>IsEmpty</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <label>Disabled - Don&#39;t Send Notification</label>
+        </rules>
+    </decisions>
     <description>Adjusted to an asynchronous path to avoid conflicts with LeaseWorks</description>
     <environments>Default</environments>
+    <formulas>
+        <name>f_DocumentLinkOrNull</name>
+        <dataType>String</dataType>
+        <expression>IF(ISPICKVAL({!$Record.leaseworks__Marketing_Activity__r.leaseworks__Deal_Type__c}, &#39;Approval&#39;), Null, BR() + &#39;Draft LOI Link: &#39; + {!$Record.leaseworks__Marketing_Activity__r.pro_Long_Document_Link__c})</expression>
+    </formulas>
     <formulas>
         <name>f_Email_Subject</name>
         <dataType>String</dataType>
@@ -168,8 +201,8 @@
     <recordLookups>
         <name>Get_Custom_Notification_ID</name>
         <label>Get Custom Notification ID</label>
-        <locationX>308</locationX>
-        <locationY>492</locationY>
+        <locationX>506</locationX>
+        <locationY>708</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Assign_Recipient_ID</targetReference>
@@ -184,6 +217,28 @@
         </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
         <object>CustomNotificationType</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <description>If triggers have been disabled, call returns no records, email should not be sent.</description>
+        <name>Get_Disabled_Triggers</name>
+        <label>Get Disabled Triggers</label>
+        <locationX>374</locationX>
+        <locationY>276</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Were_Triggers_Disabled</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>leaseworks__Disable_All_Triggers__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>leaseworks__LeaseWorksSettings__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <start>
@@ -201,7 +256,7 @@
         <recordTriggerType>Create</recordTriggerType>
         <scheduledPaths>
             <connector>
-                <targetReference>Assign_Email_Recipient</targetReference>
+                <targetReference>Get_Disabled_Triggers</targetReference>
             </connector>
             <pathType>AsyncAfterCommit</pathType>
         </scheduledPaths>
@@ -219,8 +274,7 @@
         <text>You have just been assigned as a Deal Team Member to the following Deal:
 
 {!$Record.leaseworks__Marketing_Activity__r.Name}
-Role: {!$Record.Name}
-Draft LOI Link: {!$Record.leaseworks__Marketing_Activity__r.pro_Long_Document_Link__c}
+Role: {!$Record.Name}{!f_DocumentLinkOrNull}
 Deal Unique Id: {!$Record.leaseworks__Marketing_Activity__r.Deal_Unique_ID__c}</text>
     </textTemplates>
     <variables>

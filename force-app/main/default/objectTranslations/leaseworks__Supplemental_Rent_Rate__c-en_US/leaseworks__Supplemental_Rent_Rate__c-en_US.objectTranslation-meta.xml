@@ -1,27 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    <fieldSets>
+        <label><!-- SRR_Update_Fields_Bypass --></label>
+        <name>leaseworks__SRR_Update_Fields_Bypass</name>
+    </fieldSets>
     <fieldSets>
         <label><!-- SkipFieldsFromValidations --></label>
         <name>leaseworks__SkipFieldsFromValidations</name>
@@ -53,4 +35,30 @@
         <errorMessage><!-- Since &apos;Rate Based On&apos; is set to Rate, please remove the Ratio Table to ensure the correct MR calculation --></errorMessage>
         <name>leaseworks__Rate_Based_On_rate_validation</name>
     </validationRules>
+    <validationRules>
+        <errorMessage><!-- APU H and APU C can only be used with Supplemental Rent linked to an APU Assembly. Please select a different unit (e.g., Hours or Cycles) for non-APU Supplemental Rents. --></errorMessage>
+        <name>leaseworks__Rate_Unit_Based_On_Assembly_Type</name>
+    </validationRules>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 </CustomObjectTranslation>

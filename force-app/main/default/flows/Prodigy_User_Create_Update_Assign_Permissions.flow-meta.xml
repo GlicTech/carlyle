@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>64.0</apiVersion>
+    <description>Auto Assign Permissions
+
+This flow runs whenever a user is created or updated with a change to profile or active statuses. 
+
+Calls sub flows to evaluate and assign permissions based on the user&#39;s profile.</description>
+    <environments>Default</environments>
+    <interviewLabel>Prodigy - User - Create / Update Assign Permissions {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Prodigy - User - Create / Update Assign Permissions</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Manage_Ticket_Permission_Assignments</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>ProfileId</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <object>User</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <subflows>
+        <name>Manage_Bank_Account_Permission_Assignments</name>
+        <label>Manage Bank Account Permission Assignments</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Manage_Project_Consultant_Permission_Assignments</targetReference>
+        </connector>
+        <flowName>Prodigy_Auto_Manage_Bank_Account_Permission_Assignments</flowName>
+        <inputAssignments>
+            <name>varTriggeringUser</name>
+            <value>
+                <elementReference>$Record</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
+    <subflows>
+        <name>Manage_Project_Consultant_Permission_Assignments</name>
+        <label>Manage Project Consultant Permission Assignments</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <flowName>Prodigy_Auto_Manage_Project_Consultant_Permissions</flowName>
+        <inputAssignments>
+            <name>varTriggeringUser</name>
+            <value>
+                <elementReference>$Record</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
+    <subflows>
+        <name>Manage_Ticket_Permission_Assignments</name>
+        <label>Manage Ticket Permission Assignments</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Manage_Bank_Account_Permission_Assignments</targetReference>
+        </connector>
+        <flowName>Prodigy_Auto_Manage_Ticket_Permission_Assignments</flowName>
+        <inputAssignments>
+            <name>varTriggeringUser</name>
+            <value>
+                <elementReference>$Record</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
+</Flow>

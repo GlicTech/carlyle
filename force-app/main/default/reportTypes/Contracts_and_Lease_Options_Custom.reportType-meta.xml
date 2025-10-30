@@ -2,7 +2,7 @@
 <ReportType xmlns="http://soap.sforce.com/2006/04/metadata">
     <baseObject>leaseworks__Lease__c</baseObject>
     <category>other</category>
-    <deployed>false</deployed>
+    <deployed>true</deployed>
     <description>-</description>
     <join>
         <outerJoin>false</outerJoin>
@@ -1257,11 +1257,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>leaseworks__Outstanding_Balance__c</field>
-            <table>leaseworks__Lease__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>leaseworks__Overdue_Check_Days__c</field>
             <table>leaseworks__Lease__c</table>
         </columns>
@@ -2017,12 +2012,12 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>leaseworks__Total_Loc__c</field>
+            <field>leaseworks__Total_Outstanding_Balance_Num__c</field>
             <table>leaseworks__Lease__c</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>leaseworks__Total_Outstanding_Balance__c</field>
+            <field>leaseworks__Total_Loc__c</field>
             <table>leaseworks__Lease__c</table>
         </columns>
         <columns>
@@ -2332,6 +2327,7 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>MSN</displayNameOverride>
             <field>pro_Asset_Name__c</field>
             <table>leaseworks__Lease__c</table>
         </columns>
@@ -2443,6 +2439,91 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>leaseworks__Aircraft__c.leaseworks__Date_of_Manufacture__c</field>
+            <table>leaseworks__Lease__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>pro_Fund_Name__c</field>
+            <table>leaseworks__Lease__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Local_Counsel__c</field>
+            <table>leaseworks__Lease__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Outside_Counsel__c</field>
+            <table>leaseworks__Lease__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>pro_External_Document_Link_Long__c</field>
+            <table>leaseworks__Lease__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>pro_Financing_Name__c</field>
+            <table>leaseworks__Lease__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>pro_Floating_Rent__c</field>
+            <table>leaseworks__Lease__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>pro_Power_By_The_Hour__c</field>
+            <table>leaseworks__Lease__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>pro_Seasonal_Rent__c</field>
+            <table>leaseworks__Lease__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>pro_Base_Rent_Formula__c</field>
+            <table>leaseworks__Lease__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>pro_Base_Rent__c</field>
+            <table>leaseworks__Lease__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>pro_Current_Rent__c</field>
+            <table>leaseworks__Lease__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>pro_PBH_Rent_Schedules__c</field>
+            <table>leaseworks__Lease__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>pro_Floating_Rent_Schedules__c</field>
+            <table>leaseworks__Lease__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>pro_Seasonal_Rent_Schedules__c</field>
+            <table>leaseworks__Lease__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>pro_Fixed_Rent_Schedules__c</field>
+            <table>leaseworks__Lease__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>pro_Manual_Rent_Schedules__c</field>
+            <table>leaseworks__Lease__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>pro_Current_Rent_Formula__c</field>
             <table>leaseworks__Lease__c</table>
         </columns>
         <masterLabel>Contracts</masterLabel>
@@ -2626,16 +2707,6 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>leaseworks__External_ID__c</field>
-            <table>leaseworks__Lease__c.leaseworks__Lease_Options__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>pro_Days_From_Notice_Start__c</field>
-            <table>leaseworks__Lease__c.leaseworks__Lease_Options__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>pro_Days_Until_Notice_End__c</field>
             <table>leaseworks__Lease__c.leaseworks__Lease_Options__r</table>
         </columns>
         <masterLabel>Lease Options</masterLabel>

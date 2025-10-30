@@ -5,6 +5,5 @@
     <description>Deprecated: Ensures payment is made in full before marking the UR as paid.</description>
     <errorConditionFormula>/*and(MR_Paid__c, Balance_MR__c&gt;0, !True_Up__c)*/
 false</errorConditionFormula>
-    <errorDisplayField>leaseworks__MR_Paid__c</errorDisplayField>
     <errorMessage>Please ensure payment is made in full before marking the UR as paid.</errorMessage>
 </ValidationRule>

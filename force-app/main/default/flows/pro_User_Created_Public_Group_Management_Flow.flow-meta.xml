@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>62.0</apiVersion>
+    <decisions>
+        <description>If yes, call subflow to check membership to Custom External Users group</description>
+        <name>Was_User_s_Profile_OR_Activation_Updated</name>
+        <label>Was User&#39;s Profile OR Activation Updated?</label>
+        <locationX>374</locationX>
+        <locationY>384</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Profile_OR_Activation_Updated</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Profile.Name</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Check_Membership_to_Custom_Internal_Users</targetReference>
+            </connector>
+            <label>Yes - Profile OR Activation Updated</label>
+        </rules>
+    </decisions>
     <environments>Default</environments>
     <interviewLabel>User - Created:Public Group Management Flow {!$Flow.CurrentDateTime}</interviewLabel>
     <label>User - Created:Public Group Management Flow</label>
@@ -26,8 +49,23 @@
     <start>
         <locationX>50</locationX>
         <locationY>0</locationY>
+        <filterLogic>or</filterLogic>
+        <filters>
+            <field>ProfileId</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>IsActive</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
         <object>User</object>
-        <recordTriggerType>Create</recordTriggerType>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
         <scheduledPaths>
             <connector>
                 <targetReference>SubFlow_Remove_Assign_Public_Group_Memberships</targetReference>
@@ -38,10 +76,26 @@
     </start>
     <status>Active</status>
     <subflows>
+        <name>Check_Membership_to_Custom_Internal_Users</name>
+        <label>Check Membership to Custom Internal Users</label>
+        <locationX>242</locationX>
+        <locationY>492</locationY>
+        <flowName>pro_Autolaunched_Autopopulate_Custom_Internal_Users_Group</flowName>
+        <inputAssignments>
+            <name>varTriggeringUser</name>
+            <value>
+                <elementReference>$Record</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
+    <subflows>
         <name>SubFlow_Remove_Assign_Public_Group_Memberships</name>
         <label>SubFlow - Remove/Assign Public Group Memberships</label>
-        <locationX>308</locationX>
+        <locationX>374</locationX>
         <locationY>276</locationY>
+        <connector>
+            <targetReference>Was_User_s_Profile_OR_Activation_Updated</targetReference>
+        </connector>
         <flowName>pro_Auto_Launched_User_Assign_Remove_Public_Groups</flowName>
         <inputAssignments>
             <name>UserId</name>

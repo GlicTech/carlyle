@@ -145,21 +145,6 @@ IF( OR(ISNULL(leaseworks__Custom_PE_Record_Number__c),ISBLANK(leaseworks__Custom
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
-        <fullName>leaseworks__CA CSLV and TSLV</fullName>
-        <actions>
-            <name>leaseworks__Set_CA_CSLV</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>leaseworks__Set_CA_TSLV</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>false</active>
-        <description>CSLV &amp; TSLV set to 0 when a new Assembly Eligible Event is created</description>
-        <formula>!IsBlank(leaseworks__End_Date__c)</formula>
-        <triggerType>onAllChanges</triggerType>
-    </rules>
-    <rules>
         <fullName>leaseworks__Constt Assembly Eligible Event Created Updated</fullName>
         <actions>
             <name>leaseworks__CAEventSetCorrectionDate</name>

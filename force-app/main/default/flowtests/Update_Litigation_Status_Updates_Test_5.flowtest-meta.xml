@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlowTest xmlns="http://soap.sforce.com/2006/04/metadata">
+    <flowApiName>Update_Litigation_Status_Updates</flowApiName>
+    <label>Test</label>
+    <testPoints>
+        <elementApiName>Start</elementApiName>
+        <parameters>
+            <leftValueReference>$Record</leftValueReference>
+            <type>InputTriggeringRecordInitial</type>
+            <value>
+                <sobjectValue>{&quot;attributes&quot;:{&quot;type&quot;:&quot;pro_Litigation_Update__c&quot;},&quot;pro_Include_on_CPC__c&quot;:false,&quot;pro_Litigation__c&quot;:&quot;a6haA000001tvLFQAY&quot;,&quot;Status_Update__c&quot;:&quot;\&quot;The Cheongju District Court (Case No. 2023Gahap51885) awarded in our favour on 26 August 2024. The Lessor&#39;s case was the first ever court ordered repossession in South Korea. MSN 3135 deregistered on 27 September 2024.\r\n\r\nCheongju District Court ordered AeroK to :(i) Deliver the aircraft to the Lessor (ii) Perform the procedures for the deregistration of the lease agreement (iii) Pay USD 6,182,398 and interest calculated at an annual rate of 11.5% from March 7, 2024, until full payment is made and (iv) From April 1, 2024, until the delivery of the aircraft, pay a monthly amount calculated at USD 306,021.\r\n\r\nAero K has appealed the enforcement of the penalty rent a but posted $9M bond to secure the judgement. The Daejeon High Court (Cheongju) (Case No. 2024Na52636) The appeal hearing court date has been rescheduled from 9 May to 13 June. Based on our current understanding, we anticipate that the court will hold an initial preparatory session on the first court date to organise the key issues. Following this, we expect one or two additional hearings to be scheduled. With this schedule, Korean counsel estimates that a judgment might be delivered before December, we are trying to expedite the process.&quot;,&quot;pro_Date__c&quot;:&quot;2025-05-30&quot;}</sobjectValue>
+            </value>
+        </parameters>
+    </testPoints>
+    <testPoints>
+        <assertions>
+            <conditions>
+                <leftValueReference>Get_latest_update.pro_Date__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <dateValue>2025-06-07</dateValue>
+                </rightValue>
+            </conditions>
+        </assertions>
+        <elementApiName>Finish</elementApiName>
+    </testPoints>
+</FlowTest>

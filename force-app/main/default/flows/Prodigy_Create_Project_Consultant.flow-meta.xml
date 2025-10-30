@@ -1,20 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <apiVersion>64.0</apiVersion>
+    <assignments>
+        <name>Reset_Values</name>
+        <label>Reset Values</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>bb_AddConsultant.value</assignToReference>
+            <operator>Assign</operator>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>bb_CreateNewConsultant.value</assignToReference>
+            <operator>Assign</operator>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>bb_RemoveConsultant.value</assignToReference>
+            <operator>Assign</operator>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>dt_ProjectConsultants.firstSelectedRow.Id</assignToReference>
+            <operator>Assign</operator>
+        </assignmentItems>
+        <connector>
+            <targetReference>ProjectConsultantCreationScreen</targetReference>
+        </connector>
+    </assignments>
     <decisions>
         <name>Add_Or_Remove_Consultant</name>
         <label>Add Or Remove Consultant</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
-        <defaultConnector>
-            <targetReference>Delete_Selected_Consultants</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Remove Consultant</defaultConnectorLabel>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>Add_Consultant_Path</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>bb_NavigationButtons.value</leftValueReference>
+                <leftValueReference>bb_AddConsultant.value</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue>Add Consultant</stringValue>
@@ -25,16 +47,80 @@
             </connector>
             <label>Add Consultant Path</label>
         </rules>
+        <rules>
+            <name>Remove_Consultant</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>bb_RemoveConsultant.value</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Remove Consultant</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Delete_Selected_Consultants</targetReference>
+            </connector>
+            <label>Remove Consultant</label>
+        </rules>
+        <rules>
+            <name>Create_New_Consultant</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>bb_CreateNewConsultant.value</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Create New Consultant</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>CreateContactScreen</targetReference>
+            </connector>
+            <label>Create New Consultant</label>
+        </rules>
     </decisions>
+    <description>Project Consultant Days Worked
+
+This flow is used on the Fleet Project Management record page for the display, creation and deletion of Project Consultant records.</description>
+    <dynamicChoiceSets>
+        <name>pcs_Currency</name>
+        <dataType>Picklist</dataType>
+        <displayField xsi:nil="true" />
+        <object xsi:nil="true" />
+        <picklistField>pro_Currency__c</picklistField>
+        <picklistObject>Contact</picklistObject>
+    </dynamicChoiceSets>
     <dynamicChoiceSets>
         <name>pcs_ProjectRoles</name>
         <dataType>Picklist</dataType>
         <displayField xsi:nil="true" />
         <object xsi:nil="true" />
-        <picklistField>Project_Role__c</picklistField>
+        <picklistField>pro_Project_Role__c</picklistField>
         <picklistObject>pro_Project_Consultant__c</picklistObject>
     </dynamicChoiceSets>
+    <dynamicChoiceSets>
+        <description>A set of all contacts whose Project Consultant? field is checked.</description>
+        <name>rcs_ProjectConsultants</name>
+        <dataType>String</dataType>
+        <displayField>Name</displayField>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>pro_Project_Consultant__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <object>Contact</object>
+        <sortField>Name</sortField>
+        <sortOrder>Asc</sortOrder>
+        <valueField>Id</valueField>
+    </dynamicChoiceSets>
     <environments>Default</environments>
+    <formulas>
+        <name>f_ConcatenatedName</name>
+        <dataType>String</dataType>
+        <expression>{!cl_ProjectConsultants.selectedChoiceLabels} + &#39; - &#39; + {!pl_Project_Role}</expression>
+    </formulas>
     <formulas>
         <name>f_DaysBudgetedByRole</name>
         <dataType>Number</dataType>
@@ -77,6 +163,52 @@ IF({!pl_Project_Role}= &quot;Other&quot;, {!recordId.pro_Other_Days_Budgeted__c}
     </processMetadataValues>
     <processType>Flow</processType>
     <recordCreates>
+        <description>Create the contact from user input and define the contact as a Project Consulant</description>
+        <name>Create_Contact</name>
+        <label>Create Contact</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Create_Project_Consulant_From_New_Contact</targetReference>
+        </connector>
+        <faultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>ErrorScreen</targetReference>
+        </faultConnector>
+        <inputAssignments>
+            <field>AccountId</field>
+            <value>
+                <elementReference>ParentAccount.recordId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Email</field>
+            <value>
+                <elementReference>Email.value</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>FirstName</field>
+            <value>
+                <elementReference>FirstName</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>LastName</field>
+            <value>
+                <elementReference>LastName</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>pro_Project_Consultant__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <object>Contact</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <recordCreates>
         <name>Create_Project_Consulant</name>
         <label>Create Project Consulant</label>
         <locationX>0</locationX>
@@ -86,24 +218,18 @@ IF({!pl_Project_Role}= &quot;Other&quot;, {!recordId.pro_Other_Days_Budgeted__c}
             <targetReference>Get_Project_Consultants</targetReference>
         </connector>
         <faultConnector>
-            <targetReference>ErrorCreatingConsultantsScreen</targetReference>
+            <targetReference>ErrorScreen</targetReference>
         </faultConnector>
         <inputAssignments>
             <field>Name</field>
             <value>
-                <elementReference>ContactLookup.recordName</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Project_Role__c</field>
-            <value>
-                <elementReference>pl_Project_Role</elementReference>
+                <elementReference>f_ConcatenatedName</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
             <field>pro_Contact__c</field>
             <value>
-                <elementReference>ContactLookup.recordId</elementReference>
+                <elementReference>cl_ProjectConsultants.selectedChoiceValues</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -121,13 +247,59 @@ IF({!pl_Project_Role}= &quot;Other&quot;, {!recordId.pro_Other_Days_Budgeted__c}
         <inputAssignments>
             <field>pro_Off_Site_Day_Rate__c</field>
             <value>
-                <elementReference>Off_Site_Day_Rate</elementReference>
+                <elementReference>Get_Selected_Contact.pro_Off_Site_Base_Rate__c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
             <field>pro_On_Site_Day_Rate__c</field>
             <value>
-                <elementReference>On_Site_Day_Rate</elementReference>
+                <elementReference>Get_Selected_Contact.pro_On_Site_Base_Rate__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>pro_Project_Role__c</field>
+            <value>
+                <elementReference>pl_Project_Role</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>pro_Technical_Project__c</field>
+            <value>
+                <elementReference>recordId.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <object>pro_Project_Consultant__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <recordCreates>
+        <name>Create_Project_Consulant_From_New_Contact</name>
+        <label>Create Project Consulant From New Contact</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Get_Project_Consultants</targetReference>
+        </connector>
+        <faultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>ErrorScreen</targetReference>
+        </faultConnector>
+        <inputAssignments>
+            <field>Name</field>
+            <value>
+                <elementReference>FirstName</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>pro_Contact__c</field>
+            <value>
+                <elementReference>Create_Contact</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>pro_Project_Role__c</field>
+            <value>
+                <elementReference>ProjectRole</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -146,11 +318,8 @@ IF({!pl_Project_Role}= &quot;Other&quot;, {!recordId.pro_Other_Days_Budgeted__c}
         <locationY>0</locationY>
         <connector>
             <isGoTo>true</isGoTo>
-            <targetReference>Get_Project_Consultants</targetReference>
+            <targetReference>ErrorScreen</targetReference>
         </connector>
-        <faultConnector>
-            <targetReference>ErrorDeletingConsultantsScreen</targetReference>
-        </faultConnector>
         <inputReference>dt_ProjectConsultants.selectedRows</inputReference>
     </recordDeletes>
     <recordLookups>
@@ -160,7 +329,7 @@ IF({!pl_Project_Role}= &quot;Other&quot;, {!recordId.pro_Other_Days_Budgeted__c}
         <locationY>0</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>ProjectConsultantCreationScreen</targetReference>
+            <targetReference>Reset_Values</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -175,128 +344,135 @@ IF({!pl_Project_Role}= &quot;Other&quot;, {!recordId.pro_Other_Days_Budgeted__c}
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
+        <description>Get the contact that user selected in the previous screen</description>
         <name>Get_Selected_Contact</name>
         <label>Get Selected Contact</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>DayRateScreen</targetReference>
+            <targetReference>Create_Project_Consulant</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
             <operator>EqualTo</operator>
             <value>
-                <elementReference>ContactLookup.recordId</elementReference>
+                <elementReference>cl_ProjectConsultants.selectedChoiceValues</elementReference>
             </value>
         </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
         <object>Contact</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
+    <runInMode>SystemModeWithoutSharing</runInMode>
     <screens>
-        <name>DayRateScreen</name>
-        <label>DayRateScreen</label>
+        <description>Screen for capturing values to create a contact who is defined as a Project Consultant</description>
+        <name>CreateContactScreen</name>
+        <label>CreateContactScreen</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <connector>
-            <targetReference>Create_Project_Consulant</targetReference>
+            <targetReference>Create_Contact</targetReference>
         </connector>
         <fields>
-            <name>DayRateScreen_Section1</name>
+            <name>CreateContactScreen_Section1</name>
             <fieldType>RegionContainer</fieldType>
             <fields>
-                <name>DayRateScreen_Section1_Column1</name>
+                <name>CreateContactScreen_Section1_Column1</name>
                 <fieldType>Region</fieldType>
                 <fields>
-                    <name>Name</name>
+                    <name>FirstName</name>
                     <dataType>String</dataType>
-                    <defaultValue>
-                        <elementReference>ContactLookup.recordName</elementReference>
-                    </defaultValue>
-                    <fieldText>Name</fieldText>
+                    <fieldText>First Name</fieldText>
                     <fieldType>InputField</fieldType>
-                    <isReadOnly>
-                        <booleanValue>true</booleanValue>
-                    </isReadOnly>
                     <isRequired>false</isRequired>
                 </fields>
-                <inputParameters>
-                    <name>width</name>
-                    <value>
-                        <stringValue>3</stringValue>
-                    </value>
-                </inputParameters>
-                <isRequired>false</isRequired>
-            </fields>
-            <fields>
-                <name>DayRateScreen_Section1_Column2</name>
-                <fieldType>Region</fieldType>
                 <fields>
-                    <name>Task</name>
+                    <name>LastName</name>
                     <dataType>String</dataType>
-                    <defaultValue>
-                        <elementReference>pl_Project_Role</elementReference>
-                    </defaultValue>
-                    <fieldText>Task</fieldText>
+                    <fieldText>Last Name</fieldText>
                     <fieldType>InputField</fieldType>
-                    <isReadOnly>
-                        <booleanValue>true</booleanValue>
-                    </isReadOnly>
                     <isRequired>false</isRequired>
+                </fields>
+                <fields>
+                    <name>Email</name>
+                    <extensionName>flowruntime:email</extensionName>
+                    <fieldType>ComponentInstance</fieldType>
+                    <inputParameters>
+                        <name>disabled</name>
+                        <value>
+                            <booleanValue>false</booleanValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>readonly</name>
+                        <value>
+                            <booleanValue>false</booleanValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>required</name>
+                        <value>
+                            <booleanValue>true</booleanValue>
+                        </value>
+                    </inputParameters>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>true</isRequired>
+                    <storeOutputAutomatically>true</storeOutputAutomatically>
                 </fields>
                 <inputParameters>
                     <name>width</name>
                     <value>
-                        <stringValue>3</stringValue>
+                        <stringValue>6</stringValue>
                     </value>
                 </inputParameters>
                 <isRequired>false</isRequired>
             </fields>
             <fields>
-                <name>DayRateScreen_Section1_Column3</name>
+                <name>CreateContactScreen_Section1_Column2</name>
                 <fieldType>Region</fieldType>
                 <fields>
-                    <name>On_Site_Day_Rate</name>
-                    <dataType>Currency</dataType>
-                    <defaultValue>
-                        <elementReference>Get_Selected_Contact.pro_On_Site_Base_Rate__c</elementReference>
-                    </defaultValue>
-                    <fieldText>On-Site Day Rate</fieldText>
-                    <fieldType>InputField</fieldType>
+                    <name>ParentAccount</name>
+                    <extensionName>flowruntime:lookup</extensionName>
+                    <fieldType>ComponentInstance</fieldType>
+                    <inputParameters>
+                        <name>fieldApiName</name>
+                        <value>
+                            <stringValue>AccountId</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>label</name>
+                        <value>
+                            <stringValue>Account</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>objectApiName</name>
+                        <value>
+                            <stringValue>Contact</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>true</isRequired>
+                    <storeOutputAutomatically>true</storeOutputAutomatically>
+                </fields>
+                <fields>
+                    <name>ProjectRole</name>
+                    <choiceReferences>pcs_ProjectRoles</choiceReferences>
+                    <dataType>String</dataType>
+                    <fieldText>Project Role</fieldText>
+                    <fieldType>DropdownBox</fieldType>
                     <isRequired>false</isRequired>
-                    <scale>2</scale>
                 </fields>
                 <inputParameters>
                     <name>width</name>
                     <value>
-                        <stringValue>3</stringValue>
-                    </value>
-                </inputParameters>
-                <isRequired>false</isRequired>
-            </fields>
-            <fields>
-                <name>DayRateScreen_Section1_Column4</name>
-                <fieldType>Region</fieldType>
-                <fields>
-                    <name>Off_Site_Day_Rate</name>
-                    <dataType>Currency</dataType>
-                    <defaultValue>
-                        <elementReference>Get_Selected_Contact.pro_Off_Site_Base_Rate__c</elementReference>
-                    </defaultValue>
-                    <fieldText>Off-Site Day Rate</fieldText>
-                    <fieldType>InputField</fieldType>
-                    <isRequired>false</isRequired>
-                    <scale>0</scale>
-                </fields>
-                <inputParameters>
-                    <name>width</name>
-                    <value>
-                        <stringValue>3</stringValue>
+                        <stringValue>6</stringValue>
                     </value>
                 </inputParameters>
                 <isRequired>false</isRequired>
@@ -304,13 +480,13 @@ IF({!pl_Project_Role}= &quot;Other&quot;, {!recordId.pro_Other_Days_Budgeted__c}
             <isRequired>false</isRequired>
             <regionContainerType>SectionWithoutHeader</regionContainerType>
         </fields>
-        <nextOrFinishButtonLabel>Add Consultant</nextOrFinishButtonLabel>
+        <nextOrFinishButtonLabel>Add Consultant To Project</nextOrFinishButtonLabel>
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
     </screens>
     <screens>
-        <name>ErrorCreatingConsultantsScreen</name>
-        <label>ErrorCreatingConsultantsScreen</label>
+        <name>ErrorScreen</name>
+        <label>ErrorScreen</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <allowBack>true</allowBack>
@@ -318,23 +494,7 @@ IF({!pl_Project_Role}= &quot;Other&quot;, {!recordId.pro_Other_Days_Budgeted__c}
         <allowPause>false</allowPause>
         <fields>
             <name>Copy_2_of_ErrorMessageDisplay</name>
-            <fieldText>&lt;p&gt;Error creating Project Consultant record:&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;{!$Flow.FaultMessage}&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-        </fields>
-        <showFooter>true</showFooter>
-        <showHeader>false</showHeader>
-    </screens>
-    <screens>
-        <name>ErrorDeletingConsultantsScreen</name>
-        <label>ErrorDeletingConsultantsScreen</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <allowBack>true</allowBack>
-        <allowFinish>false</allowFinish>
-        <allowPause>false</allowPause>
-        <fields>
-            <name>ErrorMessageDisplay</name>
-            <fieldText>&lt;p&gt;Error deleting Project Consultant record:&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;{!$Flow.FaultMessage}&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;Error processing your request:&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;{!$Flow.FaultMessage}&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>true</showFooter>
@@ -393,7 +553,7 @@ IF({!pl_Project_Role}= &quot;Other&quot;, {!recordId.pro_Other_Days_Budgeted__c}
                     <inputParameters>
                         <name>columns</name>
                         <value>
-                            <stringValue>[{&quot;apiName&quot;:&quot;pro_Account_Name__c&quot;,&quot;guid&quot;:&quot;column-7b20&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:true,&quot;customHeaderLabel&quot;:&quot;Vendor&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:0,&quot;label&quot;:&quot;Account Name&quot;,&quot;type&quot;:&quot;customRichText&quot;},{&quot;apiName&quot;:&quot;pro_Contact_Name__c&quot;,&quot;guid&quot;:&quot;column-bcdb&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:true,&quot;customHeaderLabel&quot;:&quot;Consultant&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:1,&quot;label&quot;:&quot;Contact Name&quot;,&quot;type&quot;:&quot;customRichText&quot;},{&quot;apiName&quot;:&quot;Project_Role__c&quot;,&quot;guid&quot;:&quot;column-22db&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:true,&quot;customHeaderLabel&quot;:&quot;Role&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:2,&quot;label&quot;:&quot;Project Role&quot;,&quot;type&quot;:&quot;text&quot;}]</stringValue>
+                            <stringValue>[{&quot;apiName&quot;:&quot;pro_Account_Name__c&quot;,&quot;guid&quot;:&quot;column-7b20&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:true,&quot;customHeaderLabel&quot;:&quot;Vendor&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:0,&quot;label&quot;:&quot;Account Name&quot;,&quot;type&quot;:&quot;customRichText&quot;},{&quot;apiName&quot;:&quot;pro_Contact_Name__c&quot;,&quot;guid&quot;:&quot;column-bcdb&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:true,&quot;customHeaderLabel&quot;:&quot;Consultant&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:1,&quot;label&quot;:&quot;Contact Name&quot;,&quot;type&quot;:&quot;customRichText&quot;},{&quot;apiName&quot;:&quot;pro_Project_Role__c&quot;,&quot;guid&quot;:&quot;column-22db&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:true,&quot;customHeaderLabel&quot;:&quot;Role&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:2,&quot;label&quot;:&quot;Project Role&quot;,&quot;type&quot;:&quot;text&quot;}]</stringValue>
                         </value>
                     </inputParameters>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
@@ -419,6 +579,64 @@ IF({!pl_Project_Role}= &quot;Other&quot;, {!recordId.pro_Other_Days_Budgeted__c}
                 <name>Add_Consultant_Column1</name>
                 <fieldType>Region</fieldType>
                 <fields>
+                    <name>cl_ProjectConsultants</name>
+                    <choiceReferences>rcs_ProjectConsultants</choiceReferences>
+                    <extensionName>flowruntime:choiceLookup</extensionName>
+                    <fieldText>Contact</fieldText>
+                    <fieldType>ComponentChoice</fieldType>
+                    <isRequired>false</isRequired>
+                    <storeOutputAutomatically>true</storeOutputAutomatically>
+                </fields>
+                <fields>
+                    <name>bb_CreateNewConsultant</name>
+                    <extensionName>c:fsc_flowButtonBar</extensionName>
+                    <fieldType>ComponentInstance</fieldType>
+                    <inputParameters>
+                        <name>alignment</name>
+                        <value>
+                            <stringValue>left</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>orientation</name>
+                        <value>
+                            <stringValue>horizontal</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>showLines</name>
+                        <value>
+                            <stringValue>neither</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>actionMode</name>
+                        <value>
+                            <stringValue>navigation</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>buttons</name>
+                        <value>
+                            <stringValue>[{&quot;label&quot;:&quot;Create New Consultant&quot;,&quot;value&quot;:&quot;Create New Consultant&quot;,&quot;iconPosition&quot;:&quot;left&quot;,&quot;variant&quot;:&quot;neutral&quot;,&quot;index&quot;:0,&quot;iconName&quot;:&quot;utility:record_create&quot;}]</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>true</isRequired>
+                    <storeOutputAutomatically>true</storeOutputAutomatically>
+                </fields>
+                <inputParameters>
+                    <name>width</name>
+                    <value>
+                        <stringValue>6</stringValue>
+                    </value>
+                </inputParameters>
+                <isRequired>false</isRequired>
+            </fields>
+            <fields>
+                <name>Add_Consultant_Column2</name>
+                <fieldType>Region</fieldType>
+                <fields>
                     <name>pl_Project_Role</name>
                     <choiceReferences>pcs_ProjectRoles</choiceReferences>
                     <dataType>String</dataType>
@@ -434,48 +652,11 @@ IF({!pl_Project_Role}= &quot;Other&quot;, {!recordId.pro_Other_Days_Budgeted__c}
                 </inputParameters>
                 <isRequired>false</isRequired>
             </fields>
-            <fields>
-                <name>Add_Consultant_Column2</name>
-                <fieldType>Region</fieldType>
-                <fields>
-                    <name>ContactLookup</name>
-                    <extensionName>flowruntime:lookup</extensionName>
-                    <fieldType>ComponentInstance</fieldType>
-                    <inputParameters>
-                        <name>fieldApiName</name>
-                        <value>
-                            <stringValue>pro_Contact__c</stringValue>
-                        </value>
-                    </inputParameters>
-                    <inputParameters>
-                        <name>label</name>
-                        <value>
-                            <stringValue>Contact</stringValue>
-                        </value>
-                    </inputParameters>
-                    <inputParameters>
-                        <name>objectApiName</name>
-                        <value>
-                            <stringValue>pro_Project_Consultant__c</stringValue>
-                        </value>
-                    </inputParameters>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-                    <isRequired>true</isRequired>
-                    <storeOutputAutomatically>true</storeOutputAutomatically>
-                </fields>
-                <inputParameters>
-                    <name>width</name>
-                    <value>
-                        <stringValue>6</stringValue>
-                    </value>
-                </inputParameters>
-                <isRequired>false</isRequired>
-            </fields>
             <isRequired>false</isRequired>
             <regionContainerType>SectionWithHeader</regionContainerType>
         </fields>
         <fields>
-            <name>bb_NavigationButtons</name>
+            <name>bb_AddConsultant</name>
             <extensionName>c:fsc_flowButtonBar</extensionName>
             <fieldType>ComponentInstance</fieldType>
             <inputParameters>
@@ -505,12 +686,77 @@ IF({!pl_Project_Role}= &quot;Other&quot;, {!recordId.pro_Other_Days_Budgeted__c}
             <inputParameters>
                 <name>buttons</name>
                 <value>
-                    <stringValue>[{&quot;label&quot;:&quot;Add Consultant&quot;,&quot;value&quot;:&quot;Add Consultant&quot;,&quot;iconPosition&quot;:&quot;left&quot;,&quot;variant&quot;:&quot;brand&quot;,&quot;index&quot;:0},{&quot;label&quot;:&quot;Remove Consultant&quot;,&quot;value&quot;:&quot;Remove Consultant&quot;,&quot;iconPosition&quot;:&quot;left&quot;,&quot;variant&quot;:&quot;destructive&quot;,&quot;index&quot;:1}]</stringValue>
+                    <stringValue>[{&quot;label&quot;:&quot;Add Consultant To Project&quot;,&quot;value&quot;:&quot;Add Consultant&quot;,&quot;iconPosition&quot;:&quot;left&quot;,&quot;variant&quot;:&quot;brand&quot;,&quot;index&quot;:0}]</stringValue>
                 </value>
             </inputParameters>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
             <storeOutputAutomatically>true</storeOutputAutomatically>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>pl_Project_Role</leftValueReference>
+                    <operator>IsNull</operator>
+                    <rightValue>
+                        <booleanValue>false</booleanValue>
+                    </rightValue>
+                </conditions>
+                <conditions>
+                    <leftValueReference>cl_ProjectConsultants.selectedChoiceValues</leftValueReference>
+                    <operator>IsNull</operator>
+                    <rightValue>
+                        <booleanValue>false</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>bb_RemoveConsultant</name>
+            <extensionName>c:fsc_flowButtonBar</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>alignment</name>
+                <value>
+                    <stringValue>right</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>orientation</name>
+                <value>
+                    <stringValue>horizontal</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>showLines</name>
+                <value>
+                    <stringValue>neither</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>actionMode</name>
+                <value>
+                    <stringValue>navigation</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>buttons</name>
+                <value>
+                    <stringValue>[{&quot;label&quot;:&quot;Remove Consultant&quot;,&quot;value&quot;:&quot;Remove Consultant&quot;,&quot;iconPosition&quot;:&quot;left&quot;,&quot;variant&quot;:&quot;destructive&quot;,&quot;index&quot;:0}]</stringValue>
+                </value>
+            </inputParameters>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <storeOutputAutomatically>true</storeOutputAutomatically>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>dt_ProjectConsultants.firstSelectedRow.Id</leftValueReference>
+                    <operator>IsNull</operator>
+                    <rightValue>
+                        <booleanValue>false</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
         </fields>
         <nextOrFinishButtonLabel>Add Consultant</nextOrFinishButtonLabel>
         <showFooter>false</showFooter>

@@ -10,15 +10,19 @@
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>contains</operator>
-            <value>01467</value>
+            <value>02037,02043,02050,02053,02062,02616,02740</value>
         </criteriaItems>
     </filter>
     <format>Matrix</format>
     <groupingsAcross>
-        <dateGranularity>Day</dateGranularity>
-        <field>leaseworks__Utilization_Report_List_Item__c$leaseworks__Utilization_Report__c</field>
+        <field>leaseworks__Utilization_Report_List_Item__c$leaseworks__For_The_Month_Ending__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsAcross>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>leaseworks__Utilization_Report_List_Item__c$leaseworks__Constituent_Assembly__c.leaseworks__Lease_Hyperlink__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
         <field>leaseworks__Utilization_Report_List_Item__c$leaseworks__Assembly_MR_Info__c</field>
@@ -31,13 +35,13 @@
     </params>
     <reportType>Supplemental_Rent_Utilization_with_Assemblies__c</reportType>
     <scope>organization</scope>
-    <showDetails>false</showDetails>
+    <showDetails>true</showDetails>
     <showGrandTotal>true</showGrandTotal>
     <showSubTotals>true</showSubTotals>
     <timeFrameFilter>
         <dateColumn>leaseworks__Utilization_Report_List_Item__c$leaseworks__For_The_Month_Ending__c</dateColumn>
-        <endDate>2025-03-31</endDate>
+        <endDate>2025-05-31</endDate>
         <interval>INTERVAL_CUSTOM</interval>
-        <startDate>2025-03-01</startDate>
+        <startDate>2024-12-01</startDate>
     </timeFrameFilter>
 </Report>

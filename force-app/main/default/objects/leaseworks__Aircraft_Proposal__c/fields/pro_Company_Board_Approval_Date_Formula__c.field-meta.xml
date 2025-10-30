@@ -22,7 +22,7 @@
     ) &amp; &quot; &quot; &amp;
     TEXT(YEAR(pro_Company_Board_Approval_Date__c)),
     IF(
-         pro_Board_Approval_Required__c != True,
+         pro_Board_Approval_Required__c = False,
         &quot;NA&quot;,
         &quot;&quot;
     )

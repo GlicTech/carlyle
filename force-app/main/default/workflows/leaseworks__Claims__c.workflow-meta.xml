@@ -9,7 +9,16 @@
             <field>Assigned_To__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <recipients>
+            <field>Finance_Sign_Off_User__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>Technical_Sign_Off_User__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderAddress>leaseworks@carlyle.aero</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>unfiled$public/Claim_Approval_Process</template>
     </alerts>
     <alerts>

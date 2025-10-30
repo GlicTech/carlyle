@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>64.0</apiVersion>
+    <description>Flow designed to run one time and update historic documentation events to new naming convention</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>f_NameConcatenation</name>
+        <dataType>String</dataType>
+        <expression>{!$Record.pro_Asset_in_Deal__r.Name} + &#39; - &#39; + RIGHT(TEXT({!$Record.pro_Documentation_Event_Type__c}), LEN(TEXT({!$Record.pro_Documentation_Event_Type__c})) - 2)</expression>
+    </formulas>
+    <interviewLabel>Prodigy - Set Documentation Event Names {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Prodigy - Set Documentation Event Names</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Set_Documentation_Event_Names</name>
+        <label>Set Documentation Event Names</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <inputAssignments>
+            <field>Name</field>
+            <value>
+                <elementReference>f_NameConcatenation</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Set_Documentation_Event_Names</targetReference>
+        </connector>
+        <object>pro_Documentation_Event__c</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Obsolete</status>
+</Flow>

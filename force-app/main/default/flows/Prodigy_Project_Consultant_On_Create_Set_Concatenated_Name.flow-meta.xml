@@ -5,7 +5,7 @@
     <formulas>
         <name>f_ConcatenatedName</name>
         <dataType>String</dataType>
-        <expression>{!$Record.pro_Contact__r.FirstName} + &#39; &#39; + {!$Record.pro_Contact__r.LastName} + &#39; - &#39; + TEXT({!$Record.Project_Role__c})</expression>
+        <expression>{!$Record.pro_Contact__r.FirstName} + &#39; &#39; + {!$Record.pro_Contact__r.LastName} + &#39; - &#39; + TEXT({!$Record.pro_Project_Role__c})</expression>
     </formulas>
     <interviewLabel>Prodigy - Project Consultant On Create Set Concatenated Name {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Prodigy - Project Consultant On Create Set Concatenated Name</label>
@@ -49,7 +49,7 @@
         </connector>
         <object>pro_Project_Consultant__c</object>
         <recordTriggerType>Create</recordTriggerType>
-        <triggerType>RecordBeforeSave</triggerType>
+        <triggerType>RecordAfterSave</triggerType>
     </start>
     <status>Active</status>
 </Flow>

@@ -3,7 +3,7 @@
     <fullName>leaseworks__Event_date</fullName>
     <active>false</active>
     <description>Event date field contains a date within year of holiday schedule</description>
-    <errorConditionFormula>YEAR( leaseworks__Event_Date__c ) &lt;&gt;  VALUE(leaseworks__Holiday_Schedule__r.leaseworks__Year_New__c)</errorConditionFormula>
+    <errorConditionFormula>false /*YEAR( Event_Date__c ) &lt;&gt;  VALUE(Holiday_Schedule__r.Year_New__c)*/</errorConditionFormula>
     <errorDisplayField>leaseworks__Event_Date__c</errorDisplayField>
     <errorMessage>Please choose date within the Holiday Schedule year.</errorMessage>
 </ValidationRule>

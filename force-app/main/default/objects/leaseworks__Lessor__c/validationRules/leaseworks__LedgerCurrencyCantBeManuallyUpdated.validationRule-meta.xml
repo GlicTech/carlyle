@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__LedgerCurrencyCantBeManuallyUpdated</fullName>
+    <active>true</active>
+    <description>Ledger currency cannot be updated manually on setup.</description>
+    <errorConditionFormula>AND(
+    NOT(ISNEW()),
+    !$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c,
+    ISCHANGED(leaseworks__Ledger_Currency__c)
+)</errorConditionFormula>
+    <errorMessage>Editing Ledger Currency is not allowed. The system currently supports only USD as the Ledger Currency.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,90 @@
+<template>
+    <lightning-card class="share-card" title="🔗 External Team Access">
+        <div class="share-body">
+
+            <!-- Lookup Search -->
+            <div class="slds-combobox_container">
+                <div class={comboboxClass} aria-expanded={hasResults} aria-haspopup="listbox" role="combobox">
+                    <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right" role="none">
+                        <input type="text" class="slds-input slds-combobox__input"
+                               placeholder="Search External Reps..."
+                               value={searchKey}
+                               oninput={handleKeyChange}
+                               aria-autocomplete="list"
+                               aria-controls="lookup-listbox" />
+                        <lightning-icon icon-name="utility:search" size="x-small" class="slds-input__icon slds-input__icon_right"></lightning-icon>
+                    </div>
+
+                    <!-- Selected pills under search -->
+                    <template if:true={hasSelectedUsers}>
+                        <ul class="slds-listbox slds-listbox_inline slds-p-top_x-small" role="listbox">
+                            <template for:each={selectedUsers} for:item="user">
+                                <lightning-pill key={user.Id} label={user.Name} name={user.Id} onremove={handleRemove}>
+                                    <lightning-icon icon-name="standard:user" alternative-text="User"></lightning-icon>
+                                </lightning-pill>
+                            </template>
+                        </ul>
+                    </template>
+
+                    <!-- Dropdown results -->
+                    <template if:true={results}>
+                        <div id="lookup-listbox" role="listbox">
+                            <ul class="slds-listbox slds-listbox_vertical slds-dropdown slds-dropdown_fluid" role="presentation">
+                                <template for:each={results} for:item="record">
+                                    <li key={record.Id} role="presentation" class="slds-listbox__item">
+                                        <div data-id={record.Id} data-name={record.Name}
+                                             onclick={handleSelect}
+                                             class="slds-media slds-listbox__option slds-listbox__option_entity slds-media_small slds-media_center slds-p-around_x-small"
+                                             role="option">
+                                            <span class="slds-media__figure">
+                                                <lightning-icon icon-name={record.iconName} size="small"></lightning-icon>
+                                            </span>
+                                            <span class="slds-media__body">
+                                                <span class="slds-truncate">{record.Name}</span>
+                                                <div class="slds-text-color_weak slds-text-body_small">{record.Type}</div>
+                                            </span>
+                                        </div>
+                                    </li>
+                                </template>
+                            </ul>
+                        </div>
+                    </template>
+                </div>
+            </div>
+
+            <!-- Access Level -->
+            <div class="slds-m-top_medium">
+                <lightning-combobox class="fancy-combobox"
+                                    label="📜 Access Level"
+                                    value={accessLevel}
+                                    options={accessOptions}
+                                    onchange={handleAccessChange}>
+                </lightning-combobox>
+            </div>
+
+            <!-- Already Shared With -->
+            <template if:true={hasExistingShares}>
+                <div class="slds-m-top_large already-shared">
+                    <h3 class="slds-text-title_bold">👥 Already Shared With</h3>
+                    <div class="pill-zone slds-m-top_x-small">
+                        <template for:each={existingShares} for:item="share">
+                            <lightning-pill
+                                key={share.Id}
+                                label={share.displayLabel}
+                                name={share.Id}
+                                onremove={handleExistingRemove}>
+                                <lightning-icon icon-name="standard:user" alternative-text="User"></lightning-icon>
+                            </lightning-pill>
+                        </template>
+                    </div>
+                </div>
+            </template>
+
+            <!-- Footer -->
+            <div class="slds-m-top_medium slds-text-align_right">
+                <lightning-button variant="neutral" label="Cancel" onclick={handleCancel}></lightning-button>
+                <lightning-button class="slds-m-left_small" variant="brand" label="Share" onclick={handleSave}></lightning-button>
+            </div>
+        </div>
+    </lightning-card>
+</template>

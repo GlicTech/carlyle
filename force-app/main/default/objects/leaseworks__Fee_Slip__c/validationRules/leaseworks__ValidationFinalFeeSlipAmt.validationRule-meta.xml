@@ -3,6 +3,6 @@
     <fullName>leaseworks__ValidationFinalFeeSlipAmt</fullName>
     <active>true</active>
     <description>Fee Slip Amount cannot be negative.</description>
-    <errorConditionFormula>IF(  AND(!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c , leaseworks__Fee_Slip_Adj_Amount__c &lt; 0 , ABS( leaseworks__Fee_Slip_Adj_Amount__c) &gt;  ABS( leaseworks__Fee_Slip_Amount__c )) , true, false)</errorConditionFormula>
+    <errorConditionFormula>IF(  AND(!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c , leaseworks__Fee_Slip_Adjustment_New__c &lt; 0 , ABS( leaseworks__Fee_Slip_Adjustment_New__c) &gt;  ABS( leaseworks__Fee_Slip_Amount_New__c )) , true, false)</errorConditionFormula>
     <errorMessage>Fee Slip Amount cannot be negative.</errorMessage>
 </ValidationRule>

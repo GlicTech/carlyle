@@ -4,7 +4,9 @@
     <deprecated>false</deprecated>
     <description>The field is necessary to bypass the character limit issue in the formula fields mentioned above. Instead of using the full condition, we utilize this field solely to remain within the character limit</description>
     <externalId>false</externalId>
-    <formula>IF(TEXT(leaseworks__Transaction_Type__c)==&#39;MR Cash Payment&#39;,IF(OR((leaseworks__Payment_Line_Item__r.leaseworks__Status__c=&#39;Approved&#39;),(leaseworks__Payment_Line_Item__r.leaseworks__Status__c=&#39;Cancelled-Pending&#39;)),leaseworks__Payment_Line_Item__r.leaseworks__Remaining_Payment_Line_Amount__c,null),IF(TEXT(leaseworks__Transaction_Type__c)==&#39;MR Payment Credit Applied&#39;,IF((leaseworks__Payment_Line_Item__r.leaseworks__Status__c=&#39;Cancelled&#39;),null,leaseworks__Payment_Line_Item__r.leaseworks__Remaining_Payment_Line_Amount__c),null))</formula>
+    <formula>IF(TEXT(leaseworks__Transaction_Type__c)==&#39;MR Cash Payment&#39;, IF(OR((leaseworks__Payment_Line_Item__r.leaseworks__Status__c=&#39;Approved&#39;),(leaseworks__Payment_Line_Item__r.leaseworks__Status__c=&#39;Cancelled-Pending&#39;)),leaseworks__Payment_Line_Item__r.leaseworks__Remaining_Payment_Line_Amount__c,null),
+IF(TEXT(leaseworks__Transaction_Type__c)==&#39;MR Payment Credit Applied&#39;,IF((leaseworks__Payment_Line_Item__r.leaseworks__Status__c=&#39;Cancelled&#39;),null,leaseworks__Payment_Line_Item__r.leaseworks__Remaining_Payment_Line_Amount__c),
+IF(TEXT(leaseworks__Transaction_Type__c)==&#39;MR Payment Offset&#39;,IF(OR((leaseworks__Payment_Line_Item__r.leaseworks__Status__c =&#39;Cancelled&#39;),(leaseworks__Payment_Line_Item__r.leaseworks__Status__c=&#39;Submitted&#39;),(leaseworks__Payment_Line_Item__r.leaseworks__Status__c=&#39;Pending&#39;)),null,leaseworks__Payment_Line_Item__r.leaseworks__Remaining_Payment_Line_Amount__c),null)))</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>_Amount CC PLI</label>
     <precision>18</precision>

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>65.0</apiVersion>
+    <decisions>
+        <name>Has_Non_Deal_Approval_Been_Submitted</name>
+        <label>Has Non Deal Approval Been Submitted?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Non_Deal_Approval_Submitted</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.leaseworks__Deal_Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Approval</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.leaseworks__Deal_Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Submitted</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Email_Deal_Team</targetReference>
+            </connector>
+            <label>Yes - Non Deal Approval Submitted</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_LOI_or_Documentation_Approval_Completed</name>
+        <label>Is LOI or Documentation Approval Completed?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Has_Non_Deal_Approval_Been_Submitted</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_LOI_or_Documentation_Approval_Completed</name>
+            <conditionLogic>(1 OR 2 )AND 3</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.pro_Full_Documentation_Approval_Achieved__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.pro_LOI_Approval__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <numberValue>100.0</numberValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.leaseworks__Deal_Type__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Approval</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Email_User_s_For_Approval_Sign_Off</targetReference>
+            </connector>
+            <label>Yes - LOI or Documentation Approval Completed</label>
+        </rules>
+    </decisions>
+    <description>Runs on create or update of a Deal and calls subflows within decision paths to execute logic specific to conditions.</description>
+    <environments>Default</environments>
+    <interviewLabel>Deal - Create / Update After Save Trigger {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Deal - Create / Update After Save Trigger</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Is_LOI_or_Documentation_Approval_Completed</targetReference>
+        </connector>
+        <filterLogic>or</filterLogic>
+        <filters>
+            <field>pro_Full_Documentation_Approval_Achieved__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>pro_LOI_Approval__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <numberValue>100.0</numberValue>
+            </value>
+        </filters>
+        <filters>
+            <field>leaseworks__Deal_Status__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Submitted</stringValue>
+            </value>
+        </filters>
+        <object>leaseworks__Marketing_Activity__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <subflows>
+        <name>Email_Deal_Team</name>
+        <label>Email Deal Team</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <flowName>pro_Autolaunched_Email_Deal_Team_When_Non_Deal_Approval_Submitted</flowName>
+        <inputAssignments>
+            <name>varTriggeringDeal</name>
+            <value>
+                <elementReference>$Record</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
+    <subflows>
+        <name>Email_User_s_For_Approval_Sign_Off</name>
+        <label>Email User(s) For Approval Sign Off</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Has_Non_Deal_Approval_Been_Submitted</targetReference>
+        </connector>
+        <flowName>pro_Autolaunched_Approval_Completed_Email_For_Sign_Off</flowName>
+        <inputAssignments>
+            <name>varTriggeringDeal</name>
+            <value>
+                <elementReference>$Record</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
+</Flow>

@@ -85,11 +85,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Total_Capacity__c</field>
+                <field>Total_Fuel_Capacity__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Total_Alternative_Capacity__c</field>
+                <field>Total_Fuel_Alt_Capacity__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -133,6 +133,10 @@
                 <behavior>Edit</behavior>
                 <field>ESNs__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>leaseworks__Manufacturer_GP__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
@@ -141,9 +145,9 @@
         <detailHeading>false</detailHeading>
         <editHeading>true</editHeading>
         <label>Custom Links</label>
-        <layoutColumns/>
-        <layoutColumns/>
-        <layoutColumns/>
+        <layoutColumns />
+        <layoutColumns />
+        <layoutColumns />
         <style>CustomLinks</style>
     </layoutSections>
     <platformActionList>
@@ -179,7 +183,7 @@
             <sortOrder>5</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
-            <actionName>leaseworks__Aircraft__c.leaseworks__Update_Analysis_Code</actionName>
+            <actionName>leaseworks__Aircraft__c.leaseworks__Asset_Wizard</actionName>
             <actionType>QuickAction</actionType>
             <sortOrder>6</sortOrder>
         </platformActionListItems>
@@ -209,6 +213,15 @@
     </quickActionList>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>RECORDTYPE</fields>
+        <fields>pro_Assigned_To__c</fields>
+        <fields>pro_Requested_By__c</fields>
+        <fields>pro_Type__c</fields>
+        <fields>pro_Title__c</fields>
+        <fields>pro_Comments__c</fields>
+        <fields>pro_Status__c</fields>
+        <fields>pro_Priority__c</fields>
+        <fields>pro_Expected_Due_Date__c</fields>
         <relatedList>pro_Ticket__c.pro_Asset__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -228,8 +241,6 @@
         <fields>pro_Transaction_Code_Titled_Asset__c</fields>
         <fields>leaseworks__TSN__c</fields>
         <fields>leaseworks__CSN__c</fields>
-        <fields>leaseworks__APU_TSN__c</fields>
-        <fields>leaseworks__APU_CSN__c</fields>
         <fields>leaseworks__Utilization_Status__c</fields>
         <relatedList>leaseworks__Constituent_Assembly__c.leaseworks__Attached_Aircraft__c</relatedList>
     </relatedLists>
@@ -242,16 +253,13 @@
         <fields>pro_Transaction_Code_Attached_Asset__c</fields>
         <fields>leaseworks__TSN__c</fields>
         <fields>leaseworks__CSN__c</fields>
-        <fields>leaseworks__APU_TSN__c</fields>
-        <fields>leaseworks__APU_CSN__c</fields>
         <relatedList>leaseworks__Constituent_Assembly__c.leaseworks__Asset__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>pro_Target_End_Date__c</fields>
-        <fields>pro_Outcome__c</fields>
+        <fields>pro_Likely_Outcome__c</fields>
         <fields>pro_Target_Forecast__c</fields>
-        <fields>pro_Target_Year__c</fields>
+        <fields>pro_Target_Reached__c</fields>
         <relatedList>pro_Asset_Target_Audit__c.pro_Asset__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -354,8 +362,13 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>leaseworks__Fuel_Load_Type__c</fields>
+        <fields>Fuel_Qty_Indicator__c</fields>
         <fields>leaseworks__Capacity__c</fields>
         <fields>leaseworks__Unit__c</fields>
+        <fields>Alternative_Capacity__c</fields>
+        <fields>leaseworks__Unit_Alt__c</fields>
+        <fields>Aux_Fuel_Tank_ACT__c</fields>
         <fields>leaseworks__Period__c</fields>
         <relatedList>leaseworks__Spec_Fuel_Capacity__c.leaseworks__Asset__c</relatedList>
     </relatedLists>

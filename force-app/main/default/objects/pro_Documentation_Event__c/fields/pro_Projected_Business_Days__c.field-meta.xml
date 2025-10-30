@@ -4,9 +4,18 @@
     <description>Returns the number of business days projected for the completion of a documentation event based on the name.</description>
     <externalId>false</externalId>
     <formula>IF(
-Name = &#39;1 Engage Law Firm&#39;, &#39;1&#39;,
-IF(Name = &#39;2 Initial Draft&#39;, &#39;4&#39;,
-IF(Name = &#39;3 Review &amp; Comment&#39;, &#39;3&#39;, &#39;2&#39;)))</formula>
+  ISPICKVAL(pro_Documentation_Event_Type__c, &quot;1 Engage Law Firm&quot;), 
+  &quot;1&quot;,
+  IF(
+    ISPICKVAL(pro_Documentation_Event_Type__c, &quot;2 Initial Draft&quot;), 
+    &quot;4&quot;,
+    IF(
+      ISPICKVAL(pro_Documentation_Event_Type__c, &quot;3 Review &amp; Comment&quot;), 
+      &quot;3&quot;, 
+      &quot;2&quot;
+    )
+  )
+)</formula>
     <label>Projected Business Days</label>
     <required>false</required>
     <trackHistory>false</trackHistory>

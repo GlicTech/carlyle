@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <FlowDefinition xmlns="http://soap.sforce.com/2006/04/metadata">
-    <activeVersionNumber>3</activeVersionNumber>
+    <activeVersionNumber>22</activeVersionNumber>
+    <description>When the LOI Date gets populated, the Asset In Deal searched for an open Asset Target Audit record. If a record is found, the Asset Target Audit is related to it, thereby closing it off with the Target Reached set by the LOI Date. If no open record is found, a new Asset Target Audit is created and then associated with the Asset In Deal, thereby, immediately closing it off.</description>
+    <masterLabel>Prodigy - Autolaunched - Asset In Deal Relate To Asset Target Audit</masterLabel>
 </FlowDefinition>

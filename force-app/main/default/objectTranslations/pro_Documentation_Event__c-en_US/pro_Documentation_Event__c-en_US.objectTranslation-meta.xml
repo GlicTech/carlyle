@@ -8,35 +8,55 @@
         <plural>true</plural>
         <value>Documentation Events</value>
     </caseValues>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <layouts>
         <layout>Documentation Event Layout</layout>
         <sections>
             <label><!-- Custom Links --></label>
             <section>Custom Links</section>
         </sections>
+        <sections>
+            <label><!-- Performance Information --></label>
+            <section>Performance Information</section>
+        </sections>
     </layouts>
     <startsWith>Consonant</startsWith>
     <validationRules>
-        <errorMessage><!-- The Actual Date is later than the Projected Date. The fields Missed Deadline Reason and Missed Deadline Comment must be populated. --></errorMessage>
+        <errorMessage><!-- Primary Delay, Secondary Delay, and Additional Delay cannot have the same value. Please select different values. --></errorMessage>
+        <name>CannotDuplicateDelays</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The field Documentation Event Type cannot be edited. --></errorMessage>
+        <name>CantChangeEventType</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The name of Documentation Event records cannot be changed. --></errorMessage>
+        <name>DocumentationEventCannotBeChanged</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The Actual Date is later than the Projected Date. The fields Primary Delay and Delay Comment must be populated. --></errorMessage>
         <name>EventDelayedFillInReason</name>
     </validationRules>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 </CustomObjectTranslation>

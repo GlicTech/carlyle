@@ -79,73 +79,78 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
-                    <value>readonly</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Fee_Type__c</fieldItem>
-                <identifier>RecordFee_Type_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>readonly</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Fee_Slip_Amount__c</fieldItem>
-                <identifier>RecordFee_Slip_Amount_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>readonly</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Final_Fee_Slip_Amt__c</fieldItem>
-                <identifier>RecordFinal_Fee_Slip_Amt_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>readonly</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Invoice_Date__c</fieldItem>
-                <identifier>RecordInvoice_Date_cField</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.leaseworks__Invoiced_Amount__c}</leftValue>
-                        <operator>NE</operator>
-                        <rightValue>0</rightValue>
-                    </criteria>
-                </visibilityRule>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>readonly</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Invoiced_Amount__c</fieldItem>
-                <identifier>RecordInvoiced_Amount_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <name>Facet-a6565d80-d943-4997-b08d-cdd83b3cac71</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
                     <value>required</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.leaseworks__End_Date__c</fieldItem>
                 <identifier>RecordEnd_Date_cField</identifier>
             </fieldInstance>
         </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Date_Due__c</fieldItem>
+                <identifier>RecordDate_Due_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Fee_Slip_Amount_New__c</fieldItem>
+                <identifier>RecordFee_Slip_Amount_New__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Fee_Slip_Adjustment_New__c</fieldItem>
+                <identifier>RecordFee_Slip_Adjustment_New__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Final_Fee_Slip_Amount_New__c</fieldItem>
+                <identifier>RecordFinal_Fee_Slip_Amount_New__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Billing_Currency__c</fieldItem>
+                <identifier>RecordBilling_Currency__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldItem>Record.leaseworks__Fee_Escalation_Factor__c</fieldItem>
+                <identifier>RecordFee_Escalation_Factor__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldItem>Record.leaseworks__Fee_Calculation_Details__c</fieldItem>
+                <identifier>RecordFee_Calculation_Details__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <name>Facet-a6565d80-d943-4997-b08d-cdd83b3cac71</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
                 <fieldInstanceProperties>
@@ -162,8 +167,35 @@
                     <name>uiBehavior</name>
                     <value>readonly</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Fee_Slip_Adj_Amount__c</fieldItem>
-                <identifier>RecordFee_Slip_Adj_Amount_cField</identifier>
+                <fieldItem>Record.leaseworks__Fee_Type__c</fieldItem>
+                <identifier>RecordFee_Type_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>readonly</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Invoice_Date__c</fieldItem>
+                <identifier>RecordInvoice_Date_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Invoiced_Amount_New__c}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>0</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Invoiced_Amount_New__c</fieldItem>
+                <identifier>RecordInvoiced_Amount_New__cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -176,9 +208,46 @@
                 <identifier>RecordLink_to_Invoice_cField</identifier>
                 <visibilityRule>
                     <criteria>
-                        <leftValue>{!Record.leaseworks__Invoiced_Amount__c}</leftValue>
+                        <leftValue>{!Record.leaseworks__Invoiced_Amount_New__c}</leftValue>
                         <operator>NE</operator>
                         <rightValue>0</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Paid__c</fieldItem>
+                <identifier>RecordPaid_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Paid_Amount_New__c</fieldItem>
+                <identifier>RecordPaid_Amount_New__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Rent_Slip__c</fieldItem>
+                <identifier>RecordRent_Slip_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Fee_Schedule__r.leaseworks__Autocreate_Service_Fee_Invoices__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -270,6 +339,10 @@
                     <value>Facet-ee829a3d-58a3-4347-802a-bdacb191085e</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>@@@SFDCInformationSFDC@@@</value>
                 </componentInstanceProperties>
@@ -282,6 +355,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-791fd2ab-6ac5-4008-acdd-4e48b85c7e8f</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>

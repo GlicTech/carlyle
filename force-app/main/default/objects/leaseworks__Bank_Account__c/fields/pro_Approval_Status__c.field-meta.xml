@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>pro_Approval_Status__c</fullName>
+    <description>Formula to show an approval status or Approved, Pending Update, Pending, or Resubmission required. Based on checkboxes: First Approval Completed, Pending Update, Approval Submitted.</description>
     <externalId>false</externalId>
     <formula>IF( pro_First_Approval_Completed__c &amp;&amp; ! pro_Pending_Update__c &amp;&amp; ! pro_Approval_Submitted__c, &#39;Approved&#39;, 
 

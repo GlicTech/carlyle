@@ -16,7 +16,6 @@
         <field>leaseworks__Lease_Options__c.leaseworks__Option_Notice_End__c</field>
     </columns>
     <columns>
-        <aggregateTypes>Average</aggregateTypes>
         <field>leaseworks__Lease_Options__c.leaseworks__Notice_Period_Days__c</field>
     </columns>
     <filter>
@@ -33,13 +32,6 @@
             <isUnlocked>true</isUnlocked>
             <operator>notEqual</operator>
             <value>Expired</value>
-        </criteriaItems>
-        <criteriaItems>
-            <column>CHILD_NAME</column>
-            <columnToColumn>false</columnToColumn>
-            <isUnlocked>true</isUnlocked>
-            <operator>contains</operator>
-            <value>Purchase</value>
         </criteriaItems>
     </filter>
     <format>Summary</format>

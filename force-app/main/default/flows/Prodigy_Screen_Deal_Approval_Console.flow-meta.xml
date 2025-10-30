@@ -4,8 +4,8 @@
     <assignments>
         <name>Assign_Approver_Values_To_Deal_Teams</name>
         <label>Assign Approver Values To Deal Teams</label>
-        <locationX>490</locationX>
-        <locationY>2570</locationY>
+        <locationX>1546</locationX>
+        <locationY>3062</locationY>
         <assignmentItems>
             <assignToReference>varDealTeamToUpdate</assignToReference>
             <operator>Assign</operator>
@@ -18,6 +18,13 @@
             <operator>Assign</operator>
             <value>
                 <elementReference>f_ApproveOrRejectLOI</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varDealTeamToUpdate.pro_LOI_Approver_Comments__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_Selected_Deal_Teams_Update_LOI.pro_LOI_Approver_Comments__c</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -34,8 +41,8 @@
     <assignments>
         <name>Assign_Approver_Values_To_Record_Variable</name>
         <label>Assign Approver Values To Record Variable</label>
-        <locationX>842</locationX>
-        <locationY>2570</locationY>
+        <locationX>2602</locationX>
+        <locationY>3062</locationY>
         <assignmentItems>
             <assignToReference>varApproverToUpdate.Id</assignToReference>
             <operator>Assign</operator>
@@ -58,6 +65,13 @@
             </value>
         </assignmentItems>
         <assignmentItems>
+            <assignToReference>varApproverToUpdate.pro_Lease_Documentation_Approver_Comment__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_Selected_Approvers.pro_Lease_Documentation_Approver_Comment__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
             <assignToReference>varApproversToUpdateCollection</assignToReference>
             <operator>Add</operator>
             <value>
@@ -71,7 +85,7 @@
     <assignments>
         <name>Assign_Deal_Team_To_Single_Variable</name>
         <label>Assign Deal Team To Single Variable</label>
-        <locationX>1986</locationX>
+        <locationX>3394</locationX>
         <locationY>2138</locationY>
         <assignmentItems>
             <assignToReference>varDealTeamToUpdate</assignToReference>
@@ -85,9 +99,41 @@
         </connector>
     </assignments>
     <assignments>
+        <name>Assign_editedRows_to_selectedRows_For_Approver_Records</name>
+        <label>Assign editedRows to selectedRows For Approver Records</label>
+        <locationX>2690</locationX>
+        <locationY>2786</locationY>
+        <assignmentItems>
+            <assignToReference>Loop_Selected_Approvers</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_Edited_Approver_Records</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_Edited_Approver_Records</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_editedRows_To_selectedRows_For_Deal_Team</name>
+        <label>Assign editedRows To selectedRows For Deal Team</label>
+        <locationX>1634</locationX>
+        <locationY>2786</locationY>
+        <assignmentItems>
+            <assignToReference>Loop_Selected_Deal_Teams_Update_LOI</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_Edited_Deal_Teams</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_Edited_Deal_Teams</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Assign_Triggering_Deal_To_List</name>
         <label>Assign Triggering Deal To List and Assign Running User</label>
-        <locationX>1183</locationX>
+        <locationX>2151</locationX>
         <locationY>890</locationY>
         <assignmentItems>
             <assignToReference>varDealCollection</assignToReference>
@@ -103,7 +149,7 @@
     <assignments>
         <name>Assign_Values_To_Approvals_History</name>
         <label>Assign Values To Approvals History</label>
-        <locationX>1898</locationX>
+        <locationX>3306</locationX>
         <locationY>2330</locationY>
         <assignmentItems>
             <assignToReference>varApprovalsHistoryToCreate.pro_User_Name__c</assignToReference>
@@ -147,7 +193,7 @@
     <assignments>
         <name>Reset_Collections_To_Blank</name>
         <label>Reset Collections To Blank</label>
-        <locationX>1183</locationX>
+        <locationX>2151</locationX>
         <locationY>134</locationY>
         <assignmentItems>
             <assignToReference>varDealTeamToUpdateCollection</assignToReference>
@@ -191,7 +237,7 @@
     <assignments>
         <name>Set_As_Approved</name>
         <label>Set As Approved</label>
-        <locationX>1634</locationX>
+        <locationX>3042</locationX>
         <locationY>2654</locationY>
         <assignmentItems>
             <assignToReference>varDealTeamToUpdate.pro_Approved__c</assignToReference>
@@ -214,7 +260,7 @@
     <assignments>
         <name>Set_Deal_To_Rejected</name>
         <label>Set Deal To Rejected</label>
-        <locationX>1898</locationX>
+        <locationX>3306</locationX>
         <locationY>2654</locationY>
         <assignmentItems>
             <assignToReference>recordId.leaseworks__Deal_Status__c</assignToReference>
@@ -237,7 +283,7 @@
     <assignments>
         <name>Set_Lease_Documentation_Required_Status</name>
         <label>Set Lease Documentation Required Status</label>
-        <locationX>1194</locationX>
+        <locationX>2602</locationX>
         <locationY>2870</locationY>
         <assignmentItems>
             <assignToReference>varApproverToUpdate</assignToReference>
@@ -267,7 +313,7 @@
     <assignments>
         <name>Set_LOI_As_Required_Status</name>
         <label>Set LOI As Required Status</label>
-        <locationX>1194</locationX>
+        <locationX>2602</locationX>
         <locationY>2570</locationY>
         <assignmentItems>
             <assignToReference>varDealTeamToUpdate</assignToReference>
@@ -297,7 +343,7 @@
     <assignments>
         <name>Set_varAidApproversFound_To_False</name>
         <label>Set varAidApproversFound To False</label>
-        <locationX>1315</locationX>
+        <locationX>2283</locationX>
         <locationY>1622</locationY>
         <assignmentItems>
             <assignToReference>varAidApproversFound</assignToReference>
@@ -313,7 +359,7 @@
     <assignments>
         <name>Set_varAidApproversFound_To_True</name>
         <label>Set varAidApproversFound To True</label>
-        <locationX>1051</locationX>
+        <locationX>2019</locationX>
         <locationY>1622</locationY>
         <assignmentItems>
             <assignToReference>varAidApproversFound</assignToReference>
@@ -329,7 +375,7 @@
     <assignments>
         <name>Set_varDealTeamsFound_To_False</name>
         <label>Set varDealTeamsFound To False</label>
-        <locationX>1315</locationX>
+        <locationX>2283</locationX>
         <locationY>1322</locationY>
         <assignmentItems>
             <assignToReference>varDealTeamsFound</assignToReference>
@@ -345,7 +391,7 @@
     <assignments>
         <name>Set_varDealTeamsFound_To_True</name>
         <label>Set varDealTeamsFound To True</label>
-        <locationX>1051</locationX>
+        <locationX>2019</locationX>
         <locationY>1322</locationY>
         <assignmentItems>
             <assignToReference>varDealTeamsFound</assignToReference>
@@ -407,9 +453,61 @@
         </value>
     </choices>
     <decisions>
+        <description>Check whether the internal and external loops are both on the same approver record. If so, set the selectedRows to the editedRows variable.</description>
+        <name>Are_Internal_And_External_Loops_On_The_Same_Approver_Record</name>
+        <label>Are Internal And External Loops On The Same Approver Record?</label>
+        <locationX>2822</locationX>
+        <locationY>2678</locationY>
+        <defaultConnector>
+            <targetReference>Loop_Edited_Approver_Records</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Same_Approver_Record</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Loop_Selected_Approvers.Id</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>Loop_Edited_Approver_Records.Id</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_editedRows_to_selectedRows_For_Approver_Records</targetReference>
+            </connector>
+            <label>Yes - Same Approver Record</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Check whether the internal and external loops are both on the same Deal Team record. If so, set the selectedRows to the editedRows variable.</description>
+        <name>Are_Internal_And_External_Loops_On_The_Same_Deal_Team</name>
+        <label>Are Internal And External Loops On The Same Deal Team?</label>
+        <locationX>1766</locationX>
+        <locationY>2678</locationY>
+        <defaultConnector>
+            <targetReference>Loop_Edited_Deal_Teams</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Same_Deal_Team</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Loop_Selected_Deal_Teams_Update_LOI.Id</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>Loop_Edited_Deal_Teams.Id</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_editedRows_To_selectedRows_For_Deal_Team</targetReference>
+            </connector>
+            <label>Yes - Same Deal Team</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Is_This_Deal_Approval_Or_Non_Deal_Approval</name>
         <label>Is This Deal Approval Or Non Deal Approval?</label>
-        <locationX>1183</locationX>
+        <locationX>2151</locationX>
         <locationY>1814</locationY>
         <defaultConnector>
             <targetReference>NonDealApprovalConsoleScreen</targetReference>
@@ -434,7 +532,7 @@
     <decisions>
         <name>Send_Approval_Reminder_Notification</name>
         <label>Send Approval Reminder Notification?</label>
-        <locationX>468</locationX>
+        <locationX>996</locationX>
         <locationY>2246</locationY>
         <defaultConnector>
             <targetReference>What_Update_Action_To_Take</targetReference>
@@ -459,7 +557,7 @@
     <decisions>
         <name>Was_Approval_Rejected_OR_Given_OR_Resubmission_Requested</name>
         <label>Was Approval Rejected OR Given OR Resubmission Requested?</label>
-        <locationX>1898</locationX>
+        <locationX>3306</locationX>
         <locationY>2546</locationY>
         <defaultConnector>
             <targetReference>Update_Deal_Status</targetReference>
@@ -499,7 +597,7 @@
     <decisions>
         <name>Were_AiD_Approvers_Found</name>
         <label>Were AiD Approvers Found?</label>
-        <locationX>1183</locationX>
+        <locationX>2151</locationX>
         <locationY>1514</locationY>
         <defaultConnector>
             <targetReference>Set_varAidApproversFound_To_False</targetReference>
@@ -524,7 +622,7 @@
     <decisions>
         <name>Were_Deal_Teams_Found_For_Running_User</name>
         <label>Were Deal Teams Found For Running User?</label>
-        <locationX>1183</locationX>
+        <locationX>2151</locationX>
         <locationY>1214</locationY>
         <defaultConnector>
             <targetReference>Set_varDealTeamsFound_To_False</targetReference>
@@ -556,7 +654,7 @@
     <decisions>
         <name>What_Update_Action_To_Take</name>
         <label>What Update Action To Take?</label>
-        <locationX>886</locationX>
+        <locationX>1942</locationX>
         <locationY>2354</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
@@ -619,6 +717,9 @@
             <label>Bulk Exclude/Include LOI Approver</label>
         </rules>
     </decisions>
+    <description>Approvals
+
+Screen flow allows users to offer approval or rejection on LOI, Lease Documentation and Non Deal Approvals.</description>
     <environments>Default</environments>
     <formulas>
         <name>f_ApprovalEvent</name>
@@ -663,14 +764,42 @@
     <interviewLabel>Prodigy - Deal Approval Console {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Prodigy - Screen - Deal Approval Console</label>
     <loops>
+        <name>Loop_Edited_Approver_Records</name>
+        <label>Loop Edited Approver Records</label>
+        <locationX>2602</locationX>
+        <locationY>2570</locationY>
+        <collectionReference>dt_UpdateDocumentationApproval.outputEditedRows</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Are_Internal_And_External_Loops_On_The_Same_Approver_Record</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Assign_Approver_Values_To_Record_Variable</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <loops>
+        <name>Loop_Edited_Deal_Teams</name>
+        <label>Loop Edited Deal Teams</label>
+        <locationX>1546</locationX>
+        <locationY>2570</locationY>
+        <collectionReference>dt_EditLoiSignatureApproval.outputEditedRows</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Are_Internal_And_External_Loops_On_The_Same_Deal_Team</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Assign_Approver_Values_To_Deal_Teams</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <loops>
         <name>Loop_Selected_Approvers</name>
         <label>Loop Selected Approvers</label>
-        <locationX>754</locationX>
+        <locationX>2162</locationX>
         <locationY>2462</locationY>
         <collectionReference>dt_UpdateDocumentationApproval.outputSelectedRows</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
-            <targetReference>Assign_Approver_Values_To_Record_Variable</targetReference>
+            <targetReference>Loop_Edited_Approver_Records</targetReference>
         </nextValueConnector>
         <noMoreValuesConnector>
             <targetReference>Update_Documentation_As_Approved</targetReference>
@@ -679,12 +808,12 @@
     <loops>
         <name>Loop_Selected_Deal_Teams_Update_LOI</name>
         <label>Loop Selected Deal Teams - Update LOI</label>
-        <locationX>402</locationX>
+        <locationX>1106</locationX>
         <locationY>2462</locationY>
         <collectionReference>dt_EditLoiSignatureApproval.outputSelectedRows</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
-            <targetReference>Assign_Approver_Values_To_Deal_Teams</targetReference>
+            <targetReference>Loop_Edited_Deal_Teams</targetReference>
         </nextValueConnector>
         <noMoreValuesConnector>
             <targetReference>Update_Deal_Team</targetReference>
@@ -693,7 +822,7 @@
     <loops>
         <name>Loop_Selected_Documentation_Approvers</name>
         <label>Loop Selected Documentation Approvers</label>
-        <locationX>1106</locationX>
+        <locationX>2514</locationX>
         <locationY>2762</locationY>
         <collectionReference>dt_DisplayAllDocumentationApprovers.selectedRows</collectionReference>
         <iterationOrder>Asc</iterationOrder>
@@ -707,7 +836,7 @@
     <loops>
         <name>Loop_Selected_LOI_Approvers</name>
         <label>Loop Selected LOI Approvers</label>
-        <locationX>1106</locationX>
+        <locationX>2514</locationX>
         <locationY>2462</locationY>
         <collectionReference>dt_DisplayAllLOIApprovers.selectedRows</collectionReference>
         <iterationOrder>Asc</iterationOrder>
@@ -721,7 +850,7 @@
     <loops>
         <name>Loop_Single_Deal_Team</name>
         <label>Loop Single Deal Team</label>
-        <locationX>1898</locationX>
+        <locationX>3306</locationX>
         <locationY>2030</locationY>
         <collectionReference>Get_Non_Deal_Approver_Deal_Team_Records_For_Running_User</collectionReference>
         <iterationOrder>Asc</iterationOrder>
@@ -754,7 +883,7 @@
     <recordCreates>
         <name>Create_Approvals_History_Record</name>
         <label>Create Approvals History Record</label>
-        <locationX>1898</locationX>
+        <locationX>3306</locationX>
         <locationY>2438</locationY>
         <connector>
             <targetReference>Was_Approval_Rejected_OR_Given_OR_Resubmission_Requested</targetReference>
@@ -764,7 +893,7 @@
     <recordLookups>
         <name>Get_All_Documentation_Approvers_For_Deal</name>
         <label>Get All Documentation Approvers For Deal</label>
-        <locationX>468</locationX>
+        <locationX>996</locationX>
         <locationY>2030</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -785,7 +914,7 @@
     <recordLookups>
         <name>Get_All_LOI_Approvers_For_Deal</name>
         <label>Get All LOI Approvers For Deal</label>
-        <locationX>468</locationX>
+        <locationX>996</locationX>
         <locationY>1922</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -848,7 +977,7 @@
     <recordLookups>
         <name>Get_Asset_In_Deal_Approvers_For_Running_User</name>
         <label>Get Asset In Deal Approvers For Running User</label>
-        <locationX>1183</locationX>
+        <locationX>2151</locationX>
         <locationY>1106</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -897,7 +1026,7 @@
     <recordLookups>
         <name>Get_Assets_In_Deal</name>
         <label>Get Assets In Deal</label>
-        <locationX>1183</locationX>
+        <locationX>2151</locationX>
         <locationY>782</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -918,7 +1047,7 @@
     <recordLookups>
         <name>Get_Manage_Deal_Approval_Permission_Set</name>
         <label>Get Manage Deal Approval Permission Set</label>
-        <locationX>1183</locationX>
+        <locationX>2151</locationX>
         <locationY>350</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -939,7 +1068,7 @@
     <recordLookups>
         <name>Get_Manage_Deal_Approval_Permission_Set_Assignment</name>
         <label>Get Manage Deal Approval Permission Set Assignment</label>
-        <locationX>1183</locationX>
+        <locationX>2151</locationX>
         <locationY>458</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -967,7 +1096,7 @@
     <recordLookups>
         <name>Get_Non_Deal_Approver_Deal_Team_Records_For_Running_User</name>
         <label>Get Non Deal Approver Deal Team Records For Running User</label>
-        <locationX>1183</locationX>
+        <locationX>2151</locationX>
         <locationY>674</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -1002,7 +1131,7 @@
     <recordLookups>
         <name>Get_Open_LOI_Deal_Team_Records_For_Running_User</name>
         <label>Get Open LOI Deal Team Records For Running User</label>
-        <locationX>1183</locationX>
+        <locationX>2151</locationX>
         <locationY>566</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -1086,7 +1215,7 @@
     <recordLookups>
         <name>Get_Triggering_Deal</name>
         <label>Get Triggering Deal</label>
-        <locationX>1183</locationX>
+        <locationX>2151</locationX>
         <locationY>242</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -1107,7 +1236,7 @@
     <recordUpdates>
         <name>Reset_Deal_Team_Approval</name>
         <label>Reset Deal Team Approval</label>
-        <locationX>1898</locationX>
+        <locationX>3306</locationX>
         <locationY>3170</locationY>
         <filterLogic>and</filterLogic>
         <filters>
@@ -1128,7 +1257,7 @@
     <recordUpdates>
         <name>Update_Deal_Status</name>
         <label>Update Deal Status</label>
-        <locationX>1898</locationX>
+        <locationX>3306</locationX>
         <locationY>3062</locationY>
         <connector>
             <targetReference>Reset_Deal_Team_Approval</targetReference>
@@ -1138,8 +1267,8 @@
     <recordUpdates>
         <name>Update_Deal_Team</name>
         <label>Update Deal Team</label>
-        <locationX>402</locationX>
-        <locationY>2762</locationY>
+        <locationX>1106</locationX>
+        <locationY>3254</locationY>
         <connector>
             <isGoTo>true</isGoTo>
             <targetReference>Reset_Collections_To_Blank</targetReference>
@@ -1149,15 +1278,15 @@
     <recordUpdates>
         <name>Update_Deal_Team_Approval</name>
         <label>Update Deal Team Approval</label>
-        <locationX>1634</locationX>
+        <locationX>3042</locationX>
         <locationY>2762</locationY>
         <inputReference>varDealTeamToUpdateCollection</inputReference>
     </recordUpdates>
     <recordUpdates>
         <name>Update_Documentation_As_Approved</name>
         <label>Update Documentation As Approved</label>
-        <locationX>754</locationX>
-        <locationY>2762</locationY>
+        <locationX>2162</locationX>
+        <locationY>3254</locationY>
         <connector>
             <isGoTo>true</isGoTo>
             <targetReference>Reset_Collections_To_Blank</targetReference>
@@ -1167,7 +1296,7 @@
     <recordUpdates>
         <name>Update_Lease_Documentation_Required</name>
         <label>Update Lease Documentation Required</label>
-        <locationX>1106</locationX>
+        <locationX>2514</locationX>
         <locationY>3170</locationY>
         <connector>
             <isGoTo>true</isGoTo>
@@ -1178,7 +1307,7 @@
     <recordUpdates>
         <name>Update_LOI_Required</name>
         <label>Update LOI Required</label>
-        <locationX>1106</locationX>
+        <locationX>2514</locationX>
         <locationY>3062</locationY>
         <connector>
             <targetReference>Update_Lease_Documentation_Required</targetReference>
@@ -1189,7 +1318,7 @@
     <screens>
         <name>ApproverConsoleScreen</name>
         <label>ApproverConsoleScreen</label>
-        <locationX>468</locationX>
+        <locationX>996</locationX>
         <locationY>2138</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
@@ -1379,7 +1508,7 @@
                     <inputParameters>
                         <name>columnFields</name>
                         <value>
-                            <stringValue>Name,pro_LOI_Signed_Approved_Formula__c</stringValue>
+                            <stringValue>Name,pro_LOI_Signed_Approved_Formula__c,pro_LOI_Approver_Comments__c</stringValue>
                         </value>
                     </inputParameters>
                     <inputParameters>
@@ -1391,7 +1520,25 @@
                     <inputParameters>
                         <name>columnWidths</name>
                         <value>
-                            <stringValue>Name:230, pro_LOI_Signed_Approved_Formula__c:245</stringValue>
+                            <stringValue>Name:170, pro_LOI_Signed_Approved_Formula__c:170, pro_LOI_Approver_Comments__c:299</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>columnEdits</name>
+                        <value>
+                            <stringValue>pro_LOI_Approver_Comments__c:true</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>hideClearSelectionButton</name>
+                        <value>
+                            <booleanValue>true</booleanValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>cb_hideClearSelectionButton</name>
+                        <value>
+                            <stringValue>CB_TRUE</stringValue>
                         </value>
                     </inputParameters>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
@@ -1516,7 +1663,7 @@
                     <inputParameters>
                         <name>columnFields</name>
                         <value>
-                            <stringValue>pro_AiD_Name__c,Name,pro_Lease_Documentation_Approved__c</stringValue>
+                            <stringValue>pro_AiD_Name__c,Name,pro_Lease_Documentation_Approved__c,pro_Lease_Documentation_Approver_Comment__c</stringValue>
                         </value>
                     </inputParameters>
                     <inputParameters>
@@ -1528,7 +1675,31 @@
                     <inputParameters>
                         <name>columnWidths</name>
                         <value>
-                            <stringValue>pro_AiD_Name__c:166, Name:177, pro_Lease_Documentation_Approved__c:276</stringValue>
+                            <stringValue>pro_AiD_Name__c:126, Name:146, pro_Lease_Documentation_Approved__c:104, pro_Lease_Documentation_Approver_Comment__c:255</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>columnEdits</name>
+                        <value>
+                            <stringValue>pro_Lease_Documentation_Approver_Comment__c:true</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>columnLabels</name>
+                        <value>
+                            <stringValue>pro_Lease_Documentation_Approved__c:Approved, pro_Lease_Documentation_Approver_Comment__c:Comment</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>hideClearSelectionButton</name>
+                        <value>
+                            <booleanValue>true</booleanValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>cb_hideClearSelectionButton</name>
+                        <value>
+                            <stringValue>CB_TRUE</stringValue>
                         </value>
                     </inputParameters>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
@@ -1983,7 +2154,7 @@
     <screens>
         <name>NonDealApprovalConsoleScreen</name>
         <label>NonDealApprovalConsoleScreen</label>
-        <locationX>1898</locationX>
+        <locationX>3306</locationX>
         <locationY>1922</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
@@ -2147,7 +2318,7 @@
         </connector>
         <fields>
             <name>ApprovalReminderSuccessText</name>
-            <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;&lt;strong&gt;Notifications have successfully been sent to all outstanding approvers.&lt;/strong&gt;&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;&lt;img src=&quot;https://leaseworks-carlyle--full.sandbox.file.force.com/sfc/servlet.shepherd/version/download/068du000001VESj?asPdf=false&amp;amp;operationContext=CHATTER&quot; alt=&quot;image.png&quot;&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;&lt;strong&gt;Notifications have successfully been sent to all outstanding approvers &lt;/strong&gt;&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-size: 36px; font-family: &amp;quot;Google Sans&amp;quot;, Arial, sans-serif; color: rgb(0, 144, 10);&quot;&gt;✔&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <nextOrFinishButtonLabel>Return To Console</nextOrFinishButtonLabel>
@@ -2155,7 +2326,7 @@
         <showHeader>false</showHeader>
     </screens>
     <start>
-        <locationX>1057</locationX>
+        <locationX>2025</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Reset_Collections_To_Blank</targetReference>
@@ -2236,6 +2407,15 @@
         <isInput>false</isInput>
         <isOutput>false</isOutput>
         <scale>0</scale>
+    </variables>
+    <variables>
+        <description>Used as a placeholder in the element &#39;Are Internal And External Loops On The Same Deal Team?&#39; allowing for the datatable output selectedRows to be replaced with the editedRows output</description>
+        <name>varDealTeamPlaceholder</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>leaseworks__Deal_Team__c</objectType>
     </variables>
     <variables>
         <name>varDealTeamsFound</name>

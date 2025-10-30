@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>leaseworks__Aircraft__c$Name</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Aircraft__c$leaseworks__Status__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Aircraft__c$pro_Operational_Status__c</field>
+    </columns>
+    <format>Tabular</format>
+    <name>Assets &amp; Statuses</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Assets_LeaseWorks__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>leaseworks__Aircraft__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

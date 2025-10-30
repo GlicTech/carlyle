@@ -27,31 +27,16 @@
         <locationX>50</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Run_Contract_Extended_Flow_In_System_Context</targetReference>
+            <targetReference>Contract_Extended</targetReference>
         </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>leaseworks__Extended_On__c</field>
-            <operator>IsChanged</operator>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </filters>
-        <filters>
-            <field>leaseworks__Lease_End_Date_New__c</field>
-            <operator>IsChanged</operator>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </filters>
         <object>leaseworks__Lease__c</object>
-        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <recordTriggerType>Update</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>
     </start>
-    <status>Active</status>
+    <status>Obsolete</status>
     <subflows>
-        <name>Run_Contract_Extended_Flow_In_System_Context</name>
-        <label>Run Contract Extended Flow In System Context</label>
+        <name>Contract_Extended</name>
+        <label>Contract Extended</label>
         <locationX>176</locationX>
         <locationY>323</locationY>
         <flowName>Prodigy_AutolaunchedFlow_Contract_Extended_Create_New_Audit</flowName>

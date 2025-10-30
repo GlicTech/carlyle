@@ -8,51 +8,6 @@
         <plural>true</plural>
         <value>Tickets</value>
     </caseValues>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <layouts>
         <layout>Ticket Layout</layout>
         <sections>
@@ -65,16 +20,20 @@
         </sections>
     </layouts>
     <quickActions>
-        <label><!-- Link To Records --></label>
-        <name>Link_To_Records</name>
-    </quickActions>
-    <quickActions>
         <label><!-- New Sub-Ticket --></label>
         <name>New_Sub_Ticket</name>
     </quickActions>
     <quickActions>
+        <label><!-- Assets &amp; Assemblies --></label>
+        <name>pro_Assets_Assemblies</name>
+    </quickActions>
+    <quickActions>
         <label><!-- Close Ticket --></label>
         <name>pro_Close_Ticket</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Edit Assets (Non Carlyle) --></label>
+        <name>pro_Edit_Assets_Non_Carlyle</name>
     </quickActions>
     <recordTypes>
         <label><!-- Commercial --></label>
@@ -118,6 +77,10 @@
     </recordTypes>
     <startsWith>Consonant</startsWith>
     <validationRules>
+        <errorMessage><!-- Tickets must have at least 1 related Asset. In the case of Non Carlyle Asset, the Assets field must be populated. --></errorMessage>
+        <name>AssetAttachedOrNonCarlyleAsset</name>
+    </validationRules>
+    <validationRules>
         <errorMessage><!-- Tickets must be linked to an Asset. To override this, check the NA Asset checkbox. --></errorMessage>
         <name>AssetsMustBeLinkedUnlessNAAsset</name>
     </validationRules>
@@ -141,4 +104,60 @@
         <label><!-- pro_New_Ticket --></label>
         <name>pro_New_Ticket</name>
     </webLinks>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 </CustomObjectTranslation>

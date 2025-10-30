@@ -40,6 +40,12 @@
     </approvalStep>
     <description>Only Commercial users can create new Accounts. New Accounts have to be approved by Jonathan (Claudia and Alan as back-ups).</description>
     <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
+    <entryCriteria>
+        <formula>OR(
+    ISPICKVAL(Type, &#39;Airline&#39;),
+    ISPICKVAL(Type, &#39;Lessor (External)&#39;)
+)</formula>
+    </entryCriteria>
     <finalApprovalActions>
         <action>
             <name>Account_approved</name>

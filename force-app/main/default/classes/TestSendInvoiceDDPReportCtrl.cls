@@ -6,20 +6,17 @@
 */
 @isTest
 public class TestSendInvoiceDDPReportCtrl {
-
-    static Account testLessor {get;set;}
     static leaseworks__Rent__c testRentSlip, testRentSlip2;
     static leaseworks__Utilization_Report__c testUtilization, testUtilization2;
     static leaseworks__Aircraft__c testAircraft;
     static Account testOperator {get;set;}
-    static leaseworks__Counterparty__c testCounterparty {get;set;}
-    static leaseworks__Counterparty__c testCounterparty2 {get;set;}    
+    static Account testCounterparty {get;set;}
+    static Account testCounterparty2 {get;set;}    
     static leaseworks__Lease__c testLease;
     static leaseworks__Cash_Security_Deposit__c testCSD;
-    static leaseworks__Invoice__c testInvoice, testInvoice2, testInvoice3;
+    static leaseworks__Invoice__c testInvoice, testInvoice2;
     
     static void dataSetup() {       
-        testLessor = [Select Id, Name from Account limit 1];
         Map<String, Object> objectValuesByKey = new Map<String, Object>();
         
         //query or insert leaseworks__Country__c
@@ -30,38 +27,23 @@ public class TestSendInvoiceDDPReportCtrl {
             testCountry = new leaseworks__Country__c(Name='Test Country');
             insert testCountry;
         }
-        
-        // query leaseworks__Operator__c   
-        Account[] operatorList = [Select Id, Name from Account];
-        testOperator = operatorList[0];
-        
-        //insert leaseworks__Counterparty__c records
-        testCounterparty = new leaseworks__Counterparty__c(leaseworks__Address_Street__c = '1240/29', 
-                                               leaseworks__City__c = 'Faridabad', 
-                                               leaseworks__Zip_Code__c = '121008', 
-                                               leaseworks__Country_Lookup__c = testCountry.Id,
-                                               leaseworks__Fleet_Aircraft_Of_Interest__c = 'A320', 
-                                               leaseworks__Status__c = 'Approved', 
-                                               leaseworks__Location__Latitude__s = 23.45555555,
-                                               leaseworks__Location__Longitude__s = 73.23233232,
-                                               leaseworks__Main_Email_Address__c = 'test1@lws.com',
-                                               leaseworks__Subsidiary_Entity__c = true,
-                                               leaseworks__Billing_Email_Address__c = 'test2@lws.com'); 
-        insert testCounterparty;
-        
-        //LeaseWareUtilsLocal.unsetTriggers('CounterpartyTrg');
-        testCounterparty2 = new leaseworks__Counterparty__c(leaseworks__Address_Street__c = '1240/29',
-                                                leaseworks__City__c = 'Faridabad',
-                                                leaseworks__Zip_Code__c = '121008',
-                                                leaseworks__Country_Lookup__c = testCountry.Id,
-                                                leaseworks__Fleet_Aircraft_Of_Interest__c = 'A320',
-                                                leaseworks__Status__c = 'Approved',
-                                                leaseworks__Location__Latitude__s = 23.45555555,
-                                                leaseworks__Location__Longitude__s = 73.23233232,
-                                                leaseworks__Main_Email_Address__c = 'test1@lws.com',
-                                                leaseworks__Subsidiary_Entity__c = true,
-                                                leaseworks__Billing_Email_Address__c = 'test1@lws.com'); 
-        insert testCounterparty2;
+                
+        // query leaseworks__Operator__c 
+        try{
+            Account[] operatorList = [Select Id, Name, leaseworks__Country__c from Account where Type='Operator'];
+            testOperator = operatorList[0];
+        }  
+        catch(Exception ex){
+            testOperator = new Account(Name ='Junit TestOperator',
+                                       Type='Operator',
+                                       leaseworks__Status__c='Approved',
+                                       BillingStreet = '1240/29', 
+                                       BillingCity = 'Faridabad', 
+                                       BillingPostalCode = '121008', 
+                                       leaseworks__Owned_Aircraft_Types__c = 'A320',
+                                       leaseworks__Main_Email_Address__c = 'test1@lws.com'); 
+            insert testOperator;  
+        }
         
         //Creating leaseworks__Aircraft__c
         objectValuesByKey.put('leaseworks__Aircraft__c', null);
@@ -71,16 +53,25 @@ public class TestSendInvoiceDDPReportCtrl {
         testAircraft = (leaseworks__Aircraft__c)objectValuesByKey.get('leaseworks__Aircraft__c');
         
         //Lease with Operator populated
-        objectValuesByKey.put('leaseworks__Lease__c.leaseworks__Lessor__c', testCounterparty.Id); 
+        //objectValuesByKey.put('leaseworks__Lease__c.leaseworks__Lessor__c', testCounterparty.Id); 
         objectValuesByKey.put('leaseworks__Lease__c.leaseworks__Aircraft__c', testAircraft.Id); 
-        objectValuesByKey.put('leaseworks__Lease__c.leaseworks__Operator_New__c', testOperator.Id);
+        objectValuesByKey.put('leaseworks__Lease__c.leaseworks__Operator__c', testOperator.Id);
         objectValuesByKey.put('leaseworks__Lease__c.Name', 'Lease2'); 
         objectValuesByKey.put('leaseworks__Lease__c', null); 
         
         createTestLease(objectValuesByKey);
         testLease = (leaseworks__Lease__c)objectValuesByKey.get('leaseworks__Lease__c');
         
-        testCSD = [Select Id from leaseworks__Cash_Security_Deposit__c limit 1];
+        testAircraft.leaseworks__Lease__c=testLease.id;
+        update testAircraft;
+        
+        leaseworks__Cash_Security_Deposit__c cashSD = new leaseworks__Cash_Security_Deposit__c(name ='JUNIT Test SD',
+                                                                                   leaseworks__Lessee_New__c=testOperator.Id,
+                                                                                   leaseworks__lease__c = testLease.id,
+                                                                                   leaseworks__Security_Deposit_Cash__c = 100000 );
+        insert cashSD;
+        testCSD = [Select Id from leaseworks__Cash_Security_Deposit__c where name='JUNIT Test SD' limit 1];
+        system.debug('Limits = '+ Limits.getQueries());
     }
     
     
@@ -145,22 +136,18 @@ public class TestSendInvoiceDDPReportCtrl {
         testInvoice2.leaseworks__Rent__c = testRentSlip.Id;
         testInvoice2.leaseworks__Cash_Security_Deposit__c = testCSD.Id;
         testInvoice2.leaseworks__Payment_Status__c = 'Open';
+        System.debug(testInvoice2);
         invoiceList.add(testInvoice2);
-        
-        testInvoice3 = new leaseworks__Invoice__c();
-        testInvoice3.leaseworks__Lease__c = testLease.Id;
-        testInvoice3.leaseworks__Invoice_Date__c = System.Today();
-        testInvoice3.leaseworks__Invoice_Type__c = 'Rent'; 
-        testInvoice3.leaseworks__Status__c = 'Pending';             
-        testInvoice3.RecordTypeId = (Id)objectValuesByKey.get('leaseworks__Invoice__c.Rent');
-        testInvoice3.leaseworks__Month_Ending__c = monthEnding;
-        testInvoice3.leaseworks__Rent__c = testRentSlip2.Id;
-        testInvoice3.leaseworks__Cash_Security_Deposit__c = testCSD.Id;
-        testInvoice3.leaseworks__Payment_Status__c = 'Open';
-        testInvoice3.leaseworks__Invoice_Category__c = 'Ad-Hoc';
-        invoiceList.add(testInvoice3);
              
-        insert invoiceList;
+        leaseworks.LWGlobalUtils.setTriggersflagOn();
+        try{
+            insert invoiceList;
+        }catch(Exception ex){
+            System.debug(LoggingLevel.FINEST,'Exception*** ' + ex);
+        }
+        finally{
+            leaseworks.LWGlobalUtils.setTriggersflagOff();
+        }
         
         SendInvoiceEmailWrapper newSiew = new SendInvoiceEmailWrapper();
         newSiew.emailSubject = 'Test Subject';
@@ -187,14 +174,6 @@ public class TestSendInvoiceDDPReportCtrl {
                                                                            leaseworks__Parameters__c = JSON.serialize(newItw));
         
         insert prll;
-        
-        leaseworks__Bulk_Invoice_Process_Request_Line_Log__c prll2 = new leaseworks__Bulk_Invoice_Process_Request_Line_Log__c(leaseworks__Status__c ='Processing', 
-                                                                           Name=String.valueOf(testInvoice3.Id), 
-                                                                           leaseworks__Bulk_Invoice_Process_Request_Log__c= prl.Id,
-                                                                           leaseworks__Type__c = 'Test', 
-                                                                           leaseworks__Parameters__c = JSON.serialize(newItw));
-        
-        insert prll2;
     }    
     
     //Create leaseworks__Aircraft__c record
@@ -238,9 +217,9 @@ public class TestSendInvoiceDDPReportCtrl {
         
         String leaseName='Dummy';      
         String aircraftId = (String)objectValuesByKey.get('leaseworks__Lease__c.leaseworks__Aircraft__c');
-        String operatorId = (String)objectValuesByKey.get('leaseworks__Lease__c.leaseworks__Operator__c');  
-        String lessorId = (String)objectValuesByKey.get('leaseworks__Lease__c.leaseworks__Lessor__c');  
-        String lesseeId = (String)objectValuesByKey.get('leaseworks__Lease__c.leaseworks__Operator__c');   
+        String operatorId = (String)objectValuesByKey.get('leaseworks__Lease__c.leaseworks__Operator_New__c');  
+        String lessorId = (String)objectValuesByKey.get('leaseworks__Lease__c.leaseworks__Lesor__c');  
+        String lesseeId = (String)objectValuesByKey.get('leaseworks__Lease__c.leaseworks__Operator_New__c');   
         
         if(objectValuesByKey.containsKey('leaseworks__Lease__c.Name')) {
             leaseName = (String)objectValuesByKey.get('leaseworks__Lease__c.Name');
@@ -263,11 +242,11 @@ public class TestSendInvoiceDDPReportCtrl {
         leaseworks__Lease__c testLeaseRec = new leaseworks__Lease__c(leaseworks__Aircraft__c = aircraftId, 
                                              Name = leaseName, 
                                              leaseworks__Rent_Type__c = 'Power By The Hour',
-                                             //leaseworks__Operator__c = operatorId, 
+                                             leaseworks__Operator_New__c = operatorId, 
                                              leaseworks__UR_Due_Day__c = '10',
                                              leaseworks__Lease_Start_Date_New__c = system.today().addMonths(-2),
                                              //leaseworks__Lessee_New__c = lessorId,
-                                             leaseworks__Lessee__c = lesseeId,
+                                             leaseworks__Lessee_New__c = lesseeId,
                                              leaseworks__Lease_End_Date_New__c = System.today().addYears(2), 
                                              leaseworks__Rent_Date__c = System.today(), 
                                              leaseworks__Rent_End_Date__c = System.today().addYears(2),
@@ -457,13 +436,24 @@ public class TestSendInvoiceDDPReportCtrl {
             dataSetup_SendInv();
         }
         
+        Boolean checkPBH = true;
+        List<leaseworks__Invoice__c> updateToPBH = new List<leaseworks__Invoice__c>();
         Map<String, Set<Id>> invoiceIdsByInvoiceType = new Map<String, Set<Id>>();
-        for(leaseworks__Invoice__c testInvoiceRec : [Select Id, leaseworks__Month_Ending__c, leaseworks__Lease__r.leaseworks__Lessee__c, leaseworks__Invoice_Type__c from leaseworks__Invoice__c
-                                         where ID = :testInvoice.Id 
+        for(leaseworks__Invoice__c testInvoiceRec : [Select Id, leaseworks__Month_Ending__c, leaseworks__Lease__r.leaseworks__Lessee__c, leaseworks__Invoice_Type__c, leaseworks__Invoice_Category__c from leaseworks__Invoice__c
+                                         where (ID = :testInvoice.Id OR ID = :testInvoice2.Id)
                                          And leaseworks__Lease__r.leaseworks__Aircraft__c =: testAircraft.Id]) {
+                                             System.debug('testInvoiceRec*** ' + testInvoiceRec);
+                                             if(checkPBH && testInvoiceRec.leaseworks__Invoice_Category__c == 'Fixed Rent'){
+                                                 checkPBH = false;
+                                                 updateToPBH.add(testInvoiceRec);
+                                                 updateToPBH[0].leaseworks__Invoice_Category__c = 'Power By The Hour';
+                                             }
             invoiceIdsByInvoiceType.put(testInvoiceRec.leaseworks__Invoice_Type__c, new Set<Id>{testInvoiceRec.Id});
         }
-        
+        if(updateToPBH != null){
+            update updateToPBH;
+        }
+        System.debug('invoiceIdsByInvoiceType*** ' + invoiceIdsByInvoiceType);
         PageReference testPage = Page.c__SendInvoiceDDPReport; 
         testPage.getParameters().put('invoiceIds', JSON.serialize(invoiceIdsByInvoiceType));
         testPage.getParameters().put('useNewMethod', 'true');
@@ -472,8 +462,11 @@ public class TestSendInvoiceDDPReportCtrl {
         sendInvoiceDDPReportCtrl1.sendInvoices();
     }
     
+    /*
+    * This method is to test Error updation on Process Request Line Log records
+    */
     @isTest(seeAllData=true)
-    static void  testNewFeatureForDocGenPDFAndSendEmail2() {
+    static void  testErrorUpdationOnPRLLRecords() {
         dataSetup();
         User user = [Select Id from User where Profile.Name = 'System Administrator' AND isActive = true limit 1 ];
         
@@ -482,19 +475,67 @@ public class TestSendInvoiceDDPReportCtrl {
             dataSetup_SendInv();
         }
         
+        Boolean checkPBH = true;
+        List<leaseworks__Invoice__c> updateToPBH = new List<leaseworks__Invoice__c>();
         Map<String, Set<Id>> invoiceIdsByInvoiceType = new Map<String, Set<Id>>();
-        for(leaseworks__Invoice__c testInvoiceRec : [Select Id, leaseworks__Month_Ending__c, leaseworks__Lease__r.leaseworks__Lessee__c, leaseworks__Invoice_Type__c from leaseworks__Invoice__c
-                                         where ID = :testInvoice3.Id 
+        Set<Id> invIds = new Set<Id>();
+        for(leaseworks__Invoice__c testInvoiceRec : [Select Id, leaseworks__Month_Ending__c, leaseworks__Lease__r.leaseworks__Lessee__c, leaseworks__Invoice_Type__c, leaseworks__Invoice_Category__c from leaseworks__Invoice__c
+                                         where (ID = :testInvoice.Id OR ID = :testInvoice2.Id)
                                          And leaseworks__Lease__r.leaseworks__Aircraft__c =: testAircraft.Id]) {
+                                             System.debug('testInvoiceRec*** ' + testInvoiceRec);
+                                             if(checkPBH && testInvoiceRec.leaseworks__Invoice_Category__c == 'Fixed Rent'){
+                                                 checkPBH = false;
+                                                 updateToPBH.add(testInvoiceRec);
+                                                 updateToPBH[0].leaseworks__Invoice_Category__c = 'Power By The Hour';
+                                             }
+                                             invIds.add(testInvoiceRec.Id);
             invoiceIdsByInvoiceType.put(testInvoiceRec.leaseworks__Invoice_Type__c, new Set<Id>{testInvoiceRec.Id});
         }
+        if(updateToPBH != null){
+            update updateToPBH;
+        }
+        System.debug('invoiceIdsByInvoiceType*** ' + invoiceIdsByInvoiceType);
         
-        PageReference testPage = Page.c__SendInvoiceDDPReport; 
-        testPage.getParameters().put('invoiceIds', JSON.serialize(invoiceIdsByInvoiceType));
-        testPage.getParameters().put('useNewMethod', 'true');
-        Test.setCurrentPage(testPage);
-        SendInvoiceDDPReportCtrl sendInvoiceDDPReportCtrl1 = new SendInvoiceDDPReportCtrl();
-        sendInvoiceDDPReportCtrl1.sendInvoices();
+        SendEmailForBulkInvoicingScheduler bulkInvSchedulerInstance = new SendEmailForBulkInvoicingScheduler(invIds,invIds);
+        bulkInvSchedulerInstance.updateErrorInPRLL(invIds);
+    }
+    
+    /*
+    * This method is to test Error updation on Process Request Log and Process Request Line Log records
+    */
+    @isTest(seeAllData=true)
+    static void  testErrorUpdationOnPRLAndPRLLRecords() {
+        dataSetup();
+        User user = [Select Id from User where Profile.Name = 'System Administrator' AND isActive = true limit 1 ];
+        
+        Test.startTest();
+        System.runAs(user) {
+            dataSetup_SendInv();
+        }
+        
+        Boolean checkPBH = true;
+        List<leaseworks__Invoice__c> updateToPBH = new List<leaseworks__Invoice__c>();
+        Map<String, Set<Id>> invoiceIdsByInvoiceType = new Map<String, Set<Id>>();
+        Set<Id> invIds = new Set<Id>();
+        for(leaseworks__Invoice__c testInvoiceRec : [Select Id, leaseworks__Month_Ending__c, leaseworks__Lease__r.leaseworks__Lessee__c, leaseworks__Invoice_Type__c, leaseworks__Invoice_Category__c from leaseworks__Invoice__c
+                                         where (ID = :testInvoice.Id OR ID = :testInvoice2.Id)
+                                         And leaseworks__Lease__r.leaseworks__Aircraft__c =: testAircraft.Id]) {
+                                             System.debug('testInvoiceRec*** ' + testInvoiceRec);
+                                             if(checkPBH && testInvoiceRec.leaseworks__Invoice_Category__c == 'Fixed Rent'){
+                                                 checkPBH = false;
+                                                 updateToPBH.add(testInvoiceRec);
+                                                 updateToPBH[0].leaseworks__Invoice_Category__c = 'Power By The Hour';
+                                             }
+                                             invIds.add(testInvoiceRec.Id);
+            invoiceIdsByInvoiceType.put(testInvoiceRec.leaseworks__Invoice_Type__c, new Set<Id>{testInvoiceRec.Id});
+        }
+        if(updateToPBH != null){
+            update updateToPBH;
+        }
+        System.debug('invoiceIdsByInvoiceType*** ' + invoiceIdsByInvoiceType);
+        Map<Id,User> userByUserIDMap = new Map<Id,User>();
+        userByUserIDMap.put(UserInfo.getUserId(),null);
+        SendEmailForBulkInvoicingScheduler.updateProcessRequestLineLogIfNotUpdated(invIds,'Error',userByUserIDMap);
     }
     
     /**

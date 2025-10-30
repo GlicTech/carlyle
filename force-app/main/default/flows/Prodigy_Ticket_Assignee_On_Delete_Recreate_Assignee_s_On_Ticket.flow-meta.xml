@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>64.0</apiVersion>
+    <assignments>
+        <name>Assign_Names_To_Comma_Separated_List</name>
+        <label>Assign Names To Comma Separated List</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>varAssigneeNames</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>f_AssigneeName</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_Assignees</targetReference>
+        </connector>
+    </assignments>
+    <description>Upon deletion of a Ticket Assignee record, this flow aggregates all remaining assignee names into a comma separated list and sets this as the value of Assignee(s) field on the Ticket</description>
+    <environments>Default</environments>
+    <formulas>
+        <description>Formula formats assignee full name for creation of a comma separated list.</description>
+        <name>f_AssigneeName</name>
+        <dataType>String</dataType>
+        <expression>IF(
+       {!varAssigneeNames} = Null, {!Loop_Assignees.pro_Assigned_To__r.FirstName} + &#39; &#39; + {!Loop_Assignees.pro_Assigned_To__r.LastName}    , &#39;, &#39; + {!Loop_Assignees.pro_Assigned_To__r.FirstName} + &#39; &#39; + {!Loop_Assignees.pro_Assigned_To__r.LastName} )</expression>
+    </formulas>
+    <interviewLabel>Prodigy - Ticket Assignee - On Delete Recreate Assignee(s) On Ticket {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Prodigy - Ticket Assignee - On Delete Recreate Assignee(s) On Ticket</label>
+    <loops>
+        <description>Loop all assignees returned in the Get element</description>
+        <name>Loop_Assignees</name>
+        <label>Loop Assignees</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <collectionReference>Get_All_Ticket_Assignees</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Assign_Names_To_Comma_Separated_List</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Update_Assignee_s_On_Ticket</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <description>Get all other Assignees to the same Ticket</description>
+        <name>Get_All_Ticket_Assignees</name>
+        <label>Get All Ticket Assignees</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Loop_Assignees</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>pro_Ticket__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.pro_Ticket__c</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Id</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>pro_Ticket_Assignee__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <description>Set the Assignee(s) field on the ticket to the value of varAssigneeNames</description>
+        <name>Update_Assignee_s_On_Ticket</name>
+        <label>Update Assignee(s) On Ticket</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <inputAssignments>
+            <field>pro_Assignees__c</field>
+            <value>
+                <elementReference>varAssigneeNames</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record.pro_Ticket__r</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_All_Ticket_Assignees</targetReference>
+        </connector>
+        <object>pro_Ticket_Assignee__c</object>
+        <recordTriggerType>Delete</recordTriggerType>
+        <triggerType>RecordBeforeDelete</triggerType>
+    </start>
+    <status>Active</status>
+    <variables>
+        <description>A comma separated list of names of remaining assignees to the Ticket</description>
+        <name>varAssigneeNames</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

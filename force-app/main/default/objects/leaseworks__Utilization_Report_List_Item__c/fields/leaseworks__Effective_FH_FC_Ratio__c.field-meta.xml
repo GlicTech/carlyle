@@ -2,11 +2,13 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>leaseworks__Effective_FH_FC_Ratio__c</fullName>
     <deprecated>false</deprecated>
+    <description>This field is used for the actual MR calculation. By default, it copies the Calculated FH:FC ratio unless an override or an Assumed Ratio is applied. When either is applicable, the Effective Ratio captures that value and uses it for the MR calculation.</description>
     <externalId>false</externalId>
     <formula>if(!isBlank(leaseworks__Overridden_FH_FC__c),leaseworks__Overridden_FH_FC__c,
  if( isBlank(leaseworks__Y_Hidden_Override_FH_FC_Ratio__c), leaseworks__FH_FC_Ratio__c ,leaseworks__Y_Hidden_Override_FH_FC_Ratio__c  )
 
  )</formula>
+    <inlineHelpText>This field is used for the actual MR calculation. By default, it copies the Calculated FH:FC ratio unless an override or an Assumed Ratio is applied. When either is applicable, the Effective Ratio captures that value and uses it for the MR calculation.</inlineHelpText>
     <label>Effective FH:FC Ratio</label>
     <precision>18</precision>
     <required>false</required>

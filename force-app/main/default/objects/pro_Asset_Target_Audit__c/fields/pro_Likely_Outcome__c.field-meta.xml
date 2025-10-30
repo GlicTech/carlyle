@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>pro_Likely_Outcome__c</fullName>
+    <description>If there is an Asset in Deal linked, this field sets the value as Marketing or Trading based on the record type of the Deal. Otherwise, this field pulls in the value from Likely Outcome on the Asset.</description>
+    <externalId>false</externalId>
+    <formula>CASE(
+    pro_Deal_Record_Type_Name__c,
+    &#39;Sale&#39;, &#39;Sale&#39;,
+    &#39;SLB&#39;, &#39;Sale&#39;,
+    &#39;Engine Sale&#39;, &#39;Sale&#39;,
+    &#39;Sale - Off Lease&#39;, &#39;Sale&#39;,
+    &#39;Sale - Novation&#39;, &#39;Sale&#39;,
+    &#39;Engine Sale - Off Lease&#39;, &#39;Sale&#39;,
+    &#39;Engine Sale - Novation&#39;, &#39;Sale&#39;,
+    &#39;Engine Exchange&#39;, &#39;Sale&#39;,
+    &#39;Lease Extension&#39;, &#39;Extension&#39;,
+    &#39;Lease&#39;, &#39;Re-Lease&#39;,
+    &#39;Engine Lease&#39;, &#39;Re-Lease&#39;,
+     TEXT(pro_Asset__r.Likely_Outcome__c )
+)</formula>
+    <label>Likely Outcome</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

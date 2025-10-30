@@ -31,9 +31,11 @@ export default class Pro_FileImportScreen extends LightningElement {
     filteredResults = [];
     downloadUrl;
     readyToDownload = false;
+    treatBlanksAsNull = false;
 
     filterText = '';
-        columns = [
+    columns = [
+        { label: 'Line', fieldName: 'lineNumber', type: 'number', initialWidth: 90 },
         { label: 'CSV Line', fieldName: 'originalLine', type: 'text' },
         { label: 'Status', fieldName: 'status', type: 'text' },
         { label: 'Message', fieldName: 'message', type: 'text' }
@@ -55,6 +57,10 @@ export default class Pro_FileImportScreen extends LightningElement {
             dropZone.addEventListener('drop', this.handleDrop.bind(this));
             dropZone.dataset.initialized = 'true'; // Prevent duplicate binding
         }
+    }
+
+    handleTreatBlanksChange(event) {
+        this.treatBlanksAsNull = event.target.checked;
     }
 
     handleDragOver(event) {
@@ -83,8 +89,7 @@ export default class Pro_FileImportScreen extends LightningElement {
             const firstLine = this.fileContent.split('\n')[0].trim();
             const uploadedHeaders = firstLine.split(',').map(h => h.trim());
 
-            if (!this.isHeaderMatching(uploadedHeaders)) {
-                this.errorMessage = 'Uploaded file headers do not match the expected format. Please upload the sample file provided by Admin.';
+            if (!this.validateHeaders(uploadedHeaders)) {
                 this.fileContent = null;
                 this.fileName = null;
             } else {
@@ -134,12 +139,11 @@ export default class Pro_FileImportScreen extends LightningElement {
             reader.onload = () => {
                 this.fileContent = reader.result;
 
-                // Validate header
+                // Validate header with detailed diff
                 const firstLine = this.fileContent.split('\n')[0].trim();
                 const uploadedHeaders = firstLine.split(',').map(h => h.trim());
 
-                if (!this.isHeaderMatching(uploadedHeaders)) {
-                    this.errorMessage = 'Uploaded file headers do not match the expected format. Please upload the sample file provided by Admin.';
+                if (!this.validateHeaders(uploadedHeaders)) {
                     this.fileContent = null;
                     this.fileName = null;
                     // Clear the input for user to re-upload
@@ -157,12 +161,27 @@ export default class Pro_FileImportScreen extends LightningElement {
      * 
      * Last modified by Neethu Ari in Prodigy on 09/06/2025.
      */
-    isHeaderMatching(uploadedHeaders) {
-        if (!this.expectedHeaders || this.expectedHeaders.length === 0) return true; 
+    validateHeaders(uploadedHeaders) {
+        if (!this.expectedHeaders || this.expectedHeaders.length === 0) return true;
 
-        const uploadedSet = new Set(uploadedHeaders.map(h => h.toLowerCase()));
-        // Check every expected header is included somewhere in uploaded headers
-        return this.expectedHeaders.every(expected => uploadedSet.has(expected.toLowerCase()));
+        const uploadedNormalized = uploadedHeaders.map(h => h.toLowerCase());
+        const expectedNormalized = this.expectedHeaders.map(h => h.toLowerCase());
+
+        const uploadedSet = new Set(uploadedNormalized);
+        const expectedSet = new Set(expectedNormalized);
+
+        const missing = this.expectedHeaders.filter(h => !uploadedSet.has(h.toLowerCase()));
+        const extra = uploadedHeaders.filter(h => !expectedSet.has(h.toLowerCase()));
+
+        if (missing.length === 0 && extra.length === 0) {
+            return true;
+        }
+
+        const missingMsg = missing.length ? `Missing: ${missing.join(', ')}` : '';
+        const extraMsg = extra.length ? `Extra: ${extra.join(', ')}` : '';
+        const details = [missingMsg, extraMsg].filter(Boolean).join(' | ');
+        this.errorMessage = `Uploaded file headers do not match the expected format. ${details}.`;
+        return false;
     }
     /**
      * Processes the CSV file content by invoking Apex to parse and validate.
@@ -187,7 +206,9 @@ export default class Pro_FileImportScreen extends LightningElement {
 
             const result = await processCsvDirect({
                 configId: this.configId,
-                csvContent: this.fileContent
+                csvContent: this.fileContent,
+                treatBlanksAsNull: this.treatBlanksAsNull,
+                externalIdOverride: null
             });
 
             this.allResults = result;
@@ -273,9 +294,9 @@ export default class Pro_FileImportScreen extends LightningElement {
      */
     downloadFiltered() {
         const csvRows = [
-            'CSV Line,Status,Message',
+            'Line,CSV Line,Status,Message',
             ...this.filteredResults.map(row =>
-                `"${row.originalLine.replace(/"/g, '""')}","${row.status}","${row.message?.replace(/"/g, '""') || ''}"
+                `${row.lineNumber},"${row.originalLine?.replace(/"/g, '""')}","${row.status}","${row.message?.replace(/"/g, '""') || ''}"
             `)
         ];
         const blob = new Blob([csvRows.join('\n')], { type: 'application/octet-stream' });
@@ -286,6 +307,8 @@ export default class Pro_FileImportScreen extends LightningElement {
         link.click();
         document.body.removeChild(link);
         }
+
+    
       /**
      * Resets the component state to its initial condition.
      * Clears file data, messages, results, and UI inputs.

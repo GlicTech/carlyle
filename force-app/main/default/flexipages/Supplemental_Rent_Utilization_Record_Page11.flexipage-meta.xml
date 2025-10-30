@@ -247,16 +247,6 @@
                 <identifier>RecordPartial_Period_From_cField</identifier>
             </fieldInstance>
         </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Rate_Schedule__c</fieldItem>
-                <identifier>Recordleaseworks_Rate_Schedule_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
         <name>Facet-65d2d7c1-3f4b-4ab8-a830-747c169dc111</name>
         <type>Facet</type>
     </flexiPageRegions>
@@ -371,6 +361,58 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Overridden_FH_FC__c</fieldItem>
+                <identifier>Recordleaseworks_Overridden_FH_FC_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <name>Facet-9e6183df-1ffb-4fb1-a83f-107def8668a7</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Override_Derate__c</fieldItem>
+                <identifier>Recordleaseworks_Override_Derate_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <name>Facet-91d7d4ad-a5d6-4d96-882b-053d658ae9aa</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-9e6183df-1ffb-4fb1-a83f-107def8668a7</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:column</componentName>
+                <identifier>flexipage_column11</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-91d7d4ad-a5d6-4d96-882b-053d658ae9aa</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:column</componentName>
+                <identifier>flexipage_column12</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>Facet-93fa399c-e85c-4b09-b504-46ab022e03a1</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
                     <value>readonly</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.leaseworks__FH_FC_Ratio__c</fieldItem>
@@ -403,18 +445,8 @@
                     <name>uiBehavior</name>
                     <value>readonly</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Assembly_Derate__c</fieldItem>
-                <identifier>RecordAssembly_Derate_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
                 <fieldItem>Record.leaseworks__Derate__c</fieldItem>
-                <identifier>RecordDerate_cField</identifier>
+                <identifier>Recordleaseworks_Derate_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -757,6 +789,10 @@
                     <value>Facet-38e32970-fa0c-4bf9-b72a-667ad5a1d3e8</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Information</value>
                 </componentInstanceProperties>
@@ -771,6 +807,10 @@
                     <value>Facet-b04eeeef-9c66-4804-b455-80df268c8adb</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Utilization</value>
                 </componentInstanceProperties>
@@ -782,7 +822,29 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>columns</name>
+                    <value>Facet-93fa399c-e85c-4b09-b504-46ab022e03a1</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>label</name>
+                    <value>Override</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:fieldSection</componentName>
+                <identifier>flexipage_fieldSection6</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>columns</name>
                     <value>Facet-52c0fd6e-a85f-4b2b-937d-1383e8051b8e</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -799,6 +861,10 @@
                     <value>Facet-1586d4d8-3c72-4c59-a754-22f22d0b8846</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Thresholds</value>
                 </componentInstanceProperties>
@@ -811,6 +877,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-d1c2f6aa-0266-401d-9e71-90b141ba4d1b</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -827,6 +897,10 @@
                     <value>Facet-4d16fc0d-39f9-4312-b6a9-99f03ce4190e</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Assembly Position &amp; Location</value>
                 </componentInstanceProperties>
@@ -839,6 +913,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-df9886c8-8db1-4286-a7e1-be4679b34776</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -999,7 +1077,7 @@
         <name>rightcol</name>
         <type>Region</type>
     </flexiPageRegions>
-    <masterLabel>Supplemental Rent Utilization Record Page</masterLabel>
+    <masterLabel>Supplemental Rent Utilization Record Page (to be deleted)</masterLabel>
     <sobjectType>leaseworks__Utilization_Report_List_Item__c</sobjectType>
     <template>
         <name>flexipage:recordHomeTwoColEqualHeaderTemplateDesktop</name>

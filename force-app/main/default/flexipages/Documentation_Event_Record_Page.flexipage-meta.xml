@@ -252,7 +252,7 @@
                     <value>none</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.pro_Primary_Delay__c</fieldItem>
-                <identifier>Recordpro_Missed_Deadline_Reason_cField2</identifier>
+                <identifier>Recordpro_Primary_Delay_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -286,7 +286,7 @@
                     <value>none</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.pro_Delay_Comment__c</fieldItem>
-                <identifier>Recordpro_Missed_Deadline_Comment_cField</identifier>
+                <identifier>Recordpro_Delay_Comment_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-07d6eeb0-91eb-432b-bee4-adc929aa2c7c</name>
@@ -376,6 +376,10 @@
                     <value>Facet-ec61b52f-9caf-4a2e-94e5-4b195494b2ae</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>@@@SFDCInformationSFDC@@@</value>
                 </componentInstanceProperties>
@@ -388,6 +392,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-4f14f2a3-62f5-4a2a-a8bb-15f609ad5ad6</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -404,24 +412,15 @@
                     <value>Facet-bb8ac427-1485-4b4a-9afa-35f53a767537</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Delay Information</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:fieldSection</componentName>
                 <identifier>flexipage_fieldSection4</identifier>
-                <visibilityRule>
-                    <booleanFilter>1 AND 2</booleanFilter>
-                    <criteria>
-                        <leftValue>{!Record.pro_Documentation_Event_Completed__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>true</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.pro_Variance_Working_Days__c}</leftValue>
-                        <operator>LT</operator>
-                        <rightValue>0</rightValue>
-                    </criteria>
-                </visibilityRule>
             </componentInstance>
         </itemInstances>
         <itemInstances>
@@ -429,6 +428,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-32e3a2c3-4ed0-4537-9f4c-752ab4224c5d</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>

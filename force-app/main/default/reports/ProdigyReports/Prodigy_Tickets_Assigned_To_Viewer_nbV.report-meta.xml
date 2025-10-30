@@ -14,15 +14,15 @@
         <groupingColumn>pro_Ticket__c.pro_Status__c</groupingColumn>
         <legendPosition>Right</legendPosition>
         <location>CHART_BOTTOM</location>
-        <showAxisLabels>false</showAxisLabels>
+        <showAxisLabels>true</showAxisLabels>
         <showPercentage>false</showPercentage>
         <showTotal>true</showTotal>
-        <showValues>true</showValues>
+        <showValues>false</showValues>
         <size>Medium</size>
         <summaryAxisRange>Auto</summaryAxisRange>
         <textColor>#000000</textColor>
         <textSize>12</textSize>
-        <title>Tickets Assigned To Me</title>
+        <title>Assigned To Me</title>
         <titleColor>#000000</titleColor>
         <titleSize>18</titleSize>
     </chart>
@@ -30,10 +30,19 @@
         <field>CUST_NAME</field>
     </columns>
     <columns>
+        <field>pro_Ticket__c.pro_Requested_By__c</field>
+    </columns>
+    <columns>
+        <field>pro_Ticket__c.pro_Assignees__c</field>
+    </columns>
+    <columns>
         <field>pro_Ticket__c.pro_Priority__c</field>
     </columns>
     <columns>
         <field>pro_Ticket__c.pro_Type__c</field>
+    </columns>
+    <columns>
+        <field>pro_Ticket__c.pro_Title__c</field>
     </columns>
     <columns>
         <field>pro_Ticket__c.pro_Comments__c</field>
@@ -45,6 +54,13 @@
             <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
             <value>1</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>pro_Ticket__c.pro_Status__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>Closed</value>
         </criteriaItems>
     </filter>
     <format>Summary</format>

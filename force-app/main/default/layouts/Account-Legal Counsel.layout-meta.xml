@@ -39,6 +39,10 @@
                 <behavior>Edit</behavior>
                 <field>Approved_Counsel__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>GCC_Comments__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -76,6 +80,14 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>leaseworks__Invoice_Types__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>pro_KYC_Approved__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>pro_KYC_Approved_As_Of__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -125,6 +137,10 @@
                 <behavior>Edit</behavior>
                 <field>RecordTypeId</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Accounting__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -143,9 +159,9 @@
         <detailHeading>true</detailHeading>
         <editHeading>false</editHeading>
         <label>Custom Links</label>
-        <layoutColumns/>
-        <layoutColumns/>
-        <layoutColumns/>
+        <layoutColumns />
+        <layoutColumns />
+        <layoutColumns />
         <style>CustomLinks</style>
     </layoutSections>
     <platformActionList>
@@ -230,11 +246,6 @@
             <actionType>QuickAction</actionType>
             <sortOrder>15</sortOrder>
         </platformActionListItems>
-        <platformActionListItems>
-            <actionName>leaseworks__LWC_Utilization_Studio</actionName>
-            <actionType>CustomButton</actionType>
-            <sortOrder>16</sortOrder>
-        </platformActionListItems>
     </platformActionList>
     <quickActionList>
         <quickActionListItems>
@@ -276,6 +287,15 @@
     </quickActionList>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>RECORDTYPE</fields>
+        <fields>pro_Assigned_To__c</fields>
+        <fields>pro_Requested_By__c</fields>
+        <fields>pro_Type__c</fields>
+        <fields>pro_Title__c</fields>
+        <fields>pro_Comments__c</fields>
+        <fields>pro_Status__c</fields>
+        <fields>pro_Priority__c</fields>
+        <fields>pro_Expected_Due_Date__c</fields>
         <relatedList>pro_Ticket__c.pro_External_Party__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -316,6 +336,32 @@
         <fields>NAME</fields>
         <fields>pro_Legal_Manager__c</fields>
         <relatedList>Litigation__c.pro_Counterparty__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>leaseworks__Aircraft__c</fields>
+        <fields>leaseworks__Operator__c</fields>
+        <fields>leaseworks__Lessee__c</fields>
+        <fields>leaseworks__Lease_Start_Date_New__c</fields>
+        <fields>leaseworks__Lease_End_Date_New__c</fields>
+        <fields>leaseworks__Remaining_Lease_Term_Mos__c</fields>
+        <fields>leaseworks__Base_Rent__c</fields>
+        <fields>leaseworks__Rent__c</fields>
+        <fields>leaseworks__Rent_Remaining__c</fields>
+        <relatedList>leaseworks__Lease__c.Local_Counsel__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>leaseworks__Aircraft__c</fields>
+        <fields>leaseworks__Operator__c</fields>
+        <fields>leaseworks__Lessee__c</fields>
+        <fields>leaseworks__Lease_Start_Date_New__c</fields>
+        <fields>leaseworks__Lease_End_Date_New__c</fields>
+        <fields>leaseworks__Remaining_Lease_Term_Mos__c</fields>
+        <fields>leaseworks__Base_Rent__c</fields>
+        <fields>leaseworks__Rent__c</fields>
+        <fields>leaseworks__Rent_Remaining__c</fields>
+        <relatedList>leaseworks__Lease__c.Outside_Counsel__c</relatedList>
     </relatedLists>
     <relatedObjects>ParentId</relatedObjects>
     <showEmailCheckbox>false</showEmailCheckbox>

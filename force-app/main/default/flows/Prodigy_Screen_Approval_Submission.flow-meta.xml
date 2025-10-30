@@ -2,9 +2,32 @@
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>63.0</apiVersion>
     <assignments>
+        <name>Assign_Summary_Of_Approval_Request_To_Deal</name>
+        <label>Assign Summary Of Approval Request To Deal</label>
+        <locationX>50</locationX>
+        <locationY>1730</locationY>
+        <assignmentItems>
+            <assignToReference>recordId.pro_Summary_Of_Approval_Request__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Summary_Of_Approval_Request</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>recordId.pro_Financial_Comments__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>irt_FinancialComments.value</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_Triggering_Deal</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Assign_Text_Collections_To_Variables</name>
         <label>Assign Text Collections To Variables</label>
-        <locationX>176</locationX>
+        <locationX>182</locationX>
         <locationY>650</locationY>
         <assignmentItems>
             <assignToReference>varDealTeamAssigneeNameCollection</assignToReference>
@@ -20,7 +43,7 @@
     <assignments>
         <name>Reset_Approval_Status</name>
         <label>Reset Approval Status</label>
-        <locationX>264</locationX>
+        <locationX>270</locationX>
         <locationY>350</locationY>
         <assignmentItems>
             <assignToReference>Loop_Deal_Teams.pro_Approved__c</assignToReference>
@@ -36,8 +59,8 @@
     <assignments>
         <name>Set_Triggering_Deal_To_Submitted</name>
         <label>Set Triggering Deal To Submitted</label>
-        <locationX>176</locationX>
-        <locationY>1190</locationY>
+        <locationX>314</locationX>
+        <locationY>1730</locationY>
         <assignmentItems>
             <assignToReference>recordId.leaseworks__Deal_Status__c</assignToReference>
             <operator>Assign</operator>
@@ -52,6 +75,20 @@
                 <booleanValue>false</booleanValue>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>recordId.pro_Summary_Of_Approval_Request__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Summary_Of_Approval_Request</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>recordId.pro_Financial_Comments__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>irt_FinancialComments.value</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>Update_Triggering_Record</targetReference>
         </connector>
@@ -59,8 +96,8 @@
     <assignments>
         <name>Set_Variables_For_Approvals_History</name>
         <label>Set Variables For Approvals History</label>
-        <locationX>176</locationX>
-        <locationY>1406</locationY>
+        <locationX>314</locationX>
+        <locationY>1946</locationY>
         <assignmentItems>
             <assignToReference>varApprovalsHistoryToCreate.pro_User_Name__c</assignToReference>
             <operator>Assign</operator>
@@ -100,6 +137,34 @@
             <targetReference>Create_Approvals_History</targetReference>
         </connector>
     </assignments>
+    <decisions>
+        <name>Save_Draft_Or_Submit</name>
+        <label>Save Draft Or Submit?</label>
+        <locationX>182</locationX>
+        <locationY>1622</locationY>
+        <defaultConnector>
+            <targetReference>Set_Triggering_Deal_To_Submitted</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Submit</defaultConnectorLabel>
+        <rules>
+            <name>Save_Draft</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>bb_SaveOrSubmit.value</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Save Draft</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Summary_Of_Approval_Request_To_Deal</targetReference>
+            </connector>
+            <label>Save Draft</label>
+        </rules>
+    </decisions>
+    <description>Non Deal Approvals
+
+Screen flow presents users with key information, takes required inputs and moves record into Submitted status.</description>
     <environments>Default</environments>
     <formulas>
         <name>f_RunningUserFullName</name>
@@ -111,7 +176,7 @@
     <loops>
         <name>Loop_Deal_Teams</name>
         <label>Loop Deal Teams</label>
-        <locationX>176</locationX>
+        <locationX>182</locationX>
         <locationY>242</locationY>
         <collectionReference>Get_Deal_Teams</collectionReference>
         <iterationOrder>Asc</iterationOrder>
@@ -144,14 +209,14 @@
     <recordCreates>
         <name>Create_Approvals_History</name>
         <label>Create Approvals History</label>
-        <locationX>176</locationX>
-        <locationY>1514</locationY>
+        <locationX>314</locationX>
+        <locationY>2054</locationY>
         <inputReference>varApprovalsHistoryToCreate</inputReference>
     </recordCreates>
     <recordLookups>
         <name>Get_Active_AiDs</name>
         <label>Get Active AiDs</label>
-        <locationX>176</locationX>
+        <locationX>182</locationX>
         <locationY>758</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -179,11 +244,11 @@
     <recordLookups>
         <name>Get_Assets</name>
         <label>Get Assets</label>
-        <locationX>176</locationX>
+        <locationX>182</locationX>
         <locationY>974</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>SubmissionFormScreen</targetReference>
+            <targetReference>Get_Attached_Files</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -198,9 +263,52 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
+        <description>Get ContentDocumentLink records associated to the Deal from which this flow got triggered.</description>
+        <name>Get_Attached_Files</name>
+        <label>Get Attached Files</label>
+        <locationX>182</locationX>
+        <locationY>1082</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Create_Content_Document_Id_Collection</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>LinkedEntityId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>ContentDocumentLink</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_ContentDocument_Records</name>
+        <label>Get ContentDocument Records</label>
+        <locationX>182</locationX>
+        <locationY>1298</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Create_Document_Name_Collection</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>In</operator>
+            <value>
+                <elementReference>Create_Content_Document_Id_Collection</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>ContentDocument</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
         <name>Get_Deal_Teams</name>
         <label>Get Deal Teams</label>
-        <locationX>176</locationX>
+        <locationX>182</locationX>
         <locationY>134</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -219,10 +327,17 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordUpdates>
+        <name>Update_Triggering_Deal</name>
+        <label>Update Triggering Deal</label>
+        <locationX>50</locationX>
+        <locationY>1838</locationY>
+        <inputReference>recordId</inputReference>
+    </recordUpdates>
+    <recordUpdates>
         <name>Update_Triggering_Record</name>
         <label>Update Triggering Record</label>
-        <locationX>176</locationX>
-        <locationY>1298</locationY>
+        <locationX>314</locationX>
+        <locationY>1838</locationY>
         <connector>
             <targetReference>Set_Variables_For_Approvals_History</targetReference>
         </connector>
@@ -231,13 +346,13 @@
     <screens>
         <name>SubmissionFormScreen</name>
         <label>SubmissionFormScreen</label>
-        <locationX>176</locationX>
-        <locationY>1082</locationY>
+        <locationX>182</locationX>
+        <locationY>1514</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <connector>
-            <targetReference>Set_Triggering_Deal_To_Submitted</targetReference>
+            <targetReference>Save_Draft_Or_Submit</targetReference>
         </connector>
         <fields>
             <name>SubmissionFormScreen_Section1</name>
@@ -271,7 +386,7 @@
                 <fieldType>Region</fieldType>
                 <fields>
                     <name>DealTeam</name>
-                    <fieldText>&lt;p&gt;&lt;strong&gt;Deal Team: &lt;/strong&gt;{!varDealTeamAssigneeNameCollection}&lt;/p&gt;</fieldText>
+                    <fieldText>&lt;p&gt;&lt;strong&gt;Approver(s): &lt;/strong&gt;{!varDealTeamAssigneeNameCollection}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Attached Files: &lt;/strong&gt;{!Create_Document_Name_Collection}&lt;span class=&quot;ql-cursor&quot;&gt;﻿&lt;/span&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
                 </fields>
                 <inputParameters>
@@ -341,14 +456,70 @@
                 </fields>
                 <fields>
                     <name>Summary_Of_Approval_Request</name>
+                    <defaultValue>
+                        <stringValue>{!recordId.pro_Summary_Of_Approval_Request__c}</stringValue>
+                    </defaultValue>
                     <fieldText>Summary Of Approval Request</fieldText>
                     <fieldType>LargeTextArea</fieldType>
                     <isRequired>true</isRequired>
                 </fields>
                 <fields>
-                    <fieldType>ObjectProvided</fieldType>
-                    <isRequired>false</isRequired>
-                    <objectFieldReference>recordId.pro_Financial_Comments__c</objectFieldReference>
+                    <name>irt_FinancialComments</name>
+                    <extensionName>c:inputRichTextFSC</extensionName>
+                    <fieldType>ComponentInstance</fieldType>
+                    <inputParameters>
+                        <name>label</name>
+                        <value>
+                            <stringValue>Financial Comments</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>value</name>
+                        <value>
+                            <elementReference>recordId.pro_Financial_Comments__c</elementReference>
+                        </value>
+                    </inputParameters>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>true</isRequired>
+                    <storeOutputAutomatically>true</storeOutputAutomatically>
+                </fields>
+                <fields>
+                    <name>bb_SaveOrSubmit</name>
+                    <extensionName>c:fsc_flowButtonBar</extensionName>
+                    <fieldType>ComponentInstance</fieldType>
+                    <inputParameters>
+                        <name>alignment</name>
+                        <value>
+                            <stringValue>right</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>orientation</name>
+                        <value>
+                            <stringValue>horizontal</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>showLines</name>
+                        <value>
+                            <stringValue>neither</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>actionMode</name>
+                        <value>
+                            <stringValue>navigation</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>buttons</name>
+                        <value>
+                            <stringValue>[{&quot;label&quot;:&quot;Save Draft&quot;,&quot;value&quot;:&quot;Save Draft&quot;,&quot;iconPosition&quot;:&quot;left&quot;,&quot;variant&quot;:&quot;brand-outline&quot;,&quot;index&quot;:0},{&quot;label&quot;:&quot;Submit&quot;,&quot;value&quot;:&quot;Submit&quot;,&quot;iconPosition&quot;:&quot;left&quot;,&quot;variant&quot;:&quot;brand&quot;,&quot;index&quot;:1}]</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>true</isRequired>
+                    <storeOutputAutomatically>true</storeOutputAutomatically>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -362,11 +533,11 @@
             <regionContainerType>SectionWithoutHeader</regionContainerType>
         </fields>
         <nextOrFinishButtonLabel>Submit</nextOrFinishButtonLabel>
-        <showFooter>true</showFooter>
+        <showFooter>false</showFooter>
         <showHeader>false</showHeader>
     </screens>
     <start>
-        <locationX>50</locationX>
+        <locationX>56</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Get_Deal_Teams</targetReference>

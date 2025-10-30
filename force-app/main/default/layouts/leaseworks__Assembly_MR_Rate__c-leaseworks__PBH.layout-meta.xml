@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
     <customButtons>leaseworks__Set_MR_Rate_From_Catalog</customButtons>
-    <excludeButtons>OpenSlackRecordChannel</excludeButtons>
     <excludeButtons>Submit</excludeButtons>
     <layoutSections>
         <customLabel>false</customLabel>
@@ -113,14 +112,6 @@
         <label>Rates</label>
         <layoutColumns>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>leaseworks__MR_Schedule_Start_Date__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>leaseworks__MR_Schedule_End_Date__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>leaseworks__Derate__c</field>
             </layoutItems>
@@ -160,7 +151,7 @@
                 <field>leaseworks__Monthly_Threshold__c</field>
             </layoutItems>
         </layoutColumns>
-        <layoutColumns/>
+        <layoutColumns />
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
     <layoutSections>
@@ -288,9 +279,9 @@
         <detailHeading>false</detailHeading>
         <editHeading>true</editHeading>
         <label>Custom Links</label>
-        <layoutColumns/>
-        <layoutColumns/>
-        <layoutColumns/>
+        <layoutColumns />
+        <layoutColumns />
+        <layoutColumns />
         <style>CustomLinks</style>
     </layoutSections>
     <platformActionList>
@@ -310,40 +301,12 @@
             <actionType>StandardButton</actionType>
             <sortOrder>2</sortOrder>
         </platformActionListItems>
+        <platformActionListItems>
+            <actionName>leaseworks__Assembly_MR_Rate__c.leaseworks__Create_MRRate</actionName>
+            <actionType>QuickAction</actionType>
+            <sortOrder>3</sortOrder>
+        </platformActionListItems>
     </platformActionList>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>leaseworks__Amount_Accrued__c</fields>
-        <fields>leaseworks__Running_Balance_Accrued__c</fields>
-        <relatedList>leaseworks__Supplemental_Rent_Transactions__c.leaseworks__Supplemental_Rent__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <customButtons>leaseworks__Generate_Escalation_Rate_Schedule</customButtons>
-        <fields>NAME</fields>
-        <fields>leaseworks__MR_Rate_Start_Date__c</fields>
-        <fields>leaseworks__MR_Rate_End_Date__c</fields>
-        <fields>leaseworks__Esc_Per__c</fields>
-        <fields>leaseworks__Esc_Factor_F__c</fields>
-        <fields>leaseworks__Override__c</fields>
-        <fields>leaseworks__Comments__c</fields>
-        <fields>leaseworks__Utilization__c</fields>
-        <relatedList>leaseworks__MR_Rate__c.leaseworks__Assembly_MR_Info__c</relatedList>
-        <sortField>leaseworks__MR_Rate_Start_Date__c</sortField>
-        <sortOrder>Asc</sortOrder>
-    </relatedLists>
-    <relatedLists>
-        <customButtons>leaseworks__RefreshTasks</customButtons>
-        <fields>NAME</fields>
-        <fields>leaseworks__ResrvAllocPrcntg_F__c</fields>
-        <fields>leaseworks__Allocation_Override__c</fields>
-        <fields>leaseworks__Allocation_MPE_F__c</fields>
-        <fields>leaseworks__Required__c</fields>
-        <fields>leaseworks__Reserves_Cap__c</fields>
-        <relatedList>leaseworks__Supp_Rent_Event_Reqmnt__c.leaseworks__Supplemental_Rent__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <relatedList>RelatedEntityHistoryList</relatedList>
-    </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
         <fields>leaseworks__Start_Date__c</fields>
@@ -353,6 +316,11 @@
         <fields>leaseworks__Change__c</fields>
         <fields>leaseworks__MR_Reconciliation__c</fields>
         <relatedList>leaseworks__FHFCRatio_Detail__c.leaseworks__Assembly_MR_Info__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>leaseworks__Rate_Details_Overview__c</fields>
+        <relatedList>leaseworks__MR_Rate__c.leaseworks__Assembly_MR_Info__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>

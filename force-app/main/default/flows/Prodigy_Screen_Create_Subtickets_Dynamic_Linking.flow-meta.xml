@@ -2,10 +2,59 @@
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <apiVersion>63.0</apiVersion>
     <assignments>
+        <name>Add_Assembly_To_varAssembliesToAttach_Variable</name>
+        <label>Add Assembly To varAssembliesToAttach Variable</label>
+        <locationX>1469</locationX>
+        <locationY>4766</locationY>
+        <assignmentItems>
+            <assignToReference>varAssembliesToAttach</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Loop_Assemblies_Selected_To_Add</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_Assemblies_Selected_To_Add</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Add_Asset_To_varAssetsToAttach_Variable</name>
+        <label>Add Asset To varAssetsToAttach Variable</label>
+        <locationX>1469</locationX>
+        <locationY>3974</locationY>
+        <assignmentItems>
+            <assignToReference>varAssetsToAttch</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Loop_Assets_Selected_To_Add</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_Assets_Selected_To_Add</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Add to a collection so it can be used as an input variable on a sub-flow which prepares Assets On Ticket and Assembly On Ticket records for attachment to the sub-ticket</description>
+        <name>Add_Sub_Ticket_To_Create_To_Collection</name>
+        <label>Add Sub-Ticket To Create To Collection</label>
+        <locationX>2921</locationX>
+        <locationY>4922</locationY>
+        <assignmentItems>
+            <assignToReference>varTicketsToCreate</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>varTicketToCreate</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Prodigy_Auto_Prepare_Variables_To_Attach_Assets_Assemblies_To_Ticket_Flow_1</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Assign_Commercial_Queue_Id_To_Variable</name>
         <label>Assign Commercial Queue Id To Variable</label>
-        <locationX>1106</locationX>
-        <locationY>1106</locationY>
+        <locationX>50</locationX>
+        <locationY>566</locationY>
         <assignmentItems>
             <assignToReference>varTicketToCreate.OwnerId</assignToReference>
             <operator>Assign</operator>
@@ -21,14 +70,14 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Create_Ticket</targetReference>
+            <targetReference>Get_Content_Document_Links_For_Main_Ticket</targetReference>
         </connector>
     </assignments>
     <assignments>
         <name>Assign_Compliance_Queue_Id_To_Variable</name>
         <label>Assign Compliance Queue Id To Variable</label>
-        <locationX>1370</locationX>
-        <locationY>1106</locationY>
+        <locationX>314</locationX>
+        <locationY>566</locationY>
         <assignmentItems>
             <assignToReference>varTicketToCreate.OwnerId</assignToReference>
             <operator>Assign</operator>
@@ -44,14 +93,30 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Create_Ticket</targetReference>
+            <targetReference>Get_Content_Document_Links_For_Main_Ticket</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Content_Document_Names_To_Collection</name>
+        <label>Assign Content Document Names To Collection</label>
+        <locationX>1370</locationX>
+        <locationY>2054</locationY>
+        <assignmentItems>
+            <assignToReference>varContentDocumentNameCollection</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Create_Content_Document_Name_Collection</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>TicketCreationInputScreen</targetReference>
         </connector>
     </assignments>
     <assignments>
         <name>Assign_Credit_Queue_Id_To_Variable</name>
         <label>Assign Credit Queue Id To Variable</label>
-        <locationX>1634</locationX>
-        <locationY>1106</locationY>
+        <locationX>578</locationX>
+        <locationY>566</locationY>
         <assignmentItems>
             <assignToReference>varTicketToCreate.OwnerId</assignToReference>
             <operator>Assign</operator>
@@ -67,14 +132,92 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Create_Ticket</targetReference>
+            <targetReference>Get_Content_Document_Links_For_Main_Ticket</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Current_Assembly_To_Placeholder_Collection</name>
+        <label>Assign Current Assembly To Placeholder Collection</label>
+        <locationX>2261</locationX>
+        <locationY>4874</locationY>
+        <assignmentItems>
+            <assignToReference>varAssembliesToAttachPlaceholder</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Loop_Assemblies_To_Attach</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_Assemblies_To_Attach</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Current_Asset_To_Placeholder</name>
+        <label>Assign Current Asset To Placeholder Collection</label>
+        <locationX>2261</locationX>
+        <locationY>3974</locationY>
+        <assignmentItems>
+            <assignToReference>varAssetsToAttachPlaceholder</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Loop_Assets_To_Attach</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_Assets_To_Attach</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_File_Input_Content_Document_Ids_To_Collection</name>
+        <label>Assign File Input Content Document Ids To Collection</label>
+        <locationX>1238</locationX>
+        <locationY>2486</locationY>
+        <assignmentItems>
+            <assignToReference>varContentDocumentIdCollection</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>TicketFileUpload.contentDocIds</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varContentDocumentNameCollection</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>TicketFileUpload.fileNames</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Filter_Out_Null_Ids</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Filtered_Values_Back_To_Variables</name>
+        <label>Assign Filtered Values Back To Variables</label>
+        <locationX>1238</locationX>
+        <locationY>2810</locationY>
+        <assignmentItems>
+            <assignToReference>varContentDocumentIdCollection</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Filter_Out_Null_Ids</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varContentDocumentNameCollection</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Filter_Out_Null_Names</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Clear_Variables_For_Ticket_Management_Screen</targetReference>
         </connector>
     </assignments>
     <assignments>
         <name>Assign_Finance_Queue_Id_to_Variable</name>
         <label>Assign Finance Queue Id to Variable</label>
-        <locationX>1898</locationX>
-        <locationY>1106</locationY>
+        <locationX>842</locationX>
+        <locationY>566</locationY>
         <assignmentItems>
             <assignToReference>varTicketToCreate.OwnerId</assignToReference>
             <operator>Assign</operator>
@@ -90,14 +233,37 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Create_Ticket</targetReference>
+            <targetReference>Get_Content_Document_Links_For_Main_Ticket</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Inherited_Assets_and_Assemblies_To_Variables</name>
+        <label>Assign Inherited Assets and Assemblies To Variables</label>
+        <locationX>1370</locationX>
+        <locationY>1838</locationY>
+        <assignmentItems>
+            <assignToReference>varAssetsToAttch</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Assets_To_Be_Inherited_To_Sub_Ticket</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varAssembliesToAttach</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Assemblies_To_Be_Inherited_To_Sub_Ticket</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Assign_Parent_Ticket_Values_To_SubTicket</targetReference>
         </connector>
     </assignments>
     <assignments>
         <name>Assign_Investment_Strategy_Queue_Id_To_Variable</name>
         <label>Assign Investment &amp; Strategy Queue Id To Variable</label>
-        <locationX>2162</locationX>
-        <locationY>1106</locationY>
+        <locationX>1106</locationX>
+        <locationY>566</locationY>
         <assignmentItems>
             <assignToReference>varTicketToCreate.OwnerId</assignToReference>
             <operator>Assign</operator>
@@ -113,14 +279,14 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Create_Ticket</targetReference>
+            <targetReference>Get_Content_Document_Links_For_Main_Ticket</targetReference>
         </connector>
     </assignments>
     <assignments>
         <name>Assign_Lease_Management_Queue_Id_To_Variable</name>
         <label>Assign Lease Management Queue Id To Variable</label>
-        <locationX>2690</locationX>
-        <locationY>1106</locationY>
+        <locationX>1634</locationX>
+        <locationY>566</locationY>
         <assignmentItems>
             <assignToReference>varTicketToCreate.OwnerId</assignToReference>
             <operator>Assign</operator>
@@ -136,14 +302,14 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Create_Ticket</targetReference>
+            <targetReference>Get_Content_Document_Links_For_Main_Ticket</targetReference>
         </connector>
     </assignments>
     <assignments>
         <name>Assign_Legal_Contracts_Queue_Id_To_Variable</name>
         <label>Assign Legal &amp; Contracts Queue Id To Variable</label>
-        <locationX>2426</locationX>
-        <locationY>1106</locationY>
+        <locationX>1370</locationX>
+        <locationY>566</locationY>
         <assignmentItems>
             <assignToReference>varTicketToCreate.OwnerId</assignToReference>
             <operator>Assign</operator>
@@ -159,14 +325,14 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Create_Ticket</targetReference>
+            <targetReference>Get_Content_Document_Links_For_Main_Ticket</targetReference>
         </connector>
     </assignments>
     <assignments>
         <name>Assign_Parent_Ticket_Values_To_SubTicket</name>
         <label>Assign Parent Ticket Values To SubTicket</label>
-        <locationX>2613</locationX>
-        <locationY>350</locationY>
+        <locationX>1370</locationX>
+        <locationY>1946</locationY>
         <assignmentItems>
             <assignToReference>varTicketToCreate.pro_Assigned_To__c</assignToReference>
             <operator>Assign</operator>
@@ -217,13 +383,6 @@
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>varTicketToCreate.pro_Asset__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>recordId.pro_Asset__c</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
             <assignToReference>varTicketToCreate.pro_Lease__c</assignToReference>
             <operator>Assign</operator>
             <value>
@@ -235,13 +394,6 @@
             <operator>Assign</operator>
             <value>
                 <elementReference>recordId.pro_Utilization__c</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>varTicketToCreate.pro_Assembly__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>recordId.pro_Assembly__c</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -293,15 +445,36 @@
                 <elementReference>recordId.pro_Type__c</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varTicketToCreate.pro_Internal_Sharepoint_Link_Long__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>recordId.pro_Internal_Sharepoint_Link_Long__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varTicketToCreate.pro_Sharefile_Link_Long__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>recordId.pro_Sharefile_Link_Long__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varTicketToCreate.pro_ATS_Link_Long__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>recordId.pro_ATS_Link_Long__c</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
-            <targetReference>TicketCreationInputScreen</targetReference>
+            <targetReference>Assign_Content_Document_Names_To_Collection</targetReference>
         </connector>
     </assignments>
     <assignments>
         <name>Assign_Portfolio_Fund_Management_Queue_Id_To_Variable</name>
         <label>Assign Portfolio &amp; Fund Management Queue Id To Variable</label>
-        <locationX>2954</locationX>
-        <locationY>1106</locationY>
+        <locationX>1898</locationX>
+        <locationY>566</locationY>
         <assignmentItems>
             <assignToReference>varTicketToCreate.OwnerId</assignToReference>
             <operator>Assign</operator>
@@ -317,14 +490,14 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Create_Ticket</targetReference>
+            <targetReference>Get_Content_Document_Links_For_Main_Ticket</targetReference>
         </connector>
     </assignments>
     <assignments>
         <name>Assign_Technical_Queue_Id_To_Variable</name>
         <label>Assign Technical Queue Id To Variable</label>
-        <locationX>3218</locationX>
-        <locationY>1106</locationY>
+        <locationX>2162</locationX>
+        <locationY>566</locationY>
         <assignmentItems>
             <assignToReference>varTicketToCreate.OwnerId</assignToReference>
             <operator>Assign</operator>
@@ -340,14 +513,14 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Create_Ticket</targetReference>
+            <targetReference>Get_Content_Document_Links_For_Main_Ticket</targetReference>
         </connector>
     </assignments>
     <assignments>
         <name>Assign_Ticket_Values_To_Variable</name>
         <label>Assign Ticket Values To Variable</label>
-        <locationX>2613</locationX>
-        <locationY>566</locationY>
+        <locationX>1370</locationX>
+        <locationY>2270</locationY>
         <assignmentItems>
             <assignToReference>varTicketToCreate.pro_Requested_By__c</assignToReference>
             <operator>Assign</operator>
@@ -370,14 +543,14 @@
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>varTicketToCreate.pro_Sharefile_Link__c</assignToReference>
+            <assignToReference>varTicketToCreate.pro_Sharefile_Link_Long__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>SharefileLinkURL.value</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>varTicketToCreate.pro_ATS_Link__c</assignToReference>
+            <assignToReference>varTicketToCreate.pro_ATS_Link_Long__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>ATSLinkURL.value</elementReference>
@@ -401,39 +574,39 @@
             <assignToReference>varTicketToCreate.pro_Lease__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>LeaseLookup.recordId</elementReference>
+                <elementReference>f_StandardLeaseLookupOrRequiredLeaseLookup</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>varTicketToCreate.pro_Asset__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>AssetLookup.recordId</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>varTicketToCreate.pro_Non_Carlyle_Asset__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Non_Carlyle_Asset</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>varTicketToCreate.pro_Internal_Sharepoint_Link__c</assignToReference>
+            <assignToReference>varTicketToCreate.pro_Internal_Sharepoint_Link_Long__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>SharepointUrl.value</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varTicketToCreate.pro_Asset_Validation_On__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varTicketToCreate.pro_Lease__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>f_RequiredOrNonRequiredLeaseField</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
-            <targetReference>Is_Asset_Input_Valid</targetReference>
+            <targetReference>Were_Content_Documents_Uploaded</targetReference>
         </connector>
     </assignments>
     <assignments>
         <name>Assign_Trading_Asset_Management_Queue_Id_To_Variable</name>
         <label>Assign Trading &amp; Asset Management Queue Id To Variable</label>
-        <locationX>3482</locationX>
-        <locationY>1106</locationY>
+        <locationX>2426</locationX>
+        <locationY>566</locationY>
         <assignmentItems>
             <assignToReference>varTicketToCreate.OwnerId</assignToReference>
             <operator>Assign</operator>
@@ -449,14 +622,14 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Create_Ticket</targetReference>
+            <targetReference>Get_Content_Document_Links_For_Main_Ticket</targetReference>
         </connector>
     </assignments>
     <assignments>
         <name>Assign_Values_To_Content_Document_Link</name>
         <label>Assign Values To Content Document Link</label>
-        <locationX>2382</locationX>
-        <locationY>1622</locationY>
+        <locationX>2877</locationX>
+        <locationY>4514</locationY>
         <assignmentItems>
             <assignToReference>varContentDocumentLinkToCreate.ContentDocumentId</assignToReference>
             <operator>Assign</operator>
@@ -483,73 +656,162 @@
         </connector>
     </assignments>
     <assignments>
-        <name>Relate_Assembly_To_Ticket</name>
-        <label>Relate Assembly To Ticket</label>
-        <locationX>314</locationX>
-        <locationY>1106</locationY>
+        <name>Clear_Variables_For_Ticket_Management_Screen</name>
+        <label>Clear Variables For Ticket Management Screen</label>
+        <locationX>1370</locationX>
+        <locationY>3002</locationY>
         <assignmentItems>
-            <assignToReference>varTicketToCreate.pro_Assembly__c</assignToReference>
+            <assignToReference>dt_AllAssets.selectedRows</assignToReference>
+            <operator>Assign</operator>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>dt_AllAssemblies.selectedRows</assignToReference>
+            <operator>Assign</operator>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>dt_DisplayCurrentAssemblies.selectedRows</assignToReference>
+            <operator>Assign</operator>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>dt_DisplayCurrentAssets.selectedRows</assignToReference>
+            <operator>Assign</operator>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>bb_LinkSelectedRecords.value</assignToReference>
+            <operator>Assign</operator>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>bb_RemoveSelectedRecords.value</assignToReference>
+            <operator>Assign</operator>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>dt_AllAssemblies.firstSelectedRow.Id</assignToReference>
+            <operator>Assign</operator>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>dt_AllAssets.firstSelectedRow.Id</assignToReference>
+            <operator>Assign</operator>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>dt_DisplayCurrentAssemblies.firstSelectedRow.Id</assignToReference>
+            <operator>Assign</operator>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>dt_DisplayCurrentAssets.firstSelectedRow.Id</assignToReference>
+            <operator>Assign</operator>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>bb_TicketManagementNavigation.value</assignToReference>
+            <operator>Assign</operator>
+        </assignmentItems>
+        <connector>
+            <targetReference>TicketManagementScreen</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Fill in a text collection variables with the Content Document Ids inherited from the main ticket, along with any extra content document ids that were added in.</description>
+        <name>Create_Collection_Of_All_Content_Document_Ids</name>
+        <label>Create Collection Of All Content Document Ids</label>
+        <locationX>2657</locationX>
+        <locationY>4214</locationY>
+        <assignmentItems>
+            <assignToReference>varContentDocumentIdCollection</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Create_Content_Document_Id_Collection</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_Content_Documents</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>If no new content document has been uploaded, create a collection of only inherited content document ids</description>
+        <name>Create_Collection_Of_Inherited_Content_Document_Ids</name>
+        <label>Create Collection Of Inherited Content Document Ids</label>
+        <locationX>2921</locationX>
+        <locationY>4214</locationY>
+        <assignmentItems>
+            <assignToReference>varContentDocumentIdCollection</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Create_Content_Document_Id_Collection</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_Content_Documents</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Relate_Ticket_Assignee_to_SubTicket</name>
+        <label>Relate Ticket Assignee to SubTicket</label>
+        <locationX>2525</locationX>
+        <locationY>3758</locationY>
+        <assignmentItems>
+            <assignToReference>varTicketAssigneeToCreate.pro_Ticket__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>dt_DisplayRelatedAssemblies.firstSelectedRow.Id</elementReference>
+                <elementReference>varTicketToCreate.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Create_Ticket_Assignee</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_Non_Carlyle_Asset_on_Ticket_To_Create_Variable</name>
+        <label>Set Non Carlyle Asset on Ticket To Create Variable</label>
+        <locationX>1370</locationX>
+        <locationY>3218</locationY>
+        <assignmentItems>
+            <assignToReference>varTicketToCreate.pro_Non_Carlyle_Asset__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Non_Carlyle_Asset</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varTicketToCreate.pro_Assets__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>f_NonCarlyleMSNInputOrTriggeringTicketAssets</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Return_To_Previous_Screen</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_varAssembliesToAttach_To_Placeholder_Value</name>
+        <label>Set varAssembliesToAttach To Placeholder Value</label>
+        <locationX>1997</locationX>
+        <locationY>5150</locationY>
+        <assignmentItems>
+            <assignToReference>varAssembliesToAttach</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>varAssembliesToAttachPlaceholder</elementReference>
             </value>
         </assignmentItems>
         <connector>
             <isGoTo>true</isGoTo>
-            <targetReference>TicketCreationInputScreen</targetReference>
+            <targetReference>Clear_Variables_For_Ticket_Management_Screen</targetReference>
         </connector>
     </assignments>
     <assignments>
-        <name>Relate_Utilization_To_Ticket</name>
-        <label>Relate Utilization To Ticket</label>
-        <locationX>842</locationX>
-        <locationY>1106</locationY>
+        <name>Set_varAssetsToAttach_To_Values_In_Placeholder_Collection</name>
+        <label>Set varAssetsToAttach To Values In Placeholder Collection</label>
+        <locationX>1997</locationX>
+        <locationY>4250</locationY>
         <assignmentItems>
-            <assignToReference>varTicketToCreate.pro_Utilization__c</assignToReference>
+            <assignToReference>varAssetsToAttch</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>dt_DisplayRelatedUtilizations.firstSelectedRow.Id</elementReference>
+                <elementReference>varAssetsToAttachPlaceholder</elementReference>
             </value>
         </assignmentItems>
         <connector>
-            <isGoTo>true</isGoTo>
-            <targetReference>TicketCreationInputScreen</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Remove_Assembly_Link</name>
-        <label>Remove Assembly Link</label>
-        <locationX>50</locationX>
-        <locationY>1106</locationY>
-        <assignmentItems>
-            <assignToReference>varTicketToCreate.pro_Assembly__c</assignToReference>
-            <operator>Assign</operator>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>bb_RemoveLinkedAssambly.value</assignToReference>
-            <operator>Assign</operator>
-        </assignmentItems>
-        <connector>
-            <isGoTo>true</isGoTo>
-            <targetReference>TicketCreationInputScreen</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Remove_Utilization_Link</name>
-        <label>Remove Utilization Link</label>
-        <locationX>578</locationX>
-        <locationY>1106</locationY>
-        <assignmentItems>
-            <assignToReference>varTicketToCreate.pro_Utilization__c</assignToReference>
-            <operator>Assign</operator>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>bb_RemoveLinkedUtilization.value</assignToReference>
-            <operator>Assign</operator>
-        </assignmentItems>
-        <connector>
-            <isGoTo>true</isGoTo>
-            <targetReference>TicketCreationInputScreen</targetReference>
+            <targetReference>Were_Assemblies_Selected_For_Removal</targetReference>
         </connector>
     </assignments>
     <choices>
@@ -584,132 +846,415 @@
             <stringValue>Working</stringValue>
         </value>
     </choices>
+    <collectionProcessors>
+        <name>Filter_Out_Null_Ids</name>
+        <elementSubtype>FilterCollectionProcessor</elementSubtype>
+        <label>Filter Out Null Ids</label>
+        <locationX>1238</locationX>
+        <locationY>2594</locationY>
+        <assignNextValueToReference>currentItem_Collection_Filter_1_0</assignNextValueToReference>
+        <collectionProcessorType>FilterCollectionProcessor</collectionProcessorType>
+        <collectionReference>varContentDocumentIdCollection</collectionReference>
+        <conditionLogic>and</conditionLogic>
+        <conditions>
+            <leftValueReference>currentItem_Collection_Filter_1_0</leftValueReference>
+            <operator>IsNull</operator>
+            <rightValue>
+                <booleanValue>false</booleanValue>
+            </rightValue>
+        </conditions>
+        <connector>
+            <targetReference>Filter_Out_Null_Names</targetReference>
+        </connector>
+    </collectionProcessors>
+    <collectionProcessors>
+        <name>Filter_Out_Null_Names</name>
+        <elementSubtype>FilterCollectionProcessor</elementSubtype>
+        <label>Filter Out Null Names</label>
+        <locationX>1238</locationX>
+        <locationY>2702</locationY>
+        <assignNextValueToReference>currentItem_Filter_Out_Null_Names</assignNextValueToReference>
+        <collectionProcessorType>FilterCollectionProcessor</collectionProcessorType>
+        <collectionReference>varContentDocumentNameCollection</collectionReference>
+        <conditionLogic>and</conditionLogic>
+        <conditions>
+            <leftValueReference>currentItem_Filter_Out_Null_Names</leftValueReference>
+            <operator>IsNull</operator>
+            <rightValue>
+                <booleanValue>false</booleanValue>
+            </rightValue>
+        </conditions>
+        <connector>
+            <targetReference>Assign_Filtered_Values_Back_To_Variables</targetReference>
+        </connector>
+    </collectionProcessors>
     <decisions>
-        <name>Find_Assembly_or_Utilization_To_Link</name>
-        <label>Find Assembly or Utilization To Link?</label>
-        <locationX>1304</locationX>
-        <locationY>782</locationY>
+        <description>If user entered a value in the Assigned To field on the Ticket creation screen, then create a Ticket Assignee record and relate to the new Sub-Ticket</description>
+        <name>Did_User_Assign_Ticket</name>
+        <label>Did User Assign Ticket?</label>
+        <locationX>2789</locationX>
+        <locationY>3650</locationY>
         <defaultConnector>
-            <targetReference>What_Type_Of_Ticket</targetReference>
+            <targetReference>Were_New_Files_Uploaded</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
-            <name>Assembly</name>
+            <name>Yes_Ticket_Assigned</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>AssembliesAndUtilizationsButtons.value</leftValueReference>
-                <operator>EqualTo</operator>
+                <leftValueReference>varTicketAssigneeToCreate.pro_Assigned_To__r.Id</leftValueReference>
+                <operator>IsNull</operator>
                 <rightValue>
-                    <stringValue>Assemblies</stringValue>
+                    <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>RelatedAssembliesScreen</targetReference>
+                <targetReference>Relate_Ticket_Assignee_to_SubTicket</targetReference>
             </connector>
-            <label>Assembly</label>
-        </rules>
-        <rules>
-            <name>Utilization</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>AssembliesAndUtilizationsButtons.value</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Utilizations</stringValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>RelatedUtilizationsScreen</targetReference>
-            </connector>
-            <label>Utilization</label>
+            <label>Yes - Ticket Assigned</label>
         </rules>
     </decisions>
     <decisions>
-        <name>Is_Asset_Input_Valid</name>
-        <label>Is Asset Input Valid?</label>
-        <locationX>2613</locationX>
-        <locationY>674</locationY>
+        <description>Check to avoid adding duplicate assemblies to the update list</description>
+        <name>Is_Assembly_Already_In_Update_List</name>
+        <label>Is Assembly Already In Update List?</label>
+        <locationX>1381</locationX>
+        <locationY>4658</locationY>
         <defaultConnector>
-            <targetReference>InvalidInputScreen</targetReference>
+            <targetReference>Add_Assembly_To_varAssembliesToAttach_Variable</targetReference>
         </defaultConnector>
-        <defaultConnectorLabel>Invalid</defaultConnectorLabel>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
-            <name>Valid</name>
+            <name>Yes_Assembly_Already_In_Update_List</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>f_AssetInputInvalid</leftValueReference>
+                <leftValueReference>Create_Attached_Assembly_Id_Collection</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <elementReference>Loop_Assemblies_Selected_To_Add.Id</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Loop_Assemblies_Selected_To_Add</targetReference>
+            </connector>
+            <label>Yes - Assembly Already In Update List</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Avoid the possibility of adding duplicate assets to the update list</description>
+        <name>Is_Asset_Already_Attached</name>
+        <label>Is Asset Already Attached?</label>
+        <locationX>1381</locationX>
+        <locationY>3866</locationY>
+        <defaultConnector>
+            <targetReference>Add_Asset_To_varAssetsToAttach_Variable</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Asset_Already_Attached</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Create_Attached_Asset_Id_Collection</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <elementReference>Loop_Assets_Selected_To_Add.Id</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Loop_Assets_Selected_To_Add</targetReference>
+            </connector>
+            <label>Yes - Asset Already Attached</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_Non_Carlyle_Asset_Checked</name>
+        <label>Is Non Carlyle Asset Checked?</label>
+        <locationX>2789</locationX>
+        <locationY>4814</locationY>
+        <defaultConnector>
+            <targetReference>Add_Sub_Ticket_To_Create_To_Collection</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Non_Carlyle_Asset</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>varTicketToCreate.pro_Non_Carlyle_Asset__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
-            <connector>
-                <targetReference>Find_Assembly_or_Utilization_To_Link</targetReference>
-            </connector>
-            <label>Valid</label>
+            <label>Yes - Non Carlyle Asset</label>
         </rules>
     </decisions>
     <decisions>
-        <name>Remove_Or_Link_Assembly</name>
-        <label>Remove Or Link Assembly?</label>
-        <locationX>182</locationX>
-        <locationY>998</locationY>
+        <description>Direct flow down a path based on button clicks in the Ticket Management Screen</description>
+        <name>Link_or_Remove_Links_To_Assets_or_Assemblies</name>
+        <label>Link or Remove Links To Assets or Assemblies?</label>
+        <locationX>2063</locationX>
+        <locationY>3434</locationY>
         <defaultConnector>
-            <targetReference>Relate_Assembly_To_Ticket</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Link Assembly</defaultConnectorLabel>
-        <rules>
-            <name>Remove_Assembly</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>bb_RemoveLinkedAssambly.value</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Remove Link To Assembly</stringValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Remove_Assembly_Link</targetReference>
-            </connector>
-            <label>Remove Assembly</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <name>Remove_Or_Link_Utilization</name>
-        <label>Remove Or Link Utilization</label>
-        <locationX>710</locationX>
-        <locationY>998</locationY>
-        <defaultConnector>
-            <targetReference>Relate_Utilization_To_Ticket</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Link Utilization</defaultConnectorLabel>
-        <rules>
-            <name>Remove_Utilization</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>bb_RemoveLinkedUtilization.value</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Remove Link To Utilization</stringValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Remove_Utilization_Link</targetReference>
-            </connector>
-            <label>Remove Utilization</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <name>Were_Files_Uploaded</name>
-        <label>Were Files Uploaded?</label>
-        <locationX>2426</locationX>
-        <locationY>1406</locationY>
-        <defaultConnector>
-            <targetReference>RedirectScreen</targetReference>
+            <targetReference>Create_Ticket</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
-            <name>Files_Uploaded</name>
+            <name>Link_Selected_Records</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>bb_LinkSelectedRecords.value</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Link Selected Records</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Was_An_Asset_Selected_To_Be_Linked</targetReference>
+            </connector>
+            <label>Link Selected Records</label>
+        </rules>
+        <rules>
+            <name>Remove_Selected_Records</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>bb_RemoveSelectedRecords.value</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Remove Selected Records</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Were_Assets_Selected_For_Removal</targetReference>
+            </connector>
+            <label>Remove Selected Records</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>If Asset&#39;s Id is in the list Create Assets To Remove Id Collection then it should not be added into placeholder collection</description>
+        <name>Remove_Current_Asset</name>
+        <label>Remove Current Asset</label>
+        <locationX>2173</locationX>
+        <locationY>3866</locationY>
+        <defaultConnector>
+            <targetReference>Assign_Current_Asset_To_Placeholder</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Remove_Current_Asset</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Create_Assets_To_Remove_Id_Collection</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <elementReference>Loop_Assets_To_Attach.Id</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Loop_Assets_To_Attach</targetReference>
+            </connector>
+            <label>Yes - Remove Current Asset</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Manual navigation ensuring when a user clicks Previous, they are always returned to the Ticket Input Screen</description>
+        <name>Return_To_Previous_Screen</name>
+        <label>Return To Previous Screen</label>
+        <locationX>1370</locationX>
+        <locationY>3326</locationY>
+        <defaultConnector>
+            <targetReference>Link_or_Remove_Links_To_Assets_or_Assemblies</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Return</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>bb_TicketManagementNavigation.value</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Previous Screen</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <isGoTo>true</isGoTo>
+                <targetReference>TicketCreationInputScreen</targetReference>
+            </connector>
+            <label>Yes - Return</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Check if an asset is to be linked before applying logic for linking Assets</description>
+        <name>Was_An_Asset_Selected_To_Be_Linked</name>
+        <label>Was An Asset Selected To Be Linked?</label>
+        <locationX>1337</locationX>
+        <locationY>3542</locationY>
+        <defaultConnector>
+            <targetReference>Was_At_Least_1_Assembly_Selected</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Asset_Selected</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>dt_AllAssets.firstSelectedRow.Id</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Create_Attached_Asset_Id_Collection</targetReference>
+            </connector>
+            <label>Yes - Asset Selected</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Check that there was a selection for assemblies before applying logic for adding to varAssembliesToAttach collection</description>
+        <name>Was_At_Least_1_Assembly_Selected</name>
+        <label>Was At Least 1 Assembly Selected?</label>
+        <locationX>1337</locationX>
+        <locationY>4334</locationY>
+        <defaultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Clear_Variables_For_Ticket_Management_Screen</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Assemblies_Selected</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>dt_AllAssemblies.firstSelectedRow.Id</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Create_Attached_Assembly_Id_Collection</targetReference>
+            </connector>
+            <label>Yes - Assemblies Selected</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>If selected for removal, don&#39;t add to the placeholder collection</description>
+        <name>Was_Current_Assembly_Selected_For_Removal</name>
+        <label>Was Current Assembly Selected For Removal?</label>
+        <locationX>2173</locationX>
+        <locationY>4766</locationY>
+        <defaultConnector>
+            <targetReference>Assign_Current_Assembly_To_Placeholder_Collection</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Assembly_Selected_For_Removal</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Create_Assemblies_To_Remove_Id_Collection</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <elementReference>Loop_Assemblies_To_Attach.Id</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Loop_Assemblies_To_Attach</targetReference>
+            </connector>
+            <label>Yes - Assembly Selected For Removal</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Check if Assemblies were selected for removal before applying logic to remove from varAssembliesToAttach</description>
+        <name>Were_Assemblies_Selected_For_Removal</name>
+        <label>Were Assemblies Selected For Removal?</label>
+        <locationX>2129</locationX>
+        <locationY>4442</locationY>
+        <defaultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Clear_Variables_For_Ticket_Management_Screen</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Assemblies_Selected_For_Removal</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>dt_DisplayCurrentAssemblies.firstSelectedRow.Id</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Create_Assemblies_To_Remove_Id_Collection</targetReference>
+            </connector>
+            <label>Yes - Assemblies Selected For Removal</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Check if Assets were selected for removal before applying logic to remove from varAssetsToAttach</description>
+        <name>Were_Assets_Selected_For_Removal</name>
+        <label>Were Assets Selected For Removal</label>
+        <locationX>2129</locationX>
+        <locationY>3542</locationY>
+        <defaultConnector>
+            <targetReference>Were_Assemblies_Selected_For_Removal</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Assets_Selected_For_Removal</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>dt_DisplayCurrentAssets.firstSelectedRow.Id</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Create_Assets_To_Remove_Id_Collection</targetReference>
+            </connector>
+            <label>Yes - Assets Selected For Removal</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Were_Content_Documents_Uploaded</name>
+        <label>Were Content Documents Uploaded?</label>
+        <locationX>1370</locationX>
+        <locationY>2378</locationY>
+        <defaultConnector>
+            <targetReference>Clear_Variables_For_Ticket_Management_Screen</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Content_Documents_Uploaded</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>TicketFileUpload.fileNames</leftValueReference>
+                <operator>IsEmpty</operator>
+            </conditions>
+            <conditions>
+                <leftValueReference>TicketFileUpload.contentDocIds</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_File_Input_Content_Document_Ids_To_Collection</targetReference>
+            </connector>
+            <label>Yes - Content Documents Uploaded</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>If new files were uploaded, add them to the collection of content document ids</description>
+        <name>Were_New_Files_Uploaded</name>
+        <label>Were New Files Uploaded?</label>
+        <locationX>2789</locationX>
+        <locationY>4106</locationY>
+        <defaultConnector>
+            <targetReference>Create_Collection_Of_Inherited_Content_Document_Ids</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_New_Files_Uploaded</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>TicketFileUpload.contentDocIds</leftValueReference>
@@ -719,18 +1264,18 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Loop_Content_Documents</targetReference>
+                <targetReference>Create_Collection_Of_All_Content_Document_Ids</targetReference>
             </connector>
-            <label>Files Uploaded</label>
+            <label>Yes - New Files Uploaded</label>
         </rules>
     </decisions>
     <decisions>
         <name>What_Type_Of_Ticket</name>
         <label>What Type Of Ticket?</label>
-        <locationX>2426</locationX>
-        <locationY>890</locationY>
+        <locationX>1370</locationX>
+        <locationY>350</locationY>
         <defaultConnector>
-            <targetReference>Create_Ticket</targetReference>
+            <targetReference>Get_Content_Document_Links_For_Main_Ticket</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
@@ -911,6 +1456,23 @@
     </dynamicChoiceSets>
     <environments>Default</environments>
     <formulas>
+        <name>f_AssembliesQuery</name>
+        <dataType>String</dataType>
+        <expression>IF(
+  ISBLANK({!Serial_Number}),
+  &quot;SELECT Id, Name, leaseworks__Type__c, pro_Assembly_Name_And_Type__c &quot; &amp;
+  &quot;FROM leaseworks__Constituent_Assembly__c &quot; &amp;
+  &quot;LIMIT 14&quot;,
+
+  &quot;SELECT Id, Name, leaseworks__Type__c, pro_Assembly_Name_And_Type__c &quot; &amp;
+  &quot;FROM leaseworks__Constituent_Assembly__c &quot; &amp;
+  &quot;WHERE Name LIKE &#39;&quot; &amp; {!Serial_Number} &amp; &quot;%&#39; &quot; &amp;
+  &quot;OR leaseworks__Asset__r.leaseworks__MSN_Number__c LIKE &#39;&quot; &amp; {!Serial_Number} &amp; &quot;%&#39; &quot; &amp;
+  &quot;OR leaseworks__Attached_Aircraft__r.leaseworks__MSN_Number__c LIKE &#39;&quot; &amp; {!Serial_Number} &amp; &quot;%&#39; &quot; &amp;
+  &quot;LIMIT 14&quot;
+)</expression>
+    </formulas>
+    <formulas>
         <name>f_AssetInputInvalid</name>
         <dataType>Boolean</dataType>
         <expression>OR(
@@ -931,9 +1493,23 @@ AND(
 )</expression>
     </formulas>
     <formulas>
+        <name>f_AssetsQuery</name>
+        <dataType>String</dataType>
+        <expression>IF(
+  ISBLANK({!Serial_Number}),
+  &quot;SELECT Id, Name, leaseworks__Asset_Type_GP__c, leaseworks__MSN_Number__c FROM leaseworks__Aircraft__c LIMIT 14&quot;,
+  &quot;SELECT Id, Name, leaseworks__Asset_Type_GP__c, leaseworks__MSN_Number__c FROM leaseworks__Aircraft__c WHERE leaseworks__MSN_Number__c LIKE &#39;&quot; &amp; {!Serial_Number} &amp; &quot;%&#39; LIMIT 14&quot;
+)</expression>
+    </formulas>
+    <formulas>
         <name>f_DueDateBasedOnPriority</name>
         <dataType>Date</dataType>
         <expression>IF({!Priority} = &quot;High&quot;, TODAY() + 3 , {!f_TodayPlusSeven})</expression>
+    </formulas>
+    <formulas>
+        <name>f_ExistingAndNewDocuments</name>
+        <dataType>String</dataType>
+        <expression>{!varContentDocumentNameCollection} + &#39;, &#39; + {!TicketFileUpload.fileNames}</expression>
     </formulas>
     <formulas>
         <name>f_ExpectedDueDateFormula</name>
@@ -941,14 +1517,25 @@ AND(
         <expression>IF({!Expected_Due_Date} != Null, {!Expected_Due_Date}, {!f_TodayPlusSeven})</expression>
     </formulas>
     <formulas>
-        <name>f_QueryRelatedAssemblies</name>
+        <description>If Non Carlyle Asset is checked then return Non Carlyle Asset MSN, otherwise maintain Ticket value.</description>
+        <name>f_NonCarlyleMSNInputOrTriggeringTicketAssets</name>
         <dataType>String</dataType>
-        <expression>&quot;SELECT Name, Id, leaseworks__Type__c, leaseworks__Last_CSN_Utilization__c, leaseworks__Last_TSN_Utilization__c, leaseworks__Comments__c FROM leaseworks__Constituent_Assembly__c WHERE leaseworks__Attached_Aircraft__c = &#39;&quot; &amp; {!varTicketToCreate.pro_Asset__c} &amp; &quot;&#39;&quot;</expression>
+        <expression>IF({!Non_Carlyle_Asset} = True, {!varTicketToCreate.pro_Non_Carlyle_Asset_MSN__c} , {!recordId.pro_Assets__c})</expression>
     </formulas>
     <formulas>
-        <name>f_QueryRelatedUtilizations</name>
+        <description>Formula returns the required Lease field value if the ticket Type is Lease Management. Otherwise, returns non required field value</description>
+        <name>f_RequiredOrNonRequiredLeaseField</name>
         <dataType>String</dataType>
-        <expression>&quot;SELECT Name, Id, leaseworks__Month_Ending__c, leaseworks__Airframe_Cycles_Landing_During_Month__c, leaseworks__Airframe_Flight_Hours_Month__c, leaseworks__Engineering_Modifications_or_Changes__c	 FROM leaseworks__Utilization_Report__c WHERE leaseworks__Aircraft__c = &#39;&quot; &amp; {!varTicketToCreate.pro_Asset__c} &amp; &quot;&#39; ORDER BY leaseworks__Month_Ending__c DESC&quot;</expression>
+        <expression>IF({!varTicketToCreate.RecordType.Name} = &#39;Lease Management&#39;, 
+               {!LeaseRequiredLookup.recordId}, 
+               {!LeaseLookup.recordId}
+)</expression>
+    </formulas>
+    <formulas>
+        <description>If the Ticket type is Lease Management, this returns the value from the required Lease lookup field. For any other Ticket type, this returns the non required lease lookup field value.</description>
+        <name>f_StandardLeaseLookupOrRequiredLeaseLookup</name>
+        <dataType>String</dataType>
+        <expression>IF({!Select_a_Ticket_type} = &#39;Lease Management&#39;, {!LeaseRequiredLookup.recordId}, {!LeaseLookup.recordId})</expression>
     </formulas>
     <formulas>
         <name>f_TodayPlusSeven</name>
@@ -958,11 +1545,69 @@ AND(
     <interviewLabel>Prodigy - Screen - Create Subtickets Dynamic Linking {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Prodigy - Screen - Create Subtickets Dynamic Linking</label>
     <loops>
+        <description>Loop through the Assemblies selected to be added through the Ticket Management Screen</description>
+        <name>Loop_Assemblies_Selected_To_Add</name>
+        <label>Loop Assemblies Selected To Add</label>
+        <locationX>1205</locationX>
+        <locationY>4550</locationY>
+        <collectionReference>dt_AllAssemblies.selectedRows</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Is_Assembly_Already_In_Update_List</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Clear_Variables_For_Ticket_Management_Screen</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <loops>
+        <name>Loop_Assemblies_To_Attach</name>
+        <label>Loop Assemblies To Attach</label>
+        <locationX>1997</locationX>
+        <locationY>4658</locationY>
+        <collectionReference>varAssembliesToAttach</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Was_Current_Assembly_Selected_For_Removal</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Set_varAssembliesToAttach_To_Placeholder_Value</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <loops>
+        <name>Loop_Assets_Selected_To_Add</name>
+        <label>Loop Assets Selected To Add</label>
+        <locationX>1205</locationX>
+        <locationY>3758</locationY>
+        <collectionReference>dt_AllAssets.selectedRows</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Is_Asset_Already_Attached</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Was_At_Least_1_Assembly_Selected</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <loops>
+        <name>Loop_Assets_To_Attach</name>
+        <label>Loop Assets To Attach</label>
+        <locationX>1997</locationX>
+        <locationY>3758</locationY>
+        <collectionReference>varAssetsToAttch</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Remove_Current_Asset</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Set_varAssetsToAttach_To_Values_In_Placeholder_Collection</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <loops>
         <name>Loop_Content_Documents</name>
         <label>Loop Content Documents</label>
-        <locationX>2294</locationX>
-        <locationY>1514</locationY>
-        <collectionReference>TicketFileUpload.contentDocIds</collectionReference>
+        <locationX>2789</locationX>
+        <locationY>4406</locationY>
+        <collectionReference>varContentDocumentIdCollection</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
             <targetReference>Assign_Values_To_Content_Document_Link</targetReference>
@@ -991,30 +1636,163 @@ AND(
     </processMetadataValues>
     <processType>Flow</processType>
     <recordCreates>
+        <name>Create_Assemblies_On_Ticket</name>
+        <label>Create Assemblies On Ticket</label>
+        <locationX>2921</locationX>
+        <locationY>5246</locationY>
+        <connector>
+            <targetReference>Update_Assets_Assemblies_Fields_On_Ticket</targetReference>
+        </connector>
+        <faultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>ErrorScreen</targetReference>
+        </faultConnector>
+        <inputReference>Prodigy_Auto_Prepare_Variables_To_Attach_Assets_Assemblies_To_Ticket_Flow_1.varAssembliesOnTicketToCreateCollection</inputReference>
+    </recordCreates>
+    <recordCreates>
+        <name>Create_Assets_On_Ticket</name>
+        <label>Create Assets On Ticket</label>
+        <locationX>2921</locationX>
+        <locationY>5138</locationY>
+        <connector>
+            <targetReference>Create_Assemblies_On_Ticket</targetReference>
+        </connector>
+        <faultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>ErrorScreen</targetReference>
+        </faultConnector>
+        <inputReference>Prodigy_Auto_Prepare_Variables_To_Attach_Assets_Assemblies_To_Ticket_Flow_1.varAssetsOnTicketToCreateCollection</inputReference>
+    </recordCreates>
+    <recordCreates>
         <name>Create_Content_Document_Links</name>
         <label>Create Content Document Links</label>
-        <locationX>2294</locationX>
-        <locationY>1814</locationY>
+        <locationX>2789</locationX>
+        <locationY>4706</locationY>
         <connector>
-            <targetReference>RedirectScreen</targetReference>
+            <targetReference>Is_Non_Carlyle_Asset_Checked</targetReference>
         </connector>
+        <faultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>ErrorScreen</targetReference>
+        </faultConnector>
         <inputReference>varContentDocumentLinkCollection</inputReference>
     </recordCreates>
     <recordCreates>
         <name>Create_Ticket</name>
         <label>Create Ticket</label>
-        <locationX>2426</locationX>
-        <locationY>1298</locationY>
+        <locationX>2789</locationX>
+        <locationY>3542</locationY>
         <connector>
-            <targetReference>Were_Files_Uploaded</targetReference>
+            <targetReference>Did_User_Assign_Ticket</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>ErrorScreen</targetReference>
+        </faultConnector>
         <inputReference>varTicketToCreate</inputReference>
     </recordCreates>
+    <recordCreates>
+        <name>Create_Ticket_Assignee</name>
+        <label>Create Ticket Assignee</label>
+        <locationX>2525</locationX>
+        <locationY>3866</locationY>
+        <connector>
+            <targetReference>Were_New_Files_Uploaded</targetReference>
+        </connector>
+        <faultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>ErrorScreen</targetReference>
+        </faultConnector>
+        <inputReference>varTicketAssigneeToCreate</inputReference>
+    </recordCreates>
+    <recordLookups>
+        <name>Get_Assemblies_On_Main_Ticket</name>
+        <label>Get Assemblies On Main Ticket</label>
+        <locationX>1370</locationX>
+        <locationY>1514</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Create_Assemblies_On_Main_Ticket_Id_Collection</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>pro_Ticket__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>pro_Assembly_On_Ticket__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Assemblies_To_Be_Inherited_To_Sub_Ticket</name>
+        <label>Get Assemblies To Be Inherited To Sub-Ticket</label>
+        <locationX>1370</locationX>
+        <locationY>1730</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Assign_Inherited_Assets_and_Assemblies_To_Variables</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>In</operator>
+            <value>
+                <elementReference>Create_Assemblies_On_Main_Ticket_Id_Collection</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>leaseworks__Constituent_Assembly__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Assets_On_Main_Ticket</name>
+        <label>Get Assets On Main Ticket</label>
+        <locationX>1370</locationX>
+        <locationY>1190</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Create_Assets_On_Main_Ticket_Id_Collection</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>pro_Ticket__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>pro_Asset_On_Ticket__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Assets_To_Be_Inherited_To_Sub_Ticket</name>
+        <label>Get Assets To Be Inherited To Sub-Ticket</label>
+        <locationX>1370</locationX>
+        <locationY>1406</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_Assemblies_On_Main_Ticket</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>In</operator>
+            <value>
+                <elementReference>Create_Assets_On_Main_Ticket_Id_Collection</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>leaseworks__Aircraft__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
     <recordLookups>
         <name>Get_Commercial_Queue</name>
         <label>Get Commercial Queue</label>
-        <locationX>1106</locationX>
-        <locationY>998</locationY>
+        <locationX>50</locationX>
+        <locationY>458</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Assign_Commercial_Queue_Id_To_Variable</targetReference>
@@ -1034,8 +1812,8 @@ AND(
     <recordLookups>
         <name>Get_Compliance_Queue</name>
         <label>Get Compliance Queue</label>
-        <locationX>1370</locationX>
-        <locationY>998</locationY>
+        <locationX>314</locationX>
+        <locationY>458</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Assign_Compliance_Queue_Id_To_Variable</targetReference>
@@ -1053,10 +1831,52 @@ AND(
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
+        <name>Get_Content_Document_Links_For_Main_Ticket</name>
+        <label>Get Content Document Links For Main Ticket</label>
+        <locationX>1370</locationX>
+        <locationY>758</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Create_Content_Document_Id_Collection</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>LinkedEntityId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>ContentDocumentLink</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Content_Document_Records</name>
+        <label>Get Content Document Records</label>
+        <locationX>1370</locationX>
+        <locationY>974</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Create_Content_Document_Name_Collection</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>In</operator>
+            <value>
+                <elementReference>Create_Content_Document_Id_Collection</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>ContentDocument</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
         <name>Get_Credit_Queue</name>
         <label>Get Credit Queue</label>
-        <locationX>1634</locationX>
-        <locationY>998</locationY>
+        <locationX>578</locationX>
+        <locationY>458</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Assign_Credit_Queue_Id_To_Variable</targetReference>
@@ -1076,8 +1896,8 @@ AND(
     <recordLookups>
         <name>Get_Finance_Queue</name>
         <label>Get Finance Queue</label>
-        <locationX>1898</locationX>
-        <locationY>998</locationY>
+        <locationX>842</locationX>
+        <locationY>458</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Assign_Finance_Queue_Id_to_Variable</targetReference>
@@ -1097,8 +1917,8 @@ AND(
     <recordLookups>
         <name>Get_Investment_Strategy_Queue</name>
         <label>Get Investment &amp; Strategy Queue</label>
-        <locationX>2162</locationX>
-        <locationY>998</locationY>
+        <locationX>1106</locationX>
+        <locationY>458</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Assign_Investment_Strategy_Queue_Id_To_Variable</targetReference>
@@ -1118,8 +1938,8 @@ AND(
     <recordLookups>
         <name>Get_Lease_Management_Queue</name>
         <label>Get Lease Management Queue</label>
-        <locationX>2690</locationX>
-        <locationY>998</locationY>
+        <locationX>1634</locationX>
+        <locationY>458</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Assign_Lease_Management_Queue_Id_To_Variable</targetReference>
@@ -1139,8 +1959,8 @@ AND(
     <recordLookups>
         <name>Get_Legal_Contracts_Queue</name>
         <label>Get Legal &amp; Contracts Queue</label>
-        <locationX>2426</locationX>
-        <locationY>998</locationY>
+        <locationX>1370</locationX>
+        <locationY>458</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Assign_Legal_Contracts_Queue_Id_To_Variable</targetReference>
@@ -1160,8 +1980,8 @@ AND(
     <recordLookups>
         <name>Get_Portfolio_Fund_Management_Queue</name>
         <label>Get Portfolio &amp; Fund Management Queue</label>
-        <locationX>2954</locationX>
-        <locationY>998</locationY>
+        <locationX>1898</locationX>
+        <locationY>458</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Assign_Portfolio_Fund_Management_Queue_Id_To_Variable</targetReference>
@@ -1181,11 +2001,11 @@ AND(
     <recordLookups>
         <name>Get_Record_Type</name>
         <label>Get Record Type</label>
-        <locationX>2613</locationX>
+        <locationX>1370</locationX>
         <locationY>242</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Assign_Parent_Ticket_Values_To_SubTicket</targetReference>
+            <targetReference>What_Type_Of_Ticket</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -1209,8 +2029,8 @@ AND(
     <recordLookups>
         <name>Get_Technical_Queue</name>
         <label>Get Technical Queue</label>
-        <locationX>3218</locationX>
-        <locationY>998</locationY>
+        <locationX>2162</locationX>
+        <locationY>458</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Assign_Technical_Queue_Id_To_Variable</targetReference>
@@ -1230,8 +2050,8 @@ AND(
     <recordLookups>
         <name>Get_Trading_Asset_Management_Queue</name>
         <label>Get Trading &amp; Asset Management Queue</label>
-        <locationX>3482</locationX>
-        <locationY>998</locationY>
+        <locationX>2426</locationX>
+        <locationY>458</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Assign_Trading_Asset_Management_Queue_Id_To_Variable</targetReference>
@@ -1248,31 +2068,37 @@ AND(
         <object>Group</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
-    <screens>
-        <name>InvalidInputScreen</name>
-        <label>InvalidInputScreen</label>
-        <locationX>3922</locationX>
-        <locationY>782</locationY>
-        <allowBack>false</allowBack>
-        <allowFinish>true</allowFinish>
-        <allowPause>false</allowPause>
-        <connector>
+    <recordUpdates>
+        <name>Update_Assets_Assemblies_Fields_On_Ticket</name>
+        <label>Update Assets &amp; Assemblies Fields On Ticket</label>
+        <locationX>2921</locationX>
+        <locationY>5354</locationY>
+        <faultConnector>
             <isGoTo>true</isGoTo>
-            <targetReference>TicketCreationInputScreen</targetReference>
-        </connector>
+            <targetReference>ErrorScreen</targetReference>
+        </faultConnector>
+        <inputReference>Prodigy_Auto_Prepare_Variables_To_Attach_Assets_Assemblies_To_Ticket_Flow_1.varTicketToUpdateCollection</inputReference>
+    </recordUpdates>
+    <screens>
+        <name>ErrorScreen</name>
+        <label>ErrorScreen</label>
+        <locationX>4241</locationX>
+        <locationY>3650</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>false</allowFinish>
+        <allowPause>false</allowPause>
         <fields>
-            <name>InvalidInputDisplayText</name>
-            <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(255, 0, 0);&quot;&gt;Tickets must be linked to an Asset record. To override this, check the Non Carlyle Asset checkbox and fill  in the Non Carlyle Asset MSN field. &lt;/span&gt;&lt;/p&gt;</fieldText>
+            <name>ErrorDisplay</name>
+            <fieldText>&lt;p&gt;There was an error processing your request:&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;{!$Flow.FaultMessage}&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
-        <nextOrFinishButtonLabel>Edit Ticket</nextOrFinishButtonLabel>
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
     </screens>
     <screens>
         <name>RecordTypeScreen</name>
         <label>RecordTypeScreen</label>
-        <locationX>2613</locationX>
+        <locationX>1370</locationX>
         <locationY>134</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
@@ -1331,473 +2157,10 @@ AND(
         <showHeader>false</showHeader>
     </screens>
     <screens>
-        <name>RedirectScreen</name>
-        <label>RedirectScreen</label>
-        <locationX>2426</locationX>
-        <locationY>2006</locationY>
-        <allowBack>true</allowBack>
-        <allowFinish>true</allowFinish>
-        <allowPause>true</allowPause>
-        <fields>
-            <name>Redirect</name>
-            <extensionName>c:proRedirectFromScreenFlow</extensionName>
-            <fieldType>ComponentInstance</fieldType>
-            <inputParameters>
-                <name>recordIdToRedirect</name>
-                <value>
-                    <elementReference>varTicketToCreate.Id</elementReference>
-                </value>
-            </inputParameters>
-            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-            <isRequired>true</isRequired>
-            <storeOutputAutomatically>true</storeOutputAutomatically>
-        </fields>
-        <showFooter>false</showFooter>
-        <showHeader>true</showHeader>
-    </screens>
-    <screens>
-        <name>RelatedAssembliesScreen</name>
-        <label>RelatedAssembliesScreen</label>
-        <locationX>182</locationX>
-        <locationY>890</locationY>
-        <allowBack>true</allowBack>
-        <allowFinish>true</allowFinish>
-        <allowPause>false</allowPause>
-        <backButtonLabel>Return To Ticket</backButtonLabel>
-        <connector>
-            <targetReference>Remove_Or_Link_Assembly</targetReference>
-        </connector>
-        <fields>
-            <name>SelectAssemblyHeading</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 18px;&quot;&gt;Link Assembly To Ticket&lt;/span&gt;&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-        </fields>
-        <fields>
-            <name>RelatedAssembliesScreen_Section1</name>
-            <fieldType>RegionContainer</fieldType>
-            <fields>
-                <name>RelatedAssembliesScreen_Section1_Column1</name>
-                <fieldType>Region</fieldType>
-                <fields>
-                    <name>CurrentlyLinkedAssembly</name>
-                    <fieldText>&lt;p&gt;&lt;u style=&quot;color: rgb(16, 128, 8);&quot;&gt;Currently Linked Assambly:&lt;/u&gt;&lt;span style=&quot;color: rgb(16, 128, 8);&quot;&gt; {!varTicketToCreate.pro_Assembly__r.Name}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</fieldText>
-                    <fieldType>DisplayText</fieldType>
-                    <visibilityRule>
-                        <conditionLogic>and</conditionLogic>
-                        <conditions>
-                            <leftValueReference>varTicketToCreate.pro_Assembly__c</leftValueReference>
-                            <operator>IsNull</operator>
-                            <rightValue>
-                                <booleanValue>false</booleanValue>
-                            </rightValue>
-                        </conditions>
-                    </visibilityRule>
-                </fields>
-                <fields>
-                    <name>bb_RemoveLinkedAssambly</name>
-                    <extensionName>c:fsc_flowButtonBar</extensionName>
-                    <fieldType>ComponentInstance</fieldType>
-                    <inputParameters>
-                        <name>alignment</name>
-                        <value>
-                            <stringValue>left</stringValue>
-                        </value>
-                    </inputParameters>
-                    <inputParameters>
-                        <name>orientation</name>
-                        <value>
-                            <stringValue>horizontal</stringValue>
-                        </value>
-                    </inputParameters>
-                    <inputParameters>
-                        <name>showLines</name>
-                        <value>
-                            <stringValue>neither</stringValue>
-                        </value>
-                    </inputParameters>
-                    <inputParameters>
-                        <name>actionMode</name>
-                        <value>
-                            <stringValue>navigation</stringValue>
-                        </value>
-                    </inputParameters>
-                    <inputParameters>
-                        <name>buttons</name>
-                        <value>
-                            <stringValue>[{&quot;label&quot;:&quot;Remove Link To Assembly&quot;,&quot;value&quot;:&quot;Remove Link To Assembly&quot;,&quot;iconPosition&quot;:&quot;left&quot;,&quot;variant&quot;:&quot;destructive&quot;,&quot;index&quot;:0}]</stringValue>
-                        </value>
-                    </inputParameters>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-                    <isRequired>true</isRequired>
-                    <storeOutputAutomatically>true</storeOutputAutomatically>
-                    <visibilityRule>
-                        <conditionLogic>and</conditionLogic>
-                        <conditions>
-                            <leftValueReference>varTicketToCreate.pro_Assembly__c</leftValueReference>
-                            <operator>IsNull</operator>
-                            <rightValue>
-                                <booleanValue>false</booleanValue>
-                            </rightValue>
-                        </conditions>
-                    </visibilityRule>
-                </fields>
-                <inputParameters>
-                    <name>width</name>
-                    <value>
-                        <stringValue>2</stringValue>
-                    </value>
-                </inputParameters>
-                <isRequired>false</isRequired>
-            </fields>
-            <fields>
-                <name>RelatedAssembliesScreen_Section1_Column2</name>
-                <fieldType>Region</fieldType>
-                <inputParameters>
-                    <name>width</name>
-                    <value>
-                        <stringValue>6</stringValue>
-                    </value>
-                </inputParameters>
-                <isRequired>false</isRequired>
-            </fields>
-            <fields>
-                <name>RelatedAssembliesScreen_Section1_Column3</name>
-                <fieldType>Region</fieldType>
-                <inputParameters>
-                    <name>width</name>
-                    <value>
-                        <stringValue>4</stringValue>
-                    </value>
-                </inputParameters>
-                <isRequired>false</isRequired>
-            </fields>
-            <isRequired>false</isRequired>
-            <regionContainerType>SectionWithoutHeader</regionContainerType>
-        </fields>
-        <fields>
-            <name>RelatedAssembliesScreen_Section2</name>
-            <fieldType>RegionContainer</fieldType>
-            <fields>
-                <name>RelatedAssembliesScreen_Section2_Column1</name>
-                <fieldType>Region</fieldType>
-                <fields>
-                    <name>dt_DisplayRelatedAssemblies</name>
-                    <dataTypeMappings>
-                        <typeName>T</typeName>
-                        <typeValue>leaseworks__Constituent_Assembly__c</typeValue>
-                    </dataTypeMappings>
-                    <extensionName>flowruntime:datatable</extensionName>
-                    <fieldType>ComponentInstance</fieldType>
-                    <inputParameters>
-                        <name>label</name>
-                        <value>
-                            <stringValue>Select An Assembly</stringValue>
-                        </value>
-                    </inputParameters>
-                    <inputParameters>
-                        <name>selectionMode</name>
-                        <value>
-                            <stringValue>SINGLE_SELECT</stringValue>
-                        </value>
-                    </inputParameters>
-                    <inputParameters>
-                        <name>minRowSelection</name>
-                        <value>
-                            <numberValue>0.0</numberValue>
-                        </value>
-                    </inputParameters>
-                    <inputParameters>
-                        <name>tableData</name>
-                        <value>
-                            <elementReference>df_FetchRelatedAssemblies.retrievedRecords</elementReference>
-                        </value>
-                    </inputParameters>
-                    <inputParameters>
-                        <name>maxRowSelection</name>
-                        <value>
-                            <numberValue>1.0</numberValue>
-                        </value>
-                    </inputParameters>
-                    <inputParameters>
-                        <name>columns</name>
-                        <value>
-                            <stringValue>[{&quot;apiName&quot;:&quot;leaseworks__Type__c&quot;,&quot;guid&quot;:&quot;column-8063&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:false,&quot;customHeaderLabel&quot;:&quot;&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:0,&quot;label&quot;:&quot;Assembly Type&quot;,&quot;type&quot;:&quot;text&quot;},{&quot;apiName&quot;:&quot;Name&quot;,&quot;guid&quot;:&quot;column-19c2&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:false,&quot;customHeaderLabel&quot;:&quot;&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:1,&quot;label&quot;:&quot;Assembly Name&quot;,&quot;type&quot;:&quot;text&quot;},{&quot;apiName&quot;:&quot;leaseworks__Last_CSN_Utilization__c&quot;,&quot;guid&quot;:&quot;column-f955&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:false,&quot;customHeaderLabel&quot;:&quot;&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:2,&quot;label&quot;:&quot;Last CSN (Utilization)&quot;,&quot;type&quot;:&quot;number&quot;},{&quot;apiName&quot;:&quot;leaseworks__Last_TSN_Utilization__c&quot;,&quot;guid&quot;:&quot;column-3166&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:false,&quot;customHeaderLabel&quot;:&quot;&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:3,&quot;label&quot;:&quot;Last TSN (Utilization)&quot;,&quot;type&quot;:&quot;number&quot;},{&quot;apiName&quot;:&quot;leaseworks__Comments__c&quot;,&quot;guid&quot;:&quot;column-eb9a&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:false,&quot;customHeaderLabel&quot;:&quot;&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:4,&quot;label&quot;:&quot;Comments&quot;,&quot;type&quot;:&quot;text&quot;}]</stringValue>
-                        </value>
-                    </inputParameters>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-                    <isRequired>true</isRequired>
-                    <storeOutputAutomatically>true</storeOutputAutomatically>
-                </fields>
-                <fields>
-                    <name>df_FetchRelatedAssemblies</name>
-                    <dataTypeMappings>
-                        <typeName>T</typeName>
-                        <typeValue>leaseworks__Constituent_Assembly__c</typeValue>
-                    </dataTypeMappings>
-                    <dataTypeMappings>
-                        <typeName>S</typeName>
-                        <typeValue>Account</typeValue>
-                    </dataTypeMappings>
-                    <extensionName>joshdaymentlabs:dataFetcher</extensionName>
-                    <fieldType>ComponentInstance</fieldType>
-                    <inputParameters>
-                        <name>objectName1</name>
-                        <value>
-                            <stringValue>leaseworks__Constituent_Assembly__c</stringValue>
-                        </value>
-                    </inputParameters>
-                    <inputParameters>
-                        <name>queryString</name>
-                        <value>
-                            <elementReference>f_QueryRelatedAssemblies</elementReference>
-                        </value>
-                    </inputParameters>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-                    <isRequired>true</isRequired>
-                    <storeOutputAutomatically>true</storeOutputAutomatically>
-                </fields>
-                <inputParameters>
-                    <name>width</name>
-                    <value>
-                        <stringValue>12</stringValue>
-                    </value>
-                </inputParameters>
-                <isRequired>false</isRequired>
-            </fields>
-            <isRequired>false</isRequired>
-            <regionContainerType>SectionWithoutHeader</regionContainerType>
-        </fields>
-        <nextOrFinishButtonLabel>Link Assembly</nextOrFinishButtonLabel>
-        <showFooter>true</showFooter>
-        <showHeader>false</showHeader>
-    </screens>
-    <screens>
-        <name>RelatedUtilizationsScreen</name>
-        <label>RelatedUtilizationsScreen</label>
-        <locationX>710</locationX>
-        <locationY>890</locationY>
-        <allowBack>true</allowBack>
-        <allowFinish>true</allowFinish>
-        <allowPause>false</allowPause>
-        <backButtonLabel>Return To Ticket</backButtonLabel>
-        <connector>
-            <targetReference>Remove_Or_Link_Utilization</targetReference>
-        </connector>
-        <fields>
-            <name>SelectUtilizationHeading</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 18px;&quot;&gt;Link To Utilization To Ticket&lt;/span&gt;&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-        </fields>
-        <fields>
-            <name>RelatedUtilizationsScreen_Section1</name>
-            <fieldType>RegionContainer</fieldType>
-            <fields>
-                <name>RelatedUtilizationsScreen_Section1_Column1</name>
-                <fieldType>Region</fieldType>
-                <fields>
-                    <name>CurrentlyLinkedUtilization</name>
-                    <fieldText>&lt;p&gt;&lt;u style=&quot;color: rgb(16, 128, 8);&quot;&gt;Currently Linked Utilization:&lt;/u&gt;&lt;span style=&quot;color: rgb(16, 128, 8);&quot;&gt; {!varTicketToCreate.pro_Utilization__r.Name}&lt;/span&gt;&lt;/p&gt;</fieldText>
-                    <fieldType>DisplayText</fieldType>
-                    <visibilityRule>
-                        <conditionLogic>and</conditionLogic>
-                        <conditions>
-                            <leftValueReference>varTicketToCreate.pro_Utilization__c</leftValueReference>
-                            <operator>IsNull</operator>
-                            <rightValue>
-                                <booleanValue>false</booleanValue>
-                            </rightValue>
-                        </conditions>
-                    </visibilityRule>
-                </fields>
-                <fields>
-                    <name>bb_RemoveLinkedUtilization</name>
-                    <extensionName>c:fsc_flowButtonBar</extensionName>
-                    <fieldType>ComponentInstance</fieldType>
-                    <inputParameters>
-                        <name>alignment</name>
-                        <value>
-                            <stringValue>left</stringValue>
-                        </value>
-                    </inputParameters>
-                    <inputParameters>
-                        <name>orientation</name>
-                        <value>
-                            <stringValue>horizontal</stringValue>
-                        </value>
-                    </inputParameters>
-                    <inputParameters>
-                        <name>showLines</name>
-                        <value>
-                            <stringValue>neither</stringValue>
-                        </value>
-                    </inputParameters>
-                    <inputParameters>
-                        <name>actionMode</name>
-                        <value>
-                            <stringValue>navigation</stringValue>
-                        </value>
-                    </inputParameters>
-                    <inputParameters>
-                        <name>buttons</name>
-                        <value>
-                            <stringValue>[{&quot;label&quot;:&quot;Remove Link To Utilization&quot;,&quot;value&quot;:&quot;Remove Link To Utilization&quot;,&quot;iconPosition&quot;:&quot;left&quot;,&quot;variant&quot;:&quot;destructive&quot;,&quot;index&quot;:0}]</stringValue>
-                        </value>
-                    </inputParameters>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-                    <isRequired>true</isRequired>
-                    <storeOutputAutomatically>true</storeOutputAutomatically>
-                    <visibilityRule>
-                        <conditionLogic>and</conditionLogic>
-                        <conditions>
-                            <leftValueReference>varTicketToCreate.pro_Utilization__c</leftValueReference>
-                            <operator>IsNull</operator>
-                            <rightValue>
-                                <booleanValue>false</booleanValue>
-                            </rightValue>
-                        </conditions>
-                    </visibilityRule>
-                </fields>
-                <inputParameters>
-                    <name>width</name>
-                    <value>
-                        <stringValue>2</stringValue>
-                    </value>
-                </inputParameters>
-                <isRequired>false</isRequired>
-            </fields>
-            <fields>
-                <name>RelatedUtilizationsScreen_Section1_Column2</name>
-                <fieldType>Region</fieldType>
-                <inputParameters>
-                    <name>width</name>
-                    <value>
-                        <stringValue>6</stringValue>
-                    </value>
-                </inputParameters>
-                <isRequired>false</isRequired>
-            </fields>
-            <fields>
-                <name>RelatedUtilizationsScreen_Section1_Column3</name>
-                <fieldType>Region</fieldType>
-                <inputParameters>
-                    <name>width</name>
-                    <value>
-                        <stringValue>4</stringValue>
-                    </value>
-                </inputParameters>
-                <isRequired>false</isRequired>
-            </fields>
-            <isRequired>false</isRequired>
-            <regionContainerType>SectionWithoutHeader</regionContainerType>
-        </fields>
-        <fields>
-            <name>RelatedUtilizationsScreen_Section2</name>
-            <fieldType>RegionContainer</fieldType>
-            <fields>
-                <name>RelatedUtilizationsScreen_Section2_Column1</name>
-                <fieldType>Region</fieldType>
-                <fields>
-                    <name>dt_DisplayRelatedUtilizations</name>
-                    <dataTypeMappings>
-                        <typeName>T</typeName>
-                        <typeValue>leaseworks__Utilization_Report__c</typeValue>
-                    </dataTypeMappings>
-                    <extensionName>flowruntime:datatable</extensionName>
-                    <fieldType>ComponentInstance</fieldType>
-                    <inputParameters>
-                        <name>label</name>
-                        <value>
-                            <stringValue>Asset Utilizations</stringValue>
-                        </value>
-                    </inputParameters>
-                    <inputParameters>
-                        <name>selectionMode</name>
-                        <value>
-                            <stringValue>SINGLE_SELECT</stringValue>
-                        </value>
-                    </inputParameters>
-                    <inputParameters>
-                        <name>minRowSelection</name>
-                        <value>
-                            <numberValue>0.0</numberValue>
-                        </value>
-                    </inputParameters>
-                    <inputParameters>
-                        <name>tableData</name>
-                        <value>
-                            <elementReference>df_FetchRelatedUtilizations.retrievedRecords</elementReference>
-                        </value>
-                    </inputParameters>
-                    <inputParameters>
-                        <name>columns</name>
-                        <value>
-                            <stringValue>[{&quot;apiName&quot;:&quot;Name&quot;,&quot;guid&quot;:&quot;column-4d4f&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:false,&quot;customHeaderLabel&quot;:&quot;&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:0,&quot;label&quot;:&quot;Utilization Name&quot;,&quot;type&quot;:&quot;text&quot;},{&quot;apiName&quot;:&quot;leaseworks__Airframe_Cycles_Landing_During_Month__c&quot;,&quot;guid&quot;:&quot;column-f49a&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:false,&quot;customHeaderLabel&quot;:&quot;&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:1,&quot;label&quot;:&quot;Flight Cycles&quot;,&quot;type&quot;:&quot;number&quot;},{&quot;apiName&quot;:&quot;leaseworks__Airframe_Flight_Hours_Month__c&quot;,&quot;guid&quot;:&quot;column-50be&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:false,&quot;customHeaderLabel&quot;:&quot;&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:2,&quot;label&quot;:&quot;Flight Hours&quot;,&quot;type&quot;:&quot;number&quot;},{&quot;apiName&quot;:&quot;leaseworks__Engineering_Modifications_or_Changes__c&quot;,&quot;guid&quot;:&quot;column-adb5&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:false,&quot;customHeaderLabel&quot;:&quot;&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:3,&quot;label&quot;:&quot;_Internal Comments&quot;,&quot;type&quot;:&quot;text&quot;}]</stringValue>
-                        </value>
-                    </inputParameters>
-                    <inputParameters>
-                        <name>isShowSearchBar</name>
-                        <value>
-                            <booleanValue>true</booleanValue>
-                        </value>
-                    </inputParameters>
-                    <inputParameters>
-                        <name>maxRowSelection</name>
-                        <value>
-                            <numberValue>1.0</numberValue>
-                        </value>
-                    </inputParameters>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-                    <isRequired>true</isRequired>
-                    <storeOutputAutomatically>true</storeOutputAutomatically>
-                </fields>
-                <fields>
-                    <name>df_FetchRelatedUtilizations</name>
-                    <dataTypeMappings>
-                        <typeName>T</typeName>
-                        <typeValue>leaseworks__Utilization_Report__c</typeValue>
-                    </dataTypeMappings>
-                    <dataTypeMappings>
-                        <typeName>S</typeName>
-                        <typeValue>Account</typeValue>
-                    </dataTypeMappings>
-                    <extensionName>joshdaymentlabs:dataFetcher</extensionName>
-                    <fieldType>ComponentInstance</fieldType>
-                    <inputParameters>
-                        <name>objectName1</name>
-                        <value>
-                            <stringValue>leaseworks__Utilization_Report__c</stringValue>
-                        </value>
-                    </inputParameters>
-                    <inputParameters>
-                        <name>queryString</name>
-                        <value>
-                            <elementReference>f_QueryRelatedUtilizations</elementReference>
-                        </value>
-                    </inputParameters>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-                    <isRequired>true</isRequired>
-                    <storeOutputAutomatically>true</storeOutputAutomatically>
-                </fields>
-                <inputParameters>
-                    <name>width</name>
-                    <value>
-                        <stringValue>12</stringValue>
-                    </value>
-                </inputParameters>
-                <isRequired>false</isRequired>
-            </fields>
-            <isRequired>false</isRequired>
-            <regionContainerType>SectionWithoutHeader</regionContainerType>
-        </fields>
-        <nextOrFinishButtonLabel>Link Utilization</nextOrFinishButtonLabel>
-        <showFooter>true</showFooter>
-        <showHeader>false</showHeader>
-    </screens>
-    <screens>
         <name>TicketCreationInputScreen</name>
         <label>TicketCreationInputScreen</label>
-        <locationX>2613</locationX>
-        <locationY>458</locationY>
+        <locationX>1370</locationX>
+        <locationY>2162</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -1818,7 +2181,7 @@ AND(
                 <fields>
                     <fieldType>ObjectProvided</fieldType>
                     <isRequired>false</isRequired>
-                    <objectFieldReference>varTicketToCreate.pro_Assigned_To__c</objectFieldReference>
+                    <objectFieldReference>varTicketAssigneeToCreate.pro_Assigned_To__c</objectFieldReference>
                 </fields>
                 <fields>
                     <name>Requested_By</name>
@@ -1892,6 +2255,11 @@ AND(
             <fields>
                 <name>TicketCreationInputScreen_Section1_Column2</name>
                 <fieldType>Region</fieldType>
+                <fields>
+                    <fieldType>ObjectProvided</fieldType>
+                    <isRequired>false</isRequired>
+                    <objectFieldReference>varTicketAssigneeToCreate.pro_Assignee_Instruction__c</objectFieldReference>
+                </fields>
                 <fields>
                     <name>Status</name>
                     <choiceReferences>c_New_Choice</choiceReferences>
@@ -2001,6 +2369,64 @@ AND(
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <storeOutputAutomatically>true</storeOutputAutomatically>
+                    <visibilityRule>
+                        <conditionLogic>and</conditionLogic>
+                        <conditions>
+                            <leftValueReference>Select_a_Ticket_type</leftValueReference>
+                            <operator>NotEqualTo</operator>
+                            <rightValue>
+                                <stringValue>Lease Management</stringValue>
+                            </rightValue>
+                        </conditions>
+                    </visibilityRule>
+                </fields>
+                <fields>
+                    <name>LeaseRequiredLookup</name>
+                    <extensionName>flowruntime:lookup</extensionName>
+                    <fieldType>ComponentInstance</fieldType>
+                    <inputParameters>
+                        <name>fieldApiName</name>
+                        <value>
+                            <stringValue>pro_Lease__c</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>label</name>
+                        <value>
+                            <stringValue>Lease</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>objectApiName</name>
+                        <value>
+                            <stringValue>pro_Ticket__c</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>required</name>
+                        <value>
+                            <booleanValue>true</booleanValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>recordId</name>
+                        <value>
+                            <elementReference>recordId.pro_Lease__c</elementReference>
+                        </value>
+                    </inputParameters>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>true</isRequired>
+                    <storeOutputAutomatically>true</storeOutputAutomatically>
+                    <visibilityRule>
+                        <conditionLogic>and</conditionLogic>
+                        <conditions>
+                            <leftValueReference>Select_a_Ticket_type</leftValueReference>
+                            <operator>EqualTo</operator>
+                            <rightValue>
+                                <stringValue>Lease Management</stringValue>
+                            </rightValue>
+                        </conditions>
+                    </visibilityRule>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -2019,102 +2445,6 @@ AND(
             <fields>
                 <name>TicketCreationInputScreen_Section3_Column1</name>
                 <fieldType>Region</fieldType>
-                <fields>
-                    <name>Non_Carlyle_Asset</name>
-                    <dataType>Boolean</dataType>
-                    <defaultValue>
-                        <elementReference>varTicketToCreate.pro_Non_Carlyle_Asset__c</elementReference>
-                    </defaultValue>
-                    <fieldText>Non Carlyle Asset</fieldText>
-                    <fieldType>InputField</fieldType>
-                    <helpText>&lt;p&gt;Click this if it&#39;s not a Carlyle asset or if it&#39;s a non-asset-specific request.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Once checked, a field called Non Carlyle Asset MSN will appear and must be filled in.&lt;/p&gt;</helpText>
-                    <isRequired>true</isRequired>
-                </fields>
-                <fields>
-                    <name>AssetLookup</name>
-                    <extensionName>flowruntime:lookup</extensionName>
-                    <fieldType>ComponentInstance</fieldType>
-                    <inputParameters>
-                        <name>objectApiName</name>
-                        <value>
-                            <stringValue>pro_Ticket__c</stringValue>
-                        </value>
-                    </inputParameters>
-                    <inputParameters>
-                        <name>fieldApiName</name>
-                        <value>
-                            <stringValue>pro_Asset__c</stringValue>
-                        </value>
-                    </inputParameters>
-                    <inputParameters>
-                        <name>label</name>
-                        <value>
-                            <stringValue>Asset</stringValue>
-                        </value>
-                    </inputParameters>
-                    <inputParameters>
-                        <name>recordId</name>
-                        <value>
-                            <elementReference>recordId.pro_Asset__c</elementReference>
-                        </value>
-                    </inputParameters>
-                    <inputParameters>
-                        <name>required</name>
-                        <value>
-                            <booleanValue>false</booleanValue>
-                        </value>
-                    </inputParameters>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-                    <isRequired>true</isRequired>
-                    <storeOutputAutomatically>true</storeOutputAutomatically>
-                    <visibilityRule>
-                        <conditionLogic>and</conditionLogic>
-                        <conditions>
-                            <leftValueReference>Non_Carlyle_Asset</leftValueReference>
-                            <operator>EqualTo</operator>
-                            <rightValue>
-                                <booleanValue>false</booleanValue>
-                            </rightValue>
-                        </conditions>
-                    </visibilityRule>
-                </fields>
-                <fields>
-                    <fieldType>ObjectProvided</fieldType>
-                    <isRequired>false</isRequired>
-                    <objectFieldReference>varTicketToCreate.pro_Non_Carlyle_Asset_MSN__c</objectFieldReference>
-                    <visibilityRule>
-                        <conditionLogic>and</conditionLogic>
-                        <conditions>
-                            <leftValueReference>Non_Carlyle_Asset</leftValueReference>
-                            <operator>EqualTo</operator>
-                            <rightValue>
-                                <booleanValue>true</booleanValue>
-                            </rightValue>
-                        </conditions>
-                    </visibilityRule>
-                </fields>
-                <fields>
-                    <name>LinkedAssemblyDisplay</name>
-                    <fieldText>&lt;p&gt;&lt;u style=&quot;color: rgb(16, 128, 8);&quot;&gt;Linked&lt;/u&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(16, 128, 8);&quot;&gt;Assembly: {!varTicketToCreate.pro_Assembly__r.Name}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(16, 128, 8);&quot;&gt;Utilization: {!varTicketToCreate.pro_Utilization__r.Name}&lt;/span&gt;&lt;/p&gt;</fieldText>
-                    <fieldType>DisplayText</fieldType>
-                    <visibilityRule>
-                        <conditionLogic>or</conditionLogic>
-                        <conditions>
-                            <leftValueReference>varTicketToCreate.pro_Assembly__c</leftValueReference>
-                            <operator>IsNull</operator>
-                            <rightValue>
-                                <booleanValue>false</booleanValue>
-                            </rightValue>
-                        </conditions>
-                        <conditions>
-                            <leftValueReference>varTicketToCreate.pro_Utilization__c</leftValueReference>
-                            <operator>IsNull</operator>
-                            <rightValue>
-                                <booleanValue>false</booleanValue>
-                            </rightValue>
-                        </conditions>
-                    </visibilityRule>
-                </fields>
                 <inputParameters>
                     <name>width</name>
                     <value>
@@ -2126,60 +2456,6 @@ AND(
             <fields>
                 <name>TicketCreationInputScreen_Section3_Column2</name>
                 <fieldType>Region</fieldType>
-                <fields>
-                    <name>AssembliesAndUtilizationsButtons</name>
-                    <extensionName>c:fsc_flowButtonBar</extensionName>
-                    <fieldType>ComponentInstance</fieldType>
-                    <inputParameters>
-                        <name>alignment</name>
-                        <value>
-                            <stringValue>left</stringValue>
-                        </value>
-                    </inputParameters>
-                    <inputParameters>
-                        <name>orientation</name>
-                        <value>
-                            <stringValue>horizontal</stringValue>
-                        </value>
-                    </inputParameters>
-                    <inputParameters>
-                        <name>showLines</name>
-                        <value>
-                            <stringValue>neither</stringValue>
-                        </value>
-                    </inputParameters>
-                    <inputParameters>
-                        <name>actionMode</name>
-                        <value>
-                            <stringValue>navigation</stringValue>
-                        </value>
-                    </inputParameters>
-                    <inputParameters>
-                        <name>buttons</name>
-                        <value>
-                            <stringValue>[{&quot;label&quot;:&quot;Assembly&quot;,&quot;value&quot;:&quot;Assemblies&quot;,&quot;iconPosition&quot;:&quot;left&quot;,&quot;variant&quot;:&quot;brand-outline&quot;,&quot;index&quot;:0},{&quot;label&quot;:&quot;Utilization&quot;,&quot;value&quot;:&quot;Utilizations&quot;,&quot;iconPosition&quot;:&quot;left&quot;,&quot;variant&quot;:&quot;brand-outline&quot;,&quot;index&quot;:1}]</stringValue>
-                        </value>
-                    </inputParameters>
-                    <inputParameters>
-                        <name>label</name>
-                        <value>
-                            <stringValue>Manage Link To:</stringValue>
-                        </value>
-                    </inputParameters>
-                    <inputsOnNextNavToAssocScrn>ResetValues</inputsOnNextNavToAssocScrn>
-                    <isRequired>true</isRequired>
-                    <storeOutputAutomatically>true</storeOutputAutomatically>
-                    <visibilityRule>
-                        <conditionLogic>and</conditionLogic>
-                        <conditions>
-                            <leftValueReference>AssetLookup.recordId</leftValueReference>
-                            <operator>IsNull</operator>
-                            <rightValue>
-                                <booleanValue>false</booleanValue>
-                            </rightValue>
-                        </conditions>
-                    </visibilityRule>
-                </fields>
                 <inputParameters>
                     <name>width</name>
                     <value>
@@ -2217,6 +2493,11 @@ AND(
                     <fieldType>ObjectProvided</fieldType>
                     <isRequired>false</isRequired>
                     <objectFieldReference>varTicketToCreate.pro_Technical_Project__c</objectFieldReference>
+                </fields>
+                <fields>
+                    <fieldType>ObjectProvided</fieldType>
+                    <isRequired>false</isRequired>
+                    <objectFieldReference>varTicketToCreate.pro_Claim__c</objectFieldReference>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -2256,13 +2537,13 @@ AND(
                     <elementReference>varTicketToCreate.Id</elementReference>
                 </value>
             </inputParameters>
-            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <inputsOnNextNavToAssocScrn>ResetValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
             <storeOutputAutomatically>true</storeOutputAutomatically>
         </fields>
         <fields>
             <name>UploadedFileNames</name>
-            <fieldText>&lt;p&gt;{!TicketFileUpload.fileNames}&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgb(8, 176, 42);&quot;&gt;{!f_ExistingAndNewDocuments}&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
@@ -2284,7 +2565,7 @@ AND(
                     <inputParameters>
                         <name>value</name>
                         <value>
-                            <elementReference>recordId.pro_Sharefile_Link__c</elementReference>
+                            <elementReference>recordId.pro_Sharefile_Link_Long__c</elementReference>
                         </value>
                     </inputParameters>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
@@ -2310,7 +2591,7 @@ AND(
                     <inputParameters>
                         <name>value</name>
                         <value>
-                            <elementReference>recordId.pro_ATS_Link__c</elementReference>
+                            <elementReference>recordId.pro_ATS_Link_Long__c</elementReference>
                         </value>
                     </inputParameters>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
@@ -2341,7 +2622,7 @@ AND(
                     <inputParameters>
                         <name>value</name>
                         <value>
-                            <elementReference>recordId.pro_Internal_Sharepoint_Link__c</elementReference>
+                            <elementReference>recordId.pro_Internal_Sharepoint_Link_Long__c</elementReference>
                         </value>
                     </inputParameters>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
@@ -2359,18 +2640,630 @@ AND(
             <isRequired>false</isRequired>
             <regionContainerType>SectionWithoutHeader</regionContainerType>
         </fields>
-        <nextOrFinishButtonLabel>Create Ticket</nextOrFinishButtonLabel>
+        <nextOrFinishButtonLabel>Ticket Management</nextOrFinishButtonLabel>
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
     </screens>
+    <screens>
+        <name>TicketManagementScreen</name>
+        <label>TicketManagementScreen</label>
+        <locationX>1370</locationX>
+        <locationY>3110</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Set_Non_Carlyle_Asset_on_Ticket_To_Create_Variable</targetReference>
+        </connector>
+        <fields>
+            <name>Current_Attachments</name>
+            <fieldText>Current Attachments</fieldText>
+            <fieldType>RegionContainer</fieldType>
+            <fields>
+                <name>Current_Attachments_Column1</name>
+                <fieldType>Region</fieldType>
+                <fields>
+                    <name>dt_DisplayCurrentAssets</name>
+                    <dataTypeMappings>
+                        <typeName>T</typeName>
+                        <typeValue>leaseworks__Aircraft__c</typeValue>
+                    </dataTypeMappings>
+                    <extensionName>flowruntime:datatable</extensionName>
+                    <fieldType>ComponentInstance</fieldType>
+                    <inputParameters>
+                        <name>label</name>
+                        <value>
+                            <stringValue>Assets on Sub-Ticket</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>selectionMode</name>
+                        <value>
+                            <stringValue>MULTI_SELECT</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>minRowSelection</name>
+                        <value>
+                            <numberValue>0.0</numberValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>shouldDisplayLabel</name>
+                        <value>
+                            <booleanValue>true</booleanValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>tableData</name>
+                        <value>
+                            <elementReference>varAssetsToAttch</elementReference>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>columns</name>
+                        <value>
+                            <stringValue>[{&quot;apiName&quot;:&quot;Name&quot;,&quot;guid&quot;:&quot;column-3143&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:false,&quot;customHeaderLabel&quot;:&quot;&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:0,&quot;label&quot;:&quot;Name&quot;,&quot;type&quot;:&quot;text&quot;},{&quot;apiName&quot;:&quot;leaseworks__Asset_Type_GP__c&quot;,&quot;guid&quot;:&quot;column-d9ad&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:false,&quot;customHeaderLabel&quot;:&quot;&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:1,&quot;label&quot;:&quot;Asset Type&quot;,&quot;type&quot;:&quot;text&quot;}]</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>true</isRequired>
+                    <storeOutputAutomatically>true</storeOutputAutomatically>
+                </fields>
+                <inputParameters>
+                    <name>width</name>
+                    <value>
+                        <stringValue>6</stringValue>
+                    </value>
+                </inputParameters>
+                <isRequired>false</isRequired>
+            </fields>
+            <fields>
+                <name>Current_Attachments_Column2</name>
+                <fieldType>Region</fieldType>
+                <fields>
+                    <name>dt_DisplayCurrentAssemblies</name>
+                    <dataTypeMappings>
+                        <typeName>T</typeName>
+                        <typeValue>leaseworks__Constituent_Assembly__c</typeValue>
+                    </dataTypeMappings>
+                    <extensionName>flowruntime:datatable</extensionName>
+                    <fieldType>ComponentInstance</fieldType>
+                    <inputParameters>
+                        <name>label</name>
+                        <value>
+                            <stringValue>Assemblies on Sub-Ticket</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>selectionMode</name>
+                        <value>
+                            <stringValue>MULTI_SELECT</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>minRowSelection</name>
+                        <value>
+                            <numberValue>0.0</numberValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>columns</name>
+                        <value>
+                            <stringValue>[{&quot;apiName&quot;:&quot;Name&quot;,&quot;guid&quot;:&quot;column-8c30&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:false,&quot;customHeaderLabel&quot;:&quot;&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:0,&quot;label&quot;:&quot;Assembly Name&quot;,&quot;type&quot;:&quot;text&quot;},{&quot;apiName&quot;:&quot;leaseworks__Type__c&quot;,&quot;guid&quot;:&quot;column-a2ed&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:false,&quot;customHeaderLabel&quot;:&quot;&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:1,&quot;label&quot;:&quot;Assembly Type&quot;,&quot;type&quot;:&quot;text&quot;}]</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>shouldDisplayLabel</name>
+                        <value>
+                            <booleanValue>true</booleanValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>tableData</name>
+                        <value>
+                            <elementReference>varAssembliesToAttach</elementReference>
+                        </value>
+                    </inputParameters>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>true</isRequired>
+                    <storeOutputAutomatically>true</storeOutputAutomatically>
+                </fields>
+                <fields>
+                    <name>bb_RemoveSelectedRecords</name>
+                    <extensionName>c:fsc_flowButtonBar</extensionName>
+                    <fieldType>ComponentInstance</fieldType>
+                    <inputParameters>
+                        <name>alignment</name>
+                        <value>
+                            <stringValue>right</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>orientation</name>
+                        <value>
+                            <stringValue>horizontal</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>showLines</name>
+                        <value>
+                            <stringValue>neither</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>actionMode</name>
+                        <value>
+                            <stringValue>navigation</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>buttons</name>
+                        <value>
+                            <stringValue>[{&quot;label&quot;:&quot;Remove Selected Records&quot;,&quot;value&quot;:&quot;Remove Selected Records&quot;,&quot;iconPosition&quot;:&quot;left&quot;,&quot;variant&quot;:&quot;destructive-text&quot;,&quot;index&quot;:0}]</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputsOnNextNavToAssocScrn>ResetValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>true</isRequired>
+                    <storeOutputAutomatically>true</storeOutputAutomatically>
+                    <visibilityRule>
+                        <conditionLogic>or</conditionLogic>
+                        <conditions>
+                            <leftValueReference>dt_DisplayCurrentAssets.firstSelectedRow.Id</leftValueReference>
+                            <operator>IsNull</operator>
+                            <rightValue>
+                                <booleanValue>false</booleanValue>
+                            </rightValue>
+                        </conditions>
+                        <conditions>
+                            <leftValueReference>dt_DisplayCurrentAssemblies.firstSelectedRow.Id</leftValueReference>
+                            <operator>IsNull</operator>
+                            <rightValue>
+                                <booleanValue>false</booleanValue>
+                            </rightValue>
+                        </conditions>
+                    </visibilityRule>
+                </fields>
+                <inputParameters>
+                    <name>width</name>
+                    <value>
+                        <stringValue>6</stringValue>
+                    </value>
+                </inputParameters>
+                <isRequired>false</isRequired>
+            </fields>
+            <isRequired>false</isRequired>
+            <regionContainerType>SectionWithHeader</regionContainerType>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>Non_Carlyle_Asset</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>false</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>Search_Attachments</name>
+            <fieldText>Search Attachments</fieldText>
+            <fieldType>RegionContainer</fieldType>
+            <fields>
+                <name>Search_Attachments_Column1</name>
+                <fieldType>Region</fieldType>
+                <fields>
+                    <name>Serial_Number</name>
+                    <dataType>String</dataType>
+                    <defaultValue>
+                        <elementReference>varSerialNumberPlaceholder</elementReference>
+                    </defaultValue>
+                    <fieldText>Serial Number</fieldText>
+                    <fieldType>InputField</fieldType>
+                    <isRequired>false</isRequired>
+                    <visibilityRule>
+                        <conditionLogic>and</conditionLogic>
+                        <conditions>
+                            <leftValueReference>Non_Carlyle_Asset</leftValueReference>
+                            <operator>EqualTo</operator>
+                            <rightValue>
+                                <booleanValue>false</booleanValue>
+                            </rightValue>
+                        </conditions>
+                    </visibilityRule>
+                </fields>
+                <fields>
+                    <fieldType>ObjectProvided</fieldType>
+                    <isRequired>false</isRequired>
+                    <objectFieldReference>varTicketToCreate.pro_Non_Carlyle_Asset_MSN__c</objectFieldReference>
+                    <visibilityRule>
+                        <conditionLogic>and</conditionLogic>
+                        <conditions>
+                            <leftValueReference>Non_Carlyle_Asset</leftValueReference>
+                            <operator>EqualTo</operator>
+                            <rightValue>
+                                <booleanValue>true</booleanValue>
+                            </rightValue>
+                        </conditions>
+                    </visibilityRule>
+                </fields>
+                <fields>
+                    <name>dt_AllAssets</name>
+                    <dataTypeMappings>
+                        <typeName>T</typeName>
+                        <typeValue>leaseworks__Aircraft__c</typeValue>
+                    </dataTypeMappings>
+                    <extensionName>flowruntime:datatable</extensionName>
+                    <fieldType>ComponentInstance</fieldType>
+                    <inputParameters>
+                        <name>label</name>
+                        <value>
+                            <stringValue>Assets</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>selectionMode</name>
+                        <value>
+                            <stringValue>MULTI_SELECT</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>minRowSelection</name>
+                        <value>
+                            <numberValue>0.0</numberValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>shouldDisplayLabel</name>
+                        <value>
+                            <booleanValue>true</booleanValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>tableData</name>
+                        <value>
+                            <elementReference>df_FetchAssets.retrievedRecords</elementReference>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>columns</name>
+                        <value>
+                            <stringValue>[{&quot;apiName&quot;:&quot;Name&quot;,&quot;guid&quot;:&quot;column-60ce&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:false,&quot;customHeaderLabel&quot;:&quot;&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:0,&quot;label&quot;:&quot;Name&quot;,&quot;type&quot;:&quot;text&quot;},{&quot;apiName&quot;:&quot;leaseworks__Asset_Type_GP__c&quot;,&quot;guid&quot;:&quot;column-bdd7&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:false,&quot;customHeaderLabel&quot;:&quot;&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:1,&quot;label&quot;:&quot;Asset Type&quot;,&quot;type&quot;:&quot;text&quot;}]</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>true</isRequired>
+                    <storeOutputAutomatically>true</storeOutputAutomatically>
+                    <visibilityRule>
+                        <conditionLogic>and</conditionLogic>
+                        <conditions>
+                            <leftValueReference>Non_Carlyle_Asset</leftValueReference>
+                            <operator>EqualTo</operator>
+                            <rightValue>
+                                <booleanValue>false</booleanValue>
+                            </rightValue>
+                        </conditions>
+                    </visibilityRule>
+                </fields>
+                <fields>
+                    <name>df_FetchAssets</name>
+                    <dataTypeMappings>
+                        <typeName>T</typeName>
+                        <typeValue>leaseworks__Aircraft__c</typeValue>
+                    </dataTypeMappings>
+                    <dataTypeMappings>
+                        <typeName>S</typeName>
+                        <typeValue>Account</typeValue>
+                    </dataTypeMappings>
+                    <extensionName>joshdaymentlabs:dataFetcher</extensionName>
+                    <fieldType>ComponentInstance</fieldType>
+                    <inputParameters>
+                        <name>objectName1</name>
+                        <value>
+                            <stringValue>leaseworks__Aircraft__c</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>queryString</name>
+                        <value>
+                            <elementReference>f_AssetsQuery</elementReference>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>debounceTime</name>
+                        <value>
+                            <stringValue>800</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>true</isRequired>
+                    <storeOutputAutomatically>true</storeOutputAutomatically>
+                </fields>
+                <inputParameters>
+                    <name>width</name>
+                    <value>
+                        <stringValue>6</stringValue>
+                    </value>
+                </inputParameters>
+                <isRequired>false</isRequired>
+            </fields>
+            <fields>
+                <name>Search_Attachments_Column2</name>
+                <fieldType>Region</fieldType>
+                <fields>
+                    <name>Non_Carlyle_Asset</name>
+                    <dataType>Boolean</dataType>
+                    <defaultValue>
+                        <elementReference>recordId.pro_Non_Carlyle_Asset__c</elementReference>
+                    </defaultValue>
+                    <fieldText>Non Carlyle Asset</fieldText>
+                    <fieldType>InputField</fieldType>
+                    <isRequired>true</isRequired>
+                </fields>
+                <fields>
+                    <name>Blank</name>
+                    <fieldText>&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                </fields>
+                <fields>
+                    <name>dt_AllAssemblies</name>
+                    <dataTypeMappings>
+                        <typeName>T</typeName>
+                        <typeValue>leaseworks__Constituent_Assembly__c</typeValue>
+                    </dataTypeMappings>
+                    <extensionName>flowruntime:datatable</extensionName>
+                    <fieldType>ComponentInstance</fieldType>
+                    <inputParameters>
+                        <name>label</name>
+                        <value>
+                            <stringValue>Assemblies</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>selectionMode</name>
+                        <value>
+                            <stringValue>MULTI_SELECT</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>minRowSelection</name>
+                        <value>
+                            <numberValue>0.0</numberValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>shouldDisplayLabel</name>
+                        <value>
+                            <booleanValue>true</booleanValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>columns</name>
+                        <value>
+                            <stringValue>[{&quot;apiName&quot;:&quot;Name&quot;,&quot;guid&quot;:&quot;column-4289&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:false,&quot;customHeaderLabel&quot;:&quot;&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:0,&quot;label&quot;:&quot;Assembly Name&quot;,&quot;type&quot;:&quot;text&quot;},{&quot;apiName&quot;:&quot;leaseworks__Type__c&quot;,&quot;guid&quot;:&quot;column-bb38&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:false,&quot;customHeaderLabel&quot;:&quot;&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:1,&quot;label&quot;:&quot;Assembly Type&quot;,&quot;type&quot;:&quot;text&quot;}]</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>tableData</name>
+                        <value>
+                            <elementReference>df_FetchAssemblies.retrievedRecords</elementReference>
+                        </value>
+                    </inputParameters>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>true</isRequired>
+                    <storeOutputAutomatically>true</storeOutputAutomatically>
+                    <visibilityRule>
+                        <conditionLogic>and</conditionLogic>
+                        <conditions>
+                            <leftValueReference>Non_Carlyle_Asset</leftValueReference>
+                            <operator>EqualTo</operator>
+                            <rightValue>
+                                <booleanValue>false</booleanValue>
+                            </rightValue>
+                        </conditions>
+                    </visibilityRule>
+                </fields>
+                <fields>
+                    <name>bb_LinkSelectedRecords</name>
+                    <extensionName>c:fsc_flowButtonBar</extensionName>
+                    <fieldType>ComponentInstance</fieldType>
+                    <inputParameters>
+                        <name>alignment</name>
+                        <value>
+                            <stringValue>right</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>orientation</name>
+                        <value>
+                            <stringValue>horizontal</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>showLines</name>
+                        <value>
+                            <stringValue>neither</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>actionMode</name>
+                        <value>
+                            <stringValue>navigation</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>buttons</name>
+                        <value>
+                            <stringValue>[{&quot;label&quot;:&quot;Link Selected Records&quot;,&quot;value&quot;:&quot;Link Selected Records&quot;,&quot;iconPosition&quot;:&quot;left&quot;,&quot;variant&quot;:&quot;brand-outline&quot;,&quot;index&quot;:0}]</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputsOnNextNavToAssocScrn>ResetValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>true</isRequired>
+                    <storeOutputAutomatically>true</storeOutputAutomatically>
+                    <visibilityRule>
+                        <conditionLogic>or</conditionLogic>
+                        <conditions>
+                            <leftValueReference>dt_AllAssets.firstSelectedRow.Id</leftValueReference>
+                            <operator>IsNull</operator>
+                            <rightValue>
+                                <booleanValue>false</booleanValue>
+                            </rightValue>
+                        </conditions>
+                        <conditions>
+                            <leftValueReference>dt_AllAssemblies.firstSelectedRow.Id</leftValueReference>
+                            <operator>IsNull</operator>
+                            <rightValue>
+                                <booleanValue>false</booleanValue>
+                            </rightValue>
+                        </conditions>
+                    </visibilityRule>
+                </fields>
+                <fields>
+                    <name>df_FetchAssemblies</name>
+                    <dataTypeMappings>
+                        <typeName>T</typeName>
+                        <typeValue>leaseworks__Constituent_Assembly__c</typeValue>
+                    </dataTypeMappings>
+                    <dataTypeMappings>
+                        <typeName>S</typeName>
+                        <typeValue>Account</typeValue>
+                    </dataTypeMappings>
+                    <extensionName>joshdaymentlabs:dataFetcher</extensionName>
+                    <fieldType>ComponentInstance</fieldType>
+                    <inputParameters>
+                        <name>objectName1</name>
+                        <value>
+                            <stringValue>leaseworks__Constituent_Assembly__c</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>queryString</name>
+                        <value>
+                            <elementReference>f_AssembliesQuery</elementReference>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>debounceTime</name>
+                        <value>
+                            <stringValue>800</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>true</isRequired>
+                    <storeOutputAutomatically>true</storeOutputAutomatically>
+                </fields>
+                <inputParameters>
+                    <name>width</name>
+                    <value>
+                        <stringValue>6</stringValue>
+                    </value>
+                </inputParameters>
+                <isRequired>false</isRequired>
+            </fields>
+            <isRequired>false</isRequired>
+            <regionContainerType>SectionWithHeader</regionContainerType>
+        </fields>
+        <fields>
+            <name>bb_TicketManagementNavigation</name>
+            <extensionName>c:fsc_flowButtonBar</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>alignment</name>
+                <value>
+                    <stringValue>right</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>orientation</name>
+                <value>
+                    <stringValue>horizontal</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>showLines</name>
+                <value>
+                    <stringValue>neither</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>actionMode</name>
+                <value>
+                    <stringValue>navigation</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>buttons</name>
+                <value>
+                    <stringValue>[{&quot;label&quot;:&quot;Previous&quot;,&quot;value&quot;:&quot;Previous Screen&quot;,&quot;iconPosition&quot;:&quot;left&quot;,&quot;variant&quot;:&quot;neutral&quot;,&quot;index&quot;:0},{&quot;label&quot;:&quot;Create Sub-Ticket&quot;,&quot;value&quot;:&quot;Create Sub-Ticket&quot;,&quot;iconPosition&quot;:&quot;left&quot;,&quot;variant&quot;:&quot;brand&quot;,&quot;index&quot;:1}]</stringValue>
+                </value>
+            </inputParameters>
+            <inputsOnNextNavToAssocScrn>ResetValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <storeOutputAutomatically>true</storeOutputAutomatically>
+        </fields>
+        <nextOrFinishButtonLabel>Create Sub-Ticket</nextOrFinishButtonLabel>
+        <showFooter>false</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
     <start>
-        <locationX>2487</locationX>
+        <locationX>1244</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>RecordTypeScreen</targetReference>
         </connector>
     </start>
-    <status>Active</status>
+    <status>Draft</status>
+    <subflows>
+        <name>Prodigy_Auto_Prepare_Variables_To_Attach_Assets_Assemblies_To_Ticket_Flow_1</name>
+        <label>Prodigy - Auto - Prepare Variables To Attach Assets &amp; Assemblies To Ticket Flow 1</label>
+        <locationX>2921</locationX>
+        <locationY>5030</locationY>
+        <connector>
+            <targetReference>Create_Assets_On_Ticket</targetReference>
+        </connector>
+        <flowName>Prodigy_Auto_Prepare_Variables_To_Attach_Assets_Assemblies_To_Ticket</flowName>
+        <inputAssignments>
+            <name>varAssemblyToAttach</name>
+            <value>
+                <elementReference>varAssembliesToAttach</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>varAssetsToAttach</name>
+            <value>
+                <elementReference>varAssetsToAttch</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>varTicketsAndSubTickets</name>
+            <value>
+                <elementReference>varTicketsToCreate</elementReference>
+            </value>
+        </inputAssignments>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </subflows>
+    <variables>
+        <name>currentItem_Collection_Filter_1</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>leaseworks__Aircraft__c</objectType>
+    </variables>
+    <variables>
+        <name>currentItem_Collection_Filter_1_0</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>currentItem_Filter_Out_Null_Names</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
     <variables>
         <name>recordId</name>
         <dataType>SObject</dataType>
@@ -2378,6 +3271,57 @@ AND(
         <isInput>true</isInput>
         <isOutput>false</isOutput>
         <objectType>pro_Ticket__c</objectType>
+    </variables>
+    <variables>
+        <description>A collection of the Assemblies selected to be attached to the sub-ticket</description>
+        <name>varAssembliesToAttach</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>leaseworks__Constituent_Assembly__c</objectType>
+    </variables>
+    <variables>
+        <name>varAssembliesToAttachPlaceholder</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>leaseworks__Constituent_Assembly__c</objectType>
+    </variables>
+    <variables>
+        <name>varAssemblyOnTicketToCreate</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>pro_Assembly_On_Ticket__c</objectType>
+    </variables>
+    <variables>
+        <name>varAssetOnTicketToCreate</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>pro_Asset_On_Ticket__c</objectType>
+    </variables>
+    <variables>
+        <description>Used for building up list of assets minus those selected to be removed.</description>
+        <name>varAssetsToAttachPlaceholder</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>leaseworks__Aircraft__c</objectType>
+    </variables>
+    <variables>
+        <description>A collection of the Assets selected to be attached to the sub-ticket</description>
+        <name>varAssetsToAttch</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>leaseworks__Aircraft__c</objectType>
     </variables>
     <variables>
         <name>varContentDocumentIdCollection</name>
@@ -2403,11 +3347,44 @@ AND(
         <objectType>ContentDocumentLink</objectType>
     </variables>
     <variables>
+        <description>A collection of the names of Content Document files to be uploaded.</description>
+        <name>varContentDocumentNameCollection</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
         <name>varQueueId</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Placeholder variable allows for carrying over of Serial Number text input value between screen changes.</description>
+        <name>varSerialNumberPlaceholder</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Variable for the creation of an assignee to be related to the new sub-ticket</description>
+        <name>varTicketAssigneeToCreate</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>pro_Ticket_Assignee__c</objectType>
+    </variables>
+    <variables>
+        <name>varTicketsToCreate</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>pro_Ticket__c</objectType>
     </variables>
     <variables>
         <name>varTicketToCreate</name>

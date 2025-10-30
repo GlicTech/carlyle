@@ -3,11 +3,10 @@
     <fullName>leaseworks__Y_Hidden_Derate__c</fullName>
     <deprecated>false</deprecated>
     <externalId>false</externalId>
-    <formula>if(!ISNULL(leaseworks__Derate__c),leaseworks__Derate__c,
+    <formula>if(!ISNULL(leaseworks__Override_Derate__c),leaseworks__Override_Derate__c, if(!ISNULL(leaseworks__Derate__c),leaseworks__Derate__c,
                                 if(  !ISNULL(leaseworks__Assembly_MR_Info__r.leaseworks__Derate__c), leaseworks__Assembly_MR_Info__r.leaseworks__Derate__c,
     (if(  !ISNULL(leaseworks__Constituent_Assembly__r.leaseworks__Derate__c), leaseworks__Constituent_Assembly__r.leaseworks__Derate__c, leaseworks__Utilization_Report__r.leaseworks__Aircraft__r.leaseworks__Derate__c 
-  )))
-)</formula>
+  )))))</formula>
     <label>_Derate</label>
     <precision>18</precision>
     <required>false</required>

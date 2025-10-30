@@ -8,3 +8,69 @@
 button {
     margin: 0 0.25rem;
 }
+.split-panel {
+    position: fixed;
+    right: 0;
+    top: 6rem;
+    bottom: 1rem;
+    width: 40vw;
+    background: #fff;
+    border-left: 1px solid #dddbda;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    overflow: auto;
+    z-index: 10;
+}
+.split-panel__content {
+    padding: 1rem;
+}
+
+/* New in-card split layout */
+.container-two-pane {
+    display: grid;
+    grid-template-columns: var(--left, 50%) 6px var(--right, 50%);
+    gap: 0;
+    align-items: start;
+}
+.main-pane {
+    min-width: 0;
+}
+.side-pane {
+    border-left: 1px solid #dddbda;
+    background: #fff;
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+}
+.side-pane__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.close-button {
+    --slds-c-button-neutral-color-border: #dddbda;
+}
+.divider {
+    background: #dddbda;
+    cursor: col-resize;
+}
+.divider:hover {
+    background: #c9c7c5;
+}
+.is-dragging {
+    user-select: none;
+}
+.side-pane__content {
+    max-height: 80vh;
+    overflow: auto;
+}
+
+@media (max-width: 1024px) {
+    .container-two-pane {
+        grid-template-columns: 1fr;
+    }
+    .side-pane {
+        grid-row: 1;
+        border-left: 0;
+        border-top: 1px solid #dddbda;
+    }
+}

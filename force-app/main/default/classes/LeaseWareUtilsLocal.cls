@@ -197,5 +197,41 @@ public static Set<id> GetUserIdsFromGroup(Id groupId)
             createExceptionLog(e, 'Exception while trying to create public group - LW Admin Group', null, null,null,true);
         } 
     }
+    
+    
+    public static leaseworks__LeaseWorksSettings__c newLWSet;
+    public static boolean setTriggersAndWFsOff(){
+        boolean checkNew=false;
+        try{
+            leaseworks__LeaseWorksSettings__c lwSettings = leaseworks__LeaseWorksSettings__c.getInstance();
+            if(lwSettings==null) lwSettings = new leaseworks__LeaseWorksSettings__c(SetupOwnerId=System.UserInfo.getUserId());//anjani: this will never get called, as above line will return.
+            
+            lwSettings.leaseworks__Disable_All_Triggers__c=true;
+            lwSettings.leaseworks__Disable_All_WFs__c=true;
+            if(lwSettings.id==null) checkNew =true; // check if new ?
+            upsert lwSettings;
+            if(checkNew)  newLWSet = lwSettings; // if newly created keep in static variable.
+
+        }catch(exception e){
+            return false;
+        }
+        return true;
+    }
+    
+    
+    public static boolean setTriggersAndWFsOn(){
+        try{
+            leaseworks__LeaseWorksSettings__c lwSettings = leaseworks__LeaseWorksSettings__c.getInstance();
+            if(lwSettings==null)return true;
+            lwSettings.leaseworks__Disable_All_Triggers__c=false;
+            lwSettings.leaseworks__Disable_All_WFs__c=false;
+            update lwSettings;
+            if(newLWSet!=null) delete newLWSet; // delete if new
+        }catch(exception e){
+            return false;
+        }
+        return true;
+    }
+
 
 }

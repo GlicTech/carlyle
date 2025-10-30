@@ -38,11 +38,30 @@ public with sharing class Pro_FileUploadHelper {
         return headers;
     }
 
+    @AuraEnabled(cacheable=true)
+    public static List<SelectOptionDto> getExternalIdFields(Id configId) {
+        Prox__Pro_File_Upload_Config__mdt cfg = [SELECT Prox__Target_Object__c FROM Prox__Pro_File_Upload_Config__mdt WHERE Id = :configId LIMIT 1];
+        Map<String, Schema.SObjectType> gd = Schema.getGlobalDescribe();
+        if (!gd.containsKey(cfg.Prox__Target_Object__c)) { return new List<SelectOptionDto>();
+        } Schema.SObjectType sObj = gd.get(cfg.Prox__Target_Object__c);  Map<String, Schema.SObjectField> fields = sObj.getDescribe().fields.getMap(); List<SelectOptionDto> options = new List<SelectOptionDto>();  for (String api : fields.keySet()) { Schema.DescribeFieldResult d = fields.get(api).getDescribe();  if (d.isExternalId()) {  options.add(new SelectOptionDto(api, api));
+            }
+        } return options;
+    }
+
+    public class SelectOptionDto {
+        @AuraEnabled public String label;
+        @AuraEnabled public String value;
+        public SelectOptionDto(String label, String value) {  this.label = label; this.value = value;
+        }
+    }
+
 
     @AuraEnabled
-    public static list<Pro_FileImporterController.CsvResultRow> processCsvDirect(Id configId, String csvContent) {
-        list<Pro_FileImporterController.CsvResultRow> data =Pro_FileImporterController.processCsvDirectly(configId, csvContent);
+    public static list<Pro_FileImporterController.CsvResultRow> processCsvDirect(Id configId, String csvContent, Boolean treatBlanksAsNull, String externalIdOverride) {
+        list<Pro_FileImporterController.CsvResultRow> data = Pro_FileImporterController.processCsvDirectly(configId, csvContent, treatBlanksAsNull, externalIdOverride);
         system.debug(data);
         return data;
     }
+
+    // Removed AuraEnabled overloads to satisfy platform restriction on AuraEnabled overloading
 }

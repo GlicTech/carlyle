@@ -45,7 +45,6 @@
         <field>leaseworks__Assembly_MR_Rate__c.leaseworks__Supplemental_Rent_Transactions__r$Name</field>
     </columns>
     <columns>
-        <aggregateTypes>Sum</aggregateTypes>
         <field>leaseworks__Assembly_MR_Rate__c.leaseworks__Supplemental_Rent_Transactions__r$leaseworks__Sequence_Number__c</field>
     </columns>
     <filter>
@@ -64,18 +63,18 @@
             <value>1</value>
         </criteriaItems>
         <criteriaItems>
-            <column>leaseworks__Assembly_MR_Rate__c$leaseworks__Lease__c.leaseworks__Portfolios__c.Name</column>
-            <columnToColumn>false</columnToColumn>
-            <isUnlocked>true</isUnlocked>
-            <operator>equals</operator>
-            <value>Aero Lease 1</value>
-        </criteriaItems>
-        <criteriaItems>
             <column>leaseworks__Assembly_MR_Rate__c.leaseworks__Supplemental_Rent_Transactions__r$leaseworks__Transaction_Date__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>lessOrEqual</operator>
-            <value>2021-01-01</value>
+            <value>2024-12-31</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>leaseworks__Assembly_MR_Rate__c$leaseworks__Y_Hidden_Asset__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>contains</operator>
+            <value>30145</value>
         </criteriaItems>
     </filter>
     <format>Summary</format>
@@ -101,13 +100,13 @@
     </params>
     <reportType>Supplemental_Rents_with_Transactions__c</reportType>
     <scope>organization</scope>
-    <showDetails>true</showDetails>
+    <showDetails>false</showDetails>
     <showGrandTotal>true</showGrandTotal>
-    <showSubTotals>true</showSubTotals>
+    <showSubTotals>false</showSubTotals>
     <sortColumn>leaseworks__Assembly_MR_Rate__c.leaseworks__Supplemental_Rent_Transactions__r$leaseworks__Transaction_Date__c</sortColumn>
     <sortOrder>Asc</sortOrder>
     <timeFrameFilter>
-        <dateColumn>leaseworks__Assembly_MR_Rate__c.leaseworks__Supplemental_Rent_Transactions__r$leaseworks__Invoice_Line_Item__c.leaseworks__Invoice__c.leaseworks__Period_End_Date__c</dateColumn>
+        <dateColumn>leaseworks__Assembly_MR_Rate__c$CreatedDate</dateColumn>
         <interval>INTERVAL_CUSTOM</interval>
     </timeFrameFilter>
 </Report>

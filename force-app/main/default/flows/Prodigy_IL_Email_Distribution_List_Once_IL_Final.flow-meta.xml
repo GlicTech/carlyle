@@ -1,0 +1,616 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <description>Remove duplicate emails from varDistributionList collection</description>
+        <name>Remove_Duplicate_Emails</name>
+        <label>Remove Duplicate Emails</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>RemoveDuplicatesFromCollection</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Get_Email_Template</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>inputStrings</name>
+            <value>
+                <elementReference>varDistributionList</elementReference>
+            </value>
+        </inputParameters>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
+        <name>Send_Email_To_varDistributionList</name>
+        <label>Send Email To varDistributionList</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>emailAddresses</name>
+        </inputParameters>
+        <inputParameters>
+            <name>emailAddressesArray</name>
+            <value>
+                <elementReference>Remove_Duplicate_Emails.uniqueStrings</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>ccRecipientAddressList</name>
+        </inputParameters>
+        <inputParameters>
+            <name>senderType</name>
+            <value>
+                <stringValue>OrgWideEmailAddress</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderAddress</name>
+            <value>
+                <stringValue>leaseworks@carlyle.aero</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>useEmailTemplate</name>
+            <value>
+                <stringValue>True</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailTemplateId</name>
+            <value>
+                <elementReference>Get_Email_Template.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>recipientId</name>
+            <value>
+                <elementReference>$Record.CreatedBy.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>relatedRecordId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <apiVersion>64.0</apiVersion>
+    <assignments>
+        <name>Add_Deal_Team_Assignee_Email_To_Distribution_List</name>
+        <label>Add Deal Team Assignee Email To Distribution List</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>varDistributionList</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Loop_Deal_Teams.leaseworks__Assigned_To__r.Email</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_Deal_Teams</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Account owner (Marketing) and Regional Marketing Manager (Marketing__c) to be included on IL emails for every discussion type.</description>
+        <name>Add_Marketing_and_Regional_Marketing_Manager_To_Member_Role_List</name>
+        <label>Add Marketing and Regional Marketing Manager To Member Role List</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>Create_Deal_Team_Member_Role_List</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>Marketing</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Create_Deal_Team_Member_Role_List</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>Regional Marketing Manager</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Get_Deal_Team_Records_For_Related_To_Deal</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Add_Role_To_varAccountTeamMemberRoles</name>
+        <label>Add Role To varAccountTeamMemberRoles</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>varAccountTeamMemberRoles</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Loop_Member_Roles</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_Member_Roles</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Add the user emails from Public Groups For Distribution into the variable varDistributionList.
+
+Also, add the emails returned from the Get Account Team Emails to the same variable.</description>
+        <name>Add_Users_To_Distribution_List_Variable</name>
+        <label>Add Users To Distribution List Variable</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>varDistributionList</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Create_User_Email_Collection</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varDistributionList</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Get_Account_Team_Emails.varUserEmails</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Remove_Duplicate_Emails</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Assign base users to distribution list: 
+Deal &gt; Marketing
+Deal &gt; Regional Marketing Manager
+IL &gt; CreatedBy
+IL &gt; Owner</description>
+        <name>Assign_Base_Distribution_List</name>
+        <label>Assign Base Distribution List</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>varDistributionList</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>$Record.CreatedBy.Email</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varDistributionList</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>$Record.Owner:User.Email</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Get_IL_Discussion_Type_Mapping_CMDT</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Create a collection of the names of public groups to be added to the distribution list. Based on the Discussion Type of the Interaction Log and the Profile of the user to create the log.</description>
+        <name>Create_Public_Group_Name_Collection</name>
+        <label>Create Public Group Name Collection</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>varPublicGroupNames</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>f_DiscussionTypeToPublicGroupMapping</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varPublicGroupNames</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>f_ProfileToPublicGroupMapping</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Get_Public_Groups_For_Distribution</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <description>If Interaction Log Type is any of these, then no emails need to be sent.</description>
+        <name>IL_Is_Type_Commercial_Technical_Or_Contracts_Legal_Weekly_Summary_Note</name>
+        <label>IL Is Type Commercial, Technical, Or Contracts/Legal Weekly Summary Note</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Assign_Base_Distribution_List</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_End_Process</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.leaseworks__Type_Of_Interaction__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Commercial Weekly Summary Note</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.leaseworks__Type_Of_Interaction__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Technical Weekly Summary Note</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.leaseworks__Type_Of_Interaction__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Contracts/Legal Weekly Summary Note</stringValue>
+                </rightValue>
+            </conditions>
+            <label>Yes - End Process</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Check whether the Member Role field of the currently looped record is in Create_Deal_Team_Member_Role_List collection. If so, the Deal Team is added to the variable varFilteredDealTeams</description>
+        <name>Include_Member_Role_In_Distribution_List</name>
+        <label>Include Member Role In Distribution List?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Loop_Deal_Teams</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Member_Role_Included</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Create_Deal_Team_Member_Role_List</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <elementReference>Loop_Deal_Teams.pro_Member_Role__c</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Add_Deal_Team_Assignee_Email_To_Distribution_List</targetReference>
+            </connector>
+            <label>Yes - Member Role Included</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_Member_Role_In_Deal_Team_Collection</name>
+        <label>Is Member Role In Deal Team Collection?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Add_Role_To_varAccountTeamMemberRoles</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No - Add To varAccountTeamMemberRoles</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Skip</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Create_Deal_Team_Member_Role_Collection</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <elementReference>Loop_Member_Roles</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Loop_Member_Roles</targetReference>
+            </connector>
+            <label>Yes - Skip</label>
+        </rules>
+    </decisions>
+    <description>Interaction Log Distribution
+
+Once an interaction log has a discussion type and has its status set to &#39;Final&#39;, this flow builds a distribution list baseed on the profile of the user to enter the IL and the discussion type. 
+
+User CMDT and public groups to bring together userss into this distribution list.</description>
+    <environments>Default</environments>
+    <formulas>
+        <description>Returns the name of a public group based on the Discussion Type of the triggering Interaction Log.</description>
+        <name>f_DiscussionTypeToPublicGroupMapping</name>
+        <dataType>String</dataType>
+        <expression>IF(TEXT({!$Record.leaseworks__Discussion_Type__c}) = &#39;Credit Update&#39;, &#39;Credit_Update&#39;,
+IF(TEXT({!$Record.leaseworks__Discussion_Type__c}) = &#39;General&#39;, &#39;General&#39;,
+IF(TEXT({!$Record.leaseworks__Discussion_Type__c}) = &#39;Tech_Kick_Off&#39;, &#39;Tech_Kick_Off&#39;,
+IF(TEXT({!$Record.leaseworks__Discussion_Type__c}) = &#39;Marketing Intel&#39;, &#39;Market_Intel&#39;,
+IF(TEXT({!$Record.leaseworks__Discussion_Type__c}) = &#39;RFP&#39;, &#39;RFP&#39;,
+IF(TEXT({!$Record.leaseworks__Discussion_Type__c}) = &#39;PDP&#39;, &#39;PDP&#39;,
+IF(TEXT({!$Record.leaseworks__Discussion_Type__c}) = &#39;Trading&#39;, &#39;Trading&#39;,
+IF(TEXT({!$Record.leaseworks__Discussion_Type__c}) = &#39;General - Marketing Team&#39;, &#39;General_Marketing_Team&#39;,
+&#39;Other&#39;
+))))))))</expression>
+    </formulas>
+    <formulas>
+        <description>Returns the name of a public group to be included in distribution list based on the Profile of the user to create the Interaction Log</description>
+        <name>f_ProfileToPublicGroupMapping</name>
+        <dataType>String</dataType>
+        <expression>IF({!$Record.CreatedBy.Profile.Name} = &#39;Carlyle Commercial&#39;, &#39;Market_Intel&#39;, Null)</expression>
+    </formulas>
+    <interviewLabel>Prodigy - IL - Email Distribution List Once IL Final {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Prodigy - IL - Email Distribution List Once IL Final</label>
+    <loops>
+        <description>Loop through the Deal Teams and add records to the collection varFilteredDealTeams</description>
+        <name>Loop_Deal_Teams</name>
+        <label>Loop Deal Teams</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <collectionReference>Get_Deal_Team_Records_For_Related_To_Deal</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Include_Member_Role_In_Distribution_List</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Create_Public_Group_Name_Collection</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <loops>
+        <description>Loop through all member</description>
+        <name>Loop_Member_Roles</name>
+        <label>Loop Member Roles</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <collectionReference>Create_Deal_Team_Member_Role_List</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Is_Member_Role_In_Deal_Team_Collection</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Loop_Deal_Teams</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <description>Get all the Deal Team records under the Deal that is related to the triggering Interaction Log.</description>
+        <name>Get_Deal_Team_Records_For_Related_To_Deal</name>
+        <label>Get Deal Team Records For Related To Deal</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Create_Deal_Team_Member_Role_Collection</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>leaseworks__Marketing_Activity__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.leaseworks__Related_To_Marketing_Activity__r.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>leaseworks__Deal_Team__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <description>Get the IL Email Template</description>
+        <name>Get_Email_Template</name>
+        <label>Get Email Template</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Send_Email_To_varDistributionList</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>DeveloperName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>IL_Email_Template</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>EmailTemplate</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <description>Get records which map Deal Team members to be included in the distribution list</description>
+        <name>Get_IL_Discussion_Type_Mapping_CMDT</name>
+        <label>Get IL Discussion Type Mapping CMDT</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Create_Deal_Team_Member_Role_List</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>pro_Discussion_Type__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.leaseworks__Discussion_Type__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>pro_IL_Discussion_Type_Mapping__mdt</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <description>Get the members of the public groups returned by the last Get element.</description>
+        <name>Get_Public_Group_Members_For_Distribution</name>
+        <label>Get Public Group Members For Distribution</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Create_Group_Member_Id_Collection</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>GroupId</field>
+            <operator>In</operator>
+            <value>
+                <elementReference>Create_Public_Group_Id_Collection</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>GroupMember</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <description>Get the public groups whose names are listed in varPublicGroupNames</description>
+        <name>Get_Public_Groups_For_Distribution</name>
+        <label>Get Public Groups For Distribution</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Create_Public_Group_Id_Collection</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>DeveloperName</field>
+            <operator>In</operator>
+            <value>
+                <elementReference>varPublicGroupNames</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>Group</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <description>Get the Related To Account from the triggering interaction log. This account will be fed into a subflow to return the emails of selected account team roles.</description>
+        <name>Get_Related_Account</name>
+        <label>Get Related Account</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_Account_Team_Emails</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.pro_Related_To_Account__r.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Account</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <description>Get the User records for those included in the public groups for distribution</description>
+        <name>Get_Users_For_Distribution_Lists</name>
+        <label>Get Users For Distribution Lists</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Create_User_Email_Collection</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>In</operator>
+            <value>
+                <elementReference>Create_Group_Member_Id_Collection</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>IsActive</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>User</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>IL_Is_Type_Commercial_Technical_Or_Contracts_Legal_Weekly_Summary_Note</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Draft__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Final</stringValue>
+            </value>
+        </filters>
+        <object>leaseworks__Customer_Interaction_Log__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <subflows>
+        <description>Flow accepts Account record and Team Member Roles as an input and returns the emails for each of the Account Team members</description>
+        <name>Get_Account_Team_Emails</name>
+        <label>Get Account Team Emails</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Add_Users_To_Distribution_List_Variable</targetReference>
+        </connector>
+        <flowName>Prodigy_Auto_Create_Email_List_By_Account_Team_Role</flowName>
+        <inputAssignments>
+            <name>varAccount</name>
+            <value>
+                <elementReference>Get_Related_Account</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>varMemberRoles</name>
+            <value>
+                <elementReference>varAccountTeamMemberRoles</elementReference>
+            </value>
+        </inputAssignments>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </subflows>
+    <variables>
+        <name>currentItem_Filter_For_Selected_Roles</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>leaseworks__Deal_Team__c</objectType>
+    </variables>
+    <variables>
+        <name>varAccountTeamMemberRoles</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Collection of email addresses forming a distribution list for IL notification email to be sent to.</description>
+        <name>varDistributionList</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>A collection of the names of public groups to be included in the distribution list. Based on the profile of the user to create IL log along with the Discussion Type.</description>
+        <name>varPublicGroupNames</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

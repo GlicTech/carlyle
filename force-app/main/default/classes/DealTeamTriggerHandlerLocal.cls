@@ -13,47 +13,21 @@ public class DealTeamTriggerHandlerLocal implements ITriggerLocal {
     public void bulkAfter() {}
 
     public void beforeInsert() {  
-    system.debug('DealTeamTriggerHandlerLocal.beforeInsert(+)');
-        try {
-            updateDealTeamAssignedToUserLookups(trigger.new);
-            updateMemberRoleFromName(trigger.new);
-        } catch(Exception e) {
+     	
+        system.debug('DealTeamTriggerHandlerLocal.beforeInsert(+)');
+        try{
+         	updateDealTeamAssignedToUserLookups(trigger.new);   
+        }catch(Exception e){
             System.debug('Error updating Assigned User on Deal Team :' + e.getMessage());
             LeasewareUtilsLocal.createExceptionLog(e,'Error updating Assigned User on Deal Team', '', '','Deal Team Trigger Local', true);
         }
         system.debug('DealTeamTriggerHandlerLocal.beforeInsert(-)');
+        
+        
     }
-
    
     public void beforeUpdate() {
-        
-        List<leaseworks__Deal_Team__c> updated = new List<leaseworks__Deal_Team__c>();
-        for (leaseworks__Deal_Team__c newRec : (List<leaseworks__Deal_Team__c>) Trigger.new) {
-            leaseworks__Deal_Team__c oldRec = (leaseworks__Deal_Team__c) Trigger.oldMap.get(newRec.Id);
-            if (String.isNotBlank(newRec.Name) && newRec.Name != oldRec.Name) {
-                updated.add(newRec);
-            }
-        }
-        if (!updated.isEmpty()) {
-            updateMemberRoleFromName(updated);
-        }
     }
-    
-    private void updateMemberRoleFromName(List<leaseworks__Deal_Team__c> dealTeams) {
-        Set<String> allowedRoles = new Set<String>();
-        Schema.DescribeFieldResult fieldResult = leaseworks__Deal_Team__c.pro_Member_Role__c.getDescribe();
-        for (Schema.PicklistEntry entry : fieldResult.getPicklistValues()) {
-            allowedRoles.add(entry.getValue());
-        }
-    
-        for (leaseworks__Deal_Team__c team : dealTeams) {
-            if (String.isNotBlank(team.Name) && allowedRoles.contains(team.Name)) {
-                team.pro_Member_Role__c = team.Name;
-            }
-        }
-    }
-
-
    
         /**
     * beforeDelete
@@ -138,82 +112,77 @@ public class DealTeamTriggerHandlerLocal implements ITriggerLocal {
      * Called From :  Before Insert
      * Asana : https://app.asana.com/0/1150819886958569/1206599217728905  
     */
-    private void updateDealTeamAssignedToUserLookups(List<leaseworks__Deal_Team__c> newList) {
-        Map<String, String> mapDeptDefaultToAccountTeam = new Map<String, String>();
-        Map<Id, Account> mapAccounts = new Map<Id, Account>();
-        Set<Id> setDealIds = new Set<Id>();
+    private void updateDealTeamAssignedToUserLookups(list<leaseworks__Deal_Team__c> newList){
+       
+        Map<String,String> mapDeptDefaultToAccountTeam = new Map<String,String>();
+       //Map<Id,leaseworks__Marketing_Activity__c> mapDeal = new Map<Id,leaseworks__Marketing_Activity__c>();
+        Map<Id,Account> mapAccounts = new Map<Id,Account>();
+        set<id> setDealIds = new set<id>();
         Set<Id> setAccountIds = new Set<Id>();
-    
-        // Load department-to-account role mapping
-        for (leaseworks__Mapping__c mapRec : [
-            SELECT Id, Name, leaseworks__Map_To__c
-            FROM leaseworks__Mapping__c
-            WHERE leaseworks__IsActive__c = true
-            AND leaseworks__Type_Of_Mapping__c = 'Deal Teams To Account Teams Mapping'
-        ]) {
-            mapDeptDefaultToAccountTeam.put(mapRec.Name.toLowerCase(), mapRec.leaseworks__Map_To__c);
+        for(leaseworks__Mapping__c mapRec : [select id, Name ,leaseworks__Map_To__c from leaseworks__Mapping__c where 
+                                      leaseworks__IsActive__c = true and leaseworks__Type_Of_Mapping__c = 'Deal Teams To Account Teams Mapping']){
+          mapDeptDefaultToAccountTeam.put(mapRec.Name.toLowerCase(),mapRec.leaseworks__Map_To__c);  
         }
-    
-        // Collect Marketing Activity (Deal) IDs
-        for (leaseworks__Deal_Team__c curRec : newList) {
-            if (curRec.leaseworks__Marketing_Activity__c != null) {
-                setDealIds.add(curRec.leaseworks__Marketing_Activity__c);
-            }
-        }
-    
-        // Query Marketing Activities with Deal Type and Counter Party
-        Map<Id, leaseworks__Marketing_Activity__c> mapDeal = new Map<Id, leaseworks__Marketing_Activity__c>(
-            [SELECT Id, Name, leaseworks__Counter_Party__c, leaseworks__Deal_Type__c
-             FROM leaseworks__Marketing_Activity__c
-             WHERE Id IN :setDealIds]
-        );
-    
-        // Collect Counter Party (Account) IDs
-        for (leaseworks__Marketing_Activity__c deal : mapDeal.values()) {
-            if (deal.leaseworks__Counter_Party__c != null) {
-                setAccountIds.add(deal.leaseworks__Counter_Party__c);
-            }
-        }
-    
-        // Build dynamic query for mapped fields
-        String strQry = 'SELECT Id, Name';
-        for (String str : mapDeptDefaultToAccountTeam.keySet()) {
-            strQry += ', ' + mapDeptDefaultToAccountTeam.get(str);
-        }
-        strQry += ' FROM Account WHERE Id IN :setAccountIds';
-        System.debug('check qry: ' + strQry);
-    
-        List<Account> listAllAcnts = Database.query(strQry);
-        for (Account acc : listAllAcnts) {
-            mapAccounts.put(acc.Id, acc);
-        }
-    
-        // Main logic
-        for (leaseworks__Deal_Team__c curRec : newList) {
-            leaseworks__Marketing_Activity__c deal = mapDeal.get(curRec.leaseworks__Marketing_Activity__c);
-    
-            // Skip based on Deal Type (not RecordType)
-            if (deal != null && new Set<String>{
-                'Sale - Novation',
-                'Sale - Off Lease',
-                'Engine Exchange',
-                'Non Deal Approval'
-            }.contains(deal.leaseworks__Deal_Type__c)) {
-                continue;
-            }
-    
-            if (curRec.leaseworks__Assigned_To__c == null &&
-                mapDeptDefaultToAccountTeam.containsKey(curRec.Name.toLowerCase())) {
-    
-                Account acc = mapAccounts.get(deal.leaseworks__Counter_Party__c);
-                String accFieldName = mapDeptDefaultToAccountTeam.get(curRec.Name.toLowerCase());
-                System.debug('check accntField Name: ' + accFieldName);
-    
-                if (acc != null && acc.get(accFieldName) != null) {
-                    curRec.put('leaseworks__Assigned_To__c', acc.get(accFieldName));
-                }
-            }
-        }
-    }
 
+        for(leaseworks__Deal_Team__c curRec : newList){
+            setDealIds.add(curREc.leaseworks__Marketing_Activity__c);
+        }
+        
+		Map<Id,leaseworks__Marketing_Activity__c> mapDeal = new Map<Id,leaseworks__Marketing_Activity__c>([select id, name , leaseworks__Counter_Party__c,leaseworks__Deal_Type__c
+                                                         from leaseworks__Marketing_Activity__c
+                                                        where id in :setDealIds ]);
+        for(leaseworks__Marketing_Activity__c curDeal :mapDeal.values()){
+               setAccountIds.add(curDeal.leaseworks__Counter_Party__c);
+         } 
+        	String strQry = 'select id, name,';
+            for(String str : mapDeptDefaultToAccountTeam.keyset()){
+            	strQry += 	mapDeptDefaultToAccountTeam.get(str) +',' ;
+        	}
+            strQry = strQry.removeEnd(',');
+        	strQry += ' from Account where id in :setAccountIds';
+            system.debug('check qry:' + StrQry);
+        	List<Account> listAllAcnts = Database.Query(strqry);
+       		
+        	for(Account acc:ListAllAcnts){
+            	mapAccounts.put(acc.Id,acc);
+        	}
+         	for(leaseworks__Deal_Team__c curRec : newList){
+                
+                //Changes done as part of this task : https://app.asana.com/1/7934919496419/project/1206263842776105/task/1211575356555029?focus=true
+                if (String.isNotBlank(curRec.leaseworks__Assigned_To__c)) continue;
+
+                leaseworks__Marketing_Activity__c relatedDeal = mapDeal.get(curRec.leaseworks__Marketing_Activity__c);
+                if (relatedDeal == null) continue;
+        
+               
+                String dealType = String.isNotBlank(relatedDeal.leaseworks__Deal_Type__c)? relatedDeal.leaseworks__Deal_Type__c.trim().toLowerCase(): '';
+                String deptName = String.isNotBlank(curRec.Name)? curRec.Name.trim().toLowerCase(): '';
+               
+               
+                System.debug('DealType=[' + dealType + '], DeptName=[' + deptName + ']');
+        
+                
+                if (
+                    (dealType.equalsIgnoreCase('sale - novation') &&
+                        (deptName == 'credit' || deptName == 'receivables' || deptName == 'lease management')) ||
+                    
+                    (dealType.equalsIgnoreCase('sale - off lease') &&
+                        (deptName == 'credit' || deptName == 'receivables' || deptName == 'lease management' || deptName == 'technical')) ||
+                    
+                    (dealType.equalsIgnoreCase('engine exchange') &&
+                        (deptName == 'credit' || deptName == 'receivables' || deptName == 'lease management'))
+                ) {
+                    System.debug('Skipping assignment for Deal Type ' + dealType + ' and Department ' + deptName);
+                    continue;
+                }               
+                        
+                
+                if(curRec.leaseworks__Assigned_To__c == null && mapDeptDefaultToAccountTeam.containsKey(curRec.Name.toLowerCase())){
+                    Account acc  = mapAccounts.get(mapDeal.get(curRec.leaseworks__Marketing_Activity__c).leaseworks__Counter_Party__c);
+                    String accFieldName = mapDeptDefaultToAccountTeam.get(curRec.Name.toLowerCase());
+                    system.debug('check accntField Name:' + accFieldName);   
+                    curRec.put('leaseworks__Assigned_To__c',acc.get(accFieldName));
+                }
+            }                                                          
+    }
 }

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>65.0</apiVersion>
+    <decisions>
+        <description>If the approver is the same user who submitted for approval, throw an error</description>
+        <name>Did_The_Approver_Submit_For_Approval</name>
+        <label>Did The Approver Submit For Approval?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Approver_Also_Submitted</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.ReviewedById</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>$Record.ApprovalSubmission.SubmittedById__NotFound</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Throw_Error</targetReference>
+            </connector>
+            <label>Yes - Approver Also Submitted</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>What_Object_Is_Approval_Work_Item_Related_To</name>
+        <label>What Object Is Approval Work Item Related To?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Bank_Account</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.RelatedRecordObjectName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Bank_Account</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Did_The_Approver_Submit_For_Approval</targetReference>
+            </connector>
+            <label>Bank Account</label>
+        </rules>
+    </decisions>
+    <description>Flow throws an error to enforce the rule that the user who submitted a Bank Account for approval cannot themselves approve the details.</description>
+    <environments>Default</environments>
+    <interviewLabel>Approval Work Item - Submitter Cannot Approve {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Approval Work Item - Submitter Cannot Approve</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>What_Object_Is_Approval_Work_Item_Related_To</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>ReviewedById__NotFound</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <object>ApprovalWorkItem</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Obsolete</status>
+</Flow>

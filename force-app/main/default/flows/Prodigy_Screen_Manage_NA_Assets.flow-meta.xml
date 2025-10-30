@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>64.0</apiVersion>
+    <assignments>
+        <description>Assign the value of the screen toggle button so it can be maintained on the next flow run through.</description>
+        <name>Assign_Toggle_Value</name>
+        <label>Assign Toggle Value</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>Get_Triggering_Ticket.pro_Assets__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Assets</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Set_Assets_Field_On_Ticket</targetReference>
+        </connector>
+    </assignments>
+    <description>Tickets Phase 2
+
+Flow to be launched from an Action on the Ticket record page. Gives users the ability to add/remove Non Carlyle Assets from the Assets field</description>
+    <environments>Default</environments>
+    <interviewLabel>Prodigy - Screen {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Prodigy - Screen - Manage NA Assets</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <recordLookups>
+        <name>Get_Triggering_Ticket</name>
+        <label>Get Triggering Ticket</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>NA_Asset_Input_Screen</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>pro_Ticket__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <description>Overwrite the field to include it&#39;s previous input plus the users newest input</description>
+        <name>Set_Assets_Field_On_Ticket</name>
+        <label>Set Assets Field On Ticket</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <faultConnector>
+            <targetReference>Error_Screen</targetReference>
+        </faultConnector>
+        <inputReference>Get_Triggering_Ticket</inputReference>
+    </recordUpdates>
+    <screens>
+        <name>Error_Screen</name>
+        <label>Error Screen</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>false</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>ErrorDisplay</name>
+            <fieldText>&lt;p&gt;There was an error proccesing your request:&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(255, 0, 0);&quot;&gt;{!$Flow.FaultMessage}&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
+        <name>NA_Asset_Input_Screen</name>
+        <label>NA Asset Input Screen</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Assign_Toggle_Value</targetReference>
+        </connector>
+        <fields>
+            <name>Assets</name>
+            <dataType>String</dataType>
+            <defaultValue>
+                <elementReference>Get_Triggering_Ticket.pro_Assets__c</elementReference>
+            </defaultValue>
+            <fieldText>Assets</fieldText>
+            <fieldType>InputField</fieldType>
+            <helpText>&lt;p&gt;The name of the Non Carlyle Asset that you wish to add to the Assets field. &lt;/p&gt;</helpText>
+            <isRequired>false</isRequired>
+        </fields>
+        <nextOrFinishButtonLabel>Save</nextOrFinishButtonLabel>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Triggering_Ticket</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <description>Reference to the Ticket from which this flow was launched</description>
+        <name>recordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>varToggleValue</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <stringValue>Assets</stringValue>
+        </value>
+    </variables>
+</Flow>

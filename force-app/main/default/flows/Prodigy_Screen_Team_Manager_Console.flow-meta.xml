@@ -1,14 +1,86 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <actionCalls>
-        <name>Replace_User_On_Teams</name>
-        <label>Replace User On Teams</label>
+        <name>Disable_Notifications_Replace_User_Branch</name>
+        <label>Disable Notifications - Replace User Branch</label>
         <locationX>2690</locationX>
         <locationY>2294</locationY>
-        <actionName>TeamMemberUpdater</actionName>
+        <actionName>NotificationToggle</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Replace_User_On_Teams</targetReference>
+        </connector>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <inputParameters>
+            <name>disableNotifications</name>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
+        <name>Disable_Notifications_Selected_Team_Branch</name>
+        <label>Disable Notifications - Selected Team Branch</label>
+        <locationX>1898</locationX>
+        <locationY>1754</locationY>
+        <actionName>NotificationToggle</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Update_Selected_Teams</targetReference>
+        </connector>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <inputParameters>
+            <name>disableNotifications</name>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
+        <name>Enable_Notifications_Replace_User_Branch</name>
+        <label>Enable Notifications - Replace User Branch</label>
+        <locationX>2690</locationX>
+        <locationY>2510</locationY>
+        <actionName>NotificationToggle</actionName>
         <actionType>apex</actionType>
         <connector>
             <targetReference>ReplacedUserUpdatesTeamsScreen</targetReference>
+        </connector>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <inputParameters>
+            <name>disableNotifications</name>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
+        <name>Enable_Notifications_Selected_Team_Branch</name>
+        <label>Enable Notifications - Selected Team Branch</label>
+        <locationX>1898</locationX>
+        <locationY>1970</locationY>
+        <actionName>NotificationToggle</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>UpdatedTeamsScreen</targetReference>
+        </connector>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <inputParameters>
+            <name>disableNotifications</name>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
+        <name>Replace_User_On_Teams</name>
+        <label>Replace User On Teams</label>
+        <locationX>2690</locationX>
+        <locationY>2402</locationY>
+        <actionName>TeamMemberUpdater</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Enable_Notifications_Replace_User_Branch</targetReference>
         </connector>
         <flowTransactionModel>Automatic</flowTransactionModel>
         <inputParameters>
@@ -65,11 +137,11 @@
         <name>Update_Selected_Teams</name>
         <label>Update Selected Teams</label>
         <locationX>1898</locationX>
-        <locationY>1754</locationY>
+        <locationY>1862</locationY>
         <actionName>TeamMemberUpdater</actionName>
         <actionType>apex</actionType>
         <connector>
-            <targetReference>UpdatedTeamsScreen</targetReference>
+            <targetReference>Enable_Notifications_Selected_Team_Branch</targetReference>
         </connector>
         <flowTransactionModel>Automatic</flowTransactionModel>
         <inputParameters>
@@ -190,7 +262,7 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Replace_User_On_Teams</targetReference>
+            <targetReference>Disable_Notifications_Replace_User_Branch</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -537,7 +609,7 @@
         <name>Reset_Team_Type_Selection</name>
         <label>Reset Team Type Selection</label>
         <locationX>1898</locationX>
-        <locationY>1970</locationY>
+        <locationY>2186</locationY>
         <assignmentItems>
             <assignToReference>varTeamTypeSelection</assignToReference>
             <operator>Assign</operator>
@@ -551,7 +623,7 @@
         <name>Reset_Team_Type_Selection_Replacee_Branch</name>
         <label>Reset Team Type Selection - Replacee Branch</label>
         <locationX>2690</locationX>
-        <locationY>2510</locationY>
+        <locationY>2726</locationY>
         <assignmentItems>
             <assignToReference>varTeamTypeSelection</assignToReference>
             <operator>Assign</operator>
@@ -1003,7 +1075,7 @@
         <dataType>Picklist</dataType>
         <displayField xsi:nil="true" />
         <object xsi:nil="true" />
-        <picklistField>pro_Department_Roles__c</picklistField>
+        <picklistField>pro_Team_Roles__c</picklistField>
         <picklistObject>pro_Global_Value_Set__mdt</picklistObject>
     </dynamicChoiceSets>
     <environments>Default</environments>
@@ -1264,7 +1336,7 @@ IF(
         <locationY>1646</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Update_Selected_Teams</targetReference>
+            <targetReference>Disable_Notifications_Selected_Team_Branch</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -1954,7 +2026,7 @@ IF(
         <name>ReplacedUserUpdatesTeamsScreen</name>
         <label>ReplacedUserUpdatesTeamsScreen</label>
         <locationX>2690</locationX>
-        <locationY>2402</locationY>
+        <locationY>2618</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -2852,7 +2924,7 @@ IF(
                     <storeOutputAutomatically>true</storeOutputAutomatically>
                 </fields>
                 <fields>
-                    <name>AirlineImport</name>
+                    <name>AirlineImportComponent</name>
                     <extensionName>prox:pro_FileImportScreen</extensionName>
                     <fieldType>ComponentInstance</fieldType>
                     <inputParameters>
@@ -2876,7 +2948,7 @@ IF(
                     </visibilityRule>
                 </fields>
                 <fields>
-                    <name>CountryImport</name>
+                    <name>CountryImportComponent</name>
                     <extensionName>prox:pro_FileImportScreen</extensionName>
                     <fieldType>ComponentInstance</fieldType>
                     <inputParameters>
@@ -2888,6 +2960,64 @@ IF(
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <storeOutputAutomatically>true</storeOutputAutomatically>
+                    <visibilityRule>
+                        <conditionLogic>and</conditionLogic>
+                        <conditions>
+                            <leftValueReference>bb_UploadAirlineOrCountryTeams.value</leftValueReference>
+                            <operator>EqualTo</operator>
+                            <rightValue>
+                                <stringValue>Country</stringValue>
+                            </rightValue>
+                        </conditions>
+                    </visibilityRule>
+                </fields>
+                <inputParameters>
+                    <name>width</name>
+                    <value>
+                        <stringValue>6</stringValue>
+                    </value>
+                </inputParameters>
+                <isRequired>false</isRequired>
+            </fields>
+            <isRequired>false</isRequired>
+            <regionContainerType>SectionWithoutHeader</regionContainerType>
+        </fields>
+        <fields>
+            <name>ToolConfigScreen_Section2</name>
+            <fieldType>RegionContainer</fieldType>
+            <fields>
+                <name>ToolConfigScreen_Section2_Column1</name>
+                <fieldType>Region</fieldType>
+                <inputParameters>
+                    <name>width</name>
+                    <value>
+                        <stringValue>6</stringValue>
+                    </value>
+                </inputParameters>
+                <isRequired>false</isRequired>
+            </fields>
+            <fields>
+                <name>ToolConfigScreen_Section2_Column2</name>
+                <fieldType>Region</fieldType>
+                <fields>
+                    <name>DownloadReport</name>
+                    <fieldText>&lt;p&gt;{!VarReportRichText}&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                    <visibilityRule>
+                        <conditionLogic>and</conditionLogic>
+                        <conditions>
+                            <leftValueReference>bb_UploadAirlineOrCountryTeams.value</leftValueReference>
+                            <operator>EqualTo</operator>
+                            <rightValue>
+                                <stringValue>Airline</stringValue>
+                            </rightValue>
+                        </conditions>
+                    </visibilityRule>
+                </fields>
+                <fields>
+                    <name>CountryReportvariable</name>
+                    <fieldText>&lt;p&gt;{!VarReportCountryRichText}&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
                         <conditions>
@@ -3048,7 +3178,7 @@ IF(
         <name>UpdatedTeamsScreen</name>
         <label>UpdatedTeamsScreen</label>
         <locationX>1898</locationX>
-        <locationY>1862</locationY>
+        <locationY>2078</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -3096,6 +3226,20 @@ IF(
         <name>tt_TeamDisplayLeftColumn</name>
         <isViewedAsPlainText>false</isViewedAsPlainText>
         <text>&lt;p&gt;{!f_CountryTeamDisplayOrBlank}&lt;/p&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>VarReportCountryRichText</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>&lt;a href=&quot;/00OQJ00000BswLd2AJ?csv=1&amp;exp=1&amp;enc=UTF-8&amp;isdtp=p1&quot; target=&quot;_blank&quot;&gt;
+    Download Report CSV
+&lt;/a&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>VarReportRichText</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>&lt;a href=&quot;/00OQJ00000BsuYL2AZ?csv=1&amp;exp=1&amp;enc=UTF-8&amp;isdtp=p1&quot; target=&quot;_blank&quot;&gt;
+    Download Report CSV
+&lt;/a&gt;</text>
     </textTemplates>
     <variables>
         <name>currentItem_Filter_Deal_Teams_To_Selected_Roles</name>

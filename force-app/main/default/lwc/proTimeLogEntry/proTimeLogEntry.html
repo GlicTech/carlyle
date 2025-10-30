@@ -58,13 +58,13 @@
           class={onsiteButtonClass}
           onclick={setOnsite}
           title="OnSite">
-          ✈️ Onsite
+          🛬 Onsite
         </button>
         <button
           class={offsiteButtonClass}
           onclick={setOffsite}
           title="OffSite">
-           🛬Offsite
+           ✈️ Offsite
         </button>
       </div>
       </div>
@@ -82,6 +82,7 @@
       </div>
 
       <!-- View Mode -->
+      <template if:true={showToggleButtons}>
       <div class="slds-col slds-m-left_medium">
         <label class="slds-form-element__label">View Mode</label>
         <lightning-button-group>
@@ -89,15 +90,16 @@
           <lightning-button variant={monthButtonVariant} label="Month" onclick={setMonthView}></lightning-button>
         </lightning-button-group>
       </div>
+      </template>
     </div>
   </div>
 
     <!-- TABLE -->
-    <div class="slds-p-horizontal_medium slds-scrollable_x">
+    <div class="slds-p-horizontal_small slds-scrollable_x">
       <table class="slds-table slds-table_cell-buffer slds-table_bordered">
         <thead class={tableHeaderClass}>
         <tr>
-          <th>Consultant</th>
+          <th class="consultant-header sticky-column">Consultant</th>
           <template for:each={dateHeaders} for:item="day">
             <th key={day.key} class={day.className}>
               <div>{day.day}</div>
@@ -111,15 +113,17 @@
         <tbody>
           <template for:each={timeLogRows} for:item="row">
             <tr key={row.consultantId} class={row.styleClass}>
-              <td>👨‍💼 {row.consultantName}</td>
+              <td class="sticky-column" style="width: 304px;">👨‍💼 {row.consultantName}</td>
               <template for:each={row.entries} for:item="entry" for:index="index">
-              <td key={entry.entryDate} class={entry.cellClass}>
+              <td key={entry.entryDate} class={entry.cellClass} style="width: 80px;">
               <div class="compact-input-wrapper">
                 <lightning-input
                   type="number"
                   variant="label-hidden"
                   min="0"
+                  max="1"
                   step="0.1"
+                  onkeydown={handleKeyDown}
                   class="compact-input"
                   value={entry.value}
                   data-id={row.consultantId}
@@ -134,11 +138,10 @@
           </template>
         </tbody>
         <tfoot>
-        <!-- Onsite Total -->
         <tr if:true={isOnsite}>
           <td class="slds-text-align_center"><strong>Onsite Total</strong></td>
-          <template for:each={onsiteColumnTotals} for:item="total">
-            <td key={total} class="slds-text-align_center"><strong>{total}</strong></td>
+          <template for:each={onsiteColumnTotals} for:item="item">
+            <td key={item.key} class="slds-text-align_center"><strong>{item.value}</strong></td>
           </template>
           <td></td>
         </tr>
@@ -146,19 +149,19 @@
         <!-- Offsite Total -->
         <tr if:false={isOnsite}>
           <td class="slds-text-align_center"><strong>Offsite Total</strong></td>
-          <template for:each={offsiteColumnTotals} for:item="total">
-            <td key={total} class="slds-text-align_center"><strong>{total}</strong></td>
+          <template for:each={offsiteColumnTotals} for:item="item">
+            <td key={item.key} class="slds-text-align_center"><strong>{item.value}</strong></td>
           </template>
           <td></td>
         </tr>
 
-        <!-- Combined Total (always visible) -->
+        <!-- Combined Total -->
         <tr>
           <td class="slds-text-align_center slds-theme_success"><strong>Total(Onsite+Offsite)</strong></td>
-          <template for:each={combinedTotals} for:item="total">
-            <td key={total} class="slds-text-align_center slds-theme_success"><strong>{total}</strong></td>
+          <template for:each={combinedTotals} for:item="item">
+            <td key={item.key} class="slds-text-align_center slds-theme_success"><strong>{item.value}</strong></td>
           </template>
-          <td></td>
+          <td class="slds-text-align_center slds-theme_success"><strong>{grandCombinedTotal}</strong></td>
         </tr>
       </tfoot>
       </table>
@@ -167,7 +170,7 @@
     <!-- FOOTER -->
     <div class="slds-align_absolute-center slds-m-around_medium">
       <lightning-button variant="brand" label="Save" onclick={handleSave}></lightning-button>
-      <!--<lightning-button variant="destructive" label="Cancel" class="slds-m-left_small" onclick={handleCancel}></lightning-button>-->
+      <lightning-button variant="neutral" class="slds-m-left_small" label="Back to Project" onclick={navigateToProject}></lightning-button>
     </div>
   </div>
 </template>

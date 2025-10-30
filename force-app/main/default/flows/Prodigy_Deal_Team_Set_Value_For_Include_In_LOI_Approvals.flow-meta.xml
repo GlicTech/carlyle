@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>64.0</apiVersion>
+    <decisions>
+        <description>If no CMDT record found, end flow</description>
+        <name>CMDT_Record_Found</name>
+        <label>CMDT Record Found?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_CMDT_Found</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_CMDT_For_LOI_Approvals.Id</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Include_In_LOI_Approvals</targetReference>
+            </connector>
+            <label>Yes - CMDT Found</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>If Deal Type is Non Deal Approvals, end the flow as no need to set LOI Approvers for this type.</description>
+        <name>Is_Deal_Type_Non_Deal_Approvals</name>
+        <label>Is Deal Type Non Deal Approvals</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Get_CMDT_For_LOI_Approvals</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Non_Deal_Approval</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.leaseworks__Marketing_Activity__r.leaseworks__Deal_Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Approval</stringValue>
+                </rightValue>
+            </conditions>
+            <label>Yes - Non Deal Approval</label>
+        </rules>
+    </decisions>
+    <description>LOI &amp; Documentation Approvals
+
+Before save flow sets the default value of the Include In LOI Approvals field based on the Member Role. Thereby, only having those who are defined as LOI Approvers defaulted to Include In LOI Approvals = True</description>
+    <environments>Default</environments>
+    <interviewLabel>Prodigy - Deal Team - Set Value For Include In LOI Approvals {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Prodigy - Deal Team - Set Value For Include In LOI Approvals</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <description>Get CMDT that defines which roles to be included in LOI Approvals</description>
+        <name>Get_CMDT_For_LOI_Approvals</name>
+        <label>Get CMDT For LOI Approvals</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>CMDT_Record_Found</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>pro_Deal_Team_Name__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Name</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Type__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>LOI Approver</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Deal_Team_Mapping__mdt</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <description>Set the default value of this field to true/false based on whether or not the Deal Team record is an LOI Approver Role</description>
+        <name>Set_Include_In_LOI_Approvals</name>
+        <label>Set Include In LOI Approvals</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <inputAssignments>
+            <field>pro_Include_In_LOI_Approvals__c</field>
+            <value>
+                <elementReference>Get_CMDT_For_LOI_Approvals.pro_Include_In_LOI_Approvals__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Is_Deal_Type_Non_Deal_Approvals</targetReference>
+        </connector>
+        <object>leaseworks__Deal_Team__c</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

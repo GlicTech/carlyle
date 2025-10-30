@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Constituent_Assembly__c.leaseworks__Attached_Aircraft__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Constituent_Assembly__c.leaseworks__Last_TSN_CSN_Update_Date__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>leaseworks__Constituent_Assembly__c.leaseworks__TSN__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>leaseworks__Constituent_Assembly__c.leaseworks__APU_TSN__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>leaseworks__Constituent_Assembly__c.leaseworks__CSN__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>leaseworks__Constituent_Assembly__c.leaseworks__APU_CSN__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>CDF1</field>
+    </columns>
+    <customDetailFormulas>
+        <calculatedFormula>leaseworks__Constituent_Assembly__c.leaseworks__TSN__c - leaseworks__Constituent_Assembly__c.leaseworks__APU_TSN__c</calculatedFormula>
+        <dataType>Double</dataType>
+        <description>Zero means TSN = APU TSN</description>
+        <developerName>CDF1</developerName>
+        <label>Match?</label>
+        <scale>2</scale>
+    </customDetailFormulas>
+    <description>For the purposes of testing the APU TSN CSN migration requested by GT</description>
+    <filter>
+        <criteriaItems>
+            <column>leaseworks__Constituent_Assembly__c.leaseworks__Type__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>APU</value>
+        </criteriaItems>
+    </filter>
+    <format>Tabular</format>
+    <name>Assemblies TSN/CSN APU Audit Report</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$leaseworks__Constituent_Assembly__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <sortColumn>leaseworks__Constituent_Assembly__c.leaseworks__CSN__c</sortColumn>
+    <sortOrder>Desc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>CUST_CREATED_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

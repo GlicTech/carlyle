@@ -4,7 +4,13 @@
         <field>CUST_NAME</field>
     </columns>
     <columns>
+        <field>leaseworks__Marketing_Activity__c.leaseworks__Deal_Type__c</field>
+    </columns>
+    <columns>
         <field>leaseworks__Marketing_Activity__c.leaseworks__Aircraft_Type_Qty_List__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Marketing_Activity__c.leaseworks__Deal_Status__c</field>
     </columns>
     <columns>
         <field>leaseworks__Marketing_Activity__c.pro_Commercial_Weekly_Summary_Notes_2__c</field>
@@ -28,17 +34,7 @@
             <value>0</value>
         </criteriaItems>
     </filter>
-    <format>Summary</format>
-    <groupingsDown>
-        <dateGranularity>Day</dateGranularity>
-        <field>leaseworks__Marketing_Activity__c.leaseworks__Deal_Type__c</field>
-        <sortOrder>Asc</sortOrder>
-    </groupingsDown>
-    <groupingsDown>
-        <dateGranularity>Day</dateGranularity>
-        <field>leaseworks__Marketing_Activity__c.leaseworks__Deal_Status__c</field>
-        <sortOrder>Asc</sortOrder>
-    </groupingsDown>
+    <format>Tabular</format>
     <name>My Deals</name>
     <params>
         <name>co</name>
@@ -48,7 +44,7 @@
     <scope>organization</scope>
     <showDetails>true</showDetails>
     <showGrandTotal>true</showGrandTotal>
-    <showSubTotals>false</showSubTotals>
+    <showSubTotals>true</showSubTotals>
     <timeFrameFilter>
         <dateColumn>leaseworks__Marketing_Activity__c.leaseworks__Y_Hidden_Date_Of_Last_Interaction__c</dateColumn>
         <interval>INTERVAL_CUSTOM</interval>

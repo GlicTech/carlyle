@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>ApprovalWorkItem$Name</field>
+    </columns>
+    <columns>
+        <field>ApprovalWorkItem$RelatedRecordObjectName</field>
+    </columns>
+    <columns>
+        <field>ApprovalWorkItem$Status</field>
+    </columns>
+    <columns>
+        <field>ApprovalWorkItem$ReviewedBy</field>
+    </columns>
+    <columns>
+        <field>ApprovalWorkItem$ReviewedDate</field>
+    </columns>
+    <columns>
+        <field>ApprovalWorkItem$Comments</field>
+    </columns>
+    <columns>
+        <field>ApprovalWorkItem$CreatedDate</field>
+    </columns>
+    <description>Bank Account Approvals
+
+Report shows all bank account approvals granted in the past 30 days. Filtered to only show records for running user who is on the Lease Management or System Administrator profiles which make up the Bank Account approver group</description>
+    <filter>
+        <criteriaItems>
+            <column>ApprovalWorkItem$RelatedRecordObjectName</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Bank_Account</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>ApprovalWorkItem$Status</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>AP</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>ApprovalWorkItem$ReviewedDate</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>LAST_N_DAYS:30</value>
+        </criteriaItems>
+    </filter>
+    <format>Tabular</format>
+    <name>Bank Ac Approvals Last 30</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Approval_Work_Items__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>ApprovalWorkItem$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

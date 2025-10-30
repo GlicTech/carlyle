@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Approval_Status__c</fullName>
+    <defaultValue>&quot;Approved&quot;</defaultValue>
+    <deprecated>false</deprecated>
+    <description>If &#39;Manual Approval Required&#39; is enabled, the Approval Status is set to &#39;Pending&#39; by default. After review, mark it as &#39;Approved&#39; to lock the schedule and rates. To make changes, unapprove the schedule, edit as needed, and reapprove(Use approve and un-approve buttons for the bulk edits and regeneration). The schedule must be approved for utilization generation.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>If &#39;Manual Approval Required&#39; is enabled, the Approval Status is set to &#39;Pending&#39; by default. After review, mark it as &#39;Approved&#39; to lock the schedule and rates. To make changes, unapprove the schedule, edit as needed, and reapprove(Use approve and un-approve buttons for the bulk edits and regeneration). The schedule must be approved for utilization generation.</inlineHelpText>
+    <label>Approval Status</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Pending</fullName>
+                <default>false</default>
+                <label>Pending</label>
+            </value>
+            <value>
+                <fullName>Approved</fullName>
+                <default>true</default>
+                <label>Approved</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

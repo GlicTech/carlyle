@@ -17,28 +17,10 @@
                             </visibilityRule>
                         </valueListItems>
                         <valueListItems>
-                            <value>FeedItem.TextPost</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>FeedItem.ContentPost</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>FeedItem.LinkPost</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>FeedItem.PollPost</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>ChangeOwnerOne</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>ChangeRecordType</value>
-                        </valueListItems>
-                        <valueListItems>
                             <value>Submit</value>
                         </valueListItems>
                         <valueListItems>
-                            <value>leaseworks__Rent__c.leaseworks__Recalculate_Interest</value>
+                            <value>Edit</value>
                         </valueListItems>
                     </valueList>
                 </componentInstanceProperties>
@@ -65,29 +47,6 @@
         <mode>Replace</mode>
         <name>header</name>
         <type>Region</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>relatedListComponentOverride</name>
-                    <value>NONE</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>rowsToDisplay</name>
-                    <value>10</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>showActionBar</name>
-                    <value>true</value>
-                </componentInstanceProperties>
-                <componentName>force:relatedListContainer</componentName>
-                <identifier>force_relatedListContainer</identifier>
-            </componentInstance>
-        </itemInstances>
-        <mode>Replace</mode>
-        <name>relatedTabContent</name>
-        <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
         <itemInstances>
@@ -140,36 +99,6 @@
                 <identifier>RecordStepped_Rent__cField</identifier>
             </fieldInstance>
         </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Average_SLR_Amount__c</fieldItem>
-                <identifier>RecordAverage_SLR_Amount_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Override_SLR_Amount__c</fieldItem>
-                <identifier>RecordOverride_SLR_Amount_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Overridden_Average_SLR_Amount__c</fieldItem>
-                <identifier>RecordOverridden_Average_SLR_Amount_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
         <name>Facet-9ef8764b-ba50-44d3-bbd1-f5d00e434328</name>
         <type>Facet</type>
     </flexiPageRegions>
@@ -210,35 +139,18 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Override_Rent_Due_Date__c</fieldItem>
+                <identifier>RecordOverride_Rent_Due_Date__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.leaseworks__Comment__c</fieldItem>
                 <identifier>RecordComment__cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Predelivery__c</fieldItem>
-                <identifier>RecordPredelivery_cField2</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Link_to_Invoice__c</fieldItem>
-                <identifier>RecordLink_to_Invoice_cField2</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.leaseworks__Predelivery__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>true</rightValue>
-                    </criteria>
-                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <name>Facet-bdf7e450-2692-4740-b4ad-6f99d8d73a44</name>
@@ -275,10 +187,78 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Rent_Due_Amount__c</fieldItem>
-                <identifier>RecordRent_Due_Amount__cField</identifier>
+                <fieldItem>Record.leaseworks__Billing_Currency__c</fieldItem>
+                <identifier>RecordBilling_Currency__cField</identifier>
             </fieldInstance>
         </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Rent_Slip_Amount__c</fieldItem>
+                <identifier>RecordRent_Slip_Amount__cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Multicurrency_Enabled__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Rent_Due_Amount__c</fieldItem>
+                <identifier>RecordRent_Due_Amount__cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Multicurrency_Enabled__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>false</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Escalation_Factor__c</fieldItem>
+                <identifier>RecordEscalation_Factor__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Prorate__c</fieldItem>
+                <identifier>RecordProrate_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Stepped_MultiRent__c</fieldItem>
+                <identifier>RecordStepped_MultiRent_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <name>Facet-17c010ac-3639-49cc-91e2-10dc3071086d</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
                 <fieldInstanceProperties>
@@ -295,8 +275,66 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Other_Cost__c</fieldItem>
-                <identifier>RecordOther_Cost__cField</identifier>
+                <fieldItem>Record.leaseworks__New_Rent_Slip_Adjustments__c</fieldItem>
+                <identifier>RecordNew_Rent_Slip_Adjustments__cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Multicurrency_Enabled__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Rent_Slip_Adjustments__c</fieldItem>
+                <identifier>RecordRent_Slip_Adjustments_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Multicurrency_Enabled__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>false</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Final_Rent_Slip_Amount__c</fieldItem>
+                <identifier>RecordFinal_Rent_Slip_Amount__cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Multicurrency_Enabled__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Total_Due__c</fieldItem>
+                <identifier>RecordTotal_Due__cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Multicurrency_Enabled__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>false</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -307,40 +345,6 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.leaseworks__Comment_For_Misc_Payable_Receivable__c</fieldItem>
                 <identifier>RecordComment_For_Misc_Payable_Receivable__cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <name>Facet-17c010ac-3639-49cc-91e2-10dc3071086d</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Total_Due__c</fieldItem>
-                <identifier>RecordTotal_Due__cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Rent_Due_Date__c</fieldItem>
-                <identifier>RecordRent_Due_Date__cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Override_Rent_Due_Date__c</fieldItem>
-                <identifier>RecordOverride_Rent_Due_Date__cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-7bccf796-e1ef-481b-b003-22d21b0dc150</name>
@@ -378,7 +382,7 @@
                     <value>none</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.leaseworks__Rent_Rate__c</fieldItem>
-                <identifier>RecordRent_Rate__cField</identifier>
+                <identifier>RecordRent_Rate__cField2</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -387,8 +391,15 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Escalation_Factor__c</fieldItem>
-                <identifier>RecordEscalation_Factor__cField</identifier>
+                <fieldItem>Record.leaseworks__Rental_Adjustment_Amount__c</fieldItem>
+                <identifier>RecordRental_Adjustment_Amount__cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Multicurrency_Enabled__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>false</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -397,8 +408,15 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Prorate__c</fieldItem>
-                <identifier>RecordProrate__cField</identifier>
+                <fieldItem>Record.leaseworks__New_Rental_Adjustment_Amount__c</fieldItem>
+                <identifier>RecordNew_Rental_Adjustment_Amount__cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Multicurrency_Enabled__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -407,8 +425,8 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Off_Wing__c</fieldItem>
-                <identifier>RecordOff_Wing__cField</identifier>
+                <fieldItem>Record.leaseworks__Actual_Interest_Rate__c</fieldItem>
+                <identifier>RecordActual_Interest_Rate_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -417,38 +435,8 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Off_Wing_Rent__c</fieldItem>
-                <identifier>RecordOff_Wing_Rent__cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Stepped_MultiRent__c</fieldItem>
-                <identifier>RecordStepped_MultiRent__cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Rental_Credit_Debit__c</fieldItem>
-                <identifier>RecordRental_Credit_Debit__cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Floating_Formula__c</fieldItem>
-                <identifier>RecordFloating_Formula_cField</identifier>
+                <fieldItem>Record.leaseworks__Final_Interest_Rate__c</fieldItem>
+                <identifier>RecordFinal_Interest_Rate_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-eac44d8a-f973-4796-bc71-744512ccf71e</name>
@@ -461,8 +449,8 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Cost_Of_Funds__c</fieldItem>
-                <identifier>RecordCost_Of_Funds__cField</identifier>
+                <fieldItem>Record.leaseworks__Floating_Formula__c</fieldItem>
+                <identifier>RecordFloating_Formula_cField2</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -481,48 +469,8 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Rental_Adjustment_Factor__c</fieldItem>
-                <identifier>RecordRental_Adjustment_Factor__cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Rental_Adjustment_Amount__c</fieldItem>
-                <identifier>RecordRental_Adjustment_Amount__cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Assumed_Interest_Rate__c</fieldItem>
-                <identifier>RecordAssumed_Interest_Rate__cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Actual_Interest_Rate__c</fieldItem>
-                <identifier>RecordActual_Interest_Rate__cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Final_Interest_Rate__c</fieldItem>
-                <identifier>RecordFinal_Interest_Rate__cField</identifier>
+                <fieldItem>Record.leaseworks__Cost_Of_Funds__c</fieldItem>
+                <identifier>RecordCost_Of_Funds__cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-c081efd1-2619-4523-8974-21cc6a278dc5</name>
@@ -559,26 +507,6 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Rent_Rate__c</fieldItem>
-                <identifier>RecordRent_Rate__cField2</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Escalation_Factor__c</fieldItem>
-                <identifier>RecordEscalation_Factor__cField2</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
                 <fieldItem>Record.leaseworks__Off_Wing__c</fieldItem>
                 <identifier>RecordOff_Wing__cField2</identifier>
             </fieldInstance>
@@ -589,8 +517,32 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__New_Off_Wing_Rent__c</fieldItem>
+                <identifier>RecordNew_Off_Wing_Rent_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Multicurrency_Enabled__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.leaseworks__Off_Wing_Rent__c</fieldItem>
                 <identifier>RecordOff_Wing_Rent__cField2</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Multicurrency_Enabled__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>false</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <name>Facet-9e618e34-d013-4617-8f44-6e9fbc33f661</name>
@@ -603,34 +555,8 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Prorate__c</fieldItem>
-                <identifier>RecordProrate__cField2</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Stepped_MultiRent__c</fieldItem>
-                <identifier>RecordStepped_MultiRent__cField2</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
                 <fieldItem>Record.leaseworks__Applicable_Low_Season_Rent_Rate_F__c</fieldItem>
                 <identifier>RecordApplicable_Low_Season_Rent_Rate_F__cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldItem>Record.leaseworks__Applicable_Low_Season_Rent_Rate__c</fieldItem>
-                <identifier>RecordApplicable_Low_Season_Rent_Rate__cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-3d2d8a98-36c0-4017-ad82-76ece62aca1e</name>
@@ -677,72 +603,8 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Escalation_Factor__c</fieldItem>
-                <identifier>RecordEscalation_Factor__cField3</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Prorate__c</fieldItem>
-                <identifier>RecordProrate__cField3</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Off_Wing__c</fieldItem>
-                <identifier>RecordOff_Wing__cField3</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Off_Wing_Rent__c</fieldItem>
-                <identifier>RecordOff_Wing_Rent__cField3</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Stepped_MultiRent__c</fieldItem>
-                <identifier>RecordStepped_MultiRent__cField3</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
                 <fieldItem>Record.leaseworks__PBH_Fixed_Rent__c</fieldItem>
                 <identifier>RecordPBH_Fixed_Rent__cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <name>Facet-b601590c-5e3d-43ad-bfad-4744d07cbebd</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__PBH_Maximum__c</fieldItem>
-                <identifier>RecordPBH_Maximum__cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -761,18 +623,22 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__PBH_Total_Calculated__c</fieldItem>
-                <identifier>RecordPBH_Total_Calculated__cField</identifier>
+                <fieldItem>Record.leaseworks__PBH_Maximum__c</fieldItem>
+                <identifier>RecordPBH_Maximum__cField</identifier>
             </fieldInstance>
         </itemInstances>
+        <name>Facet-b601590c-5e3d-43ad-bfad-4744d07cbebd</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__PBH_Total_Effective__c</fieldItem>
-                <identifier>RecordPBH_Total_Effective__cField</identifier>
+                <fieldItem>Record.leaseworks__PBH_Total_Minimum__c</fieldItem>
+                <identifier>RecordPBH_Total_Minimum__cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -791,8 +657,18 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__PBH_Total_Minimum__c</fieldItem>
-                <identifier>RecordPBH_Total_Minimum__cField</identifier>
+                <fieldItem>Record.leaseworks__PBH_Total_Calculated__c</fieldItem>
+                <identifier>RecordPBH_Total_Calculated__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Y_Hidden_PBHRentAmtAdj__c</fieldItem>
+                <identifier>RecordY_Hidden_PBHRentAmtAdj_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -811,8 +687,8 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Y_Hidden_PBHRentAmtAdj__c</fieldItem>
-                <identifier>RecordY_Hidden_PBHRentAmtAdj_cField</identifier>
+                <fieldItem>Record.leaseworks__PBH_Total_Effective__c</fieldItem>
+                <identifier>RecordPBH_Total_Effective__cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-10ad7c56-c88b-4f22-abc9-9ed47ac2e3e5</name>
@@ -849,98 +725,6 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Rent_Rate__c</fieldItem>
-                <identifier>RecordRent_Rate__cField4</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Escalation_Factor__c</fieldItem>
-                <identifier>RecordEscalation_Factor__cField4</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Prorate__c</fieldItem>
-                <identifier>RecordProrate__cField4</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <name>Facet-fcbcb6a4-ce1a-4baf-ac93-f763f8978071</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Off_Wing__c</fieldItem>
-                <identifier>RecordOff_Wing__cField4</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Off_Wing_Rent__c</fieldItem>
-                <identifier>RecordOff_Wing_Rent__cField4</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Stepped_MultiRent__c</fieldItem>
-                <identifier>RecordStepped_MultiRent__cField4</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <name>Facet-fe67bffd-ad7b-4ec6-97a4-951dcd1dc048</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>body</name>
-                    <value>Facet-fcbcb6a4-ce1a-4baf-ac93-f763f8978071</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:column</componentName>
-                <identifier>flexipage_column11</identifier>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>body</name>
-                    <value>Facet-fe67bffd-ad7b-4ec6-97a4-951dcd1dc048</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:column</componentName>
-                <identifier>flexipage_column12</identifier>
-            </componentInstance>
-        </itemInstances>
-        <name>Facet-2ec3d05e-b2ee-4e62-9a7e-9fc8625093cc</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
                 <fieldItem>Record.leaseworks__Link_to_Invoice__c</fieldItem>
                 <identifier>RecordLink_to_Invoice__cField</identifier>
             </fieldInstance>
@@ -961,8 +745,15 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Invoice_Date__c</fieldItem>
-                <identifier>RecordInvoice_Date__cField</identifier>
+                <fieldItem>Record.leaseworks__New_Invoiced_Amount__c</fieldItem>
+                <identifier>RecordNew_Invoiced_Amount__cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Multicurrency_Enabled__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -973,6 +764,30 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.leaseworks__Invoiced_Amount__c</fieldItem>
                 <identifier>RecordInvoiced_Amount__cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Multicurrency_Enabled__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>false</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Rent_Invoice_Generation_Date__c</fieldItem>
+                <identifier>RecordRent_Invoice_Generation_Date__cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__RentPayments__r.leaseworks__Invoice_Required_By_Date_Setting__c}</leftValue>
+                        <operator>GT</operator>
+                        <rightValue>0</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <name>Facet-44e49635-3638-423b-b5eb-5aeea0e80bd7</name>
@@ -985,8 +800,49 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Paid_Amount_New__c</fieldItem>
+                <identifier>RecordPaid_Amount_New__cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Multicurrency_Enabled__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.leaseworks__Paid_Amount_F__c</fieldItem>
                 <identifier>RecordPaid_Amount_F__cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Multicurrency_Enabled__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>false</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__New_Balance_Due__c</fieldItem>
+                <identifier>RecordNew_Balance_Due__cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Multicurrency_Enabled__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -997,6 +853,13 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.leaseworks__Balance_Due__c</fieldItem>
                 <identifier>RecordBalance_Due__cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Multicurrency_Enabled__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>false</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -1007,6 +870,16 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.leaseworks__Paid_F__c</fieldItem>
                 <identifier>RecordPaid_F__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Predelivery__c</fieldItem>
+                <identifier>RecordPredelivery_cField2</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-1e5bf3c1-511f-455f-80b9-8660213b7c38</name>
@@ -1037,43 +910,15 @@
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <name>Facet-e1cc9799-6a48-4f67-9e76-d72a87aeacad</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <name>Facet-da78d28d-be0d-47eb-b990-f861286d9d5d</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>body</name>
-                    <value>Facet-e1cc9799-6a48-4f67-9e76-d72a87aeacad</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:column</componentName>
-                <identifier>flexipage_column15</identifier>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>body</name>
-                    <value>Facet-da78d28d-be0d-47eb-b990-f861286d9d5d</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:column</componentName>
-                <identifier>flexipage_column16</identifier>
-            </componentInstance>
-        </itemInstances>
-        <name>Facet-fad4cfd6-df1b-41fc-ba74-26f3481d97a3</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-2db21e99-5ce5-452e-9809-683a52fd8fc4</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -1090,6 +935,10 @@
                     <value>Facet-13452f12-841b-4931-8e06-80f84130d6c2</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Rent Slip Amount &amp; Adjustments</value>
                 </componentInstanceProperties>
@@ -1102,6 +951,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-7af8d2c6-f590-4228-9d63-39e633af9b43</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -1125,6 +978,10 @@
                     <value>Facet-7e987248-0d62-4eb2-8373-4eb249ae7e3c</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Calculation Details</value>
                 </componentInstanceProperties>
@@ -1146,6 +1003,10 @@
                     <value>Facet-ccb54ccf-15b6-43bd-9e2e-d9e57cd7912e</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Calculation Details</value>
                 </componentInstanceProperties>
@@ -1164,28 +1025,11 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>columns</name>
-                    <value>Facet-2ec3d05e-b2ee-4e62-9a7e-9fc8625093cc</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>label</name>
-                    <value>Calculation Details</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:fieldSection</componentName>
-                <identifier>flexipage_fieldSection6</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.leaseworks__Stepped_Rent__r.leaseworks__Rent_Type__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>Fixed Rent</rightValue>
-                    </criteria>
-                </visibilityRule>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>columns</name>
                     <value>Facet-14e77d8f-078c-4963-94cb-ef726df752b2</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -1193,20 +1037,6 @@
                 </componentInstanceProperties>
                 <componentName>flexipage:fieldSection</componentName>
                 <identifier>flexipage_fieldSection7</identifier>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>columns</name>
-                    <value>Facet-fad4cfd6-df1b-41fc-ba74-26f3481d97a3</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>label</name>
-                    <value>Head Lease - Sub Lease</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:fieldSection</componentName>
-                <identifier>flexipage_fieldSection8</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>
@@ -1220,20 +1050,6 @@
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>body</name>
-                    <value>relatedTabContent</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>title</name>
-                    <value>Standard.Tab.relatedLists</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:tab</componentName>
-                <identifier>relatedListsTab</identifier>
-            </componentInstance>
-        </itemInstances>
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>

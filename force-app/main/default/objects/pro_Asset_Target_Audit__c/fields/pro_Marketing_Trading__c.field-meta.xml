@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>pro_Marketing_Trading__c</fullName>
+    <description>If linked to an AiD, this field pulls in the Department of the User who is the owner of the Deal. Otherwise, this field pulls in the value from Marketing / Trading on related Asset.</description>
+    <externalId>false</externalId>
+    <formula>IF( pro_Asset_in_Deal__c != Null,  pro_Asset_in_Deal__r.leaseworks__Marketing_Activity__r.Owner:User.Department + &#39;Placeholder Until Departments Set&#39;,  TEXT(pro_Asset__r.pro_Marketing_Trading__c) )</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Marketing / Trading</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

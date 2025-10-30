@@ -9,7 +9,6 @@
     <trackTrending>false</trackTrending>
     <type>Picklist</type>
     <valueSet>
-        <controllingField>Sub_Type__c</controllingField>
         <restricted>true</restricted>
         <valueSetDefinition>
             <sorted>false</sorted>
@@ -34,6 +33,11 @@
                 <label>Change of Ownership</label>
             </value>
             <value>
+                <fullName>Claims - Deviation from Lease Terms</fullName>
+                <default>false</default>
+                <label>Claims - Deviation from Lease Terms</label>
+            </value>
+            <value>
                 <fullName>Credit Actions</fullName>
                 <default>false</default>
                 <label>Credit Actions</label>
@@ -41,7 +45,7 @@
             <value>
                 <fullName>Deferral Request</fullName>
                 <default>false</default>
-                <label>Deferral Request</label>
+                <label>Deferral Request - Under 3 Months Rent</label>
             </value>
             <value>
                 <fullName>LoC Drawdown</fullName>
@@ -96,76 +100,8 @@
             <value>
                 <fullName>Waiver / Rebate</fullName>
                 <default>false</default>
-                <label>Waiver / Rebate</label>
+                <label>Waiver / Rebate - Under 3 Months Rent</label>
             </value>
         </valueSetDefinition>
-        <valueSettings>
-            <controllingFieldValue>Credit</controllingFieldValue>
-            <valueName>Change of Ownership</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>Credit</controllingFieldValue>
-            <valueName>Credit Actions</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>Credit</controllingFieldValue>
-            <valueName>Deferral Request</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>Credit</controllingFieldValue>
-            <valueName>LoC Drawdown</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>Credit</controllingFieldValue>
-            <valueName>LPI Waiver / Discount</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>Credit</controllingFieldValue>
-            <valueName>Subleasing Request</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>Credit</controllingFieldValue>
-            <valueName>Waiver / Rebate</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>Lease Management</controllingFieldValue>
-            <valueName>Cash to LoC Conversion</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>Lease Management</controllingFieldValue>
-            <valueName>Operational Requests</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>Lease Management</controllingFieldValue>
-            <valueName>Part Exchanges (LG / APU)</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>Lease Management</controllingFieldValue>
-            <valueName>Tripartite Agreement</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>Lease Transaction</controllingFieldValue>
-            <valueName>Other Lease Amendments</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>Lease Transaction</controllingFieldValue>
-            <valueName>Redelivery Buy-outs</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>Liability Management</controllingFieldValue>
-            <valueName>Bond Repurchase</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>Liability Management</controllingFieldValue>
-            <valueName>Novation Fees (External)</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>Liability Management</controllingFieldValue>
-            <valueName>Novation Fees (Internal)</valueName>
-        </valueSettings>
-        <valueSettings>
-            <controllingFieldValue>Technical</controllingFieldValue>
-            <valueName>Change in Technical Budgets</valueName>
-        </valueSettings>
     </valueSet>
 </CustomField>

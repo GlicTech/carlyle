@@ -17,12 +17,19 @@
         <defaultConnectorLabel>Default</defaultConnectorLabel>
         <rules>
             <name>Update_Targets</name>
-            <conditionLogic>and</conditionLogic>
+            <conditionLogic>or</conditionLogic>
             <conditions>
                 <leftValueReference>Update_Selected_Targets.value</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue>Audits</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Create_Asset_Targets.value</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Assets</stringValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -113,6 +120,12 @@
     </dynamicChoiceSets>
     <environments>Default</environments>
     <formulas>
+        <description>Depending on whether Assets Without Targets is checked, this formula returns either the DataFetcherAssetQueries or AogOrderbookAssetsQuery formula</description>
+        <name>f_AllAssetsOrAssetsWithoutTargets</name>
+        <dataType>String</dataType>
+        <expression>IF({!Assets_Without_Targets} = True, {!f_AogOrderbookAssetsQuery}, {!f_DataFetcherAssetQueries})</expression>
+    </formulas>
+    <formulas>
         <name>f_AllTasksForYearAggregateQuery</name>
         <dataType>String</dataType>
         <expression>IF(
@@ -120,6 +133,14 @@
     &quot;SELECT COUNT(Id) FROM pro_Asset_Target_Audit__c WHERE pro_Target_Year__c = &#39;&quot; &amp; TEXT(VALUE({!Select_A_Year}) ) &amp; &quot;&#39; AND pro_Outcome__c NOT IN (&#39;Closed - LOI Other&#39;, &#39;Closed - Target Readjusted&#39;)&quot;,
     &quot;&quot;
 )</expression>
+    </formulas>
+    <formulas>
+        <description>Query to find Assets that are AOG status or on order and don&#39;t have any open or closed targets in the current or following year.</description>
+        <name>f_AogOrderbookAssetsQuery</name>
+        <dataType>String</dataType>
+        <expression>&quot;SELECT Id, Name, leaseworks__Status__c, leaseworks__Assigned_To__c, leaseworks__Availability_Date__c &quot; &amp;
+&quot;FROM leaseworks__Aircraft__c &quot; &amp;
+&quot;WHERE (leaseworks__Status__c = &#39;AOG&#39; OR Orderbook_Ref__c &gt; &#39;0&#39;) &quot;</expression>
     </formulas>
     <formulas>
         <name>f_CompletedTasksForYearAggregateQuery</name>
@@ -156,26 +177,17 @@
         <dataType>String</dataType>
         <expression>IF(
     NOT(ISBLANK({!Select_A_Year})) &amp;&amp; ISBLANK({!Select_An_Outcome}),
-    &quot;SELECT Name, Id, pro_Asset__c, pro_Contract__c, pro_Outcome__c, pro_Target_Forecast__c, pro_Target_Year__c, pro_Target_End_Date__c, pro_Asset_In_Deal__c, pro_Contract_Extended__c &quot; &amp;
-    &quot;FROM pro_Asset_Target_Audit__c WHERE pro_Target_Year__c = &#39;&quot; &amp; TEXT(VALUE({!Select_A_Year})) &amp; &quot;&#39; &quot; &amp;
-    &quot;ORDER BY pro_Target_End_Date__c ASC&quot;,
+    &quot;SELECT Name, Id, pro_Asset__c, pro_Contract__c, pro_Outcome__c, pro_Target_Forecast__c, pro_Target_Year__c, pro_Target_End_Date__c, pro_Asset_In_Deal__c, pro_Contract_Extended__c FROM pro_Asset_Target_Audit__c WHERE pro_Target_Year__c = &#39;&quot; &amp; TEXT(VALUE({!Select_A_Year}) ) &amp; &quot;&#39; &quot;,
 
     IF(
         ISBLANK({!Select_A_Year}) &amp;&amp; NOT(ISBLANK({!Select_An_Outcome})),
-        &quot;SELECT Name, Id, pro_Asset__c, pro_Contract__c, pro_Outcome__c, pro_Target_Forecast__c, pro_Target_Year__c, pro_Target_End_Date__c, pro_Asset_In_Deal__c, pro_Contract_Extended__c &quot; &amp;
-        &quot;FROM pro_Asset_Target_Audit__c WHERE pro_Outcome__c = &#39;&quot; &amp; {!Select_An_Outcome} &amp; &quot;&#39; &quot; &amp;
-        &quot;ORDER BY pro_Target_End_Date__c ASC&quot;,
+        &quot;SELECT Name, Id, pro_Asset__c, pro_Contract__c, pro_Outcome__c, pro_Target_Forecast__c, pro_Target_Year__c, pro_Target_End_Date__c, pro_Asset_In_Deal__c, pro_Contract_Extended__c   FROM pro_Asset_Target_Audit__c WHERE pro_Outcome__c =&#39;&quot; &amp; {!Select_An_Outcome} &amp; &quot;&#39; &quot;,
 
         IF(
             NOT(ISBLANK({!Select_A_Year})) &amp;&amp; NOT(ISBLANK({!Select_An_Outcome})),
-            &quot;SELECT Name, Id, pro_Asset__c, pro_Contract__c, pro_Outcome__c, pro_Target_Forecast__c, pro_Target_Year__c, pro_Target_End_Date__c, pro_Asset_In_Deal__c, pro_Contract_Extended__c &quot; &amp;
-            &quot;FROM pro_Asset_Target_Audit__c WHERE pro_Target_Year__c = &#39;&quot; &amp; TEXT(VALUE({!Select_A_Year})) &amp; &quot;&#39; &quot; &amp;
-            &quot;AND pro_Outcome__c = &#39;&quot; &amp; {!Select_An_Outcome} &amp; &quot;&#39; &quot; &amp;
-            &quot;ORDER BY pro_Target_End_Date__c ASC&quot;,
+            &quot;SELECT Name, Id, pro_Asset__c, pro_Contract__c, pro_Outcome__c, pro_Target_Forecast__c, pro_Target_Year__c, pro_Target_End_Date__c, pro_Asset_In_Deal__c, pro_Contract_Extended__c   FROM pro_Asset_Target_Audit__c WHERE pro_Target_Year__c = &#39;&quot; &amp; TEXT(VALUE({!Select_A_Year}) ) &amp; &quot;&#39; AND pro_Outcome__c =&#39;&quot; &amp; {!Select_An_Outcome} &amp; &quot;&#39;&quot;,
 
-            &quot;SELECT Name, Id, pro_Asset__c, pro_Contract__c, pro_Outcome__c, pro_Target_Forecast__c, pro_Target_Year__c, pro_Target_End_Date__c, pro_Asset_In_Deal__c, pro_Contract_Extended__c &quot; &amp;
-            &quot;FROM pro_Asset_Target_Audit__c &quot; &amp;
-            &quot;ORDER BY pro_Target_End_Date__c ASC&quot;
+            &quot;SELECT Name, Id, pro_Asset__c, pro_Contract__c, pro_Outcome__c, pro_Target_Forecast__c, pro_Target_Year__c, pro_Target_End_Date__c, pro_Asset_In_Deal__c, pro_Contract_Extended__c   FROM pro_Asset_Target_Audit__c &quot;
         )
     )
 )</expression>
@@ -967,17 +979,16 @@
                 <name>MainScreen_Section6_Column1</name>
                 <fieldType>Region</fieldType>
                 <fields>
-                    <name>Select_A_Status</name>
-                    <choiceReferences>c_AssetStatusPicklist</choiceReferences>
-                    <dataType>String</dataType>
-                    <fieldText>Select A Status</fieldText>
-                    <fieldType>DropdownBox</fieldType>
-                    <isRequired>false</isRequired>
+                    <name>Assets_Without_Targets</name>
+                    <dataType>Boolean</dataType>
+                    <fieldText>Assets Without Targets</fieldText>
+                    <fieldType>InputField</fieldType>
+                    <isRequired>true</isRequired>
                 </fields>
                 <inputParameters>
                     <name>width</name>
                     <value>
-                        <stringValue>3</stringValue>
+                        <stringValue>2</stringValue>
                     </value>
                 </inputParameters>
                 <isRequired>false</isRequired>
@@ -986,12 +997,22 @@
                 <name>MainScreen_Section6_Column2</name>
                 <fieldType>Region</fieldType>
                 <fields>
-                    <name>Select_An_Asset_Type</name>
-                    <choiceReferences>c_AssetType</choiceReferences>
+                    <name>Select_A_Status</name>
+                    <choiceReferences>c_AssetStatusPicklist</choiceReferences>
                     <dataType>String</dataType>
-                    <fieldText>Select An Asset Type</fieldText>
+                    <fieldText>Select A Status</fieldText>
                     <fieldType>DropdownBox</fieldType>
                     <isRequired>false</isRequired>
+                    <visibilityRule>
+                        <conditionLogic>and</conditionLogic>
+                        <conditions>
+                            <leftValueReference>Assets_Without_Targets</leftValueReference>
+                            <operator>EqualTo</operator>
+                            <rightValue>
+                                <booleanValue>false</booleanValue>
+                            </rightValue>
+                        </conditions>
+                    </visibilityRule>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -1004,6 +1025,24 @@
             <fields>
                 <name>MainScreen_Section6_Column3</name>
                 <fieldType>Region</fieldType>
+                <fields>
+                    <name>Select_An_Asset_Type</name>
+                    <choiceReferences>c_AssetType</choiceReferences>
+                    <dataType>String</dataType>
+                    <fieldText>Select An Asset Type</fieldText>
+                    <fieldType>DropdownBox</fieldType>
+                    <isRequired>false</isRequired>
+                    <visibilityRule>
+                        <conditionLogic>and</conditionLogic>
+                        <conditions>
+                            <leftValueReference>Assets_Without_Targets</leftValueReference>
+                            <operator>EqualTo</operator>
+                            <rightValue>
+                                <booleanValue>false</booleanValue>
+                            </rightValue>
+                        </conditions>
+                    </visibilityRule>
+                </fields>
                 <inputParameters>
                     <name>width</name>
                     <value>
@@ -1018,7 +1057,7 @@
                 <inputParameters>
                     <name>width</name>
                     <value>
-                        <stringValue>3</stringValue>
+                        <stringValue>4</stringValue>
                     </value>
                 </inputParameters>
                 <isRequired>false</isRequired>
@@ -1063,7 +1102,7 @@
             <inputParameters>
                 <name>queryString</name>
                 <value>
-                    <elementReference>f_DataFetcherAssetQueries</elementReference>
+                    <elementReference>f_AllAssetsOrAssetsWithoutTargets</elementReference>
                 </value>
             </inputParameters>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
@@ -1464,7 +1503,7 @@
             <targetReference>MainScreen</targetReference>
         </connector>
     </start>
-    <status>Draft</status>
+    <status>Active</status>
     <subflows>
         <name>Update_Via_With_Audits</name>
         <label>Update Via With Audits</label>

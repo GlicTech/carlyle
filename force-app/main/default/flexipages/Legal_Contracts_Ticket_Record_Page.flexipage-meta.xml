@@ -7,7 +7,24 @@
                     <name>actionNames</name>
                     <valueList>
                         <valueListItems>
-                            <value>pro_Ticket__c.Link_To_Records</value>
+                            <value>pro_Ticket__c.pro_Assets_Assemblies</value>
+                            <visibilityRule>
+                                <criteria>
+                                    <leftValue>{!Record.pro_Non_Carlyle_Asset__c}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>false</rightValue>
+                                </criteria>
+                            </visibilityRule>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>pro_Ticket__c.pro_Edit_Assets_Non_Carlyle</value>
+                            <visibilityRule>
+                                <criteria>
+                                    <leftValue>{!Record.pro_Non_Carlyle_Asset__c}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>true</rightValue>
+                                </criteria>
+                            </visibilityRule>
                         </valueListItems>
                         <valueListItems>
                             <value>pro_Ticket__c.New_Sub_Ticket</value>
@@ -185,10 +202,10 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
-                    <value>none</value>
+                    <value>readonly</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.pro_Assigned_To__c</fieldItem>
-                <identifier>Recordpro_Assigned_To_cField</identifier>
+                <fieldItem>Record.pro_Assignees__c</fieldItem>
+                <identifier>Recordpro_Assignees_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -287,25 +304,28 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.pro_External_Party__c</fieldItem>
-                <identifier>Recordpro_Account_cField</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.pro_Is_Account_Lookup_Populated__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>true</rightValue>
-                    </criteria>
-                </visibilityRule>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
                 <fieldItem>Record.pro_Non_Carlyle_Asset__c</fieldItem>
                 <identifier>Recordpro_Non_Carlyle_Asset_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>readonly</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.pro_Assets__c</fieldItem>
+                <identifier>Recordpro_Assets_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.pro_Assemblies__c</fieldItem>
+                <identifier>Recordpro_Assemblies_cField</identifier>
                 <visibilityRule>
                     <criteria>
                         <leftValue>{!Record.pro_Non_Carlyle_Asset__c}</leftValue>
@@ -321,70 +341,13 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.pro_Non_Carlyle_Asset_MSN__c</fieldItem>
-                <identifier>Recordpro_Non_Carlyle_Asset_MSN_cField</identifier>
+                <fieldItem>Record.pro_Transaction_Codes__c</fieldItem>
+                <identifier>Recordpro_Transaction_Codes_cField</identifier>
                 <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.pro_Non_Carlyle_Asset__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>true</rightValue>
-                    </criteria>
-                </visibilityRule>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.pro_Asset__c</fieldItem>
-                <identifier>Recordpro_Related_Asset_cField</identifier>
-                <visibilityRule>
-                    <booleanFilter>1 AND 2</booleanFilter>
-                    <criteria>
-                        <leftValue>{!Record.pro_Asset_Lookup_Populated__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>true</rightValue>
-                    </criteria>
                     <criteria>
                         <leftValue>{!Record.pro_Non_Carlyle_Asset__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>false</rightValue>
-                    </criteria>
-                </visibilityRule>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.pro_Transaction_Code__c</fieldItem>
-                <identifier>Recordpro_Transaction_Code_cField</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.pro_Asset_Lookup_Populated__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>true</rightValue>
-                    </criteria>
-                </visibilityRule>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.pro_Lease__c</fieldItem>
-                <identifier>Recordpro_Lease_cField</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.pro_Lease_Lookup_Populated__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>true</rightValue>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -399,15 +362,8 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.pro_Assembly__c</fieldItem>
-                <identifier>Recordpro_Related_Assembly_cField</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.pro_Assembly_Lookup_Populated__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>true</rightValue>
-                    </criteria>
-                </visibilityRule>
+                <fieldItem>Record.pro_External_Party__c</fieldItem>
+                <identifier>Recordpro_Account_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -416,15 +372,8 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.pro_Utilization__c</fieldItem>
-                <identifier>Recordpro_Related_Utilization_cField</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.pro_Utilization_Lookup_Populated__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>true</rightValue>
-                    </criteria>
-                </visibilityRule>
+                <fieldItem>Record.pro_Lease__c</fieldItem>
+                <identifier>Recordpro_Lease_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -435,13 +384,6 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.pro_Deal__c</fieldItem>
                 <identifier>Recordpro_Related_Deal_cField</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.pro_Deal_Lookup_Populated__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>true</rightValue>
-                    </criteria>
-                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -452,13 +394,16 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.pro_Technical_Project__c</fieldItem>
                 <identifier>Recordpro_Technical_Project__cField</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.pro_Technical_Project_Lookup_Populated__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>true</rightValue>
-                    </criteria>
-                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.pro_Claim__c</fieldItem>
+                <identifier>Recordpro_Claim_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-fe358376-14f4-442d-ba64-0851a81f1a8b</name>
@@ -486,68 +431,6 @@
             </componentInstance>
         </itemInstances>
         <name>Facet-b49b3290-9df8-4b82-b1fa-bbc879653bdf</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.pro_Sharefile_Link__c</fieldItem>
-                <identifier>Recordpro_Sharefile_Link_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.pro_ATS_Link__c</fieldItem>
-                <identifier>Recordpro_ATS_Link_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <name>Facet-36368a1e-dc88-4041-a612-06a6ba29f17f</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.pro_Internal_Sharepoint_Link__c</fieldItem>
-                <identifier>Recordpro_Internal_Sharepoint_Link__cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <name>Facet-7a6f15e3-4394-4e3e-bfb8-3bf422992731</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>body</name>
-                    <value>Facet-36368a1e-dc88-4041-a612-06a6ba29f17f</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:column</componentName>
-                <identifier>flexipage_column7</identifier>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>body</name>
-                    <value>Facet-7a6f15e3-4394-4e3e-bfb8-3bf422992731</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:column</componentName>
-                <identifier>flexipage_column8</identifier>
-            </componentInstance>
-        </itemInstances>
-        <name>Facet-2054dfae-d2fa-48db-8c51-766476f37da4</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -662,6 +545,10 @@
                     <value>Facet-6a50355c-0947-4173-bf72-98fe3e7213b1</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>@@@SFDCInformationSFDC@@@</value>
                 </componentInstanceProperties>
@@ -674,6 +561,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-7357f604-b9e5-4b76-8e2d-07a9e7ac21ed</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -697,6 +588,10 @@
                     <value>Facet-b49b3290-9df8-4b82-b1fa-bbc879653bdf</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Ticket Relationships</value>
                 </componentInstanceProperties>
@@ -708,21 +603,11 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>columns</name>
-                    <value>Facet-2054dfae-d2fa-48db-8c51-766476f37da4</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>label</name>
-                    <value>Links</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:fieldSection</componentName>
-                <identifier>flexipage_fieldSection4</identifier>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>columns</name>
                     <value>Facet-229e7175-ceb1-4564-9e74-5428f145021a</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -737,6 +622,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-dae37461-8887-4cda-a4bf-c755ab15585f</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -754,6 +643,28 @@
         </itemInstances>
         <mode>Replace</mode>
         <name>detailTabContent</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>flowArguments</name>
+                    <value>[{&quot;label&quot;:&quot;recordId&quot;,&quot;dataType&quot;:&quot;SObject&quot;,&quot;supportsRecordId&quot;:true,&quot;value&quot;:&quot;{!Record.Id}&quot;}]</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>flowLayout</name>
+                    <value>oneColumn</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>flowName</name>
+                    <value>Prodigy_Screen_Bulk_Create_Sub_Tickets</value>
+                </componentInstanceProperties>
+                <componentName>flowruntime:interview</componentName>
+                <identifier>flowruntime_interview4</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>Facet-c13b309c-a7a5-4415-b9a8-0b73c854626f</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -826,6 +737,27 @@
                 </componentInstanceProperties>
                 <componentName>flexipage:tab</componentName>
                 <identifier>detailTab</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-c13b309c-a7a5-4415-b9a8-0b73c854626f</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>title</name>
+                    <value>Sub-Tickets</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:tab</componentName>
+                <identifier>flexipage_tab2</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.pro_Is_SubTicket__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>false</rightValue>
+                    </criteria>
+                </visibilityRule>
             </componentInstance>
         </itemInstances>
         <itemInstances>
@@ -905,75 +837,37 @@
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
-                    <name>actionNames</name>
+                    <name>flowArguments</name>
+                    <value>[{&quot;label&quot;:&quot;recordId&quot;,&quot;dataType&quot;:&quot;SObject&quot;,&quot;supportsRecordId&quot;:true,&quot;value&quot;:&quot;{!Record.Id}&quot;}]</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
-                    <name>maxRecordsToDisplay</name>
-                    <value>10</value>
+                    <name>flowLayout</name>
+                    <value>oneColumn</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
-                    <name>parentFieldApiName</name>
-                    <value>pro_Ticket__c.Id</value>
+                    <name>flowName</name>
+                    <value>Prodigy_Auto_Multi_Assign_Tickets</value>
+                </componentInstanceProperties>
+                <componentName>flowruntime:interview</componentName>
+                <identifier>flowruntime_interview2</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>flowArguments</name>
+                    <value>[{&quot;label&quot;:&quot;varTicketId&quot;,&quot;dataType&quot;:&quot;SObject&quot;,&quot;supportsRecordId&quot;:true,&quot;value&quot;:&quot;{!Record.Id}&quot;}]</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
-                    <name>relatedListApiName</name>
-                    <value>Sub_Tickets__r</value>
+                    <name>flowLayout</name>
+                    <value>oneColumn</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
-                    <name>relatedListDisplayType</name>
-                    <value>ADVGRID</value>
+                    <name>flowName</name>
+                    <value>Prodigy_Dynamic_Display_Of_Document_Link</value>
                 </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>relatedListFieldAliases</name>
-                    <valueList>
-                        <valueListItems>
-                            <value>NAME</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>pro_Subject_Details__c</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>pro_Comments__c</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>pro_Priority__c</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>pro_Status__c</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>pro_Requested_By__c</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>pro_Assigned_To__c</value>
-                        </valueListItems>
-                    </valueList>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>relatedListLabel</name>
-                    <value>Sub Tickets</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>showActionBar</name>
-                    <value>true</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>sortFieldAlias</name>
-                    <value>__DEFAULT__</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>sortFieldOrder</name>
-                    <value>Default</value>
-                </componentInstanceProperties>
-                <componentName>lst:dynamicRelatedList</componentName>
-                <identifier>lst_dynamicRelatedList</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.pro_Is_SubTicket__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>false</rightValue>
-                    </criteria>
-                </visibilityRule>
+                <componentName>flowruntime:interview</componentName>
+                <identifier>flowruntime_interview3</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>

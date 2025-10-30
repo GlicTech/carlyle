@@ -5,7 +5,7 @@
         <name>Assign_Values_To_Bank_Acc_Variable</name>
         <label>Assign Values To Bank Acc Variable</label>
         <locationX>176</locationX>
-        <locationY>242</locationY>
+        <locationY>350</locationY>
         <assignmentItems>
             <assignToReference>varBankAcToCreate.Name</assignToReference>
             <operator>Assign</operator>
@@ -17,14 +17,14 @@
             <assignToReference>varBankAcToCreate.leaseworks__Financial_Institution__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>Financial_Institution</elementReference>
+                <elementReference>Get_Bank_Branch.leaseworks__Financial_Institution__c</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
             <assignToReference>varBankAcToCreate.leaseworks__Bank_Branch__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>DisplayBankBranches.firstSelectedRow.Id</elementReference>
+                <elementReference>cl_Bank_Branches.selectedChoiceValues</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -45,7 +45,7 @@
             <assignToReference>varBankAcToCreate.leaseworks__Country__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>Country.recordId</elementReference>
+                <elementReference>cl_Country.selectedChoiceValues</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -60,20 +60,6 @@
             <operator>Assign</operator>
             <value>
                 <elementReference>IBAN_Code</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>varBankAcToCreate.leaseworks__Bank_Identification_Code__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Bank_Identification_Code</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>varBankAcToCreate.leaseworks__SWIFT_Code__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>SWIFT_Code</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -94,14 +80,14 @@
             <assignToReference>varBankAcToCreate.pro_Financial_Institution_Pending__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>Financial_Institution</elementReference>
+                <elementReference>Get_Bank_Branch.leaseworks__Financial_Institution__c</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
             <assignToReference>varBankAcToCreate.pro_Bank_Branch_Pending__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>DisplayBankBranches.firstSelectedRow.Id</elementReference>
+                <elementReference>cl_Bank_Branches.selectedChoiceValues</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -115,7 +101,7 @@
             <assignToReference>varBankAcToCreate.pro_Country_Pending__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>Country.recordId</elementReference>
+                <elementReference>cl_Country.selectedChoiceValues</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -133,31 +119,17 @@
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>varBankAcToCreate.pro_Bank_Identification_Code_Pending__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Bank_Identification_Code</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>varBankAcToCreate.pro_SWIFT_Code_Pending__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>SWIFT_Code</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
             <assignToReference>varBankAcToCreate.pro_Bank_Branch_Name_Pending__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>DisplayBankBranches.firstSelectedRow.Name</elementReference>
+                <elementReference>cl_Bank_Branches.selectedChoiceLabels</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
             <assignToReference>varBankAcToCreate.pro_Country_Name_Pending__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>Country.recordName</elementReference>
+                <elementReference>cl_Country.selectedChoiceLabels</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -168,7 +140,7 @@
         <name>Set_User_To_Submit_for_Approval</name>
         <label>Set User To Submit for Approval</label>
         <locationX>176</locationX>
-        <locationY>350</locationY>
+        <locationY>458</locationY>
         <assignmentItems>
             <assignToReference>varBankAcToCreate.pro_User_To_Submit_For_Approval__c</assignToReference>
             <operator>Assign</operator>
@@ -220,29 +192,44 @@
             <stringValue>USD</stringValue>
         </value>
     </choices>
-    <description>Flow takes user input to create a bank account, stores the values in placeholder fields and submits the record for approval</description>
+    <description>Bank Account Approval
+
+Flow takes user input to create a bank account, stores the values in placeholder fields and submits the record for approval</description>
     <dynamicChoiceSets>
         <name>c_Currencies</name>
         <dataType>Picklist</dataType>
-        <displayField xsi:nil="true" />
-        <object xsi:nil="true" />
+        <displayField xsi:nil="true"/>
+        <object xsi:nil="true"/>
         <picklistField>leaseworks__Account_Currency__c</picklistField>
         <picklistObject>leaseworks__Bank_Account__c</picklistObject>
     </dynamicChoiceSets>
     <dynamicChoiceSets>
         <name>c_FinancialInstitutions</name>
         <dataType>Picklist</dataType>
-        <displayField xsi:nil="true" />
-        <object xsi:nil="true" />
+        <displayField xsi:nil="true"/>
+        <object xsi:nil="true"/>
         <picklistField>leaseworks__Financial_Institution__c</picklistField>
         <picklistObject>leaseworks__Bank_Account__c</picklistObject>
     </dynamicChoiceSets>
-    <environments>Default</environments>
-    <formulas>
-        <name>f_QueryFilteredBranches</name>
+    <dynamicChoiceSets>
+        <name>rcs_BankBranches</name>
         <dataType>String</dataType>
-        <expression>&quot;SELECT Name, leaseworks__Branch_Address__c FROM leaseworks__Bank_Branch__c WHERE leaseworks__Financial_Institution__c = &#39;&quot; &amp; {!Financial_Institution} &amp; &quot;&#39;&quot;</expression>
-    </formulas>
+        <displayField>Name</displayField>
+        <object>leaseworks__Bank_Branch__c</object>
+        <sortField>Name</sortField>
+        <sortOrder>Asc</sortOrder>
+        <valueField>Id</valueField>
+    </dynamicChoiceSets>
+    <dynamicChoiceSets>
+        <name>rcs_Countries</name>
+        <dataType>String</dataType>
+        <displayField>Name</displayField>
+        <object>leaseworks__Country__c</object>
+        <sortField>Name</sortField>
+        <sortOrder>Asc</sortOrder>
+        <valueField>Id</valueField>
+    </dynamicChoiceSets>
+    <environments>Default</environments>
     <interviewLabel>Prodigy - Create Bank AC And Submit For Approval {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Prodigy - Create Bank AC And Submit For Approval</label>
     <processMetadataValues>
@@ -268,12 +255,33 @@
         <name>Create_New_Bank_Account</name>
         <label>Create New Bank Account</label>
         <locationX>176</locationX>
-        <locationY>458</locationY>
+        <locationY>566</locationY>
         <connector>
             <targetReference>RedirectScreen</targetReference>
         </connector>
         <inputReference>varBankAcToCreate</inputReference>
     </recordCreates>
+    <recordLookups>
+        <name>Get_Bank_Branch</name>
+        <label>Get Bank Branch</label>
+        <locationX>176</locationX>
+        <locationY>242</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Assign_Values_To_Bank_Acc_Variable</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>cl_Bank_Branches.selectedChoiceValues</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>leaseworks__Bank_Branch__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
     <screens>
         <name>Input_Screen</name>
         <label>Input Screen</label>
@@ -283,7 +291,7 @@
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <connector>
-            <targetReference>Assign_Values_To_Bank_Acc_Variable</targetReference>
+            <targetReference>Get_Bank_Branch</targetReference>
         </connector>
         <fields>
             <name>Input_Screen_Section1</name>
@@ -296,86 +304,23 @@
                     <dataType>String</dataType>
                     <fieldText>Bank Account Name</fieldText>
                     <fieldType>InputField</fieldType>
-                    <isRequired>false</isRequired>
+                    <isRequired>true</isRequired>
                 </fields>
                 <fields>
                     <name>Bank_Account_Number</name>
                     <dataType>String</dataType>
                     <fieldText>Bank Account Number</fieldText>
                     <fieldType>InputField</fieldType>
-                    <isRequired>false</isRequired>
+                    <isRequired>true</isRequired>
                 </fields>
                 <fields>
-                    <name>Currency</name>
-                    <choiceReferences>c_USD</choiceReferences>
-                    <choiceReferences>c_JPY</choiceReferences>
-                    <choiceReferences>c_GBP</choiceReferences>
-                    <choiceReferences>c_MYR</choiceReferences>
-                    <choiceReferences>c_EUR</choiceReferences>
-                    <dataType>String</dataType>
-                    <fieldText>Currency</fieldText>
-                    <fieldType>DropdownBox</fieldType>
-                    <isRequired>false</isRequired>
-                </fields>
-                <fields>
-                    <name>Country</name>
-                    <extensionName>flowruntime:lookup</extensionName>
-                    <fieldType>ComponentInstance</fieldType>
-                    <inputParameters>
-                        <name>fieldApiName</name>
-                        <value>
-                            <stringValue>leaseworks__Country__c</stringValue>
-                        </value>
-                    </inputParameters>
-                    <inputParameters>
-                        <name>label</name>
-                        <value>
-                            <stringValue>Country</stringValue>
-                        </value>
-                    </inputParameters>
-                    <inputParameters>
-                        <name>objectApiName</name>
-                        <value>
-                            <stringValue>leaseworks__Bank_Account__c</stringValue>
-                        </value>
-                    </inputParameters>
-                    <inputParameters>
-                        <name>required</name>
-                        <value>
-                            <booleanValue>false</booleanValue>
-                        </value>
-                    </inputParameters>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <name>cl_Bank_Branches</name>
+                    <choiceReferences>rcs_BankBranches</choiceReferences>
+                    <extensionName>flowruntime:choiceLookup</extensionName>
+                    <fieldText>Bank Branch</fieldText>
+                    <fieldType>ComponentChoice</fieldType>
                     <isRequired>true</isRequired>
                     <storeOutputAutomatically>true</storeOutputAutomatically>
-                </fields>
-                <fields>
-                    <name>Routing_ABA</name>
-                    <dataType>String</dataType>
-                    <fieldText>Routing/ABA</fieldText>
-                    <fieldType>InputField</fieldType>
-                    <isRequired>false</isRequired>
-                </fields>
-                <fields>
-                    <name>IBAN_Code</name>
-                    <dataType>String</dataType>
-                    <fieldText>IBAN Code</fieldText>
-                    <fieldType>InputField</fieldType>
-                    <isRequired>false</isRequired>
-                </fields>
-                <fields>
-                    <name>Bank_Identification_Code</name>
-                    <dataType>String</dataType>
-                    <fieldText>Bank Identification Code</fieldText>
-                    <fieldType>InputField</fieldType>
-                    <isRequired>false</isRequired>
-                </fields>
-                <fields>
-                    <name>SWIFT_Code</name>
-                    <dataType>String</dataType>
-                    <fieldText>SWIFT Code</fieldText>
-                    <fieldType>InputField</fieldType>
-                    <isRequired>false</isRequired>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -389,88 +334,59 @@
                 <name>Input_Screen_Section1_Column2</name>
                 <fieldType>Region</fieldType>
                 <fields>
-                    <name>Financial_Institution</name>
-                    <choiceReferences>c_FinancialInstitutions</choiceReferences>
+                    <name>cl_Country</name>
+                    <choiceReferences>rcs_Countries</choiceReferences>
+                    <extensionName>flowruntime:choiceLookup</extensionName>
+                    <fieldText>Country</fieldText>
+                    <fieldType>ComponentChoice</fieldType>
+                    <isRequired>true</isRequired>
+                    <storeOutputAutomatically>true</storeOutputAutomatically>
+                </fields>
+                <fields>
+                    <name>Currency</name>
+                    <choiceReferences>c_USD</choiceReferences>
+                    <choiceReferences>c_JPY</choiceReferences>
+                    <choiceReferences>c_GBP</choiceReferences>
+                    <choiceReferences>c_MYR</choiceReferences>
+                    <choiceReferences>c_EUR</choiceReferences>
                     <dataType>String</dataType>
-                    <fieldText>Financial Institution</fieldText>
+                    <fieldText>Currency</fieldText>
                     <fieldType>DropdownBox</fieldType>
-                    <isRequired>false</isRequired>
+                    <isRequired>true</isRequired>
                 </fields>
                 <fields>
-                    <name>DisplayBankBranches</name>
-                    <dataTypeMappings>
-                        <typeName>T</typeName>
-                        <typeValue>leaseworks__Bank_Branch__c</typeValue>
-                    </dataTypeMappings>
-                    <extensionName>flowruntime:datatable</extensionName>
-                    <fieldType>ComponentInstance</fieldType>
-                    <inputParameters>
-                        <name>label</name>
-                        <value>
-                            <stringValue>Select A Branch</stringValue>
-                        </value>
-                    </inputParameters>
-                    <inputParameters>
-                        <name>selectionMode</name>
-                        <value>
-                            <stringValue>SINGLE_SELECT</stringValue>
-                        </value>
-                    </inputParameters>
-                    <inputParameters>
-                        <name>minRowSelection</name>
-                        <value>
-                            <numberValue>1.0</numberValue>
-                        </value>
-                    </inputParameters>
-                    <inputParameters>
-                        <name>tableData</name>
-                        <value>
-                            <elementReference>FetchFilteredBranches.retrievedRecords</elementReference>
-                        </value>
-                    </inputParameters>
-                    <inputParameters>
-                        <name>maxRowSelection</name>
-                        <value>
-                            <numberValue>1.0</numberValue>
-                        </value>
-                    </inputParameters>
-                    <inputParameters>
-                        <name>columns</name>
-                        <value>
-                            <stringValue>[{&quot;apiName&quot;:&quot;Name&quot;,&quot;guid&quot;:&quot;column-fb57&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:false,&quot;customHeaderLabel&quot;:&quot;&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:0,&quot;label&quot;:&quot;Branch Name&quot;,&quot;type&quot;:&quot;text&quot;},{&quot;apiName&quot;:&quot;leaseworks__Branch_Address__c&quot;,&quot;guid&quot;:&quot;column-942a&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:false,&quot;customHeaderLabel&quot;:&quot;&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:1,&quot;label&quot;:&quot;Branch Address&quot;,&quot;type&quot;:&quot;text&quot;}]</stringValue>
-                        </value>
-                    </inputParameters>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <name>Routing_ABA</name>
+                    <dataType>String</dataType>
+                    <fieldText>Routing/ABA</fieldText>
+                    <fieldType>InputField</fieldType>
                     <isRequired>true</isRequired>
-                    <storeOutputAutomatically>true</storeOutputAutomatically>
+                    <visibilityRule>
+                        <conditionLogic>and</conditionLogic>
+                        <conditions>
+                            <leftValueReference>cl_Country.selectedChoiceLabels</leftValueReference>
+                            <operator>EqualTo</operator>
+                            <rightValue>
+                                <stringValue>United States of America</stringValue>
+                            </rightValue>
+                        </conditions>
+                    </visibilityRule>
                 </fields>
                 <fields>
-                    <name>FetchFilteredBranches</name>
-                    <dataTypeMappings>
-                        <typeName>T</typeName>
-                        <typeValue>leaseworks__Bank_Branch__c</typeValue>
-                    </dataTypeMappings>
-                    <dataTypeMappings>
-                        <typeName>S</typeName>
-                        <typeValue>Account</typeValue>
-                    </dataTypeMappings>
-                    <extensionName>joshdaymentlabs:dataFetcher</extensionName>
-                    <fieldType>ComponentInstance</fieldType>
-                    <inputParameters>
-                        <name>queryString</name>
-                        <value>
-                            <elementReference>f_QueryFilteredBranches</elementReference>
-                        </value>
-                    </inputParameters>
-                    <inputParameters>
-                        <name>objectName1</name>
-                        <value>
-                            <stringValue>leaseworks__Bank_Branch__c</stringValue>
-                        </value>
-                    </inputParameters>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <name>IBAN_Code</name>
+                    <dataType>String</dataType>
+                    <fieldText>IBAN Code</fieldText>
+                    <fieldType>InputField</fieldType>
                     <isRequired>true</isRequired>
-                    <storeOutputAutomatically>true</storeOutputAutomatically>
+                    <visibilityRule>
+                        <conditionLogic>and</conditionLogic>
+                        <conditions>
+                            <leftValueReference>cl_Country.selectedChoiceLabels</leftValueReference>
+                            <operator>NotEqualTo</operator>
+                            <rightValue>
+                                <stringValue>United States of America</stringValue>
+                            </rightValue>
+                        </conditions>
+                    </visibilityRule>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -491,7 +407,7 @@
         <name>RedirectScreen</name>
         <label>RedirectScreen</label>
         <locationX>176</locationX>
-        <locationY>566</locationY>
+        <locationY>674</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>

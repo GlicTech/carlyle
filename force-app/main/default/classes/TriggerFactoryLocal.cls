@@ -63,14 +63,17 @@ public class TriggerFactoryLocal {
      * Returns:     ITrigger - A trigger handler if one exists or null.
      */
     private static ITriggerLocal getHandler(Schema.sObjectType soType) {
+        if (soType == ContentDocumentLink.sObjectType) {
+            return new FileUploadPermissionTriggerHandlerLocal();
+        }
         if (soType == leaseworks__Marketing_Activity__c.sObjectType) {
             return new MarketingActivityTriggerHandlerLocal();
         }
          if (soType == leaseworks__Deal_Team__c.sObjectType) {
             return new DealTeamTriggerHandlerLocal();
         }
-        if (soType == leaseworks__Insurance_Reduction_Schedule__c.sObjectType) {
-            return new InsuranceReductionScheduleHandlerLocal();
+        if (soType == leaseworks__Spec_Fuel_Capacity__c.sObjectType) {
+            return new ACTCapacityRollupHelper();
         }
         return null;
     }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Dashboard xmlns="http://soap.sforce.com/2006/04/metadata">
+<Dashboard xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <backgroundEndColor>#FFFFFF</backgroundEndColor>
     <backgroundFadeDirection>Diagonal</backgroundFadeDirection>
     <backgroundStartColor>#FFFFFF</backgroundStartColor>
@@ -264,7 +264,7 @@
                 <flexComponentProperties>
                     <decimalPrecision>-1</decimalPrecision>
                     <flexTableColumn>
-                        <reportColumn>pro_Asset_Target_Audit__c.pro_Outcome__c</reportColumn>
+                        <reportColumn>pro_Asset_Target_Audit__c.pro_Likely_Outcome__c</reportColumn>
                         <showSubTotal>false</showSubTotal>
                         <showTotal>true</showTotal>
                         <type>grouping</type>
@@ -337,13 +337,12 @@
                         <type>detail</type>
                     </flexTableColumn>
                     <flexTableColumn>
-                        <reportColumn>pro_Asset_Target_Audit__c.pro_Target_End_Date__c</reportColumn>
+                        <reportColumn xsi:nil="true"/>
                         <showSubTotal>false</showSubTotal>
                         <showTotal>true</showTotal>
                         <type>detail</type>
                     </flexTableColumn>
                     <flexTableSortInfo>
-                        <sortColumn>pro_Asset_Target_Audit__c.pro_Target_End_Date__c</sortColumn>
                         <sortOrder>1</sortOrder>
                     </flexTableSortInfo>
                     <hideChatterPhotos>true</hideChatterPhotos>

@@ -198,12 +198,33 @@
                 <fieldItem>Record.pro_Convert_To_Lease_Amendment__c</fieldItem>
                 <identifier>Recordpro_Convert_To_Lease_Amendment_cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 AND ( 2 OR 3)</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Value__c}</leftValue>
                         <operator>GT</operator>
                         <rightValue>250000</rightValue>
                     </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Approval_Type__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Redelivery Buy-outs</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Approval_Type__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Other Lease Amendments</rightValue>
+                    </criteria>
                 </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Document_Link_Rich__c</fieldItem>
+                <identifier>RecordDocument_Link_Rich__cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-be189cce-43d7-4d68-b0c5-927719c5a4ef</name>
@@ -292,10 +313,10 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
-                    <value>required</value>
+                    <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Description__c</fieldItem>
-                <identifier>Recordleaseworks_Description_cField</identifier>
+                <fieldItem>Record.pro_Summary_Of_Approval_Request__c</fieldItem>
+                <identifier>Recordpro_Summary_Of_Approval_Request_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -304,11 +325,11 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.pro_Commercial_Weekly_Summary_Notes_2__c</fieldItem>
-                <identifier>Recordpro_Commercial_Weekly_Summary_Notes_2_cField</identifier>
+                <fieldItem>Record.pro_Financial_Comments__c</fieldItem>
+                <identifier>Recordpro_Financial_Comments_cField</identifier>
             </fieldInstance>
         </itemInstances>
-        <name>Facet-d19b1cb8-d6a5-429e-aa63-1b477db94972</name>
+        <name>Facet-b0807f14-9de3-49be-866d-841ee18c77ee</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -316,13 +337,13 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>body</name>
-                    <value>Facet-d19b1cb8-d6a5-429e-aa63-1b477db94972</value>
+                    <value>Facet-b0807f14-9de3-49be-866d-841ee18c77ee</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:column</componentName>
-                <identifier>flexipage_column3</identifier>
+                <identifier>flexipage_column4</identifier>
             </componentInstance>
         </itemInstances>
-        <name>Facet-fdc0f7be-19d9-4365-9b8d-184894b7115f</name>
+        <name>Facet-74dc7c7f-be41-4b5f-a3c7-dfab0274a65b</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -405,6 +426,10 @@
                     <value>Facet-4beabf0a-dc5e-41a2-8c28-cef636e35899</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>@@@SFDCInformationSFDC@@@</value>
                 </componentInstanceProperties>
@@ -416,14 +441,18 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>columns</name>
-                    <value>Facet-fdc0f7be-19d9-4365-9b8d-184894b7115f</value>
+                    <value>Facet-74dc7c7f-be41-4b5f-a3c7-dfab0274a65b</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
-                    <value>Weekly Summary</value>
+                    <value>Approval Submission</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:fieldSection</componentName>
-                <identifier>flexipage_fieldSection2</identifier>
+                <identifier>flexipage_fieldSection3</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>
@@ -431,6 +460,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-d6dda859-b9ed-4423-807d-6d9b2b7c82b4</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -514,6 +547,32 @@
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>parentFieldApiName</name>
+                    <value>leaseworks__Marketing_Activity__c.Id</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListApiName</name>
+                    <value>CombinedAttachments</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListComponentOverride</name>
+                    <value>NONE</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>rowsToDisplay</name>
+                    <value>10</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>showActionBar</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentName>force:relatedListSingleContainer</componentName>
+                <identifier>force_relatedListSingleContainer</identifier>
+            </componentInstance>
+        </itemInstances>
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>

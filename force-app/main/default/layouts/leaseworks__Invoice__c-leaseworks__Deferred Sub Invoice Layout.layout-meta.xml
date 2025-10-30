@@ -4,6 +4,7 @@
     <excludeButtons>ChangeRecordType</excludeButtons>
     <excludeButtons>Clone</excludeButtons>
     <excludeButtons>Edit</excludeButtons>
+    <excludeButtons>IsotopeSubscription</excludeButtons>
     <excludeButtons>PrintableView</excludeButtons>
     <layoutSections>
         <customLabel>true</customLabel>
@@ -54,6 +55,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Approval_Date__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>leaseworks__Amount_Paid_Ledger__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -139,10 +144,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>leaseworks__Withholding_Tax_Amount__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>leaseworks__Converted_Currency_Amount__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>

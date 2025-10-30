@@ -32,7 +32,7 @@ public class CreateAutoILBatchLocal implements Database.Batchable<SObject>, Data
         String strQuery = 'select id, name, pro_Commercial_Weekly_Summary_Notes_2__c,  pro_Contracts_Legal_Weekly_Summary_Notes__c, Technical_Weekly_Summary_Notes__c ';
         strQuery += 'from leaseworks__Marketing_Activity__c where '; 
         strQuery += 'leaseworks__Inactive_MA__c = false and leaseworks__Deal_Status__c NOT IN (\'Closed - Won\',\'Closed - Lost\')';
-      // 	strQuery +=  ' and  id = \'a3saA000006XcSuQAK\'';
+        //strQuery +=  ' and  id = \'a3sQJ00002BRG69YAH\'';
         System.debug(strQuery);
         system.debug('Start CreateAutoILBatchLocal Batch (-)');
         return Database.getQueryLocator(strQuery);
@@ -221,6 +221,7 @@ public class CreateAutoILBatchLocal implements Database.Batchable<SObject>, Data
            strMsg += '</td></tr>';
            strMsg += '</table>';
            strMsg += '<br/><br/>Thanks!<br/>';
+            
         }
             if(reqLog != null){
                 reqLog.leaseworks__Status__c = 'ERROR' ;

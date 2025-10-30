@@ -1,7 +1,7 @@
 global class SendInvoiceDDPReportCtrl {
     public static Integer SCHEDULE_POLLING_TIME;
     //Added because DocGent Packages Set up found with these names
-    public static Set<String> INVOICE_PACKAGE_NAMES = new Set<String>{'Aircraft MR Invoice', 'Rent Invoice', 'Security Deposit Invoice', 'Other Invoice', 'Interest Invoice', 'Ad Hoc Invoice'};
+    public static Set<String> INVOICE_PACKAGE_NAMES = new Set<String>{'Aircraft MR Invoice (Print Options)', 'Rent Invoice (Print Options)', 'Security Deposit Invoice', 'Other Invoice', 'Interest Invoice', 'Ad Hoc Invoice', 'Fee Invoice'};
     
     global SendInvoiceDDPReportCtrl() {}
 

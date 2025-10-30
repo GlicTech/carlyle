@@ -18,9 +18,9 @@
         &#39;&#39;,
         &#39;$&#39; +
         IF(
-            leaseworks__Amount_Insurance__c &gt;= 1000000000000000,
-            TEXT(FLOOR(leaseworks__Amount_Insurance__c / 1000000000000000)) &amp; &quot;,&quot; &amp;
-            RIGHT(&quot;00&quot; &amp; TEXT(FLOOR(MOD(leaseworks__Amount_Insurance__c, 1000000000000000) / 1000000000000)), 3) &amp; &quot;,&quot; &amp;
+            leaseworks__Amount_Insurance__c &gt;= (10000000 * 100000000),
+            TEXT(FLOOR(leaseworks__Amount_Insurance__c / (10000000 * 100000000))) &amp; &quot;,&quot; &amp;
+            RIGHT(&quot;00&quot; &amp; TEXT(FLOOR(MOD(leaseworks__Amount_Insurance__c, (10000000 * 100000000)) / 1000000000000)), 3) &amp; &quot;,&quot; &amp;
             RIGHT(&quot;00&quot; &amp; TEXT(FLOOR(MOD(leaseworks__Amount_Insurance__c, 1000000000000) / 1000000000)), 3) &amp; &quot;,&quot; &amp;
             RIGHT(&quot;00&quot; &amp; TEXT(FLOOR(MOD(leaseworks__Amount_Insurance__c, 1000000000) / 1000000)), 3) &amp; &quot;,&quot; &amp;
             RIGHT(&quot;00&quot; &amp; TEXT(FLOOR(MOD(leaseworks__Amount_Insurance__c, 1000000) / 1000)), 3) &amp; &quot;,&quot;,

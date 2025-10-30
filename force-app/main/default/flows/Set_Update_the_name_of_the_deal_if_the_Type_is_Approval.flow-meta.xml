@@ -56,6 +56,12 @@
                 <booleanValue>true</booleanValue>
             </value>
         </inputAssignments>
+        <inputAssignments>
+            <field>leaseworks__Disable_All_WFs__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
         <object>leaseworks__LeaseWorksSettings__c</object>
     </recordUpdates>
     <recordUpdates>
@@ -65,6 +71,12 @@
         <locationY>539</locationY>
         <inputAssignments>
             <field>leaseworks__Disable_All_Triggers__c</field>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>leaseworks__Disable_All_WFs__c</field>
             <value>
                 <booleanValue>false</booleanValue>
             </value>
@@ -82,21 +94,13 @@
         <faultConnector>
             <targetReference>Error_wile_updating_the_name_of_the_deal</targetReference>
         </faultConnector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>Id</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>$Record.Id</elementReference>
-            </value>
-        </filters>
         <inputAssignments>
             <field>Name</field>
             <value>
                 <elementReference>NameForTheDeal</elementReference>
             </value>
         </inputAssignments>
-        <object>leaseworks__Marketing_Activity__c</object>
+        <inputReference>$Record</inputReference>
     </recordUpdates>
     <start>
         <locationX>50</locationX>
@@ -104,17 +108,19 @@
         <connector>
             <targetReference>Disable_Triggers</targetReference>
         </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>leaseworks__Deal_Type__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>Approval</stringValue>
-            </value>
-        </filters>
+        <filterFormula>AND(
+    ISPICKVAL({!$Record.leaseworks__Deal_Type__c}, &quot;Approval&quot;),
+    NOT({!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c}),
+    NOT({!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c}),
+    OR(
+        ISNEW(),
+        ISCHANGED({!$Record.Approval_Type__c}),
+ISCHANGED({!$Record.leaseworks__Counter_Party__r.Id})
+    )
+)</filterFormula>
         <object>leaseworks__Marketing_Activity__c</object>
         <recordTriggerType>CreateAndUpdate</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>
     </start>
-    <status>Obsolete</status>
+    <status>Active</status>
 </Flow>

@@ -23,6 +23,17 @@
                 </div>
             </template>
 
+            <div class="slds-m-top_small">
+                <lightning-input
+                    type="checkbox"
+                    label="Treat blanks as null (clear fields)"
+                    checked={treatBlanksAsNull}
+                    onchange={handleTreatBlanksChange}>
+                </lightning-input>
+            </div>
+
+            
+
             <div class="button-section slds-m-vertical_medium">
                 <lightning-button
                     variant="neutral"
@@ -78,7 +89,7 @@
                 </lightning-button-group>
 
                 <lightning-datatable
-                    key-field="originalLine"
+                    key-field="lineNumber"
                     data={filteredResults}
                     columns={columns}
                     hide-checkbox-column="true"

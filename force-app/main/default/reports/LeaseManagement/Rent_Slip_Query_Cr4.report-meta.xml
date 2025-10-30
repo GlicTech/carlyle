@@ -3,6 +3,22 @@
     <columns>
         <field>CHILD_NAME</field>
     </columns>
+    <columns>
+        <field>leaseworks__Rent__c.leaseworks__Start_Date__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Rent__c.leaseworks__For_Month_Ending__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>leaseworks__Rent__c.leaseworks__Rent_Due_Amount__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Rent__c.Invoice_Reference_Number_Local__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Rent__c.leaseworks__Link_to_Invoice__c</field>
+    </columns>
     <filter>
         <criteriaItems>
             <column>leaseworks__Rent__c.leaseworks__Rent_Type__c</column>
@@ -11,16 +27,23 @@
             <operator>equals</operator>
             <value>Manual Rent,Fixed Rent</value>
         </criteriaItems>
+        <criteriaItems>
+            <column>CUST_NAME</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>contains</operator>
+            <value>1369</value>
+        </criteriaItems>
     </filter>
-    <format>Matrix</format>
-    <groupingsAcross>
-        <dateGranularity>Day</dateGranularity>
-        <field>leaseworks__Rent__c.leaseworks__Rent_Type__c</field>
-        <sortOrder>Asc</sortOrder>
-    </groupingsAcross>
+    <format>Summary</format>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
         <field>CUST_NAME</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>FK_NAME</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
     <name>Rent Slip Query</name>
