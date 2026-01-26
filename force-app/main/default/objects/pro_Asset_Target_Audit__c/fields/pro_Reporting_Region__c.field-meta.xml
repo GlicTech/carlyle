@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>pro_Reporting_Region__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(
+    ISBLANK(TEXT(pro_Asset_in_Deal__r.leaseworks__Marketing_Activity__r.leaseworks__Counter_Party__r.pro_Reporting_Region__c)),
+    TEXT(pro_Contract__r.leaseworks__Operator_New__r.pro_Reporting_Region__c),
+    TEXT(pro_Asset_in_Deal__r.leaseworks__Marketing_Activity__r.leaseworks__Counter_Party__r.pro_Reporting_Region__c)
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Reporting Region</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

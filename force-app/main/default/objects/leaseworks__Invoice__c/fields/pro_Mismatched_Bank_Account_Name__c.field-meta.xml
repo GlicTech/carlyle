@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>pro_Mismatched_Bank_Account_Name__c</fullName>
+    <externalId>false</externalId>
+    <formula>CASE(
+    TEXT(leaseworks__Invoice_Category__c),
+    &quot;Aircraft MR&quot;, leaseworks__Lease__r.leaseworks__Lessor_Bnk_For_MR__r.Name,
+    &quot;Security Deposit&quot;, leaseworks__Lease__r.leaseworks__Lessor_Bnk_For_SD__r.Name,
+    &quot;Other&quot;, leaseworks__Lease__r.leaseworks__Bank_Account_For_Others__r.Name,
+    &quot;Fixed Rent&quot;, leaseworks__Lease__r.leaseworks__Lesor_Bank_for_Rent__r.Name,
+    &quot;Floating Rent&quot;, leaseworks__Lease__r.leaseworks__Lesor_Bank_for_Rent__r.Name,
+    &quot;Manual Rent&quot;, leaseworks__Lease__r.leaseworks__Lesor_Bank_for_Rent__r.Name,
+    &quot;Power By The Hour&quot;, leaseworks__Lease__r.leaseworks__Lesor_Bank_for_Rent__r.Name,
+    &quot;MR&quot;, leaseworks__Lease__r.leaseworks__Lessor_Bnk_For_MR__r.Name,
+    &quot;&quot;
+)</formula>
+    <label>Contract Bank Account Name</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

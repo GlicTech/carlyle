@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Aircraft__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <inlineHelpText>Specify the asset this lease is in relation to</inlineHelpText>
+    <label>Asset</label>
+    <lookupFilter>
+        <active>true</active>
+        <booleanFilter>1 OR 2 OR 3</booleanFilter>
+        <filterItems>
+            <field>leaseworks__Aircraft__c.leaseworks__Status__c</field>
+            <operation>equals</operation>
+            <value>Available, Assigned</value>
+        </filterItems>
+        <filterItems>
+            <field>$Source.leaseworks__Lease_Type_Status__c</field>
+            <operation>equals</operation>
+            <value>LOI</value>
+        </filterItems>
+        <filterItems>
+            <field>$Source.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Non-Lease Agreement</value>
+        </filterItems>
+        <isOptional>true</isOptional>
+    </lookupFilter>
+    <referenceTo>leaseworks__Aircraft__c</referenceTo>
+    <relationshipLabel>Related Lease</relationshipLabel>
+    <relationshipName>Leases</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

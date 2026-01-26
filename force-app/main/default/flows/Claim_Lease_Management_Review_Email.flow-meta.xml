@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Claim_Moved_Back_To_Lease_Management_Review</name>
+        <label>Claim Moved Back To Lease Management Review?</label>
+        <locationX>182</locationX>
+        <locationY>323</locationY>
+        <actionName>PicklistOrderComparator</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Was_Claim_Moved_Back_Into_Lease_Management_Review_Status</targetReference>
+        </connector>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <inputParameters>
+            <name>benchmarkValue</name>
+            <value>
+                <stringValue>Finance/Accounting Review</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>currentValue</name>
+            <value>
+                <elementReference>$Record__Prior.leaseworks__Claim_Status__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>fieldApiName</name>
+            <value>
+                <stringValue>leaseworks__Claim_Status__c</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>objectApiName</name>
+            <value>
+                <stringValue>leaseworks__Claims__c</stringValue>
+            </value>
+        </inputParameters>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
+        <description>Send the Lease Management Email</description>
+        <name>Send_Lease_Management_Email</name>
+        <label>Send Lease Management Email</label>
+        <locationX>50</locationX>
+        <locationY>539</locationY>
+        <actionName>leaseworks__Claims__c.Lease_Management_Review</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <apiVersion>63.0</apiVersion>
+    <decisions>
+        <name>Was_Claim_Moved_Back_Into_Lease_Management_Review_Status</name>
+        <label>Was Claim Moved Back Into Lease Management Review Status?</label>
+        <locationX>182</locationX>
+        <locationY>431</locationY>
+        <defaultConnectorLabel>Status Moved Back</defaultConnectorLabel>
+        <rules>
+            <name>Status_Moved_Forward</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Claim_Moved_Back_To_Lease_Management_Review.isAfter</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Send_Lease_Management_Email</targetReference>
+            </connector>
+            <label>Status Moved Forward</label>
+        </rules>
+    </decisions>
+    <description>Send the Lease Management Review email</description>
+    <environments>Default</environments>
+    <interviewLabel>[Claim] - Lease Management Review Email {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>[Claim] - Lease Management Review Email</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Claim_Moved_Back_To_Lease_Management_Review</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>leaseworks__Claim_Status__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Finance/Accounting Review</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>leaseworks__Claim_Status__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <object>leaseworks__Claims__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Obsolete</status>
+</Flow>

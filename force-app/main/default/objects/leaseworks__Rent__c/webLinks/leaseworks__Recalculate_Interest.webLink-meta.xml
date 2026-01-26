@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Recalculate_Interest</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Recalculate Interest</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>{!REQUIRESCRIPT(&quot;/soap/ajax/57.0/connection.js&quot;)}
+
+
+var o = new sforce.SObject(&quot;leaseworks__Rent__c&quot;);
+o.id = &quot;{!leaseworks__Rent__c.Id}&quot;;
+
+var Result = sforce.connection.update([o]);
+
+if(Result[0].getBoolean(&quot;success&quot;)) {
+	window.location.reload();
+} else {
+
+alert(Result[0].errors.message);
+}</url>
+</WebLink>

@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Email_Notification</name>
+        <label>Email Notification</label>
+        <locationX>50</locationX>
+        <locationY>611</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>emailAddressesArray</name>
+            <value>
+                <elementReference>varUserEmailCollection</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <elementReference>tt_NotificationSubject</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <elementReference>tt_NotificationBody</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <apiVersion>63.0</apiVersion>
+    <assignments>
+        <name>Assign_Creator_Email_To_Collection</name>
+        <label>Assign Creator Email To Collection</label>
+        <locationX>50</locationX>
+        <locationY>503</locationY>
+        <assignmentItems>
+            <assignToReference>varUserEmailCollection</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>$Record.Owner:User.Email</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Email_Notification</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>Task_from_Checklist_Otems</name>
+        <label>Task from Checklist Otems?</label>
+        <locationX>182</locationX>
+        <locationY>395</locationY>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <rules>
+            <name>Different</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Technical_Project_Checklist.Id</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Creator_Email_To_Collection</targetReference>
+            </connector>
+            <label>Yes task linked to Checklist Item</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <interviewLabel>FPM: Task Deletion Alert {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>FPM: Task Deletion Alert</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Technical_Project_Checklist</name>
+        <label>Get Technical Project Checklist</label>
+        <locationX>182</locationX>
+        <locationY>287</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Task_from_Checklist_Otems</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Task_Record_Id__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>leaseworks__Technical_Project_Check__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Technical_Project_Checklist</targetReference>
+        </connector>
+        <object>Task</object>
+        <recordTriggerType>Delete</recordTriggerType>
+        <triggerType>RecordBeforeDelete</triggerType>
+    </start>
+    <status>Active</status>
+    <textTemplates>
+        <name>tt_NotificationBody</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Dear {!$Record.Owner:User.FirstName} {!$Record.Owner:User.LastName}, 
+
+Checklist Item &quot;{!$Record.Subject}&quot;  from a Project &quot;{!Get_Technical_Project_Checklist.leaseworks__Technical_Project__r.Name}&quot; was unassign from you. The Task Deleted.
+
+Thanks,
+Carlyle Team</text>
+    </textTemplates>
+    <textTemplates>
+        <name>tt_NotificationSubject</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Task Deleted - {!$Record.Subject}</text>
+    </textTemplates>
+    <variables>
+        <name>varUserEmailCollection</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

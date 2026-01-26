@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>leaseworks__ATSetMTOWLocal</fullName>
+        <field>leaseworks__MTOW_lbs__c</field>
+        <formula>if(isblank(leaseworks__MTOW_lbs__c), leaseworks__MTOW__c ,leaseworks__MTOW_lbs__c)</formula>
+        <name>ATSetMTOWLocal</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__AssetTermSetName</fullName>
+        <field>Name</field>
+        <formula>CASE(leaseworks__Serial_Number__c 
+, null, if(isBlank( text( leaseworks__Asset_Type__c  )  ),if(isBlank(text(leaseworks__Engine_Type_GP__c)),&#39;NA&#39;,text( leaseworks__Engine_Type_GP__c  )),text( leaseworks__Asset_Type__c  ))  
+, if(isBlank(leaseworks__Serial_Number__c), Name , leaseworks__Serial_Number__c) 
+) &amp; &#39;_&#39; &amp;  leaseworks__Prospect__c &amp; IF( AND(NOT( ISBLANK( leaseworks__Y_Hidden_Asset_Quantity__c ) ),isBlank(leaseworks__Serial_Number__c)), &#39; - &#39; +  leaseworks__Y_Hidden_Asset_Quantity__c, &#39;&#39; )</formula>
+        <name>AssetTermSetName</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Set_Rent_Base_Month</fullName>
+        <field>leaseworks__Rent_Base_Month__c</field>
+        <literalValue>Delivery Dollars</literalValue>
+        <name>Set Rent Base Month</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_Current_Rent_Amount</fullName>
+        <field>leaseworks__Y_Hidden_Current_Rent_Amount__c</field>
+        <formula>leaseworks__Current_Rent_Amount__c</formula>
+        <name>Update Current Rent Amount</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_Effective_Amount_Lost</fullName>
+        <field>leaseworks__Y_Hidden_Effective_Amount_Lost__c</field>
+        <formula>leaseworks__Effective_Amount_Lost__c</formula>
+        <name>Update Effective Amount Lost</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_Payment_Relief_Granted</fullName>
+        <field>leaseworks__Y_Hidden_Payment_Relief_Granted__c</field>
+        <formula>leaseworks__Payment_Relief_Granted__c</formula>
+        <name>Update Payment Relief Granted</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_Payment_Relief_Requested</fullName>
+        <field>leaseworks__Y_Hidden_Payment_Relief_Requested__c</field>
+        <formula>leaseworks__Payment_Relief_Requested__c</formula>
+        <name>Update Payment Relief Requested</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_Potential_Amount_Lost</fullName>
+        <field>leaseworks__Y_Hidden_Potential_Amount_Lost__c</field>
+        <formula>leaseworks__Potential_Amount_Lost__c</formula>
+        <name>Update Potential Amount Lost</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_Rent_Collected</fullName>
+        <field>leaseworks__Y_Hidden_Rent_Collected__c</field>
+        <formula>leaseworks__Rent_Collected__c</formula>
+        <name>Update Rent Collected</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_Rent_Remaining</fullName>
+        <field>leaseworks__Y_Hidden_Rent_Remaining__c</field>
+        <formula>leaseworks__Rent_Remaining__c</formula>
+        <name>Update Rent Remaining</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_Security_Deposit</fullName>
+        <field>leaseworks__Y_Hidden_Security_Deposit__c</field>
+        <formula>leaseworks__Security_Deposit__c</formula>
+        <name>Update Security Deposit</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_Security_Package</fullName>
+        <field>leaseworks__Y_Hidden_Security_Package__c</field>
+        <formula>leaseworks__Total_Security_Deposit__c</formula>
+        <name>Update Security Package</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>leaseworks__AT_MTOW%28lbs%29value</fullName>
+        <actions>
+            <name>leaseworks__ATSetMTOWLocal</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Auto populate / User entered value for MTOW(lbs) on Asset Term page</description>
+        <formula>true</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__Asset Term Set Rent Base Month</fullName>
+        <actions>
+            <name>leaseworks__Set_Rent_Base_Month</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>leaseworks__Aircraft_Proposal__c.leaseworks__Rate_Type__c</field>
+            <operation>equals</operation>
+            <value>Fixed/Fixed</value>
+        </criteriaItems>
+        <description>When Rate Type = Fixed/Fixed, system to default Rent Base Month to &quot;Delivery Dollars&quot;</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__AssetTermInsUpdate</fullName>
+        <actions>
+            <name>leaseworks__AssetTermSetName</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__Update Lease Restructuring Fields</fullName>
+        <actions>
+            <name>leaseworks__Update_Effective_Amount_Lost</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>leaseworks__Update_Potential_Amount_Lost</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>leaseworks__Update_Security_Package</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>true</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__UpdatePaymentReliefFields</fullName>
+        <actions>
+            <name>leaseworks__Update_Current_Rent_Amount</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>leaseworks__Update_Payment_Relief_Granted</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>leaseworks__Update_Payment_Relief_Requested</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>leaseworks__Update_Rent_Collected</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>leaseworks__Update_Rent_Remaining</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>leaseworks__Update_Security_Deposit</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>true</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

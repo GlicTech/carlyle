@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__DuplicateNameCheck</fullName>
+    <active>true</active>
+    <description>Duplicate name check</description>
+    <errorConditionFormula>Name = VLOOKUP(
+$ObjectType.leaseworks__Dimension__c.Fields.Name ,  
+ $ObjectType.leaseworks__Dimension__c.Fields.Name ,  
+ Name)</errorConditionFormula>
+    <errorDisplayField>Name</errorDisplayField>
+    <errorMessage>Dimension Name already exists</errorMessage>
+</ValidationRule>

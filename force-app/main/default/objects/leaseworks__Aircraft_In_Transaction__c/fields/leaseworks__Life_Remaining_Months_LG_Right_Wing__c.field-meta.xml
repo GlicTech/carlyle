@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Life_Remaining_Months_LG_Right_Wing__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <formula>IF( leaseworks__Performance_Limit_Month_LG_Righ_Wing__c == 0,0,(leaseworks__Performance_Limit_Month_LG_Righ_Wing__c - (( leaseworks__Lease_End_Date__c -  leaseworks__Last_Event_Date_LG_Right_Wing__c )/(365/12)))/leaseworks__Performance_Limit_Month_LG_Righ_Wing__c)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>% Life Remaining -(Months) LG Right Wing</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackTrending>false</trackTrending>
+    <type>Percent</type>
+</CustomField>

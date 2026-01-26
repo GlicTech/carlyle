@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <fieldSets>
+        <label><!-- BulkInvoiceCriteriaFieldSetForCM --></label>
+        <name>leaseworks__BulkInvoiceCriteriaFieldSetForCM</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- BulkInvoiceFetchCMFieldSet --></label>
+        <name>leaseworks__BulkInvoiceFetchCMFieldSet</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- SkipFieldsFromValidations --></label>
+        <name>leaseworks__SkipFieldsFromValidations</name>
+    </fieldSets>
+    <quickActions>
+        <label><!-- Generate Credit Memo --></label>
+        <name>Generate_Credit_Memo_pbi</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Apply To Invoice --></label>
+        <name>leaseworks__Apply_To_Invoice</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Cancel Credit Memo --></label>
+        <name>leaseworks__Cancel_Credit_Memo</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Convert to Payable --></label>
+        <name>leaseworks__Convert_to_Payable</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Undo Cancellation --></label>
+        <name>leaseworks__Undo_Cancellation</name>
+    </quickActions>
+    <validationRules>
+        <errorMessage><!-- Credit Memos should only be created in Pending status. Approval must be done post creation. --></errorMessage>
+        <name>leaseworks__CreditMemoApprovedOnCreate</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Unable to proceed with transactions: The lease is currently associated with an inactive entity. Please link an active entity to the lease to continue. --></errorMessage>
+        <name>leaseworks__Entity_Is_Inactive</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Entity is a required field. --></errorMessage>
+        <name>leaseworks__Entity_Required_if_Accounting_Enabled</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Update from Approved to Pending is not allowed --></errorMessage>
+        <name>leaseworks__NoManualStausUpdateToPending</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Credit Memo Amount should not be negative. --></errorMessage>
+        <name>leaseworks__Prevent_Negative_Credit_Memo_Amount</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Unable to proceed with approval/cancellation. Entity on the Credit Memo is inactive. Please link it to an active entity to continue. --></errorMessage>
+        <name>leaseworks__Status_is_Apprved_and_Entity_Is_Inactive</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- Generate_Credit_Note --></label>
+        <name>Generate_Credit_Note</name>
+    </webLinks>
+</CustomObjectTranslation>

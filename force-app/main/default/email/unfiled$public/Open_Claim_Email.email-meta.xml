@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Used by the open to future claim email process</description>
+    <encodingKey>UTF-8</encodingKey>
+    <name>Open Claim Email</name>
+    <style>none</style>
+    <subject>{!leaseworks__Claims__c.Name} | {!leaseworks__Claims__c.Unique_Claim_Number__c}</subject>
+    <textOnly>Hi {!leaseworks__Claims__c.Assigned_To__c},
+
+The following claim has now been created – {!leaseworks__Claims__c.Link}
+
+Regards,
+
+GT Back Office</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

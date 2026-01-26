@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Asset_Owner_Must_Be_Carlyle_Entitiy</fullName>
+    <active>true</active>
+    <description>Prodigy - Only Accounts of Type &quot;Carlyle Entity&quot; can be linked as an Asset Owner.</description>
+    <errorConditionFormula>AND (
+NOT(ISBLANK( leaseworks__Asset_Owner_new__r.Id )) &amp;&amp;
+ NOT( ISPICKVAL(leaseworks__Asset_Owner_new__r.Type, &quot;Carlyle Entity&quot;))
+)</errorConditionFormula>
+    <errorMessage>Only Accounts of Type &quot;Carlyle Entity&quot; can be linked as an Asset Owner.</errorMessage>
+</ValidationRule>

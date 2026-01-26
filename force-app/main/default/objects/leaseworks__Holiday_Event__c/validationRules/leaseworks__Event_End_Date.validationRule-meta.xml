@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Event_End_Date</fullName>
+    <active>false</active>
+    <description>Event end date field contains a date within year of holiday schedule</description>
+    <errorConditionFormula>false /*YEAR( Event_End_Date__c) &lt;&gt;  VALUE(Holiday_Schedule__r.Year_new__c)*/</errorConditionFormula>
+    <errorDisplayField>leaseworks__Event_End_Date__c</errorDisplayField>
+    <errorMessage>Please choose date within the Holiday Schedule year.</errorMessage>
+</ValidationRule>

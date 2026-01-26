@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__RateBasisValidation</fullName>
+    <active>true</active>
+    <errorConditionFormula>IF( TEXT(leaseworks__Ratio_Table__r.leaseworks__Rate_Basis__c) =&#39;Flight Hours&#39;,  OR(ISNULL(leaseworks__Flight_Hours__c), ISBLANK(leaseworks__Flight_Hours__c) ) , IF(TEXT(leaseworks__Ratio_Table__r.leaseworks__Rate_Basis__c) =&#39;Flight Cycles&#39;,  OR(ISNULL( leaseworks__Flight_Cycles__c ), ISBLANK(leaseworks__Flight_Cycles__c )) , false  ))</errorConditionFormula>
+    <errorMessage>The Flight Hours / Flight Cycles fields must be entered if the corresponding Rate Basis is selected on the parent record.</errorMessage>
+</ValidationRule>

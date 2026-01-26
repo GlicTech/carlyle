@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Calendar_Period__c</fullName>
+    <deleteConstraint>Restrict</deleteConstraint>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <label>Calendar Period</label>
+    <lookupFilter>
+        <active>false</active>
+        <errorMessage>Please choose a Calendar Period belonging to the same Accounting Period.</errorMessage>
+        <filterItems>
+            <field>leaseworks__Calendar_Period__c.Id</field>
+            <operation>notEqual</operation>
+            <value />
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>leaseworks__Calendar_Period__c</referenceTo>
+    <relationshipLabel>Invoice Journals</relationshipLabel>
+    <relationshipName>Invoice_Journals</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

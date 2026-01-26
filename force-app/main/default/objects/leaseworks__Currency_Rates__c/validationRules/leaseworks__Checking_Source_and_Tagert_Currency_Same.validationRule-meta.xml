@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Checking_Source_and_Tagert_Currency_Same</fullName>
+    <active>true</active>
+    <description>Do not allow to create record for same currency for both the source currency and target currency.</description>
+    <errorConditionFormula>IF(  TEXT(leaseworks__Source_Currency__c ) =   TEXT(leaseworks__Target_Currency__c) , true, false)</errorConditionFormula>
+    <errorMessage>You cannot select the same currency for both the source and target. Please choose different currencies to proceed.</errorMessage>
+</ValidationRule>

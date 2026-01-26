@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>leaseworks__Cash_Security_Deposit__c$Name</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>leaseworks__Cash_Security_Deposit__c$leaseworks__Total_Invoiced_Amount__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>leaseworks__Cash_Security_Deposit__c$leaseworks__Deposit_Paid__c</field>
+    </columns>
+    <filter>
+        <criteriaItems>
+            <column>leaseworks__Cash_Security_Deposit__c$leaseworks__Total_Invoiced_Amount__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>0</value>
+        </criteriaItems>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>leaseworks__Cash_Security_Deposit__c$leaseworks__Lease__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>SD Review Report</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Security_deposits__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>leaseworks__Cash_Security_Deposit__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

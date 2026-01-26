@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Insurance_Details__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <label>Insurance Details</label>
+    <lookupFilter>
+        <active>true</active>
+        <filterItems>
+            <field>$Source.leaseworks__Lease__c</field>
+            <operation>equals</operation>
+            <valueField>leaseworks__Insurance_Stipulation__c.leaseworks__Lease__c</valueField>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>leaseworks__Insurance_Stipulation__c</referenceTo>
+    <relationshipLabel>Lease Agreement Sections</relationshipLabel>
+    <relationshipName>Lease_Agreement_Sections</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

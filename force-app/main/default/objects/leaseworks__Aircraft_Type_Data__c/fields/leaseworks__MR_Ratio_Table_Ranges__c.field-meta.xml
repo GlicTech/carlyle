@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__MR_Ratio_Table_Ranges__c</fullName>
+    <deprecated>false</deprecated>
+    <description>MR Comp panel Ratio table ranges used by the system by default for this Aircraft Type. Format is: &quot;Ratio From, Ratio To, Step&quot;</description>
+    <externalId>false</externalId>
+    <formula>IF(TEXT(leaseworks__Aircraft_Class__c) =&quot;Narrowbody&quot;, &quot;0.5; 4.5; 0.5&quot;, 
+  IF(TEXT(leaseworks__Aircraft_Class__c) =&quot;Widebody&quot;, &quot;3.0; 9.0; 1.0&quot;, &quot;no data&quot;))</formula>
+    <inlineHelpText>MR Comp panel Ratio table ranges used by the system by default for this Aircraft Type. Format is: &quot;Ratio From, Ratio To, Step&quot;</inlineHelpText>
+    <label>Z_Unused_2507 MR Ratio Table Ranges</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

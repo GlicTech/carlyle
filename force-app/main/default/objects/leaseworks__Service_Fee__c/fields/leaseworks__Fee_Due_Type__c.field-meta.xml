@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Fee_Due_Type__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Enter the number of days in &#39;Fee Due Day&#39; to push the fee due date from the invoice or fee start/end date</description>
+    <externalId>false</externalId>
+    <inlineHelpText>&quot;Fixed Date&quot;: Enter a specific day(1-31) in the &#39;Fee Due Day&#39; field. &quot;Fixed Day in a Week&quot;: Select both a &#39;Day&#39; and a &#39;Weekday Number&#39; to specify, for e.g., the 2nd Tuesday of the month. &quot;Relative&quot;: Enter a number of days in the &#39;Rent Due Day&#39; field to set the due date relative to the Invoice Date, Rent Start/End Date.</inlineHelpText>
+    <label>Fee Due Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Fixed Date</fullName>
+                <default>true</default>
+                <label>Fixed Date</label>
+            </value>
+            <value>
+                <fullName>Fixed Day in a week</fullName>
+                <default>false</default>
+                <label>Fixed Day in a week</label>
+            </value>
+            <value>
+                <fullName>Relative Based On Fee Period Start Date</fullName>
+                <default>false</default>
+                <label>Relative Based On Fee Period Start Date</label>
+            </value>
+            <value>
+                <fullName>Relative Based On Fee Period End Date</fullName>
+                <default>false</default>
+                <label>Relative Based On Fee Period End Date</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

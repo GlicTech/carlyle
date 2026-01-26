@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Active__c</fullName>
+    <deprecated>false</deprecated>
+    <description>The contract is considered &#39;Inactive&#39; if its start date is in the future, no asset is associated with it, and based on the configured preference, either the contract end date or redelivery date has passed. Additionally, if the contract status is anything other than &#39;On Lease&#39;, it is also treated as inactive. Finally, if the Active Override field is explicitly set to Active or Inactive, that value will take precedence over all the other criteria.</description>
+    <externalId>false</externalId>
+    <formula>If(
+        (ISPICKVAL( leaseworks__Active_Override__c ,&#39;Default&#39;) || ISBLANK(TEXT( leaseworks__Active_Override__c ))) , 
+        AND(leaseworks__Lease_Start_Date_New__c &lt;= TODAY(),
+        
+        IF($Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Active_Lease_Logic__c=&#39;Redelivery Date&#39;,
+        true,
+        leaseworks__Lease_End_Date_New__c&gt;= TODAY()
+        ),
+        
+        (TEXT(leaseworks__Lease_Type_Status__c)==&#39;On Lease&#39;),
+        !ISBLANK(leaseworks__Aircraft__c) ),If(ISPICKVAL( leaseworks__Active_Override__c ,&#39;Active&#39;),True,False))</formula>
+    <inlineHelpText>The contract is considered &#39;Inactive&#39; if its start date is in the future, no asset is associated with it, and based on the configured preference, either the contract end date or redelivery date has passed. Additionally, if the contract status is anything other than &#39;On Lease&#39;, it is also treated as inactive. Finally, if the Active Override field is explicitly set to Active or Inactive, that value will take precedence over all the other criteria.</inlineHelpText>
+    <label>Active?</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

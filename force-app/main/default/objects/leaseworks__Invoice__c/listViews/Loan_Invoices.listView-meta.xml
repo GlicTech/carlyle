@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Loan_Invoices</fullName>
+    <columns>NAME</columns>
+    <columns>leaseworks__Lease__c</columns>
+    <columns>leaseworks__Date_of_MR_Payment_Due__c</columns>
+    <columns>leaseworks__Invoice_Date__c</columns>
+    <columns>leaseworks__Invoice_Type__c</columns>
+    <columns>leaseworks__Invoice_Sent__c</columns>
+    <columns>leaseworks__Total_Amount_Due__c</columns>
+    <columns>leaseworks__Amount_Paid_Remaining__c</columns>
+    <columns>leaseworks__Bank_Account__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>leaseworks__Invoice_Type__c</field>
+        <operation>equals</operation>
+        <value>Loan</value>
+    </filters>
+    <label>Loan Invoices</label>
+</ListView>

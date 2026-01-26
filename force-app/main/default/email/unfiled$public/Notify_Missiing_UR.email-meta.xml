@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <name>Notify Missiing UR</name>
+    <style>none</style>
+    <subject>Last utilization report not found for {!leaseworks__Lease__c.leaseworks__Operator_New__r.name}   , {!leaseworks__Lease__c.Name} .</subject>
+    <textOnly>Dear user, 
+
+Please be informed that the last utilization report for {!leaseworks__Lease__c.leaseworks__Operator_New__r.name}  ,  {!leaseworks__Lease__c.Name}  has not been received timely.  Please take the necessary action to follow up with the Operator. 
+
+
+Thanks.</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

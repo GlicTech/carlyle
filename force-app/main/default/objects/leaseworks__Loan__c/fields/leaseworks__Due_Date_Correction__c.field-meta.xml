@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Due_Date_Correction__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Succeeding-The date is moved to the immediately following business day. Modified Succeeding-The date is moved to the immediately following business day, provided that the latter is not in a different calendar month. Should that be the case, the date will be moved forward to the immediately preceding business day instead. Preceding-The date is moved to the immediately preceding business day. Modified preceding-The date is moved to the immediately preceding business day, provided that the latter is not in a different calendar month. Should that be the case, the date will be moved to the immediately following business day instead.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Correct the due dates of the Loan Slip and Payable to the first business day before or after the actual due date.</inlineHelpText>
+    <label>Due Date / Reset Date Correction</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Preceding</fullName>
+                <default>false</default>
+                <label>Preceding</label>
+            </value>
+            <value>
+                <fullName>Succeeding</fullName>
+                <default>false</default>
+                <label>Succeeding</label>
+            </value>
+            <value>
+                <fullName>Modified Preceding</fullName>
+                <default>false</default>
+                <label>Modified Preceding</label>
+            </value>
+            <value>
+                <fullName>Modified Succeeding</fullName>
+                <default>false</default>
+                <label>Modified Succeeding</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

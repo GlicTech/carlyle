@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MaximumValueIsOneDay</fullName>
+    <active>true</active>
+    <description>Restrict users from being able to enter a value of more than 1 in the Day Worked field.</description>
+    <errorConditionFormula>OR(
+pro_Day_Worked__c &gt; 1,
+pro_Day_Worked__c &lt; 0
+)</errorConditionFormula>
+    <errorMessage>The value entered in Day Worked must be between o and 1.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Low_Season_Rent</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(!isblank(leaseworks__Low_Season_Start_Year__c), !isblank(Text(leaseworks__Low_Season_Start_Month__c)) ,
+!isblank(leaseworks__Low_Season_End_Year__c) ,
+!isblank(Text(leaseworks__Low_Season_End_Month__c)) ,
+!isblank(Text(leaseworks__Low_Season_Based_On__c)), isblank(leaseworks__Low_Season_Rent__c))</errorConditionFormula>
+    <errorDisplayField>leaseworks__Low_Season_Rent__c</errorDisplayField>
+    <errorMessage>Please enter the Low Season Rent.</errorMessage>
+</ValidationRule>

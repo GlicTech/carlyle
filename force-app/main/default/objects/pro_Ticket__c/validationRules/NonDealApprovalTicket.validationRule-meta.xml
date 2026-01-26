@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>NonDealApprovalTicket</fullName>
+    <active>true</active>
+    <description>Validation rule prevents users from being able to select the value Non-Deal Approval as the ticket Type. Non-Deal Approval tickets can only be created as a result of a Non-Deal Approval record getting approved.</description>
+    <errorConditionFormula>AND(
+     pro_Approved_Ticket__c = False,
+     TEXT(pro_Type__c )= &#39;Non-Deal Approval&#39;
+)</errorConditionFormula>
+    <errorDisplayField>pro_Type__c</errorDisplayField>
+    <errorMessage>To create a Non-Deal Approval type ticket, first, navigate to the Deal tab and create a Non-Deal Approval record. Once approved, a Non-Deal Approval ticket will be created automatically.</errorMessage>
+</ValidationRule>

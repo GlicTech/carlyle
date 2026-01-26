@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__RORA_Date_cannot_be_futureDt</fullName>
+    <active>true</active>
+    <description>RORA Received Date cannot be selected as future date, it should be always past date or today&#39;s date only for Installation and Removal Type.</description>
+    <errorConditionFormula>AND($Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c == FALSE, $Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c == FALSE,leaseworks__RORA_Received_Date__c &gt; TODAY(), OR(ISPICKVAL(leaseworks__Status__c , &#39;Installation&#39;), ISPICKVAL(leaseworks__Status__c , &#39;Removal&#39;) ))</errorConditionFormula>
+    <errorMessage>RORA Received cannot be a Future Date.</errorMessage>
+</ValidationRule>

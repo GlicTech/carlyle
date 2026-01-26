@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>EUR_Invoices</fullName>
+    <columns>NAME</columns>
+    <columns>leaseworks__Lease__c</columns>
+    <columns>leaseworks__Invoice_Date__c</columns>
+    <columns>leaseworks__Exchange_Rate__c</columns>
+    <columns>leaseworks__Converted_Currency_Amount__c</columns>
+    <columns>leaseworks__Total_Invoiced_Amnt__c</columns>
+    <columns>leaseworks__Total_Invoiced_Amount_Ledger__c</columns>
+    <columns>leaseworks__Invoice_Type__c</columns>
+    <columns>leaseworks__Rent__c</columns>
+    <columns>leaseworks__Payment_Status__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>leaseworks__Transaction_Currency__c</field>
+        <operation>equals</operation>
+        <value>EUR</value>
+    </filters>
+    <label>EUR Invoices</label>
+</ListView>

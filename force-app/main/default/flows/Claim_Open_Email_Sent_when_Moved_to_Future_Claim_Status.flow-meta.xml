@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <description>Send open Email Alert</description>
+        <name>Send_Open_Claim_Email</name>
+        <label>Send Open Claim Email</label>
+        <locationX>176</locationX>
+        <locationY>323</locationY>
+        <actionName>leaseworks__Claims__c.Open_to_Future_claim_Email</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <apiVersion>63.0</apiVersion>
+    <description>V1.1 - This flow sends an email alert when the claim is updated to Future claim</description>
+    <environments>Default</environments>
+    <interviewLabel>[Claim] Open Email (Sent when Moved to Future Claim Status) {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>[Claim] Open Email (Sent when Moved to Future Claim Status)</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Send_Open_Claim_Email</targetReference>
+        </connector>
+        <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>leaseworks__Claim_Status__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Future Claim</stringValue>
+            </value>
+        </filters>
+        <object>leaseworks__Claims__c</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

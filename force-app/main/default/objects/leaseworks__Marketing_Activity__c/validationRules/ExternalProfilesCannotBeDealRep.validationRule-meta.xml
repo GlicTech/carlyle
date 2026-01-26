@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ExternalProfilesCannotBeDealRep</fullName>
+    <active>true</active>
+    <description>Rule restricts users on external profiles from being added as Deal Reps</description>
+    <errorConditionFormula>AND(
+    leaseworks__Marketing_Representative_User__r.Profile.Name &lt;&gt; &quot;Carlyle Commercial&quot;,
+    leaseworks__Marketing_Representative_User__r.Profile.Name &lt;&gt; &quot;Compliance&quot;,
+    leaseworks__Marketing_Representative_User__r.Profile.Name &lt;&gt; &quot;Contracts&quot;,
+    leaseworks__Marketing_Representative_User__r.Profile.Name &lt;&gt; &quot;Credit&quot;,
+    leaseworks__Marketing_Representative_User__r.Profile.Name &lt;&gt; &quot;Executive&quot;,
+    leaseworks__Marketing_Representative_User__r.Profile.Name &lt;&gt; &quot;Finance&quot;,
+    leaseworks__Marketing_Representative_User__r.Profile.Name &lt;&gt; &quot;Investment &amp; Strategy&quot;,
+    leaseworks__Marketing_Representative_User__r.Profile.Name &lt;&gt; &quot;Lease Management&quot;,
+    leaseworks__Marketing_Representative_User__r.Profile.Name &lt;&gt; &quot;Legal&quot;,
+    leaseworks__Marketing_Representative_User__r.Profile.Name &lt;&gt; &quot;System Administrator&quot;,
+    leaseworks__Marketing_Representative_User__r.Profile.Name &lt;&gt; &quot;Technical Admin&quot;,
+    leaseworks__Marketing_Representative_User__r.Profile.Name &lt;&gt; &quot;Technical User&quot;
+)</errorConditionFormula>
+    <errorMessage>Invalid Deal Rep selected. Please choose a user from Carlyle’s internal team.</errorMessage>
+</ValidationRule>

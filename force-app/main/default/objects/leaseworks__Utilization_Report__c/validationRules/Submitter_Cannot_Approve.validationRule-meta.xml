@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Submitter_Cannot_Approve</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+ISCHANGED(leaseworks__Status__c),
+ISPICKVAL(leaseworks__Status__c, &#39;Approved By Lessor&#39;),
+$User.Id ==  SubmittedByID__c 
+)</errorConditionFormula>
+    <errorDisplayField>leaseworks__Status__c</errorDisplayField>
+    <errorMessage>You cannot approve a utilization record that you submitted. Please ask another user to review and Approve the utilization.</errorMessage>
+</ValidationRule>

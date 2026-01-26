@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Lessor_Name__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <formula>IF(leaseworks__Type__c == &#39;MI&#39;, leaseworks__Market_Intelligence__r.leaseworks__Lesor__r.Name, 
+IF(leaseworks__Type__c == &#39;AIT&#39;, leaseworks__Aircraft_In_Transaction__r.leaseworks__Transaction__r.leaseworks__Lessor__r.Name, null) 
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>_Lessor Name</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

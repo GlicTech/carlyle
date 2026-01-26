@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__StartDate_GreaterThan_ExpiryDate</fullName>
+    <active>true</active>
+    <description>Ensures that the Start Date is not later than the Expiry Date</description>
+    <errorConditionFormula>AND(!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c, leaseworks__Start_Date__c &gt;  leaseworks__Expiry_Date__c )</errorConditionFormula>
+    <errorDisplayField>leaseworks__Expiry_Date__c</errorDisplayField>
+    <errorMessage>Expiry Date cannot be prior to LOC Start Date.</errorMessage>
+</ValidationRule>

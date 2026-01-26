@@ -1,0 +1,597 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Email_Running_User</name>
+        <label>Email Running User</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>emailAddresses</name>
+        </inputParameters>
+        <inputParameters>
+            <name>emailAddressesArray</name>
+            <value>
+                <elementReference>varUserEmailInCollection</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderType</name>
+            <value>
+                <stringValue>OrgWideEmailAddress</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderAddress</name>
+            <value>
+                <stringValue>leaseworks@carlyle.aero</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>composeEmailContent</name>
+            <value>
+                <stringValue>True</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <stringValue>Error Assigning Permissions For Project Consultant</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <stringValue>&lt;p&gt;The flow Prodigy - Auto - Manage Project Consultant Permissions ran into an error. See the details:&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;{!$Flow.FaultMessage}&lt;/p&gt;</stringValue>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <apiVersion>64.0</apiVersion>
+    <assignments>
+        <description>Used for sending an email in case of going down a fault path</description>
+        <name>Assign_User_Email_To_Collection</name>
+        <label>Assign User Email To Collection</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>varUserEmailInCollection</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>$User.Email</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Assign_Full_Access_or_Partial_Access</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>Add_Or_Remove_User_From_Partial_Permission_Set</name>
+        <label>Add Or Remove User From Partial Permission Set</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Add_To_Partial_Permission_Set</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>varTriggeringUser.IsActive</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Is_User_Already_Assigned_Partial_Permission_Set</targetReference>
+            </connector>
+            <label>Add To Partial Permission Set</label>
+        </rules>
+        <rules>
+            <name>Remove_From_Partial_Permission_Set</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>varTriggeringUser.IsActive</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Is_User_Assigned_To_Partial_Permission_Set</targetReference>
+            </connector>
+            <label>Remove From Partial Permission Set</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>For users who are active and on the profile Technical Admin, Technical User: Add to permission set. 
+
+All other users: Remove from permission set.</description>
+        <name>Add_or_Remove_User_From_Permission_Set</name>
+        <label>Add or Remove User From Permission Set?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Add_To_Permission_Set</name>
+            <conditionLogic>1 AND (2 OR 3 OR 4)</conditionLogic>
+            <conditions>
+                <leftValueReference>varTriggeringUser.IsActive</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>varTriggeringUser.Profile.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Technical User</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>varTriggeringUser.Profile.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Technical Admin</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>varTriggeringUser.Profile.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>System Administrator</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Is_User_Already_Assigned_To_Permission_Set</targetReference>
+            </connector>
+            <label>Add To Permission Set</label>
+        </rules>
+        <rules>
+            <name>Remove_From_Permission_Set</name>
+            <conditionLogic>1 OR (2 AND 3 AND 4)</conditionLogic>
+            <conditions>
+                <leftValueReference>varTriggeringUser.IsActive</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>varTriggeringUser.Profile.Name</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Technical Admin</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>varTriggeringUser.Profile.Name</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Technical User</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>varTriggeringUser.Profile.Name</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>System Administrator</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Is_User_Assigned_To_Permission_Set</targetReference>
+            </connector>
+            <label>Remove From Permission Set</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Choose which (if any) permission set to assign/deassign based on the user&#39;s profile</description>
+        <name>Assign_Full_Access_or_Partial_Access</name>
+        <label>Assign Full Access or Partial Access?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Full_Access</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>varTriggeringUser.Profile.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Technical User</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>varTriggeringUser.Profile.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Technical Admin</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>varTriggeringUser.Profile.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>System Administrator</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Project_Consultant_Full_Access_Permission_Set</targetReference>
+            </connector>
+            <label>Full Access</label>
+        </rules>
+        <rules>
+            <name>Partial_Access</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>varTriggeringUser.Profile.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Technical Consultant</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>varTriggeringUser.Profile.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Technical Senior Consultant</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>varTriggeringUser.Profile.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Technical Senior Consultant (Access Persons)</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Project_Consultant_Partial_Access_Permission_Set</targetReference>
+            </connector>
+            <label>Partial Access</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>If running user&#39;s email ends with &#39;invalid&#39; then skip sending an email as this would throw an error</description>
+        <name>Is_Running_User_s_Email_Valid</name>
+        <label>Is Running User&#39;s Email Valid?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Email_Running_User</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Email_Valid</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$User.Email</leftValueReference>
+                <operator>EndsWith</operator>
+                <rightValue>
+                    <stringValue>invalid</stringValue>
+                </rightValue>
+            </conditions>
+            <label>Yes - Email Valid</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_User_Already_Assigned_Partial_Permission_Set</name>
+        <label>Is User Already Assigned Partial Permission Set?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Create_Partial_Permission_Set_Assignment</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Already_Assigned_Partial</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Create_A_Set_Of_User_Ids_Assigned_To_Partial_Permission_Set</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <elementReference>varTriggeringUser.Id</elementReference>
+                </rightValue>
+            </conditions>
+            <label>Yes - Already Assigned Partial</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_User_Already_Assigned_To_Permission_Set</name>
+        <label>Is User Already Assigned To Permission Set?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Create_Permission_Set_Assignment</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Already_Assigned</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Create_Collection_Of_User_Ids_Assigned_To_Permission_Set</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <elementReference>varTriggeringUser.Id</elementReference>
+                </rightValue>
+            </conditions>
+            <label>Yes - Already Assigned</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_User_Assigned_To_Partial_Permission_Set</name>
+        <label>Is User Assigned To Partial Permission Set?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Assigned_Partial</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Create_A_Set_Of_User_Ids_Assigned_To_Partial_Permission_Set</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <elementReference>varTriggeringUser.Id</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Delete_Partial_Permission_Set_Assignment</targetReference>
+            </connector>
+            <label>Yes - Assigned Partial</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>If the user is already assigned to the permission set, delete the assignment. Otherwise, no action is necessary</description>
+        <name>Is_User_Assigned_To_Permission_Set</name>
+        <label>Is User Assigned To Permission Set?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Assigned</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Create_Collection_Of_User_Ids_Assigned_To_Permission_Set</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <elementReference>varTriggeringUser.Id</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Delete_Permission_Set_Assignment</targetReference>
+            </connector>
+            <label>Yes - Assigned</label>
+        </rules>
+    </decisions>
+    <description>Auto Assign Permissions
+
+This flow gets called by a record triggered flow on user. Based on the user&#39;s active status and profile, it automatically assigns or removes assignment to Project Consultant Full Access permission set.</description>
+    <environments>Default</environments>
+    <interviewLabel>Prodigy - Auto - Manage Project Consultant Permissions {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Prodigy - Auto - Manage Project Consultant Permissions</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordCreates>
+        <name>Create_Partial_Permission_Set_Assignment</name>
+        <label>Create Partial Permission Set Assignment</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <faultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Is_Running_User_s_Email_Valid</targetReference>
+        </faultConnector>
+        <inputAssignments>
+            <field>AssigneeId</field>
+            <value>
+                <elementReference>varTriggeringUser.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>PermissionSetId</field>
+            <value>
+                <elementReference>Get_Project_Consultant_Partial_Access_Permission_Set.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <object>PermissionSetAssignment</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <recordCreates>
+        <name>Create_Permission_Set_Assignment</name>
+        <label>Create Permission Set Assignment</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <faultConnector>
+            <targetReference>Is_Running_User_s_Email_Valid</targetReference>
+        </faultConnector>
+        <inputAssignments>
+            <field>AssigneeId</field>
+            <value>
+                <elementReference>varTriggeringUser.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>PermissionSetId</field>
+            <value>
+                <elementReference>Get_Project_Consultant_Full_Access_Permission_Set.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <object>PermissionSetAssignment</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <recordDeletes>
+        <name>Delete_Partial_Permission_Set_Assignment</name>
+        <label>Delete Partial Permission Set Assignment</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <faultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Is_Running_User_s_Email_Valid</targetReference>
+        </faultConnector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>PermissionSetId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Get_Project_Consultant_Partial_Access_Permission_Set.Id</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>AssigneeId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>varTriggeringUser.Id</elementReference>
+            </value>
+        </filters>
+        <object>PermissionSetAssignment</object>
+    </recordDeletes>
+    <recordDeletes>
+        <name>Delete_Permission_Set_Assignment</name>
+        <label>Delete Permission Set Assignment</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <faultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Is_Running_User_s_Email_Valid</targetReference>
+        </faultConnector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>AssigneeId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>varTriggeringUser.Id</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>PermissionSetId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Get_Project_Consultant_Full_Access_Permission_Set.Id</elementReference>
+            </value>
+        </filters>
+        <object>PermissionSetAssignment</object>
+    </recordDeletes>
+    <recordLookups>
+        <name>Get_Partial_Access_Permission_Set_Assignees</name>
+        <label>Get Partial Access Permission Set Assignees</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Create_A_Set_Of_User_Ids_Assigned_To_Partial_Permission_Set</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>PermissionSetId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Get_Project_Consultant_Partial_Access_Permission_Set.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>PermissionSetAssignment</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Permission_Set_Assignees</name>
+        <label>Get Permission Set Assignees</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Create_Collection_Of_User_Ids_Assigned_To_Permission_Set</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>PermissionSetId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Get_Project_Consultant_Full_Access_Permission_Set.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>PermissionSetAssignment</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Project_Consultant_Full_Access_Permission_Set</name>
+        <label>Get Project Consultant Full Access Permission Set</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_Permission_Set_Assignees</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Name</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Project_Consultant_Full_Access</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>PermissionSet</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Project_Consultant_Partial_Access_Permission_Set</name>
+        <label>Get Project Consultant Partial Access Permission Set</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_Partial_Access_Permission_Set_Assignees</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Name</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Project_Consultant_Partial_Access</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>PermissionSet</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Assign_User_Email_To_Collection</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>varTriggeringUser</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>User</objectType>
+    </variables>
+    <variables>
+        <name>varUserEmailInCollection</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

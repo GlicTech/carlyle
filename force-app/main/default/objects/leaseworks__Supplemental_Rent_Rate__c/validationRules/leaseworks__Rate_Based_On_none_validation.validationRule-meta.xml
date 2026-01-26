@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Rate_Based_On_none_validation</fullName>
+    <active>true</active>
+    <errorConditionFormula>IF(AND(ISBLANK(TEXT(leaseworks__Rate_Based_On__c)),OR(NOT(ISBLANK(leaseworks__Rate__c)),NOT(ISBLANK(leaseworks__Ratio_Table__c)))) , true, false)</errorConditionFormula>
+    <errorMessage>Please select the &quot;Rate Based On&quot; option according to the values entered in the &quot;Rate&quot; or &quot;Ratio Table&quot; fields. Select &quot;Rate&quot; if a rate is entered, and select &quot;Ratio Table&quot; if the ratio table is entered. The &quot;None&quot; value is not valid for MR calculation.</errorMessage>
+</ValidationRule>

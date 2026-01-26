@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__MVA_HL__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <formula>If(leaseworks__Sequence__c= 1,Case(leaseworks__Event_Type__c,
+&quot;LLP Replacement&quot;,leaseworks__Constituent_Assembly__r.leaseworks__LLP_MVA_HL__c,
+leaseworks__Current_Base_Event_Cost__c* (leaseworks__Life_Remaining__c-0.5)),0)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Maintenance Value Adjustment Half-Life of this Maintenance Event = Event Cost * Remaining Life to Half Life for general events or Total of MVA HLs of LLPs</inlineHelpText>
+    <label>MVA HL</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

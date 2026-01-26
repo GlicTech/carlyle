@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Associate_World_Fleet</fullName>
+    <availability>online</availability>
+    <description>Search and associate all World Fleets that matches this operator name.</description>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Z_Unused_OP Associate World Fleet</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>{!REQUIRESCRIPT(&quot;/soap/ajax/57.0/connection.js&quot;)}
+{!REQUIRESCRIPT(&quot;/soap/ajax/57.0/apex.js&quot;)}
+
+var retVal =sforce.apex.execute(&quot;leaseworks/LWGlobalUtils&quot;,
+&quot;setMatchingOpsOnWF&quot;,
+{OpId:&quot;{!leaseworks__Operator__c.Id}&quot;}
+);
+window.alert(retVal);</url>
+</WebLink>

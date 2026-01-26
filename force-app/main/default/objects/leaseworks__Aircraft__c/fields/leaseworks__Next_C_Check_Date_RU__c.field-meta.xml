@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Next_C_Check_Date_RU__c</fullName>
+    <deprecated>false</deprecated>
+    <description>This is the next scheduled event date by adding &quot;never exceed period month&quot; from Maintenance Program Event to &quot;last event date&quot;. In case &quot;last event date&quot; is not available, &quot;date of manufacture&quot; will be used.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>This is the next scheduled event date by adding &quot;never exceed period month&quot; from Maintenance Program Event to &quot;last event date&quot;. In case &quot;last event date&quot; is not available, &quot;date of manufacture&quot; will be used.</inlineHelpText>
+    <label>Z_Unused Next C-Check Date</label>
+    <summarizedField>leaseworks__Aircraft_Eligible_Event__c.leaseworks__Next_Scheduled_Event_Due_Date__c</summarizedField>
+    <summaryFilterItems>
+        <field>leaseworks__Aircraft_Eligible_Event__c.leaseworks__End_Date__c</field>
+        <operation>greaterThan</operation>
+        <value>1/1/1900</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>leaseworks__Aircraft_Eligible_Event__c.leaseworks__Event_Type__c</field>
+        <operation>equals</operation>
+        <value>C-Check</value>
+    </summaryFilterItems>
+    <summaryForeignKey>leaseworks__Aircraft_Eligible_Event__c.leaseworks__Aircraft__c</summaryForeignKey>
+    <summaryOperation>max</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

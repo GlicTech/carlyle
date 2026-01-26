@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Status_Change_Notification</name>
+        <label>Status Change Notification</label>
+        <locationX>50</locationX>
+        <locationY>647</locationY>
+        <actionName>customNotificationAction</actionName>
+        <actionType>customNotificationAction</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>customNotifTypeId</name>
+            <value>
+                <elementReference>Get_Custom_Notification.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>recipientIds</name>
+            <value>
+                <elementReference>varRequestedByIds</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>title</name>
+            <value>
+                <stringValue>🎫 Ticket Status Changed</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>body</name>
+            <value>
+                <elementReference>tt_NotificationBody</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>targetId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <apiVersion>63.0</apiVersion>
+    <assignments>
+        <name>Assign_Recipient_Id</name>
+        <label>Assign Recipient Id</label>
+        <locationX>182</locationX>
+        <locationY>431</locationY>
+        <assignmentItems>
+            <assignToReference>varRequestedByIds</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>$Record.pro_Requested_By__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Does_Notification_have_Recipients</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>Does_Notification_have_Recipients</name>
+        <label>Does Notification have Recipients?</label>
+        <locationX>182</locationX>
+        <locationY>539</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Send_Notification</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>f_Recipient_Check</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Status_Change_Notification</targetReference>
+            </connector>
+            <label>Yes - Send Notification</label>
+        </rules>
+    </decisions>
+    <description>AB 31/03/2025 - Updates to Logic</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>f_Recipient_Check</name>
+        <dataType>Boolean</dataType>
+        <expression>ISNULL({!$Record.pro_Requested_By__c})</expression>
+    </formulas>
+    <interviewLabel>Prodigy - Ticket Status Change Notify Requestor {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Prodigy - Ticket Status Change Notify Requestor</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Custom_Notification</name>
+        <label>Get Custom Notification</label>
+        <locationX>182</locationX>
+        <locationY>323</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Assign_Recipient_Id</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>DeveloperName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>pro_Ticket_Status_Changed</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>CustomNotificationType</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Custom_Notification</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>pro_Status__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <object>pro_Ticket__c</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <textTemplates>
+        <name>tt_NotificationBody</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>A Ticket you requested has moved stage from {!$Record__Prior.pro_Status__c} to {!$Record.pro_Status__c}
+
+Title: {!$Record.pro_Title__c}
+Type: {!$Record.pro_Type__c}
+Assignees: {!$Record.pro_Assignees__c}
+
+Click this notification to view the Ticket</text>
+    </textTemplates>
+    <variables>
+        <name>varRecipientId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>varRequestedByIds</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

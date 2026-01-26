@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>64.0</apiVersion>
+    <assignments>
+        <name>Assign_Values_To_Ticket</name>
+        <label>Assign Values To Ticket</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>varTicketToCreate.pro_Requested_By__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.CreatedById</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varTicketToCreate.pro_Expected_Due_Date__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>f_TodayPlusSeven</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varTicketToCreate.pro_Type__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Non_Deal_Approval_Ticket_Type_Mapping.pro_Ticket_Type__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varTicketToCreate.pro_Priority__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Normal</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varTicketToCreate.pro_Title__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Name</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varTicketToCreate.pro_Status__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>New</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varTicketToCreate.OwnerId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Legal_Contracts_Queue.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varTicketToCreate.RecordTypeId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Legal_Contracts_Record_Type_id.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varTicketToCreate.pro_Deal__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varTicketToCreate.pro_Approved_Ticket__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varTicketToCreateCollection</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>varTicketToCreate</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Create_Ticket</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Build_Up_Asset_On_Ticket_Variable</name>
+        <label>Build Up Asset On Ticket Variable</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>varAssetOnTicketToCreate.pro_Asset__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_Assets_In_Deal.leaseworks__Aircraft__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varAssetOnTicketToCreate.pro_Ticket__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>varTicketToCreate.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varAssetOnTicketToCreate.Name</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_Assets_In_Deal.leaseworks__Aircraft__r.Name</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varAssetOnTicketToCreateCollection</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>varAssetOnTicketToCreate</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varAssetsToAttachNames</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>f_AssetNameListFormat</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varAssetTransactionCodes</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>f_AssetTransactionCodeListFormat</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_Assets_In_Deal</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>Ticket_Type_Mapping_Found</name>
+        <label>Ticket Type Mapping Found?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>No Mappings</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Mapping_Found</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Non_Deal_Approval_Ticket_Type_Mapping.Id</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Legal_Contracts_Queue</targetReference>
+            </connector>
+            <label>Yes - Mapping Found</label>
+        </rules>
+    </decisions>
+    <description>Non Deal Approvals
+
+Once Approval is given on a Non Deal Approval, this flow creates a corresponding Legal &amp; Contracts ticket</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>f_ApprovalToTicketTypeMapping</name>
+        <dataType>String</dataType>
+        <expression>CASE(
+    TEXT({!$Record.Approval_Type__c}),
+    
+    &#39;Waiver / Rebate&#39;, &#39;Lease Side Letter&#39;,
+    &#39;Deferral Request&#39;, &#39;Lease Side Letter&#39;,
+    &#39;LPI Waiver / Discount&#39;, &#39;Lease Side Letter&#39;,
+    &#39;Part Exchanges (LG / APU)&#39;, &#39;Lease Side Letter&#39;,
+    &#39;Cash to LoC Conversion&#39;, &#39;Lease Side Letter&#39;,
+    &#39;Redelivery Buy-outs&#39;, &#39;Lease Side Letter&#39;,
+    &#39;Other Lease Amendments&#39;, &#39;Lease Side Letter&#39;,
+
+    &#39;LoC Drawdown&#39;, &#39;Other&#39;,
+    &#39;Novation Fees (Internal)&#39;, &#39;Other&#39;,
+    &#39;Novation Fees (External)&#39;, &#39;Other&#39;,
+    &#39;Bond Repurchase&#39;, &#39;Other&#39;,
+    &#39;Claims - Deviation from Lease Terms&#39;, &#39;Other&#39;,
+
+    &#39;Credit Actions&#39;, &#39;Non-Deal Approval&#39;,
+
+    &#39;Subleasing Request&#39;, &#39;Letter of Consent*&#39;,
+    &#39;Change of Ownership&#39;, &#39;Letter of Consent*&#39;,
+    &#39;Operational Requests&#39;, &#39;Letter of Consent&#39;,
+
+    &#39;Tripartite Agreement&#39;, &#39;Maintenance / Storage /CAMO Agmt&#39;,
+
+    &#39;Unknown&#39;
+)</expression>
+    </formulas>
+    <formulas>
+        <name>f_AssetNameListFormat</name>
+        <dataType>String</dataType>
+        <expression>IF({!varAssetsToAttachNames} = Null,
+     {!Loop_Assets_In_Deal.Name},
+     &#39;, &#39; + {!Loop_Assets_In_Deal.Name}
+)</expression>
+    </formulas>
+    <formulas>
+        <name>f_AssetTransactionCodeListFormat</name>
+        <dataType>String</dataType>
+        <expression>IF({!varAssetTransactionCodes} = Null,
+    {!Loop_Assets_In_Deal.leaseworks__Aircraft__r.leaseworks__MSN_Number__c} + &#39; - (&#39; + {!Loop_Assets_In_Deal.leaseworks__Aircraft__r.Transaction_Code__c}  + &#39;)&#39;,
+     &#39;, &#39; +   {!Loop_Assets_In_Deal.leaseworks__Aircraft__r.leaseworks__MSN_Number__c} + &#39; - (&#39; + {!Loop_Assets_In_Deal.leaseworks__Aircraft__r.Transaction_Code__c}  + &#39;)&#39;
+)</expression>
+    </formulas>
+    <formulas>
+        <name>f_TodayPlusSeven</name>
+        <dataType>Date</dataType>
+        <expression>TODAY() + 7</expression>
+    </formulas>
+    <interviewLabel>Prodigy - Non Deal Approval Given Create Ticket {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Prodigy - Non Deal Approval Given Create Ticket</label>
+    <loops>
+        <name>Loop_Assets_In_Deal</name>
+        <label>Loop Assets In Deal</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <collectionReference>Get_Assets_In_Deal</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Build_Up_Asset_On_Ticket_Variable</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Create_Assets_On_Ticket</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordCreates>
+        <name>Create_Assets_On_Ticket</name>
+        <label>Create Assets On Ticket</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Turn_On_Asset_Validation_For_Ticket</targetReference>
+        </connector>
+        <inputReference>varAssetOnTicketToCreateCollection</inputReference>
+    </recordCreates>
+    <recordCreates>
+        <name>Create_Ticket</name>
+        <label>Create Ticket</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Loop_Assets_In_Deal</targetReference>
+        </connector>
+        <inputReference>varTicketToCreate</inputReference>
+    </recordCreates>
+    <recordLookups>
+        <name>Get_Assets_In_Deal</name>
+        <label>Get Assets In Deal</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Assign_Values_To_Ticket</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>leaseworks__Marketing_Activity__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>leaseworks__Aircraft_Proposal__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Legal_Contracts_Queue</name>
+        <label>Get Legal &amp; Contracts Queue</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_Legal_Contracts_Record_Type_id</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>DeveloperName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>pro_Legal_Contracts_Tickets</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Group</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Legal_Contracts_Record_Type_id</name>
+        <label>Get Legal &amp; Contracts Record Type id</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_Assets_In_Deal</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>DeveloperName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Legal_Contracts</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>SobjectType</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>pro_Ticket__c</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>RecordType</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Non_Deal_Approval_Ticket_Type_Mapping</name>
+        <label>Get Non Deal Approval Ticket Type Mapping</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Ticket_Type_Mapping_Found</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>pro_Approval_Type_Picklist__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Approval_Type__c</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>pro_Mapping_Type__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Ticket</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>pro_Non_Deal_Approver_Mapping__mdt</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <name>Turn_On_Asset_Validation_For_Ticket</name>
+        <label>Turn On Asset Validation For Ticket</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>varTicketToCreate.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>pro_Asset_Validation_On__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>pro_Assets_Long_Text__c</field>
+            <value>
+                <elementReference>varAssetsToAttachNames</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>pro_Transaction_Codes_Long__c</field>
+            <value>
+                <elementReference>varAssetTransactionCodes</elementReference>
+            </value>
+        </inputAssignments>
+        <object>pro_Ticket__c</object>
+    </recordUpdates>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Non_Deal_Approval_Ticket_Type_Mapping</targetReference>
+        </connector>
+        <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>leaseworks__Deal_Type__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Approval</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>leaseworks__Deal_Status__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Approved</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Approval_Type__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Change in Technical Budgets</stringValue>
+            </value>
+        </filters>
+        <object>leaseworks__Marketing_Activity__c</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>varAssetOnTicketToCreate</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>pro_Asset_On_Ticket__c</objectType>
+    </variables>
+    <variables>
+        <name>varAssetOnTicketToCreateCollection</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>pro_Asset_On_Ticket__c</objectType>
+    </variables>
+    <variables>
+        <name>varAssetsToAttachNames</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>varAssetTransactionCodes</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>varTicketToCreate</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>pro_Ticket__c</objectType>
+    </variables>
+    <variables>
+        <name>varTicketToCreateCollection</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>pro_Ticket__c</objectType>
+    </variables>
+</Flow>

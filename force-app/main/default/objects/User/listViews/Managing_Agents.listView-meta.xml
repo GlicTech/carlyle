@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Managing_Agents</fullName>
+    <columns>FULL_NAME</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>CORE.USERS.USERNAME</columns>
+    <columns>CORE.USERS.COMPANY_NAME</columns>
+    <columns>CORE.USERS.EMAIL</columns>
+    <columns>CORE.USERS.SAML_SUBJECT</columns>
+    <columns>CORE.PROFILE.NAME</columns>
+    <columns>CORE.USERS.ACTIVE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CORE.PROFILE.NAME</field>
+        <operation>equals</operation>
+        <value>Read Only - External Rep</value>
+    </filters>
+    <label>Managing Agents</label>
+</ListView>

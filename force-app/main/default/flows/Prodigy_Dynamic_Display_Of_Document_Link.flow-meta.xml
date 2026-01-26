@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>63.0</apiVersion>
+    <assignments>
+        <description>Assign link values from update screen to ticket</description>
+        <name>Assign_Link_Values_To_Ticket</name>
+        <label>Assign Link Values To Ticket</label>
+        <locationX>176</locationX>
+        <locationY>350</locationY>
+        <assignmentItems>
+            <assignToReference>varTicketId.pro_Internal_Sharepoint_Link_Long__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>New_Internal_Shrepoint_Link</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varTicketId.pro_Sharefile_Link_Long__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>New_Sharefile_Link</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varTicketId.pro_ATS_Link_Long__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>New_ATS_Link</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_Triggering_Ticket</targetReference>
+        </connector>
+    </assignments>
+    <description>Flow allows for creation of document link of over 255 characters while insuring that the link does not get broken. Does this by creating link within a flow formula and surfacing this on a screen.</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>f_ATSLink</name>
+        <dataType>String</dataType>
+        <expression>LEFT({!varTicketId.pro_ATS_Link_Long__c}, 150) &amp; &#39;...&#39;</expression>
+    </formulas>
+    <formulas>
+        <name>f_InternalSharepointLink</name>
+        <dataType>String</dataType>
+        <expression>LEFT({!varTicketId.pro_Internal_Sharepoint_Link_Long__c}, 150) &amp; &#39;...&#39;</expression>
+    </formulas>
+    <formulas>
+        <name>f_SharefileLink</name>
+        <dataType>String</dataType>
+        <expression>LEFT({!varTicketId.pro_Sharefile_Link_Long__c}, 150) &amp; &#39;...&#39;</expression>
+    </formulas>
+    <interviewLabel>Prodigy - Dynamic Display Of Document Link {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Prodigy - Dynamic Display Of Document Link</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <recordUpdates>
+        <description>Update the link fields on the Ticket from which this creen flow was launched.</description>
+        <name>Update_Triggering_Ticket</name>
+        <label>Update Triggering Ticket</label>
+        <locationX>176</locationX>
+        <locationY>458</locationY>
+        <faultConnector>
+            <targetReference>Error_Screen</targetReference>
+        </faultConnector>
+        <inputReference>varTicketId</inputReference>
+    </recordUpdates>
+    <runInMode>SystemModeWithSharing</runInMode>
+    <screens>
+        <name>Error_Screen</name>
+        <label>Error Screen</label>
+        <locationX>440</locationX>
+        <locationY>566</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>false</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>ErrorDisplay</name>
+            <fieldText>&lt;p&gt;There was an error updating the Ticket:&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;{!$Flow.FaultMessage}&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
+        <name>LinkScreen</name>
+        <label>LinkScreen</label>
+        <locationX>176</locationX>
+        <locationY>134</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Update_Screen</targetReference>
+        </connector>
+        <fields>
+            <name>DisplayLink</name>
+            <fieldText>&lt;p&gt;&lt;strong&gt;Internal Sharepoint Link&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;{!tt_InternalSharepointLink}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Sharefile Link&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;{!tt_SharefileLink}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;ATS Link&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;{!tt_AtsLink}&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>bb_UpdateDocumentLink</name>
+            <extensionName>c:fsc_flowButtonBar</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>alignment</name>
+                <value>
+                    <stringValue>left</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>orientation</name>
+                <value>
+                    <stringValue>horizontal</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>showLines</name>
+                <value>
+                    <stringValue>neither</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>actionMode</name>
+                <value>
+                    <stringValue>navigation</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>buttons</name>
+                <value>
+                    <stringValue>[{&quot;label&quot;:&quot;Update Document Links&quot;,&quot;value&quot;:&quot;Update Document Link&quot;,&quot;iconPosition&quot;:&quot;left&quot;,&quot;variant&quot;:&quot;brand&quot;,&quot;index&quot;:0}]</stringValue>
+                </value>
+            </inputParameters>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <storeOutputAutomatically>true</storeOutputAutomatically>
+        </fields>
+        <showFooter>false</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
+        <name>Update_Screen</name>
+        <label>Update Screen</label>
+        <locationX>176</locationX>
+        <locationY>242</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Assign_Link_Values_To_Ticket</targetReference>
+        </connector>
+        <fields>
+            <name>New_Internal_Shrepoint_Link</name>
+            <defaultValue>
+                <stringValue>{!varTicketId.pro_Internal_Sharepoint_Link_Long__c}</stringValue>
+            </defaultValue>
+            <fieldText>New Internal Shrepoint Link</fieldText>
+            <fieldType>LargeTextArea</fieldType>
+            <isRequired>false</isRequired>
+        </fields>
+        <fields>
+            <name>New_Sharefile_Link</name>
+            <defaultValue>
+                <stringValue>{!varTicketId.pro_Sharefile_Link_Long__c}</stringValue>
+            </defaultValue>
+            <fieldText>New Sharefile Link</fieldText>
+            <fieldType>LargeTextArea</fieldType>
+            <isRequired>false</isRequired>
+        </fields>
+        <fields>
+            <name>New_ATS_Link</name>
+            <defaultValue>
+                <stringValue>{!varTicketId.pro_ATS_Link_Long__c}</stringValue>
+            </defaultValue>
+            <fieldText>New ATS Link</fieldText>
+            <fieldType>LargeTextArea</fieldType>
+            <isRequired>false</isRequired>
+        </fields>
+        <nextOrFinishButtonLabel>Save Links</nextOrFinishButtonLabel>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>LinkScreen</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <textTemplates>
+        <name>tt_AtsLink</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>&lt;p&gt;&lt;a href=&quot;{!varTicketId.pro_ATS_Link_Long__c}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;{!f_ATSLink}&lt;/a&gt;&lt;/p&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>tt_InternalSharepointLink</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>&lt;p&gt;&lt;a href=&quot;{!varTicketId.pro_Internal_Sharepoint_Link_Long__c}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;{!f_InternalSharepointLink}&lt;/a&gt;&lt;/p&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>tt_SharefileLink</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>&lt;p&gt;&lt;a href=&quot;{!varTicketId.pro_Sharefile_Link_Long__c}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;{!f_SharefileLink}&lt;/a&gt;&lt;/p&gt;</text>
+    </textTemplates>
+    <variables>
+        <name>recordId</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>leaseworks__Marketing_Activity__c</objectType>
+    </variables>
+    <variables>
+        <name>varTicketId</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>pro_Ticket__c</objectType>
+    </variables>
+</Flow>

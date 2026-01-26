@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Prorata_Number_of_Days__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Choose how Pro-Rata days are calculated to determine fee charges for partial periods.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Pro-Rata Number of Days can be calculated based on Actual number of days in the month/year, or Fixed 30/360, which in turn is used to calculate the fee charges for the partial period.</inlineHelpText>
+    <label>Prorata - Number of Days</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Actual Number of Days</fullName>
+                <default>false</default>
+                <label>Actual Number of Days</label>
+            </value>
+            <value>
+                <fullName>Fixed - 30/360</fullName>
+                <default>false</default>
+                <label>Fixed - 30/360</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

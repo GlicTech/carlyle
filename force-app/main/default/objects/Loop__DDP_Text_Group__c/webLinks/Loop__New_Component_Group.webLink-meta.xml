@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Loop__New_Component_Group</fullName>
+    <availability>online</availability>
+    <displayType>massActionButton</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <height>600</height>
+    <linkType>url</linkType>
+    <masterLabel>New Snippet Group</masterLabel>
+    <openType>sidebar</openType>
+    <protected>false</protected>
+    <requireRowSelection>false</requireRowSelection>
+    <url>/apex/Loop__editTextGroup?ddpId={!MID(URLFOR($Action.Loop__Text_Group__c.New, null, null), FIND(&#39;eid&#39;, URLFOR($Action.Loop__Text_Group__c.New, null, null)) + 6, 15)}</url>
+</WebLink>

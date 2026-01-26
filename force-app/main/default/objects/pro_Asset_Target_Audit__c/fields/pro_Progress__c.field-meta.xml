@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>pro_Progress__c</fullName>
+    <description>À formula that drives the Progress of a target based on actions taken to the target record itself or the associated Contract, or Asset in Deal</description>
+    <externalId>false</externalId>
+    <formula>IF( 
+    pro_Target_Readjusted__c = TRUE,
+    &#39;Target Cancelled&#39;,
+
+    /* CLOSED STATUSES */
+    IF(
+        AND(
+            pro_LOId_Outside_Target_Year__c = TRUE,
+            pro_Contract_Extended__c = FALSE
+        ),
+        &#39;Achieved - LOI Other&#39;,
+
+        IF(
+            AND(
+                NOT(ISBLANK(pro_Asset_in_Deal__c)),
+                NOT(ISBLANK(pro_Asset_in_Deal__r.LOI_Date__c)),
+                pro_Contract_Extended__c = FALSE
+            ),
+            &#39;Achieved - LOI&#39;,
+
+            IF(
+                pro_New_Contract_Signed__c = TRUE,
+                &#39;Achieved - No LOI&#39;,
+
+                IF(
+                    pro_Contract_Extended__c = TRUE,
+                    &#39;Achieved - Contract Extended&#39;,
+
+                    /* CANCELLED / EXPIRED STATUSES */
+                    IF(
+                        OR(
+                            ISPICKVAL(
+                                pro_Contract__r.leaseworks__Lease_Type_Status__c,
+                                &#39;Cancelled&#39;
+                            ),
+                            ISPICKVAL(
+                                pro_Contract__r.leaseworks__Lease_Type_Status__c,
+                                &#39;Lease Expired/Terminated&#39;
+                            ),
+                            AND(
+                                pro_Contract__r.leaseworks__Active__c = FALSE,
+                                pro_Contract__r.leaseworks__Lease_Start_Date_New__c &lt;= TODAY()
+                            )
+                        ),
+                        &#39;Target Cancelled&#39;,
+
+                        /* MOVED TO TRADING (now checked after cancelled logic) */
+                        IF(
+                            pro_Moved_To_Trading__c = TRUE,
+                            &#39;Moved To Trading&#39;,
+
+                            /* OPEN STATUSES */
+                            IF(
+                                pro_Target_Forecast__r.pro_End_Date__c &lt; ADDMONTHS(TODAY(), 12),
+                                &#39;Open - Target Date Exceeded&#39;,
+                                &#39;Open&#39;
+                            )
+                        )
+                    )
+                )
+            )
+        )
+    )
+)</formula>
+    <label>Progress</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

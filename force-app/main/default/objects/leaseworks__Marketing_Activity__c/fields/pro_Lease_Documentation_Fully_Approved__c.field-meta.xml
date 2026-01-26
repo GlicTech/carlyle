@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>pro_Lease_Documentation_Fully_Approved__c</fullName>
+    <description>Resolves to True if Lease Documentation Approval % is at 100% for every Asset In Deal across a Deal</description>
+    <externalId>false</externalId>
+    <formula>IF( pro_AID_Count__c /  IF(pro_AiDs_Documentation_Approved_Count__c = 0, 0.1, pro_AiDs_Documentation_Approved_Count__c ) = 1, True, False)</formula>
+    <label>Lease Documentation Fully Approved?</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

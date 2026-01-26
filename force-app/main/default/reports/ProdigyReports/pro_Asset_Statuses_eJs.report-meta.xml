@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Aircraft__c.leaseworks__Status__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Aircraft__c.pro_Operator_Assigned__c</field>
+    </columns>
+    <columns>
+        <field>FK_NAME</field>
+    </columns>
+    <columns>
+        <field>FK_$leaseworks__Lease__c.leaseworks__Lease_Type_Status__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Aircraft__c.leaseworks__Y_Hidden_Lease_End_Date__c</field>
+    </columns>
+    <columns>
+        <field>CUST_LAST_UPDATE</field>
+    </columns>
+    <description>Report for viewing current asset statuses</description>
+    <format>Tabular</format>
+    <name>Asset Statuses</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$leaseworks__Aircraft__c@leaseworks__Aircraft__c.leaseworks__Lease__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>leaseworks__Aircraft__c.leaseworks__Last_CR_Utilization_Approved_Date__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

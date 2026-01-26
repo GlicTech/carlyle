@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>leaseworks__Insurance_Certificate_IR__c.leaseworks__Insurance_Certificate_Validations__r$Name</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Insurance_Certificate_IR__c.leaseworks__Insurance_Certificate_Validations__r$leaseworks__Lease_Terms__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Insurance_Certificate_IR__c.leaseworks__Insurance_Certificate_Validations__r$leaseworks__Insurance_Certificate_Terms__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>leaseworks__Insurance_Certificate_IR__c.leaseworks__Insurance_Certificate_Validations__r$leaseworks__Accepted__c</field>
+    </columns>
+    <description>This report will display the details of ins certificate alone without reinsurance certificate details. Part of insurance redesign</description>
+    <format>Tabular</format>
+    <name>Cert valid only insurance terms</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Insurance_certificate_validation__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>leaseworks__Insurance_Certificate_IR__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

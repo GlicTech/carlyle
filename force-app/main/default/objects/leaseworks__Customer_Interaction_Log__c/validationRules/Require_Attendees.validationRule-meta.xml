@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Require_Attendees</fullName>
+    <active>true</active>
+    <description>Requires at least 1 external attendee to be added to an IL</description>
+    <errorConditionFormula>NOT(Bypass_Validation__c) &amp;&amp;
+ISBLANK(leaseworks__Meeting_Attendee_1__c) &amp;&amp;
+NOT(
+ISPICKVAL(leaseworks__Type_Of_Interaction__c, &quot;Earnings Call&quot;) ||
+ISPICKVAL(leaseworks__Type_Of_Interaction__c, &quot;Commercial Weekly Summary Note&quot;) ||
+ISPICKVAL(leaseworks__Type_Of_Interaction__c, &quot;Contracts/Legal Weekly Summary Note&quot;) ||
+(ISNEW() &amp;&amp; ISPICKVAL(leaseworks__Discussion_Type__c, &quot;Technical&quot;))
+)</errorConditionFormula>
+    <errorMessage>At least 1 external attendee should be added to this meeting type.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Reinsurance_Value__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <formula>CASE(
+    leaseworks__Requirement_Type__c,
+    &quot;TextArea&quot;, leaseworks__Text_Reinsurance__c,
+
+    &quot;Long Text Area&quot;, leaseworks__Y_Hidden_Text_Reinsurance__c,
+
+    &quot;Percentage&quot;, IF(
+        ISNULL(leaseworks__Percentage_Reinsurance__c),
+        &#39;&#39;,
+        TEXT(leaseworks__Percentage_Reinsurance__c * 100) + &#39;%&#39;
+    ),
+
+    &quot;Currency&quot;, IF(
+        ISNULL(leaseworks__Amount_Reinsurance__c),
+        &#39;&#39;,
+        &#39;$&#39; +
+        IF(
+            leaseworks__Amount_Reinsurance__c &gt;= (10000000 * 100000000),
+            TEXT(FLOOR(leaseworks__Amount_Reinsurance__c / (10000000 * 100000000))) &amp; &quot;,&quot; &amp;
+            RIGHT(&quot;00&quot; &amp; TEXT(FLOOR(MOD(leaseworks__Amount_Reinsurance__c, (10000000 * 100000000)) / 1000000000000)), 3) &amp; &quot;,&quot; &amp;
+            RIGHT(&quot;00&quot; &amp; TEXT(FLOOR(MOD(leaseworks__Amount_Reinsurance__c, 1000000000000) / 1000000000)), 3) &amp; &quot;,&quot; &amp;
+            RIGHT(&quot;00&quot; &amp; TEXT(FLOOR(MOD(leaseworks__Amount_Reinsurance__c, 1000000000) / 1000000)), 3) &amp; &quot;,&quot; &amp;
+            RIGHT(&quot;00&quot; &amp; TEXT(FLOOR(MOD(leaseworks__Amount_Reinsurance__c, 1000000) / 1000)), 3) &amp; &quot;,&quot;,
+            IF(
+                leaseworks__Amount_Reinsurance__c &gt;= 1000000000000,
+                TEXT(FLOOR(leaseworks__Amount_Reinsurance__c / 1000000000000)) &amp; &quot;,&quot; &amp;
+                RIGHT(&quot;00&quot; &amp; TEXT(FLOOR(MOD(leaseworks__Amount_Reinsurance__c, 1000000000000) / 1000000000)), 3) &amp; &quot;,&quot; &amp;
+                RIGHT(&quot;00&quot; &amp; TEXT(FLOOR(MOD(leaseworks__Amount_Reinsurance__c, 1000000000) / 1000000)), 3) &amp; &quot;,&quot; &amp;
+                RIGHT(&quot;00&quot; &amp; TEXT(FLOOR(MOD(leaseworks__Amount_Reinsurance__c, 1000000) / 1000)), 3) &amp; &quot;,&quot;,
+                IF(
+                    leaseworks__Amount_Reinsurance__c &gt;= 1000000000,
+                    TEXT(FLOOR(leaseworks__Amount_Reinsurance__c / 1000000000)) &amp; &quot;,&quot; &amp;
+                    RIGHT(&quot;00&quot; &amp; TEXT(FLOOR(MOD(leaseworks__Amount_Reinsurance__c, 1000000000) / 1000000)), 3) &amp; &quot;,&quot; &amp;
+                    RIGHT(&quot;00&quot; &amp; TEXT(FLOOR(MOD(leaseworks__Amount_Reinsurance__c, 1000000) / 1000)), 3) &amp; &quot;,&quot;,
+                    IF(
+                        leaseworks__Amount_Reinsurance__c &gt;= 1000000,
+                        TEXT(FLOOR(leaseworks__Amount_Reinsurance__c / 1000000)) &amp; &quot;,&quot; &amp;
+                        RIGHT(&quot;00&quot; &amp; TEXT(FLOOR(MOD(leaseworks__Amount_Reinsurance__c, 1000000) / 1000)), 3) &amp; &quot;,&quot;,
+                        IF(
+                            leaseworks__Amount_Reinsurance__c &gt;= 1000,
+                            TEXT(FLOOR(leaseworks__Amount_Reinsurance__c / 1000)) &amp; &quot;,&quot;,
+                            &quot;&quot;
+                        )
+                    )
+                )
+            )
+        ) &amp;
+        RIGHT(TEXT(FLOOR(leaseworks__Amount_Reinsurance__c)), 3) &amp; &quot;.&quot; &amp;
+        IF(
+            MOD(leaseworks__Amount_Reinsurance__c, 1) * 100 &lt; 10,
+            &quot;0&quot; &amp; TEXT(ROUND(MOD(leaseworks__Amount_Reinsurance__c, 1), 2) * 100),
+            TEXT(MIN(ROUND(MOD(leaseworks__Amount_Reinsurance__c, 1), 2) * 100, 99))
+        )
+    ),
+
+    &quot;Date&quot;, TEXT(leaseworks__Date_Reinsurance__c),
+
+    &quot;Number&quot;, TEXT(leaseworks__Number_Reinsurance__c),
+
+    &quot;Checkbox&quot;, IF(
+        leaseworks__Selection_Reinsurance__c,
+        &quot;Yes&quot;,
+        IF(CreatedDate == LastModifiedDate, &quot;&quot;, &quot;No&quot;)
+    ),
+
+    &quot;&quot;
+)</formula>
+    <label>Reinsurance Cert Requirements</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Lease__c.leaseworks__Serial_Number__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>leaseworks__Lease__c.Is_Utilization_Present_Local__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Lease__c.leaseworks__UR_Due_Day__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Lease__c.leaseworks__MR_Inv_Pmt_Due_Day_Fix__c</field>
+    </columns>
+    <filter>
+        <criteriaItems>
+            <column>leaseworks__Lease__c.leaseworks__Reserve_Type__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Maintenance Reserves</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>leaseworks__Lease__c.leaseworks__Lease_Type_Status__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>On Lease</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>CUST_NAME</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notContain</operator>
+            <value>TEST</value>
+        </criteriaItems>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>leaseworks__Lease__c.leaseworks__Lessee_New__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>MR Type Report</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$leaseworks__Lease__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>false</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>leaseworks__Lease__c.leaseworks__Y_Hidden_Deposit_Return_Date_SD__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

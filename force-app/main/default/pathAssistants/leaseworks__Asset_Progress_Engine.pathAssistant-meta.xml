@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PathAssistant xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <entityName>leaseworks__Aircraft__c</entityName>
+    <fieldName>leaseworks__Progress__c</fieldName>
+    <masterLabel>Asset Progress:Engine</masterLabel>
+    <pathAssistantSteps>
+        <info>&lt;p&gt;&lt;span style=&quot;font-size: 13px;&quot;&gt;Technical details of assemblies can be recorded.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span class=&quot;ql-cursor&quot;&gt;﻿&lt;/span&gt;CAUTION: Utilization values (TSN, CSN, TSO, CSO and etc.) should be for the moment from which utilization will start it’s reporting and MRs will be collected.&lt;/p&gt;</info>
+        <picklistValueName>Create Assembly</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <info>&lt;p&gt;&lt;b&gt;Prerequisites:&lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;b&gt;Create Maintenance Program DB&lt;/b&gt;: Database should be created before new Asset entered into the system to allow Assemblies inherit Maintenance Program defined Maintenance Events.&lt;/li&gt;&lt;li&gt;&lt;b style=&quot;font-size: 13px;&quot;&gt;Create &lt;/b&gt;&lt;b&gt;Engine DB&lt;/b&gt;: Engine database should be created to allow system to take engine limitations from the respective Engine DB&lt;/li&gt;&lt;li&gt;&lt;b style=&quot;font-size: 13px;&quot;&gt;Create &lt;/b&gt;&lt;b&gt;LLP DB&lt;/b&gt;: Database have to be created before engine assembly is created, otherwise new engine assembly will not have any LLPs preset and LLPs should be entered manually.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;Asset Creation Steps:&lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;All the technical details of the asset can be recorded and Maintenance Program can be linked on creation of a new asset&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</info>
+        <picklistValueName>Create Asset</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <info>&lt;p&gt;&lt;span style=&quot;font-size: 13px;&quot;&gt;Create Historical Event records for every Assembly to let the system calculate next due of every event.&lt;/span&gt;&lt;/p&gt;</info>
+        <picklistValueName>Create Historical Events (Optional)</picklistValueName>
+    </pathAssistantSteps>
+    <recordTypeName>Engine</recordTypeName>
+</PathAssistant>

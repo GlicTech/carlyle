@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__OtherPayableTypeLeaseLesseeValidation</fullName>
+    <active>true</active>
+    <description>For &#39;Other&#39; Payable, Lease should belong to the Lessee</description>
+    <errorConditionFormula>AND (NOT( ISBLANK( leaseworks__Lease__c )), AND(ISPICKVAL(leaseworks__Payable_Type__c, &#39;Other&#39;), AND(PRIORVALUE(leaseworks__Lease__c)!= leaseworks__Lease__c , leaseworks__Lease__r.leaseworks__Lessee_New__c
+!= leaseworks__Lessee_New__c)  ))</errorConditionFormula>
+    <errorDisplayField>leaseworks__Lease__c</errorDisplayField>
+    <errorMessage>Please select a lease associated with the lessee</errorMessage>
+</ValidationRule>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Accounting_Profiles__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <deprecated>false</deprecated>
+    <description>This field displays Accounting Profile for transactions related to this account with no associated contract. This profile will map GL accounts for journal entries. If a transaction is associated with a lease, the accounting profile from the lease will determine GL mappings.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Select an Accounting Profile for transactions related to this account with no associated contract. This profile will map GL accounts for journal entries. If a transaction is associated with a lease, the accounting profile from the lease will determine GL mappings.</inlineHelpText>
+    <label>Accounting Profile</label>
+    <referenceTo>leaseworks__Parent_Accounting_Setup__c</referenceTo>
+    <relationshipLabel>Accounts</relationshipLabel>
+    <relationshipName>Accounts</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

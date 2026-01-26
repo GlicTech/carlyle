@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Floating_Rent_Invoices</fullName>
+    <columns>NAME</columns>
+    <columns>leaseworks__Status__c</columns>
+    <columns>leaseworks__Invoice_Date__c</columns>
+    <columns>leaseworks__For_Period_Ending_F__c</columns>
+    <columns>leaseworks__Date_of_MR_Payment_Due__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>leaseworks__Invoice_Category__c</field>
+        <operation>equals</operation>
+        <value>Floating Rent</value>
+    </filters>
+    <label>Floating Rent Invoices</label>
+</ListView>

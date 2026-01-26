@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__date_of_assignment_validation2</fullName>
+    <active>true</active>
+    <description>the date of assignment cannot be lesser than the previous date of assignment</description>
+    <errorConditionFormula>leaseworks__Date_of_Assignment__c &lt;  leaseworks__Max_Deal_Aging_Date__c</errorConditionFormula>
+    <errorDisplayField>leaseworks__Date_of_Assignment__c</errorDisplayField>
+    <errorMessage>The date of assignment cannot be lesser than the previous allotted date of assignment</errorMessage>
+</ValidationRule>

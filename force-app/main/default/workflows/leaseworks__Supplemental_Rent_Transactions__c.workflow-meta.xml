@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>leaseworks__UpdateAmountCashSum</fullName>
+        <description>Copy value of  Amount_Cash__c to Amount_Cash_Sum__c</description>
+        <field>leaseworks__Amount_Cash_Sum__c</field>
+        <formula>leaseworks__Amount_Cash__c</formula>
+        <name>UpdateAmountCashSum</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__UpdateAmountInvoiced</fullName>
+        <description>Copy .Amount_Invoiced_Sum__c  to Amount_Invoiced__c;</description>
+        <field>leaseworks__Amount_Invoiced_Sum__c</field>
+        <formula>leaseworks__Amount_Invoiced__c</formula>
+        <name>UpdateAmountInvoicedSum</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__UpdateAmountInvoicedSum</fullName>
+        <description>Copy value of Amount_Invoiced__c to Amount_Invoiced_Sum__c</description>
+        <field>leaseworks__Amount_Invoiced_Sum__c</field>
+        <formula>leaseworks__Amount_Invoiced__c</formula>
+        <name>UpdateAmountInvoicedSum</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__UpdateMinTransactionDate</fullName>
+        <description>Copy value of Transaction Date on Min TRansaction Date</description>
+        <field>leaseworks__Transaction_Date_Min__c</field>
+        <formula>DATEVALUE( leaseworks__Transaction_Date__c )</formula>
+        <name>UpdateMinTransactionDate</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__UpdateMinTransctionDate</fullName>
+        <description>Copy Transaction Date to Min Transaction Date</description>
+        <field>leaseworks__Transaction_Date_Min__c</field>
+        <formula>DATEVALUE(leaseworks__Transaction_Date__c)</formula>
+        <name>UpdateMinTransactionDate</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__UpdateTransactionName</fullName>
+        <field>Name</field>
+        <formula>TEXT(YEAR(DATEVALUE(leaseworks__Transaction_Date__c)))+&quot;-&quot; +
+IF(MONTH(DATEVALUE(leaseworks__Transaction_Date__c)) &lt; 10, &#39;0&#39;+ TEXT(MONTH(DATEVALUE(leaseworks__Transaction_Date__c))), TEXT(MONTH(DATEVALUE(leaseworks__Transaction_Date__c))))+&quot;-&quot; +
+IF(DAY(DATEVALUE(leaseworks__Transaction_Date__c)) &lt; 10, &#39;0&#39;+ TEXT(DAY(DATEVALUE(leaseworks__Transaction_Date__c))), TEXT(DAY(DATEVALUE(leaseworks__Transaction_Date__c))))+&quot;-&quot; +
+TEXT(leaseworks__Transaction_Type__c)</formula>
+        <name>UpdateTransactionName</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>leaseworks__UpdateRollupSummaryFields</fullName>
+        <actions>
+            <name>leaseworks__UpdateAmountCashSum</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>leaseworks__UpdateAmountInvoiced</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>leaseworks__UpdateMinTransctionDate</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>leaseworks__UpdateTransactionName</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Used to Update Amount Cash  Sum, Amount Cash Invoice and Min Transaction Date on Supplemental rent Transactions.</description>
+        <formula>!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

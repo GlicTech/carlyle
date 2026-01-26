@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__CashSDMandatory</fullName>
+    <active>true</active>
+    <description>If payable type = &#39;Security Deposit Refund&#39;, then Cash Security Deposit is mandatory</description>
+    <errorConditionFormula>AND(isPickVal(leaseworks__Payable_Type__c,&#39;Security Deposit Refund&#39;),
+				OR(ISNULL(leaseworks__Cash_Security_Deposit__c),ISBLANK(leaseworks__Cash_Security_Deposit__c)))</errorConditionFormula>
+    <errorMessage>Please select a Cash Security Deposit</errorMessage>
+</ValidationRule>

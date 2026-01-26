@@ -1,0 +1,1 @@
+trigger Notify_leaseworks_O_Assembly_Eligible_Event_AutoTrigger on leaseworks__Assembly_Eligible_Event__c (before insert, before update, before delete, after insert, after update, after delete, after undelete) { leaseworks.Notify_NotificationScheduler.triggerHandler(leaseworks__Assembly_Eligible_Event__c.sObjectType); }

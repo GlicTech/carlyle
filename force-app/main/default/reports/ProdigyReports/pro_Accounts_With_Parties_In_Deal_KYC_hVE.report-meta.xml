@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>ACCOUNT.NAME</field>
+    </columns>
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>Account.pro_KYC_Approved__c</field>
+    </columns>
+    <columns>
+        <field>Account.KYC_Risk_Rating__c</field>
+    </columns>
+    <columns>
+        <field>Account.pro_KYC_Approved_As_Of__c</field>
+    </columns>
+    <columns>
+        <field>Account.pro_KYC_Comment__c</field>
+    </columns>
+    <description>Report designed for updating KYC fields on Parties In Deal where the associated Deal is Active.</description>
+    <filter>
+        <criteriaItems>
+            <column>pro_Party_In_Deal__c.pro_Active_Deal__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>1</value>
+        </criteriaItems>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>FK_$leaseworks__Aircraft_Proposal__c.leaseworks__Marketing_Activity__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Accounts With Parties In Deal - KYC</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>AccountCustomEntity$pro_Party_In_Deal__c@pro_Party_In_Deal__c.pro_Asset_in_Deal__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>CREATED_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>64.0</apiVersion>
+    <description>A new flow can be created from this flow template and the following changes can be made:
+1. Triggering object
+2. Object API Name on Platform Event</description>
+    <environments>Default</environments>
+    <interviewLabel>Contract Diary Template {!$Flow.CurrentDateTime}</interviewLabel>
+    <isTemplate>true</isTemplate>
+    <label>Contract Diary - Rent Invoice Generation Date - Template</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordCreates>
+        <name>Raise_Platform_Event</name>
+        <label>Raise Platform Event</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <inputAssignments>
+            <field>leaseworks__Contract_ID__c</field>
+            <value>
+                <elementReference>$Record.leaseworks__RentPayments__r.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>leaseworks__Object_API_Name__c</field>
+            <value>
+                <stringValue>leaseworks__Rent__c</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>leaseworks__Record_ID__c</field>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <object>leaseworks__AsyncManageContractDiary__e</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Raise_Platform_Event</targetReference>
+        </connector>
+        <filterFormula>AND({!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c} = false, {!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c} = false)</filterFormula>
+        <object>leaseworks__Rent__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

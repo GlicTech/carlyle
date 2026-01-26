@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>InvalidDealType</fullName>
+    <active>true</active>
+    <description>Restricts users who are not on the Carlyle Commercial profile from being able to create deals other than Non Deal Approval</description>
+    <errorConditionFormula>AND( 
+      ISNEW(),
+     RecordType.DeveloperName  &lt;&gt; &#39;Approval&#39;,   
+          $Profile.Name  &lt;&gt; &#39;Carlyle Commercial&#39;,
+          $Profile.Name  &lt;&gt; &#39;System Administrator&#39;
+
+)</errorConditionFormula>
+    <errorMessage>Invalid Deal Type selected. Please, select Non Deal Approval</errorMessage>
+</ValidationRule>

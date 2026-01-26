@@ -1,0 +1,18 @@
+<messaging:emailTemplate subject="Request:Utilization Report For {!relatedto.leaseworks__Aircraft__r.name} For {!relatedto.Name} Has Been Submitted For Approval " recipientType="User" relatedToType="leaseworks__Utilization_Report__c">
+<messaging:htmlEmailBody >
+Utilization report for aircraft (MSN {!relatedto.leaseworks__Aircraft__r.leaseworks__MSN_Number__c}) for&nbsp;
+  <apex:outputText value="{0, date,dd-MMM-yyy hh:mm:ss z}">
+    <apex:param value="{!relatedto.leaseworks__Month_Ending__c}" /> 
+</apex:outputText> has been submitted for your approval. Please review it&nbsp;
+<apex:outputlink value="{!LEFT($Api.Partner_Server_URL_140,FIND('.com',$Api.Partner_Server_URL_140)+4)+relatedTo.Id}">here</apex:outputlink>. 
+
+
+<c:UtilizationApprovalEmailComponent URId="{!relatedto.id}"></c:UtilizationApprovalEmailComponent> 
+
+             
+
+
+Thanks!
+
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>

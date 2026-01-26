@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__WetLeaseSubLeaseRelatedToSameLease</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(!ISBLANK( leaseworks__Wet_Lease_Sub_Lease_Clauses__c ),leaseworks__Lease__c &lt;&gt;  leaseworks__Wet_Lease_Sub_Lease_Clauses__r.leaseworks__Lease__c)</errorConditionFormula>
+    <errorDisplayField>leaseworks__Wet_Lease_Sub_Lease_Clauses__c</errorDisplayField>
+    <errorMessage>Please choose the Wet Lease &amp; Sub Lease Clauses related to this Lease</errorMessage>
+</ValidationRule>

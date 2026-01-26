@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__All</fullName>
+    <columns>NAME</columns>
+    <columns>leaseworks__Transaction_Record__c</columns>
+    <columns>leaseworks__Transaction_Type__c</columns>
+    <columns>leaseworks__Transaction_Source__c</columns>
+    <columns>leaseworks__Total_Amount__c</columns>
+    <columns>leaseworks__Transaction_Date__c</columns>
+    <columns>leaseworks__Approval_Status__c</columns>
+    <columns>leaseworks__Lease__c</columns>
+    <columns>leaseworks__MSN_ESN__c</columns>
+    <columns>leaseworks__Transaction_Comments__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>leaseworks__Lease__c</field>
+        <operation>notEqual</operation>
+        <value>00807 | Air Mauritius | A330</value>
+    </filters>
+    <filters>
+        <field>leaseworks__MSN_ESN__c</field>
+        <operation>equals</operation>
+        <value>03562</value>
+    </filters>
+    <filters>
+        <field>leaseworks__Approval_Status__c</field>
+        <operation>equals</operation>
+        <value>Approved</value>
+    </filters>
+    <filters>
+        <field>leaseworks__Transaction_Source__c</field>
+        <operation>notEqual</operation>
+    </filters>
+    <label>All</label>
+</ListView>

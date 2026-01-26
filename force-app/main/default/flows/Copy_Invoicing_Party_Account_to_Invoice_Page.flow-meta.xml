@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>62.0</apiVersion>
+    <assignments>
+        <name>Update_Invoicing_Party</name>
+        <label>Update Invoicing Party</label>
+        <locationX>176</locationX>
+        <locationY>395</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.pro_Invoicing_Party__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Parties_Records.leaseworks__Account__r.Id</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <environments>Default</environments>
+    <interviewLabel>Copy Invoicing Party Account to Invoice Page {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Copy Invoicing Party Account to Invoice Page</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Parties_Records</name>
+        <label>Get Parties Records</label>
+        <locationX>176</locationX>
+        <locationY>287</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Update_Invoicing_Party</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>Get_Record_Custom_Error</targetReference>
+        </faultConnector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>leaseworks__Contract__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.leaseworks__Lease__r.Id</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>leaseworks__Role__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Invoicing Party</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>leaseworks__Parties__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Parties_Records</targetReference>
+        </connector>
+        <filterFormula>NOT({!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c})&amp;&amp;NOT({!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c})&amp;&amp;(ISNEW()||(ISCHANGED({!$Record.pro_Invoicing_Party__c})))</filterFormula>
+        <object>leaseworks__Invoice__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__No_Update_For_Accounting_Codes</fullName>
+    <active>true</active>
+    <description>Accounting Codes Cannot be manually Modified</description>
+    <errorConditionFormula>AND(!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c,
+OR( ISCHANGED(leaseworks__Code__c),ISCHANGED( Name ),ISCHANGED( leaseworks__Parent_Accounting_Setup__c ) ))</errorConditionFormula>
+    <errorMessage>You cannot manually modify this field</errorMessage>
+</ValidationRule>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Average_Rent__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Average rent of all aircraft in this transaction.</description>
+    <externalId>false</externalId>
+    <formula>If(leaseworks__Total_Number_of_Units__c=0,null,leaseworks__Total_Rent__c /  leaseworks__Total_Number_of_Units__c)</formula>
+    <inlineHelpText>Average rent of all &quot;Won&quot; aircraft in this transaction (Amount in thousands).</inlineHelpText>
+    <label>Average Rent ($)</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

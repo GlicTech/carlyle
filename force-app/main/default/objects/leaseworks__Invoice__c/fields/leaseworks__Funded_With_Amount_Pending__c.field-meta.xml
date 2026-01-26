@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Funded_With_Amount_Pending__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <label>Funded With Amount (Pending)</label>
+    <summarizedField>leaseworks__Funded_WIth__c.leaseworks__Applied_Amount__c</summarizedField>
+    <summaryFilterItems>
+        <field>leaseworks__Funded_WIth__c.leaseworks__Status__c</field>
+        <operation>equals</operation>
+        <value>Pending</value>
+    </summaryFilterItems>
+    <summaryForeignKey>leaseworks__Funded_WIth__c.leaseworks__Credit_Note__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

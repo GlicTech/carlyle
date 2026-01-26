@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>pro_Open_Legal_Contracts_Tickets</fullName>
+    <columns>NAME</columns>
+    <columns>pro_Parent_Ticket__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>pro_Assets_Long_Text__c</columns>
+    <columns>RECORDTYPE</columns>
+    <columns>pro_Assignees_Long_Text__c</columns>
+    <columns>pro_Requested_By__c</columns>
+    <columns>pro_Type__c</columns>
+    <columns>pro_Approved_Ticket__c</columns>
+    <columns>pro_Title__c</columns>
+    <columns>pro_Comments__c</columns>
+    <columns>pro_Status__c</columns>
+    <columns>pro_Priority__c</columns>
+    <columns>pro_Expected_Due_Date__c</columns>
+    <filterScope>Queue</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>pro_Ticket__c.Legal_Contracts</value>
+    </filters>
+    <filters>
+        <field>pro_Status__c</field>
+        <operation>notEqual</operation>
+        <value>Closed</value>
+    </filters>
+    <label>Open Legal &amp; Contracts Tickets</label>
+    <queue>pro_Legal_Contracts_Tickets</queue>
+</ListView>

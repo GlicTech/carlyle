@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>leaseworks__ACEESetEndDate</fullName>
+        <field>leaseworks__End_Date__c</field>
+        <formula>leaseworks__Start_Date__c</formula>
+        <name>ACEESetEndDate</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__AircraftEventSetDataVerifiedBy</fullName>
+        <field>leaseworks__Data_Verified_By__c</field>
+        <formula>$User.FirstName + &#39; &#39; + $User.LastName +&#39;, &#39; +
+
+Text(MONTH(TODAY())) + &#39;/&#39; + Text(Day(TODAY())) + &#39;/&#39; + Text(year(TODAY()))</formula>
+        <name>AircraftEventSetDataVerifiedBy</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Set_CSLV</fullName>
+        <description>Set CSLV to 0</description>
+        <field>leaseworks__Cycles_Since_Last_C_Check__c</field>
+        <formula>IF ( TEXT(leaseworks__Event_Type__c)=&#39;C-Check&#39;, 0, leaseworks__Aircraft__r.leaseworks__Cycles_Since_Last_C_Check__c )</formula>
+        <name>Set CSLV</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>leaseworks__Aircraft__c</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Set_CSN</fullName>
+        <description>When an Aircraft Eligible Event is created the CSN value is derived from the Aircraft and is set to be static.</description>
+        <field>leaseworks__CSN__c</field>
+        <formula>IF(ISNEW() ,  leaseworks__Aircraft__r.leaseworks__CSN__c ,  leaseworks__CSN__c  )</formula>
+        <name>Set CSN</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Set_TSLV</fullName>
+        <description>Set TSLV to 0
+BM 24-Oct-2012 : Do not use this. Logic changed to trigger.</description>
+        <field>leaseworks__Time_Since_Last_C_Check__c</field>
+        <formula>IF ( TEXT(leaseworks__Event_Type__c)=&#39;C-Check&#39; &amp;&amp; false,  0, leaseworks__Aircraft__r.leaseworks__Time_Since_Last_C_Check__c )</formula>
+        <name>Set TSLV</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>leaseworks__Aircraft__c</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Set_TSN</fullName>
+        <field>leaseworks__TSN_N__c</field>
+        <formula>IF(ISNEW(), leaseworks__Aircraft__r.leaseworks__TSN__c,leaseworks__TSN_N__c)</formula>
+        <name>Set TSN</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__UpdateNewACStatus</fullName>
+        <description>Update the ISNEWAC status to false because of the C-Check</description>
+        <field>leaseworks__ISNEWAC__c</field>
+        <formula>&quot;F&quot;</formula>
+        <name>UpdateNewACStatus</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>leaseworks__Aircraft__c</targetObject>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_AEE_Name</fullName>
+        <description>Unused--- Updates the AEE name to reflect Aircraft ID and date and type of event</description>
+        <field>Name</field>
+        <formula>&#39;&#39;</formula>
+        <name>Update AEE Name</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_Certified_By</fullName>
+        <description>Unused--- Update Certified By field the user name</description>
+        <field>leaseworks__Certified_By__c</field>
+        <name>Update Certified By</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Null</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_Last_C_Check_Date</fullName>
+        <description>Z_Unused---Checks to see if C-Check Date on AC is blank (i.e. first time update). If so, checks to see if C-Check date on EE &gt; C-check on AC, if uses the C-Check date from the Eligible event. If not, uses the last C Check date from the aircraft itself.</description>
+        <field>leaseworks__Last_C_Check__c</field>
+        <name>Update Last C Check Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Null</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+        <targetObject>leaseworks__Aircraft__c</targetObject>
+    </fieldUpdates>
+    <rules>
+        <fullName>leaseworks__AC Eligible Event Created_Updated</fullName>
+        <actions>
+            <name>leaseworks__Update_AEE_Name</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Z_Unused Workflow for when Aircraft Eligible Event is created</description>
+        <formula>false</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__AC Eligible Event Set End Date</fullName>
+        <actions>
+            <name>leaseworks__ACEESetEndDate</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Workflow for when Aircraft Eligible Event is created</description>
+        <formula>OR(ISBLANK(leaseworks__End_Date__c),  leaseworks__End_Date__c == PRIORVALUE(leaseworks__Start_Date__c), leaseworks__End_Date__c &lt; leaseworks__Start_Date__c)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__Aircraft Eligible Event Created</fullName>
+        <actions>
+            <name>leaseworks__Set_CSN</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>leaseworks__Set_TSN</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>TSN and CSN to be set with Aircraft TSN value at the instance of its creation.
+BM 24-Oct-12 : Logic changed. TSN/CSN to be manually entered and certified.</description>
+        <formula>False /* Never execute this. See description */</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__Aircraft Event Data Verifed By</fullName>
+        <actions>
+            <name>leaseworks__AircraftEventSetDataVerifiedBy</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Z_Unused</description>
+        <formula>false</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__AircraftEligibleEventTSLVCSLVVerifiedBy</fullName>
+        <actions>
+            <name>leaseworks__Update_Certified_By</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Record the person who clicked TSLV/CSLV Certify Check Box</description>
+        <formula>true</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__Eligible Event Created</fullName>
+        <actions>
+            <name>leaseworks__Set_CSLV</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>leaseworks__Set_TSLV</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Workflows to perform when eligible event is created.
+BM 24-Oct-12: Do not use this. Logic changed to trigger.</description>
+        <formula>False /*  Never use this, see comment */</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__Qualifying Event Changed</fullName>
+        <actions>
+            <name>leaseworks__UpdateNewACStatus</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>leaseworks__Update_Last_C_Check_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Z_Unused</description>
+        <formula>false</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

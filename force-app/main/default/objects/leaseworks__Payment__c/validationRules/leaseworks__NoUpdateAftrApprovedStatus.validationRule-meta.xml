@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__NoUpdateAftrApprovedStatus</fullName>
+    <active>false</active>
+    <description>Status should not be changed after approved status -- Deprecated</description>
+    <errorConditionFormula>false
+/*ISPICKVAL(PRIORVALUE(Payment_Status__c),&quot;Approved&quot;) &amp;&amp; ISCHANGED(Payment_Status__c)*/</errorConditionFormula>
+    <errorDisplayField>leaseworks__Payment_Status__c</errorDisplayField>
+    <errorMessage>Status of Approved payment cannot be changed.</errorMessage>
+</ValidationRule>

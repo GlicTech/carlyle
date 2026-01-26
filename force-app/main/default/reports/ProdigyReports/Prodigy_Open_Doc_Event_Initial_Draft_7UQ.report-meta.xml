@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>leaseworks__Aircraft_Proposal__c.Documentation_Events__r$Name</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Aircraft_Proposal__c.Documentation_Events__r$pro_Projected_Date__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Aircraft_Proposal__c.Documentation_Events__r$pro_Actual_Date__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Aircraft_Proposal__c.Documentation_Events__r$pro_Variance_Indicator__c</field>
+    </columns>
+    <filter>
+        <criteriaItems>
+            <column>leaseworks__Aircraft_Proposal__c$leaseworks__Status__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>Closed</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>leaseworks__Aircraft_Proposal__c.Documentation_Events__r$Name</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Initial Draft</value>
+        </criteriaItems>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>leaseworks__Aircraft_Proposal__c$Name</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Prodigy - Open Doc Event Initial Draft</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>pro_Assets_in_Deal_with_Documentation_Events__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>leaseworks__Aircraft_Proposal__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

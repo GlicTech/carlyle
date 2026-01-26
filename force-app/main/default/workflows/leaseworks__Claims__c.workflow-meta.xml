@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Claim_Approval_CC</fullName>
+        <ccEmails>aviationleasemanagement@carlyle.aero</ccEmails>
+        <description>Claim Approval CC</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Assigned_To__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>Finance_Sign_Off_User__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>Technical_Sign_Off_User__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderAddress>leaseworks@carlyle.aero</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>unfiled$public/Claim_Approval_Process</template>
+    </alerts>
+    <alerts>
+        <fullName>Claim_Approved_Email</fullName>
+        <ccEmails>aviationleasemanagement@carlyle.aero</ccEmails>
+        <ccEmails>financialanalysis@carlyle.aero</ccEmails>
+        <description>Claim Approved Email</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Assigned_To__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderAddress>leaseworks@carlyle.aero</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>unfiled$public/Lease_Management_Review</template>
+    </alerts>
+    <alerts>
+        <fullName>Claim_CC_Email</fullName>
+        <ccEmails>aviationleasemanagement@carlyle.aero</ccEmails>
+        <description>Claim CC Email</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Assigned_To__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderAddress>leaseworks@carlyle.aero</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>unfiled$public/Claim_Approval_Process</template>
+    </alerts>
+    <alerts>
+        <fullName>Claim_Rejected_Email</fullName>
+        <ccEmails>aviationleasemanagement@carlyle.aero</ccEmails>
+        <ccEmails>financialanalysis@carlyle.aero</ccEmails>
+        <description>Claim Rejected Email</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Assigned_To__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderAddress>leaseworks@carlyle.aero</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>unfiled$public/Lease_Management_Review_Rejected</template>
+    </alerts>
+    <alerts>
+        <fullName>Lease_Management_Review</fullName>
+        <ccEmails>aviationleasemanagement@carlyle.aero</ccEmails>
+        <ccEmails>financialanalysis@carlyle.aero</ccEmails>
+        <description>Lease Management Review Approved</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Assigned_To__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderAddress>leaseworks@carlyle.aero</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>unfiled$public/Lease_Management_Review</template>
+    </alerts>
+    <alerts>
+        <fullName>Lease_Management_Review_Rejected</fullName>
+        <ccEmails>aviationleasemanagement@carlyle.aero</ccEmails>
+        <ccEmails>financialanalysis@carlyle.aero</ccEmails>
+        <description>Lease Management Review Rejected</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Assigned_To__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderAddress>leaseworks@carlyle.aero</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>unfiled$public/Lease_Management_Review_Rejected</template>
+    </alerts>
+    <alerts>
+        <fullName>Open_to_Future_claim_Email</fullName>
+        <ccEmails>jonathan@forcefusion.co.uk</ccEmails>
+        <description>Open to Future claim Email</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Assigned_To__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderAddress>leaseworks@carlyle.aero</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>unfiled$public/Open_Claim_Email</template>
+    </alerts>
+    <alerts>
+        <fullName>PFM_review</fullName>
+        <ccEmails>financialanalysis@carlyle.aero</ccEmails>
+        <ccEmails>aviationleasemanagement@carlyle.aero</ccEmails>
+        <ccEmails>jonathan@whitefusion.co.uk</ccEmails>
+        <description>PFM review</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Assigned_To__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderAddress>leaseworks@carlyle.aero</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>unfiled$public/PFM_Review_Email</template>
+    </alerts>
+    <alerts>
+        <fullName>leaseworks__CFO_CTO_Claim_Review</fullName>
+        <description>CFO/CTO Claim Review</description>
+        <protected>false</protected>
+        <recipients>
+            <field>LastModifiedById</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderAddress>leaseworks@carlyle.aero</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>leaseworks__Claim_Process_Email_Templates/leaseworks__CTO_CFO_Review</template>
+    </alerts>
+    <alerts>
+        <fullName>leaseworks__Caim_in_Dispute_Email_Alert</fullName>
+        <description>Claim in Dispute Email Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <field>LastModifiedById</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderAddress>leaseworks@carlyle.aero</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>leaseworks__Claim_Process_Email_Templates/leaseworks__Head_of_Technical_CTO_Reivew</template>
+    </alerts>
+    <alerts>
+        <fullName>leaseworks__Claim_Approval_Email_Alert</fullName>
+        <description>Claim Approval Email Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <field>LastModifiedById</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderAddress>leaseworks@carlyle.aero</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>leaseworks__Claim_Process_Email_Templates/leaseworks__Claim_Approval</template>
+    </alerts>
+    <alerts>
+        <fullName>leaseworks__Claim_Under_Dispute_Email_Alert</fullName>
+        <description>Claim Under Dispute Email Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <field>LastModifiedById</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderAddress>leaseworks@carlyle.aero</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>leaseworks__Claim_Process_Email_Templates/leaseworks__ClaimUnder_Dispute_ContractLegalReview</template>
+    </alerts>
+    <alerts>
+        <fullName>leaseworks__Contract_Legal_Review_Email_Alert</fullName>
+        <description>Contract/ Legal Review Email Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <field>LastModifiedById</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderAddress>leaseworks@carlyle.aero</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>leaseworks__Claim_Process_Email_Templates/leaseworks__HeadTechCTO_to_Contract_Legal</template>
+    </alerts>
+    <alerts>
+        <fullName>leaseworks__Finance_Accounting_Review_Email_Alert</fullName>
+        <description>Finance / Accounting Review Email Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <field>LastModifiedById</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderAddress>leaseworks@carlyle.aero</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>leaseworks__Claim_Process_Email_Templates/leaseworks__FinanceAccountReview</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>Check_Finance_Sign_Off</fullName>
+        <field>leaseworks__CFO_Sign_off__c</field>
+        <literalValue>1</literalValue>
+        <name>Check Finance Sign Off</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Check_Technical_Sign_Off</fullName>
+        <field>leaseworks__CTO_Sign_off__c</field>
+        <literalValue>1</literalValue>
+        <name>Check Technical Sign Off</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Final_Sign_Off_Approved_Status</fullName>
+        <field>leaseworks__Claim_Status__c</field>
+        <literalValue>Approved</literalValue>
+        <name>Final Sign Off Approved Status</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Finance_Sign_Off</fullName>
+        <field>Finance_Sign_Off_User__c</field>
+        <lookupValue>johnl@carlyle.aero</lookupValue>
+        <lookupValueType>User</lookupValueType>
+        <name>Finance Sign Off</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Finance_Sign_Off_1</fullName>
+        <field>Finance_Sign_Off_User__c</field>
+        <lookupValue>cillians@carlyle.aero</lookupValue>
+        <lookupValueType>User</lookupValueType>
+        <name>Finance Sign Off</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Approved_Status</fullName>
+        <field>leaseworks__Claim_Status__c</field>
+        <literalValue>Approved</literalValue>
+        <name>Set Approved Status</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Approved_Status_Under_400k</fullName>
+        <field>leaseworks__Claim_Status__c</field>
+        <literalValue>Approved</literalValue>
+        <name>Set Approved Status</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Finance_Sign_Off_Date</fullName>
+        <field>leaseworks__CFO_Sign_off_Date__c</field>
+        <formula>TODAY()</formula>
+        <name>Set Finance Sign Off Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Lease_Management_Review_Status</fullName>
+        <field>leaseworks__Claim_Status__c</field>
+        <literalValue>Finance/Accounting Review</literalValue>
+        <name>Set Lease Management Review Status</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Lease_Management_Review_Status_Under</fullName>
+        <field>leaseworks__Claim_Status__c</field>
+        <literalValue>Finance/Accounting Review</literalValue>
+        <name>Set Lease Management Review Status</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Technical_Sign_Off_Date</fullName>
+        <field>leaseworks__CTO_Sign_off_Date__c</field>
+        <formula>TODAY()</formula>
+        <name>Set Technical Sign Off Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Status_Update</fullName>
+        <field>leaseworks__Claim_Status__c</field>
+        <literalValue>CTO Sign-off</literalValue>
+        <name>Status Update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Status_Update_Approved</fullName>
+        <field>leaseworks__Claim_Status__c</field>
+        <literalValue>Approved</literalValue>
+        <name>Status Update Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Technical_Sign_Off_User</fullName>
+        <field>Technical_Sign_Off_User__c</field>
+        <lookupValue>robt@carlyle.aero</lookupValue>
+        <lookupValueType>User</lookupValueType>
+        <name>Technical Sign Off User</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Technical_User</fullName>
+        <field>Technical_Sign_Off_User__c</field>
+        <lookupValue>siggia@carlyle.aero</lookupValue>
+        <lookupValueType>User</lookupValueType>
+        <name>Technical User</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Status</fullName>
+        <field>leaseworks__Claim_Status__c</field>
+        <literalValue>CTO Sign-off</literalValue>
+        <name>Update Status</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__ClaimSetDataVerifiedBy</fullName>
+        <field>leaseworks__Data_Verified_By__c</field>
+        <formula>$User.FirstName + &#39; &#39; + $User.LastName +&#39;, &#39; +
+
+Text(MONTH(TODAY())) + &#39;/&#39; + Text(Day(TODAY())) + &#39;/&#39; + Text(year(TODAY()))</formula>
+        <name>ClaimSetDataVerifiedBy</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>pro_Set_Approval_Rejected</fullName>
+        <field>pro_Approval_Rejected__c</field>
+        <literalValue>1</literalValue>
+        <name>Set Approval Rejected</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>leaseworks__Claims Data Verifed By</fullName>
+        <actions>
+            <name>leaseworks__ClaimSetDataVerifiedBy</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>AND(!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c,OR ( AND (ISNEW(),  leaseworks__Data_Verified_for_Accuracy__c  ), ISCHANGED( leaseworks__Data_Verified_for_Accuracy__c )))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Related_Deal_Terms__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <label>Related Commercial Terms</label>
+    <lookupFilter>
+        <active>true</active>
+        <filterItems>
+            <field>leaseworks__Pricing_Run_New__c.leaseworks__Marketing_Activity__c</field>
+            <operation>equals</operation>
+            <valueField>$Source.leaseworks__Marketing_Activity__c</valueField>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>leaseworks__Pricing_Run_New__c</referenceTo>
+    <relationshipLabel>Deal Approvals</relationshipLabel>
+    <relationshipName>Deal_Approvals</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

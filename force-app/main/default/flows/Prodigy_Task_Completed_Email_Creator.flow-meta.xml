@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Email_Notification</name>
+        <label>Email Notification</label>
+        <locationX>182</locationX>
+        <locationY>947</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>emailAddressesArray</name>
+            <value>
+                <elementReference>varUserEmailCollection</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <elementReference>tt_NotificationSubject</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <elementReference>tt_NotificationBody</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <apiVersion>63.0</apiVersion>
+    <assignments>
+        <name>Assign_Creator_Email_To_Collection</name>
+        <label>Assign Creator Email To Collection</label>
+        <locationX>182</locationX>
+        <locationY>839</locationY>
+        <assignmentItems>
+            <assignToReference>varUserEmailCollection</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>$Record.CreatedBy.Email</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Email_Notification</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>Is_current_user_different_from_task_creator</name>
+        <label>Is current user different from task creator?</label>
+        <locationX>336</locationX>
+        <locationY>323</locationY>
+        <defaultConnectorLabel>The Same</defaultConnectorLabel>
+        <rules>
+            <name>Different</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$User.Id</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <elementReference>f_TruncatedTaskCreatorId</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Entity_Definition_For_WhatId</targetReference>
+            </connector>
+            <label>Different</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_The_Task_Related_To_A_Deal</name>
+        <label>Is The Task Related To A Deal?</label>
+        <locationX>182</locationX>
+        <locationY>539</locationY>
+        <defaultConnector>
+            <targetReference>Assign_Creator_Email_To_Collection</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Related_To_A_Deal</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Entity_Definition_For_WhatId.Label</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Deal</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Related_Deal</targetReference>
+            </connector>
+            <label>Yes- Related To A Deal</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <formulas>
+        <name>f_DealTitleAndNameOrBlank</name>
+        <dataType>String</dataType>
+        <expression>IF(
+    NOT(ISBLANK({!Get_Related_Deal.Id})),
+    &#39;Deal: &#39; &amp; {!Get_Related_Deal.Name} &amp; BR(),
+    &#39;&#39;
+)</expression>
+    </formulas>
+    <formulas>
+        <name>f_KeyPrefix</name>
+        <dataType>String</dataType>
+        <expression>LEFT({!$Record.WhatId}, 3)</expression>
+    </formulas>
+    <formulas>
+        <name>f_RelatedToRecordNameOrPlaceholderText</name>
+        <dataType>String</dataType>
+        <expression>IF({!$Record.leaseworks__Related_Record_Name__c} != Null, {!$Record.leaseworks__Related_Record_Name__c} , &#39;No Related Record&#39;)</expression>
+    </formulas>
+    <formulas>
+        <name>f_TruncatedTaskCreatorId</name>
+        <dataType>String</dataType>
+        <expression>LEFT({!$Record.CreatedById}, LEN({!$Record.CreatedById}) - 3)</expression>
+    </formulas>
+    <interviewLabel>Prodigy - Task Completed Email Creator {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Prodigy - Task Completed Email Creator</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Entity_Definition_For_WhatId</name>
+        <label>Get Entity Definition For WhatId</label>
+        <locationX>182</locationX>
+        <locationY>431</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Is_The_Task_Related_To_A_Deal</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>KeyPrefix</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>f_KeyPrefix</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>EntityDefinition</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Related_Deal</name>
+        <label>Get Related Deal</label>
+        <locationX>50</locationX>
+        <locationY>647</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Assign_Creator_Email_To_Collection</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.WhatId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>leaseworks__Marketing_Activity__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>210</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Is_current_user_different_from_task_creator</targetReference>
+        </connector>
+        <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Status</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Completed</stringValue>
+            </value>
+        </filters>
+        <object>Task</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <textTemplates>
+        <name>tt_NotificationBody</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Dear {!$Record.CreatedBy.FirstName} {!$Record.CreatedBy.LastName}, 
+
+A Task which you created has been closed by {!$User.FirstName} {!$User.LastName}. See the details below:
+
+  {!f_DealTitleAndNameOrBlank}Subject: {!$Record.Subject}
+  Priority: {!$Record.Priority}
+  Created Date: {!$Record.CreatedDate}
+  
+View Record: https://leaseworks-carlyle.lightning.force.com/{!$Record.Id}
+
+Thanks,
+Carlyle Team</text>
+    </textTemplates>
+    <textTemplates>
+        <name>tt_NotificationSubject</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Task Completed - {!$Record.Subject}</text>
+    </textTemplates>
+    <variables>
+        <name>varUserEmailCollection</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

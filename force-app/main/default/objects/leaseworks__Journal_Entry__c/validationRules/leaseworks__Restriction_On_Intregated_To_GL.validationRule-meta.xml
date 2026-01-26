@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Restriction_On_Intregated_To_GL</fullName>
+    <active>true</active>
+    <description>Users can only move the status from Sent to Integrated on the &#39;Integrated to GL&#39; picklist value</description>
+    <errorConditionFormula>false/*AND(
+				ISCHANGED(Integrated_to_GL__c),
+				ISPICKVAL(Integrated_to_GL__c, &#39;Pending&#39;),
+				OR(
+								ISPICKVAL(PRIORVALUE(Integrated_to_GL__c), &#39;Sent&#39;),
+								ISPICKVAL(PRIORVALUE(Integrated_to_GL__c), &#39;Integrated&#39;)
+				)
+)*/</errorConditionFormula>
+    <errorMessage>You can not move the status back to Pending</errorMessage>
+</ValidationRule>

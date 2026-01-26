@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__CanPayOnlyApprovedInvs</fullName>
+    <active>true</active>
+    <description>An Invoice can be set to Paid only if is Approved.</description>
+    <errorConditionFormula>AND(
+      !$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c 
+	,OR(
+		AND(ISNEW(), TEXT(leaseworks__Status__c) == &#39;Paid&#39;)
+		,
+		AND(ISCHANGED(leaseworks__Status__c),
+			!ISNEW(), !ISBLANK(TEXT(leaseworks__Status__c)),
+			TEXT(leaseworks__Status__c) == &#39;Paid&#39;,
+			TEXT(PRIORVALUE(leaseworks__Status__c)) != &#39;Approved&#39;
+		)
+	)
+)</errorConditionFormula>
+    <errorDisplayField>leaseworks__Status__c</errorDisplayField>
+    <errorMessage>An Invoice can be set to Paid only after is approved.</errorMessage>
+</ValidationRule>

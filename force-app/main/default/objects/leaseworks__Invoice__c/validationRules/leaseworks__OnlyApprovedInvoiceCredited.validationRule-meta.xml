@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__OnlyApprovedInvoiceCredited</fullName>
+    <active>false</active>
+    <description>Deprecated : Only Approved invoices should be credited</description>
+    <errorConditionFormula>/*OR(ISPICKVAL(Credit_Applied_To__r.Status__c,&quot;Pending&quot;),
+		ISPICKVAL(Credit_Applied_To__r.Status__c,&quot;Declined&quot;)	)*/false</errorConditionFormula>
+    <errorMessage>Only Approved invoices can be Credited</errorMessage>
+</ValidationRule>

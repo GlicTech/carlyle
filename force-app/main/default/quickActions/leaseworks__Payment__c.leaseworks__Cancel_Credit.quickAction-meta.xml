@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>For Cancellation of credit</description>
+    <fieldOverrides>
+        <field>leaseworks__Date_of_Reversal__c</field>
+        <formula>TODAY()</formula>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>leaseworks__JE_Cancellation_Method__c</field>
+        <formula>IF(AND (leaseworks__Payment__c.leaseworks__Global_Accounting_Setting__r.leaseworks__Accounting_ON__c,
+
+    NOT(AND(OR(ISPICKVAL(leaseworks__Payment__c.leaseworks__Payment_Type__c, 
+
+    &#39;CN_Payment&#39;),ISPICKVAL(leaseworks__Payment__c.leaseworks__Payment_Type__c, 
+
+    &#39;Credit Memo Correction&#39;)),leaseworks__Payment__c.leaseworks__Accounting_Method__c == &#39;Cash&#39;) ) ), 
+
+ IF( 
+
+  AND(leaseworks__Payment__c.leaseworks__Global_Accounting_Setting__r.leaseworks__Block_Journal_Reversals__c,
+
+      leaseworks__Payment__c.leaseworks__Global_Accounting_Setting__r.leaseworks__Block_Journal_Unposting__c) , 
+
+      &#39;None&#39;, 
+
+   IF(
+
+    leaseworks__Payment__c.leaseworks__Global_Accounting_Setting__r.leaseworks__Block_Journal_Unposting__c, 
+
+    &#39;Reverse JEs&#39;, 
+
+     IF( leaseworks__Payment__c.leaseworks__Global_Accounting_Setting__r.leaseworks__Block_Journal_Reversals__c, 
+
+ &#39;Unpost JEs&#39;, &#39;Reverse JEs&#39; ))), &#39;None&#39; )</formula>
+    </fieldOverrides>
+    <label>Cancel Credit</label>
+    <optionsCreateFeedItem>false</optionsCreateFeedItem>
+    <quickActionLayout>
+        <layoutSectionStyle>TwoColumnsLeftToRight</layoutSectionStyle>
+        <quickActionLayoutColumns>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>Name</field>
+                <uiBehavior>Required</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>leaseworks__Credit_Amount__c</field>
+                <uiBehavior>Readonly</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>leaseworks__Reversal_Acc_Period__c</field>
+                <uiBehavior>Edit</uiBehavior>
+            </quickActionLayoutItems>
+        </quickActionLayoutColumns>
+        <quickActionLayoutColumns>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>leaseworks__Date_of_Reversal__c</field>
+                <uiBehavior>Required</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>leaseworks__Invoice__c</field>
+                <uiBehavior>Required</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>leaseworks__JE_Cancellation_Method__c</field>
+                <uiBehavior>Edit</uiBehavior>
+            </quickActionLayoutItems>
+        </quickActionLayoutColumns>
+    </quickActionLayout>
+    <type>Update</type>
+</QuickAction>

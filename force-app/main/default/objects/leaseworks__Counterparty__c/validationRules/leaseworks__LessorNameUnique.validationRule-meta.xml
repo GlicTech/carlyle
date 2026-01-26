@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__LessorNameUnique</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+OR(
+ISNEW(),
+ISCHANGED( Name )
+),
+NOT(
+ISBLANK (
+VLOOKUP( $ObjectType.leaseworks__Counterparty__c.Fields.Name, $ObjectType.leaseworks__Counterparty__c.Fields.Name, Name )
+)
+)
+)</errorConditionFormula>
+    <errorMessage>Lessor name already exists.</errorMessage>
+</ValidationRule>

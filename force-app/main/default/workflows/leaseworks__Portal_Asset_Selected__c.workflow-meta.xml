@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>leaseworks__Set_LastUpdate</fullName>
+        <description>Set the last Update field when there is change in status</description>
+        <field>leaseworks__Last_Update__c</field>
+        <formula>NOW()</formula>
+        <name>Set LastUpdate</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Set_PAS_Name</fullName>
+        <field>Name</field>
+        <formula>leaseworks__Asset__r.Name</formula>
+        <name>Set PAS Name</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>leaseworks__Set Name</fullName>
+        <actions>
+            <name>leaseworks__Set_PAS_Name</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Set Name</description>
+        <formula>!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__Update LastUpdated on Portal Asset Selected</fullName>
+        <actions>
+            <name>leaseworks__Set_LastUpdate</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Update &#39;Last Updated&#39; field on portal asset selected when ever there is a status change</description>
+        <formula>OR(ISNEW(),ISCHANGED(leaseworks__Status__c))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

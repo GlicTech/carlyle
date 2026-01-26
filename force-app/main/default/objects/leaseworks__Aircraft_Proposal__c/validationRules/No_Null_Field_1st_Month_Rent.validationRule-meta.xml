@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>No_Null_Field_1st_Month_Rent</fullName>
+    <active>true</active>
+    <description>Prodigy - RB - 22/11/2024</description>
+    <errorConditionFormula>ISBLANK(TEXT(pro_X1st_Month_Rent__c)) &amp;&amp;
+(TEXT(PRIORVALUE(pro_X1st_Month_Rent__c)) = &quot;Yes&quot; || TEXT(PRIORVALUE(pro_X1st_Month_Rent__c)) = &quot;No&quot;)</errorConditionFormula>
+    <errorDisplayField>pro_X1st_Month_Rent__c</errorDisplayField>
+    <errorMessage>You cannot change the 1st Month Rent field from &quot;Yes&quot; or &quot;No&quot; back to blank.</errorMessage>
+</ValidationRule>

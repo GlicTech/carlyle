@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Fixed_Payment_Validations_02</fullName>
+    <active>true</active>
+    <description>Throws an error if both % Payment and Fixed Payment are null.</description>
+    <errorConditionFormula>AND(
+ ISNULL(leaseworks__Fixed_Payment__c),
+ ISNULL(leaseworks__Payment__c)
+)</errorConditionFormula>
+    <errorDisplayField>leaseworks__Fixed_Payment__c</errorDisplayField>
+    <errorMessage>Fixed Payment or % Payment must be defined.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Status__c</fullName>
+    <deprecated>false</deprecated>
+    <description>The current status of the Asset Request. Calculated based on selected assets statuses. If all the requested assets are in &#39;Rejected&#39; or &#39;Signed&#39; status, it is set to &#39;Closed&#39; else set to &#39;Open&#39;</description>
+    <externalId>false</externalId>
+    <formula>IF( NULLVALUE(leaseworks__Closed_Portal_Assets__c,0)&gt;= 1, &#39;Open&#39;, &#39;Closed&#39;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Current status of the asset request</inlineHelpText>
+    <label>Status</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

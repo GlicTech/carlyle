@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Y_Hidden_Rate_Method__c</fullName>
+    <deprecated>false</deprecated>
+    <description>The MR calculation is based on the selected method: MAX applies the highest active Supplemental Rent Rate, SUM adds all active rates, and Single allows configuring multiple rates, enabling the applicable rate to be selected during utilization entry.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The MR calculation is based on the selected method: MAX applies the highest active Supplemental Rent Rate, SUM adds all active rates, and Single allows configuring multiple rates, enabling the applicable rate to be selected during utilization entry.</inlineHelpText>
+    <label>_Rate Method</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>MAX</fullName>
+                <default>true</default>
+                <label>MAX</label>
+            </value>
+            <value>
+                <fullName>N/A</fullName>
+                <default>false</default>
+                <label>Single</label>
+            </value>
+            <value>
+                <fullName>SUM</fullName>
+                <default>false</default>
+                <label>SUM</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

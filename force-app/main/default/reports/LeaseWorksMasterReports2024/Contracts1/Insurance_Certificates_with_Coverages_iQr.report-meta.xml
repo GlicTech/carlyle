@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>leaseworks__Insurance_Certificate_IR__c.leaseworks__Insurance_Coverage_Details__r$Name</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>leaseworks__Insurance_Certificate_IR__c$leaseworks__Certificate_Agreed_Value__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Insurance_Certificate_IR__c$leaseworks__Insurer__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Insurance_Certificate_IR__c$leaseworks__Reinsurer__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Insurance_Certificate_IR__c$leaseworks__Policy_Expiry_Date__c</field>
+    </columns>
+    <description>User report</description>
+    <filter>
+        <criteriaItems>
+            <column>leaseworks__Insurance_Certificate_IR__c$leaseworks__Policy_Expiry_Date__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>greaterOrEqual</operator>
+            <value>3/5/2025</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>leaseworks__Insurance_Certificate_IR__c$leaseworks__Insurer__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>contains</operator>
+            <value>Marsh</value>
+        </criteriaItems>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>leaseworks__Insurance_Certificate_IR__c$leaseworks__Lease__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Insurance Certificates with Coverages</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Insurance_Certificate_with_Coverage_details__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>leaseworks__Insurance_Certificate_IR__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

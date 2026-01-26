@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__PostToHLOnlyIfIntercompany</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(leaseworks__Post_On_Head_Lease__c = True, 
+ leaseworks__Intercompany__c =false)</errorConditionFormula>
+    <errorDisplayField>leaseworks__Post_On_Head_Lease__c</errorDisplayField>
+    <errorMessage>You can post to Head Lease only if it is an Intercompany transaction. Either check Intercompany or uncheck Post To Head Lease.</errorMessage>
+</ValidationRule>

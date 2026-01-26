@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Flight_Value__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Field to store Fight Hours or Flight Cycle value based on Rate Basis</description>
+    <externalId>false</externalId>
+    <formula>IF( leaseworks__Rate_Basis__c =&#39;Flight Hours&#39;, leaseworks__Flight_Hours__c , IF(leaseworks__Rate_Basis__c =&#39;Flight Cycles&#39;, leaseworks__Flight_Cycles__c ,null) )</formula>
+    <label>_Flight Value</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>4</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

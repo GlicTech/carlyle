@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>Asset History Layout</layout>
+        <sections>
+            <label><!-- Historical Lease Information --></label>
+            <section>Historical Lease Information</section>
+        </sections>
+        <sections>
+            <label><!-- Historical Record Data --></label>
+            <section>Historical Record Data</section>
+        </sections>
+    </layouts>
+    <validationRules>
+        <errorMessage><!-- Please select the aircraft or the assembly that this history record is related to. --></errorMessage>
+        <name>leaseworks__Asset_must_be_selected</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please choose the lease if this is not a historical lease or check the Historical Lease checkbox. --></errorMessage>
+        <name>leaseworks__Choose_lease_if_not_historical</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Last Installation / Last Removal Date can not be a future date --></errorMessage>
+        <name>leaseworks__Date_cannot_be_futureDt</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please choose a status. --></errorMessage>
+        <name>leaseworks__Have_a_status</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Lease End Date must be after Start Date. --></errorMessage>
+        <name>leaseworks__Lease_End_Date_must_be_after_Start_Date</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- RORA Received cannot be a Future Date. --></errorMessage>
+        <name>leaseworks__RORA_Date_cannot_be_futureDt</name>
+    </validationRules>
+</CustomObjectTranslation>

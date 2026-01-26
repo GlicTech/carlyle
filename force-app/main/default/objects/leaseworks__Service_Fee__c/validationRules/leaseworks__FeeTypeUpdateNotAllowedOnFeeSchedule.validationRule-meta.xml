@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__FeeTypeUpdateNotAllowedOnFeeSchedule</fullName>
+    <active>true</active>
+    <errorConditionFormula>And(!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c,ISCHANGED( leaseworks__Fee_Type__c ))</errorConditionFormula>
+    <errorMessage>Fee Type cannot be updated on the fee schedule, please create a new fee schedule.</errorMessage>
+</ValidationRule>

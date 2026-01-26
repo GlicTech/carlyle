@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__IsDealInActive</fullName>
+    <active>true</active>
+    <description>A new Asset in Deal cannot be added to an Inactive deal</description>
+    <errorConditionFormula>AND(leaseworks__Marketing_Activity__r.leaseworks__Inactive_MA__c, ISNEW())</errorConditionFormula>
+    <errorMessage>A new Asset in Deal cannot be added to an Inactive deal</errorMessage>
+</ValidationRule>

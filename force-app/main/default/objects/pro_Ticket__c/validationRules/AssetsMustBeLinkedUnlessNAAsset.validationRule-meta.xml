@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AssetsMustBeLinkedUnlessNAAsset</fullName>
+    <active>false</active>
+    <description>Force users to link an Asset to Ticket unless the Non Carlyle Asset checkbox is set to True</description>
+    <errorConditionFormula>AND(
+  pro_Asset__c = NULL,
+  pro_Non_Carlyle_Asset__c = FALSE,
+  CreatedDate &gt;= DATETIMEVALUE(&quot;2025-05-21 00:00:00&quot;)
+)</errorConditionFormula>
+    <errorDisplayField>pro_Asset__c</errorDisplayField>
+    <errorMessage>Tickets must be linked to an Asset. To override this, check the NA Asset checkbox.</errorMessage>
+</ValidationRule>

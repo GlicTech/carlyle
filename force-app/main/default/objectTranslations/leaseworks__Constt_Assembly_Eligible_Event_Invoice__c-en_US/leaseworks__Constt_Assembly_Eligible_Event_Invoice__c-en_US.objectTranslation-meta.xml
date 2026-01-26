@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>Assembly Event Invoice Layout 2018_03_22</layout>
+        <sections>
+            <label><!-- Available Balance vs. Claim Amount --></label>
+            <section>Available Balance vs. Claim Amount</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Const Assembly Eligible Event Invoice Admin Layout_2017-05-10</layout>
+        <sections>
+            <label><!-- Available Balance vs. Claim Amount --></label>
+            <section>Available Balance vs. Claim Amount</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- Z_Unused_2106 Add MR Info --></label>
+        <name>leaseworks__Add_MR_Info</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Z_Unused Add MR Info --></label>
+        <name>leaseworks__Z_Unused_Add_MR_Info</name>
+    </quickActions>
+    <recordTypes>
+        <description><!-- Airframe event invoices --></description>
+        <label><!-- Airframe --></label>
+        <name>leaseworks__Airframe</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Assembly event invoices --></description>
+        <label><!-- Assemblies --></label>
+        <name>leaseworks__Assemblies</name>
+    </recordTypes>
+    <validationRules>
+        <errorMessage><!-- An Invoice can be set to Paid only after is approved. --></errorMessage>
+        <name>leaseworks__CanPayOnlyApprovedInvs</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Once you create this invoice, your total invoiced value will be greater than the claim amount. Your claim amount has to cover the invoice amount. Please correct the condition before saving. --></errorMessage>
+        <name>leaseworks__Check_Invoice_Total</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter either the LLP Amount only or only the LLP Module Amounts. --></errorMessage>
+        <name>leaseworks__EitherLLPAmountOrModuleAmounts</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The event claim has to be approved before generating an invoice --></errorMessage>
+        <name>leaseworks__EventClaimisApproved</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Invoice amount must be greater than zero. --></errorMessage>
+        <name>leaseworks__Inv_Amt_Must_Not_Be_Negative</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You cannot modify an Invoice that is already paid. --></errorMessage>
+        <name>leaseworks__IsAlreadyPaid</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter Payment Date and must be on or after the Invoice Date. --></errorMessage>
+        <name>leaseworks__PaymentDateRule</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- Approve --></label>
+        <name>leaseworks__Approve</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Claim_Form --></label>
+        <name>leaseworks__Claim_Form</name>
+    </webLinks>
+</CustomObjectTranslation>

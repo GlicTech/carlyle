@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>62.0</apiVersion>
+    <decisions>
+        <name>Was_LOI_Date_Change</name>
+        <label>Was LOI Date Change?</label>
+        <locationX>182</locationX>
+        <locationY>623</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_LOI_Date_Changed</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.LOI_Date__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <elementReference>$Record__Prior.LOI_Date__c</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record__Prior.LOI_Date__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Target_Reached</targetReference>
+            </connector>
+            <label>Yes - LOI Date Changed</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Was_LOI_Date_Populated</name>
+        <label>Was LOI Date Populated?</label>
+        <locationX>182</locationX>
+        <locationY>323</locationY>
+        <defaultConnector>
+            <targetReference>Was_LOI_Date_Change</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_LOI_Date_Populated</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.LOI_Date__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record__Prior.LOI_Date__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Run_Subflow_In_System_Context_Without_Sharing</targetReference>
+            </connector>
+            <label>Yes - LOI Date Populated</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <interviewLabel>Prodigy - Asset In Deal Relate To Asset Target Audit {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Prodigy - Asset In Deal Relate To Asset Target Audit</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Was_LOI_Date_Populated</targetReference>
+        </connector>
+        <filterLogic>1 OR (1 AND 2)</filterLogic>
+        <filters>
+            <field>leaseworks__Aircraft__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>pro_LOI_Date_Required__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <object>leaseworks__Aircraft_Proposal__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <subflows>
+        <name>Run_Subflow_In_System_Context_Without_Sharing</name>
+        <label>Run Subflow In System Context Without Sharing</label>
+        <locationX>50</locationX>
+        <locationY>431</locationY>
+        <connector>
+            <targetReference>Was_LOI_Date_Change</targetReference>
+        </connector>
+        <flowName>Prodigy_Autolaunched_Asset_In_Deal_Relate_To_Asset_Target_Audit</flowName>
+        <inputAssignments>
+            <name>varAID</name>
+            <value>
+                <elementReference>$Record</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
+    <subflows>
+        <name>Update_Target_Reached</name>
+        <label>Update Target Reached</label>
+        <locationX>50</locationX>
+        <locationY>731</locationY>
+        <flowName>Autolaunched_Change_Target_Reached_When_LOI_Date_Changed</flowName>
+        <inputAssignments>
+            <name>varTriggeringAiD</name>
+            <value>
+                <elementReference>$Record</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
+</Flow>

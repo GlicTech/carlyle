@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Get_Member_Role_Values</name>
+        <label>Get Member Role Values</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>GetPicklistValues</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Loop_Deal_Team_Roles</targetReference>
+        </connector>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <inputParameters>
+            <name>fieldApiName</name>
+            <value>
+                <stringValue>pro_Member_Role__c</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>objectApiName</name>
+            <value>
+                <stringValue>leaseworks__Deal_Team__c</stringValue>
+            </value>
+        </inputParameters>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <apiVersion>65.0</apiVersion>
+    <assignments>
+        <name>Build_Up_Deal_Team_Variables</name>
+        <label>Build Up Deal Team Variables</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>varDealTeamToCreate.leaseworks__Marketing_Activity__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>varTriggeringDeal.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varDealTeamToCreate.pro_Member_Role__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_Deal_Team_Roles</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varDealTeamToCreate.leaseworks__Assigned_To__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>f_AssigneeFromAccountTeam</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varDealTeamToCreate.Name</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_Deal_Team_Roles</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varDealTeamsToCreate</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>varDealTeamToCreate</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_Deal_Team_Roles</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>Should_Role_Be_Brought_Over_From_Account_Team</name>
+        <label>Should Role Be Brought Over From Account Team?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Loop_Deal_Team_Roles</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Role_To_Be_Brought_From_Account</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>f_AssigneeFromAccountTeam</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Invalid Role</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Build_Up_Deal_Team_Variables</targetReference>
+            </connector>
+            <label>Yes - Role To Be Brought From Account</label>
+        </rules>
+    </decisions>
+    <description>When called, this flow looks up Deal Team Mapping records for Sale - Novation as a reference for Member Roles. Then, for each member role, creates as a Deal Team record assigned to the user who holds that role on the Account Team</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>f_AssigneeFromAccountTeam</name>
+        <dataType>String</dataType>
+        <expression>CASE(
+    {!Loop_Deal_Team_Roles},
+    &quot;Contracts&quot;, {!varTriggeringDeal.leaseworks__Counter_Party__r.Contracts__c},
+    &quot;Credit&quot;, {!varTriggeringDeal.leaseworks__Counter_Party__r.Credit__c},
+    &quot;Investment &amp; Strategy&quot;, {!varTriggeringDeal.leaseworks__Counter_Party__r.Investment_Strategy__c},
+    &quot;Legal&quot;, {!varTriggeringDeal.leaseworks__Counter_Party__r.Legal__c},
+    &quot;Marketing&quot;, {!varTriggeringDeal.leaseworks__Counter_Party__r.OwnerId},
+    &quot;Compliance&quot;, {!varTriggeringDeal.leaseworks__Counter_Party__r.Compliance__c},
+    &quot;Portfolio Management&quot;, {!varTriggeringDeal.leaseworks__Counter_Party__r.Portfolio_Fund_Management__c},
+    &quot;Powerplant&quot;, {!varTriggeringDeal.leaseworks__Counter_Party__r.Powerplant__c},
+    &quot;Lease Management&quot;, {!varTriggeringDeal.leaseworks__Counter_Party__r.Receivables__c},
+    &quot;Tax&quot;, {!varTriggeringDeal.leaseworks__Counter_Party__r.Tax__c},
+    &quot;Technical&quot;, {!varTriggeringDeal.leaseworks__Counter_Party__r.Technical__c},
+    &quot;Trading&quot;, {!varTriggeringDeal.leaseworks__Counter_Party__r.Trading__c},
+    &quot;Invalid Role&quot;
+)</expression>
+    </formulas>
+    <interviewLabel>Autolaunched - Create Deal Teams To Mirror Account Team {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Autolaunched - Create Deal Teams To Mirror Account Team</label>
+    <loops>
+        <name>Loop_Deal_Team_Roles</name>
+        <label>Loop Deal Team Roles</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <collectionReference>Get_Member_Role_Values</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Should_Role_Be_Brought_Over_From_Account_Team</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Create_Deal_Teams</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordCreates>
+        <name>Create_Deal_Teams</name>
+        <label>Create Deal Teams</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <inputReference>varDealTeamsToCreate</inputReference>
+    </recordCreates>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Member_Role_Values</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>varDealTeamsToCreate</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>leaseworks__Deal_Team__c</objectType>
+    </variables>
+    <variables>
+        <name>varDealTeamToCreate</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>leaseworks__Deal_Team__c</objectType>
+    </variables>
+    <variables>
+        <name>varTriggeringDeal</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>leaseworks__Marketing_Activity__c</objectType>
+    </variables>
+</Flow>

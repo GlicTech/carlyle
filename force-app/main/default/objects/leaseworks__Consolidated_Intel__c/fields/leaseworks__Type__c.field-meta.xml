@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Type__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Type of the record. MI if Market Intel, AIT if Aircraft In Transaction. None otherwise.</description>
+    <externalId>false</externalId>
+    <formula>IF(ISBLANK(leaseworks__Aircraft_In_Transaction__c), IF(ISBLANK( leaseworks__Market_Intelligence__c ), IF(ISBLANK(leaseworks__Interaction_Log__c), &#39;None&#39; , &#39;IL&#39;),  &#39;MI&#39;), &#39;AIT&#39;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>_Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

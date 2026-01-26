@@ -1,0 +1,701 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>65.0</apiVersion>
+    <assignments>
+        <name>Assign_Updates_To_Variable_Account</name>
+        <label>Assign Updates To Variable - Account</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>varStatusUpdates</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Status_Updates_Account</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Display_Update_Screen</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Updates_To_Variable_Claim</name>
+        <label>Assign Updates To Variable - Claim</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>varStatusUpdates</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Status_Updates_Claim</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Display_Update_Screen</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Updates_To_Variable_Deal</name>
+        <label>Assign Updates To Variable - Deal</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>varStatusUpdates</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Status_Updates_Deal</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Display_Update_Screen</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Updates_To_Variable_Litigation</name>
+        <label>Assign Updates To Variable - Litigation</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>varStatusUpdates</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Status_Updates_Litigation</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Display_Update_Screen</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Updates_To_Variable_Project</name>
+        <label>Assign Updates To Variable - Project</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>varStatusUpdates</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Status_Updates_Project</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Display_Update_Screen</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Updates_To_Variable_Ticket</name>
+        <label>Assign Updates To Variable - Ticket</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>varStatusUpdates</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Status_Updates_Ticket</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Display_Update_Screen</targetReference>
+        </connector>
+    </assignments>
+    <choices>
+        <name>c_All</name>
+        <choiceText>All</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>All</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_Weekly_Commercial_Summary</name>
+        <choiceText>Weekly Commercial Summary</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Weekly Commercial Summary</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>c_Weekly_Legal_Contracts_Summary</name>
+        <choiceText>Weekly Legal &amp; Contracts Summary</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Weekly Legal &amp; Contracts Summary</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Weekly_Commercial_Summary</name>
+        <choiceText>Weekly Commercial Summary</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Weekly Commercial Summary</stringValue>
+        </value>
+    </choices>
+    <decisions>
+        <description>Based on the object type returned from Entity Definition query, take a different path to update records.</description>
+        <name>Copy_1_of_What_Object_Type_Launched_This_Screen</name>
+        <label>Copy 1 of What Object Type Launched This Screen?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Copy_1_of_Fleet_Project_Management</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Entity_Definition_For_Triggering_Record.QualifiedApiName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>leaseworks__Technical_Project__c</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Status_Updates_Project</targetReference>
+            </connector>
+            <label>Copy 1 of Fleet Project Management</label>
+        </rules>
+        <rules>
+            <name>Copy_1_of_Account</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Entity_Definition_For_Triggering_Record.QualifiedApiName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Account</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Status_Updates_Account</targetReference>
+            </connector>
+            <label>Copy 1 of Account</label>
+        </rules>
+        <rules>
+            <name>Copy_1_of_Claim</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Entity_Definition_For_Triggering_Record.QualifiedApiName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>leaseworks__Claims__c</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Status_Updates_Claim</targetReference>
+            </connector>
+            <label>Copy 1 of Claim</label>
+        </rules>
+        <rules>
+            <name>Copy_1_Of_Litigation</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Entity_Definition_For_Triggering_Record.QualifiedApiName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Litigation__c</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Status_Updates_Litigation</targetReference>
+            </connector>
+            <label>Copy 1 Of Litigation</label>
+        </rules>
+        <rules>
+            <name>Copy_1_of_Ticket</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Entity_Definition_For_Triggering_Record.QualifiedApiName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>pro_Ticket__c</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Status_Updates_Ticket</targetReference>
+            </connector>
+            <label>Copy 1 of Ticket</label>
+        </rules>
+        <rules>
+            <name>Deal</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Entity_Definition_For_Triggering_Record.QualifiedApiName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>leaseworks__Marketing_Activity__c</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Status_Updates_Deal</targetReference>
+            </connector>
+            <label>Deal</label>
+        </rules>
+    </decisions>
+    <description>Flow takes a record Id variable as an input, searches for Status Updates related to the recordId and surfaces these updates in a screenflow.</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>f_KeyPrefix</name>
+        <dataType>String</dataType>
+        <expression>LEFT({!recordId},3)</expression>
+    </formulas>
+    <formulas>
+        <name>f_SelectedUpdates</name>
+        <dataType>String</dataType>
+        <expression>IF(
+    {!Get_Entity_Definition_For_Triggering_Record.QualifiedApiName} = &quot;leaseworks__Technical_Project__c&quot;,
+    &quot;SELECT pro_Status_Update__c, pro_Created_By_Name__c, pro_Date__c, pro_Update_Type__c &quot; &amp;
+    &quot;FROM pro_Status_Update__c &quot; &amp;
+    &quot;WHERE pro_Technical_Project__c = &#39;&quot; &amp; {!recordId} &amp; &quot;&#39; &quot; &amp;
+    &quot;ORDER BY CreatedDate DESC&quot;,
+
+IF(
+    {!Get_Entity_Definition_For_Triggering_Record.QualifiedApiName} = &quot;Account&quot;,
+    &quot;SELECT pro_Status_Update__c, pro_Created_By_Name__c, pro_Date__c, pro_Update_Type__c  &quot; &amp;
+    &quot;FROM pro_Status_Update__c &quot; &amp;
+    &quot;WHERE pro_Account__c = &#39;&quot; &amp; {!recordId} &amp; &quot;&#39; &quot; &amp;
+    &quot;ORDER BY CreatedDate DESC&quot;,
+
+IF(
+    {!Get_Entity_Definition_For_Triggering_Record.QualifiedApiName} = &quot;leaseworks__Claims__c&quot;,
+    &quot;SELECT pro_Status_Update__c, pro_Created_By_Name__c, pro_Date__c, pro_Update_Type__c &quot; &amp;
+    &quot;FROM pro_Status_Update__c &quot; &amp;
+    &quot;WHERE pro_Claim__c = &#39;&quot; &amp; {!recordId} &amp; &quot;&#39; &quot; &amp;
+    &quot;ORDER BY CreatedDate DESC&quot;,
+
+IF(
+    {!Get_Entity_Definition_For_Triggering_Record.QualifiedApiName} = &quot;Litigation__c&quot;,
+    &quot;SELECT pro_Status_Update__c, pro_Created_By_Name__c, pro_Date__c, pro_Update_Type__c &quot; &amp;
+    &quot;FROM pro_Status_Update__c &quot; &amp;
+    &quot;WHERE pro_Litigation__c = &#39;&quot; &amp; {!recordId} &amp; &quot;&#39; &quot; &amp;
+    &quot;ORDER BY CreatedDate DESC&quot;,
+
+IF(
+    {!Get_Entity_Definition_For_Triggering_Record.QualifiedApiName} = &quot;pro_Ticket__c&quot;,
+    &quot;SELECT pro_Status_Update__c, pro_Created_By_Name__c, pro_Date__c, pro_Update_Type__c &quot; &amp;
+    &quot;FROM pro_Status_Update__c &quot; &amp;
+    &quot;WHERE pro_Ticket__c = &#39;&quot; &amp; {!recordId} &amp; &quot;&#39; &quot; &amp;
+    &quot;ORDER BY CreatedDate DESC&quot;,
+
+IF(
+    AND(
+        {!Get_Entity_Definition_For_Triggering_Record.QualifiedApiName} = &quot;leaseworks__Marketing_Activity__c&quot;,
+        {!Update_Type} = &quot;Weekly Commercial Summary&quot;
+    ),
+    &quot;SELECT pro_Status_Update__c, pro_Created_By_Name__c, pro_Date__c, pro_Update_Type__c &quot; &amp;
+    &quot;FROM pro_Status_Update__c &quot; &amp;
+    &quot;WHERE pro_Deal__c = &#39;&quot; &amp; {!recordId} &amp; &quot;&#39; &quot; &amp;
+    &quot;AND pro_Update_Type__c = &#39;Weekly Commercial Summary&#39; &quot; &amp;
+    &quot;ORDER BY CreatedDate DESC&quot;,
+
+IF(
+    AND(
+        {!Get_Entity_Definition_For_Triggering_Record.QualifiedApiName} = &quot;leaseworks__Marketing_Activity__c&quot;,
+        {!Update_Type} = &quot;Weekly Legal &amp; Contracts Summary&quot;
+    ),
+    &quot;SELECT pro_Status_Update__c, pro_Created_By_Name__c, pro_Date__c, pro_Update_Type__c &quot; &amp;
+    &quot;FROM pro_Status_Update__c &quot; &amp;
+    &quot;WHERE pro_Deal__c = &#39;&quot; &amp; {!recordId} &amp; &quot;&#39; &quot; &amp;
+    &quot;AND pro_Update_Type__c = &#39;Weekly Legal &amp; Contracts Summary&#39; &quot; &amp;
+    &quot;ORDER BY CreatedDate DESC&quot;,
+
+IF(
+    AND(
+        {!Get_Entity_Definition_For_Triggering_Record.QualifiedApiName} = &quot;leaseworks__Marketing_Activity__c&quot;,
+        {!Update_Type} = &quot;All&quot;
+    ),
+    &quot;SELECT pro_Status_Update__c, pro_Created_By_Name__c, pro_Date__c, pro_Update_Type__c &quot; &amp;
+    &quot;FROM pro_Status_Update__c &quot; &amp;
+    &quot;WHERE pro_Deal__c = &#39;&quot; &amp; {!recordId} &amp; &quot;&#39; &quot; &amp;
+    &quot;AND pro_Update_Type__c IN (&#39;Weekly Commercial Summary&#39;,&#39;Weekly Legal &amp; Contracts Summary&#39;) &quot; &amp;
+    &quot;ORDER BY CreatedDate DESC&quot;,
+
+&quot;&quot;
+))))))))</expression>
+    </formulas>
+    <interviewLabel>Screen - Display Status Updates {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Screen - Display Status Updates</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <recordLookups>
+        <name>Get_Entity_Definition_For_Triggering_Record</name>
+        <label>Get Entity Definition For Triggering Record</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Copy_1_of_What_Object_Type_Launched_This_Screen</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>KeyPrefix</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>f_KeyPrefix</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>EntityDefinition</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Status_Updates_Account</name>
+        <label>Get Status Updates - Account</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Assign_Updates_To_Variable_Account</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>pro_Account__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>pro_Status_Update__c</object>
+        <sortField>CreatedDate</sortField>
+        <sortOrder>Desc</sortOrder>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Status_Updates_Claim</name>
+        <label>Get Status Updates - Claim</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Assign_Updates_To_Variable_Claim</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>pro_Claim__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>pro_Status_Update__c</object>
+        <sortField>CreatedDate</sortField>
+        <sortOrder>Desc</sortOrder>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Status_Updates_Deal</name>
+        <label>Get Status Updates - Deal</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Assign_Updates_To_Variable_Deal</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>pro_Deal__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>pro_Status_Update__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Status_Updates_Litigation</name>
+        <label>Get Status Updates - Litigation</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Assign_Updates_To_Variable_Litigation</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>pro_Litigation__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>pro_Status_Update__c</object>
+        <sortField>CreatedDate</sortField>
+        <sortOrder>Desc</sortOrder>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Status_Updates_Project</name>
+        <label>Get Status Updates - Project</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Assign_Updates_To_Variable_Project</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>pro_Technical_Project__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>pro_Status_Update__c</object>
+        <sortField>CreatedDate</sortField>
+        <sortOrder>Desc</sortOrder>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Status_Updates_Ticket</name>
+        <label>Get Status Updates - Ticket</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Assign_Updates_To_Variable_Ticket</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>pro_Ticket__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>pro_Status_Update__c</object>
+        <sortField>CreatedDate</sortField>
+        <sortOrder>Desc</sortOrder>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <screens>
+        <name>Display_Update_Screen</name>
+        <label>Display Update Screend</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>Update_Type</name>
+            <choiceReferences>c_All</choiceReferences>
+            <choiceReferences>c_Weekly_Commercial_Summary</choiceReferences>
+            <choiceReferences>c_Weekly_Legal_Contracts_Summary</choiceReferences>
+            <dataType>String</dataType>
+            <defaultSelectedChoiceReference>c_All</defaultSelectedChoiceReference>
+            <fieldText>Update Type</fieldText>
+            <fieldType>DropdownBox</fieldType>
+            <isRequired>true</isRequired>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>Get_Entity_Definition_For_Triggering_Record.QualifiedApiName</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <stringValue>leaseworks__Marketing_Activity__c</stringValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>StatusUpdates</name>
+            <dataTypeMappings>
+                <typeName>T</typeName>
+                <typeValue>pro_Status_Update__c</typeValue>
+            </dataTypeMappings>
+            <extensionName>c:datatable</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>objectName</name>
+                <value>
+                    <stringValue>pro_Status_Update__c</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>hideCheckboxColumn</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>cb_hideCheckboxColumn</name>
+                <value>
+                    <stringValue>CB_TRUE</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>cb_isRequired</name>
+                <value>
+                    <stringValue>CB_FALSE</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>cb_singleRowSelection</name>
+                <value>
+                    <stringValue>CB_FALSE</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>cb_showSelectedCount</name>
+                <value>
+                    <stringValue>CB_FALSE</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>cb_suppressBottomBar</name>
+                <value>
+                    <stringValue>CB_FALSE</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>cb_navigateNextOnSave</name>
+                <value>
+                    <stringValue>CB_FALSE</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>columnFields</name>
+                <value>
+                    <stringValue>pro_Update_Type__c,pro_Status_Update__c,pro_Created_By_Name__c,pro_Date__c</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>cb_matchCaseOnFilters</name>
+                <value>
+                    <stringValue>CB_FALSE</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>columnLabels</name>
+                <value>
+                    <stringValue>pro_Created_By_Name__c:Created By</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>columnWidths</name>
+                <value>
+                    <stringValue>pro_Update_Type__c:248, pro_Status_Update__c:850, pro_Created_By_Name__c:205, pro_Date__c:156</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>columnWraps</name>
+                <value>
+                    <stringValue>pro_Status_Update__c:true, pro_Created_By_Name__c:false, pro_Date__c:false</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>tableData</name>
+                <value>
+                    <elementReference>df_StatusUpdates.retrievedRecords</elementReference>
+                </value>
+            </inputParameters>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <storeOutputAutomatically>true</storeOutputAutomatically>
+        </fields>
+        <fields>
+            <name>df_StatusUpdates</name>
+            <dataTypeMappings>
+                <typeName>T</typeName>
+                <typeValue>pro_Status_Update__c</typeValue>
+            </dataTypeMappings>
+            <dataTypeMappings>
+                <typeName>S</typeName>
+                <typeValue>Account</typeValue>
+            </dataTypeMappings>
+            <extensionName>joshdaymentlabs:dataFetcher</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>objectName1</name>
+                <value>
+                    <stringValue>pro_Status_Update__c</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>queryString</name>
+                <value>
+                    <elementReference>f_SelectedUpdates</elementReference>
+                </value>
+            </inputParameters>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <storeOutputAutomatically>true</storeOutputAutomatically>
+        </fields>
+        <fields>
+            <name>Display_Update_Screen_Section1</name>
+            <fieldType>RegionContainer</fieldType>
+            <fields>
+                <name>Display_Update_Screen_Section1_Column1</name>
+                <fieldType>Region</fieldType>
+                <inputParameters>
+                    <name>width</name>
+                    <value>
+                        <stringValue>12</stringValue>
+                    </value>
+                </inputParameters>
+                <isRequired>false</isRequired>
+            </fields>
+            <isRequired>false</isRequired>
+            <regionContainerType>SectionWithoutHeader</regionContainerType>
+        </fields>
+        <nextOrFinishButtonLabel>Save Update</nextOrFinishButtonLabel>
+        <showFooter>false</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Entity_Definition_For_Triggering_Record</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <description>The record id from which this screen flow got called</description>
+        <name>recordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>varIncludeOnCPC</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>varLatestUpdateCommet</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>varStatusUpdates</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>pro_Status_Update__c</objectType>
+    </variables>
+</Flow>

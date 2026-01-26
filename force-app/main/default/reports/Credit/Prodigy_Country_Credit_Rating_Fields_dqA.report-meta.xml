@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Country__c.leaseworks__Country_Repossession_Risk__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Country__c.leaseworks__S_P_Country_Rating__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Country__c.pro_Jurisdiction_Risk__c</field>
+    </columns>
+    <format>Tabular</format>
+    <name>Prodigy - Country Credit Rating Fields</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$leaseworks__Country__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>CUST_CREATED_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

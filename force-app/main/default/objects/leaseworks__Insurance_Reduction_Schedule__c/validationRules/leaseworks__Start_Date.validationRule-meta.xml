@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Start_Date</fullName>
+    <active>true</active>
+    <description>The Start date of an Insurance Reduction Schedule Record should always be greater than the Lease Start date and smaller than the Reduction end date.</description>
+    <errorConditionFormula>OR(
+    leaseworks__Start_Date__c &lt; leaseworks__Lease__r.leaseworks__Lease_Start_Date_New__c,
+    leaseworks__Start_Date__c &gt;= leaseworks__Lease__r.leaseworks__Reduction_End_Date__c 
+)</errorConditionFormula>
+    <errorDisplayField>leaseworks__Start_Date__c</errorDisplayField>
+    <errorMessage>The Start Date of the AV Reduction Schedule must fall within the schedule period. Please check and update the date accordingly before saving the record.</errorMessage>
+</ValidationRule>

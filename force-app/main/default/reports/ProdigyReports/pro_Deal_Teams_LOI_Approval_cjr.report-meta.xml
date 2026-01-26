@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>leaseworks__Deal_Team__c$leaseworks__Assigned_To__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Deal_Team__c$Name</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Deal_Team__c$pro_LOI_Signed_Approved_Formula__c</field>
+    </columns>
+    <description>Report built to show use of LOI Signed Approved checkbox on Deal Team record. This shows use of the Approval Console for LOI Approvals</description>
+    <filter>
+        <criteriaItems>
+            <column>leaseworks__Deal_Team__c$pro_Deal_Status__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>LOI Signed</value>
+        </criteriaItems>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>leaseworks__Deal_Team__c$pro_Deal_Name__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Deal Teams LOI Approval</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Deal_Teams__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>leaseworks__Deal_Team__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

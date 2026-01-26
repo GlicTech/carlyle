@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>External_Auditors</fullName>
+    <booleanFilter>1 AND 2 AND (3 OR 4 OR 5)</booleanFilter>
+    <columns>CORE.USERS.COMPANY_NAME</columns>
+    <columns>CORE.USERS.FIRST_NAME</columns>
+    <columns>CORE.USERS.LAST_NAME</columns>
+    <columns>CORE.USERS.USERNAME</columns>
+    <columns>CORE.USERS.SAML_SUBJECT</columns>
+    <columns>CORE.USERS.ACTIVE</columns>
+    <columns>CORE.PROFILE.NAME</columns>
+    <columns>CORE.USERS.LAST_LOGIN</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CORE.USERS.ACTIVE</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>CORE.PROFILE.NAME</field>
+        <operation>contains</operation>
+        <value>Read Only</value>
+    </filters>
+    <filters>
+        <field>CORE.USERS.COMPANY_NAME</field>
+        <operation>equals</operation>
+        <value>Deloitte</value>
+    </filters>
+    <filters>
+        <field>CORE.USERS.COMPANY_NAME</field>
+        <operation>equals</operation>
+        <value>EY US</value>
+    </filters>
+    <filters>
+        <field>CORE.USERS.COMPANY_NAME</field>
+        <operation>equals</operation>
+        <value>EY Ireland</value>
+    </filters>
+    <label>External Auditors</label>
+</ListView>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CannotDuplicateDelays</fullName>
+    <active>true</active>
+    <description>Rule restricts user from being able to enter duplicate values in the Primary, Secondary, Additional Delay fields</description>
+    <errorConditionFormula>AND(
+  NOT(ISBLANK(TEXT(pro_Primary_Delay__c))),
+  OR(
+    TEXT(pro_Primary_Delay__c) = TEXT(pro_Secondary_Delay__c),
+    TEXT(pro_Primary_Delay__c) = TEXT(pro_Additional_Delay__c),
+    AND(
+      NOT(ISBLANK(TEXT(pro_Secondary_Delay__c))),
+      TEXT(pro_Secondary_Delay__c) = TEXT(pro_Additional_Delay__c)
+    )
+  )
+)</errorConditionFormula>
+    <errorMessage>Primary Delay, Secondary Delay, and Additional Delay cannot have the same value. Please select different values.</errorMessage>
+</ValidationRule>

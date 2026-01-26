@@ -1,0 +1,1 @@
+trigger Notify_leaseworks_O_MR_Rate_AutoTrigger on leaseworks__MR_Rate__c (before insert, before update, before delete, after insert, after update, after delete, after undelete) { leaseworks.Notify_NotificationScheduler.triggerHandler(leaseworks__MR_Rate__c.sObjectType); }

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Operator_Approval_Validation</fullName>
+    <active>false</active>
+    <errorConditionFormula>false /* IF(Operator_New__c !=null ,  TEXT(Operator_New__r.Status__c) &lt;&gt; &quot;Approved&quot;, false) */</errorConditionFormula>
+    <errorDisplayField>leaseworks__Operator_New__c</errorDisplayField>
+    <errorMessage>Cannot assign an operator that has not been approved by the finance organization. Please get this operator approved and try again.</errorMessage>
+</ValidationRule>

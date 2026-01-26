@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>Applied To Layout</layout>
+        <sections>
+            <label><!-- Amounts --></label>
+            <section>Amounts</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- Credit Note MR --></label>
+        <name>leaseworks__Credit_Note_MR</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Credit Note Rent --></label>
+        <name>leaseworks__Credit_Note_Rent</name>
+    </recordTypes>
+    <validationRules>
+        <errorMessage><!-- Total Applied amount cannot be greater than Funded With amount. --></errorMessage>
+        <name>leaseworks__CreditNoteValidation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Applied To Invoice should have a balance due. --></errorMessage>
+        <name>leaseworks__InvoiceRefShouldNotBeOverpaid</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter the date on which the payment is received. It cannot be a future date. --></errorMessage>
+        <name>leaseworks__NoFutureDatedPayments</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You can not modify once it is approved. --></errorMessage>
+        <name>leaseworks__StatusRule</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You can not create with approved status. --></errorMessage>
+        <name>leaseworks__StatusRule2</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Amount must be greater than zero. --></errorMessage>
+        <name>leaseworks__Total_Invoice_Amount_Not_Negative</name>
+    </validationRules>
+</CustomObjectTranslation>

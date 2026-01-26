@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>pro_LOI_Approval__c</fullName>
+    <description>Formula calculates the percentage progress towards complete LOI approval based on the number of Deal Teams who have checked Deal Team LOI Approval over the number of Deal Teams defined as LOI Approvers</description>
+    <externalId>false</externalId>
+    <formula>IF( pro_LOI_Approver_Count__c = 0, 1, pro_Deal_Team_LOI_Approval__c /   pro_LOI_Approver_Count__c)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>LOI Approval %</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Percent</type>
+</CustomField>

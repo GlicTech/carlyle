@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Aircraft__c.Likely_Outcome__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Aircraft__c.pro_Marketing_Trading__c</field>
+    </columns>
+    <description>Report allows for inline edit to update the Likely Outcome or Marketing &amp; Trading fields on all Assets</description>
+    <format>Tabular</format>
+    <name>Assets Marketing or Trading</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$leaseworks__Aircraft__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>CUST_CREATED_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

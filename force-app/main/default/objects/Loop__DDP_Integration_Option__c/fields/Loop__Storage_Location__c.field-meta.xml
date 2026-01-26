@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Loop__Storage_Location__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <formula>IF(
+    OR(ISPICKVAL(Loop__Attach_As__c,&quot;FTP&quot;),ISPICKVAL(Loop__Attach_As__c,&quot;SFTP&quot;)),
+    Loop__FTP__c,
+    IF(
+        OR(ISPICKVAL(Loop__Attach_As__c,&quot;Content&quot;),ISPICKVAL(Loop__Attach_As__c,&quot;Content - User Selected&quot;)),
+        Loop__Content_Workspace__c,
+        IF(
+            ISPICKVAL(Loop__Attach_As__c,&quot;Veeva Vault&quot;),
+            &quot;Vault Options [&quot; &amp; HYPERLINK(&quot;/apex/loop__ddpEdit?type=storageData&amp;cioId=&quot; &amp; Id, &quot;Change&quot;, &quot;_self&quot;) &amp; &quot;]&quot;,
+            IF(
+                NOT(ISBLANK(TEXT(Loop__Attach_As__c))),
+                IF(ISBLANK( Loop__Storage_Folder__c ), &quot;Root&quot;, Loop__Storage_Folder__c ) &amp; &quot; [&quot; &amp; HYPERLINK(&quot;/apex/loop__ddpEdit?type=storageFolder&amp;cioId=&quot; &amp; Id , &quot;Change&quot; , &quot;_self&quot; ) &amp; &quot;]&quot;,
+                &quot;&quot;
+            )
+        )
+    )
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Storage Location</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

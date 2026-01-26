@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>leaseworks__AEE_invoice_Decline_Email_Alert</fullName>
+        <description>AEE invoice Decline Email Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>leaseworks__LeaseWorksTemplates/leaseworks__AEE_Approval_Flow</template>
+    </alerts>
+    <alerts>
+        <fullName>leaseworks__Aircraft_Eligible_Invoices_Rejected_Alert</fullName>
+        <description>Aircraft Eligible Invoices - Rejected Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>leaseworks__LeaseWorksTemplates/leaseworks__AEE_Approval_Flow</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_AEE_Status_Approved</fullName>
+        <description>Changes status to approved on approval</description>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Approved</literalValue>
+        <name>Update AEE Status Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_AEE_Status_Declined</fullName>
+        <description>Changes status to declined if the approval is declined</description>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Declined</literalValue>
+        <name>Update AEE Status Declined</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_AEE_Status_Open</fullName>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Open</literalValue>
+        <name>Update AEE Status Open</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_AEE_Status_Pending</fullName>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Pending</literalValue>
+        <name>Update AEE Status Pending</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_AEE_stats_Approved</fullName>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Approved</literalValue>
+        <name>Update AEE status Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_AEE_stats_Declined</fullName>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Declined</literalValue>
+        <name>Update AEE status Declined</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_AEE_stats_Pending</fullName>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Pending</literalValue>
+        <name>Update AEE status Pending</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_AEE_stats_open</fullName>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Open</literalValue>
+        <name>Update AEE status open</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+</Workflow>

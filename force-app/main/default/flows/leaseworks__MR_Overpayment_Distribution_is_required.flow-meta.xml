@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>64.0</apiVersion>
+    <decisions>
+        <description>This Decision is used to check the size of MR Overpayment Distribution list, if size is Empty or Zero then it will fire Custom Error, if not then it goes in Default outcome.</description>
+        <name>MR_Overpayment_Distribution_List_Size_check</name>
+        <label>MR Overpayment Distribution List Size check</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>If_MR_Overpayment_Distribution_Size_is_Empty</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>getting_MR_Overpayment_Distribution_list_size</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>MR_Overpayment_Distribution_is_required</targetReference>
+            </connector>
+            <label>If MR Overpayment Distribution Size is Empty</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>This decision is used to restrict the User to make CM Status to Approved, if the CM type is &#39;Cash Credit&#39; &amp; the CM reason is &#39;MR Overpayment&#39; / &#39;MR Reconciliation Refund.&#39;</description>
+        <name>Restrict_Approval_of_CM_if_Cash_Credit</name>
+        <label>Restrict Approval of CM if Cash Credit</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Restrict_to_Approve_when_CM_Type_is_Cash_Credit</name>
+            <conditionLogic>(1 OR 2) AND 3 AND 4 AND (5 OR 6)</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.leaseworks__Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Approved</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.leaseworks__Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Submitted</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record__Prior.leaseworks__Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Pending</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.leaseworks__Credit_Memo_Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Overpayment</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.leaseworks__Credit_Memo_Reason__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>MR Reconciliation Refund</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.leaseworks__Credit_Memo_Reason__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>MR Overpayment</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>getting_MR_Overpayment_Distribution_list_size</targetReference>
+            </connector>
+            <label>Restrict to Approve when CM Type is Cash Credit</label>
+        </rules>
+    </decisions>
+    <description>This flow is used to check the size of MR Overpayment Distribution &amp; restrict user to Approve the Credit Memo.</description>
+    <environments>Default</environments>
+    <interviewLabel>MR Overpayment Distribution is required {!$Flow.CurrentDateTime}</interviewLabel>
+    <isTemplate>true</isTemplate>
+    <label>MR Overpayment Distribution is required</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <description>from this get records retrieving the list size of MR Overpayment Distribution related to Credit Memo records.</description>
+        <name>getting_MR_Overpayment_Distribution_list_size</name>
+        <label>getting MR Overpayment Distribution list size</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>MR_Overpayment_Distribution_List_Size_check</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>leaseworks__Credit_Memo__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>leaseworks__Credit_Memo_Issuance__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Restrict_Approval_of_CM_if_Cash_Credit</targetReference>
+        </connector>
+        <filterFormula>AND({!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c}==FALSE,{!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c}==FALSE)</filterFormula>
+        <object>leaseworks__Credit_Memo__c</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

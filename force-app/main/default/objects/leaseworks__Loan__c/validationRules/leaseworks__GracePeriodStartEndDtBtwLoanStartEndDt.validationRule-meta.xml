@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__GracePeriodStartEndDtBtwLoanStartEndDt</fullName>
+    <active>true</active>
+    <errorConditionFormula>OR( leaseworks__Grace_Period_End_Date__c &gt;  leaseworks__Loan_End_Date__c, leaseworks__Grace_Period_End_Date__c &lt; leaseworks__Loan_Start_Date__c )</errorConditionFormula>
+    <errorMessage>The Grace Period duration must be between the Loan Start and End Date.</errorMessage>
+</ValidationRule>

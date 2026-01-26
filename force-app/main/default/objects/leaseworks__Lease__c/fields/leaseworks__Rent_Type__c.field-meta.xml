@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Rent_Type__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Types of monthly rent calculations. For variable Rent: there will be a base (say $100), a multiplier (say 1.1) and will be tied to Libor (say its 2% for a certain mo). Calculation would be 100*1.1 = 110. and then adjust down by 2% (calculated on 100). So net amount would be 108. Also, may have a floor or ceiling. If the ceiling is 107, then you pay 107 instead of 108. 
+Base
+Multiplier
+Libor
+Value = Base * Multiplier - (Base*LIBOR)</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Rent Type per the lease</inlineHelpText>
+    <label>_Rent Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Fixed Rent</fullName>
+                <default>true</default>
+                <label>Fixed Rent</label>
+            </value>
+            <value>
+                <fullName>Power By The Hour</fullName>
+                <default>false</default>
+                <label>Power By The Hour</label>
+            </value>
+            <value>
+                <fullName>Power By The Hour With a minimum</fullName>
+                <default>false</default>
+                <label>Power By The Hour With a minimum</label>
+            </value>
+            <value>
+                <fullName>Floating Rent</fullName>
+                <default>false</default>
+                <label>Floating Rent</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

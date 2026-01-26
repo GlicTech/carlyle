@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Validate_no_Fixed_Date_on_Signature</fullName>
+    <active>true</active>
+    <description>Validates that there is no Fixed Date specified when creating a Signature Fixed Payment</description>
+    <errorConditionFormula>AND( 
+NOT(ISNULL(leaseworks__Fixed_Date__c)), 
+leaseworks__Signature__c
+)</errorConditionFormula>
+    <errorDisplayField>leaseworks__Fixed_Date__c</errorDisplayField>
+    <errorMessage>You can&#39;t specify a Fixed Date for a Signature Payment</errorMessage>
+</ValidationRule>

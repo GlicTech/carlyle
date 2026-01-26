@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Total_Number_of_Units__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Asana: Break out the transactions into individual aircraft details, if they are available
+On the transaction page, we will need roll up of # of units, total cost, and maybe average price.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Total count of all &quot;Active&quot; aircraft in this transaction.</inlineHelpText>
+    <label>Total Number of Units</label>
+    <summaryFilterItems>
+        <field>leaseworks__Aircraft_In_Transaction__c.leaseworks__Status__c</field>
+        <operation>equals</operation>
+        <value>Active</value>
+    </summaryFilterItems>
+    <summaryForeignKey>leaseworks__Aircraft_In_Transaction__c.leaseworks__Transaction__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

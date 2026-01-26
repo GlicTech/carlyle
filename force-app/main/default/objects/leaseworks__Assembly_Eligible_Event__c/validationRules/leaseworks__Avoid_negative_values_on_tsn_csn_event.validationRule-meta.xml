@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Avoid_negative_values_on_tsn_csn_event</fullName>
+    <active>true</active>
+    <description>To avoid negative value entry in TSN/CSN fields</description>
+    <errorConditionFormula>OR(
+AND(NOT(ISBLANK(leaseworks__TSN__c)),leaseworks__TSN__c&lt;0),
+AND(NOT(ISBLANK(leaseworks__CSN__c)),leaseworks__CSN__c&lt;0),
+AND(NOT(ISBLANK(leaseworks__APU_CSN__c)),leaseworks__APU_CSN__c&lt;0),
+AND(NOT(ISBLANK(leaseworks__APU_TSN__c)),leaseworks__APU_TSN__c&lt;0)
+)</errorConditionFormula>
+    <errorMessage>TSN/CSN at Event cannot be negative.Cannot save the record</errorMessage>
+</ValidationRule>

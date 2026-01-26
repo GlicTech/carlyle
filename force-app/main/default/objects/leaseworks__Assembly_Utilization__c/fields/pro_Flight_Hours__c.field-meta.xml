@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>pro_Flight_Hours__c</fullName>
+    <description>Formula rounds FH field up to nearest full number. Created to avoid error in report conditional highlighting on numbers between 0-1</description>
+    <externalId>false</externalId>
+    <formula>ROUND( leaseworks__Running_Hours_During_Month__c ,0)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Flight Hours</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

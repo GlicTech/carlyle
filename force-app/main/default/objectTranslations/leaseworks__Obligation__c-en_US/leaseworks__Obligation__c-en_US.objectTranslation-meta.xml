@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>Obligation Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Details --></label>
+            <section>Details</section>
+        </sections>
+        <sections>
+            <label><!-- Schedule Details --></label>
+            <section>Schedule Details</section>
+        </sections>
+    </layouts>
+    <validationRules>
+        <errorMessage><!-- Too many Obligation Schedule records - more than 366. Please increase the period or change Start/End Date to generate less events. --></errorMessage>
+        <name>leaseworks__CheckNumberOfObligationScheduleRecords</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Obligation Start Date and End Date are required to generate an Obligation Schedule, except for ‘One-time’ obligations. Please provide these dates to proceed. --></errorMessage>
+        <name>leaseworks__StartAndEndDateRequired</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Obligation Start Date should be less then Obligation End Date --></errorMessage>
+        <name>leaseworks__StartDateCannotBeLaterThanEndDate</name>
+    </validationRules>
+</CustomObjectTranslation>

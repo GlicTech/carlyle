@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Enforce_Engine_Numbers</fullName>
+    <active>true</active>
+    <description>Make sure single aisle has only two engines and twin aisle has four</description>
+    <errorConditionFormula>/* AND(Number_of_engines__c =&quot;Two&quot;, OR(TEXT( Constituent_Assembly__r.Type__c)=&quot;Engine 3&quot;, TEXT( Constituent_Assembly__r.Type__c)=&quot;Engine 4&quot;)) */
+false</errorConditionFormula>
+    <errorDisplayField>leaseworks__Constituent_Assembly__c</errorDisplayField>
+    <errorMessage>This is a twin engine aircraft, which can have only two engines (1 &amp; 2)</errorMessage>
+</ValidationRule>

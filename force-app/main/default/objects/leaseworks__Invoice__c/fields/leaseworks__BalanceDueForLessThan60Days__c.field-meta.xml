@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__BalanceDueForLessThan60Days__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Balance due for invoices outstanding for 60 days or fewer.</description>
+    <externalId>false</externalId>
+    <formula>IF(leaseworks__Ageing__c &lt;= 60, leaseworks__Balance_Due_Ledger__c, 0)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Balance due for invoices outstanding for 60 days or fewer.</inlineHelpText>
+    <label>BalanceDueForLessThan60Days</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__AircraftVsAssetTypeRule</fullName>
+    <active>true</active>
+    <description>Please select either Managed/World Fleet Aircraft or MSN or Asset/Engine Type.</description>
+    <errorConditionFormula>AND(
+!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c, AND(leaseworks__Deal_Type__c!=&#39;Payment Deferral Request&#39;,leaseworks__Deal_Type__c!=&#39;Lease Restructuring&#39;),
+AND( 
+isBlank(leaseworks__MSN_E__c), 
+isBlank(text(leaseworks__Asset_Type__c)), 
+isBlank(text(leaseworks__Engine_Type_GP__c)),
+isBlank(leaseworks__Engine__c) 
+) 
+)</errorConditionFormula>
+    <errorMessage>Please select either Managed/World Fleet Aircraft or MSN or Asset/Engine Type or Engine</errorMessage>
+</ValidationRule>

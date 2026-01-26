@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AD_BAC__c</fullName>
+    <externalId>false</externalId>
+    <formula>CASE( leaseworks__Deal_Status__c ,
+&quot;ADM Approval&quot;, IMAGE(&quot;https://leaseworks-carlyle--pc.sandbox.file.force.com/sfc/servlet.shepherd/version/renditionDownload?rendition=ORIGINAL_Png&amp;versionId=0681w000002lR2Y&amp;operationContext=CHATTER&amp;contentId=05T1w000009FBmK&quot;, &quot;AD Approved&quot;,50,80),
+&quot;LOI Signed&quot;, IMAGE(&quot;https://leaseworks-carlyle--pc.sandbox.file.force.com/sfc/servlet.shepherd/version/renditionDownload?rendition=ORIGINAL_Png&amp;versionId=0681w000002lR2d&amp;operationContext=CHATTER&amp;contentId=05T1w000009FBme&quot;, &quot;Pending BAC&quot;,50,80),
+&quot;LOI&quot;, IMAGE(&quot;https://leaseworks-carlyle--pc.sandbox.file.force.com/sfc/servlet.shepherd/version/renditionDownload?rendition=ORIGINAL_Png&amp;versionId=0681w000002lR2B&amp;operationContext=CHATTER&amp;contentId=05T1w000009FBld&quot;,&quot;Pending AD&quot;,50,80),
+&quot;Documentation&quot;, IMAGE(&quot;https://leaseworks-carlyle--pc.sandbox.file.force.com/sfc/servlet.shepherd/version/renditionDownload?rendition=ORIGINAL_Png&amp;versionId=0681w000002lR4Z&amp;operationContext=CHATTER&amp;contentId=05T1w000009FBzE&quot;,&quot;BAC Approved&quot;,50,80),
+&quot;&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>AD / BAC Status</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

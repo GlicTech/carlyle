@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Email_Error_To_Running_User</name>
+        <label>Email Error To Running User</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <connector>
+            <targetReference>Error_Updating_Outcome_Error</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <elementReference>$User.Email</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderType</name>
+            <value>
+                <stringValue>OrgWideEmailAddress</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderAddress</name>
+            <value>
+                <stringValue>leaseworks@carlyle.aero</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <stringValue>Error - Asset Target Audit - Create / Update After Save Trigger</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <stringValue>&lt;p&gt;There was an error updating the Asset Target Audits outcome: &lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(255, 0, 0);&quot;&gt;{!$Flow.FaultMessage}&lt;/span&gt;&lt;/p&gt;</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>sendRichBody</name>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <apiVersion>64.0</apiVersion>
+    <decisions>
+        <name>Is_User_s_Email_Invalid</name>
+        <label>Is User&#39;s Email Invalid?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Email_Error_To_Running_User</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Invalid</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$User.Email</leftValueReference>
+                <operator>EndsWith</operator>
+                <rightValue>
+                    <stringValue>invalid</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Error_Updating_Outcome_Error</targetReference>
+            </connector>
+            <label>Yes - Invalid</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Was_Outcome_Affected_By_Update</name>
+        <label>Was Outcome or Target Forecast Affected By Update?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Outcome_Affected</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.pro_Progress__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <elementReference>$Record__Prior.pro_Progress__c</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.pro_Target_Forecast__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <elementReference>$Record__Prior.pro_Target_Forecast__c</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Progress_Picklist</targetReference>
+            </connector>
+            <label>Yes - Outcome Affected</label>
+        </rules>
+    </decisions>
+    <description>Flow runs after an Asset Target Audit is created or updated. Sets the Outcome Picklist field to reflect the value of the Outcome formula field. Other subflows can be run off this trigger.</description>
+    <environments>Default</environments>
+    <interviewLabel>Asset Target Audit - Create / Update After Save Trigger {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Asset Target Audit - Create / Update After Save Trigger</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <description>Update the outcome picklist field to reflect the value from the formula field</description>
+        <name>Update_Progress_Picklist</name>
+        <label>Update Progress Picklist</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <faultConnector>
+            <targetReference>Is_User_s_Email_Invalid</targetReference>
+        </faultConnector>
+        <inputAssignments>
+            <field>pro_Progress_Picklist__c</field>
+            <value>
+                <elementReference>$Record.pro_Progress__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>pro_Target_End_Date__c</field>
+            <value>
+                <elementReference>$Record.pro_Target_Forecast__r.pro_End_Date__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Was_Outcome_Affected_By_Update</targetReference>
+        </connector>
+        <object>pro_Asset_Target_Audit__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

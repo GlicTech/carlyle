@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ReportType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <baseObject>leaseworks__Utilization_Report_List_Item__c</baseObject>
+    <category>other</category>
+    <deployed>true</deployed>
+    <description>SRU-MR (Do No Edit)</description>
+    <join>
+        <outerJoin>false</outerJoin>
+        <relationship>leaseworks__MR_Calculations__r</relationship>
+    </join>
+    <label>SRU-MR (Do No Edit)</label>
+    <sections>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>leaseworks__True_up_Invoice_Calculation__c</field>
+            <table>leaseworks__Utilization_Report_List_Item__c.leaseworks__MR_Calculations__r</table>
+        </columns>
+        <masterLabel>MR Calculations</masterLabel>
+    </sections>
+    <sections>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>leaseworks__Assembly_MR_Info__c.Id</field>
+            <table>leaseworks__Utilization_Report_List_Item__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>CreatedDate</field>
+            <table>leaseworks__Utilization_Report_List_Item__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>leaseworks__Utilization_Report__c.Id</field>
+            <table>leaseworks__Utilization_Report_List_Item__c</table>
+        </columns>
+        <masterLabel>Supplemental Rent Utilization</masterLabel>
+    </sections>
+</ReportType>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Loop__Recipient_Static_Name</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND( ISPICKVAL( Loop__dsStaticRecipient__c , &quot;Static Name-Email&quot; ) ,  ISBLANK( Loop__StaticName__c )  )</errorConditionFormula>
+    <errorDisplayField>Loop__StaticName__c</errorDisplayField>
+    <errorMessage>A static name is required for a Static Name-Email recipient.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Rejection email when UR is submitted and there is an issue with it</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>leaseworks__Smart_Lease_Logo</letterhead>
+    <name>Utilization Report Rejection Email</name>
+    <style>formalLetter</style>
+    <subject>Warning: Utilization Report For Aircraft MSN {!leaseworks__Aircraft__c.leaseworks__MSN_Number__c} Has Been Rejected</subject>
+    <textOnly>Dear Sir,
+The Utilization report for aircraft (MSN {!leaseworks__Aircraft__c.leaseworks__MSN_Number__c})for {!leaseworks__Utilization_Report__c.leaseworks__Month_Ending__c}  has been
+rejected due to the incomplete data provided. Your urgent attention to this matter is
+sincerely appreciated by logging onto http://login.salesforce.com. 
+Yours sincerely,
+Company Management</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

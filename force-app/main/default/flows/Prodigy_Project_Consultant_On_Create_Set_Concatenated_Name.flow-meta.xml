@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>64.0</apiVersion>
+    <environments>Default</environments>
+    <formulas>
+        <name>f_ConcatenatedName</name>
+        <dataType>String</dataType>
+        <expression>{!$Record.pro_Contact__r.FirstName} + &#39; &#39; + {!$Record.pro_Contact__r.LastName} + &#39; - &#39; + TEXT({!$Record.pro_Project_Role__c})</expression>
+    </formulas>
+    <interviewLabel>Prodigy - Project Consultant On Create Set Concatenated Name {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Prodigy - Project Consultant On Create Set Concatenated Name</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Set_Concatenated_Name</name>
+        <label>Set Concatenated Name</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <inputAssignments>
+            <field>Name</field>
+            <value>
+                <elementReference>f_ConcatenatedName</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Set_Concatenated_Name</targetReference>
+        </connector>
+        <filterFormula>OR(
+      ISNEW(),
+      ISCHANGED({!$Record.pro_Project_Role__c}),
+      ISCHANGED({!$Record.pro_Contact__c})
+)</filterFormula>
+        <object>pro_Project_Consultant__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

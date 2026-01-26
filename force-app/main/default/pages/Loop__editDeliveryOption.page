@@ -1,0 +1,265 @@
+<apex:page id="apage" tabstyle="Loop__DDP__c" action="{!onload}" extensions="Loop.DeliveryOptionExt" title="{!pageTitle}: {!pageSubtitle}" standardController="Loop__DDP_Integration_Option__c">
+    <style>
+        .metadataKey {
+            padding: 0px 0px 6px 0px;
+        }
+        .metadataValue {
+            padding: 0px 0px 6px 5px;
+        }
+        .urlRowHeight {
+            height: 28px;
+        }
+        .urlColumn {
+            width: 62%;
+        }
+    </style>
+    <script src="{!URLFOR($Resource.Scripts, 'eventListener.js')}"></script>
+    <script>
+        function oAuthAndGo() {
+            window.Drawloop.eventListener.addEventListener('authorizeLoop', function(event) {
+                saveUrlAfterAuth(!JSON.parse(event.data.payload).user);//This sets needsAuth property, indicating the user clicked allow and successfully completed the oAuth flow.
+            });
+            window.open('{!oAuthData["oAuthUrl"]}', 'Salesforce Auth', 'height=811,width=680,location=0,status=0,titlebar=0');
+        }
+    </script>
+
+    <apex:form id="aform" >
+        <!-- Record Type Selection -->
+        <apex:outputPanel rendered="{!NOT(hasSelectedRecordType)}">
+            <apex:sectionHeader title="{!pageTitle}" subtitle="{!pageSubtitle}" />
+            <div class="bDescription">Select a record type for the new secure field.&nbsp;To skip this page in the future, change your record type settings on your personal setup page.</div>
+            <apex:pageMessages />
+            <apex:pageBlock title="Select {!deliveryOptionObjectName} {!$ObjectType.Name.fields.Type.label}" mode="edit">
+                <apex:pageBlockButtons location="bottom">
+                    <apex:commandButton value="Continue" action="{!rtContinue}" rerender="aform" />
+                    <apex:commandButton value="Cancel" action="{!cancel}" />
+                </apex:pageBlockButtons>
+                <apex:pageBlockSection >
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="{!$ObjectType.Name.fields.Type.label} of new record" />
+                        <apex:outputPanel layout="block" styleClass="requiredInput">
+                            <apex:outputPanel layout="block" styleClass="requiredBlock" />
+                            <apex:selectList size="1" required="true" value="{!selectedRecordTypeId}">
+                                <apex:selectOptions value="{!recordTypeList}" />
+                            </apex:selectList>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+                </apex:pageBlockSection>
+            </apex:pageBlock>
+            <h3 class="recordTypesHeading">Available {!$ObjectType.Loop__DDP_Integration_Option__c.label} {!$ObjectType.Name.fields.Type.label}</h3>
+            <apex:dataTable value="{!recordTypes}" var="rt" styleClass="recordTypeInfo infoTable" headerClass="headerRow">
+                <apex:column styleClass="recordTypeName" headerValue="{!$ObjectType.Name.fields.Type.label}">
+                    <apex:outputText value="{!rt.Name}" style="font-weight: bold;" />
+                </apex:column>
+                <apex:column headerValue="{!$ObjectType.RecordType.fields.Description.label}">
+                    <apex:outputText value="{!rt.Description}" />
+                </apex:column>
+            </apex:dataTable>
+        </apex:outputPanel>
+
+        <!-- after Record Type selection -->
+        <apex:outputPanel rendered="{!hasSelectedRecordType}">
+            <apex:sectionHeader title="{!pageTitle}" subtitle="{!pageSubtitle}" />
+            <apex:pageMessages />
+            <apex:pageBlock title="{!pageTitle}" mode="edit">
+                <apex:pageBlockButtons >
+                    <apex:commandButton value=" Save " action="{!saveDeliveryOption}" rendered="{!NOT(hasNwcError)}" />
+                    <apex:commandButton value=" Cancel " action="{!cancel}" />
+                </apex:pageBlockButtons>
+                <!-- Integration user not configured before adding new NWC delivery option -->
+                <apex:pageMessage summary="Nintex DocGen must be authorized before you can create this Delivery Option. Your Nintex DocGen administrator can authorize the application from the Nintex Admin tab."
+                        severity="warning"
+                        rendered="{!hasNwcError}"/>
+
+                <apex:pageBlockSection title="Information" rendered="{!NOT(hasNwcError)}">
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel for="name" value="{!$ObjectType.Loop__DDP_Integration_Option__c.fields.Name.label}"/>
+                        <apex:outputPanel layout="block" styleClass="requiredInput">
+                            <div class="requiredBlock"></div>
+                            <apex:inputField value="{!deliveryOption.Name}"/>
+                        </apex:outputPanel>
+                    </apex:pageBlockSectionItem>
+                    <apex:outputField value="{!deliveryOption.Loop__DDP__c}"/>
+                    <apex:inputField value="{!deliveryOption.Loop__Order__c}"/>
+                    <apex:outputField value="{!deliveryOption.RecordTypeId}"/>
+                    <apex:inputField value="{!deliveryOption.Loop__Limit_Availability__c}"/>
+                    <apex:inputField value="{!deliveryOption.Loop__Description_Hover__c}"/>
+
+                    <apex:inputField value="{!deliveryOption.Loop__Output__c}" rendered="{!OR(isAttach, isContentDelivery, isDocumentQueue, isDownload, isEmail, isHttp, isSmtp, isNwc, isESignLive)}"/>
+                    <apex:inputField value="{!deliveryOption.Loop__SkipPreview__c}" rendered="{!OR(isAdobeSign, isDocuSign, isESignLive, isEmail, isHttp, isSertifi, isSignNow, isSmtp, isNwc)}"/>
+                    <apex:inputField value="{!deliveryOption.Loop__Wait__c}" rendered="{!OR(isAdobeSign, isAttach, isEmail, isHttp, isSertifi, isSmtp, isNwc)}"/>
+                    <apex:inputField value="{!deliveryOption.Loop__Preview_Step_Help_Text__c}" rendered="{!OR(isDocuSign, isESignLive, isHttp, isSertifi, isSignNow, isSmtp, isNwc)}"/>
+                    <apex:inputField value="{!deliveryOption.Loop__Attach_As__c}" rendered="{!OR(isAttach, isContentDelivery)}"/>
+                    <apex:inputField value="{!deliveryOption.Loop__TurnTrackingOn__c}" rendered="{!OR(isAttach, isDocumentQueue, isDownload, isEmail, isHttp, isSmtp, isNwc)}"/>
+                    <apex:inputField value="{!deliveryOption.Loop__Queue_Folder_Id__c}" rendered="{!isDocumentQueue}"/>
+                    <apex:inputField value="{!deliveryOption.Loop__Redirect_URL__c}" rendered="{!isESignLive}"/>
+                </apex:pageBlockSection>
+
+                <!-- Adobe Sign stuff -->
+                <apex:outputPanel rendered="{!isAdobeSign}">
+                    <apex:pageBlockSection title="Agreement Detail">
+                        <apex:inputField value="{!deliveryOption.Loop__Agreement_Name__c}"/>
+                        <apex:inputField value="{!deliveryOption.Loop__Message__c}"/>
+                        <apex:inputField value="{!deliveryOption.Loop__Language__c}"/>
+                        <apex:inputField value="{!deliveryOption.Loop__Signature_Type__c}"/>
+                        <apex:inputField value="{!deliveryOption.Loop__SenderSigns__c}"/>
+                        <apex:inputField value="{!deliveryOption.Loop__Signature_Order__c}"/>
+                        <apex:inputField value="{!deliveryOption.Loop__Hosted_Signing__c}"/>
+                        <apex:inputField value="{!deliveryOption.Loop__CC__c}"/>
+                    </apex:pageBlockSection>
+
+                    <apex:pageBlockSection title="Agreement Options">
+                        <apex:inputField value="{!deliveryOption.Loop__PasswordtoSign__c}"/>
+                        <apex:inputField value="{!deliveryOption.Loop__PasswordonPDF__c}"/>
+                        <apex:inputField value="{!deliveryOption.Loop__Password__c}"/>
+                        <apex:inputField value="{!deliveryOption.Loop__dsExpireAfter__c}"/>
+                        <apex:inputField value="{!deliveryOption.Loop__Remind_Recipient__c}"/>
+                        <apex:inputField value="{!deliveryOption.Loop__Tag_Before_Sending__c}"/>
+                    </apex:pageBlockSection>
+                </apex:outputPanel>
+
+                <!-- SMTP Options -->
+                <apex:outputPanel rendered="{!isSmtp}">
+                    <apex:pageBlockSection title="SMTP Options" columns="1">
+                        <apex:inputField value="{!deliveryOption.Loop__SMTPDomain__c}"/>
+                        <apex:inputField value="{!deliveryOption.Loop__SMTP_Username__c}"/>
+                        <apex:inputField value="{!deliveryOption.Loop__SMTPUserName__c}"/>
+                    </apex:pageBlockSection>
+                </apex:outputPanel>
+
+                <!-- Email Options -->
+                <apex:outputPanel rendered="{!OR(isEmail, isSmtp)}">
+                    <apex:pageBlockSection title="Email Options">
+                        <apex:inputField value="{!deliveryOption.Loop__Internal_Email__c}"/>
+                        <apex:inputField value="{!deliveryOption.Loop__CI_CC__c}"/>
+                        <apex:inputField value="{!deliveryOption.Loop__CI_Additional_To__c}"/>
+                        <apex:inputField value="{!deliveryOption.Loop__CI_BCC__c}"/>
+                    </apex:pageBlockSection>
+                </apex:outputPanel>
+                <apex:outputPanel rendered="{!OR(isDocuSign, isESignLive, isSignNow, isSmtp)}">
+                    <apex:pageBlockSection title="{!IF(isSmtp, '', 'Email Options')}" columns="1">
+                        <apex:inputField value="{!deliveryOption.Loop__dsAllowEmailCustomizations__c}"/>
+                        <apex:inputField value="{!deliveryOption.Loop__HTML_Email__c}" rendered="{!isSmtp}"/>
+                        <apex:inputField value="{!deliveryOption.Loop__dsSubject__c}" rendered="{!NOT(isESignLive)}"/>
+                        <apex:inputField value="{!deliveryOption.Loop__dsEmailText__c}"/>
+                    </apex:pageBlockSection>
+                </apex:outputPanel>
+
+                <!-- NWC External Start -->
+                <apex:outputPanel rendered="{!AND(isNwc, NOT(hasNwcError))}">
+                    <apex:outputPanel id="externalStart">
+                        <apex:pageBlockSection title="Nintex Workflow Cloud Start Inputs" columns="1">
+                            <apex:inlineEditSupport disabled="true"/>
+                            <apex:panelGrid id="externalStartUrl" columns="3" columnClasses="labelCol, urlColumn, urlButtons" rowClasses="urlRowHeight" width="100%">
+                                <apex:outputLabel value="URL" for="savedURL" rendered="{!NOT(isExternalStartUrlEditMode)}" style="padding-right:6px;"/>
+                                <apex:outputField id="savedURL" value="{!deliveryOption.Loop__Location__c}" rendered="{!NOT(isExternalStartUrlEditMode)}" style="width:98%;"/>
+                                <apex:commandButton value="Edit" action="{!toggleEditExternalStartUrl}" rendered="{!AND(NOT(isExternalStartUrlEditMode), integrationUserConfigured)}" reRender="externalStart"/>
+                                <apex:pageBlockSectionItem rendered="{!AND(NOT(isExternalStartUrlEditMode), NOT(integrationUserConfigured))}"/>
+
+                                <apex:outputLabel value="Swagger URL" for="editURL" rendered="{!isExternalStartUrlEditMode}" style="padding-right:6px;"/>
+                                <apex:inputText id="editURL" value="{!externalStartUrl}" rendered="{!isExternalStartUrlEditMode}" style="width:98%;"/>
+                                <apex:actionStatus id="saving" rendered="{!isExternalStartUrlEditMode}">
+                                    <apex:facet name="stop">
+                                        <apex:outputPanel >
+                                            <apex:actionFunction action="{!updateExternalStartUrl}" name="saveUrlAfterAuth" reRender="externalStart, errorMessages" status="saving">
+                                                <apex:param name="authorized" assignTo="{!needsAuth}" value=""/>
+                                            </apex:actionFunction>
+                                            <apex:outputPanel rendered="{!NOT(needsAuth)}">
+                                                <apex:commandButton value="Retrieve Inputs" action="{!updateExternalStartUrl}" reRender="externalStart, errorMessages" status="saving"/>
+                                                <apex:commandButton value="Cancel" action="{!toggleEditExternalStartUrl}" reRender="externalStart"/>
+                                            </apex:outputPanel>
+                                            <apex:outputPanel rendered="{!needsAuth}">
+                                                <apex:commandButton value="Authorize & Retrieve Inputs" onclick="oAuthAndGo();" reRender="externalStart, errorMessages" status="saving"/>
+                                                <apex:commandButton value="Cancel" action="{!toggleEditExternalStartUrl}" reRender="externalStart"/>
+                                            </apex:outputPanel>
+                                        </apex:outputPanel>
+                                    </apex:facet>
+                                    <apex:facet name="start">
+                                        <apex:outputPanel >
+                                            <span class="statusContainer"><span class="status"><img src="/img/loading.gif" alt="Processing..." width="16" height="16" title="Processing..." /></span></span>
+                                        </apex:outputPanel>
+                                    </apex:facet>
+                                </apex:actionStatus>
+                            </apex:panelGrid>
+                            <apex:pageBlockSectionItem rendered="{!isExternalStartUrlEditMode}">
+                                <apex:outputLabel value="" for="editURLDescription"/>
+                                <apex:outputText id="editURLDescription" value="Paste the External Start URL from Nintex Workflow Cloud and click Retrieve Inputs." style="width:98%;"/>
+                            </apex:pageBlockSectionItem>
+                            <apex:repeat value="{!externalStartFields}" var="externalStartField">
+                                <apex:pageBlockSectionItem rendered="{!externalStartFields[externalStartField].type != 'array'}">
+                                    <apex:outputText value="{!externalStartFields[externalStartField].title}"/>
+                                    <apex:inputText value="{!externalStartData[externalStartField]}" disabled="{!NOT(AND(!isExternalStartUrlEditMode, integrationUserConfigured))}" html-placeholder="{!externalStartFields[externalStartField].placeholderText}"/>
+                                </apex:pageBlockSectionItem>
+                                <apex:pageBlockSectionItem rendered="{!externalStartFields[externalStartField].type == 'array'}">
+                                    <apex:outputText value="{!externalStartFields[externalStartField].title}"/>
+                                    <apex:selectList value="{!externalStartData[externalStartField]}" size="1" disabled="{!NOT(AND(!isExternalStartUrlEditMode, integrationUserConfigured))}">
+                                        <apex:selectOption itemValue="''" itemLabel="--None--"/>
+                                        <apex:selectOption itemValue="[[output_files]]" itemLabel="Output Files"/>
+                                    </apex:selectList>
+                                </apex:pageBlockSectionItem>
+                            </apex:repeat>
+                            <apex:pageBlockSectionItem >
+                                <apex:outputLabel value="Field Tagger"/>
+                                <apex:outputLink value="javascript:openIntegration('{!JSENCODE($Page.Loop__fieldTagger)}?id={!deliveryOption.Loop__DDP__c}','height=600,width=800,location=no,toolbar=no,status=no,menubar=no,scrollbars=1',1);">Field Tagger</apex:outputLink>
+                            </apex:pageBlockSectionItem>
+                        </apex:pageBlockSection>
+                    </apex:outputPanel>
+                </apex:outputPanel>
+
+                <!-- Attach Options -->
+                <apex:outputPanel rendered="{!OR(isDocumentQueue, isDownload, isEmail, isHttp, isSmtp, AND(isNwc, NOT(hasNwcError)))}">
+                    <apex:pageBlockSection title="Attach Options">
+                        <apex:inputField value="{!deliveryOption.Loop__AllowOutputAttachment__c}"/>
+                        <apex:inputField value="{!deliveryOption.Loop__Attach_As__c}"/>
+                        <apex:inputField value="{!deliveryOption.Loop__RequireOutputAttachment__c}"/>
+                        <apex:inputField value="{!deliveryOption.Loop__Email_Doc_Links__c}" rendered="{!OR(isEmail, isSmtp)}"/>
+                    </apex:pageBlockSection>
+                </apex:outputPanel>
+
+                <!-- HTTP Options -->
+                <apex:outputPanel rendered="{!isHttp}">
+                    <apex:pageBlockSection title="HTTP Options" columns="1">
+                        <apex:inputField value="{!deliveryOption.Loop__Location__c}"/>
+                        <apex:inputField value="{!deliveryOption.Loop__PostParameters__c}"/>
+                    </apex:pageBlockSection>
+                </apex:outputPanel>
+
+                <!-- Envelope Options -->
+                <apex:outputPanel rendered="{!isDocuSign}">
+                    <apex:pageBlockSection title="Envelope Options">
+                        <apex:inputField value="{!deliveryOption.Loop__Tag_Before_Sending__c}"/>
+                        <apex:inputField value="{!deliveryOption.Loop__dsTemplateId__c}"/>
+                        <apex:inputField value="{!deliveryOption.Loop__EnforceSignerVisibility__c}"/>
+                        <apex:inputField value="{!deliveryOption.Loop__Brand_Id__c}"/>
+                        <apex:inputField value="{!deliveryOption.Loop__Authoritative_Copy__c}"/>
+                    </apex:pageBlockSection>
+                    <apex:pageBlockSection >
+                        <apex:inputField value="{!deliveryOption.Loop__dsCustomFields__c}"/>
+                    </apex:pageBlockSection>
+                </apex:outputPanel>
+
+                <!-- Remind and Expire -->
+                <apex:outputPanel rendered="{!OR(isDocuSign, isESignLive)}">
+                    <apex:pageBlockSection title="Remind and Expire">
+                        <apex:inputField value="{!deliveryOption.Loop__dsExposeExpirations__c}"/>
+                        <apex:pageBlockSectionItem />
+                        <apex:inputField value="{!deliveryOption.Loop__dsReminderDelay__c}"/>
+                        <apex:inputField value="{!deliveryOption.Loop__dsExpireAfter__c}"/>
+                        <apex:inputField value="{!deliveryOption.Loop__dsReminderFrequency__c}"/>
+                        <apex:inputField value="{!deliveryOption.Loop__dsExpireWarn__c}" rendered="{!isDocuSign}"/>
+                    </apex:pageBlockSection>
+                </apex:outputPanel>
+
+                <!-- Econtract Detail -->
+                <apex:outputPanel rendered="{!isSertifi}">
+                    <apex:pageBlockSection title="Econtract Detail" columns="1">
+                        <apex:inputField value="{!deliveryOption.Loop__Message__c}"/>
+                        <apex:inputField value="{!deliveryOption.Loop__Signature_Type__c}"/>
+                        <apex:inputField value="{!deliveryOption.Loop__Template__c}"/>
+                        <apex:inputField value="{!deliveryOption.Loop__Password__c}"/>
+                    </apex:pageBlockSection>
+                </apex:outputPanel>
+            </apex:pageBlock>
+        </apex:outputPanel>
+    </apex:form>
+</apex:page>

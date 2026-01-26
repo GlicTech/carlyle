@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Local_Bulk_Edit</fullName>
+    <availability>online</availability>
+    <description>Local edit button to bulk update effective date records</description>
+    <displayType>massActionButton</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <height>600</height>
+    <linkType>url</linkType>
+    <masterLabel>Edit</masterLabel>
+    <openType>sidebar</openType>
+    <protected>false</protected>
+    <requireRowSelection>true</requireRowSelection>
+    <url>/lightning/n/Effective_Date_Bulk_Edit?c__recordId=
+{!IF(NOT(ISBLANK(leaseworks__Lease__c.Id)), leaseworks__Lease__c.Id,
+IF(NOT(ISBLANK(leaseworks__Parties__c.Id)), leaseworks__Parties__c.Id, null))
+}</url>
+</WebLink>

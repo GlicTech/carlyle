@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>pro_Most_Recent_Target_Achieved_Date__c</fullName>
+    <description>Roll up of the most recent Target End Date field from a related Asset Target Audit whose progress field holds an &#39;Achieved&#39; value.</description>
+    <externalId>false</externalId>
+    <label>Most Recent Target Achieved Date</label>
+    <summarizedField>pro_Asset_Target_Audit__c.pro_Target_End_Date__c</summarizedField>
+    <summaryFilterItems>
+        <field>pro_Asset_Target_Audit__c.pro_Progress_Picklist__c</field>
+        <operation>contains</operation>
+        <value>Achieved</value>
+    </summaryFilterItems>
+    <summaryForeignKey>pro_Asset_Target_Audit__c.pro_Asset__c</summaryForeignKey>
+    <summaryOperation>max</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

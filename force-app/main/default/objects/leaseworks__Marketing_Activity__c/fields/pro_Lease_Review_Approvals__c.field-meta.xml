@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>pro_Lease_Review_Approvals__c</fullName>
+    <externalId>false</externalId>
+    <label>Lease Review Approvals</label>
+    <summaryFilterItems>
+        <field>leaseworks__Deal_Team__c.pro_Lease_Review__c</field>
+        <operation>equals</operation>
+        <value>True</value>
+    </summaryFilterItems>
+    <summaryForeignKey>leaseworks__Deal_Team__c.leaseworks__Marketing_Activity__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

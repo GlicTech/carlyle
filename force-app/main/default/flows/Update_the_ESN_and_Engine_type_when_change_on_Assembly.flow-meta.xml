@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>62.0</apiVersion>
+    <assignments>
+        <name>Add_to_Contract_Collection</name>
+        <label>Add to Contract Collection</label>
+        <locationX>880</locationX>
+        <locationY>1247</locationY>
+        <assignmentItems>
+            <assignToReference>Contracts</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Loop_through_Lease</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_through_Lease</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Update_Blank_Value_on_Lease</name>
+        <label>Update Blank Value on Lease</label>
+        <locationX>880</locationX>
+        <locationY>647</locationY>
+        <assignmentItems>
+            <assignToReference>Loop_through_Lease.Engine_1_ESN_local__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue></stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Loop_through_Lease.Engine_1_Type_local__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue></stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Loop_through_Lease.Engine_1_Type_local__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue></stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Loop_through_Lease.Engine_2_Type_local__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue></stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_through_Engines</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Update_lease_with_eng1_details</name>
+        <label>Update lease with eng1 details</label>
+        <locationX>968</locationX>
+        <locationY>971</locationY>
+        <assignmentItems>
+            <assignToReference>Loop_through_Lease.Engine_1_ESN_local__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_through_Engines.leaseworks__Serial_Number__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Loop_through_Lease.Engine_1_Type_local__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_through_Engines.leaseworks__Engine_Type_GP__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_through_Engines</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Update_lease_with_eng2</name>
+        <label>Update lease with eng2</label>
+        <locationX>1232</locationX>
+        <locationY>971</locationY>
+        <assignmentItems>
+            <assignToReference>Loop_through_Lease.Engine_2_ESN_local__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_through_Engines.leaseworks__Serial_Number__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Loop_through_Lease.Engine_2_Type_local__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_through_Engines.leaseworks__Engine_Type_GP__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_through_Engines</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>Engine_1_or_Engine_2</name>
+        <label>Engine 1 or Engine 2</label>
+        <locationX>1232</locationX>
+        <locationY>863</locationY>
+        <defaultConnector>
+            <targetReference>Loop_through_Engines</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Engine_1</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Loop_through_Engines.leaseworks__Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Engine 1</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_lease_with_eng1_details</targetReference>
+            </connector>
+            <label>Engine 1</label>
+        </rules>
+        <rules>
+            <name>Engine_2</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Loop_through_Engines.leaseworks__Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Engine 2</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_lease_with_eng2</targetReference>
+            </connector>
+            <label>Engine 2</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <interviewLabel>Update the ESN and Engine type when change on Assembly {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Update the ESN and Engine type when change on Assembly</label>
+    <loops>
+        <name>Loop_through_Engines</name>
+        <label>Loop through Engines</label>
+        <locationX>880</locationX>
+        <locationY>755</locationY>
+        <collectionReference>Get_Engines</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Engine_1_or_Engine_2</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Add_to_Contract_Collection</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <loops>
+        <name>Loop_through_Lease</name>
+        <label>Loop through Lease</label>
+        <locationX>176</locationX>
+        <locationY>539</locationY>
+        <collectionReference>Get_Related_Lease_Records</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Update_Blank_Value_on_Lease</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Set_Triggers_Off</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Engines</name>
+        <label>Get Engines</label>
+        <locationX>176</locationX>
+        <locationY>431</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Loop_through_Lease</targetReference>
+        </connector>
+        <filterLogic>(1 OR 2) AND (3 AND 4)</filterLogic>
+        <filters>
+            <field>leaseworks__Type__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Engine 1</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>leaseworks__Type__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Engine 2</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>leaseworks__Asset__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>leaseworks__Asset__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.leaseworks__Asset__r.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>leaseworks__Constituent_Assembly__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Related_Lease_Records</name>
+        <label>Get Related Lease Records</label>
+        <locationX>176</locationX>
+        <locationY>323</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_Engines</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>leaseworks__Aircraft__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>leaseworks__Aircraft__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.leaseworks__Asset__r.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>leaseworks__Lease__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <name>Set_Triggers_Off</name>
+        <label>Set Triggers Off</label>
+        <locationX>176</locationX>
+        <locationY>1439</locationY>
+        <connector>
+            <targetReference>Update_Contract</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>leaseworks__Disable_All_Triggers__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>leaseworks__Disable_All_WFs__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <object>leaseworks__LeaseWorksSettings__c</object>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Set_Triggers_On</name>
+        <label>Set Triggers On</label>
+        <locationX>176</locationX>
+        <locationY>1655</locationY>
+        <inputAssignments>
+            <field>leaseworks__Disable_All_Triggers__c</field>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>leaseworks__Disable_All_WFs__c</field>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </inputAssignments>
+        <object>leaseworks__LeaseWorksSettings__c</object>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_Contract</name>
+        <label>Update Contract</label>
+        <locationX>176</locationX>
+        <locationY>1547</locationY>
+        <connector>
+            <targetReference>Set_Triggers_On</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>Error_Message</targetReference>
+        </faultConnector>
+        <inputReference>Contracts</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Related_Lease_Records</targetReference>
+        </connector>
+        <filterFormula>AND(
+    /* Type is (or was) Engine 1 or Engine 2 */
+    OR(
+        ISPICKVAL({!$Record.leaseworks__Type__c}, &#39;Engine 1&#39;),
+        ISPICKVAL({!$Record.leaseworks__Type__c}, &#39;Engine 2&#39;),
+        ISPICKVAL({!$Record__Prior.leaseworks__Type__c}, &#39;Engine 1&#39;),
+        ISPICKVAL({!$Record__Prior.leaseworks__Type__c}, &#39;Engine 2&#39;)
+    ),
+
+    /* A relevant field changed */
+    OR(
+        ISCHANGED({!$Record.leaseworks__Type__c}),
+        ISCHANGED({!$Record.leaseworks__Serial_Number__c}),
+        ISCHANGED({!$Record.leaseworks__Asset__c})
+    ),
+
+    /* Global settings */
+    NOT({!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c}),
+    NOT({!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c})
+)</filterFormula>
+        <object>leaseworks__Constituent_Assembly__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>Contracts</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>leaseworks__Lease__c</objectType>
+    </variables>
+</Flow>

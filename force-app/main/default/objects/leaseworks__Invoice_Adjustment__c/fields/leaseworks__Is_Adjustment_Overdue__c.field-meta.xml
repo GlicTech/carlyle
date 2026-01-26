@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Is_Adjustment_Overdue__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <formula>IF(ISBLANK(leaseworks__Linked_Invoice__r.leaseworks__Date_of_MR_Payment_Due__c),
+false,
+IF(leaseworks__Linked_Invoice__r.leaseworks__Mark_Invoice_Overdue__c == false,
+leaseworks__Adjustment_Date__c &gt; leaseworks__Linked_Invoice__r.leaseworks__Date_of_MR_Payment_Due__c,
+leaseworks__Adjustment_Date__c &gt;= leaseworks__Linked_Invoice__r.leaseworks__Date_of_MR_Payment_Due__c
+)
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>_Is Adjustment Overdue?</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

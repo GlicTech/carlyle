@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Cashed_Amount__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <formula>CASE(Text(leaseworks__Transaction_Type_PL__c)
+,&#39;Payment&#39;, IF(ISBLANK(leaseworks__Payments_Credits__c),0,IF( OR(ISPICKVAL(leaseworks__Payments_Credits__r.leaseworks__Payment_Status__c,
+&#39;Pending&#39;),ISPICKVAL(leaseworks__Payments_Credits__r.leaseworks__Payment_Status__c,&#39;Declined&#39;),ISPICKVAL(leaseworks__Payments_Credits__r.leaseworks__Payment_Status__c,&#39;Submitted&#39;),
+ISPICKVAL(leaseworks__Payments_Credits__r.leaseworks__Payment_Status__c,&#39;Cancelled&#39;),IF(leaseworks__Payments_Credits__r.leaseworks__Remaining_Payment_Amount__c == 0,true,false)),
+null,leaseworks__Payments_Credits__r.leaseworks__Remaining_Payment_Amount__c))
+,&#39;Payout&#39;, IF(ISBLANK( leaseworks__Payouts__c ),0,IF( OR(ISPICKVAL(leaseworks__Payouts__r.leaseworks__Status__c,&#39;Pending&#39;),ISPICKVAL(leaseworks__Payouts__r.leaseworks__Status__c,&#39;Submitted&#39;),
+ISPICKVAL(leaseworks__Payouts__r.leaseworks__Status__c,&#39;Declined&#39;),ISPICKVAL(leaseworks__Payouts__r.leaseworks__Status__c,&#39;Cancelled&#39;)),
+null,leaseworks__Payouts__r.leaseworks__Payout_Amount__c * (-1)))
+,&#39;Offset&#39;, IF(ISBLANK(leaseworks__Payments_Credits__c),0,IF( OR(ISPICKVAL(leaseworks__Payments_Credits__r.leaseworks__Payment_Status__c,
+&#39;Pending&#39;),ISPICKVAL(leaseworks__Payments_Credits__r.leaseworks__Payment_Status__c,&#39;Declined&#39;),ISPICKVAL(leaseworks__Payments_Credits__r.leaseworks__Payment_Status__c,&#39;Submitted&#39;),
+ISPICKVAL(leaseworks__Payments_Credits__r.leaseworks__Payment_Status__c,&#39;Cancelled&#39;),IF(leaseworks__Payments_Credits__r.leaseworks__Remaining_Payment_Amount__c == 0,true,false)),
+null,leaseworks__Payments_Credits__r.leaseworks__Remaining_Payment_Amount__c *(-1)))
+,&#39;LoC DrawDown&#39;, IF(ISBLANK(leaseworks__LOC_Drawdown_rec__c),0,IF( ISBLANK(leaseworks__LOC_Drawdown_rec__r.leaseworks__Approved_On__c),
+null,leaseworks__LOC_Drawdown_rec__r.leaseworks__Amount__c))
+,&#39;Manual Fund Transfer&#39;,IF(ISBLANK(leaseworks__Related_to_Manual_SD__c),0,leaseworks__Related_to_Manual_SD__r.leaseworks__Manual_SD_Transfer_Amount__c)
+,null)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Cash Amount</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

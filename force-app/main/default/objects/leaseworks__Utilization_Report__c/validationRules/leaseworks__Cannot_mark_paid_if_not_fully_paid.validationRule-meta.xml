@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Cannot_mark_paid_if_not_fully_paid</fullName>
+    <active>false</active>
+    <description>Deprecated: Ensures payment is made in full before marking the UR as paid.</description>
+    <errorConditionFormula>/*and(MR_Paid__c, Balance_MR__c&gt;0, !True_Up__c)*/
+false</errorConditionFormula>
+    <errorMessage>Please ensure payment is made in full before marking the UR as paid.</errorMessage>
+</ValidationRule>

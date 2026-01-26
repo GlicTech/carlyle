@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Relative_Age__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <formula>/*(Date_Available_if_Sale__c - DATE(VALUE(Vintage_From__c), 7, 1))/365.25  
+365.25 since we are talking about aircraft age 
+*/null</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Relative age of aircraft (considering Vintage and Trade Date)</inlineHelpText>
+    <label>Z_Unused_OP Relative Age</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>1</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

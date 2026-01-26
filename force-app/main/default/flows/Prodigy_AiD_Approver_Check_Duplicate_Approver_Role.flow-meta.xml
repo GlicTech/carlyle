@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>64.0</apiVersion>
+    <decisions>
+        <name>Does_Approver_Role_Already_Exist</name>
+        <label>Does Approver Role Already Exist?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Already_Exists</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Approvers_For_AiD.Id</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Duplicate_Approval_Role_As_True</targetReference>
+            </connector>
+            <label>Already Exists</label>
+        </rules>
+    </decisions>
+    <description>Added in logic to flag same department approval if already given by a user with the same role.</description>
+    <environments>Default</environments>
+    <interviewLabel>Prodigy - AiD Approver Check Duplicate Approver Role {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Prodigy - AiD Approver Check Duplicate Approver Role</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Approvers_For_AiD</name>
+        <label>Get Approvers For AiD</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Does_Approver_Role_Already_Exist</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>pro_Asset_in_Deal__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.pro_Asset_in_Deal__c</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Id</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>pro_Member_Role__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.pro_Member_Role__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>pro_Asset_In_Deal_Approver__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <name>Set_Duplicate_Approval_Role_As_True</name>
+        <label>Set Duplicate Approval Role As True</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <inputAssignments>
+            <field>pro_Department_Approval_Complete__c</field>
+            <value>
+                <elementReference>$Record.pro_Department_Approval_Complete__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>pro_Duplicate_Approver_Role__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Approvers_For_AiD</targetReference>
+        </connector>
+        <object>pro_Asset_In_Deal_Approver__c</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

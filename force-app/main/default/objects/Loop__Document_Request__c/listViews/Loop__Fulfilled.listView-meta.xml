@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Loop__Fulfilled</fullName>
+    <columns>NAME</columns>
+    <columns>Loop__Document_Name_Link__c</columns>
+    <columns>Loop__Contact__c</columns>
+    <columns>Loop__Email__c</columns>
+    <columns>CREATEDBY_USER</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Loop__Status__c</field>
+        <operation>equals</operation>
+        <value>Looped,Emailed,Merged</value>
+    </filters>
+    <label>Fulfilled</label>
+</ListView>

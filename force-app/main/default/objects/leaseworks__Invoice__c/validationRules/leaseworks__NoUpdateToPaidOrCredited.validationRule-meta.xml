@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__NoUpdateToPaidOrCredited</fullName>
+    <active>false</active>
+    <description>The user should not manually update the status to paid/credited/partially paid</description>
+    <errorConditionFormula>/*AND(!$Setup.LeaseWorksSettings__c.Disable_All_WFs__c,
+OR(ISPICKVAL(PRIORVALUE(Status__c),&quot;Pending&quot;),
+			ISPICKVAL(PRIORVALUE(Status__c),&quot;Approved&quot;) ),
+ ISCHANGED(Status__c) ,
+OR(ISPICKVAL(Status__c,&quot;Paid&quot;),ISPICKVAL(Status__c,&quot;Credited&quot;),ISPICKVAL(Status__c,&quot;Partially Paid&quot;)))*/
+false</errorConditionFormula>
+    <errorDisplayField>leaseworks__Status__c</errorDisplayField>
+    <errorMessage>Manual update to Paid/Partially Paid/Credited status is not allowed. Please create a Payment or Credit Memo</errorMessage>
+</ValidationRule>

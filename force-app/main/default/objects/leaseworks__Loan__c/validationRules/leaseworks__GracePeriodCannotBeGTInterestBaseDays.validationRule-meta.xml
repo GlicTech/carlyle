@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__GracePeriodCannotBeGTInterestBaseDays</fullName>
+    <active>true</active>
+    <errorConditionFormula>if((((leaseworks__Grace_Period_End_Date__c - leaseworks__Grace_Period_Start_Date__c)+1) &gt;  if(ISPICKVAL(leaseworks__Interest_Base__c,&#39;Actual/360&#39;),360,365)),true,false)</errorConditionFormula>
+    <errorMessage>Grace Period duration is greater than the Interest Base days</errorMessage>
+</ValidationRule>
