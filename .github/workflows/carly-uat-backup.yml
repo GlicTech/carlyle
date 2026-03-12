@@ -1,9 +1,10 @@
 name: Carly UAT Backup
 
 # Retrieves metadata from Salesforce UAT org and backs up to carly-uat-backup branch.
-# Uses OAuth Username-Password flow with Connected App credentials.
+# Uses SFDX Auth URL (sf org login sfdx-url) for authentication.
 #
-# Required GitHub Secrets: SF_USERNAME, SF_PASSWORD, SF_CLIENT_ID, SF_CLIENT_SECRET, SF_LOGIN_URL
+# Required GitHub Secret: SF_SFDX_AUTH_URL
+# Generate locally: sf org login web --alias uat, then sf org display --json | jq -r '.result.sfdxAuthUrl'
 
 on:
   schedule:
@@ -24,24 +25,13 @@ jobs:
       - name: Setup Salesforce CLI
         run: npm install -g @salesforce/cli
 
-      - name: Authenticate to Salesforce UAT (Username-Password flow)
+      - name: Authenticate to Salesforce UAT (SFDX Auth URL)
+        env:
+          SF_SFDX_AUTH_URL: ${{ secrets.SF_SFDX_AUTH_URL }}
         run: |
-          RESPONSE=$(curl -s -X POST "${{ secrets.SF_LOGIN_URL }}/services/oauth2/token" \
-            -d "grant_type=password" \
-            -d "client_id=${{ secrets.SF_CLIENT_ID }}" \
-            -d "client_secret=${{ secrets.SF_CLIENT_SECRET }}" \
-            --data-urlencode "username=${{ secrets.SF_USERNAME }}" \
-            --data-urlencode "password=${{ secrets.SF_PASSWORD }}")
-
-          ACCESS_TOKEN=$(echo "$RESPONSE" | jq -r '.access_token')
-          INSTANCE_URL=$(echo "$RESPONSE" | jq -r '.instance_url')
-
-          if [ "$ACCESS_TOKEN" = "null" ] || [ -z "$ACCESS_TOKEN" ]; then
-            echo "Auth failed: $RESPONSE"
-            exit 1
-          fi
-
-          sf org login access-token --instance-url "$INSTANCE_URL" --access-token "$ACCESS_TOKEN" --alias uat
+          jq -n --arg url "$SF_SFDX_AUTH_URL" '{sfdxAuthUrl: $url}' > authFile.json
+          jq -r '.sfdxAuthUrl' authFile.json | sf org login sfdx-url --sfdx-url-stdin --alias uat
+          rm -f authFile.json
 
       - name: Retrieve metadata from UAT org
         run: |
