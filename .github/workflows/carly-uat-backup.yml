@@ -30,8 +30,8 @@ jobs:
             -d "grant_type=password" \
             -d "client_id=${{ secrets.SF_CLIENT_ID }}" \
             -d "client_secret=${{ secrets.SF_CLIENT_SECRET }}" \
-            -d "username=${{ secrets.SF_USERNAME }}" \
-            -d "password=${{ secrets.SF_PASSWORD }}")
+            --data-urlencode "username=${{ secrets.SF_USERNAME }}" \
+            --data-urlencode "password=${{ secrets.SF_PASSWORD }}")
 
           ACCESS_TOKEN=$(echo "$RESPONSE" | jq -r '.access_token')
           INSTANCE_URL=$(echo "$RESPONSE" | jq -r '.instance_url')
