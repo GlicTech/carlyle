@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>BAC_Approval_Date_Required</fullName>
+    <active>false</active>
+    <description>This validation rule ensures that the BAC Approval Date or BAC Complete Checkbox are both populated if one or the other is filled in</description>
+    <errorConditionFormula>AND(
+    OR(
+        ISBLANK(BAC_Approval_Date__c) &amp;&amp; BAC_Approval_Complete__c = TRUE,
+        NOT(ISBLANK(BAC_Approval_Date__c)) &amp;&amp; BAC_Approval_Complete__c = FALSE
+    )
+)</errorConditionFormula>
+    <errorMessage>Ensure that if you check BAC Complete, that the BAC Approval Date is also filled in.</errorMessage>
+</ValidationRule>

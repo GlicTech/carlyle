@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__ValidateFlatAmountIntercompanyServiceFee</fullName>
+    <active>true</active>
+    <errorConditionFormula>IF(AND(!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c, ISPICKVAL(leaseworks__Fee_Amount_Type__c , &#39;Flat&#39;) , ISPICKVAL(leaseworks__Intercompany_Service_Fee__c , &#39;Yes&#39;),leaseworks__Lease__r.RecordType.DeveloperName != &#39;Non_Lease_Agreement&#39;), true, false)</errorConditionFormula>
+    <errorMessage>Flat Amount is only applicable for Service fee schedule not associated with a rent schedule.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>BlockFieldEditsOnRecordPage</fullName>
+    <active>true</active>
+    <description>Restricts users from being able to edit fields on the page layout, forcing them instead to use the &#39;Submit Update&#39; button and gp through approval process</description>
+    <errorConditionFormula>AND(
+    pro_Allow_Edit__c != TRUE,
+    OR(
+        ISCHANGED(Name),
+        ISCHANGED(leaseworks__Account_Number__c),
+        ISCHANGED(leaseworks__Financial_Institution__c),
+        ISCHANGED(leaseworks__IBAN_Code__c),
+        ISCHANGED(leaseworks__Bank_Identification_Code__c),
+        ISCHANGED(leaseworks__SWIFT_Code__c),
+        ISCHANGED(leaseworks__Routing_ABA__c),
+        ISCHANGED(leaseworks__Country__c),
+        ISCHANGED(leaseworks__Account_Currency__c),
+        ISCHANGED(leaseworks__Bank_Branch__c)
+    )
+)</errorConditionFormula>
+    <errorMessage>Bank Account fields cannot be edited on the record page. Click &#39;Submit Update&#39; to edit Bank Account information.</errorMessage>
+</ValidationRule>

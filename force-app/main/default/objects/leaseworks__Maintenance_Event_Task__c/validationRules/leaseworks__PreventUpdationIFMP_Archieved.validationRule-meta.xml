@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__PreventUpdationIFMP_Archieved</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(leaseworks__Maintenance_Program_Event__r.leaseworks__Maintenance_Program__r.leaseworks__Archive_Maintenance_Program__c=True, OR(NOT(ISNEW()),ISNEW()) )</errorConditionFormula>
+    <errorMessage>The related Maintenance Program is Archived. Please Unarchive the Maintenance Program to edit the values</errorMessage>
+</ValidationRule>

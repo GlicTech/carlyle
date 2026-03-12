@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>leaseworks__Invoice__c$Name</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Invoice__c.leaseworks__Invoice_Line_Items__r$Name</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>leaseworks__Invoice__c.leaseworks__Invoice_Line_Items__r$leaseworks__Amount_Due__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Invoice__c.leaseworks__Invoice_Line_Items__r$leaseworks__Invoice_Line_Type__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Invoice__c.leaseworks__Invoice_Line_Items__r$leaseworks__Assembly_MR_Info__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Invoice__c.leaseworks__Invoice_Line_Items__r$Internal_Comments_Local__c</field>
+    </columns>
+    <filter>
+        <criteriaItems>
+            <column>leaseworks__Invoice__c.leaseworks__Invoice_Line_Items__r$CreatedBy</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Leaseworks Data Admin 3</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>leaseworks__Invoice__c.leaseworks__Invoice_Line_Items__r$CreatedDate</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>4/10/2025 12:00 AM</value>
+        </criteriaItems>
+    </filter>
+    <format>Tabular</format>
+    <name>Invoice line items with invoices</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>pro_Invoices_With_Invoice_Line_Items__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>leaseworks__Invoice__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CHILD_NAME</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Spec_Mass_and_Balance__c.leaseworks__Weight_Type__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Spec_Mass_and_Balance__c.leaseworks__Weight__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Spec_Mass_and_Balance__c.leaseworks__Unit__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Spec_Mass_and_Balance__c.leaseworks__Weight_Alt__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Spec_Mass_and_Balance__c.leaseworks__Unit_Alt__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Spec_Mass_and_Balance__c.Weight_Alternative_manual_entry__c</field>
+    </columns>
+    <columns>
+        <field>CHILD_ID</field>
+    </columns>
+    <description>Created for the purpose of switching from a calculated weight alternative to a manual input value. Carlyle can populate a csv file for dataload.</description>
+    <filter>
+        <criteriaItems>
+            <column>leaseworks__Aircraft__c.leaseworks__Status__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>Sold,Consigned,Consigned - Completed</value>
+        </criteriaItems>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>leaseworks__Aircraft__c.leaseworks__Status__c</field>
+        <sortOrder>Desc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>CUST_NAME</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Weight Alternatives for export &amp; reload</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntityCustomEntity$leaseworks__Aircraft__c$leaseworks__Spec_Mass_and_Balance__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>false</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>CUST_CREATED_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

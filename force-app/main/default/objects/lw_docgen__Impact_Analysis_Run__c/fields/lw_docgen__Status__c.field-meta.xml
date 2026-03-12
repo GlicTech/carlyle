@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>lw_docgen__Status__c</fullName>
+    <deprecated>false</deprecated>
+    <description>The overall status of the impact analysis run. Preparing = disabling unused field permissions, Pending = waiting to start, In Progress = running reports, Completed/Completed with Errors = finished.</description>
+    <externalId>false</externalId>
+    <label>Status</label>
+    <required>true</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Preparing</fullName>
+                <default>false</default>
+                <label>Preparing</label>
+            </value>
+            <value>
+                <fullName>Pending</fullName>
+                <default>true</default>
+                <label>Pending</label>
+            </value>
+            <value>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+                <label>In Progress</label>
+            </value>
+            <value>
+                <fullName>Completed</fullName>
+                <default>false</default>
+                <label>Completed</label>
+            </value>
+            <value>
+                <fullName>Completed with Errors</fullName>
+                <default>false</default>
+                <label>Completed with Errors</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__ExtRentVsExtRentType</fullName>
+    <active>false</active>
+    <description>If the &quot;Extended Rent Period?&quot; checkbox is NOT checked, Extended Rent Type value can only be Null</description>
+    <errorConditionFormula>false /*AND(!Extended_Rent_Period__c, 
+OR(
+Text(Extended_Rent_Type__c)==&#39;Extended at Current Rent Rate&#39;,
+Text(Extended_Rent_Type__c)==&#39;Extended at Holdover Rent Rate&#39;)
+)*/</errorConditionFormula>
+    <errorDisplayField>leaseworks__Extended_Rent_Type__c</errorDisplayField>
+    <errorMessage>If the &quot;Extended Rent Period?&quot; checkbox is NOT checked, Extended Rent Type value can only be null.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Duration_days__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <formula>if(isBlank(leaseworks__Actual_Completed_Date__c ) || isBlank(leaseworks__Y_Hidden_Prev_Delivery_Timeline__r.leaseworks__Actual_Completed_Date__c),0, leaseworks__Actual_Completed_Date__c - leaseworks__Y_Hidden_Prev_Delivery_Timeline__r.leaseworks__Actual_Completed_Date__c )</formula>
+    <label>Duration (days)</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

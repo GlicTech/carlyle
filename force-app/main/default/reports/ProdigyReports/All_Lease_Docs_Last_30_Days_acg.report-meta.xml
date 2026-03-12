@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>leaseworks__Aircraft_Proposal__c$leaseworks__Marketing_Activity__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Aircraft_Proposal__c.Asset_In_Deal_Approvers__r$Name</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Aircraft_Proposal__c.Asset_In_Deal_Approvers__r$pro_Assigned_Approver__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>leaseworks__Aircraft_Proposal__c.Asset_In_Deal_Approvers__r$pro_Department_Approval_Complete__c</field>
+    </columns>
+    <description>LOI and Documentation Approvals
+
+Shows all Lease Documentation approvals granted by any user in the past 30 days.</description>
+    <filter>
+        <criteriaItems>
+            <column>leaseworks__Aircraft_Proposal__c.Asset_In_Deal_Approvers__r$pro_Department_Approval_Complete__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>1</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>leaseworks__Aircraft_Proposal__c.Asset_In_Deal_Approvers__r$pro_Date_Documentation_Approved__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>LAST_N_DAYS:30</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>leaseworks__Aircraft_Proposal__c.Asset_In_Deal_Approvers__r$pro_Include_In_Documentation_Approval__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>1</value>
+        </criteriaItems>
+    </filter>
+    <format>Tabular</format>
+    <name>All Lease Docs Last 30 Days</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>pro_AiDs_with_AiD_Approvers__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>false</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>leaseworks__Aircraft_Proposal__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

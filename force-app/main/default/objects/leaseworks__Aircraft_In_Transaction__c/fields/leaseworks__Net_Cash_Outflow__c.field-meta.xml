@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Net_Cash_Outflow__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <formula>leaseworks__Net_Equity_M__c *1000000
++
+if(leaseworks__Net_Residual_Value_M__c &gt;= leaseworks__Balloon_Payment__c , 0,(leaseworks__Balloon_Payment__c - leaseworks__Net_Residual_Value_M__c) *1000000 )</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Net equity with an added  outflow if the balloon payment is greater than the Residual Value</inlineHelpText>
+    <label>Net Cash Outflow</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

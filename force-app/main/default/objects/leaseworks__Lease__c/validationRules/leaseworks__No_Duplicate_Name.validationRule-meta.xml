@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__No_Duplicate_Name</fullName>
+    <active>false</active>
+    <description>Lease Name should be unique</description>
+    <errorConditionFormula>false
+/*( Id != VLOOKUP( $ObjectType.Lease__c.Fields.Id , $ObjectType.Lease__c.Fields.Name , Name ))
+&amp;&amp;
+(Name==VLOOKUP( $ObjectType.Lease__c.Fields.Name,$ObjectType.Lease__c.Fields.Name ,Name  ))*/</errorConditionFormula>
+    <errorDisplayField>Name</errorDisplayField>
+    <errorMessage>Lease Name already exists! Please enter a new name.</errorMessage>
+</ValidationRule>

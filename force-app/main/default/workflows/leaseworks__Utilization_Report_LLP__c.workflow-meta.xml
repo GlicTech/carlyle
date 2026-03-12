@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>leaseworks__LLPUR_Set_Module</fullName>
+        <description>To set module</description>
+        <field>leaseworks__Y_Hidden_Module_For_Rollup__c</field>
+        <formula>leaseworks__Module__c</formula>
+        <name>LLPUR Set Module</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>leaseworks__LLPUR_CreateOrEdit</fullName>
+        <actions>
+            <name>leaseworks__LLPUR_Set_Module</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>To set Module that is used in the rollup</description>
+        <formula>!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

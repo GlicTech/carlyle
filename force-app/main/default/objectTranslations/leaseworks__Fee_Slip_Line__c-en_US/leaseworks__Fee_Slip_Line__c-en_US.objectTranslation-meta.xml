@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>Fee Slip Line Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <validationRules>
+        <errorMessage><!-- Deletion or update on the Auto created fee slip line items is not allowed. --></errorMessage>
+        <name>leaseworks__ValidateAutoCreatedLine</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please select line type for the adjustment. --></errorMessage>
+        <name>leaseworks__ValidateFeeSlipLineType</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Fee Type on the Fee Slip Line must match the Fee Type on the related Fee Slip. --></errorMessage>
+        <name>leaseworks__ValidateFeeSlipTypeToLineType</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Adjustment is not allowed on the invoiced fee slip, please make adjustments on the related invoice. --></errorMessage>
+        <name>leaseworks__ValidateonFeeAdjustmentOnInvoiceRaised</name>
+    </validationRules>
+</CustomObjectTranslation>

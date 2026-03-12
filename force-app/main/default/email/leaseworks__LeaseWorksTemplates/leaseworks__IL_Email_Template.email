@@ -1,0 +1,166 @@
+<messaging:emailTemplate subject="{!relatedto.Createdby.name} - Account: {!relatedto.leaseworks__Y_Hidden_Operator_List__c} - Notes: {!relatedto.Name}" 
+recipientType="User" 
+relatedToType="leaseworks__Customer_Interaction_Log__c">
+    <messaging:htmlEmailBody > 
+        <html>
+            <body>
+            
+                <!--Begin body of email. -->
+                
+                Here's the copy you requested on your notes for {!relatedto.Name}.<br/> 
+                Here's a  <a href="{!LEFT($Api.Enterprise_Server_URL_300, FIND('/services',$Api.Enterprise_Server_URL_300))}{!relatedTo.id}"><b>Link</b></a> to the original interaction log in LeaseWorks.
+                <br/><br/>
+                        
+                <!--This portion renders conditionally based on if any of the values are true.-->
+             <apex:outputPanel title=" Details" rendered="{! OR(!ISBLANK(relatedto.Name), !ISBLANK(relatedto.leaseworks__Y_Hidden_Type_Of_Interaction__c),
+             !ISBLANK(relatedto.leaseworks__Y_Hidden_Discussion_Type__c),!ISBLANK(relatedto.leaseworks__Y_Hidden_Type_Of_Event__c))}">
+              <div style="width:100%; background:#005fb2; padding-top:5px; padding-bottom:5px; color:#ffffff">
+                 &nbsp;Details
+                </div>
+                 <br/>
+                
+                <apex:outputpanel rendered="{!(!ISBLANK(relatedto.Name))}" ><b><apex:outputText value="{!IF(ISBLANK(relatedto.Name),"","Subject: ")}" /></b>{!relatedto.Name}<br/></apex:outputPanel>
+                <apex:outputpanel rendered="{!(!ISBLANK(relatedto.leaseworks__Y_Hidden_Type_Of_Interaction__c))}" ><b><apex:outputText value="{!IF(ISBLANK(relatedto.leaseworks__Y_Hidden_Type_Of_Interaction__c),"","Type of Interaction: ")}"/></b>{!relatedto.leaseworks__Y_Hidden_Type_Of_Interaction__c}<br/></apex:outputPanel>
+                <apex:outputpanel rendered="{!(!ISBLANK(relatedto.leaseworks__Y_Hidden_Discussion_Type__c))}" ><b><apex:outputText value="{!IF(ISBLANK(relatedto.leaseworks__Y_Hidden_Discussion_Type__c),"","Discussion Type: ")}" /></b> {!relatedto.leaseworks__Y_Hidden_Discussion_Type__c}<br/></apex:outputPanel>  
+                <apex:outputpanel rendered="{!(!ISBLANK(relatedto.leaseworks__Y_Hidden_Type_Of_Event__c))}" ><b><apex:outputText value="{!IF(ISBLANK(relatedto.leaseworks__Y_Hidden_Type_Of_Event__c),"","Type Of Event: ")}" /></b> {!relatedto.leaseworks__Y_Hidden_Type_Of_Event__c}<br/></apex:outputPanel>
+                <apex:outputpanel rendered="{!(!ISBLANK(relatedto.leaseworks__Date_Of_Call__c))}" ><b><apex:outputText value="{!IF(ISBLANK(relatedto.leaseworks__Date_Of_Call__c),"","Date of Interaction: ")}" /></b> <apex:outputText value=" {!relatedto.leaseworks__Date_Of_Call__c}" escape="false" /><br/></apex:outputPanel>  
+                <apex:outputpanel rendered="{!(!ISBLANK(relatedto.Location__c))}" ><b><apex:outputText value="{!IF(ISBLANK(relatedto.Location__c),"","Location: ")}" /></b> <apex:outputText value=" {!relatedto.Location__c}" escape="false" /></apex:outputPanel>        
+                </apex:outputPanel>
+                 <br/><br/>
+                 <!--This portion renders conditionally based on if any of the values are true.-->
+             <apex:outputPanel title=" Details" rendered="{! OR(
+             !ISBLANK(relatedto.leaseworks__Related_To_Deal_Proposal__c),
+             !ISBLANK(relatedto.leaseworks__Y_Hidden_Operator_List__c),
+             !ISBLANK(relatedto.leaseworks__Related_To_Transaction__c),
+             !ISBLANK(relatedto.leaseworks__Related_To_Marketing_Activity__c),
+             !ISBLANK(relatedto.leaseworks__Related_To_Transaction_Prospect__c),
+             !ISBLANK(relatedto.leaseworks__Related_To_Aircraft__c),
+             !ISBLANK(relatedto.leaseworks__Related_To_Lease__c),
+             !ISBLANK(relatedto.leaseworks__Related_To_Counter_Party__c))}">
+                <div style="width:100%; background:#005fb2; padding-top:5px; padding-bottom:5px; color:#ffffff">
+                 &nbsp;Related To
+                </div>
+                <br/>
+                
+                <apex:outputpanel rendered="{!(!ISBLANK(relatedto.leaseworks__Y_Hidden_Operator_List__c))}" ><b><apex:outputText value="{!IF(ISBLANK(relatedto.leaseworks__Y_Hidden_Operator_List__c),"","Related To Accounts: ")}" /></b> {!relatedto.leaseworks__Y_Hidden_Operator_List__c}<br/></apex:outputPanel>
+                <apex:outputpanel rendered="{!(!ISBLANK(relatedto.leaseworks__Related_To_Aircraft__c))}" ><b><apex:outputText value="{!IF(ISBLANK(relatedto.leaseworks__Related_To_Aircraft__c),"","Related To Asset:  ")}"/></b> {!relatedto.leaseworks__Related_To_Aircraft__r.Name }<br/></apex:outputPanel>
+                <apex:outputpanel rendered="{!(!ISBLANK(relatedto.leaseworks__Related_To_Marketing_Activity__c))}" ><b><apex:outputText value="{!IF(ISBLANK(relatedto.leaseworks__Related_To_Marketing_Activity__c),"","Related To Deal: ")}" /></b> {!relatedto.leaseworks__Related_To_Marketing_Activity__r.Name} <br/></apex:outputPanel>
+                <apex:outputpanel rendered="{!(!ISBLANK(relatedto.leaseworks__Related_To_Lease__c))}" ><b><apex:outputText value="{!IF(ISBLANK(relatedto.leaseworks__Related_To_Lease__c),"","Related To Lease: ")}" /></b> {!relatedto.leaseworks__Related_To_Lease__r.Name}<br/>  </apex:outputPanel>
+                <apex:outputpanel rendered="{!(!ISBLANK(relatedto.leaseworks__Related_To_Deal_Proposal__c))}" ><b><apex:outputText value="{!IF(ISBLANK(relatedto.leaseworks__Related_To_Deal_Proposal__c),"","Related To Marketing Prospect: ")}" /></b> {!relatedto.leaseworks__Related_To_Deal_Proposal__r.Name} <br/></apex:outputPanel>
+                <apex:outputpanel rendered="{!(!ISBLANK(relatedto.leaseworks__Related_To_Transaction__c))}" ><b><apex:outputText value="{!IF(ISBLANK(relatedto.leaseworks__Related_To_Transaction__c),"","Related To Transaction: ")}" /></b> {!relatedto.leaseworks__Related_To_Transaction__r.Name}<br/></apex:outputPanel>  
+                <apex:outputpanel rendered="{!(!ISBLANK(relatedto.leaseworks__Related_To_Transaction_Prospect__c))}" ><b><apex:outputText value="{!IF(ISBLANK(relatedto.leaseworks__Related_To_Transaction_Prospect__c),"","Related To Transaction Prospect: ")}" /></b> {!relatedto.leaseworks__Related_To_Transaction_Prospect__r.Name}<br/></apex:outputPanel>
+                
+                                
+               
+              </apex:outputPanel>
+               <br/> 
+               
+                 <!--This portion renders conditionally based on if any of the values are true.-->
+             <apex:outputPanel rendered="{! OR(
+             !ISBLANK(relatedto.leaseworks__Summary__c), 
+             !ISBLANK(relatedto.leaseworks__Comments__c),
+             !ISBLANK(relatedto.leaseworks__Meeting_Notes__c),
+             !ISBLANK(relatedto.leaseworks__Action_Recommendation__c),
+             !ISBLANK(relatedto.leaseworks__Fleet_Plans__c),
+             !ISBLANK(relatedto.leaseworks__Reason__c))}">
+
+              <div style="width:100%; background:#005fb2; padding-top:5px; padding-bottom:5px; color:#ffffff">
+              &nbsp;Comment Section
+              </div> <br/>
+                
+                 <apex:outputpanel rendered="{!(!ISBLANK(relatedto.leaseworks__Comments__c))}" > <div style="white-space:pre-wrap;"><b><apex:outputText value="{!IF(ISBLANK(relatedto.leaseworks__Comments__c),"","Detailed Comments:  ")}"/></b><br/><apex:outputText value="{!relatedto.leaseworks__Comments__c}" escape="false" /></div><br/></apex:outputPanel>
+                 <apex:outputpanel rendered="{!(!ISBLANK(relatedto.leaseworks__Summary__c))}" ><b><apex:outputText value="{!IF(ISBLANK(relatedto.leaseworks__Summary__c),"","Summary: ")}" /></b> <apex:outputText value="{!relatedto.leaseworks__Summary__c}" escape="false" /><br/></apex:outputPanel>
+                 <apex:outputpanel rendered="{!(!ISBLANK(relatedto.leaseworks__Meeting_Notes__c))}" ><b><apex:outputText value="{!IF(ISBLANK(relatedto.leaseworks__Meeting_Notes__c),"","Meeting Notes: ")}" /></b> <apex:outputText value="{!relatedto.leaseworks__Meeting_Notes__c}" escape="false" /><br/> </apex:outputPanel>
+                 <apex:outputpanel rendered="{!(!ISBLANK(relatedto.leaseworks__Action_Recommendation__c))}" ><b><apex:outputText value="{!IF(ISBLANK(relatedto.leaseworks__Action_Recommendation__c),"","Action/Recommendation:  ")}" /></b><apex:outputText value=" {!relatedto.leaseworks__Action_Recommendation__c}" escape="false" /><br/><br/></apex:outputPanel>
+                 <apex:outputpanel rendered="{!(!ISBLANK(relatedto.leaseworks__Fleet_Plans__c))}" ><b><apex:outputText value="{!IF(ISBLANK(relatedto.leaseworks__Fleet_Plans__c),"","Fleet Plans:  ")}" /></b> <apex:outputText value="{!relatedto.leaseworks__Fleet_Plans__c}" escape="false" /><br/></apex:outputPanel>
+                 <apex:outputpanel rendered="{!(!ISBLANK(relatedto.leaseworks__Reason__c))}" ><b><apex:outputText value="{!IF(ISBLANK(relatedto.leaseworks__Reason__c),"","Reason: ")}" /></b> <apex:outputText value=" {!relatedto.leaseworks__Reason__c}" escape="false" /><br/></apex:outputPanel>
+                 
+                 
+               
+               </apex:outputPanel>
+               <!--This portion renders conditionally based on if any of the values are true.-->
+             <apex:outputPanel rendered="{! OR(
+             !ISBLANK(relatedto.leaseworks__Follow_Up_Action__c), 
+             !ISBLANK(relatedto.leaseworks__Follow_Up_Due_Date__c),
+             !ISBLANK(relatedto.leaseworks__Assigned_To__c))}">
+             <div style="width:100%; background:#005fb2; padding-top:5px; padding-bottom:5px; color:#ffffff">
+                &nbsp;Follow Up
+             </div>
+                 <br/>
+                
+                <apex:outputpanel rendered="{!(!ISBLANK(relatedto.leaseworks__Follow_Up_Action__c))}" ><b><apex:outputText value="{!IF(ISBLANK(relatedto.leaseworks__Follow_Up_Action__c),"","Follow Up Action: ")}" /></b> {!relatedto.leaseworks__Follow_Up_Action__c} <br/> </apex:outputPanel>
+                <apex:outputpanel rendered="{!(!ISBLANK(relatedto.leaseworks__Follow_Up_Due_Date__c))}" ><b><apex:outputText value="{!IF(ISBLANK(relatedto.leaseworks__Follow_Up_Due_Date__c),"","Follow Up Due Date: ")}"/></b> <apex:outputText value="{0,date,MM/dd/yyyy}"><apex:Param value="{!relatedto.leaseworks__Follow_Up_Due_Date__c}" />
+                </apex:OutputText><br/> </apex:outputPanel>
+                <apex:outputpanel rendered="{!(!ISBLANK(relatedto.leaseworks__Assigned_To__c))}" ><b><apex:outputText value="{!IF(ISBLANK(relatedto.leaseworks__Assigned_To__c),"","Assigned To: ")}" /></b> {!relatedto.leaseworks__Assigned_To__r.FirstName} {!relatedto.leaseworks__Assigned_To__r.LastName }<br/> </apex:outputPanel>
+                <apex:outputpanel rendered="{!(!ISBLANK(relatedto.leaseworks__Y_Hidden_Status__c))}" ><b><apex:outputText value="{!IF(ISBLANK(relatedto.leaseworks__Y_Hidden_Status__c),"","Status: ")}" /></b> {!relatedto.leaseworks__Y_Hidden_Status__c}<br/></apex:outputPanel>
+                </apex:outputPanel>
+               <br/> 
+                  <!--This portion renders conditionally based on if any of the values are true.-->
+            <apex:outputPanel rendered="{!(!(ISBLANK(relatedto.leaseworks__Attendees_List__c)))}">
+            <div style="width:100%; background:#005fb2; padding-top:5px; padding-bottom:5px; color:#ffffff">
+               &nbsp;Attendees 
+             </div>
+                 <br/>
+                  <b><apex:outputText value="{!relatedto.leaseworks__Attendees_List__c}" /> </b>
+                   
+              </apex:outputPanel>
+               <br/> 
+                  <!--This portion renders conditionally based on if any of the values are true.-->
+             <apex:outputPanel rendered="{! OR(
+             !ISBLANK(relatedto.leaseworks__Y_Hidden_Type_of_Opportunity__c), 
+             !ISBLANK(relatedto.leaseworks__Y_Hidden_Aircraft_Type__c),
+             !ISBLANK(relatedto.leaseworks__Y_Hidden_Variant__c),
+             !ISBLANK(relatedto.leaseworks__Y_Hidden_Engine_Type__c),
+             !ISBLANK(relatedto.leaseworks__Y_Hidden_Engine_Variant__c),
+             !ISBLANK(relatedto.leaseworks__Vintage_From__c),
+             !ISBLANK(relatedto.leaseworks__Y_Hidden_Vintage_Range__c),
+             !ISBLANK(relatedto.leaseworks__Lease_Start_Date__c),
+             !ISBLANK(relatedto.leaseworks__Date_Needed__c),
+             !ISBLANK(relatedto.leaseworks__Intel_Quality__c),
+             !ISBLANK(relatedto.leaseworks__MSN__c),
+             !ISBLANK(relatedto.leaseworks__Date_Available_if_Sale__c),
+             !ISBLANK(relatedto.leaseworks__Rent_000__c),
+             !ISBLANK(relatedto.leaseworks__Term_Mos__c),
+             !ISBLANK(relatedto.leaseworks__Transition_and_Modifications_Cost_K__c),
+             !ISBLANK(relatedto.leaseworks__Mx_Liabilities_During_Lease_K__c),
+             !ISBLANK(relatedto.leaseworks__Mx_Compensation_Structure__c),
+             !ISBLANK(relatedto.leaseworks__Security_Deposit_K__c),
+             !ISBLANK(relatedto.leaseworks__IRR__c),
+             !ISBLANK(relatedto.leaseworks__Notes_about_transition_and_mod_cost__c), 
+             !ISBLANK(relatedto.leaseworks__Comment__c),
+             !ISBLANK(relatedto.leaseworks__Form_of_Security_Deposit__c),
+             !ISBLANK(relatedto.leaseworks__Price__c))}">
+             <div style="width:100%; background:#005fb2; padding-top:5px; padding-bottom:5px; color:#ffffff">
+              &nbsp;Market Intelligence
+              </div>            
+                 <br/>
+                <apex:outputpanel rendered="{!(!ISBLANK(relatedto.leaseworks__Y_Hidden_Type_of_Opportunity__c))}" > <b><apex:outputText value="{!IF(ISBLANK(relatedto.leaseworks__Y_Hidden_Type_of_Opportunity__c),"","Type Of Opportunity:  ")}" /></b>{!relatedto.leaseworks__Y_Hidden_Type_of_Opportunity__c}<br/></apex:outputPanel>
+                <apex:outputpanel rendered="{!(!ISBLANK(relatedto.leaseworks__Y_Hidden_Aircraft_Type__c))}" ><b><apex:outputText value="{!IF(ISBLANK(relatedto.leaseworks__Y_Hidden_Aircraft_Type__c),"","Aircraft Type:  ")}"/></b> {!relatedto.leaseworks__Y_Hidden_Aircraft_Type__c}<br/></apex:outputPanel>
+                <apex:outputpanel rendered="{!(!ISBLANK(relatedto.leaseworks__Y_Hidden_Variant__c))}" ><b><apex:outputText value="{!IF(ISBLANK(relatedto.leaseworks__Y_Hidden_Variant__c),"","Variant:")}" /></b>{!relatedto.leaseworks__Y_Hidden_Variant__c}<br/></apex:outputPanel>
+                <apex:outputpanel rendered="{!(!ISBLANK(relatedto.leaseworks__Y_Hidden_Engine_Type__c))}" ><b><apex:outputText value="{!IF(ISBLANK(relatedto.leaseworks__Y_Hidden_Engine_Type__c),"","Engine Type:  ")}" /></b>{!relatedto.leaseworks__Y_Hidden_Engine_Type__c}<br/></apex:outputPanel>
+                <apex:outputpanel rendered="{!(!ISBLANK(relatedto.leaseworks__Y_Hidden_Engine_Variant__c))}" ><b><apex:outputText value="{!IF(ISBLANK(relatedto.leaseworks__Y_Hidden_Engine_Variant__c),"","Engine Variant: ")}" /></b>{!relatedto.leaseworks__Y_Hidden_Engine_Variant__c}<br/></apex:outputPanel>
+                <apex:outputpanel rendered="{!(!ISBLANK(relatedto.leaseworks__Vintage_From__c))}" ><b><apex:outputText value="{!IF(ISBLANK(relatedto.leaseworks__Vintage_From__c),"","Vintage:")}" /></b> {!relatedto.leaseworks__Vintage_From__c}<br/></apex:outputPanel>
+                <apex:outputpanel rendered="{!(!ISBLANK(relatedto.leaseworks__Y_Hidden_Vintage_Range__c))}" ><b><apex:outputText value="{!IF(ISBLANK(relatedto.leaseworks__Y_Hidden_Vintage_Range__c),"","Vintage Range:")}" /></b>{!relatedto.leaseworks__Y_Hidden_Vintage_Range__c}<br/></apex:outputPanel>
+                <apex:outputpanel rendered="{!(!ISBLANK(relatedto.leaseworks__Lease_Start_Date__c))}" ><b><apex:outputText value="{!IF(ISBLANK(relatedto.leaseworks__Lease_Start_Date__c),"","Lease Date From:")}" /></b>{!relatedto.leaseworks__Lease_Start_Date__c}<br/></apex:outputPanel>
+                <apex:outputpanel rendered="{!(!ISBLANK(relatedto.leaseworks__Date_Needed__c))}" ><b><apex:outputText value="{!IF(ISBLANK(relatedto.leaseworks__Date_Needed__c),"","Lease Date To:  ")}" /></b> {!relatedto.leaseworks__Date_Needed__c}<br/></apex:outputPanel>
+                <apex:outputpanel rendered="{!(!ISBLANK(relatedto.leaseworks__Intel_Quality__c))}" ><b><apex:outputText value="{!IF(ISBLANK(relatedto.leaseworks__Intel_Quality__c),"","Intel Quality: ")}" /></b>{!relatedto.leaseworks__Intel_Quality__c}<br/></apex:outputPanel>
+                <apex:outputpanel rendered="{!(!ISBLANK(relatedto.leaseworks__MSN__c))}" ><b><apex:outputText value="{!IF(ISBLANK(relatedto.leaseworks__MSN__c),"","MSN: ")}" /></b> {!relatedto.leaseworks__MSN__c}<br/></apex:outputPanel>
+                <apex:outputpanel rendered="{!(!ISBLANK(relatedto.leaseworks__Date_Available_if_Sale__c))}" ><b><apex:outputText value="{!IF(ISBLANK(relatedto.leaseworks__Date_Available_if_Sale__c),"","Trade Date:  ")}" /></b> {!relatedto.leaseworks__Date_Available_if_Sale__c}<br/></apex:outputPanel>
+                <apex:outputpanel rendered="{!(!ISBLANK(relatedto.leaseworks__Rent_000__c))}" ><b><apex:outputText value="{!IF(ISBLANK(relatedto.leaseworks__Rent_000__c),"","Average Rent: ")}" /></b> {!relatedto.leaseworks__Rent_000__c}<br/></apex:outputPanel>
+                <apex:outputpanel rendered="{!(!ISBLANK(relatedto.leaseworks__Term_Mos__c))}" ><b><apex:outputText value="{!IF(ISBLANK(relatedto.leaseworks__Term_Mos__c),"","Term (Mos): ")}" /></b>{!relatedto.leaseworks__Term_Mos__c}<br/></apex:outputPanel>
+                <apex:outputpanel rendered="{!(!ISBLANK(relatedto.leaseworks__Transition_and_Modifications_Cost_K__c))}" ><b><apex:outputText value="{!IF(ISBLANK(relatedto.leaseworks__Transition_and_Modifications_Cost_K__c),"","Transition and Modifications Cost ($M): ")}" /></b> {!relatedto.leaseworks__Transition_and_Modifications_Cost_K__c}<br/></apex:outputPanel>
+                <apex:outputpanel rendered="{!(!ISBLANK(relatedto.leaseworks__Mx_Liabilities_During_Lease_K__c))}" ><b><apex:outputText value="{!IF(ISBLANK(relatedto.leaseworks__Mx_Liabilities_During_Lease_K__c),"","Mx Liabilities During Lease ($M): ")}" /></b> {!relatedto.leaseworks__Mx_Liabilities_During_Lease_K__c}<br/></apex:outputPanel>
+                <apex:outputpanel rendered="{!(!ISBLANK(relatedto.leaseworks__Mx_Compensation_Structure__c))}" ><b><apex:outputText value="{!IF(ISBLANK(relatedto.leaseworks__Mx_Compensation_Structure__c),"","Mx Compensation Structure: ")}" /></b>  {!relatedto.leaseworks__Mx_Compensation_Structure__c}<br/></apex:outputPanel>
+                <apex:outputpanel rendered="{!(!ISBLANK(relatedto.leaseworks__Security_Deposit_K__c))}" ><b><apex:outputText value="{!IF(ISBLANK(relatedto.leaseworks__Security_Deposit_K__c),"","Security Deposit ($M): ")}" /></b>{!relatedto.leaseworks__Security_Deposit_K__c}<br/></apex:outputPanel>
+                <apex:outputpanel rendered="{!(!ISBLANK(relatedto.leaseworks__Price__c))}" ><b><apex:outputText value="{!IF(ISBLANK(relatedto.leaseworks__Price__c),"","Price ($M): ")}" /></b>{!relatedto.leaseworks__Price__c}<br/></apex:outputPanel>
+                <apex:outputpanel rendered="{!(!ISBLANK(relatedto.leaseworks__IRR__c))}" ><b><apex:outputText value="{!IF(ISBLANK(relatedto.leaseworks__IRR__c),"","IRR: ")}" /></b> {!relatedto.leaseworks__IRR__c}<br/></apex:outputPanel>
+                <apex:outputpanel rendered="{!(!ISBLANK(relatedto.leaseworks__Form_of_Security_Deposit__c))}" ><b><apex:outputText value="{!IF(ISBLANK(relatedto.leaseworks__Form_of_Security_Deposit__c),"","Form of Security Deposit: ")}" /></b>{!relatedto.leaseworks__Form_of_Security_Deposit__c}<br/></apex:outputPanel>
+                <apex:outputpanel rendered="{!(!ISBLANK(relatedto.leaseworks__Notes_about_transition_and_mod_cost__c))}" ><b><apex:outputText value="{!IF(ISBLANK(relatedto.leaseworks__Notes_about_transition_and_mod_cost__c),"","Notes about transition and mod cost: ")}" /></b> {!relatedto.leaseworks__Notes_about_transition_and_mod_cost__c}<br/></apex:outputPanel>
+                <apex:outputpanel rendered="{!(!ISBLANK(relatedto.leaseworks__Comment__c))}" ><b><apex:outputText value="{!IF(ISBLANK(relatedto.leaseworks__Comment__c),"","Market Intelligence Comments:")}" /></b>{!relatedto.leaseworks__Comment__c}<br/></apex:outputPanel>
+            
+                </apex:outputPanel>
+              
+            </body>
+        </html>
+    </messaging:htmlEmailBody> 
+</messaging:emailTemplate>

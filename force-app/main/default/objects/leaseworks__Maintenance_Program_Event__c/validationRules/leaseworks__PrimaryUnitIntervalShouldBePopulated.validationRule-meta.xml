@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__PrimaryUnitIntervalShouldBePopulated</fullName>
+    <active>false</active>
+    <description>Primary Unit Interval should be populated for the selected Primary Unit</description>
+    <errorConditionFormula>AND(!ISBLANK(TEXT(leaseworks__Primary_Unit__c)),(OR(AND(ISPICKVAL(leaseworks__Primary_Unit__c, &quot;Hours&quot;),ISBLANK(leaseworks__Interval_2_Hours__c )),AND(ISPICKVAL(leaseworks__Primary_Unit__c, &quot;Cycles&quot;),ISBLANK(leaseworks__Interval_2_Cycles__c )),AND(ISPICKVAL(leaseworks__Primary_Unit__c, &quot;Months&quot;),ISBLANK(leaseworks__Interval_2_Months__c)))))</errorConditionFormula>
+    <errorMessage>Please enter Interval for the selected Primary Unit.</errorMessage>
+</ValidationRule>

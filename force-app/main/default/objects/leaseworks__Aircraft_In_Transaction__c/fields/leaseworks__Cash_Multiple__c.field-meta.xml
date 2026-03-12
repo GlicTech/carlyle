@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Cash_Multiple__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <formula>((leaseworks__Net_Equity_M__c*1000000)  + (  leaseworks__Net_Cash_Inflow__c -  leaseworks__Net_Cash_Outflow__c ))/(leaseworks__Net_Equity_M__c*1000000)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Ratio of Total Cash flow to Invested Capital</inlineHelpText>
+    <label>Cash Multiple</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

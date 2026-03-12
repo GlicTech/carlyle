@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>pro_Review_Date__c</fullName>
+    <description>Returns the date one year on from the CreatedDate</description>
+    <externalId>false</externalId>
+    <formula>DATE(
+  YEAR(DATEVALUE(CreatedDate)) + 1,
+  MONTH(DATEVALUE(CreatedDate)),
+  DAY(DATEVALUE(CreatedDate))
+)</formula>
+    <label>Review Date</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

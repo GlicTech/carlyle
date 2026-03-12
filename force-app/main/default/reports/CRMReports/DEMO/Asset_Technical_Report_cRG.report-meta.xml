@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Aircraft__c.leaseworks__Asset_Variant_GP__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Aircraft__c.leaseworks__Engine_Type_GP__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Aircraft__c.pro_Operator_Assigned__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>leaseworks__Aircraft__c.leaseworks__Maximum_Operational_Take_Lbs__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>leaseworks__Aircraft__c.leaseworks__Maximum_Landing_Weight_Operational__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Aircraft__c.leaseworks__Status__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Aircraft__c.pro_Operational_Status__c</field>
+    </columns>
+    <filter>
+        <criteriaItems>
+            <column>leaseworks__Aircraft__c.leaseworks__Status__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>,Sold,Consigned,Not Purchased</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>leaseworks__Aircraft__c.pro_Operational_Status__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>In Production,Pending Delivery,Stored,AOG,Pending Purchase</value>
+        </criteriaItems>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>leaseworks__Aircraft__c.leaseworks__Asset_Type_GP__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Asset Technical Report</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$leaseworks__Aircraft__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>CUST_CREATED_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

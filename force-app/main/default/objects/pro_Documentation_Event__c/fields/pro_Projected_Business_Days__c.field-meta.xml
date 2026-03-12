@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>pro_Projected_Business_Days__c</fullName>
+    <description>Returns the number of business days projected for the completion of a documentation event based on the name.</description>
+    <externalId>false</externalId>
+    <formula>IF(
+  ISPICKVAL(pro_Documentation_Event_Type__c, &quot;1 Engage Law Firm&quot;), 
+  &quot;1&quot;,
+  IF(
+    ISPICKVAL(pro_Documentation_Event_Type__c, &quot;2 Initial Draft&quot;), 
+    &quot;4&quot;,
+    IF(
+      ISPICKVAL(pro_Documentation_Event_Type__c, &quot;3 Review &amp; Comment&quot;), 
+      &quot;3&quot;, 
+      &quot;2&quot;
+    )
+  )
+)</formula>
+    <label>Projected Business Days</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

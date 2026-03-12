@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Loop__Email_Template__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <formula>IF(Loop__Template__c=&quot;&quot;, IF( RecordType.DeveloperName = &quot;SMTPService&quot;, &quot;Use Subject and Email Text fields below or &quot;, &quot;&quot; ) &amp; HYPERLINK(&quot;/apex/loop__selectemailtemplate?cioId=&quot; &amp; Id &amp; &quot;&amp;ddpId=&quot; &amp; Loop__DDP__c, &quot;Select Email Template&quot;,&quot;_self&quot;),IF(BEGINS(Loop__Template__c,&quot;00X&quot;), HYPERLINK(&quot;/&quot; &amp; Loop__Template__c &amp; &quot;/s?id=&quot; &amp; Loop__Template__c &amp; &quot;&amp;previewMode=1&quot;, IMAGE(&quot;/img/icon/mail16.png&quot;, &quot;Preview&quot;) &amp; &quot; Preview&quot;,&quot;_blank&quot;), HYPERLINK(&quot;/&quot; &amp; Loop__DDP_File_Template__c, IMAGE(&quot;/img/icon/mail16.png&quot;, &quot;Preview&quot;) &amp; &quot; Preview&quot;,&quot;_blank&quot;)) &amp; &quot; &quot; &amp; HYPERLINK(&quot;/apex/loop__selectemailtemplate?cioId=&quot; &amp; Id &amp; &quot;&amp;ddpId=&quot; &amp; Loop__DDP__c, &quot;[Change]&quot;,&quot;_self&quot;)&amp; &quot; &quot; &amp; HYPERLINK(&quot;/apex/loop__selectemailtemplate?cioId=&quot; &amp; Id &amp; &quot;&amp;ic=None&quot;, &quot;[None]&quot;,&quot;_self&quot;))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Use a DocGen Package File or Salesforce Email Template for email deliveries.</inlineHelpText>
+    <label>Email Template</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

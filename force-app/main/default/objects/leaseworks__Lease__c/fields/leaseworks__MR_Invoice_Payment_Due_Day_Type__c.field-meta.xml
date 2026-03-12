@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__MR_Invoice_Payment_Due_Day_Type__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Due Date of the MR invoices to be calculated based on: 1) Fixed, OR 2) Relative based on Invoice Date. If Fixed selected, user must enter a value in the field MR Invoice Payment Due Day (Fixed). If Relative selected, user must enter a value in the field MR Invoice Payment Due Day (Relative).</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Due Date of the MR invoices to be calculated based on either Fixed or Relative terms. If Fixed is selected, provide a value for &#39;MR Invoice Payment Due Day (Fixed)&#39;. If Relative is selected, provide a value for &#39;MR Invoice Payment Due Day (Relative)</inlineHelpText>
+    <label>MR Invoice Payment Due Day Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Relative - Based On Invoice Day</fullName>
+                <default>false</default>
+                <label>Relative - Based On Invoice Day</label>
+            </value>
+            <value>
+                <fullName>Fixed</fullName>
+                <default>false</default>
+                <label>Fixed</label>
+            </value>
+            <value>
+                <fullName>Relative - Based On Utilization Reporting Due Day</fullName>
+                <default>false</default>
+                <label>Relative - Based On Utilization Reporting Due Day</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Enter_SL_and_Pct_Together</fullName>
+    <active>false</active>
+    <description>Both Sub Lease and Percentage should be entered together.</description>
+    <errorConditionFormula>false /*OR( AND(ISBLANK(Parent_Legal_Entity__c), !ISBLANK(Rent_Payable_To_Head_Lease__c)), AND(!ISBLANK(Parent_Legal_Entity__c), ISBLANK(Rent_Payable_To_Head_Lease__c)))*/</errorConditionFormula>
+    <errorDisplayField>leaseworks__Rent_Payable_To_Head_Lease__c</errorDisplayField>
+    <errorMessage>Please enter Head Lease and Rent Payable To Head Lease together.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>Service Fee Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <validationRules>
+        <errorMessage><!-- Contract cannot be updated on the fee schedule, please create a new fee schedule. --></errorMessage>
+        <name>leaseworks__ContractUpdateNotAllowedOnFeeSchedule</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Fee Type cannot be updated on the fee schedule, please create a new fee schedule. --></errorMessage>
+        <name>leaseworks__FeeTypeUpdateNotAllowedOnFeeSchedule</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter a positive value less than 100. --></errorMessage>
+        <name>leaseworks__NegativeNotAllowedOnServiceFeePercent</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Rent Schedule is required for intercompany service fee. Please select a rent schedule. --></errorMessage>
+        <name>leaseworks__RentScheduleRequiredIfIntercompany</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Fee% is only applicable for Service fee schedule linked to a rent schedule. --></errorMessage>
+        <name>leaseworks__ValidateFeeAmountIntercompanyServiceFee</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Amount should be positive --></errorMessage>
+        <name>leaseworks__ValidateFeeAmountValue</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Since Fee Due Type &apos;Fixed&apos; has been selected, please enter a value between 1 and 31 (days in the calendar month) on Fee Due Day field. --></errorMessage>
+        <name>leaseworks__ValidateFeeDueDayForFixdDueType</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Start Date Cannot be later than End Date --></errorMessage>
+        <name>leaseworks__ValidateFeeScheduleStartDateEndDate</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Flat Amount is only applicable for Service fee schedule not associated with a rent schedule. --></errorMessage>
+        <name>leaseworks__ValidateFlatAmountIntercompanyServiceFee</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Intercompany Service Fee? is required for Service Fee schedule. --></errorMessage>
+        <name>leaseworks__ValidateIntercompanyServiceFee</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Manual Fee Slip Entry cannot be used for fee schedules linked to a rent schedule. Please disable manual entry or unlink the rent schedule to continue. --></errorMessage>
+        <name>leaseworks__ValidateManualEntryWhenRentSchedule</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The Manual Fee Slip Entry setting cannot be changed after the fee schedule has been saved. Please create a new fee schedule if you need to change this setting. --></errorMessage>
+        <name>leaseworks__ValidateManualFeeSlipEntryEdit</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Selected &apos;Rent Schedule&apos; is not associated with the contract, please select a different rent schedule. --></errorMessage>
+        <name>leaseworks__ValidateRentScheduleAndLeaseRelation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Rent Schedule is required for service fee schedule when &apos;Link Rent Schedule&apos; is selected. --></errorMessage>
+        <name>leaseworks__ValidateRentScheduleWhenLinkRentSchedule</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The difference between the Fee Start Date and Second Fee Period Start Date is longer than the frequency selected --></errorMessage>
+        <name>leaseworks__ValidateSecondRentPeriodStartDate</name>
+    </validationRules>
+</CustomObjectTranslation>

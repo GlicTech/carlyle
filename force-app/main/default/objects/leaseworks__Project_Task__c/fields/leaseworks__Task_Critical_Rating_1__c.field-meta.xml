@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Task_Critical_Rating_1__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <formula>IMAGE( 
+CASE( leaseworks__Risk_Score_Card__c, 
+&quot;No_Risk&quot;, &quot;/img/samples/flag_green.gif&quot;,
+&quot;Low_Risk&quot;, &quot;/img/samples/flag_yellow.gif&quot;,
+&quot;High_Risk&quot;, &quot;/img/samples/flag_red.gif&quot;, 
+&quot;/s.gif&quot;), 
+&quot;Priority Flag&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Green - No Risk
+Yellow - Low Risk
+Red - High Risk</inlineHelpText>
+    <label>Risk</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

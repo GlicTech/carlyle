@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>63.0</apiVersion>
+    <description>Flow to set &#39;Data Verified By&#39; field when Supplemental Rent record is created or updated.</description>
+    <environments>Default</environments>
+    <formulas>
+        <description>Formula to update Supplemental Rent object &#39;Data Verified By&#39; field.</description>
+        <name>AssemblyMRRateSetDataVerifiedByFormula</name>
+        <dataType>String</dataType>
+        <expression>{!$User.FirstName} + &#39; &#39; + {!$User.LastName} +&#39;, &#39; + Text(MONTH(TODAY())) + &#39;/&#39; + Text(Day(TODAY())) + &#39;/&#39; + Text(year(TODAY()))</expression>
+    </formulas>
+    <interviewLabel>Assembly MR Rate Data Verifed By {!$Flow.CurrentDateTime}</interviewLabel>
+    <isTemplate>true</isTemplate>
+    <label>Assembly MR Rate Data Verifed By</label>
+    <migratedFromWorkflowRuleName>Assembly MR Rate Data Verifed By</migratedFromWorkflowRuleName>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <description>Update element to update the &#39;Data Verified By&#39; field on Supplemental Rent.</description>
+        <name>Update_Fields</name>
+        <label>Update Fields</label>
+        <locationX>176</locationX>
+        <locationY>323</locationY>
+        <inputAssignments>
+            <field>leaseworks__Data_Verified_By__c</field>
+            <value>
+                <elementReference>AssemblyMRRateSetDataVerifiedByFormula</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Update_Fields</targetReference>
+        </connector>
+        <filterFormula>AND(NOT({!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c}),NOT({!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c}), 
+OR(AND(ISNEW(),{!$Record.leaseworks__Data_Verified_For_Accuracy__c}),ISCHANGED({!$Record.leaseworks__Data_Verified_For_Accuracy__c})))</filterFormula>
+        <object>leaseworks__Assembly_MR_Rate__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

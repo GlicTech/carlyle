@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Entity_Is_Inactive</fullName>
+    <active>true</active>
+    <description>To Check Entity is Inactive when Drawdown is Created.</description>
+    <errorConditionFormula>AND( 
+RecordType.Name  = &quot;Drawdown&quot;,
+!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c,
+ISNEW(),
+leaseworks__AccEnabled__c,
+leaseworks__Entity_New__r.leaseworks__Inactive__c 
+)</errorConditionFormula>
+    <errorMessage>Unable to proceed with transactions: The lease is currently associated with an inactive entity. Please link an active entity to the lease to continue.</errorMessage>
+</ValidationRule>

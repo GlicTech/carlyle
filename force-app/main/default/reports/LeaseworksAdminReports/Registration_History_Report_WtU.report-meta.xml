@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>leaseworks__Registration_History__c$Name</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Registration_History__c$leaseworks__Registration_Date__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Registration_History__c$Registration_Expiry_Date_Local__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Registration_History__c$leaseworks__Deregistration_Date__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Registration_History__c$leaseworks__Country__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Registration_History__c$Comments__c</field>
+    </columns>
+    <description>A listing of the registration history by aircraft. Apply filters to refine results.</description>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>leaseworks__Registration_History__c$leaseworks__Aircraft__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Registration History Report</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Registration_History__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>leaseworks__Registration_History__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>leaseworks__Aircraft_C_Check_Threshold_Warning</fullName>
+        <description>Aircraft - C-Check Threshold Warning</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>leaseworks__LeaseWorksTemplates/leaseworks__AC_LifeLimit_Threshold_Warning</template>
+    </alerts>
+    <alerts>
+        <fullName>leaseworks__Aircraft_approval_Email_Alert</fullName>
+        <description>Aircraft approval Email Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>leaseworks__LeaseWorksTemplates/leaseworks__Audit_Approval_Flow</template>
+    </alerts>
+    <alerts>
+        <fullName>leaseworks__Aircraft_approval_Email_Alet</fullName>
+        <description>Aircraft approval Email Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>leaseworks__LeaseWorksTemplates/leaseworks__New_Aircraft_Approval</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>leaseworks__AircraftSetCurrentAsOf</fullName>
+        <field>leaseworks__Utilization_Current_As_Of__c</field>
+        <formula>null/*BLANKVALUE(Last_UR_Approved_For_The_Month_Of__c,  Utilization_Current_As_Of__c )*/</formula>
+        <name>AircraftSetCurrentAsOf</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__AircraftSetDataVerifiedBy</fullName>
+        <field>leaseworks__Data_Verified_By__c</field>
+        <formula>$User.FirstName + &#39; &#39; + $User.LastName +&#39;, &#39; +
+
+ Text(MONTH(TODAY())) + &#39;/&#39; +  Text(Day(TODAY()))  + &#39;/&#39; +  Text(year(TODAY()))</formula>
+        <name>AircraftSetDataVerifiedBy</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__AircraftSetId</fullName>
+        <description>Set the external Id to Aircraft Type + MSN.</description>
+        <field>leaseworks__Aircraft_ID__c</field>
+        <formula>BLANKVALUE(TEXT(leaseworks__Asset_Type_GP__c), &#39;NoType&#39;) &amp; &#39;-&#39;  &amp; leaseworks__MSN_Number__c</formula>
+        <name>AircraftSetId</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__AircraftSetMTOW</fullName>
+        <description>Set MTOW lbs if MTOW kg is set</description>
+        <field>leaseworks__Maximum_Operational_Take_Lbs__c</field>
+        <formula>leaseworks__Maximum_Operational_Take_Lbs__c</formula>
+        <name>AircraftSetMTOW</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__AircraftSetMTOWKg</fullName>
+        <description>Set MTOW when Kg is empty and Pound is set.</description>
+        <field>leaseworks__Maximum_Operational_Take__c</field>
+        <formula>leaseworks__Maximum_Operational_Take__c</formula>
+        <name>AircraftSetMTOWKg</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__AircraftSetMTOWWhenChanged</fullName>
+        <description>Update MTOW lbs when Kg is updated</description>
+        <field>leaseworks__Maximum_Operational_Take_Lbs__c</field>
+        <formula>leaseworks__Maximum_Operational_Take_Lbs__c</formula>
+        <name>AircraftSetMTOWWhenChanged</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__AircraftSetMTOWWhenChangedLbs</fullName>
+        <field>leaseworks__Maximum_Operational_Take__c</field>
+        <formula>leaseworks__Maximum_Operational_Take__c</formula>
+        <name>AircraftSetMTOWWhenChangedLbs</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__SetNewAC</fullName>
+        <field>leaseworks__ISNEWAC__c</field>
+        <formula>IF(ISNEW(), &quot;T&quot;, PRIORVALUE( leaseworks__ISNEWAC__c ))</formula>
+        <name>SetNewAC</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_Aircraft_Status</fullName>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Pending</literalValue>
+        <name>Update Aircraft Status</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_Aircraft_Status_Approved</fullName>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Available</literalValue>
+        <name>Update Aircraft Status Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_Aircraft_Status_Rejected</fullName>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Pending</literalValue>
+        <name>Update Aircraft Status Rejected</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_Aircraft_Status_Rejection</fullName>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Pending</literalValue>
+        <name>Update Aircraft Status Rejection</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_Aircraft_Status_To_Assigned</fullName>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Available</literalValue>
+        <name>Update Aircraft Status To Available</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_Aircraft_Status_pending</fullName>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Pending</literalValue>
+        <name>Update Aircraft Status pending</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_Aircraft_stats</fullName>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Available</literalValue>
+        <name>Update Aircraft status Available</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_Aircraft_stats_pending</fullName>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Pending</literalValue>
+        <name>Update Aircraft status pending</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_Aircraft_status_Declined</fullName>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Pending</literalValue>
+        <name>Update Aircraft status Declined</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_Aircraft_status_pendin</fullName>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Pending</literalValue>
+        <name>Update Aircraft status pending</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_aircraft_ID</fullName>
+        <description>Updates the Name of the aircraft as MSN number + Aircraft type</description>
+        <field>Name</field>
+        <formula>leaseworks__MSN_Number__c &amp; &#39; (&#39; &amp; TEXT(leaseworks__Asset_Type_GP__c) &amp; &#39;)&#39;</formula>
+        <name>Update aircraft ID</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_status_open</fullName>
+        <field>leaseworks__Status__c</field>
+        <literalValue>Pending</literalValue>
+        <name>Update status open</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>leaseworks__Aircraft Changed</fullName>
+        <actions>
+            <name>leaseworks__AircraftSetId</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>leaseworks__AircraftSetMTOW</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>leaseworks__AircraftSetMTOWKg</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>leaseworks__AircraftSetMTOWWhenChanged</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>leaseworks__AircraftSetMTOWWhenChangedLbs</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>leaseworks__SetNewAC</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>leaseworks__Update_aircraft_ID</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Rule to kick off when aircraft has changed</description>
+        <formula>TRUE</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__Aircraft Changed_CCheck_Compare</fullName>
+        <actions>
+            <name>leaseworks__Aircraft_C_Check_Threshold_Warning</name>
+            <type>Alert</type>
+        </actions>
+        <active>false</active>
+        <description>Rule to kick off when aircraft has changed</description>
+        <formula>leaseworks__Time_Remaining_To_Check__c &lt;=    leaseworks__Alert_Threshold__c *leaseworks__Threshold_for_C_Check__c</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__Aircraft Data Verifed By</fullName>
+        <actions>
+            <name>leaseworks__AircraftSetDataVerifiedBy</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>OR ( AND (ISNEW(),  leaseworks__Data_Verified_For_Accuracy__c  ), ISCHANGED(leaseworks__Data_Verified_For_Accuracy__c))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__Aircraft Weights Conversion</fullName>
+        <active>false</active>
+        <description>Set weights in kg if lbs is set and vice versa.</description>
+        <formula>null</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__AircraftSetCurrentAsOf</fullName>
+        <actions>
+            <name>leaseworks__AircraftSetCurrentAsOf</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <formula>false         /*!$Setup.LeaseWorksSettings__c.Disable_All_WFs__c &amp;&amp;   ISCHANGED(Last_UR_Approved_For_The_Month_Of__c )*/</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

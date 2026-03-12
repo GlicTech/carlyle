@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Loop__Parent__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <formula>IF( ISBLANK( Loop__Parent_Relationship__c ) ,
+    Loop__Parent_Object__c ,
+    HYPERLINK(&#39;/&#39;+Loop__Parent_Relationship__c ,
+        IF( ISBLANK( Loop__Parent_Relationship__r.Loop__Related_Object_Alias__c ),
+            Loop__Parent_Relationship__r.Name,
+            Loop__Parent_Relationship__r.Loop__Related_Object_Alias__c
+        ) + &#39; (#&#39;+ TEXT( Loop__Parent_Relationship__r.Loop__Index__c ) +&#39;)&#39;
+    )
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Related By (What you have)</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

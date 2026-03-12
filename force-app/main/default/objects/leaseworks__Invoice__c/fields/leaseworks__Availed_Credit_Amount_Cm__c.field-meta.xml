@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Availed_Credit_Amount_Cm__c</fullName>
+    <deprecated>false</deprecated>
+    <description>sum of  amount of all payments that are credits</description>
+    <externalId>false</externalId>
+    <label>Total Amount Credited</label>
+    <summarizedField>leaseworks__Payment__c.leaseworks__Amount__c</summarizedField>
+    <summaryFilterItems>
+        <field>leaseworks__Payment__c.leaseworks__Payment_Type__c</field>
+        <operation>equals</operation>
+        <value>Credit Memo-Cash Credits, Credit Memo-Billing Adj.</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>leaseworks__Payment__c.leaseworks__Payment_Status__c</field>
+        <operation>notEqual</operation>
+        <value>Pending, Declined, Cancelled, Submitted for Approval</value>
+    </summaryFilterItems>
+    <summaryForeignKey>leaseworks__Payment__c.leaseworks__Invoice__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

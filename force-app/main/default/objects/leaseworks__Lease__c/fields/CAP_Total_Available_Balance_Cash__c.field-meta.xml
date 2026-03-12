@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CAP_Total_Available_Balance_Cash__c</fullName>
+    <description>Sum of all active supplemental rent available balances</description>
+    <externalId>false</externalId>
+    <label>Total Available Balance (Cash)</label>
+    <summarizedField>leaseworks__Assembly_MR_Rate__c.leaseworks__Transactions_Total_Cash__c</summarizedField>
+    <summaryFilterItems>
+        <field>leaseworks__Assembly_MR_Rate__c.leaseworks__Inactive__c</field>
+        <operation>equals</operation>
+        <value>False</value>
+    </summaryFilterItems>
+    <summaryForeignKey>leaseworks__Assembly_MR_Rate__c.leaseworks__Lease__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

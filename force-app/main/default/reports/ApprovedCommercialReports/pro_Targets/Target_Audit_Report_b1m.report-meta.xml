@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>pro_Asset_Target_Audit__c$pro_Asset__c</field>
+    </columns>
+    <columns>
+        <field>pro_Asset_Target_Audit__c$pro_Contract__c</field>
+    </columns>
+    <columns>
+        <field>pro_Asset_Target_Audit__c$pro_Asset__c.leaseworks__Lease__c.leaseworks__Operator_New__c.Name</field>
+    </columns>
+    <columns>
+        <field>pro_Asset_Target_Audit__c$pro_Target_Forecast__c</field>
+    </columns>
+    <columns>
+        <field>pro_Asset_Target_Audit__c$pro_Target_End_Date_1__c</field>
+    </columns>
+    <columns>
+        <field>pro_Asset_Target_Audit__c$pro_Asset_in_Deal__c.LOI_Date__c</field>
+    </columns>
+    <columns>
+        <field>pro_Asset_Target_Audit__c$pro_Reporting_Region__c</field>
+    </columns>
+    <columns>
+        <field>pro_Asset_Target_Audit__c$pro_Marketing_Trading__c</field>
+    </columns>
+    <description>New Targets Report looking at new design of Target Audits.</description>
+    <filter>
+        <criteriaItems>
+            <column>pro_Asset_Target_Audit__c$pro_Progress_Picklist__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>Moved To Trading,Target Cancelled</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>pro_Asset_Target_Audit__c$pro_Target_Year__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>2026</value>
+        </criteriaItems>
+    </filter>
+    <format>Tabular</format>
+    <name>Target Report</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Asset_Target_Audits__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>pro_Asset_Target_Audit__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

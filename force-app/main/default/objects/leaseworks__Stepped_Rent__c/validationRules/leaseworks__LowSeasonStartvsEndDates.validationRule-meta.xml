@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__LowSeasonStartvsEndDates</fullName>
+    <active>true</active>
+    <description>When lowRentStartYear == lowRentEndYear and lowSeasonMonth &gt; lowEndMonth then display the below error message</description>
+    <errorConditionFormula>AND( ISPICKVAL(leaseworks__Rent_Type__c, &#39;Seasonal Rent&#39;), OR(VALUE(leaseworks__Low_Season_Start_Year__c) &gt; VALUE(leaseworks__Low_Season_End_Year__c), AND(leaseworks__Low_Season_Start_Year__c == leaseworks__Low_Season_End_Year__c , CASE(
+TEXT(leaseworks__Low_Season_Start_Month__c),
+&#39;January&#39;,1,
+&#39;February&#39;,2,
+&#39;March&#39;,3,
+&#39;April&#39;,4,
+&#39;May&#39;,5,
+&#39;June&#39;,6,
+&#39;July&#39;,7,
+&#39;August&#39;,8,
+&#39;September&#39;,9,
+&#39;October&#39;,10,
+&#39;November&#39;,11,
+12) &gt; CASE(
+TEXT(leaseworks__Low_Season_End_Month__c),
+&#39;January&#39;,1,
+&#39;February&#39;,2,
+&#39;March&#39;,3,
+&#39;April&#39;,4,
+&#39;May&#39;,5,
+&#39;June&#39;,6,
+&#39;July&#39;,7,
+&#39;August&#39;,8,
+&#39;September&#39;,9,
+&#39;October&#39;,10,
+&#39;November&#39;,11,
+12))))</errorConditionFormula>
+    <errorMessage>Low Season ending date must be later than Low Season starting date. Please correct your date selections.</errorMessage>
+</ValidationRule>

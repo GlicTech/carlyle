@@ -1,0 +1,58 @@
+<messaging:emailTemplate subject="Interaction Follow Up {!relatedTo.Name} - Event Cancelled"
+    recipientType="User"
+    relatedToType="leaseworks__Customer_Interaction_Log__c">
+
+<messaging:htmlEmailBody >
+<html>
+<body>
+
+
+
+The follow up event on the below-listed Interaction Log have been cancelled.<br/><br/>
+
+<b>Date of Interaction:</b> <apex:outputText value=" {!relatedTo.leaseworks__Date_Of_Call__c}"/><br/>
+<b>Interaction Log Subject:</b> <apex:outputlink value="{!LEFT($Api.Partner_Server_URL_140,FIND('.com',$Api.Partner_Server_URL_140)+4)+relatedTo.Id}"> {!relatedTo.Name}</apex:outputlink><br/>
+<b>Type of Interaction:</b> {!relatedTo.leaseworks__Type_Of_Interaction__c}<br/>
+<b>Related to Account: </b> {!relatedTo.leaseworks__Related_To_Counter_Party__r.Name} <br/>
+<b>Related to Marketing Prospect:</b> {!relatedTo.Related_To_Deal_Proposal__r.name} <br/><br/>
+
+
+Sent on behalf of LeaseWorks.
+
+<!--
+ Visualforce dateformat trick, put a whitespace character before the date expression and it will format in org's locale, not GMT
+ https://douglascayers.com/2014/05/27/salesforce-displaying-datetime-field-in-visualforce-in-users-timezone/
+-->
+ 
+<br/>
+
+</body>
+</html>
+</messaging:htmlEmailBody>
+
+<messaging:attachment filename="reminder.ics">
+BEGIN:VCALENDAR
+METHOD:CANCEL
+VERSION:2.0
+PRODID://Leaseworks//Reminder//EN
+CALSCALE:GREGORIAN
+BEGIN:VEVENT
+CLASS:PUBLIC
+STATUS:CANCELLED
+ORGANIZER:MAILTO:{!relatedTo.leaseworks__Assigned_To__r.email}
+DTSTAMP;TZID=GMT:<apex:outputText value="{0,date,MMddyyyy'T'HHmmssZ}"><apex:param value="{!relatedTo.leaseworks__Follow_Up_Due_Date__c}"/></apex:outputText>
+UID:<apex:outputText value="{!relatedTo.id}"/>@{!LEFT($Api.Partner_Server_URL_140,FIND('.com',$Api.Partner_Server_URL_140)+4)}
+SEQUENCE:<apex:outputText value="{!relatedTo.leaseworks__Y_Hidden_Sequence__c}"/>
+DTSTART;VALUE=DATE:<apex:outputText value="{!MID(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(TEXT(relatedTo.leaseworks__Follow_Up_Due_Date__c),':',''),'-',''),' ','T'),1,8)}"/>
+SUMMARY:<apex:outputText value="Subject {!relatedTo.name}"/>
+DESCRIPTION:The follow up on the below-listed Interaction Log has been cancelled.\nInteraction Log Subject:{!relatedTo.Name}\nType of Interaction: {!relatedTo.leaseworks__Type_Of_Interaction__c}\nRelated to Operator: {!relatedTo.Related_To_Operator__r.name} \nRelated to Account: {!relatedTo.Related_To_Counter_Party__r.Name}\nRelated to Marketing Prospect: {!relatedTo.Related_To_Deal_Proposal__r.name}\n\n {!LEFT($Api.Partner_Server_URL_140,FIND('.com',$Api.Partner_Server_URL_140)+4)+relatedTo.Id}\n\nSent on behalf of LeaseWorks
+BEGIN:VALARM
+TRIGGER:-PT1D
+ACTION:DISPLAY
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+END:VCALENDAR 
+</messaging:attachment>
+
+</messaging:emailTemplate>

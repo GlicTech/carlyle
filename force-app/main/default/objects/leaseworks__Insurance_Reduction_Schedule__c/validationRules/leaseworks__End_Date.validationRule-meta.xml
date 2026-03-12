@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__End_Date</fullName>
+    <active>true</active>
+    <description>The End date of the Insurance Reduction Schedule Record cannot be before the Schedule Start Date.</description>
+    <errorConditionFormula>leaseworks__End_Date__c &lt;= leaseworks__Start_Date__c</errorConditionFormula>
+    <errorDisplayField>leaseworks__End_Date__c</errorDisplayField>
+    <errorMessage>The End Date of the AV Reduction Schedule must fall after the Start Date of the schedule period. Please check and update accordingly before saving the record.</errorMessage>
+</ValidationRule>

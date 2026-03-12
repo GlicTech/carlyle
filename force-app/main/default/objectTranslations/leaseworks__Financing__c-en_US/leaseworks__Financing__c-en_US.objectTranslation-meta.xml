@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>Financing Lease Layout</layout>
+        <sections>
+            <label><!-- Payment Term --></label>
+            <section>Payment Term</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- External Team --></label>
+        <name>Sharing</name>
+    </quickActions>
+    <validationRules>
+        <errorMessage><!-- Name already exists. --></errorMessage>
+        <name>leaseworks__DuplicateCheck</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Lease is needed only for Operating Lease --></errorMessage>
+        <name>leaseworks__LeaseCheckNotNeeded</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Term of the Loan is invalid. --></errorMessage>
+        <name>leaseworks__TermRule</name>
+    </validationRules>
+</CustomObjectTranslation>

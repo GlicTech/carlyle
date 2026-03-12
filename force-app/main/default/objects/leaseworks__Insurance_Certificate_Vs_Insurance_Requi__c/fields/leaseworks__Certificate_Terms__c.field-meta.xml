@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Certificate_Terms__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <formula>CASE( leaseworks__Insurance_Requirement__r.leaseworks__Requirement_Type__c , &quot;TextArea&quot;, leaseworks__Text__c ,
+&quot;Percentage&quot;, IF( ISNULL( leaseworks__Percentage__c ) , &#39;&#39;,TEXT( leaseworks__Percentage__c * 100 ) + &#39;%&#39;) ,
+
+&quot;Currency&quot;, IF( ISNULL( leaseworks__Currency__c ) , &#39;&#39;, &#39;$&#39; + IF(
+leaseworks__Currency__c &gt;= 1000000,
+TEXT(FLOOR(leaseworks__Currency__c / 1000000)) &amp; &quot;,&quot;,
+&quot;&quot;) &amp;
+IF(
+leaseworks__Currency__c &gt;= 1000,
+RIGHT(TEXT(FLOOR(leaseworks__Currency__c / 1000)), 3) &amp; &quot;,&quot;,
+&quot;&quot;) &amp;
+RIGHT(TEXT(FLOOR(leaseworks__Currency__c )), 3) &amp; &quot;.&quot; &amp;
+IF(
+MOD(leaseworks__Currency__c , 1) * 100 &lt; 10,
+&quot;0&quot; &amp; TEXT(ROUND(MOD(leaseworks__Currency__c , 1), 2) * 100),
+TEXT(MIN(ROUND(MOD(leaseworks__Currency__c , 1), 2) * 100, 99))
+))
+,
+&quot;Date&quot;, TEXT( leaseworks__Date__c ) ,
+&quot;Number&quot;, TEXT( leaseworks__Number__c )
+,
+&quot;Checkbox&quot;, IF( leaseworks__Selection__c , &quot;Yes&quot;, IF( CreatedDate == LastModifiedDate , &quot;&quot; , &quot;No&quot;)) ,
+&quot;&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Certificate Terms</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

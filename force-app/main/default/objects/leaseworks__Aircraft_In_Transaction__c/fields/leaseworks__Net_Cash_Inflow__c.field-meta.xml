@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Net_Cash_Inflow__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <formula>((leaseworks__Rent__c - leaseworks__Management_Fee__c )* leaseworks__Term_Mo__c ) 
+-
+(leaseworks__Debt_Amortization_Payment__c * leaseworks__Term_Mo__c )
+
++ if(leaseworks__Net_Residual_Value_M__c &gt;= leaseworks__Balloon_Payment__c , (leaseworks__Net_Residual_Value_M__c  - leaseworks__Balloon_Payment__c) *1000000, 0 )</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Rent net of management fee and loan payments along with the increment received if the Residual Value is greater than Balloon payment</inlineHelpText>
+    <label>Net Cash Inflow</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

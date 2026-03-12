@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>LesseeMustBeAirline</fullName>
+    <active>false</active>
+    <description>Rule restricts users from being able to populate the Lessee field with an account that is not of type &#39;Airline&#39;</description>
+    <errorConditionFormula>AND (
+    NOT(ISBLANK(  leaseworks__Lessee_New__c  )) &amp;&amp;
+    NOT( ISPICKVAL(  leaseworks__Type__c , &quot;Airline&quot;))
+)</errorConditionFormula>
+    <errorDisplayField>leaseworks__Lessee_New__c</errorDisplayField>
+    <errorMessage>The Lessee must be an Account of type &quot;Airline&quot;</errorMessage>
+</ValidationRule>

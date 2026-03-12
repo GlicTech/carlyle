@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <block>
+        <blockInfo>
+            <blockId>B0</blockId>
+            <joinTable>fkx</joinTable>
+        </blockInfo>
+        <columns>
+            <field>FK_$leaseworks__Aircraft__c.leaseworks__Aircraft_ID__c</field>
+        </columns>
+        <columns>
+            <field>FK_CUSTENT_ID</field>
+        </columns>
+        <columns>
+            <field>CUST_NAME</field>
+        </columns>
+        <columns>
+            <field>CUST_ID</field>
+        </columns>
+        <columns>
+            <field>leaseworks__Constituent_Assembly__c.leaseworks__Type__c</field>
+        </columns>
+        <format>Summary</format>
+        <name>Assemblies with Asset (Titled / block 1</name>
+        <params>
+            <name>co</name>
+            <value>1</value>
+        </params>
+        <reportType>CustomEntity$leaseworks__Constituent_Assembly__c@leaseworks__Constituent_Assembly__c.leaseworks__Attached_Aircraft__c</reportType>
+        <scope>organization</scope>
+        <showGrandTotal>true</showGrandTotal>
+        <showSubTotals>true</showSubTotals>
+        <timeFrameFilter>
+            <dateColumn>leaseworks__Constituent_Assembly__c.leaseworks__Y_Hidden_Last_Event_Date__c</dateColumn>
+            <interval>INTERVAL_CUSTOM</interval>
+        </timeFrameFilter>
+    </block>
+    <block>
+        <blockInfo>
+            <blockId>B1</blockId>
+            <joinTable>fkx</joinTable>
+        </blockInfo>
+        <columns>
+            <field>CUST_NAME</field>
+        </columns>
+        <format>Summary</format>
+        <name>Contracts with Asset block 1</name>
+        <params>
+            <name>co</name>
+            <value>1</value>
+        </params>
+        <reportType>CustomEntity$leaseworks__Lease__c@leaseworks__Lease__c.leaseworks__Aircraft__c</reportType>
+        <scope>organization</scope>
+        <showGrandTotal>true</showGrandTotal>
+        <showSubTotals>true</showSubTotals>
+        <timeFrameFilter>
+            <dateColumn>leaseworks__Lease__c.leaseworks__Y_Hidden_Deposit_Return_Date_SD__c</dateColumn>
+            <interval>INTERVAL_CUSTOM</interval>
+        </timeFrameFilter>
+    </block>
+    <blockInfo>
+        <blockId xsi:nil="true"/>
+        <joinTable>fkx</joinTable>
+    </blockInfo>
+    <format>MultiBlock</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>FK_NAME</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Assembly Report</name>
+    <reportType>CustomEntity$leaseworks__Constituent_Assembly__c@leaseworks__Constituent_Assembly__c.leaseworks__Attached_Aircraft__c</reportType>
+    <showDetails>true</showDetails>
+</Report>

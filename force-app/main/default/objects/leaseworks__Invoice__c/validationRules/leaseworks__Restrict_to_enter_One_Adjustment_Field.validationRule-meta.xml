@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Restrict_to_enter_One_Adjustment_Field</fullName>
+    <active>true</active>
+    <description>Either the Adjustment % or Amount can be applied to the invoice. Please ensure that value is selected only for one of them.</description>
+    <errorConditionFormula>AND(
+    !$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c,
+    NOT( ISBLANK( leaseworks__Adjustment__c ) ), 
+    NOT( ISBLANK(  leaseworks__Adjustment_Amount__c ) ),
+    leaseworks__Adjustment__c &lt;&gt; 0, 
+    leaseworks__Adjustment_Amount__c &lt;&gt; 0
+)</errorConditionFormula>
+    <errorMessage>Either the Adjustment % or Amount can be applied to the invoice. Please ensure that value is selected only for one of them.</errorMessage>
+</ValidationRule>

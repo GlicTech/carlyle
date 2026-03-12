@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>61.0</apiVersion>
+    <environments>Default</environments>
+    <formulas>
+        <name>f_Subject</name>
+        <dataType>String</dataType>
+        <expression>&quot;CPC Update - Deal: &quot; &amp;  {!$Record.leaseworks__Related_To_Marketing_Activity__r.Deal_Unique_ID__c} &amp; &quot; (&quot; &amp; TEXT(MONTH({!$Record.leaseworks__Date_Of_Call__c})) &amp; &quot;/&quot; &amp; TEXT(DAY({!$Record.leaseworks__Date_Of_Call__c})) &amp; &quot;/&quot; &amp; TEXT(YEAR({!$Record.leaseworks__Date_Of_Call__c})) &amp; &quot;)&quot;</expression>
+    </formulas>
+    <interviewLabel>SCHEDULED - Update Auto Created Interaction Logs {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>SCHEDULED - Update Auto Created Interaction Logs</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Update_Interaction_Log_Commercial</name>
+        <label>Update Interaction Log - Commercial</label>
+        <locationX>176</locationX>
+        <locationY>252</locationY>
+        <inputAssignments>
+            <field>Name</field>
+            <value>
+                <elementReference>f_Subject</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Update_Interaction_Log_Commercial</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>leaseworks__Y_Hidden_IsAutoCreated__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <object>leaseworks__Customer_Interaction_Log__c</object>
+        <schedule>
+            <frequency>Once</frequency>
+            <startDate>2024-06-19</startDate>
+            <startTime>09:03:00.000Z</startTime>
+        </schedule>
+        <triggerType>Scheduled</triggerType>
+    </start>
+    <status>Obsolete</status>
+</Flow>

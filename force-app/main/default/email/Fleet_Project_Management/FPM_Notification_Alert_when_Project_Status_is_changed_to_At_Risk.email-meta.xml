@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Alert when Project Status is changed to At Risk</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>leaseworks__Smart_Lease_Logo</letterhead>
+    <name>FPM Notification: Alert when Project Status is changed to &quot;At Risk&quot;</name>
+    <style>freeForm</style>
+    <subject>Notification: Status of Project {!leaseworks__Technical_Project__c.Name} is marked as &quot;At Risk&quot;</subject>
+    <textOnly>Dear {!leaseworks__Project_Contact__c.Name}
+
+This is an automated notification to inform you that the project where you are listed as a stakeholder has changed its statue to AT RISK. Please see below for some information on this project, along with a direct link to it.
+
+
+Project Name: {!leaseworks__Technical_Project__c.Name}
+
+Project Type: {!leaseworks__Technical_Project__c.leaseworks__Project_Type__c}
+
+Associated Assembly: {!leaseworks__Technical_Project__c.Assembly_local__c}
+
+Project Description: {!leaseworks__Technical_Project__c.leaseworks__Project_Description__c}
+
+
+
+Thanks</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

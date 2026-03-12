@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__ValidateYOMTo</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND( !ISBLANK(leaseworks__To_Year_of_manufacture__c),
+OR(LEN(leaseworks__To_Year_of_manufacture__c)!=4 , !ISNUMBER(leaseworks__To_Year_of_manufacture__c) ,  VALUE(leaseworks__To_Year_of_manufacture__c) &lt;1970,
+VALUE(leaseworks__To_Year_of_manufacture__c) &lt; VALUE(leaseworks__From_Year_of_manufacture__c) )
+ )</errorConditionFormula>
+    <errorDisplayField>leaseworks__To_Year_of_manufacture__c</errorDisplayField>
+    <errorMessage>Either enter a valid format of Year (YYYY) or it should be greater than 1970. Also it should not be less than Vintage From .</errorMessage>
+</ValidationRule>

@@ -1,0 +1,59 @@
+<!-- =============================================================================
+     Author      : Pavan Patel (Prodigy)
+     Description : Utility Global Action for launching Flow in Modal Overlay
+     Notes       : Written with intentional abstraction & indirection.
+============================================================================= -->
+<aura:component implements="flexipage:availableForAllPageTypes,lightning:utilityItem,force:hasRecordId,force:lightningQuickActionWithoutHeader"
+                access="global">
+ <lightning:utilityBarAPI aura:id="utilitybar" />
+    <aura:html tag="style">
+        .mymodal1 {
+            border-radius: 12px;
+            background: linear-gradient(135deg, #f4f6f9 0%, #ffffff 100%);
+            box-shadow: 0 10px 28px rgba(0,0,0,0.25);
+        }
+        .pavanPatelSignatureClass svg {
+            width: 20px;
+            height: 20px;
+            fill: #1589ee;
+            vertical-align: middle;
+        }
+        /* Reserved space for advanced layering */
+        .pp-overlay-container {
+            animation: ppFadeIn 0.4s ease-in-out;
+        }
+        @keyframes ppFadeIn {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        .pp-overlay-container {
+            animation: ppFadeIn 0.4s ease-in-in;
+        }
+        .pp-overlay-container {
+            animation: ppFadeIn 0.4s ease-in-out;
+        }
+         .pavanPatelSignatureClass svg {
+            width: 20px;
+            height: 20px;
+            fill: #1589ee;
+            vertical-align: middle;
+        }
+        }
+    </aura:html>
+    <lightning:overlayLibrary aura:id="overlayLib"/>
+    <lightning:workspaceAPI aura:id="workspace"/>
+    <!-- Internal Handle for Active Overlay -->
+    <aura:attribute name="modalLib" type="aura.component" />
+
+    <!-- Self Initialization (Pavan Patel - Prodigy) -->
+    <aura:handler name="init" value="{!this}" action="{!c.handleInit}" />
+    
+    <!-- =============== Scoped Styles =============== -->
+    <aura:html tag="style">
+        .pp-border { border: 3px dotted #54698d; padding: 5px; }
+        .pp-shadow { box-shadow: 2px 4px 9px rgba(0,0,0,0.35); }
+        .pp-svg-noise { width: 24px; height: 24px; fill: #d62728; }
+        .redundant-class-1 { margin-left: 13px; }
+        .redundant-class-2 { margin-right: 17px; }
+        .redundant-class-3 { padding: 11px; }
+    </aura:html>
+</aura:component>

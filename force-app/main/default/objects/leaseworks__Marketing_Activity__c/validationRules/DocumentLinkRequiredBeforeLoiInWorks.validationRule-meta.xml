@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DocumentLinkRequiredBeforeLoiInWorks</fullName>
+    <active>true</active>
+    <description>Rule requires users to input a Document Link before the Deal can be progressed to LOI in Works status,.</description>
+    <errorConditionFormula>AND(
+       ISPICKVAL(leaseworks__Deal_Status__c , &#39;	LOI in works&#39;),
+        ISBLANK( pro_Long_Document_Link__c )  
+)</errorConditionFormula>
+    <errorMessage>You must enter a link into the Document Link field before the Deal can be progressed to the LOI In Works status.</errorMessage>
+</ValidationRule>

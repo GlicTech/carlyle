@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <fieldSets>
+        <label><!-- Rate Schedule Insert Update Field Bypass --></label>
+        <name>leaseworks__Rate_Schedule_Insert_Update_Field_Bypass</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Rate Schedule Update Bypass --></label>
+        <name>leaseworks__Rate_Schedule_Update_Bypass</name>
+    </fieldSets>
+    <layouts>
+        <layout>MR Rate Layout</layout>
+        <sections>
+            <label><!-- Hidden Field --></label>
+            <section>Hidden Field</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Rate Schedule Feb 2020</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <validationRules>
+        <errorMessage><!-- Rate Schedule End Date can not be after Lease Redelivery Date or Lease End Date (in case Redelivery Date is blank and end date is greater than today). Please update Rate Schedule End Date. --></errorMessage>
+        <name>leaseworks__MRRateEndDate</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Rate Schedule Start Date can not be prior to Lease Start Date. Please update Rate Schedule Start Date. --></errorMessage>
+        <name>leaseworks__MRRateStartDate</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Rate Schedule End Date can not be before Rate Schedule Start Date. --></errorMessage>
+        <name>leaseworks__MRRateStart_EndDate</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- ApproveAll --></label>
+        <name>leaseworks__ApproveAll</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Generate_Escalation_Rate_Schedule --></label>
+        <name>leaseworks__Generate_Escalation_Rate_Schedule</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Un_Approve_All --></label>
+        <name>leaseworks__Un_Approve_All</name>
+    </webLinks>
+</CustomObjectTranslation>

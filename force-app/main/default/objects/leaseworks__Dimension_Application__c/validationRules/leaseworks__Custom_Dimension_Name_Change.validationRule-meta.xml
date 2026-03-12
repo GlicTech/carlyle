@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Custom_Dimension_Name_Change</fullName>
+    <active>true</active>
+    <description>#Dimensionstory -  Under Custom Dimension Application we should stop the user from editing the field values (Lease, Dimension Application Name)</description>
+    <errorConditionFormula>NOT(leaseworks__Dimension_Value__r.leaseworks__Dimension__r.leaseworks__Is_Standard__c) &amp;&amp; (ISCHANGED(Name) || ISCHANGED(leaseworks__Lease__c))</errorConditionFormula>
+    <errorMessage>This field cannot be manually modified.</errorMessage>
+</ValidationRule>

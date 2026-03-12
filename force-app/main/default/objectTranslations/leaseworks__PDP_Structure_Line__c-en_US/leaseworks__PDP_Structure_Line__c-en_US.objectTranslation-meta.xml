@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <recordTypes>
+        <description><!-- The Amount($) and Date of his type of Payment is fixed for every PDP using this Structure. --></description>
+        <label><!-- Fixed --></label>
+        <name>leaseworks__Fixed</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- The Amount($) of his type of Payment is determined by a percentage of the Total PDP. The date of the payment is determined by the Months until delivery --></description>
+        <label><!-- Variable --></label>
+        <name>leaseworks__Variable</name>
+    </recordTypes>
+    <validationRules>
+        <errorMessage><!-- The Fixed Payment must be greater than 0. --></errorMessage>
+        <name>leaseworks__Fixed_Payment_Validations_01</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Fixed Payment or % Payment must be defined. --></errorMessage>
+        <name>leaseworks__Fixed_Payment_Validations_02</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must especify a Date for Fixed Payments. --></errorMessage>
+        <name>leaseworks__Fixed_Payment_Validations_03</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The Payment Percentage must be greater than 0 --></errorMessage>
+        <name>leaseworks__Payment_Percentage_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You can&apos;t specify a Fixed Date for a Signature Payment --></errorMessage>
+        <name>leaseworks__Validate_no_Fixed_Date_on_Signature</name>
+    </validationRules>
+</CustomObjectTranslation>

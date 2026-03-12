@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Status__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Tells you if this aircraft is available to be lease out</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Available: can be linked to a Lease; Assigned: Linked to a Lease. Other values are self-explanatory.</inlineHelpText>
+    <label>Status</label>
+    <required>false</required>
+    <trackFeedHistory>true</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Assigned</fullName>
+                <default>false</default>
+                <label>In Fleet - Lease Attached</label>
+            </value>
+            <value>
+                <fullName>Available</fullName>
+                <default>true</default>
+                <label>In Fleet - Available</label>
+            </value>
+            <value>
+                <fullName>Sold</fullName>
+                <default>false</default>
+                <label>Sold</label>
+            </value>
+            <value>
+                <fullName>Consigned</fullName>
+                <default>false</default>
+                <label>Consigned</label>
+            </value>
+            <value>
+                <fullName>Not Purchased</fullName>
+                <default>false</default>
+                <label>Asset created but purchase did not close</label>
+            </value>
+            <value>
+                <fullName>Restricted</fullName>
+                <default>false</default>
+                <label>Restricted</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

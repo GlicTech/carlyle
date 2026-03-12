@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Set_MR_Rate_From_Catalog</fullName>
+    <availability>online</availability>
+    <description>Use the LLP Stack to calculate and set the MR Rate for LLPs</description>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Set MR Rate From Catalog</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>{!REQUIRESCRIPT(&quot;/soap/ajax/57.0/connection.js&quot;)}
+{!REQUIRESCRIPT(&quot;/soap/ajax/57.0/apex.js&quot;)}
+
+try{
+if(&#39;{!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Package_Prefix__c}&#39;== &quot;&quot;){
+var retVal =sforce.apex.execute(&quot;LWGlobalUtils&quot;,&quot;UpdateStackCostPerCycle&quot;, {LLPMRRateID:&quot;{! leaseworks__Assembly_MR_Rate__c.Id }&quot;});
+}
+else{
+var retVal =sforce.apex.execute(&quot;leaseworks/LWGlobalUtils&quot;,&quot;UpdateStackCostPerCycle&quot;, {LLPMRRateID:&quot;{! leaseworks__Assembly_MR_Rate__c.Id }&quot;});
+}
+
+window.location.reload();
+}catch(err){
+retVal=&quot;Unable to set the MR Rate, probably because you don&#39;t have permission. &quot; + err;
+}
+
+window.alert(retVal);</url>
+</WebLink>

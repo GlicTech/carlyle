@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>63.0</apiVersion>
+    <assignments>
+        <name>Assign_Rent_Slip_Line_Comment_To_Invoice_Line_Comment</name>
+        <label>Assign Rent Slip Line Comment To Invoice Line Comment</label>
+        <locationX>50</locationX>
+        <locationY>395</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.leaseworks__Comments__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.leaseworks__Rent_Slip_Line_Item__r.leaseworks__Comment__c</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <decisions>
+        <name>Doesn_Rent_Slip_Line_Item_Have_a_Comment</name>
+        <label>Doesn Rent Slip Line Item Have a Comment</label>
+        <locationX>182</locationX>
+        <locationY>287</locationY>
+        <defaultConnectorLabel>No - End</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Assign_To_Invoice_Line_Comments</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.leaseworks__Rent_Slip_Line_Item__r.leaseworks__Comment__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Rent_Slip_Line_Comment_To_Invoice_Line_Comment</targetReference>
+            </connector>
+            <label>Yes - Assign To Invoice Line Comments</label>
+        </rules>
+    </decisions>
+    <description>If an Invoice Line Item is Created, which has a related Rent Slip Line Item, AND the Invoice Line Items &quot;Line Comment&quot; Field has been left blank by User who created it, we should check the related Rent Slip Line Item record, and if it has a Value in the &quot;Comments&quot; field, we should use that value to be populated into the invoice Line Items &quot;Line Comment&quot; field.
+
+PC - Prodigy 19/03/24
+
+https://app.asana.com/0/1207574878425116/1208662967448706/f</description>
+    <environments>Default</environments>
+    <interviewLabel>Invoice Line Item - Before Save/Create - Assign Rent Slip Line Comment {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Invoice Line Item - Before Save/Create - Assign Rent Slip Line Comment</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Doesn_Rent_Slip_Line_Item_Have_a_Comment</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>leaseworks__Comments__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>leaseworks__Rent_Slip_Line_Item__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <object>leaseworks__Invoice_Line_Item__c</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

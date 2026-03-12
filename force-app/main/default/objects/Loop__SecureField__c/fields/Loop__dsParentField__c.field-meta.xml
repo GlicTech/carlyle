@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Loop__dsParentField__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <inlineHelpText>The value of the parent field will determine whether this field appears while the recipient is signing.</inlineHelpText>
+    <label>Parent Field</label>
+    <lookupFilter>
+        <active>true</active>
+        <filterItems>
+            <field>$Source.Loop__Recipient__c</field>
+            <operation>equals</operation>
+            <valueField>Loop__SecureField__c.Loop__Recipient__c</valueField>
+        </filterItems>
+        <isOptional>true</isOptional>
+    </lookupFilter>
+    <referenceTo>Loop__SecureField__c</referenceTo>
+    <relationshipLabel>Conditional Fields</relationshipLabel>
+    <relationshipName>Conditional_Fields</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

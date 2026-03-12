@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Month_Ending_outside_lease_period</fullName>
+    <active>false</active>
+    <description>Deprecated</description>
+    <errorConditionFormula>false
+/*OR(Month_Ending__c &lt;  DATEVALUE(Y_hidden_Lease__r.Lease_Start_Date__c),  Month_Ending__c - 30 &gt;  DATEVALUE(Y_hidden_Lease__r.Lease_End_Date__c))*/</errorConditionFormula>
+    <errorDisplayField>leaseworks__Month_Ending__c</errorDisplayField>
+    <errorMessage>You cannot file utilization for a period beyond lease period.</errorMessage>
+</ValidationRule>

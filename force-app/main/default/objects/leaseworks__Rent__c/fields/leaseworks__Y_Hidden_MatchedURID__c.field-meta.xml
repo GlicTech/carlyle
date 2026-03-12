@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Y_Hidden_MatchedURID__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <formula>if((RIGHT(&#39;0&#39;+ Text(MONTH(leaseworks__For_Month_Ending__c)), 2)+ Text(year(leaseworks__For_Month_Ending__c)))=
+(RIGHT(&#39;0&#39;+ Text(MONTH(leaseworks__Y_Hidden_Utilization__r.leaseworks__Month_Ending__c)), 2)+ Text(year(leaseworks__Y_Hidden_Utilization__r.leaseworks__Month_Ending__c))),True,False)</formula>
+    <label>_MatchedURID</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

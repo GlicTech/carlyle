@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Total_Line_Amount_Ledger__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Indicates Total Line Amount in ledger currency.</description>
+    <externalId>false</externalId>
+    <formula>IF( leaseworks__Invoice__r.leaseworks__Multicurrency_Enabled__c, IF(AND(NOT(ISNULL(leaseworks__Invoice__r.leaseworks__Exchange_Rate__c )),leaseworks__Invoice__r.leaseworks__Exchange_Rate__c != 0), leaseworks__Invoice__r.leaseworks__Exchange_Rate__c * leaseworks__Total_Line_Amount_Number__c , leaseworks__Invoice__r.leaseworks__Exchange_Rate__c),leaseworks__Total_Line_Amount_Number__c)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Indicates Total Line Amount in ledger currency.</inlineHelpText>
+    <label>Total Line Amount (Ledger)</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

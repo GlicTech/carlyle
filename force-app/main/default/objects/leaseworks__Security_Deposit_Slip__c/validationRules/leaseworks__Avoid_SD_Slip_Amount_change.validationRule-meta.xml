@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Avoid_SD_Slip_Amount_change</fullName>
+    <active>true</active>
+    <description>This validation rule is to avoid the SD Slip Amount Change when the status in Invoiced</description>
+    <errorConditionFormula>AND( 
+     !$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c,
+     ISCHANGED( leaseworks__SD_Slip_Amount__c ),
+     NOT(ISBLANK(leaseworks__Link_To_Invoice__c)) 
+)</errorConditionFormula>
+    <errorMessage>Manual updates to the SD Slip Amount are not allowed after invoicing. Please decline or cancel the associated invoice to proceed.</errorMessage>
+</ValidationRule>

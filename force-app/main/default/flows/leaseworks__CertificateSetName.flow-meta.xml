@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>63.0</apiVersion>
+    <description>Combines the related asset&#39;s name and its type into a single text value to display on the certificate record.</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>CertificatesName</name>
+        <dataType>String</dataType>
+        <expression>{!$Record.leaseworks__Asset_Name__r.Name} + &#39; - &#39; + TEXT($Record.leaseworks__Type__c)</expression>
+    </formulas>
+    <interviewLabel>CertificateSetName {!$Flow.CurrentDateTime}</interviewLabel>
+    <isTemplate>true</isTemplate>
+    <label>CertificateSetName</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <description>Certificate Name:
+Asset Name - Type</description>
+        <name>CertificateSetName</name>
+        <label>CertificateSetName</label>
+        <locationX>457</locationX>
+        <locationY>349</locationY>
+        <inputAssignments>
+            <field>Name</field>
+            <value>
+                <elementReference>CertificatesName</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>330</locationX>
+        <locationY>48</locationY>
+        <connector>
+            <targetReference>CertificateSetName</targetReference>
+        </connector>
+        <filterFormula>AND((NOT {!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c}), (NOT {!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c}))</filterFormula>
+        <object>leaseworks__Certificates__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

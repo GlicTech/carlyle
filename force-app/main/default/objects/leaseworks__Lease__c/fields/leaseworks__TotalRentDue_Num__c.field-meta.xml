@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__TotalRentDue_Num__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Sum of Balance Due from all Approved/Partially Paid Rent Invoices.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Sum of Balance Due from all Approved/Partially Paid Rent Invoices.</inlineHelpText>
+    <label>TotalRentDue</label>
+    <summarizedField>leaseworks__Invoice__c.leaseworks__Balance_Due_Ledger__c</summarizedField>
+    <summaryFilterItems>
+        <field>leaseworks__Invoice__c.leaseworks__Overdue__c</field>
+        <operation>equals</operation>
+        <value>True</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>leaseworks__Invoice__c.leaseworks__Status__c</field>
+        <operation>equals</operation>
+        <value>Approved, Cancelled-Pending</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>leaseworks__Invoice__c.leaseworks__Payment_Status__c</field>
+        <operation>equals</operation>
+        <value>Open, Partially Paid, Partially Credited</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>leaseworks__Invoice__c.leaseworks__Invoice_Type__c</field>
+        <operation>equals</operation>
+        <value>Rent</value>
+    </summaryFilterItems>
+    <summaryForeignKey>leaseworks__Invoice__c.leaseworks__Lease__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

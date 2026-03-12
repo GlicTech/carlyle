@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>leaseworks__Insurance_Certificate_IR__c.leaseworks__Insurance_Certificate_Validations__r$leaseworks__Insurance_Requirement__c.leaseworks__Sorting_Order__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Insurance_Certificate_IR__c.leaseworks__Insurance_Certificate_Validations__r$Name</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Insurance_Certificate_IR__c.leaseworks__Insurance_Certificate_Validations__r$leaseworks__Lease_Terms__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Insurance_Certificate_IR__c.leaseworks__Insurance_Certificate_Validations__r$leaseworks__Insurance_Certificate_Terms__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Insurance_Certificate_IR__c.leaseworks__Insurance_Certificate_Validations__r$leaseworks__Reinsurance_Certificate_Terms__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>leaseworks__Insurance_Certificate_IR__c.leaseworks__Insurance_Certificate_Validations__r$leaseworks__Accepted__c</field>
+    </columns>
+    <description>As part of reinsurance, the data will populate both ins and reins terms on the table and bring it to the report table.</description>
+    <format>Tabular</format>
+    <name>Cert valid ins and reins terms</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Insurance_certificate_validation__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <sortColumn>leaseworks__Insurance_Certificate_IR__c.leaseworks__Insurance_Certificate_Validations__r$leaseworks__Insurance_Requirement__c.leaseworks__Sorting_Order__c</sortColumn>
+    <sortOrder>Asc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>leaseworks__Insurance_Certificate_IR__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

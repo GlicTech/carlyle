@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Loop__Scheduled_Delivery_Option__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <label>Scheduled Delivery Option</label>
+    <lookupFilter>
+        <active>true</active>
+        <errorMessage>Only non-download Delivery Options related to this DocGen Package allowed.</errorMessage>
+        <filterItems>
+            <field>Loop__DDP_Integration_Option__c.Loop__DDP__c</field>
+            <operation>equals</operation>
+            <valueField>$Source.Id</valueField>
+        </filterItems>
+        <filterItems>
+            <field>Loop__DDP_Integration_Option__c.RecordTypeId</field>
+            <operation>notEqual</operation>
+            <value>Download</value>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>Loop__DDP_Integration_Option__c</referenceTo>
+    <relationshipLabel>DocGen Packages</relationshipLabel>
+    <relationshipName>Document_Packages</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

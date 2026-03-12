@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__ValidateFeeAmountIntercompanyServiceFee</fullName>
+    <active>true</active>
+    <errorConditionFormula>IF( AND( !$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c, ISPICKVAL(leaseworks__Fee_Amount_Type__c , &#39;%&#39;) , OR(ISPICKVAL(leaseworks__Intercompany_Service_Fee__c , &#39;No&#39;), ISPICKVAL(leaseworks__Intercompany_Service_Fee__c , &#39;&#39;) ),   NOT(leaseworks__Autocreate_Service_Fee_Invoices__c ) ), true, false)</errorConditionFormula>
+    <errorMessage>Fee% is only applicable for Service fee schedule linked to a rent schedule.</errorMessage>
+</ValidationRule>

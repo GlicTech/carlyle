@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>pro_Non_Deal_Approver_Count__c</fullName>
+    <description>A count of all the child Deal Teams to this Deal whose Member Role field is set to Non Deal Approver</description>
+    <externalId>false</externalId>
+    <label>Non Deal Approver Count</label>
+    <summaryFilterItems>
+        <field>leaseworks__Deal_Team__c.pro_Member_Role__c</field>
+        <operation>equals</operation>
+        <value>Non Deal Approver</value>
+    </summaryFilterItems>
+    <summaryForeignKey>leaseworks__Deal_Team__c.leaseworks__Marketing_Activity__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

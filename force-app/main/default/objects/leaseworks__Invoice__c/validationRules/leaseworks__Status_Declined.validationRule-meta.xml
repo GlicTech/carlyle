@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Status_Declined</fullName>
+    <active>true</active>
+    <description>Invoice status should not be allowed to changed to any other status once it is &#39;Declined&#39;.</description>
+    <errorConditionFormula>ISPICKVAL(PRIORVALUE(leaseworks__Status__c),&quot;Declined&quot;) &amp;&amp; ISCHANGED(leaseworks__Status__c)</errorConditionFormula>
+    <errorDisplayField>leaseworks__Status__c</errorDisplayField>
+    <errorMessage>Unable to approve invoices in Declined status. Please generate a new invoice, then the status can be set to Approved.</errorMessage>
+</ValidationRule>

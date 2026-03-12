@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Cannot_Update_If_MR_Paid</fullName>
+    <active>false</active>
+    <description>Z_Unused_Cannot_Update_If_MR_Paid</description>
+    <errorConditionFormula>false /*AND( !$Setup.LeaseWorksSettings__c.Disable_All_Triggers__c   ,
+false
+)*/</errorConditionFormula>
+    <errorMessage>You cannot update the record once the Utilization Report is paid.</errorMessage>
+</ValidationRule>

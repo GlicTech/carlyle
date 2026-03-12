@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>leaseworks__Aircraft_Proposal__c$Name</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Aircraft_Proposal__c.Asset_Target_Audits__r$Name</field>
+    </columns>
+    <description>For reporting on Asset in Deal records whose LOI signed date was populated, but no Asset Target Audit records related.</description>
+    <filter>
+        <criteriaItems>
+            <column>leaseworks__Aircraft_Proposal__c$LOI_Date__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value></value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>leaseworks__Aircraft_Proposal__c.Asset_Target_Audits__r$Name</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value></value>
+        </criteriaItems>
+    </filter>
+    <format>Tabular</format>
+    <name>AiDs LOI Signed No ATA</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Assets_in_Deal_with_without_Asset_Target_Audits__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>leaseworks__Aircraft_Proposal__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

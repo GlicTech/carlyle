@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Adjustment_Amount_Should_not_be_negative</fullName>
+    <active>true</active>
+    <description>This validation is used to restrict users from entering an Adjustment Amount that would cause the recalculated Original Invoice Amount to become negative.</description>
+    <errorConditionFormula>AND(
+    !$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c,
+    ISCHANGED(leaseworks__Adjustment_Amount__c),  
+    ((leaseworks__Amount__c  - PRIORVALUE(leaseworks__Adjustment_Amount__c) )+ leaseworks__Adjustment_Amount__c) &lt; 0
+)</errorConditionFormula>
+    <errorDisplayField>leaseworks__Adjustment_Amount__c</errorDisplayField>
+    <errorMessage>The entered Adjustment Amount will result in a negative invoice amount. Please enter a valid adjustment.</errorMessage>
+</ValidationRule>

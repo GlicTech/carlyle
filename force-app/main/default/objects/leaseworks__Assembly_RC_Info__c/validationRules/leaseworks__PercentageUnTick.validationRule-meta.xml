@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__PercentageUnTick</fullName>
+    <active>false</active>
+    <errorConditionFormula>and (!leaseworks__Return_Percentage__c ,   isBlank( leaseworks__RC_FC__c) ,
+isBlank( leaseworks__RC_FH__c),isBlank( leaseworks__RC_Months__c))</errorConditionFormula>
+    <errorMessage>Please enter return number value for FH, FC and Months.</errorMessage>
+</ValidationRule>

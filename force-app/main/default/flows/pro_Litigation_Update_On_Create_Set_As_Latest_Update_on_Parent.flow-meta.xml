@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>61.0</apiVersion>
+    <description>This record triggered flow runs upon the creation of a Litigation Update record. The flow will clone the Status update to the &quot;Latest Update&quot; field on the parent Litigation record. This field is read only and aims to provide a clear and simple way for users to always have the latest status update available at the header record level.
+PC (Prodigy) 18/07/24</description>
+    <environments>Default</environments>
+    <interviewLabel>Litigation Update - On Create - Set As Latest Update on Parent {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Litigation Update - On Create - Set As Latest Update on Parent</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Set_Status_to_Latest_Update_on_parent_Litigation_Record</name>
+        <label>Set Status to Latest Update on parent Litigation Record</label>
+        <locationX>176</locationX>
+        <locationY>323</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.pro_Litigation__c</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>pro_Latest_Update__c</field>
+            <value>
+                <elementReference>$Record.Status_Update__c</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Litigation__c</object>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Set_Status_to_Latest_Update_on_parent_Litigation_Record</targetReference>
+        </connector>
+        <object>pro_Litigation_Update__c</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

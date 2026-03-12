@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Stop_Bank_Account_TD_Creation</fullName>
+    <active>true</active>
+    <description>#DimensionStory - Should not allow the user to create Bank Account as Lease Dimension</description>
+    <errorConditionFormula>AND(!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c , leaseworks__Dimension__r.Name == &#39;Bank Account&#39; , 
+(OR(
+AND (NOT(ISBLANK(leaseworks__Payment__c)) , OR(ISPICKVAL(leaseworks__Payment__r.leaseworks__Payment_Type__c, &#39;CN_Payment&#39;),
+ISPICKVAL(leaseworks__Payment__r.leaseworks__Payment_Type__c,&#39;Credit Memo Correction&#39;))),
+AND(IF( NOT(ISBLANK(leaseworks__Invoice__c)) , &#39;Invoice&#39;,
+IF(NOT(ISBLANK(leaseworks__Payment__c)) , &#39;Payment&#39;,
+IF( NOT(ISBLANK(leaseworks__Payable__c)) , &#39;Payable&#39;,
+IF( NOT(ISBLANK(leaseworks__Credit_Memo__c)) , &#39;Credit Memo&#39; ,
+IF( NOT(ISBLANK(leaseworks__Payouts__c)) , &#39;Payout&#39; ,
+IF( NOT(ISBLANK( leaseworks__LOC_Transactions__c )) , &#39;LoC DrawDown&#39; ,
+IF( NOT(ISBLANK(leaseworks__Payment_on_Account__c)) , &#39;Payment On Account&#39; ,
+&#39;&#39; )))))))== &#39;Payable&#39;, leaseworks__Payable__r.leaseworks__Lease__c == NULL)
+))
+)</errorConditionFormula>
+    <errorMessage>You are not allowed to create Bank Account</errorMessage>
+</ValidationRule>

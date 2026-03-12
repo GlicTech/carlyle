@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Date_Of_Snapshot_Event__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Date on which the event that caused the MR change happened. To be used for snapshot creation.
+
+1. Yes, We are still using this field.
+
+From Payment code- when payment record is updated and status equals to cancelled
+        1. We are updating {Date Of Snapshot Event} with payment line item record field-  &quot;{Payment Date}&quot;
+          
+From Payment Line Item code - when payment line item record is updated 
+       1. We are updating {Date Of Snapshot Event} with payment line item record field-  &quot;{Payment Date}&quot; on supplement rent record
+           
+From Invoice Line Item code- when invoice line item record is updated
+       1. We are updating {Date Of Snapshot Event} with Invoice line item record field-  &quot;{Invoice Date}&quot; on supplement rent record</description>
+    <externalId>false</externalId>
+    <label>_Date Of Snapshot Event</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

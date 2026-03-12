@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PathAssistant xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <entityName>leaseworks__Constituent_Assembly__c</entityName>
+    <fieldName>leaseworks__Progress__c</fieldName>
+    <masterLabel>Assembly Progress:APU</masterLabel>
+    <pathAssistantSteps>
+        <info>&lt;p&gt;&lt;b&gt;Prerequisites:&lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;b&gt;Create Asset:&lt;/b&gt; The asset must be created first enabling users to create assemblies for the asset.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;Steps for Assembly Creation:&lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Enter the technical information for the assembly. CAUTION: Utilization values (TSN, CSN, TSO, CSO and etc.) should be for the moment from which utilization will start it’s reporting and MRs will be collected.&lt;/li&gt;&lt;/ul&gt;</info>
+        <picklistValueName>Create Assembly</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <info>&lt;p&gt;&lt;b&gt;Prerequisites:&lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;b&gt;Maintenance Program DB:&lt;/b&gt; Database should be created before new Asset entered into the system and associated with created asset to allow Assemblies inherit Maintenance Program defined Maintenance Events.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;b&gt;Historical Events Creation:&lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Create Historical Event records for every Assembly to let the system calculate next due of every event&lt;/li&gt;&lt;/ul&gt;</info>
+        <picklistValueName>Create Historical Events (Optional)</picklistValueName>
+    </pathAssistantSteps>
+    <recordTypeName>APU</recordTypeName>
+</PathAssistant>

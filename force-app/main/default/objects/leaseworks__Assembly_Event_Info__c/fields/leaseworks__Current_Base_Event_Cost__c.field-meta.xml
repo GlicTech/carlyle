@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Current_Base_Event_Cost__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Current Base Event Cost is based on the Maintenance Program current catalog Event Cost escalated to the current year.</description>
+    <externalId>false</externalId>
+    <formula>IF(  leaseworks__Sequence__c ==1  ,((1+  leaseworks__Maintenance_Program_Event__r.leaseworks__Event_Cost_Escalation__c  )^( YEAR(TODAY())-  VALUE(leaseworks__Maintenance_Program_Event__r.leaseworks__Current_Catalog_Year__c ))) * leaseworks__Maintenance_Program_Event__r.leaseworks__Event_Cost__c ,NULL)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Current Base Event Cost is based on the Maintenance Program current catalog Event Cost escalated to the current year.</inlineHelpText>
+    <label>Current Base Event Cost</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

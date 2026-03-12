@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__TotalHoursForMonth</fullName>
+    <active>false</active>
+    <description>Total flying hours cannot be greater than total hours in a month.</description>
+    <errorConditionFormula>false
+/*Bobby 20180724 - This validation is no longer needed. Leaving it to the user to enter correct values. */</errorConditionFormula>
+    <errorDisplayField>leaseworks__FH_String__c</errorDisplayField>
+    <errorMessage>Invalid value. Flight hours must be between 0 and 744 (maximum hours in a month).</errorMessage>
+</ValidationRule>

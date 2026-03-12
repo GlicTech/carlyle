@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__End_date_not_less_than_Start_date</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(!ISBLANK(leaseworks__Event_End_Date__c), leaseworks__Event_End_Date__c &lt; leaseworks__Event_Date__c)</errorConditionFormula>
+    <errorDisplayField>leaseworks__Event_End_Date__c</errorDisplayField>
+    <errorMessage>End Date cannot be before Event Date.</errorMessage>
+</ValidationRule>

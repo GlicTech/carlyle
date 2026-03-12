@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>leaseworks__Assembly_Event_Info__c$Name</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>leaseworks__Assembly_Event_Info__c$leaseworks__Event_Cost_CY_F__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Assembly_Event_Info__c$leaseworks__Y_Hidden_Event_Due_Date__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Assembly_Event_Info__c$leaseworks__Assembly_Type__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Assembly_Event_Info__c$leaseworks__Constituent_Assembly__c</field>
+    </columns>
+    <format>Tabular</format>
+    <name>New Projected Events Report</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Projected_Events__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>leaseworks__Assembly_Event_Info__c$leaseworks__Y_Hidden_Event_Due_Date__c</dateColumn>
+        <interval>INTERVAL_CURRENT</interval>
+    </timeFrameFilter>
+</Report>

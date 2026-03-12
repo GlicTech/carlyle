@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>LeaseDocumentationApprovalRequired</fullName>
+    <active>true</active>
+    <description>Restricts users from moving off the &#39;Documentation&#39; stage until 100% Lease Documentation Approval has been reached for all Assets In Deal</description>
+    <errorConditionFormula>AND(
+  ISPICKVAL(PRIORVALUE(leaseworks__Deal_Status__c), &quot;Documentation&quot;),
+  NOT(ISPICKVAL(leaseworks__Deal_Status__c, &quot;Documentation&quot;)),
+  NOT(
+    OR(
+      ISPICKVAL(leaseworks__Deal_Status__c, &quot;ADM Approval&quot;),
+      ISPICKVAL(leaseworks__Deal_Status__c, &quot;LOI&quot;),
+      ISPICKVAL(leaseworks__Deal_Status__c, &quot;LOI in works&quot;),
+      ISPICKVAL(leaseworks__Deal_Status__c, &quot;IC Approval&quot;),
+      ISPICKVAL(leaseworks__Deal_Status__c, &quot;Termsheet Signed&quot;),
+      ISPICKVAL(leaseworks__Deal_Status__c, &quot;Mandated&quot;),
+      ISPICKVAL(leaseworks__Deal_Status__c, &quot;Termsheet Sent&quot;),
+      ISPICKVAL(leaseworks__Deal_Status__c, &quot;Termsheet Drafting&quot;),
+      ISPICKVAL(leaseworks__Deal_Status__c, &quot;CCO Sign Off&quot;),
+      ISPICKVAL(leaseworks__Deal_Status__c, &quot;Novation - ADM Approval&quot;),
+      ISPICKVAL(leaseworks__Deal_Status__c, &quot;Pipeline&quot;),
+      ISPICKVAL(leaseworks__Deal_Status__c, &quot;LOI Signed&quot;),
+      ISPICKVAL(leaseworks__Deal_Status__c, &quot;BAC Approval&quot;),
+      ISPICKVAL(leaseworks__Deal_Status__c, &quot;Novation - SPA&quot;)
+    )
+  ),
+   pro_Lease_Documentation_Fully_Approved__c = FALSE
+)</errorConditionFormula>
+    <errorMessage>All Assets in Deal  must reach 100% approval for lease documentation before the Deal Status can move off Documentation.</errorMessage>
+</ValidationRule>

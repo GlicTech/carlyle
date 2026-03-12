@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__MRRateStart_EndDate</fullName>
+    <active>true</active>
+    <description>Rate Schedule End Date can not be before Rate Schedule Start Date</description>
+    <errorConditionFormula>AND(!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c, leaseworks__MR_Rate_End_Date__c &lt; leaseworks__MR_Rate_Start_Date__c)</errorConditionFormula>
+    <errorMessage>Rate Schedule End Date can not be before Rate Schedule Start Date.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__InvoiceRefShouldNotBeOverpaid</fullName>
+    <active>true</active>
+    <errorConditionFormula>and ( or (ISNEW() , ISCHANGED(leaseworks__Invoice__c)) , leaseworks__Invoice__r.leaseworks__Balance_Due__c  &lt;=0 )</errorConditionFormula>
+    <errorDisplayField>leaseworks__Invoice__c</errorDisplayField>
+    <errorMessage>Applied To Invoice should have a balance due.</errorMessage>
+</ValidationRule>

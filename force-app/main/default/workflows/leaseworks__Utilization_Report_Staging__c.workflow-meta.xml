@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>leaseworks__SetURStagingName</fullName>
+        <description>Monthly Utilization Staging Name should be auto populated: &lt;Asset Name&gt; - &lt;Type&gt; - &lt;Period Ending&gt;</description>
+        <field>Name</field>
+        <formula>leaseworks__Aircraft__r.Name + &quot; || &quot; + TEXT(leaseworks__Type__c) + &quot; || &quot; + TEXT(leaseworks__Month_Ending__c)</formula>
+        <name>SetURStagingName</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>leaseworks__SetURStagingName</fullName>
+        <actions>
+            <name>leaseworks__SetURStagingName</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Monthly Utilization Staging Name should be auto populated: 
+&lt;Asset Name&gt; - &lt;Type&gt; - &lt;Period Ending&gt;</description>
+        <formula>!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

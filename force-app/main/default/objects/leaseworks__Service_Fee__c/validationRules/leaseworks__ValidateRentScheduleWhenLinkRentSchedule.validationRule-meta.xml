@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__ValidateRentScheduleWhenLinkRentSchedule</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c, leaseworks__Autocreate_Service_Fee_Invoices__c , ISBLANK( leaseworks__Rent_Schedule__c ), ISPICKVAL(leaseworks__Intercompany_Service_Fee__c,&#39;No&#39;),leaseworks__Lease__r.RecordType.DeveloperName != &#39;Non_Lease_Agreement&#39;)</errorConditionFormula>
+    <errorMessage>Rent Schedule is required for service fee schedule when &#39;Link Rent Schedule&#39; is selected.</errorMessage>
+</ValidationRule>

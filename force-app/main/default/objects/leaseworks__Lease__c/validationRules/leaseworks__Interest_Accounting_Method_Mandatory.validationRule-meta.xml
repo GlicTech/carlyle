@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Interest_Accounting_Method_Mandatory</fullName>
+    <active>true</active>
+    <description>When Accounting is enabled Interest/MR/SD Accounting Method is mandatory</description>
+    <errorConditionFormula>false 
+    /*AND( !$Setup.LeaseWorksSettings__c.Disable_All_Triggers__c,Accounting_Setup_P__c !=null , 
+OR( TEXT(Interest_Accounting_Method__c) == null,
+TEXT(MR_Accounting_Method__c) == null,
+TEXT(SD_Accounting_Method__c) == null))*/</errorConditionFormula>
+    <errorMessage>Interest, MR and SD Accounting Methods are required to proceed.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Notification_Type__c</fullName>
+    <deprecated>false</deprecated>
+    <description>On Date - send an email if
+On Change - send an email if this field was changed (log this field and compare with previous value)
+On Create - send an email if the record was created
+On Delete - send an email if the record was deleted</description>
+    <externalId>false</externalId>
+    <label>Notification Type</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>On Date</fullName>
+                <default>true</default>
+                <label>On Date</label>
+            </value>
+            <value>
+                <fullName>On Create</fullName>
+                <default>false</default>
+                <label>On Create</label>
+            </value>
+            <value>
+                <fullName>On Change</fullName>
+                <default>false</default>
+                <label>On Change</label>
+            </value>
+            <value>
+                <fullName>On Delete</fullName>
+                <default>false</default>
+                <label>On Delete</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>65.0</apiVersion>
+    <assignments>
+        <name>Set_Concatenated_Name</name>
+        <label>Set Concatenated Name</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Name</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>f_NameConcatenation</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <description>Flow runs before save to set values on AiD Approver records including setting a concatenated name.</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>f_NameConcatenation</name>
+        <dataType>String</dataType>
+        <expression>{!$Record.pro_Asset_in_Deal__r.Name} + &#39; - &#39; +  TEXT({!$Record.pro_Member_Role__c})</expression>
+    </formulas>
+    <interviewLabel>AiD Approver - Before Save On Create Trigger {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>AiD Approver - Before Save Trigger</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Set_Concatenated_Name</targetReference>
+        </connector>
+        <filterFormula>OR(
+      ISNEW(),
+      ISCHANGED({!$Record.pro_Member_Role__c})
+)</filterFormula>
+        <object>pro_Asset_In_Deal_Approver__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

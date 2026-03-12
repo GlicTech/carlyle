@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>pro_Lease_Documentation_Approver_Count__c</fullName>
+    <description>All Asset In Deal Approvers whose Asset In Deal Approvers Name field is populated.</description>
+    <externalId>false</externalId>
+    <label>Lease Documentation Approver Count</label>
+    <summaryFilterItems>
+        <field>pro_Asset_In_Deal_Approver__c.pro_Assigned_To__c</field>
+        <operation>notEqual</operation>
+        <value />
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>pro_Asset_In_Deal_Approver__c.pro_Include_In_Documentation_Approval__c</field>
+        <operation>equals</operation>
+        <value>True</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>pro_Asset_In_Deal_Approver__c.pro_Duplicate_Approver_Role__c</field>
+        <operation>equals</operation>
+        <value>False</value>
+    </summaryFilterItems>
+    <summaryForeignKey>pro_Asset_In_Deal_Approver__c.pro_Asset_in_Deal__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

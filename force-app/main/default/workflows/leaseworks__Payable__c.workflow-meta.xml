@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>leaseworks__PayableStatusUpdatedBy</fullName>
+        <description>The user and value change of the status</description>
+        <field>leaseworks__Last_Status_Update_By__c</field>
+        <formula>$User.FirstName + &#39; &#39;+ $User.LastName+ &#39; from &#39;+ TEXT(priorvalue( leaseworks__Status__c )) +&#39; On &#39; + TEXT(TODAY())</formula>
+        <name>PayableStatusUpdatedBy</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Set_Payout_Status_to_Open</fullName>
+        <field>leaseworks__Payment_Status__c</field>
+        <literalValue>Open</literalValue>
+        <name>Set Payout Status to Open</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_Status_Field</fullName>
+        <description>Updates status field to Paid</description>
+        <field>leaseworks__Payment_Status__c</field>
+        <literalValue>Paid</literalValue>
+        <name>Update Status Field</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>leaseworks__Update_status_To_Partially_Paid</fullName>
+        <description>Updates status to Partially Paid</description>
+        <field>leaseworks__Payment_Status__c</field>
+        <literalValue>Partially Paid</literalValue>
+        <name>Update status To Partially Paid</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>leaseworks__Mark Payable Status to Open</fullName>
+        <actions>
+            <name>leaseworks__Set_Payout_Status_to_Open</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Mark Payable status to Open (On Cancellation)</description>
+        <formula>AND(!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c,leaseworks__Total_Payout_Amount__c = 0,leaseworks__Payable_Balance__c == leaseworks__Payable_Amount__c)</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__Mark Payable Status to Partially Paid</fullName>
+        <actions>
+            <name>leaseworks__Update_status_To_Partially_Paid</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Mark the payable status to Partially Paid</description>
+        <formula>AND(!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c, leaseworks__Total_Payout_Amount__c!=0, leaseworks__Payable_Balance__c != 0, leaseworks__Total_Payout_Amount__c &lt; leaseworks__Payable_Amount__c)</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__MarkPayableStatusAsPaid</fullName>
+        <actions>
+            <name>leaseworks__Update_Status_Field</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>when the balance due is zero Mark the status as Paid</description>
+        <formula>AND(    !$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c,    leaseworks__Payable_Amount__c != 0,    leaseworks__Payable_Balance__c = 0,    NOT(OR(        TEXT(leaseworks__Status__c) = &quot;Declined&quot;,        TEXT(leaseworks__Status__c) = &quot;Cancelled&quot;    )) )</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>leaseworks__PayableStatusChange</fullName>
+        <actions>
+            <name>leaseworks__PayableStatusUpdatedBy</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>The user and the old value of the status is captured when status is changed</description>
+        <formula>/*AND(!ISNEW(), TEXT(PRIORVALUE( Status__c) ) &lt;&gt; TEXT( Status__c))*/false</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

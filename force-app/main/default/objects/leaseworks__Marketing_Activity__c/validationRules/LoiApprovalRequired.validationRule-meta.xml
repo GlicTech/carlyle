@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>LoiApprovalRequired</fullName>
+    <active>true</active>
+    <description>Restricts users from moving past LOI Signature status until LOI Approval has reached 100%.</description>
+    <errorConditionFormula>AND(
+  ISPICKVAL(PRIORVALUE(leaseworks__Deal_Status__c), &quot;LOI Signed&quot;),
+  NOT(ISPICKVAL(leaseworks__Deal_Status__c, &quot;LOI Signed&quot;)),
+  NOT(
+    OR(
+      ISPICKVAL(leaseworks__Deal_Status__c, &quot;ADM Approval&quot;),
+      ISPICKVAL(leaseworks__Deal_Status__c, &quot;LOI&quot;),
+      ISPICKVAL(leaseworks__Deal_Status__c, &quot;LOI in works&quot;),
+      ISPICKVAL(leaseworks__Deal_Status__c, &quot;IC Approval&quot;),
+      ISPICKVAL(leaseworks__Deal_Status__c, &quot;Termsheet Signed&quot;),
+      ISPICKVAL(leaseworks__Deal_Status__c, &quot;Mandated&quot;),
+      ISPICKVAL(leaseworks__Deal_Status__c, &quot;Termsheet Sent&quot;),
+      ISPICKVAL(leaseworks__Deal_Status__c, &quot;Termsheet Drafting&quot;),
+      ISPICKVAL(leaseworks__Deal_Status__c, &quot;CCO Sign Off&quot;),
+      ISPICKVAL(leaseworks__Deal_Status__c, &quot;Novation - ADM Approval&quot;),
+      ISPICKVAL(leaseworks__Deal_Status__c, &quot;Pipeline&quot;)
+    )
+  ),
+  pro_LOI_Approval__c != 1
+)</errorConditionFormula>
+    <errorMessage>LOI Approval must reach 100% before the Deal Status can move past LOI Signature.</errorMessage>
+</ValidationRule>

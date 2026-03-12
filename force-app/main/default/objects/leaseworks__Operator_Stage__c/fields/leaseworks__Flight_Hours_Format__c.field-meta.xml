@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Flight_Hours_Format__c</fullName>
+    <deprecated>false</deprecated>
+    <description>How should the time values like TSN, FH be treated. Some operators prefer to enter minutes as is after the decimal point.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Hours and Fraction -&gt; 10.5 means 10 hours and 30 minutes
+Hours and Minutes -&gt; 10.5 means 10 hours and 50 minutes</inlineHelpText>
+    <label>Z_Unused_OP Flight Hours Format</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Hours and Fraction</fullName>
+                <default>true</default>
+                <label>Hours and Fraction</label>
+            </value>
+            <value>
+                <fullName>Hours and Minutes</fullName>
+                <default>false</default>
+                <label>Hours and Minutes</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

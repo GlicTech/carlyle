@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>Utilization Report Layout 2017_05_10</layout>
+        <sections>
+            <label><!-- For Test ( remove later) --></label>
+            <section>For Test ( remove later)</section>
+        </sections>
+        <sections>
+            <label><!-- Maintenance Reserves --></label>
+            <section>Maintenance Reserves</section>
+        </sections>
+        <sections>
+            <label><!-- Misc. Info --></label>
+            <section>Misc. Info</section>
+        </sections>
+        <sections>
+            <label><!-- True Up Related --></label>
+            <section>True Up Related</section>
+        </sections>
+        <sections>
+            <label><!-- Utilization Metrics --></label>
+            <section>Utilization Metrics</section>
+        </sections>
+        <sections>
+            <label><!-- Utilization Verification --></label>
+            <section>Utilization Verification</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- Create Invoice --></label>
+        <name>leaseworks__Create_Invoice</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Maintenance Reserve Payment --></label>
+        <name>leaseworks__Maintenance_Reserve_Payment</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Un-Approve --></label>
+        <name>leaseworks__UnApprove</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Utilization Report --></label>
+        <name>leaseworks__Utilization_Report</name>
+    </quickActions>
+    <validationRules>
+        <errorMessage><!-- You cannot approve a utilization record that you submitted. Please ask another user to review and Approve the utilization. --></errorMessage>
+        <name>Submitter_Cannot_Approve</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Utilization cannot be created for Non-Lease Agreement contract. --></errorMessage>
+        <name>Validate_Lease_Type_local</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Utilization values should always be positive. Please use the True-up for correction if necessary --></errorMessage>
+        <name>leaseworks__AirframeFlightCyclesRule</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Utilization values should always be positive. Please use the True-up for correction if necessary --></errorMessage>
+        <name>leaseworks__AirframeFlightHoursRule</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You cannot convert an existing  Utilization Report to Assumed/Estimated and vice versa. --></errorMessage>
+        <name>leaseworks__Assumed_Estimated_cannot_be_changed</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Utilization Report date cannot be changed once saved. --></errorMessage>
+        <name>leaseworks__Cannot_Change_Month_Ending</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You cannot update the record once the Utilization Report is paid. --></errorMessage>
+        <name>leaseworks__Cannot_Update_If_MR_Paid</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please ensure payment is made in full before marking the UR as paid. --></errorMessage>
+        <name>leaseworks__Cannot_mark_paid_if_not_fully_paid</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please check the validity and sequence of dates. Date of submission cannot be in the future and the dates should be in order. --></errorMessage>
+        <name>leaseworks__Dates_Order</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must enter a value for Airframe Flight Hours (FH) &amp; Airframe Flight Cycles (FC) --></errorMessage>
+        <name>leaseworks__FHFCRequiredOtherThanAssume</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Legacy Data cannot be modified. --></errorMessage>
+        <name>leaseworks__Legacy_data_cannot_be_changed</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Utilization report cannot be filed for future periods. --></errorMessage>
+        <name>leaseworks__Month_Ending_Has_To_Be_Less_Than_Today</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You cannot file utilization for a period beyond lease period. --></errorMessage>
+        <name>leaseworks__Month_Ending_outside_lease_period</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You can select only one checkbox. Either Manual Credits/Adjustments or True Up or Assumed/Estimated?. --></errorMessage>
+        <name>leaseworks__OneTrueUpRule</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Utilization Report can be marked as paid only after it is approved by lessor. --></errorMessage>
+        <name>leaseworks__PayOnlyAfterApproval</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Utilization start and end date should be in the same month as that of the period ending. --></errorMessage>
+        <name>leaseworks__Start_And_End_Date_Within_Period</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Invalid value. Flight cycles cannot be negative and it cannot be too high. --></errorMessage>
+        <name>leaseworks__TotalCycles</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Invalid value. Flight hours must be between 0 and 744 (maximum hours in a month). --></errorMessage>
+        <name>leaseworks__TotalHoursForMonth</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You cannot convert an existing  Utilization Report to True Up and vice versa. --></errorMessage>
+        <name>leaseworks__TrueUpGross_cannot_be_changed</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You cannot change True Up Type of an existing  Utilization Report and vice versa. --></errorMessage>
+        <name>leaseworks__TrueUpType_cannot_be_changed</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You cannot convert an existing  Utilization Report to True Up and vice versa. --></errorMessage>
+        <name>leaseworks__TrueUp_cannot_be_changed</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Type is a mandatory field. --></errorMessage>
+        <name>leaseworks__URTypeRequiredRule</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You cannot modify an existing Utilization Report Type. --></errorMessage>
+        <name>leaseworks__URTypeRule</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Utilization cannot be created for Non-Lease Agreement contract. --></errorMessage>
+        <name>leaseworks__Validate_Lease_Type</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Period ending day has to be the last day of the month --></errorMessage>
+        <name>leaseworks__Validate_Month_End_Date</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Utilization end date cannot be earlier than utilization start date --></errorMessage>
+        <name>leaseworks__Validate_Utilization_Start_And_End_Date</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- Bulk_Entry_Reconciliation --></label>
+        <name>leaseworks__Bulk_Entry_Reconciliation</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- LWC_Utilization_Studio --></label>
+        <name>leaseworks__LWC_Utilization_Studio</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Send_Invoice --></label>
+        <name>leaseworks__Send_Invoice</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Utilization_Studio --></label>
+        <name>leaseworks__Utilization_Studio</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Y_Hidden_Utilization_Base --></label>
+        <name>leaseworks__Y_Hidden_Utilization_Base</name>
+    </webLinks>
+</CustomObjectTranslation>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__CancellationDateNotPrioToPayableDate</fullName>
+    <active>true</active>
+    <description>Cancellation Date cannot be prior to the payable date.</description>
+    <errorConditionFormula>leaseworks__Cancellation_Date__c  &lt;  leaseworks__Payable_Date__c</errorConditionFormula>
+    <errorMessage>Cancellation Date cannot be prior to the payable date.</errorMessage>
+</ValidationRule>

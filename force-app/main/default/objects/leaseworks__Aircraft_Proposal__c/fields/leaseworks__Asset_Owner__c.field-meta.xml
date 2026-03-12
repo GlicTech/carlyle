@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Asset_Owner__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <formula>if(!isBlank(leaseworks__Aircraft__c)
+, leaseworks__Aircraft__r.leaseworks__Asset_Owner_new__r.Name
+, leaseworks__World_Fleet_Aircraft__r.leaseworks__Owner__c
+)</formula>
+    <inlineHelpText>Set based on the Managed or World Fleet Aircraft that is chosen above</inlineHelpText>
+    <label>Portfolio / Asset Owner</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

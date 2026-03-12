@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__ExipryDateCannotBeBeforeStartDate</fullName>
+    <active>true</active>
+    <description>The Start Date cannot be later than the Expiry Date</description>
+    <errorConditionFormula>leaseworks__Start_Date__c &gt; leaseworks__Expiry_Date__c</errorConditionFormula>
+    <errorDisplayField>leaseworks__Start_Date__c</errorDisplayField>
+    <errorMessage>The Start Date cannot be later than the Expiry Date</errorMessage>
+</ValidationRule>

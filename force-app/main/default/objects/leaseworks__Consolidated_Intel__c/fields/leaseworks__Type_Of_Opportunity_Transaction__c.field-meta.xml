@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Type_Of_Opportunity_Transaction__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <formula>IF(leaseworks__Type__c == &#39;MI&#39;, TEXT(leaseworks__Market_Intelligence__r.leaseworks__Type_Of_Request__c), 
+IF(leaseworks__Type__c == &#39;AIT&#39;, leaseworks__Aircraft_In_Transaction__r.RecordType.Name, 
+IF(leaseworks__Type__c == &#39;IL&#39;,  TEXT(leaseworks__Interaction_Log__r.leaseworks__Type_Of_Request__c) , null) ) 
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Type Of Opportunity/Transaction</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

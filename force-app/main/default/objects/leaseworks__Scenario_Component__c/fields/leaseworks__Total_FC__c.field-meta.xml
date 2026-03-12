@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Total_FC__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Only For MR Profile</description>
+    <externalId>false</externalId>
+    <label>Total FC(MR Profile)</label>
+    <summarizedField>leaseworks__Monthly_Scenario__c.leaseworks__FC__c</summarizedField>
+    <summaryFilterItems>
+        <field>leaseworks__Monthly_Scenario__c.leaseworks__Historical_Month__c</field>
+        <operation>equals</operation>
+        <value>True</value>
+    </summaryFilterItems>
+    <summaryForeignKey>leaseworks__Monthly_Scenario__c.leaseworks__Fx_Component_Output__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

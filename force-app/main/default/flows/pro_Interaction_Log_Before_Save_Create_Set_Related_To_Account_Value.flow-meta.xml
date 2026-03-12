@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>61.0</apiVersion>
+    <assignments>
+        <name>pro_Assign_Standard_Related_To_Account_Field_Value</name>
+        <label>Assign Standard Related To Account Field Value</label>
+        <locationX>176</locationX>
+        <locationY>287</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.leaseworks__Related_To_Counter_Party__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.pro_Related_To_Account__c</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <description>This Before Save flow sets the value from the custom &quot;Related To Account/ pro_Related_To_Account_c&quot; field to the Managed Package field, &quot;Related To Account/ Related_To_Counter_Party&quot; when the Custom Lookup field is populated and the managed Package Field isn&#39;t.</description>
+    <environments>Default</environments>
+    <interviewLabel>Interaction Log - Before Save/Create - Set Related To Account Value {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Interaction Log - Before Save/Create - Set Related To Account Value</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>pro_Assign_Standard_Related_To_Account_Field_Value</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>pro_Related_To_Account__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>leaseworks__Related_To_Counter_Party__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <object>leaseworks__Customer_Interaction_Log__c</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

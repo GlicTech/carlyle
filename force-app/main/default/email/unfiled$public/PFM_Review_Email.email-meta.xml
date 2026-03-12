@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Used by the PFM Review Email</description>
+    <encodingKey>UTF-8</encodingKey>
+    <name>PFM Review Email</name>
+    <style>none</style>
+    <subject>PFM Review | {!leaseworks__Claims__c.Associated_Contract__c} | {!leaseworks__Claims__c.Unique_Claim_Number__c}</subject>
+    <textOnly>Hi Team,
+
+The above-named claim has been submitted for your review.
+
+Claim ID:{!leaseworks__Claims__c.Unique_Claim_Number__c}
+Lease: {!leaseworks__Claims__c.Associated_Contract__c}
+Assembly: {!leaseworks__Claims__c.leaseworks__Assembly__c}
+Induction Date: {!leaseworks__Claims__c.leaseworks__Induction_Date__c}
+
+Link – {!leaseworks__Claims__c.Link}
+
+Regards,
+
+Aviation Lease Management</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>leaseworks__Lease__c.leaseworks__Insurance_Requirements__r$leaseworks__Sorting_Order__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Lease__c.leaseworks__Insurance_Requirements__r$Name</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Lease__c.leaseworks__Insurance_Requirements__r$leaseworks__Insurance_Value__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Lease__c.leaseworks__Insurance_Requirements__r$leaseworks__Reinsurance_Value__c</field>
+    </columns>
+    <description>This report will be displayed to the report table (insurance requirements under lease) including reinsurance details</description>
+    <format>Tabular</format>
+    <name>Insurance Requirement with reinsurance</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Insurance_Requirement_with_Lease__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <sortColumn>leaseworks__Lease__c.leaseworks__Insurance_Requirements__r$leaseworks__Sorting_Order__c</sortColumn>
+    <sortOrder>Asc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>leaseworks__Lease__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

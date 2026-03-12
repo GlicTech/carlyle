@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>pro_Projected_Business_Days_Num__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(
+  ISPICKVAL(pro_Documentation_Event_Type__c, &quot;1 Engage Law Firm&quot;), 
+  1,
+  IF(
+    ISPICKVAL(pro_Documentation_Event_Type__c, &quot;2 Initial Draft&quot;), 
+    4,
+    IF(
+      ISPICKVAL(pro_Documentation_Event_Type__c, &quot;3 Review &amp; Comment&quot;), 
+      3, 
+      2
+    )
+  )
+)</formula>
+    <label>Projected Business Days</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

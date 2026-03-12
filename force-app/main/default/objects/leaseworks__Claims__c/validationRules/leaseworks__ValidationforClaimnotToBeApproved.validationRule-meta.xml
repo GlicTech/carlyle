@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__ValidationforClaimnotToBeApproved</fullName>
+    <active>false</active>
+    <description>validation to not allow the claim status change to Approved if the Approved Claim amount is above the Threshold Claim Amount set on the Lease.</description>
+    <errorConditionFormula>AND(
+		OR (
+			ISBLANK (leaseworks__Supplemental_Rent__r.leaseworks__Lease__r.leaseworks__Threshold_Claim_Amount__c),
+			leaseworks__Approved_Claim_Amount__c &gt; leaseworks__Supplemental_Rent__r.leaseworks__Lease__r.leaseworks__Threshold_Claim_Amount__c
+		),
+		ISCHANGED(leaseworks__Claim_Status__c),
+		AND(
+			!ISPICKVAL(PRIORVALUE(leaseworks__Claim_Status__c),&quot;CTO Sign-off&quot;),
+			ISPICKVAL(leaseworks__Claim_Status__c,&quot;Approved&quot;)
+		)
+    )</errorConditionFormula>
+    <errorMessage>Claim cannot be &#39;Approved&#39;, CTO approval is required. The Approved Claim Amount is above the Threshold Claim Amount set on the Lease</errorMessage>
+</ValidationRule>

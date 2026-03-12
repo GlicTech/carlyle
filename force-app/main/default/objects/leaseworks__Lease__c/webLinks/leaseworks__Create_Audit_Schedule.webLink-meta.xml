@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Create_Audit_Schedule</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Z_Unused_2003 Audit Schedule</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>{!REQUIRESCRIPT(&quot;/soap/ajax/57.0/connection.js&quot;)}
+{!REQUIRESCRIPT(&quot;/soap/ajax/57.0/apex.js&quot;)}
+
+try{
+var stringPrefix =&#39;{!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Package_Prefix__c}&#39;;
+var retVal= &quot;&quot;;
+
+if(stringPrefix == &quot;&quot;){
+   retVal =sforce.apex.execute(&quot;LWGlobalUtils&quot;,&quot;CreateAuditSchedule&quot;, {leaseId:&quot;{!leaseworks__Lease__c.Id }&quot;});
+}
+else{
+   retVal =sforce.apex.execute(&quot;leaseworks/LWGlobalUtils&quot;,&quot;CreateAuditSchedule&quot;, {leaseId:&quot;{! leaseworks__Lease__c.Id }&quot;});
+}
+
+}catch(err){
+  retVal=&quot;Unable to create Audit Records, probably because you don&#39;t have necessary permission.&quot; + err;
+}
+
+window.alert(retVal);
+window.location.reload();</url>
+</WebLink>

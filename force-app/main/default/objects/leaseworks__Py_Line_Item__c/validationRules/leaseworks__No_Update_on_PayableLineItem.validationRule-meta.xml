@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__No_Update_on_PayableLineItem</fullName>
+    <active>false</active>
+    <description>No field except comments should be editable on the payable line item.</description>
+    <errorConditionFormula>/*AND(!$Setup.LeaseWorksSettings__c.Disable_All_Triggers__c,
+  				OR( ISCHANGED(Payable_Line_Amount__c),ISCHANGED(Line_Payout_Amount__c),ISCHANGED(Company__c),ISCHANGED( Payable_Line_Type__c )))*/false</errorConditionFormula>
+    <errorMessage>&#39;Payable Line Item&#39; record cannot be manually modified</errorMessage>
+</ValidationRule>

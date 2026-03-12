@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PathAssistant xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <entityName>leaseworks__Lease__c</entityName>
+    <fieldName>leaseworks__Progress__c</fieldName>
+    <masterLabel>Lease Progress:Aircraft</masterLabel>
+    <pathAssistantSteps>
+        <info>&lt;p&gt;Upon completion of all sections of the lease agreement, the lease can be approved allowing creation of invoices and utilizations.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</info>
+        <picklistValueName>Approve Lease</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <info>&lt;p&gt;Details of the asset’s time or cycles since new and since last shop visit can be recorded at the date of delivery.&lt;/p&gt;</info>
+        <picklistValueName>Create Delivery Details (Optional)</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <info>&lt;p&gt;Insurance stipulations per the lease agreement can be entered and details of insurance certificates recorded.&lt;/p&gt;</info>
+        <picklistValueName>Create Insurance Stipulations &amp; Certificates</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <info>&lt;p&gt;&lt;b&gt;Prerequisites:&lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;b&gt;Create Asset&lt;/b&gt;. The asset must be created first enabling users to select and link the lease to the asset.&lt;/li&gt;&lt;li&gt;&lt;b&gt;Create Lessor (optional)&lt;/b&gt;. Users can create the lessor ahead of creation of the lease allowing users to select the lessor from the list. Alternatively, users can add the new lessor at the time of creating the new lease.&lt;/li&gt;&lt;li&gt;&lt;b&gt;Create Operator (optional)&lt;/b&gt;. Users can create the operator ahead of creation of the lease allowing users to select the operator from the list. Alternatively, users can add the new operator at the time of creating the new lease.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;Steps:&lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;b&gt;Lease Creation&lt;/b&gt;. The asset, lessor and operator/lessee can be linked on creation of a new lease and the contractual details of the lease agreement can be recorded.&lt;/li&gt;&lt;/ul&gt;</info>
+        <picklistValueName>Create Lease</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <info>&lt;p&gt;A ratio table if applicable per the lease agreement can be entered, including application of interpolation of rates.&lt;/p&gt;</info>
+        <picklistValueName>Create Ratio Tables (Optional)</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <info>&lt;p&gt;Contractual rent terms of the lease agreement can be recorded and a schedule of rent periods for the entire lease term created.&lt;/p&gt;</info>
+        <picklistValueName>Create Rent Schedule</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <info>&lt;p&gt;Details of the asset’s contractual redelivery conditions per the lease agreement can be entered including time/cycles since last event or remaining to next event for each assembly&lt;/p&gt;</info>
+        <picklistValueName>Create Return Conditions (Optional)</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <info>&lt;p&gt;Security stipulations per the lease agreement can be entered and details of cash security and letter of credit(s) recorded.&lt;/p&gt;</info>
+        <picklistValueName>Create Security Deposit / Letter of Credit</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <info>&lt;p&gt;Contractual MR terms, rates and escalation details of the lease agreement can be entered allowing calculations of MR invoices.&lt;/p&gt;</info>
+        <picklistValueName>Create Supplemental Rent &amp; Escalations</picklistValueName>
+    </pathAssistantSteps>
+    <recordTypeName>Aircraft</recordTypeName>
+</PathAssistant>

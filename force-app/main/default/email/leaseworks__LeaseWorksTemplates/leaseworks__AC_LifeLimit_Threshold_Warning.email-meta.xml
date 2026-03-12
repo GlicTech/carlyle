@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Warning email indicating life limit threshold is within reach</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>leaseworks__Smart_Lease_Logo</letterhead>
+    <name>Aircraft - Life Limit Threshold Warning</name>
+    <style>formalLetter</style>
+    <subject>Warning: Aircraft C-Check On {!leaseworks__Aircraft__c.Name} Threshold Approaching</subject>
+    <textOnly>The life limit on your {!leaseworks__Constituent_Assembly__c.leaseworks__Type__c} is {!leaseworks__Constituent_Assembly__c.leaseworks__Life_Limit__c}. You are withing 10% of this. Please schedule a shop visit.</textOnly>
+    <type>html</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PreventAccountNameChange</fullName>
+    <active>true</active>
+    <description>Prevent users from changing the Account Name after the account is approved</description>
+    <errorConditionFormula>pro_Bypass_Validation__c = False &amp;&amp; ISCHANGED(Name) &amp;&amp;  ISPICKVAL(leaseworks__Status__c,&#39;Approved&#39;)</errorConditionFormula>
+    <errorDisplayField>leaseworks__Y_Hidden_Average_Days_Overdue__c</errorDisplayField>
+    <errorMessage>Account name cannot be changed on an Approved account</errorMessage>
+</ValidationRule>

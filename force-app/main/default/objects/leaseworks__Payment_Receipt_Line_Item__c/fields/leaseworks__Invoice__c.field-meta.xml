@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Invoice__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <label>Invoice</label>
+    <lookupFilter>
+        <active>false</active>
+        <errorMessage>The payment record can only be created for &quot;Approved&quot; Invoices.</errorMessage>
+        <filterItems>
+            <field>leaseworks__Invoice__c.leaseworks__Status__c</field>
+            <operation>equals</operation>
+            <value>Approved, Partially Paid</value>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>leaseworks__Invoice__c</referenceTo>
+    <relationshipLabel>Payment Line Item</relationshipLabel>
+    <relationshipName>Payment_Invoice</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

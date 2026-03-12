@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Last_Event_Date2__c</fullName>
+    <deprecated>false</deprecated>
+    <description>2015/8/31: Removing the criteria of only TSN/CSN Certified records included in summary. Future events will not have Release date entered.</description>
+    <externalId>false</externalId>
+    <label>Z_Unused_1219_Y_Hidden Last Event Date2</label>
+    <summarizedField>leaseworks__Assembly_Eligible_Event__c.leaseworks__Start_Date__c</summarizedField>
+    <summaryFilterItems>
+        <field>leaseworks__Assembly_Eligible_Event__c.leaseworks__Type_P__c</field>
+        <operation>equals</operation>
+        <value>Overhaul/Performance Restoration</value>
+    </summaryFilterItems>
+    <summaryForeignKey>leaseworks__Assembly_Eligible_Event__c.leaseworks__Constituent_Assembly__c</summaryForeignKey>
+    <summaryOperation>max</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

@@ -1,0 +1,1099 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Credit_Note_Rent</fullName>
+    <active>false</active>
+    <compactLayoutAssignment>leaseworks__Credit_Notes</compactLayoutAssignment>
+    <description>Credit Note Rent</description>
+    <label>Credit Note Rent</label>
+    <picklistValues>
+        <picklist>leaseworks__Accounting_Method__c</picklist>
+        <values>
+            <fullName>Accrual</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cash</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>leaseworks__Apply_Daily_Interest_Rate__c</picklist>
+        <values>
+            <fullName>NO</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>YES</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>leaseworks__Compounding_Base__c</picklist>
+        <values>
+            <fullName>Beginning of Month</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Custom</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>End Of Month</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>leaseworks__Days_In_A_Year__c</picklist>
+        <values>
+            <fullName>360</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>365</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>leaseworks__Effective_Interest_Day__c</picklist>
+        <values>
+            <fullName>1</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>11</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>12</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>13</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>14</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>15</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>16</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>17</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>18</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>19</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>20</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>21</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>22</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>23</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>24</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>25</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>26</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>27</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>28</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>3</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>30</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>31</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>6</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>7</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>8</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>9</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>leaseworks__Interest_Calculation_Method__c</picklist>
+        <values>
+            <fullName>Adjusted Balance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Previous Balance</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>leaseworks__Interest_Method__c</picklist>
+        <values>
+            <fullName>Date</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Day</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>leaseworks__Interest_Type__c</picklist>
+        <values>
+            <fullName>Annual</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Monthly</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>leaseworks__Invoice_Category__c</picklist>
+        <values>
+            <fullName>Aircraft MR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Interest</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>JCT MR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>JCT Rental</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Non MR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PBH-Power by the Hour</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Rebate Rental</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Security Deposit</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>leaseworks__Invoice_Type__c</picklist>
+        <values>
+            <fullName>Rent</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>leaseworks__JE_Cancellation_Method__c</picklist>
+        <values>
+            <fullName>Reverse JEs</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Unpost JEs</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>leaseworks__Local_Currency__c</picklist>
+        <values>
+            <fullName>Afghanistan Afghani %28New%29 - AFN</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Albanian Lek - ALL</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Algerian Dinar - DZD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Angola Kwanza - AOA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Argentine Peso - ARS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Armenian Dram - AMD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aruba Florin - AWG</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Australian Dollar - AUD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Azerbaijanian New Manat - AZN</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Bahamian Dollar - BSD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Bahraini Dinar - BHD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Bangladesh Taka - BDT</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Barbados Dollar - BBD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Belarussian Ruble - BYR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Belize Dollar - BZD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Bermuda Dollar - BMD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Bhutan Ngultrum - BTN</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Bolivia Mvdol - BOV</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Bolivian Boliviano - BOB</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Botswana Pula - BWP</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Brazilian Cruzeiro %28old%29 - BRB</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Brazilian Real - BRL</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>British Pound - GBP</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Brunei Dollar - BND</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Bulgaria Lev - BGN</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Burundi Franc - BIF</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CFA Franc %28BCEAO%29 - XOF</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CFA Franc %28BEAC%29 - XAF</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cambodia Riel - KHR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Canadian Dollar - CAD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cape Verde Escudo - CVE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cayman Islands Dollar - KYD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Chilean Peso - CLP</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Chinese Yuan - CNY</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Colombian Peso - COP</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Comoros Franc - KMF</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Convertible Marks - BAM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Costa Rica Colon - CRC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Croatian Kuna - HRK</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cuban Peso - CUP</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Czech Koruna - CZK</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Danish Krone - DKK</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Dijibouti Franc - DJF</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Dominican Peso - DOP</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>East Caribbean Dollar - XCD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Egyptian Pound - EGP</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Eritrea Nakfa - ERN</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Estonian Kroon - EEK</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ethiopian Birr - ETB</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Euro -  - EUR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Falkland Islands Pound - FKP</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fiji Dollar - FJD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Franc Congolais - CDF</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Gambian Dalasi - GMD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Georgia Lari - GEL</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ghanian Cedi - GHS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Gibraltar Pound - GIP</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Guatemala Quetzal - GTQ</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Guinea Franc - GNF</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Guyana Dollar - GYD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Haiti Gourde - HTG</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Honduras Lempira - HNL</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Hong Kong Dollar - HKD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Hungarian Forint - HUF</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Iceland Krona - ISK</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Indian Rupee - INR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Indonesian Rupiah - IDR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Iranian Rial - IRR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Iraqi Dinar - IQD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Israeli Shekel - ILS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Jamaican Dollar - JMD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Japanese Yen - JPY</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Jordanian Dinar - JOD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Kazakhstan Tenge - KZT</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Kenyan Shilling - KES</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Korean Won - KRW</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Kuwaiti Dinar - KWD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Kyrgyzstan Som - KGS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Lao Kip - LAK</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Lebanese Pound - LBP</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Lesotho Loti - LSL</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Liberian Dollar - LRD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Libyan Dinar - LYD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Macau Pataca - MOP</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Macedonian Denar - MKD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Malagasy Ariary - MGA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Malawi Kwacha - MWK</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Malaysian Ringgit - MYR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Maldives Rufiyaa - MVR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mauritania Ougulya - MRO</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mauritius Rupee - MUR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mexican Peso - MXN</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mexican Unidad de Inversion %28UDI%29 - MXV</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Moldovan Leu - MDL</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mongolian Tugrik - MNT</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Moroccan Dirham - MAD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mozambique New Metical - MZN</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Myanmar Kyat - MMK</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Namibian Dollar - NAD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Nepalese Rupee - NPR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Neth Antilles Guilder - ANG</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New Zealand Dollar - NZD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Nicaragua Cordoba - NIO</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Nigerian Naira - NGN</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>North Korean Won - KPW</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Norwegian Krone - NOK</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Omani Rial - OMR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pacific Franc - XPF</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pakistani Rupee - PKR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Panama Balboa - PAB</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Papua New Guinea Kina - PGK</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Paraguayan Guarani - PYG</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Peruvian Nuevo Sol - PEN</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Philippine Peso - PHP</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Polish Zloty - PLN</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Qatar Rial - QAR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Romanian Leu %28New%29 - RON</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Russian Rouble - RUB</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Rwanda Franc - RWF</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Samoa Tala - WST</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sao Tome Dobra - STD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Saudi Arabian Riyal - SAR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Serbian Dinar - RSD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Seychelles Rupee - SCR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sierra Leone Leone - SLL</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Singapore Dollar - SGD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Solomon Islands Dollar - SBD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Somali Shilling - SOS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>South African Rand - ZAR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>South Sudan Pound - SSP</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sri Lanka Rupee - LKR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>St Helena Pound - SHP</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sudanese Pound - SDG</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Surinam Dollar - SRD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Swaziland Lilageni - SZL</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Swedish Krona - SEK</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Swiss Franc - CHF</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Syrian Pound - SYP</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Taiwan Dollar - TWD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tajik Somoni - TJS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tanzanian Shilling - TZS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Thai Baht - THB</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tonga Pa%27anga - TOP</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Trinidad%26Tobago Dollar - TTD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tunisian Dinar - TND</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Turkish Lira %28New%29 - TRY</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Turkmenistan New Manat - TMT</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>U%2ES%2E Dollar - USD</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>UAE Dirham - AED</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ugandan Shilling - UGX</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ukraine Hryvnia - UAH</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Unidades de fomento - CLF</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Uruguayan New Peso - UYU</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Uzbekistan Sum - UZS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Vanuatu Vatu - VUV</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Venezuelan Bolivar Fuerte - VEF</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Vietnam Dong - VND</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yemen Riyal - YER</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Zambian Kwacha %28New%29 - ZMK</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Zimbabwe Dollar - ZWL</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>leaseworks__MR_Accounting_Method__c</picklist>
+        <values>
+            <fullName>Accrual</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cash</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>leaseworks__Payment_Status__c</picklist>
+        <values>
+            <fullName>Credited</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Open</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Paid</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Partially Paid</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>leaseworks__Reason_Code_1__c</picklist>
+        <values>
+            <fullName>Additional Charges</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Bank Fees</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Credits</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Discount</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Late Charges</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>True-ups</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>leaseworks__Reason_Code_2__c</picklist>
+        <values>
+            <fullName>Additional Charges</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Bank Fees</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Credits</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Discount</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Late Charges</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>True-ups</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>leaseworks__Reason_Code_3__c</picklist>
+        <values>
+            <fullName>Additional Charges</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Bank Fees</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Credits</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Discount</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Late Charges</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>True-ups</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>leaseworks__SD_Accounting_Method__c</picklist>
+        <values>
+            <fullName>Accrual</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cash</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>leaseworks__Status__c</picklist>
+        <values>
+            <fullName>Approved</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Declined</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pending</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>leaseworks__Transaction_Currency__c</picklist>
+        <values>
+            <fullName>EUR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GBP</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>JPY</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MYR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>USD</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>pro_MR_Invoice_Name__c</picklist>
+        <values>
+            <fullName>Aircraft MR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Variable Rent</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

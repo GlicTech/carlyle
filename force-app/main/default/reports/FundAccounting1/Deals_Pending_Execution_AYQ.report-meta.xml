@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <buckets>
+        <bucketType>picklist</bucketType>
+        <developerName>BucketField_89854782</developerName>
+        <masterLabel>Current Stage</masterLabel>
+        <nullTreatment>n</nullTreatment>
+        <otherBucketLabel>Other</otherBucketLabel>
+        <sourceColumnName>leaseworks__Marketing_Activity__c$leaseworks__Deal_Status__c</sourceColumnName>
+        <useOther>true</useOther>
+        <values>
+            <sourceValues>
+                <sourceValue>Termsheet Sent</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Termsheet Signed</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>LOI</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>ADM Approval</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>LOI Signed</sourceValue>
+            </sourceValues>
+            <value>LOI / Termsheet Execution Phase</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>IC Approval</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>BAC Approval</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Novation - SPA</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Documentation</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Agreement Executed</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>SPA</sourceValue>
+            </sourceValues>
+            <value>Final Documentation Phase</value>
+        </values>
+    </buckets>
+    <columns>
+        <field>leaseworks__Marketing_Activity__c.leaseworks__Aircraft_Proposals__r$leaseworks__Aircraft__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Marketing_Activity__c.leaseworks__Aircraft_Proposals__r$pro_Fund__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Marketing_Activity__c.leaseworks__Aircraft_Proposals__r$pro_Financing__c</field>
+    </columns>
+    <filter>
+        <criteriaItems>
+            <column>leaseworks__Marketing_Activity__c$leaseworks__Deal_Status__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Termsheet Signed,LOI Signed,BAC Approval,Novation - SPA,Documentation</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>leaseworks__Marketing_Activity__c$leaseworks__Inactive_MA__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>0</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>leaseworks__Marketing_Activity__c$RecordType</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>leaseworks__Marketing_Activity__c.Lease_Amendment,leaseworks__Marketing_Activity__c.leaseworks__Engine_Lease,leaseworks__Marketing_Activity__c.leaseworks__Engine_Sale,leaseworks__Marketing_Activity__c.leaseworks__Lease,leaseworks__Marketing_Activity__c.leaseworks__Lease_Extension,leaseworks__Marketing_Activity__c.leaseworks__Purchase,leaseworks__Marketing_Activity__c.leaseworks__SLB_N,leaseworks__Marketing_Activity__c.leaseworks__Lease_Campaign,leaseworks__Marketing_Activity__c.leaseworks__Sale_Campaign,leaseworks__Marketing_Activity__c.Lending,leaseworks__Marketing_Activity__c.Engine_Exchange,leaseworks__Marketing_Activity__c.Sale_Novation,leaseworks__Marketing_Activity__c.Sale_Off_Lease</value>
+        </criteriaItems>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>BucketField_89854782</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>leaseworks__Marketing_Activity__c$Name</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>leaseworks__Marketing_Activity__c$leaseworks__Deal_Type__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Deals Pending Execution</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Deals_with_Asset_in_Deals__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>false</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>leaseworks__Marketing_Activity__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

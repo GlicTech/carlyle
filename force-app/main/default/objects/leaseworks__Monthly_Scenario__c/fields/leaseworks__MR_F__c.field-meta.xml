@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__MR_F__c</fullName>
+    <deprecated>false</deprecated>
+    <description>If Airline then MR is negative</description>
+    <externalId>false</externalId>
+    <formula>if( !isblank(leaseworks__MR_Amount__c)
+,if($Setup.leaseworks__LeaseWorksSettings__c.leaseworks__CustType__c==&#39;AIRLINE&#39;,  -1 , 1) 
+* leaseworks__MR_Amount__c
+,null)</formula>
+    <label>MR</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

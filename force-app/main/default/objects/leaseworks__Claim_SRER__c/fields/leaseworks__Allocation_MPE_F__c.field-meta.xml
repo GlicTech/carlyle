@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Allocation_MPE_F__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Unchecked if Allocation override is entered</description>
+    <externalId>false</externalId>
+    <formula>if( ISBLANK ( leaseworks__Maintenance_Event_Task__c )  ,false, IF(ISBLANK(leaseworks__Allocation_Override__c), true, false) )</formula>
+    <inlineHelpText>Unchecked if Allocation override is entered</inlineHelpText>
+    <label>Allocation from MPE</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

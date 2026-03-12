@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__SDCashPositive</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+NOT($Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c),
+leaseworks__Security_Deposit_Cash__c &lt;= 0)</errorConditionFormula>
+    <errorDisplayField>leaseworks__Security_Deposit_Cash__c</errorDisplayField>
+    <errorMessage>Please enter an amount greater than zero.</errorMessage>
+</ValidationRule>

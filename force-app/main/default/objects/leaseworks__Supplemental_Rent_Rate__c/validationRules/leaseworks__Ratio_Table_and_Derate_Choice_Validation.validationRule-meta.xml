@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Ratio_Table_and_Derate_Choice_Validation</fullName>
+    <active>true</active>
+    <errorConditionFormula>IF( AND( ISPICKVAL( leaseworks__Rate_Based_On__c , &#39;Ratio Table&#39;) ,  OR( ISBLANK( TEXT(leaseworks__Ratio_Table_Choice__c)), ISBLANK( TEXT(leaseworks__Derate_Choice__c)))) , true, false)</errorConditionFormula>
+    <errorMessage>Please provide Ratio Table Choice/Derate Choice for the system to calculate the maintenance reserve based on the Ratio Table for Supplemental Rent Rate</errorMessage>
+</ValidationRule>

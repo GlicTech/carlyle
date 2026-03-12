@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>pro_Bucket_Region__c</fullName>
+    <externalId>false</externalId>
+    <formula>CASE(
+    Broad_Region_current_lessee__c,
+    
+    /* EMEA Bucket */
+    &quot;Arabic Africa&quot;, &quot;EMEA&quot;,
+    &quot;Europe&quot;, &quot;EMEA&quot;,
+    &quot;Russia - Impacted&quot;, &quot;EMEA&quot;,
+    &quot;Sub-Saharan Africa&quot;, &quot;EMEA&quot;,
+
+    /* APAC Bucket */
+    &quot;APAC&quot;, &quot;APAC&quot;,
+    &quot;China&quot;, &quot;APAC&quot;,
+    &quot;Indian Continent&quot;, &quot;APAC&quot;,
+&quot;Middle East&quot;, &quot;EMEA&quot;,
+
+    /* AMER Bucket */
+    &quot;North America&quot;, &quot;AMER&quot;,
+    &quot;South America&quot;, &quot;AMER&quot;,
+
+    /* Default */
+    &quot;Other&quot;
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Bucket Region</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

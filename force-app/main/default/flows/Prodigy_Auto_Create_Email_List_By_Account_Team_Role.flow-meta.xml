@@ -1,0 +1,752 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>64.0</apiVersion>
+    <assignments>
+        <name>Assign_Accounting_Email</name>
+        <label>Assign Accounting Email</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>varUserEmails</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>varAccount.Accounting__r.Email</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Include_Compliance_User</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Compliance_Email</name>
+        <label>Assign Compliance Email</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>varUserEmails</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>varAccount.Compliance__r.Email</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Inlude_Contracts_User</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Contracts_Email</name>
+        <label>Assign Contracts Email</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>varUserEmails</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>varAccount.Contracts__r.Email</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Include_Credit_User</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Credit_Email</name>
+        <label>Assign Credit Email</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>varUserEmails</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>varAccount.Credit__r.Email</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Include_Debt_User</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Debt_Email</name>
+        <label>Assign Debt Email</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>varUserEmails</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>varAccount.Debt__r.Email</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Include_Investment_Strategy_User</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Investment_Strategy_Email</name>
+        <label>Assign Investment &amp; Strategy Email</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>varUserEmails</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>varAccount.Investment_Strategy__r.Email</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Include_Lease_Management</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Lease_Management_Email</name>
+        <label>Assign Lease Management Email</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>varUserEmails</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>varAccount.Receivables__r.Email</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Include_Legal_User</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Legal_Email</name>
+        <label>Assign Legal Email</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>varUserEmails</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>varAccount.Legal__r.Email</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Include_Marketing_User</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Marketing_Email</name>
+        <label>Assign Marketing Email</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>varUserEmails</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>varAccount.Owner.Email</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Include_MR_Claims_User</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_MR_Claims_Email</name>
+        <label>Assign MR Claims Email</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>varUserEmails</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>varAccount.MR_Claims__r.Email</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Include_Portfolio_Management_User</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Portfolio_Management_Email</name>
+        <label>Assign Portfolio Management Email</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>varUserEmails</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>varAccount.Portfolio_Fund_Management__r.Email</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Include_Powerplant_User</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Powerplant_Email</name>
+        <label>Assign Powerplant Email</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>varUserEmails</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>varAccount.Powerplant__r.Email</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Include_Pricing_User</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Pricing_Email</name>
+        <label>Assign Pricing Email</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>varUserEmails</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>varAccount.Pricing__r.Email</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Include_Regional_Marketing_Manager_User</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Regional_marketing_Manager_Email</name>
+        <label>Assign Regional marketing Manager Email</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>varUserEmails</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>varAccount.Marketing__r.Email</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Include_Tax_User</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Tax_Email</name>
+        <label>Assign Tax Email</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>varUserEmails</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>varAccount.Tax__r.Email</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Include_Technical_User</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Technical_Email</name>
+        <label>Assign Technical Email</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>varUserEmails</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>varAccount.Technical__r.Email</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Include_Trading_User</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Trading_Email</name>
+        <label>Assign Trading Email</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>varUserEmails</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>varAccount.Trading__r.Email</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <decisions>
+        <name>Include_Accounting_User</name>
+        <label>Include Accounting User?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Include_Compliance_User</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Accounting</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>varMemberRoles</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Accounting</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Accounting_Email</targetReference>
+            </connector>
+            <label>Yes - Accounting</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Include_Compliance_User</name>
+        <label>Include Compliance User?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Inlude_Contracts_User</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Compliance</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>varMemberRoles</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Compliance</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Compliance_Email</targetReference>
+            </connector>
+            <label>Yes - Compliance</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Include_Credit_User</name>
+        <label>Include Credit User?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Include_Debt_User</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Credit</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>varMemberRoles</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Credit</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Credit_Email</targetReference>
+            </connector>
+            <label>Yes - Credit</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Include_Debt_User</name>
+        <label>Include Debt User?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Include_Investment_Strategy_User</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Debt</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>varMemberRoles</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Debt</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Debt_Email</targetReference>
+            </connector>
+            <label>Yes - Debt</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Include_Investment_Strategy_User</name>
+        <label>Include Investment &amp; Strategy User?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Include_Lease_Management</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Investment_Strategy</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>varMemberRoles</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Investment &amp; Strategy</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Investment_Strategy_Email</targetReference>
+            </connector>
+            <label>Yes - Investment &amp; Strategy</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Include_Lease_Management</name>
+        <label>Include Lease Management?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Include_Legal_User</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Lease_Management</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>varMemberRoles</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Lease Management</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Lease_Management_Email</targetReference>
+            </connector>
+            <label>Yes - Lease Management</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Include_Legal_User</name>
+        <label>Include Legal User?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Include_Marketing_User</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Legal</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>varMemberRoles</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Legal</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Legal_Email</targetReference>
+            </connector>
+            <label>Yes - Legal</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Include_Marketing_User</name>
+        <label>Include Marketing User?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Include_MR_Claims_User</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Marketing</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>varMemberRoles</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Marketing</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Marketing_Email</targetReference>
+            </connector>
+            <label>Yes - Marketing</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Include_MR_Claims_User</name>
+        <label>Include MR Claims User?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Include_Portfolio_Management_User</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_MR_Claims</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>varMemberRoles</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>MR Claims</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_MR_Claims_Email</targetReference>
+            </connector>
+            <label>Yes - MR Claims</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Include_Portfolio_Management_User</name>
+        <label>Include Portfolio Management User?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Include_Powerplant_User</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Portfolio_Management</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>varMemberRoles</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Portfolio Management</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Portfolio_Management_Email</targetReference>
+            </connector>
+            <label>Yes - Portfolio Management</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Include_Powerplant_User</name>
+        <label>Include Powerplant User?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Include_Pricing_User</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Powerplant</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>varMemberRoles</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Powerplant</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Powerplant_Email</targetReference>
+            </connector>
+            <label>Yes - Powerplant</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Include_Pricing_User</name>
+        <label>Include Pricing User?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Include_Regional_Marketing_Manager_User</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Pricing</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>varMemberRoles</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Pricing</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Pricing_Email</targetReference>
+            </connector>
+            <label>Yes - Pricing</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Include_Regional_Marketing_Manager_User</name>
+        <label>Include Regional Marketing Manager User?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Include_Tax_User</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Regional_Marketing_Manager</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>varMemberRoles</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Regional Marketing Manager</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Regional_marketing_Manager_Email</targetReference>
+            </connector>
+            <label>Yes - Regional Marketing Manager</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Include_Tax_User</name>
+        <label>Include Tax User?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Include_Technical_User</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Tax</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>varMemberRoles</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Tax</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Tax_Email</targetReference>
+            </connector>
+            <label>Yes - Tax</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Include_Technical_User</name>
+        <label>Include Technical User?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Include_Trading_User</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Technical</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>varMemberRoles</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Technical</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Technical_Email</targetReference>
+            </connector>
+            <label>Yes - Technical</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Include_Trading_User</name>
+        <label>Include Trading User?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Trading</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>varMemberRoles</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Trading</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Trading_Email</targetReference>
+            </connector>
+            <label>Yes - Trading</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Inlude_Contracts_User</name>
+        <label>Inlude Contracts User?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Include_Credit_User</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Contracts</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>varMemberRoles</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Contracts</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Contracts_Email</targetReference>
+            </connector>
+            <label>Yes - Contracts</label>
+        </rules>
+    </decisions>
+    <description>Interaction Log Distribution List
+
+This flow receives input variables of a list of member roles and an account record. The flow returns a list of the email addresses for each of the users in the Account Team roles specified.</description>
+    <environments>Default</environments>
+    <interviewLabel>Prodigy - Auto - Create Email List By Account Team Role {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Prodigy - Auto - Create Email List By Account Team Role</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Include_Accounting_User</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>varAccount</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Account</objectType>
+    </variables>
+    <variables>
+        <description>A list of member roles (eg. Accounting, Credit,...) defining which Users from the Account Team need to be added to the User collection that this flow returns.</description>
+        <name>varMemberRoles</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>A collection of emails from selected Account Team lookups to be passed back into main flow.</description>
+        <name>varUserEmails</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>

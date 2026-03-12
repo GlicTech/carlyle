@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>65.0</apiVersion>
+    <decisions>
+        <name>Is_Contract_Sale_or_Consignment</name>
+        <label>Is Contract Sale or Consignment?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Update_Consignment_Contract_Name</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Sale</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.leaseworks__Lease_Type_Legal__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Sale</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Sale_Contract_Name</targetReference>
+            </connector>
+            <label>Sale</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <formulas>
+        <name>varConsignmentContractName</name>
+        <dataType>String</dataType>
+        <expression>{!$Record.leaseworks__Aircraft__r.leaseworks__MSN_Number__c} + &#39; | &#39; + {!$Record.Consignee__r.Name} + &#39; | &#39; + TEXT({!$Record.leaseworks__Aircraft__r.leaseworks__Asset_Type_GP__c})</expression>
+    </formulas>
+    <formulas>
+        <name>varSaleContractName</name>
+        <dataType>String</dataType>
+        <expression>{!$Record.leaseworks__Aircraft__r.leaseworks__MSN_Number__c} + &#39; | &#39; + (LPAD(TEXT(MONTH({!$Record.leaseworks__Lease_Start_Date_New__c})), 2, &quot;0&quot;)
+&amp; &quot; &quot;
+&amp; TEXT(YEAR({!$Record.leaseworks__Lease_Start_Date_New__c})))</expression>
+    </formulas>
+    <interviewLabel>Contract Name Updated for Sale or Consignment {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Contract Name Updated for Sale or Consignment</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Update_Consignment_Contract_Name</name>
+        <label>Update Consignment Contract Name</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <inputAssignments>
+            <field>Name</field>
+            <value>
+                <elementReference>varConsignmentContractName</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_Sale_Contract_Name</name>
+        <label>Update Sale Contract Name</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <inputAssignments>
+            <field>Name</field>
+            <value>
+                <elementReference>varSaleContractName</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Is_Contract_Sale_or_Consignment</targetReference>
+        </connector>
+        <filterFormula>AND(
+OR(
+ISPICKVAL({!$Record.leaseworks__Lease_Type_Legal__c}, &quot;Consignment&quot;),
+ISPICKVAL({!$Record.leaseworks__Lease_Type_Legal__c}, &quot;Sale&quot;)
+),
+OR (
+ISNEW(),
+ISCHANGED({!$Record.leaseworks__Aircraft__r.Id}),
+ISCHANGED({!$Record.Consignee__r.Id}),
+ISCHANGED({!$Record.leaseworks__Lease_Start_Date_New__c})
+)
+)</filterFormula>
+        <object>leaseworks__Lease__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

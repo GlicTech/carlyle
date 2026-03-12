@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Merge_Event__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Earliest Event - default. All events within Merge Span will happen on the Earliest event due
+Latest Event (PR) - All events within Merge Span will happen on the Earliest event due
+LLP Event - show only for engine events. All events within Merge Span will happen on the LLP Event due date</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Earliest Event - All events within Merge Span will happen on the Earliest event due
+Latest Event (PR) - All events within Merge Span will happen on the Earliest event due
+LLP Event - All events within Merge Span will happen on the LLP Event due date</inlineHelpText>
+    <label>Merge Event</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Earliest Event</fullName>
+                <default>true</default>
+                <label>Earliest Event</label>
+            </value>
+            <value>
+                <fullName>Latest Event (PR)</fullName>
+                <default>false</default>
+                <label>Latest Event (PR)</label>
+            </value>
+            <value>
+                <fullName>LLP Event</fullName>
+                <default>false</default>
+                <label>LLP Event</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

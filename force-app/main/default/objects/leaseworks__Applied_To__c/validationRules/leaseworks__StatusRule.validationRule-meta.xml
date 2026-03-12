@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__StatusRule</fullName>
+    <active>true</active>
+    <description>You can not modify once it is approved.</description>
+    <errorConditionFormula>text(PRIORVALUE(leaseworks__Status__c))== &#39;Approved&#39;</errorConditionFormula>
+    <errorMessage>You can not modify once it is approved.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__AllocationPercenNotExceedPurchasePrice</fullName>
+    <active>true</active>
+    <description>Allocation percentage not exceed 100% of purchase price and Total Loan Asset ‘Allocation Amount’ cannot exceed the ‘Purchase Price’ of the Loan Asset Pool</description>
+    <errorConditionFormula>OR(leaseworks__Allocation__c  &gt; 100,leaseworks__Allocation_Amount__c  &gt; leaseworks__Loan_Asset_Pool__r.leaseworks__Purchase_Price__c)</errorConditionFormula>
+    <errorMessage>Allocation Amount exceeds the Asset Pool Purchase Price.</errorMessage>
+</ValidationRule>

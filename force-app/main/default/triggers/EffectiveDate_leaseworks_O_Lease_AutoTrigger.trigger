@@ -1,0 +1,1 @@
+trigger EffectiveDate_leaseworks_O_Lease_AutoTrigger on leaseworks__Lease__c (before insert, before update, before delete, after insert, after update, after delete, after undelete) { leaseworks.Notify_NotificationScheduler.effectiveDateTriggerHandler(leaseworks__Lease__c.sObjectType); }

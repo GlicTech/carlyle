@@ -1,0 +1,22 @@
+<apex:page standardController="leaseworks__Marketing_Activity__c">
+    <apex:includeLightning />
+	
+    <style>
+        html body.sfdcBody {
+        	padding-left: 0;
+        	padding-right: 0;
+        }
+    </style>
+    <div id="lightning" />
+
+    <script>
+        $Lightning.use("c:CommercialTermListApp", function() {
+          $Lightning.createComponent("c:CommercialTermRelatedListComponent",
+              { recordId : "{!Marketing_Activity__c.Id}" },
+              "lightning",
+              function(cmp) {
+              }
+          );
+        });
+    </script>
+</apex:page>

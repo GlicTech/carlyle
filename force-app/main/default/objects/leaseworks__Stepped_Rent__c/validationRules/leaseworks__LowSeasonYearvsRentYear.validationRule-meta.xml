@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__LowSeasonYearvsRentYear</fullName>
+    <active>true</active>
+    <description>Low season Start Year cannot be lesser than the Rent Start Year and Low season End Year cannot be greater than the Rent End Year. Validation should be fired immediately with the below error message</description>
+    <errorConditionFormula>AND( ISPICKVAL(leaseworks__Rent_Type__c, &#39;Seasonal Rent&#39;), OR(VALUE(leaseworks__Low_Season_Start_Year__c) &lt; YEAR( leaseworks__Start_Date__c ) ,  VALUE(leaseworks__Low_Season_End_Year__c) &gt; YEAR ( leaseworks__Rent_End_Date__c )))</errorConditionFormula>
+    <errorMessage>Low Season start and end year must be within the range of the Rent Start and Rent End Dates.</errorMessage>
+</ValidationRule>

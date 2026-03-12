@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>63.0</apiVersion>
+    <description>Update Interest Rate Index Name using &lt;Maturity&gt;+&lt;”M”&gt;+&lt;space&gt;+&lt;Index Type&gt;</description>
+    <environments>Default</environments>
+    <interviewLabel>UpdateIntRateIndxName {!$Flow.CurrentDateTime}</interviewLabel>
+    <isTemplate>true</isTemplate>
+    <label>UpdateIntRateIndxName</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <description>Update Interest Rate Index then Name field should be update based on &lt;Maturity&gt;+&lt;”M”&gt;+U&lt;space&gt;+&lt;Index Type&gt;</description>
+        <name>UpdateIntRateIndxName</name>
+        <label>UpdateIntRateIndxName</label>
+        <locationX>176</locationX>
+        <locationY>287</locationY>
+        <inputAssignments>
+            <field>Name</field>
+            <value>
+                <stringValue>{!$Record.leaseworks__Maturity__c}M {!$Record.leaseworks__Index_Type__c}</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>UpdateIntRateIndxName</targetReference>
+        </connector>
+        <filterFormula>AND(NOT({!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c}), (NOT {!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c}))</filterFormula>
+        <object>leaseworks__Interest_Rate_Index__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

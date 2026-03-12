@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__OneTrueUpRule</fullName>
+    <active>true</active>
+    <description>You can select either Manual Credits/Adjustments or True Up or Assumed/Estimated?.</description>
+    <errorConditionFormula>OR (
+    AND(leaseworks__True_Up_Gross__c,  leaseworks__True_Up__c )
+   ,AND(leaseworks__True_Up_Gross__c,  leaseworks__Assumed_Estimated__c)
+   ,AND(leaseworks__Assumed_Estimated__c,  leaseworks__True_Up__c )
+   )</errorConditionFormula>
+    <errorMessage>You can select only one checkbox. Either Manual Credits/Adjustments or True Up or Assumed/Estimated?.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <fieldSets>
+        <label><!-- Shop Visit Template --></label>
+        <name>leaseworks__Shop_Visit_Template</name>
+    </fieldSets>
+    <layouts>
+        <layout>Shop Visit Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <validationRules>
+        <errorMessage><!-- TSN/CSN at Event cannot be negative.Cannot save the record --></errorMessage>
+        <name>leaseworks__Avoid_negative_values_on_tsn_csn_event</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Release date cannot be before the Induction date or future date --></errorMessage>
+        <name>leaseworks__InductionDate_Before_ReleaseDate</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Date of Installation should be after Removal, Induction and Release and before future date --></errorMessage>
+        <name>leaseworks__InstallationDateBeforeReleaseDate</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter valid date as Manufacturing date is greater then Release date --></errorMessage>
+        <name>leaseworks__ReleaseDate_Validation</name>
+    </validationRules>
+</CustomObjectTranslation>

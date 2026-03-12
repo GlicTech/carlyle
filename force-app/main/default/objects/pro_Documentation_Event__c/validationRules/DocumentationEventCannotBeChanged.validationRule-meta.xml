@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DocumentationEventCannotBeChanged</fullName>
+    <active>false</active>
+    <description>Restricts users from changing the names of documentation events</description>
+    <errorConditionFormula>ISCHANGED( Name )</errorConditionFormula>
+    <errorDisplayField>Name</errorDisplayField>
+    <errorMessage>The name of Documentation Event records cannot be changed.</errorMessage>
+</ValidationRule>

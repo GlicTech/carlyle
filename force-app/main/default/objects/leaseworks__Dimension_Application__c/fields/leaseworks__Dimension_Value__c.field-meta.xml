@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Dimension_Value__c</fullName>
+    <deleteConstraint>Restrict</deleteConstraint>
+    <deprecated>false</deprecated>
+    <description>#DimensionStory - Lookup to Dimension Value</description>
+    <externalId>false</externalId>
+    <label>Dimension Value</label>
+    <lookupFilter>
+        <active>true</active>
+        <errorMessage>You can only select the Dimension Values falling under specific Dimension</errorMessage>
+        <filterItems>
+            <field>leaseworks__Dimension_Value__c.leaseworks__Dimension__c</field>
+            <operation>equals</operation>
+            <valueField>$Source.leaseworks__Dimension__c</valueField>
+        </filterItems>
+        <filterItems>
+            <field>leaseworks__Dimension_Value__c.leaseworks__Inactive__c</field>
+            <operation>equals</operation>
+            <value>False</value>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>leaseworks__Dimension_Value__c</referenceTo>
+    <relationshipLabel>Lease Dimensions</relationshipLabel>
+    <relationshipName>Dimension_Applications</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Multicurrency_Enabled__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Controls conditional display of fields when multicurrency is enabled (i.e., Transaction Currency not equal to USD).</description>
+    <externalId>false</externalId>
+    <formula>IF(NOT(ISBLANK(TEXT(leaseworks__Transaction_Currency__c))),
+IF(ISPICKVAL(leaseworks__Transaction_Currency__c, &quot;USD&quot;),false,true), false)</formula>
+    <inlineHelpText>Controls conditional display of fields when multicurrency is enabled (i.e., Transaction Currency not equal to USD).</inlineHelpText>
+    <label>_Multicurrency Enabled</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

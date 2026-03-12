@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__ExtRentTypemandatory</fullName>
+    <active>false</active>
+    <description>If the &quot;Extended Rent Period?&quot; checkbox is checked, a value must be selected for Extended Rent Type.</description>
+    <errorConditionFormula>false /*AND(Extended_Rent_Period__c,Text(Extended_Rent_Type__c)==Null)*/</errorConditionFormula>
+    <errorDisplayField>leaseworks__Extended_Rent_Type__c</errorDisplayField>
+    <errorMessage>If the &quot;Extended Rent Period?&quot; checkbox is checked, a value must be selected for Extended Rent Type.</errorMessage>
+</ValidationRule>

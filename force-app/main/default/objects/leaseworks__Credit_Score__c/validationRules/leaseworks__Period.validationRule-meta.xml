@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Period</fullName>
+    <active>true</active>
+    <description>Year should be unique</description>
+    <errorConditionFormula>NOT ( ISBLANK ( leaseworks__Period_New__c) ) 
+&amp;&amp; 
+( 
+NOT ( ISNUMBER ( leaseworks__Period_New__c) ) 
+|| 
+LEN ( leaseworks__Period_New__c) &lt; 4 
+)</errorConditionFormula>
+    <errorMessage>Period is 4 digit number. Please provide valid input</errorMessage>
+</ValidationRule>

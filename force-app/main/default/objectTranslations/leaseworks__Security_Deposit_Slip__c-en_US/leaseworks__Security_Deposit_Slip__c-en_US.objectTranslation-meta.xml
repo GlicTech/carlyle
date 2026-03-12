@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>Security Deposit Slip Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- Create Invoice --></label>
+        <name>leaseworks__Create_SD_Slip_Invoice</name>
+    </quickActions>
+    <validationRules>
+        <errorMessage><!-- Manual updates to the SD Slip Amount are not allowed after invoicing. Please decline or cancel the associated invoice to proceed. --></errorMessage>
+        <name>leaseworks__Avoid_SD_Slip_Amount_change</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Associated invoice link on the security deposit slip cannot be modified. --></errorMessage>
+        <name>leaseworks__Block_SD_Slip_Invoice_Update</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The SD Slip Amount must be positive. --></errorMessage>
+        <name>leaseworks__SDAmountPositive</name>
+    </validationRules>
+</CustomObjectTranslation>

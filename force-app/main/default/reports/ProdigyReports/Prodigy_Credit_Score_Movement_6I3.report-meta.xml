@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>FK_NAME</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Credit_Score_New__c.pro_Final_Credit_Score__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Credit_Score_New__c.leaseworks__Period_New__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Credit_Score_New__c.leaseworks__Internal_Credit_Score_Current_Year_New__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Credit_Score_New__c.pro_Previous_Final_Credit_Score__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Credit_Score_New__c.pro_Previous_Credit_Score_Period__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Credit_Score_New__c.pro_Previous_Credit_Score__c</field>
+    </columns>
+    <columns>
+        <field>CDF1</field>
+    </columns>
+    <customDetailFormulas>
+        <calculatedFormula>IF(leaseworks__Credit_Score_New__c.pro_Credit_Score_Strength__c &lt; leaseworks__Credit_Score_New__c.pro_Previous_Credit_Score_Strength__c, &#39;▼&#39;, 
+
+          IF(leaseworks__Credit_Score_New__c.pro_Credit_Score_Strength__c &gt; leaseworks__Credit_Score_New__c.pro_Previous_Credit_Score_Strength__c, &#39;▲&#39;, &#39;-&#39;))</calculatedFormula>
+        <dataType>Text</dataType>
+        <developerName>CDF1</developerName>
+        <label>Credit Score Movement</label>
+        <scale>2</scale>
+    </customDetailFormulas>
+    <filter>
+        <booleanFilter>1 AND 2</booleanFilter>
+        <criteriaItems>
+            <column>leaseworks__Credit_Score_New__c.proi_Is_Current_Credit_Score__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>1</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>leaseworks__Credit_Score_New__c.pro_Credit_Score_Decreased__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>1</value>
+        </criteriaItems>
+    </filter>
+    <format>Tabular</format>
+    <name>Prodigy-Accounts Decreased Credit Scores</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$leaseworks__Credit_Score_New__c@leaseworks__Credit_Score_New__c.leaseworks__Account__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>leaseworks__Credit_Score_New__c.leaseworks__Period__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Payment_Date_earlier_than_Invoice_date</fullName>
+    <active>true</active>
+    <errorConditionFormula>leaseworks__Date_Payment_Due__c &lt;leaseworks__Invoice_Date__c</errorConditionFormula>
+    <errorDisplayField>leaseworks__Date_Payment_Due__c</errorDisplayField>
+    <errorMessage>Date Payment Due is earlier than the Invoice Date. In order to proceed, please update the values so that the Date Payment Due is later than the Invoice Date.</errorMessage>
+</ValidationRule>

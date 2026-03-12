@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AssetAttachedOrNonCarlyleAsset</fullName>
+    <active>false</active>
+    <description>Tickets must have at least 1 related Asset. In the case of Non Carlyle Asset, the Assets field must be populated.</description>
+    <errorConditionFormula>OR(
+AND(
+pro_Asset_Validation_On__c = True,
+pro_Non_Carlyle_Asset__c != True,
+pro_Number_Of_Assets_On_Ticket__c = 0
+), AND (
+pro_Non_Carlyle_Asset__c = True,
+pro_Assets__c = Null,
+pro_Asset_Validation_On__c = True
+
+)
+)</errorConditionFormula>
+    <errorMessage>Tickets must have at least 1 related Asset. In the case of Non Carlyle Asset, the Assets field must be populated.</errorMessage>
+</ValidationRule>

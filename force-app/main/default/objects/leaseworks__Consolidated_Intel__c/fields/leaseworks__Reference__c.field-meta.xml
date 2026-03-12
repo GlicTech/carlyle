@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Reference__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <formula>IF(leaseworks__Type__c == &#39;MI&#39;,  HYPERLINK(&#39;/&#39; &amp; leaseworks__Market_Intelligence__c,  leaseworks__Market_Intelligence__r.Name + &#39; - Remarket&#39; , &#39;_blank&#39;),
+IF(leaseworks__Type__c == &#39;AIT&#39;, HYPERLINK(&#39;/&#39; &amp; leaseworks__Aircraft_In_Transaction__c, leaseworks__Aircraft_In_Transaction__r.Name + &#39; - Acquisition&#39;, &#39;_blank&#39;), 
+
+IF(leaseworks__Type__c == &#39;IL&#39;, HYPERLINK(&quot;/&quot; &amp;  leaseworks__Interaction_Log__r.Id  ,  leaseworks__Interaction_Log__r.Name ), null))
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Reference to the matching Market Intel or Aircraft in Transaction.</inlineHelpText>
+    <label>Reference</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

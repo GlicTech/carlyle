@@ -1,0 +1,123 @@
+<messaging:emailTemplate subject="A New {!relatedTo.leaseworks__Event__r.leaseworks__Event_Type_F__c} Claim Notification Received For MSN {!relatedTo.leaseworks__Assembly__r.leaseworks__Attached_Aircraft__r.name} - {!relatedTo.leaseworks__Assembly__r.name} {!relatedTo.leaseworks__Assembly__r.leaseworks__Type__c} Is Under Dispute With The Lessee" recipientType="User" relatedToType="leaseworks__Claims__c">
+
+<messaging:htmlEmailBody >
+<html>
+    <header>
+         <apex:image id="theImage" value="{!'/servlet/servlet.FileDownload?file=0152o0000093rSj'}"/> 
+    </header>
+
+    <body>
+
+<p></p>
+<p>Please be informed of the dispute of the claim by the lessee</p>
+
+<table>
+  <tr>
+          <td>
+             <b>MSN for claim:</b>
+          </td>
+             <td>
+              {!relatedTo.leaseworks__Assembly__r.leaseworks__Attached_Aircraft__r.name}
+          </td>
+      </tr>
+       <tr>
+          <td>
+              <b>Assembly Name:</b>
+          </td>
+          <td >
+              {!relatedTo.leaseworks__Assembly__r.leaseworks__Type__c}
+          </td>
+      </tr>
+      <tr>
+          <td >
+              <b>Event Name:</b>
+          </td>
+          <td >
+              {!relatedTo.leaseworks__Event__r.Name}
+          </td>
+      </tr>
+      <tr>
+          <td >
+              <b>Event Type:</b>
+          </td>
+          <td >
+             {!relatedTo.leaseworks__Event__r.leaseworks__Event_Type_F__c}
+          </td>
+      </tr>
+      <tr>
+          <td >
+              <b>Claim:</b>
+          </td>
+          <td >
+              {!relatedTo.Name}
+          </td>
+      </tr>
+       <tr>
+          <td >
+              <b>Date of receipt of notification from Lessee:</b>
+          </td>
+          <td >
+              <apex:outputField value="{!relatedTo.leaseworks__Date_Receipt_Notification_From_Lessee__c}"/>
+          </td>
+      </tr>
+      <tr>
+          <td >
+              <b>Confirmed the receipt to Lessee:</b>
+          </td>
+          <td >
+             {!IF(relatedTo.leaseworks__Confirmed_the_Receipt_to_Lessee__c, 'Yes', 'No')}
+          </td>
+      </tr>
+      <tr>
+          <td >
+              <b>Technical Manager Comment:</b>
+          </td>
+          <td >
+              {!relatedTo.leaseworks__Technical_Manager_Comment__c}
+          </td>
+      </tr>
+      <tr>
+          <td >
+              <b>Estimated Claim Amount:</b>
+          </td>
+          <td >
+             <apex:outputField value="{!relatedTo.leaseworks__Estimated_Claim_Amount__c}"/>
+          </td>
+      </tr>
+      <tr>
+          <td >
+              <b>Approved Claim Amount:</b>
+          </td>
+          <td >
+              <apex:outputField value="{!relatedTo.leaseworks__Approved_Claim_Amount__c}"/>
+          </td>
+      </tr>
+      <tr>
+          <td >
+              <b>Valid Claim?:</b>
+          </td>
+          <td >
+             {!IF(relatedTo.leaseworks__Valid_Claim__c, 'Yes', 'No')}
+          </td>
+      </tr>
+      <tr>
+          <td >
+              <b>Lessee Comments:</b>
+          </td>
+          <td >
+             {!relatedTo.leaseworks__Lessee_Comments__c}
+          </td>
+      </tr>
+      <tr>
+          <td >
+              <b>Lessor Comments:</b>
+          </td>
+          <td >
+             {!relatedTo.leaseworks__Lessor_Comments__c}
+          </td>
+      </tr>
+     </table>
+    </body>
+   </html>
+</messaging:htmlEmailBody> 
+</messaging:emailTemplate>

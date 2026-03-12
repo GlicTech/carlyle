@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Assembly_Event_Info__c</fullName>
+    <deleteConstraint>Restrict</deleteConstraint>
+    <deprecated>false</deprecated>
+    <description>Auto set based on assembly type and event. Can be exposed to the UI in the future.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Associated Projected Event that is eligible for claim from this MR fund</inlineHelpText>
+    <label>Associated Event</label>
+    <lookupFilter>
+        <active>true</active>
+        <booleanFilter>1 AND (2 OR 3)</booleanFilter>
+        <errorMessage>Selected Associated Event is not related to the Assembly. Please clean the lookup and enter event again</errorMessage>
+        <filterItems>
+            <field>$Source.leaseworks__Assembly_Lkp__c</field>
+            <operation>equals</operation>
+            <valueField>leaseworks__Assembly_Event_Info__c.leaseworks__Constituent_Assembly__c</valueField>
+        </filterItems>
+        <filterItems>
+            <field>leaseworks__Assembly_Event_Info__c.leaseworks__Sequence__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filterItems>
+        <filterItems>
+            <field>leaseworks__Assembly_Event_Info__c.leaseworks__Sequence__c</field>
+            <operation>equals</operation>
+            <value />
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>leaseworks__Assembly_Event_Info__c</referenceTo>
+    <relationshipLabel>Supplemental Rent</relationshipLabel>
+    <relationshipName>Assembly_MR_Info</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

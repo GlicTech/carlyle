@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__CreditAmountValidation</fullName>
+    <active>false</active>
+    <description>deprecated : Credit Amount must be between 0 and Balance Due</description>
+    <errorConditionFormula>/*AND(Credited_Invoice__c!=null, OR(BLANKVALUE(Credit_Amount__c, 0) &lt;= 0 , BLANKVALUE(Credit_Amount__c, 0) &gt;  (Credited_Invoice__r.Invoiced_Amount_Formula__c + Credited_Invoice__r.Tax_Amount__c)))*/
+false</errorConditionFormula>
+    <errorMessage>Credit Amount must be positive and not more than the Invoiced Amount of the invoice being credited.</errorMessage>
+</ValidationRule>

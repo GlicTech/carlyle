@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>61.0</apiVersion>
+    <description>The flow override Rounded to 2 decimals Calculated Ratio to hidden filed for May and June 2024 Supplemental Rent Utilization Records of Engine Performance Restoration with attached Ratio Table.</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>Rounded_Ratio</name>
+        <dataType>Number</dataType>
+        <expression>ROUND({!$Record.leaseworks__FH_FC_Ratio__c},2)</expression>
+        <scale>2</scale>
+    </formulas>
+    <interviewLabel>Round Ratio on Supplemental Rent Utilization for May 2024 {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Round Ratio on Supplemental Rent Utilization for May 2024</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Override_Ratio</name>
+        <label>Override Ratio</label>
+        <locationX>176</locationX>
+        <locationY>323</locationY>
+        <inputAssignments>
+            <field>leaseworks__Overridden_FH_FC__c</field>
+            <value>
+                <elementReference>Rounded_Ratio</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Override_Ratio</targetReference>
+        </connector>
+        <filterLogic>1 AND 2 AND (3 OR 4)</filterLogic>
+        <filters>
+            <field>leaseworks__Y_Hidden_Assembly_MR_Info__c</field>
+            <operator>Contains</operator>
+            <value>
+                <stringValue>Performance Restoration</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>leaseworks__Report_Type_F__c</field>
+            <operator>Contains</operator>
+            <value>
+                <stringValue>Engine</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>leaseworks__End_Date_F__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <dateValue>2024-05-31</dateValue>
+            </value>
+        </filters>
+        <filters>
+            <field>leaseworks__End_Date_F__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <dateValue>2024-06-30</dateValue>
+            </value>
+        </filters>
+        <object>leaseworks__Utilization_Report_List_Item__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Draft</status>
+</Flow>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Related_to_Manual_SD__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <deprecated>false</deprecated>
+    <description>Used to retrieve the Manual SD Transfer Amount and Manual SD Transfer Date from the Security Deposit record for use in formula fields (Invoiced Amount, Cash Amount, Transaction Date). Ensure the correct transaction history record is updated if the manually entered amount changes. This field is populated only for transactions of type Manual Fund Transfer.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Links this manual fund transfer transaction to its Security Deposit record. Used to calculate and display the Manual SD Transfer Amount and Date on the transaction history.</inlineHelpText>
+    <label>Related SD (Manual Transfer)</label>
+    <referenceTo>leaseworks__Cash_Security_Deposit__c</referenceTo>
+    <relationshipLabel>Security Deposit Transaction History</relationshipLabel>
+    <relationshipName>Security_Deposit_Transaction_History</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

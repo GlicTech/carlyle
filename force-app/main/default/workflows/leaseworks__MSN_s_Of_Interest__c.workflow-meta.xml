@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>leaseworks__MOISetName</fullName>
+        <field>Name</field>
+        <formula>leaseworks__Deal_Proposal__r.leaseworks__Prospect_New__r.Name  + &#39;-Terms-&#39; +  leaseworks__Aircraft__r.leaseworks__MSN__c</formula>
+        <name>MOISetName</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>leaseworks__MOISetName</fullName>
+        <actions>
+            <name>leaseworks__MOISetName</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>True</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

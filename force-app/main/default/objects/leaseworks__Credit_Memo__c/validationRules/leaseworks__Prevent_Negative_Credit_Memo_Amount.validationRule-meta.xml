@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Prevent_Negative_Credit_Memo_Amount</fullName>
+    <active>true</active>
+    <description>This Validation is to inform the user that we can not  create a Credit Memo with a negative amount.</description>
+    <errorConditionFormula>AND(
+    NOT($Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c),
+    leaseworks__Amount__c &lt; 0
+)</errorConditionFormula>
+    <errorDisplayField>leaseworks__Amount__c</errorDisplayField>
+    <errorMessage>Credit Memo Amount should not be negative.</errorMessage>
+</ValidationRule>

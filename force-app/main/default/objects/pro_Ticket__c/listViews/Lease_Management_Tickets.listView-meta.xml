@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Lease_Management_Tickets</fullName>
+    <columns>NAME</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>pro_Assignees__c</columns>
+    <columns>pro_Requested_By_Formula__c</columns>
+    <columns>pro_Type__c</columns>
+    <columns>pro_Title__c</columns>
+    <columns>pro_Supporting_Information__c</columns>
+    <columns>pro_Status__c</columns>
+    <columns>pro_Priority__c</columns>
+    <columns>pro_Expected_Due_Date__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>pro_Owner_Formula__c</field>
+        <operation>contains</operation>
+        <value>Lease Management</value>
+    </filters>
+    <label>Lease Management Tickets</label>
+    <sharedTo>
+        <group>Lease_Management</group>
+    </sharedTo>
+</ListView>

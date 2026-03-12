@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__TSI_F__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Time Since Installation of the Assembly according to the Assembly History related list (equal to current Assembly TSN - Assembly TSN at installation)</description>
+    <externalId>false</externalId>
+    <formula>IF(NOT(ISNULL(leaseworks__TSN_at_Last_Install__c)),leaseworks__TSN__c - leaseworks__TSN_at_Last_Install__c ,null)</formula>
+    <inlineHelpText>Time Since Installation of the Assembly according to the Assembly History related list (equal to current Assembly TSN - Assembly TSN at installation)</inlineHelpText>
+    <label>TSI</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

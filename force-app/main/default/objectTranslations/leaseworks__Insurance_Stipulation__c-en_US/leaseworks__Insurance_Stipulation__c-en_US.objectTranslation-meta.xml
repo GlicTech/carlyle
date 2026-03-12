@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <layouts>
+        <layout>Insurance Stipulations Dec2020 Layout</layout>
+        <sections>
+            <label><!-- Agreed Value --></label>
+            <section>Agreed Value</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- External Document --></label>
+            <section>External Document</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+    <validationRules>
+        <errorMessage><!-- The Start Date cannot be later than the End Date --></errorMessage>
+        <name>leaseworks__EndDateCannotBeBeforeStartDate</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &apos;First Renewal Date&apos; should be a date between the Start Date and the first anniversary of the Start Date. --></errorMessage>
+        <name>leaseworks__FirstRenewalDtBtwStartDtAnvrsryDt</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- This field should be entered only if the Variability is not Fixed --></errorMessage>
+        <name>leaseworks__FirstRenewalDtWhenVarNotFixed</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter the Deductible Amount in case of Variable Variability. --></errorMessage>
+        <name>leaseworks__Mandate_Deductible_Amount</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter the Variability Percent --></errorMessage>
+        <name>leaseworks__Mandate_Variability_Percent</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter the Variability Amount --></errorMessage>
+        <name>leaseworks__Mandate_Variable_Amount</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &apos;First Variable Period&apos; cannot be negative or 0/null and cannot be higher than 360 (assuming max length of the Lease) --></errorMessage>
+        <name>leaseworks__RestrictFirstVariablePeriod</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Percentage or Amount is not allowed. Please check the selection in the &apos;Variability&apos; field --></errorMessage>
+        <name>leaseworks__WhenFixedSelected</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Percentage is not allowed because &apos;Variability&apos; is selected as Variable Amount --></errorMessage>
+        <name>leaseworks__WhenVariableAmountSelected</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Amount is not allowed because &apos;Variability&apos; is selected as Variable Percent --></errorMessage>
+        <name>leaseworks__WhenVariablePercentSelected</name>
+    </validationRules>
+</CustomObjectTranslation>
