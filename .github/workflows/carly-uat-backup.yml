@@ -30,8 +30,9 @@ jobs:
           SF_SFDX_AUTH_URL: ${{ secrets.SF_SFDX_AUTH_URL }}
         run: |
           jq -n --arg url "$SF_SFDX_AUTH_URL" '{sfdxAuthUrl: $url}' > authFile.json
-          jq -r '.sfdxAuthUrl' authFile.json | sf org login sfdx-url --sfdx-url-stdin --alias uat
-          rm -f authFile.json
+          jq -r '.sfdxAuthUrl' authFile.json > authUrl.txt
+          sf org login sfdx-url --sfdx-url-file authUrl.txt --alias uat
+          rm -f authFile.json authUrl.txt
 
       - name: Retrieve metadata from UAT org
         run: |
