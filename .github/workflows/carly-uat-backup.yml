@@ -1,0 +1,59 @@
+name: Carly UAT Backup
+
+# Retrieves metadata from Salesforce UAT org and backs up to carly-uat-backup branch.
+# Uses OAuth Username-Password flow with Connected App credentials.
+#
+# Required GitHub Secrets: SF_USERNAME, SF_PASSWORD, SF_CLIENT_ID, SF_CLIENT_SECRET, SF_LOGIN_URL
+
+on:
+  schedule:
+    - cron: '0 20 * * 5'  # Friday 8:00 PM UTC
+  workflow_dispatch:
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Salesforce CLI
+        run: npm install -g @salesforce/cli
+
+      - name: Authenticate to Salesforce UAT (Username-Password flow)
+        run: |
+          RESPONSE=$(curl -s -X POST "${{ secrets.SF_LOGIN_URL }}/services/oauth2/token" \
+            -d "grant_type=password" \
+            -d "client_id=${{ secrets.SF_CLIENT_ID }}" \
+            -d "client_secret=${{ secrets.SF_CLIENT_SECRET }}" \
+            -d "username=${{ secrets.SF_USERNAME }}" \
+            -d "password=${{ secrets.SF_PASSWORD }}")
+
+          ACCESS_TOKEN=$(echo "$RESPONSE" | jq -r '.access_token')
+          INSTANCE_URL=$(echo "$RESPONSE" | jq -r '.instance_url')
+
+          if [ "$ACCESS_TOKEN" = "null" ] || [ -z "$ACCESS_TOKEN" ]; then
+            echo "Auth failed: $RESPONSE"
+            exit 1
+          fi
+
+          sf org login access-token --instance-url "$INSTANCE_URL" --access-token "$ACCESS_TOKEN" --alias uat
+
+      - name: Retrieve metadata from UAT org
+        run: |
+          sf project retrieve start --target-org uat --manifest manifest/package.xml
+
+      - name: Create or update carly-uat-backup branch
+        run: |
+          BACKUP_BRANCH="carly-uat-backup"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if ! git diff --staged --quiet; then
+            git commit -m "chore: UAT metadata backup $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          fi
+          git push "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}" HEAD:${BACKUP_BRANCH} --force
