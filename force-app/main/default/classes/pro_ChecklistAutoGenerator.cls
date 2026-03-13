@@ -1,0 +1,332 @@
+/**
+ * GT-06 / US-018 — Auto-generates pro_Checklist_Item__c records from
+ * pro_Checklist_Item_Template__mdt when a Deal's status transitions to
+ * LOI_Signed (Pre-Closing) or Closed_Won (Post-Closing).
+ *
+ * Invoked by the pro_Auto_Generate_Checklist_Items flow.
+ */
+public with sharing class pro_ChecklistAutoGenerator {
+
+    // ─────────────────────────────────────────────────────────────
+    // Invocable wrapper
+    // ─────────────────────────────────────────────────────────────
+    public class GenerateRequest {
+        @InvocableVariable(required=true label='Deal ID')
+        public Id dealId;
+
+        @InvocableVariable(required=true label='Trigger Status')
+        public String triggerStatus;
+
+        @InvocableVariable(required=false label='Asset in Deal ID')
+        public Id aidId;
+    }
+
+    @InvocableMethod(
+        label='Generate Checklist Items'
+        description='Auto-generates checklist items from CMDT templates for a Deal status transition'
+    )
+    public static void generateItems(List<GenerateRequest> requests) {
+        if (requests == null || requests.isEmpty()) {
+            return;
+        }
+
+        // ── 1. Collect unique Deal IDs ──────────────────────────
+        Set<Id> dealIds = new Set<Id>();
+        Map<Id, String> dealIdToStatus = new Map<Id, String>();
+        Map<Id, Id> dealIdToAidId = new Map<Id, Id>();
+        for (GenerateRequest req : requests) {
+            if (req.dealId != null && String.isNotBlank(req.triggerStatus)) {
+                dealIds.add(req.dealId);
+                dealIdToStatus.put(req.dealId, req.triggerStatus);
+                if (req.aidId != null) {
+                    dealIdToAidId.put(req.dealId, req.aidId);
+                }
+            }
+        }
+
+        if (dealIds.isEmpty()) {
+            return;
+        }
+
+        // ── 2. Query Deals ──────────────────────────────────────
+        Map<Id, leaseworks__Marketing_Activity__c> dealMap =
+            new Map<Id, leaseworks__Marketing_Activity__c>([
+                SELECT Id,
+                       leaseworks__Deal_Type__c,
+                       leaseworks__Close_Date__c
+                  FROM leaseworks__Marketing_Activity__c
+                 WHERE Id IN :dealIds
+                   WITH SECURITY_ENFORCED
+            ]);
+
+        // ── 3. Query active Assets in Deal ──────────────────────
+        List<leaseworks__Aircraft_Proposal__c> activeAids = [
+            SELECT Id,
+                   Name,
+                   leaseworks__Marketing_Activity__c
+              FROM leaseworks__Aircraft_Proposal__c
+             WHERE leaseworks__Marketing_Activity__c IN :dealIds
+               AND leaseworks__Inactive_AT__c = false
+               WITH SECURITY_ENFORCED
+        ];
+
+        if (activeAids.isEmpty()) {
+            return;
+        }
+
+        // Build map: dealId → list of AiDs (filtered by aidId when scoped)
+        Map<Id, List<leaseworks__Aircraft_Proposal__c>> dealToAids =
+            new Map<Id, List<leaseworks__Aircraft_Proposal__c>>();
+        for (leaseworks__Aircraft_Proposal__c aid : activeAids) {
+            Id parentDealId = aid.leaseworks__Marketing_Activity__c;
+            // If a specific AiD was requested for this Deal, skip others
+            Id scopedAidId = dealIdToAidId.get(parentDealId);
+            if (scopedAidId != null && scopedAidId != aid.Id) {
+                continue;
+            }
+            if (!dealToAids.containsKey(parentDealId)) {
+                dealToAids.put(parentDealId, new List<leaseworks__Aircraft_Proposal__c>());
+            }
+            dealToAids.get(parentDealId).add(aid);
+        }
+
+        // ── 4. Determine phases needed ───────────────────────────
+        // Collect the distinct phases required across all requests
+        Set<String> phasesNeeded = new Set<String>();
+        Map<Id, String> dealIdToPhase = new Map<Id, String>();
+        for (Id dId : dealIds) {
+            String status = dealIdToStatus.get(dId);
+            String phase  = resolvePhase(status);
+            if (phase != null) {
+                dealIdToPhase.put(dId, phase);
+                phasesNeeded.add(phase);
+            }
+        }
+
+        if (dealIdToPhase.isEmpty()) {
+            return;
+        }
+
+        // ── 5. Collect AiD IDs to check for existing items ─────
+        Set<Id> allAidIds = new Set<Id>();
+        for (leaseworks__Aircraft_Proposal__c aid : activeAids) {
+            allAidIds.add(aid.Id);
+        }
+
+        // ── 6. Duplicate-prevention query ───────────────────────
+        // Returns the (AiD, phase) combinations that already have
+        // auto-generated items, so we can skip them.
+        List<pro_Checklist_Item__c> existingItems = [
+            SELECT pro_Asset_in_Deal__c,
+                   pro_Phase__c
+              FROM pro_Checklist_Item__c
+             WHERE pro_Asset_in_Deal__c IN :allAidIds
+               AND pro_Phase__c          IN :phasesNeeded
+               AND pro_Is_Autogenerated__c = true
+               WITH SECURITY_ENFORCED
+             LIMIT 50000
+        ];
+
+        Set<String> alreadyGenerated = new Set<String>();
+        for (pro_Checklist_Item__c item : existingItems) {
+            alreadyGenerated.add(item.pro_Asset_in_Deal__c + '|' + item.pro_Phase__c);
+        }
+
+        // ── 7. Query all active CMDT templates for needed phases ─
+        List<pro_Checklist_Item_Template__mdt> allTemplates = [
+            SELECT Id,
+                   DeveloperName,
+                   pro_Checklist_Item_Title__c,
+                   pro_Phase__c,
+                   pro_Category__c,
+                   pro_Sort_Order__c,
+                   pro_Document_Action_Required__c,
+                   pro_Documentation_Tab_Field__c,
+                   pro_Moveable_to_Post_Closing__c,
+                   pro_Default_Necessary__c,
+                   pro_Deal_Type__c,
+                   pro_Due_Date_Days_After_Close__c
+              FROM pro_Checklist_Item_Template__mdt
+             WHERE pro_Active__c = true
+               AND pro_Phase__c  IN :phasesNeeded
+        ];
+
+        // Pre-group templates by phase for quick lookup
+        Map<String, List<pro_Checklist_Item_Template__mdt>> templatesByPhase =
+            new Map<String, List<pro_Checklist_Item_Template__mdt>>();
+        for (pro_Checklist_Item_Template__mdt tmpl : allTemplates) {
+            if (!templatesByPhase.containsKey(tmpl.pro_Phase__c)) {
+                templatesByPhase.put(tmpl.pro_Phase__c, new List<pro_Checklist_Item_Template__mdt>());
+            }
+            templatesByPhase.get(tmpl.pro_Phase__c).add(tmpl);
+        }
+
+        // ── 8. Query Contracts assignees for all Deals ──────────
+        // We want the earliest-created Contracts team member per Deal.
+        List<leaseworks__Deal_Team__c> contractsTeam = [
+            SELECT leaseworks__Marketing_Activity__c,
+                   leaseworks__Assigned_To__c
+              FROM leaseworks__Deal_Team__c
+             WHERE leaseworks__Marketing_Activity__c IN :dealIds
+               AND pro_Member_Role__c = 'Contracts'
+               WITH SECURITY_ENFORCED
+             ORDER BY leaseworks__Marketing_Activity__c ASC,
+                      CreatedDate ASC
+        ];
+
+        // Take only the first (earliest) per Deal
+        Map<Id, Id> dealToContractsUser = new Map<Id, Id>();
+        for (leaseworks__Deal_Team__c dt : contractsTeam) {
+            Id parentId = dt.leaseworks__Marketing_Activity__c;
+            if (!dealToContractsUser.containsKey(parentId)) {
+                dealToContractsUser.put(parentId, dt.leaseworks__Assigned_To__c);
+            }
+        }
+
+        // ── 9. Build checklist items ─────────────────────────────
+        List<pro_Checklist_Item__c> itemsToInsert = new List<pro_Checklist_Item__c>();
+
+        for (Id dId : dealIds) {
+            String phase = dealIdToPhase.get(dId);
+            if (phase == null) {
+                continue;
+            }
+
+            leaseworks__Marketing_Activity__c deal = dealMap.get(dId);
+            if (deal == null) {
+                continue;
+            }
+
+            String dealType      = deal.leaseworks__Deal_Type__c;
+            Date   closeDate     = deal.leaseworks__Close_Date__c;
+            Id     contractsUser = dealToContractsUser.get(dId);
+
+            List<leaseworks__Aircraft_Proposal__c> aidsForDeal = dealToAids.get(dId);
+            if (aidsForDeal == null || aidsForDeal.isEmpty()) {
+                continue;
+            }
+
+            List<pro_Checklist_Item_Template__mdt> phaseTemplates =
+                templatesByPhase.get(phase);
+            if (phaseTemplates == null || phaseTemplates.isEmpty()) {
+                continue;
+            }
+
+            // Filter templates by deal type
+            List<pro_Checklist_Item_Template__mdt> matchingTemplates =
+                filterTemplatesByDealType(phaseTemplates, dealType);
+
+            if (matchingTemplates.isEmpty()) {
+                continue;
+            }
+
+            for (leaseworks__Aircraft_Proposal__c aid : aidsForDeal) {
+                // Duplicate prevention — skip if already generated for this AiD+phase
+                String dupKey = aid.Id + '|' + phase;
+                if (alreadyGenerated.contains(dupKey)) {
+                    continue;
+                }
+
+                for (pro_Checklist_Item_Template__mdt tmpl : matchingTemplates) {
+                    pro_Checklist_Item__c item = buildChecklistItem(
+                        tmpl, aid.Id, phase, contractsUser, closeDate
+                    );
+                    itemsToInsert.add(item);
+                }
+            }
+        }
+
+        // ── 10. Insert ───────────────────────────────────────────
+        if (!itemsToInsert.isEmpty()) {
+            insert itemsToInsert;
+        }
+    }
+
+    // ─────────────────────────────────────────────────────────────
+    // Helpers
+    // ─────────────────────────────────────────────────────────────
+
+    /**
+     * Maps a Deal Status picklist value to a checklist phase.
+     */
+    private static String resolvePhase(String triggerStatus) {
+        if ('LOI Signed'.equalsIgnoreCase(triggerStatus)) {
+            return 'Pre-Closing';
+        }
+        if ('Closed - Won'.equalsIgnoreCase(triggerStatus)) {
+            return 'Post-Closing';
+        }
+        return null;
+    }
+
+    /**
+     * Returns templates whose pro_Deal_Type__c comma-separated list
+     * contains the given dealType (case-insensitive, trimmed).
+     */
+    private static List<pro_Checklist_Item_Template__mdt> filterTemplatesByDealType(
+        List<pro_Checklist_Item_Template__mdt> templates,
+        String dealType
+    ) {
+        List<pro_Checklist_Item_Template__mdt> matched =
+            new List<pro_Checklist_Item_Template__mdt>();
+
+        if (String.isBlank(dealType)) {
+            return matched;
+        }
+
+        String normalizedDealType = dealType.trim().toLowerCase();
+
+        for (pro_Checklist_Item_Template__mdt tmpl : templates) {
+            if (String.isBlank(tmpl.pro_Deal_Type__c)) {
+                continue;
+            }
+            List<String> parts = tmpl.pro_Deal_Type__c.split(',');
+            for (String part : parts) {
+                if (part.trim().toLowerCase() == normalizedDealType) {
+                    matched.add(tmpl);
+                    break;
+                }
+            }
+        }
+        return matched;
+    }
+
+    /**
+     * Constructs a single pro_Checklist_Item__c from a template record.
+     */
+    private static pro_Checklist_Item__c buildChecklistItem(
+        pro_Checklist_Item_Template__mdt tmpl,
+        Id aidId,
+        String phase,
+        Id contractsUser,
+        Date closeDate
+    ) {
+        pro_Checklist_Item__c item = new pro_Checklist_Item__c();
+
+        item.pro_Asset_in_Deal__c              = aidId;
+        item.pro_Title__c                      = tmpl.pro_Checklist_Item_Title__c;
+        item.pro_Phase__c                      = tmpl.pro_Phase__c;
+        item.pro_Category__c                   = tmpl.pro_Category__c;
+        item.pro_Sort_Order__c                 = tmpl.pro_Sort_Order__c;
+        item.pro_Document_Action_Required__c   = tmpl.pro_Document_Action_Required__c;
+        item.pro_Documentation_Tab_Field__c    = tmpl.pro_Documentation_Tab_Field__c;
+        item.pro_Moveable_to_Post_Closing__c   = tmpl.pro_Moveable_to_Post_Closing__c;
+        item.pro_Necessary__c                  = tmpl.pro_Default_Necessary__c;
+        item.pro_Is_Autogenerated__c           = true;
+        item.pro_Status__c                     = 'Open';
+        item.pro_Repsonsibility__c             = contractsUser;
+
+        // Post-closing key date calculation
+        if (phase == 'Post-Closing'
+                && tmpl.pro_Due_Date_Days_After_Close__c != null
+                && tmpl.pro_Due_Date_Days_After_Close__c > 0) {
+
+            Date baseDate = (closeDate != null) ? closeDate : Date.today();
+            item.pro_Key_Date__c = pro_BusinessDayCalculator.addBusinessDays(
+                baseDate, Integer.valueOf(tmpl.pro_Due_Date_Days_After_Close__c)
+            );
+        }
+
+        return item;
+    }
+}

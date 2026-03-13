@@ -5,7 +5,7 @@
     <description>Please decline this and create a new payable with the corrected amount.</description>
     <errorConditionFormula>AND(!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c,
     ISCHANGED(leaseworks__Lessor_Contribution_Committed__c),
-    ISPICKVAL(leaseworks__Payable_Type__c, &#39;MR Claim Event&#39;)
+    ISPICKVAL(leaseworks__Payable_Type__c, &apos;MR Claim Event&apos;)
 )</errorConditionFormula>
     <errorDisplayField>leaseworks__Lessor_Contribution_Committed__c</errorDisplayField>
     <errorMessage>Manual update on Lessor Contribution Committed is not allowed once the MR Claim Payable is generated. Please decline this and create a new payable with the corrected amount.</errorMessage>

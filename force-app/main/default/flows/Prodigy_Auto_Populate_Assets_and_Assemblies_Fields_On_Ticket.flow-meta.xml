@@ -44,6 +44,9 @@
                 <stringValue>&lt;p&gt;There was an error updating this Ticket. Please, contact your Salesforce administrator if this issue persists. &lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;{!$Flow.FaultMessage}&lt;/p&gt;</stringValue>
             </value>
         </inputParameters>
+        <nameSegment>emailSimple</nameSegment>
+        <offset>0</offset>
+        <versionString>1.0.1</versionString>
     </actionCalls>
     <apiVersion>64.0</apiVersion>
     <assignments>
@@ -145,7 +148,7 @@
         <name>f_AssemblyOnTicketName</name>
         <dataType>String</dataType>
         <expression>IF(
-     {!varAssemblyNames} = Null, {!Loop_Assemblies_On_Ticket.Name}, &#39;, &#39; + {!Loop_Assemblies_On_Ticket.Name}
+     {!varAssemblyNames} = Null, {!Loop_Assemblies_On_Ticket.Name}, &apos;, &apos; + {!Loop_Assemblies_On_Ticket.Name}
 )</expression>
     </formulas>
     <formulas>
@@ -153,31 +156,31 @@
         <name>f_AssetName</name>
         <dataType>String</dataType>
         <expression>IF(
-   {!varAssetNames} = Null, {!Loop_Assets_On_Ticket.pro_Asset__r.Name}, &#39;, &#39; + {!Loop_Assets_On_Ticket.pro_Asset__r.Name})</expression>
+   {!varAssetNames} = Null, {!Loop_Assets_On_Ticket.pro_Asset__r.Name}, &apos;, &apos; + {!Loop_Assets_On_Ticket.pro_Asset__r.Name})</expression>
     </formulas>
     <formulas>
         <name>f_ContractNameFormatted</name>
         <dataType>String</dataType>
         <expression>IF(
-    {!varContractOnTicketNames} = Null, {!Loop_Contracts_On_Ticket.Name}, &#39;, &#39; + {!Loop_Contracts_On_Ticket.Name}
+    {!varContractOnTicketNames} = Null, {!Loop_Contracts_On_Ticket.Name}, &apos;, &apos; + {!Loop_Contracts_On_Ticket.Name}
 )</expression>
     </formulas>
     <formulas>
         <name>f_ErrorEmailSubject</name>
         <dataType>String</dataType>
-        <expression>&#39;Error Updating Ticket &#39; + {!varTriggeringTicket.Name}</expression>
+        <expression>&apos;Error Updating Ticket &apos; + {!varTriggeringTicket.Name}</expression>
     </formulas>
     <formulas>
         <name>f_RunningUserFullName</name>
         <dataType>String</dataType>
-        <expression>{!$User.FirstName} + &#39; &#39; + {!$User.LastName}</expression>
+        <expression>{!$User.FirstName} + &apos; &apos; + {!$User.LastName}</expression>
     </formulas>
     <formulas>
         <description>Formatted for the creation of a comma separated list within a loop.</description>
         <name>f_TransactionCodeFormatted</name>
         <dataType>String</dataType>
         <expression>IF(
-   {!varTransactionCodes} = Null, {!Loop_Assets_On_Ticket.pro_Asset__r.leaseworks__MSN_Number__c} + &#39;(&#39; + {!Loop_Assets_On_Ticket.pro_Asset__r.Transaction_Code__c} + &#39;)&#39;, &#39;, &#39; + {!Loop_Assets_On_Ticket.pro_Asset__r.leaseworks__MSN_Number__c} + &#39;(&#39; + {!Loop_Assets_On_Ticket.pro_Asset__r.Transaction_Code__c} + &#39;)&#39;)</expression>
+   {!varTransactionCodes} = Null, {!Loop_Assets_On_Ticket.pro_Asset__r.leaseworks__MSN_Number__c} + &apos;(&apos; + {!Loop_Assets_On_Ticket.pro_Asset__r.Transaction_Code__c} + &apos;)&apos;, &apos;, &apos; + {!Loop_Assets_On_Ticket.pro_Asset__r.leaseworks__MSN_Number__c} + &apos;(&apos; + {!Loop_Assets_On_Ticket.pro_Asset__r.Transaction_Code__c} + &apos;)&apos;)</expression>
     </formulas>
     <interviewLabel>Prodigy - Auto - Populate Assets and Assemblies Fields On Ticket {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Prodigy - Auto - Populate Assets and Assemblies Fields On Ticket</label>

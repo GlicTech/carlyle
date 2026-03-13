@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Invoke_Assignee_Sync</name>
+        <label>Invoke Assignee Sync</label>
+        <locationX>176</locationX>
+        <locationY>134</locationY>
+        <actionName>pro_ChecklistAssigneeSync</actionName>
+        <actionType>apex</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>dealId</name>
+            <value>
+                <elementReference>varDealId</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>pro_ChecklistAssigneeSync</nameSegment>
+    </actionCalls>
+    <apiVersion>62.0</apiVersion>
+    <description>Autolaunched subflow: syncs the Contracts team member assignee to all auto-generated checklist items for a Deal. Called from pro_Deal_Team_Orchestrator. Delegates to pro_ChecklistAssigneeSync invocable Apex for bulkified processing.</description>
+    <label>Checklist Assignee Sync</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>176</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Invoke_Assignee_Sync</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>varDealId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

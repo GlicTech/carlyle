@@ -170,29 +170,29 @@ Once Approval is given on a Non Deal Approval, this flow creates a corresponding
         <expression>CASE(
     TEXT({!$Record.Approval_Type__c}),
     
-    &#39;Waiver / Rebate&#39;, &#39;Lease Side Letter&#39;,
-    &#39;Deferral Request&#39;, &#39;Lease Side Letter&#39;,
-    &#39;LPI Waiver / Discount&#39;, &#39;Lease Side Letter&#39;,
-    &#39;Part Exchanges (LG / APU)&#39;, &#39;Lease Side Letter&#39;,
-    &#39;Cash to LoC Conversion&#39;, &#39;Lease Side Letter&#39;,
-    &#39;Redelivery Buy-outs&#39;, &#39;Lease Side Letter&#39;,
-    &#39;Other Lease Amendments&#39;, &#39;Lease Side Letter&#39;,
+    &apos;Waiver / Rebate&apos;, &apos;Lease Side Letter&apos;,
+    &apos;Deferral Request&apos;, &apos;Lease Side Letter&apos;,
+    &apos;LPI Waiver / Discount&apos;, &apos;Lease Side Letter&apos;,
+    &apos;Part Exchanges (LG / APU)&apos;, &apos;Lease Side Letter&apos;,
+    &apos;Cash to LoC Conversion&apos;, &apos;Lease Side Letter&apos;,
+    &apos;Redelivery Buy-outs&apos;, &apos;Lease Side Letter&apos;,
+    &apos;Other Lease Amendments&apos;, &apos;Lease Side Letter&apos;,
 
-    &#39;LoC Drawdown&#39;, &#39;Other&#39;,
-    &#39;Novation Fees (Internal)&#39;, &#39;Other&#39;,
-    &#39;Novation Fees (External)&#39;, &#39;Other&#39;,
-    &#39;Bond Repurchase&#39;, &#39;Other&#39;,
-    &#39;Claims - Deviation from Lease Terms&#39;, &#39;Other&#39;,
+    &apos;LoC Drawdown&apos;, &apos;Other&apos;,
+    &apos;Novation Fees (Internal)&apos;, &apos;Other&apos;,
+    &apos;Novation Fees (External)&apos;, &apos;Other&apos;,
+    &apos;Bond Repurchase&apos;, &apos;Other&apos;,
+    &apos;Claims - Deviation from Lease Terms&apos;, &apos;Other&apos;,
 
-    &#39;Credit Actions&#39;, &#39;Non-Deal Approval&#39;,
+    &apos;Credit Actions&apos;, &apos;Non-Deal Approval&apos;,
 
-    &#39;Subleasing Request&#39;, &#39;Letter of Consent*&#39;,
-    &#39;Change of Ownership&#39;, &#39;Letter of Consent*&#39;,
-    &#39;Operational Requests&#39;, &#39;Letter of Consent&#39;,
+    &apos;Subleasing Request&apos;, &apos;Letter of Consent*&apos;,
+    &apos;Change of Ownership&apos;, &apos;Letter of Consent*&apos;,
+    &apos;Operational Requests&apos;, &apos;Letter of Consent&apos;,
 
-    &#39;Tripartite Agreement&#39;, &#39;Maintenance / Storage /CAMO Agmt&#39;,
+    &apos;Tripartite Agreement&apos;, &apos;Maintenance / Storage /CAMO Agmt&apos;,
 
-    &#39;Unknown&#39;
+    &apos;Unknown&apos;
 )</expression>
     </formulas>
     <formulas>
@@ -200,15 +200,15 @@ Once Approval is given on a Non Deal Approval, this flow creates a corresponding
         <dataType>String</dataType>
         <expression>IF({!varAssetsToAttachNames} = Null,
      {!Loop_Assets_In_Deal.Name},
-     &#39;, &#39; + {!Loop_Assets_In_Deal.Name}
+     &apos;, &apos; + {!Loop_Assets_In_Deal.Name}
 )</expression>
     </formulas>
     <formulas>
         <name>f_AssetTransactionCodeListFormat</name>
         <dataType>String</dataType>
         <expression>IF({!varAssetTransactionCodes} = Null,
-    {!Loop_Assets_In_Deal.leaseworks__Aircraft__r.leaseworks__MSN_Number__c} + &#39; - (&#39; + {!Loop_Assets_In_Deal.leaseworks__Aircraft__r.Transaction_Code__c}  + &#39;)&#39;,
-     &#39;, &#39; +   {!Loop_Assets_In_Deal.leaseworks__Aircraft__r.leaseworks__MSN_Number__c} + &#39; - (&#39; + {!Loop_Assets_In_Deal.leaseworks__Aircraft__r.Transaction_Code__c}  + &#39;)&#39;
+    {!Loop_Assets_In_Deal.leaseworks__Aircraft__r.leaseworks__MSN_Number__c} + &apos; - (&apos; + {!Loop_Assets_In_Deal.leaseworks__Aircraft__r.Transaction_Code__c}  + &apos;)&apos;,
+     &apos;, &apos; +   {!Loop_Assets_In_Deal.leaseworks__Aircraft__r.leaseworks__MSN_Number__c} + &apos; - (&apos; + {!Loop_Assets_In_Deal.leaseworks__Aircraft__r.Transaction_Code__c}  + &apos;)&apos;
 )</expression>
     </formulas>
     <formulas>

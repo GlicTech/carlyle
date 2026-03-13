@@ -229,7 +229,7 @@
     <formulas>
         <name>f_AssetInDealOrEmptyString</name>
         <dataType>String</dataType>
-        <expression>IF({!Loop_Audit_Records.pro_Asset_in_Deal__c} = Null, &#39;&#39;, {!Loop_Audit_Records.pro_Asset_in_Deal__c})</expression>
+        <expression>IF({!Loop_Audit_Records.pro_Asset_in_Deal__c} = Null, &apos;&apos;, {!Loop_Audit_Records.pro_Asset_in_Deal__c})</expression>
     </formulas>
     <interviewLabel>Prodigy - Update Targets {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Prodigy - Update Target Audits</label>
@@ -393,6 +393,69 @@
         </connector>
     </start>
     <status>Active</status>
+    <transforms>
+        <name>Create_Asset_Id_Collection</name>
+        <label>Create Asset Id Collection</label>
+        <locationX>1106</locationX>
+        <locationY>242</locationY>
+        <connector>
+            <targetReference>Get_Target_Audits</targetReference>
+        </connector>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>varAssetCollection[$EachItem].Id</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
+    <transforms>
+        <name>Create_Audit_Id_Collection</name>
+        <label>Create Audit Id Collection</label>
+        <locationX>50</locationX>
+        <locationY>242</locationY>
+        <connector>
+            <targetReference>Loop_Audit_Records</targetReference>
+        </connector>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>varTargetAuditCollection[$EachItem].Id</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
+    <transforms>
+        <name>Create_Target_Audit_Id_Collection</name>
+        <label>Create Target Audit Id Collection</label>
+        <locationX>1106</locationX>
+        <locationY>458</locationY>
+        <connector>
+            <targetReference>Loop_Assets</targetReference>
+        </connector>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>Get_Target_Audits[$EachItem].Id</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
     <variables>
         <name>currentItem_Filter_Out_Closed_Audits</name>
         <dataType>SObject</dataType>

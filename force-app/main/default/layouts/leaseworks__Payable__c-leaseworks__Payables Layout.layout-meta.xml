@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
     <customButtons>pro_Generate_Payable_Note</customButtons>
+    <excludeButtons>OpenSlackRecordChannel</excludeButtons>
     <excludeButtons>Submit</excludeButtons>
     <layoutSections>
         <customLabel>false</customLabel>
@@ -13,7 +14,7 @@
                 <field>Name</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>leaseworks__Payable_Type__c</field>
             </layoutItems>
             <layoutItems>
@@ -206,6 +207,10 @@
                 <behavior>Edit</behavior>
                 <field>leaseworks__Accounting_Method__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>leaseworks__Payment_on_Account__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -308,30 +313,6 @@
     </platformActionList>
     <relatedLists>
         <relatedList>RelatedFileList</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>leaseworks__Accounting_Period__c</fields>
-        <fields>leaseworks__Journal_Amount__c</fields>
-        <fields>leaseworks__Journal_Source__c</fields>
-        <fields>leaseworks__Journal_Status__c</fields>
-        <fields>leaseworks__Transaction__c</fields>
-        <fields>leaseworks__Entity_Lkp__c</fields>
-        <relatedList>leaseworks__Parent_Journal_Entry__c.leaseworks__Payables__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <excludeButtons>MassChangeOwner</excludeButtons>
-        <excludeButtons>New</excludeButtons>
-        <fields>NAME</fields>
-        <fields>leaseworks__Calendar_Period__c</fields>
-        <fields>leaseworks__GL_Account_Code__c</fields>
-        <fields>leaseworks__JE_Description__c</fields>
-        <fields>leaseworks__Debit_F__c</fields>
-        <fields>leaseworks__Credit_F__c</fields>
-        <fields>leaseworks__Transaction_Type__c</fields>
-        <fields>leaseworks__Journal_Status__c</fields>
-        <fields>leaseworks__Transaction_Type_F__c</fields>
-        <relatedList>leaseworks__Journal_Entry__c.leaseworks__Payables__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>

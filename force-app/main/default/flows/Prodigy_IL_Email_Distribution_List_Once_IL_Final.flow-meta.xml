@@ -18,6 +18,8 @@
                 <elementReference>varDistributionList</elementReference>
             </value>
         </inputParameters>
+        <nameSegment>RemoveDuplicatesFromCollection</nameSegment>
+        <offset>0</offset>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <actionCalls>
@@ -37,6 +39,8 @@
                 <elementReference>varCCDistributionList</elementReference>
             </value>
         </inputParameters>
+        <nameSegment>RemoveDuplicatesFromCollection</nameSegment>
+        <offset>0</offset>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <actionCalls>
@@ -104,6 +108,9 @@
                 <elementReference>$Record.Id</elementReference>
             </value>
         </inputParameters>
+        <nameSegment>emailSimple</nameSegment>
+        <offset>0</offset>
+        <versionString>1.0.1</versionString>
     </actionCalls>
     <actionCalls>
         <name>Send_Notification</name>
@@ -143,6 +150,8 @@
                 <elementReference>$Record.Id</elementReference>
             </value>
         </inputParameters>
+        <nameSegment>customNotificationAction</nameSegment>
+        <offset>0</offset>
     </actionCalls>
     <apiVersion>64.0</apiVersion>
     <assignments>
@@ -410,7 +419,7 @@ IL &gt; Owner</description>
     </decisions>
     <description>Interaction Log Distribution
 
-Once an interaction log has a discussion type and has its status set to &#39;Final&#39;, this flow builds a distribution list baseed on the profile of the user to enter the IL and the discussion type. 
+Once an interaction log has a discussion type and has its status set to &apos;Final&apos;, this flow builds a distribution list baseed on the profile of the user to enter the IL and the discussion type. 
 
 User CMDT and public groups to bring together userss into this distribution list.</description>
     <environments>Default</environments>
@@ -418,22 +427,22 @@ User CMDT and public groups to bring together userss into this distribution list
         <description>Returns the name of a public group based on the Discussion Type of the triggering Interaction Log.</description>
         <name>f_DiscussionTypeToPublicGroupMapping</name>
         <dataType>String</dataType>
-        <expression>IF(TEXT({!$Record.leaseworks__Discussion_Type__c}) = &#39;Credit Update&#39;, &#39;Credit_Update&#39;,
-IF(TEXT({!$Record.leaseworks__Discussion_Type__c}) = &#39;General&#39;, &#39;General&#39;,
-IF(TEXT({!$Record.leaseworks__Discussion_Type__c}) = &#39;Technical&#39;, &#39;Tech_Kick_Off&#39;,
-IF(TEXT({!$Record.leaseworks__Discussion_Type__c}) = &#39;Marketing Intel&#39;, &#39;Market_Intel&#39;,
-IF(TEXT({!$Record.leaseworks__Discussion_Type__c}) = &#39;RFP&#39;, &#39;RFP&#39;,
-IF(TEXT({!$Record.leaseworks__Discussion_Type__c}) = &#39;PDP&#39;, &#39;PDP&#39;,
-IF(TEXT({!$Record.leaseworks__Discussion_Type__c}) = &#39;Trading&#39;, &#39;Trading&#39;,
-IF(TEXT({!$Record.leaseworks__Discussion_Type__c}) = &#39;General - Marketing Team&#39;, &#39;pro_General_Marketing_Team&#39;,
-&#39;Other&#39;
+        <expression>IF(TEXT({!$Record.leaseworks__Discussion_Type__c}) = &apos;Credit Update&apos;, &apos;Credit_Update&apos;,
+IF(TEXT({!$Record.leaseworks__Discussion_Type__c}) = &apos;General&apos;, &apos;General&apos;,
+IF(TEXT({!$Record.leaseworks__Discussion_Type__c}) = &apos;Technical&apos;, &apos;Tech_Kick_Off&apos;,
+IF(TEXT({!$Record.leaseworks__Discussion_Type__c}) = &apos;Marketing Intel&apos;, &apos;Market_Intel&apos;,
+IF(TEXT({!$Record.leaseworks__Discussion_Type__c}) = &apos;RFP&apos;, &apos;RFP&apos;,
+IF(TEXT({!$Record.leaseworks__Discussion_Type__c}) = &apos;PDP&apos;, &apos;PDP&apos;,
+IF(TEXT({!$Record.leaseworks__Discussion_Type__c}) = &apos;Trading&apos;, &apos;Trading&apos;,
+IF(TEXT({!$Record.leaseworks__Discussion_Type__c}) = &apos;General - Marketing Team&apos;, &apos;pro_General_Marketing_Team&apos;,
+&apos;Other&apos;
 ))))))))</expression>
     </formulas>
     <formulas>
         <description>Returns the name of a public group to be included in distribution list based on the Profile of the user to create the Interaction Log</description>
         <name>f_ProfileToPublicGroupMapping</name>
         <dataType>String</dataType>
-        <expression>IF({!$Record.CreatedBy.Profile.Name} = &#39;Carlyle Commercial&#39;, &#39;Market_Intel&#39;, Null)</expression>
+        <expression>IF({!$Record.CreatedBy.Profile.Name} = &apos;Carlyle Commercial&apos;, &apos;Market_Intel&apos;, Null)</expression>
     </formulas>
     <interviewLabel>Prodigy - IL - Email Distribution List Once IL Final {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Prodigy - IL - Email Distribution List Once IL Final</label>
@@ -757,6 +766,137 @@ Location: {!$Record.Location__c}
 
 Click on this notification to view the Interaction Log record.</text>
     </textTemplates>
+    <transforms>
+        <description>Create a list of the values in the Deal Team Member Role field of the returned CMDT records. Use in a Get element to get hold of the users in these roles.</description>
+        <name>Create_Collection_Of_Member_Roles_For_Distribution_List</name>
+        <label>Create Collection Of Member Roles For Distribution List</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Add_Marketing_Roles_To_varAccountTeamMemberRoles</targetReference>
+        </connector>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>Get_IL_Discussion_Type_Mapping_CMDT[$EachItem].pro_Deal_Team_Member_Role__c</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
+    <transforms>
+        <description>Collection of the values for the Member Role field of all Deal Team records associated to the Related To Deal of the triggering record</description>
+        <name>Create_Collection_Of_Member_Roles_In_This_Deal_Team</name>
+        <label>Create Collection Of Member Roles In This Deal Team</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Loop_Member_Roles</targetReference>
+        </connector>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>Get_Deal_Team_Records_For_Related_To_Deal[$EachItem].Name</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
+    <transforms>
+        <description>Create a collection of Ids for the users within the public groups for distribution lists. Used to search for users and get hold of their email addresses.</description>
+        <name>Create_Group_Member_Id_Collection</name>
+        <label>Create Group Member Id Collection</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Users_For_Distribution_Lists</targetReference>
+        </connector>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>Get_Public_Group_Members_For_Distribution[$EachItem].UserOrGroupId</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
+    <transforms>
+        <description>Create a collection of the Ids of public groups allowing to filter a search for Group Members who belong to these groups.</description>
+        <name>Create_Public_Group_Id_Collection</name>
+        <label>Create Public Group Id Collection</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Public_Group_Members_For_Distribution</targetReference>
+        </connector>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>Get_Public_Groups_For_Distribution[$EachItem].Id</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
+    <transforms>
+        <description>Create a collection of email addresses for those users returned in the element Get Users For Distribution Lists</description>
+        <name>Create_User_Email_Collection</name>
+        <label>Create User Email Collection</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Related_Account</targetReference>
+        </connector>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>Get_Users_For_Distribution_Lists[$EachItem].Email</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
+    <transforms>
+        <name>Create_User_Id_Collection_For_Notification</name>
+        <label>Create User Id Collection For Notification</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Send_Notification</targetReference>
+        </connector>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>Get_Users_For_Notification_Distribution_List[$EachItem].Id</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
     <variables>
         <name>currentItem_Filter_For_Selected_Roles</name>
         <dataType>SObject</dataType>

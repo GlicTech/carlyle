@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
-    <excludeButtons>OpenSlackRecordChannel</excludeButtons>
     <excludeButtons>Submit</excludeButtons>
     <layoutSections>
         <customLabel>true</customLabel>
@@ -51,6 +50,10 @@
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>cap_Record_ID__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>cap_Total_Invoiced_Balance__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -259,11 +262,16 @@
         <relatedList>leaseworks__Contract_Diary__c.leaseworks__Contract__c</relatedList>
     </relatedLists>
     <relatedLists>
+        <fields>NAME</fields>
+        <fields>leaseworks__Role__c</fields>
+        <fields>leaseworks__Team_Member__c</fields>
+        <relatedList>leaseworks__Contract_Team__c.leaseworks__Contract__c</relatedList>
+    </relatedLists>
+    <relatedLists>
         <relatedList>RelatedFileList</relatedList>
     </relatedLists>
     <relatedLists>
         <excludeButtons>MassChangeOwner</excludeButtons>
-        <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
         <fields>leaseworks__Insurance_Type__c</fields>
         <fields>leaseworks__Insurer__c</fields>

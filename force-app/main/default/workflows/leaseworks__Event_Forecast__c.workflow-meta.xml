@@ -4,8 +4,8 @@
         <fullName>leaseworks__EventForecast_Set_Name</fullName>
         <description>Event Forecast: Event Forecast Name</description>
         <field>Name</field>
-        <formula>case( LEFT(text(leaseworks__Type__c), 3) , &#39;LLP&#39; ,leaseworks__Aircraft__r.leaseworks__MSN_Number__c + &#39;-&#39; + text(leaseworks__Type__c) + leaseworks__Life_Limited_Part_LLP__r.leaseworks__Serial_Number__c 
-,leaseworks__Aircraft__r.leaseworks__MSN_Number__c + &#39;-&#39; + BLANKVALUE(leaseworks__Component_Name__c, text(leaseworks__Type__c)) 
+        <formula>case( LEFT(text(leaseworks__Type__c), 3) , &apos;LLP&apos; ,leaseworks__Aircraft__r.leaseworks__MSN_Number__c + &apos;-&apos; + text(leaseworks__Type__c) + leaseworks__Life_Limited_Part_LLP__r.leaseworks__Serial_Number__c 
+,leaseworks__Aircraft__r.leaseworks__MSN_Number__c + &apos;-&apos; + BLANKVALUE(leaseworks__Component_Name__c, text(leaseworks__Type__c)) 
 )</formula>
         <name>EventForecast Set Name</name>
         <notifyAssignee>false</notifyAssignee>

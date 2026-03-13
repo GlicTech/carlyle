@@ -10,7 +10,7 @@
                             <value>Submit</value>
                         </valueListItems>
                         <valueListItems>
-                            <value>CustomButton.leaseworks__Invoice__c.leaseworks__Generate_Invoice</value>
+                            <value>leaseworks__Invoice__c.Generate_Invoice1</value>
                         </valueListItems>
                         <valueListItems>
                             <value>leaseworks__Invoice__c.leaseworks__Create_Payment_new</value>
@@ -800,6 +800,26 @@
                 <identifier>RecordTotal_Amount_Due_cField2</identifier>
             </fieldInstance>
         </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Sec_Dep_Refund_Offset_Applied__c</fieldItem>
+                <identifier>RecordSec_Dep_Refund_Offset_Applied_cField2</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>readonly</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Ageing__c</fieldItem>
+                <identifier>RecordAgeing_cField2</identifier>
+            </fieldInstance>
+        </itemInstances>
         <name>Facet-rt8wnp6pk8</name>
         <type>Facet</type>
     </flexiPageRegions>
@@ -840,8 +860,18 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Sec_Dep_Refund_Offset_Applied__c</fieldItem>
-                <identifier>RecordSec_Dep_Refund_Offset_Applied_cField2</identifier>
+                <fieldItem>Record.leaseworks__Billing_Adj_Credit_Applied__c</fieldItem>
+                <identifier>Recordleaseworks_Billing_Adj_Credit_Applied_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Cash_Credit_Applied__c</fieldItem>
+                <identifier>Recordleaseworks_Cash_Credit_Applied_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -852,16 +882,6 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.leaseworks__MR_Claim_Offset_Applied__c</fieldItem>
                 <identifier>RecordMR_Claim_Offset_Applied_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>readonly</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Ageing__c</fieldItem>
-                <identifier>RecordAgeing_cField2</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-9v3q6th2ugw</name>
@@ -952,6 +972,26 @@
                 <identifier>RecordExchange_Rate_cField</identifier>
             </fieldInstance>
         </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Availed_Credit_Ledger__c</fieldItem>
+                <identifier>Recordleaseworks_Availed_Credit_Ledger_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Cash_Credit_AppliedLedger__c</fieldItem>
+                <identifier>Recordleaseworks_Cash_Credit_AppliedLedger_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
         <name>Facet-b0f6f768-3f05-4615-808b-f98cdbc3c579</name>
         <type>Facet</type>
     </flexiPageRegions>
@@ -984,6 +1024,13 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.leaseworks__Gross_Up_Amount_Ledger__c</fieldItem>
                 <identifier>RecordGross_Up_Amount_Ledger_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Tax_Type__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>JCT</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -994,6 +1041,13 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.leaseworks__Withholding_Tax_Amount_Ledger__c</fieldItem>
                 <identifier>RecordWithholding_Tax_Amount_Ledger_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Tax_Type__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>JCT</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -1014,6 +1068,33 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.leaseworks__Non_Deferred_Balance_Due_Ledger__c</fieldItem>
                 <identifier>RecordNon_Deferred_Balance_Due_Ledger_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Billing_Adj_Ledger__c</fieldItem>
+                <identifier>Recordleaseworks_Billing_Adj_Ledger_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Availed_Credit_Number__c</fieldItem>
+                <identifier>Recordleaseworks_Availed_Credit_Number_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Transaction_Currency__c}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>USD</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <name>Facet-6bc992a0-016e-44b2-87b6-a4781fef9bb7</name>
@@ -1213,10 +1294,16 @@
                 <fieldItem>Record.leaseworks__Gross_Up_Amnt__c</fieldItem>
                 <identifier>RecordGross_Up_Amnt_cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 AND 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.leaseworks__Transaction_Currency__c}</leftValue>
                         <operator>NE</operator>
                         <rightValue>USD</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Tax_Type__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>JCT</rightValue>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -1230,10 +1317,16 @@
                 <fieldItem>Record.leaseworks__Gross_Up_Amount__c</fieldItem>
                 <identifier>RecordGross_Up_Amount_cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 AND 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.leaseworks__Transaction_Currency__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>USD</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Tax_Type__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>JCT</rightValue>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -1246,6 +1339,13 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.leaseworks__Grossup_Amount_Formula__c</fieldItem>
                 <identifier>RecordGrossup_Amount_Formula_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Tax_Type__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>JCT</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <name>Facet-4490ae32-711b-4723-a2ae-e1e46e68d888</name>
@@ -1281,10 +1381,16 @@
                 <fieldItem>Record.leaseworks__Withholding_Tax_Amnt__c</fieldItem>
                 <identifier>RecordWithholding_Tax_Amnt_cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 AND 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.leaseworks__Transaction_Currency__c}</leftValue>
                         <operator>NE</operator>
                         <rightValue>USD</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Tax_Type__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>JCT</rightValue>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -1298,10 +1404,16 @@
                 <fieldItem>Record.leaseworks__Withholding_Tax_Amount__c</fieldItem>
                 <identifier>RecordWithholding_Tax_Amount_cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 AND 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.leaseworks__Transaction_Currency__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>USD</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Tax_Type__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>JCT</rightValue>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -1616,6 +1728,10 @@
                     <value>Facet-406f3246-8f7e-4795-899d-ac7d2efcd84c</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>@@@SFDCInformationSFDC@@@</value>
                 </componentInstanceProperties>
@@ -1628,6 +1744,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-a94617e7-95d7-4323-9325-302416b30009</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -1651,6 +1771,10 @@
                     <value>Facet-fqpd8l056u</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Rent Information</value>
                 </componentInstanceProperties>
@@ -1672,6 +1796,10 @@
                     <value>Facet-81b4c83f-ee9d-46f1-bede-6ee645ea74f8</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Key Dates</value>
                 </componentInstanceProperties>
@@ -1684,6 +1812,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-9409f4f5-2a7c-45e4-a8b3-af7511d32965</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>true</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -1707,6 +1839,10 @@
                     <value>Facet-x0jjeidjlp</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Total Amounts Due and Aging</value>
                 </componentInstanceProperties>
@@ -1726,6 +1862,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-1680976c-19b2-4b0a-b259-f4729203eacf</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -1749,6 +1889,10 @@
                     <value>Facet-62cf1bae-5d7b-45f6-880f-104c40fd7a5c</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Deferral</value>
                 </componentInstanceProperties>
@@ -1770,11 +1914,22 @@
                     <value>Facet-30c1080e-e9b3-4091-b08a-ef23f86b6e09</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Tax Details</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:fieldSection</componentName>
                 <identifier>flexipage_fieldSection7</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Invoice_Category__c}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>Sale</rightValue>
+                    </criteria>
+                </visibilityRule>
             </componentInstance>
         </itemInstances>
         <itemInstances>
@@ -1782,6 +1937,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-c69d903a-7485-4c08-855f-67cce6db187e</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -1803,6 +1962,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-90eaad0c-7c70-4b38-a0c6-b0005011fbda</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -1835,6 +1998,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-45312852-ac35-4565-a330-8315ab2df11f</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -1947,6 +2114,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-89e00a82-aa4e-467f-93ce-5c86af1b07b7</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>

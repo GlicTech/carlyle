@@ -105,14 +105,36 @@
         </itemInstances>
         <itemInstances>
             <fieldInstance>
-                <fieldItem>Record.CAP_Total_Available_Balance_Cash__c</fieldItem>
-                <identifier>RecordCAP_Total_Available_Balance_Cash__cField</identifier>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Selling_Entity__c</fieldItem>
+                <identifier>RecordSelling_Entity_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Lease_Type_Legal__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Sale</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
             <fieldInstance>
-                <fieldItem>Record.cap_Record_ID__c</fieldItem>
-                <identifier>Recordcap_Record_ID__cField</identifier>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Purchaser__c</fieldItem>
+                <identifier>RecordPurchaser_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Lease_Type_Legal__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Sale</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <name>Facet-548de589-756c-460d-bf4e-857ce979ea00</name>
@@ -123,10 +145,56 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
-                    <value>required</value>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Lease_Type_Status__c</fieldItem>
+                <identifier>Recordleaseworks_Lease_Type_Status_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.Name</fieldItem>
                 <identifier>RecordNameField</identifier>
+                <visibilityRule>
+                    <booleanFilter>1 AND 2</booleanFilter>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Lease_Type_Legal__c}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>Sale</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Lease_Type_Legal__c}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>Consignment</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>readonly</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Name</fieldItem>
+                <identifier>RecordNameField2</identifier>
+                <visibilityRule>
+                    <booleanFilter>1 OR 2</booleanFilter>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Lease_Type_Legal__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Sale</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Lease_Type_Legal__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Consignment</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -568,6 +636,10 @@
                     <value>Facet-a7f7a79c-e955-4811-97e9-5245673d34df</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Contract Information</value>
                 </componentInstanceProperties>
@@ -580,6 +652,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-3af576cf-96b5-4226-b3ab-ea8a12391e72</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -596,6 +672,10 @@
                     <value>Facet-5e87bf5d-f44c-4766-ab5c-4b50462d069c</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Comments</value>
                 </componentInstanceProperties>
@@ -608,6 +688,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-3fcc5865-232b-4158-8a8e-7d2eab10e36c</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>true</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -624,6 +708,10 @@
                     <value>Facet-44d497bd-a93b-4c45-8554-46a3add9d33e</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>References</value>
                 </componentInstanceProperties>
@@ -636,6 +724,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-02dc0721-abdb-45c2-8e08-90a8bbb96ca3</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>true</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -799,6 +891,75 @@
                 </componentInstanceProperties>
                 <componentName>lst:dynamicRelatedList</componentName>
                 <identifier>lst_dynamicRelatedList2</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>actionNames</name>
+                    <valueList>
+                        <valueListItems>
+                            <value>New</value>
+                        </valueListItems>
+                    </valueList>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>adminFilters</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>maxRecordsToDisplay</name>
+                    <value>10</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>parentFieldApiName</name>
+                    <value>leaseworks__Lease__c.Id</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListApiName</name>
+                    <value>leaseworks__Insurance_Certificate__r</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListDisplayType</name>
+                    <value>ADVGRID</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListFieldAliases</name>
+                    <valueList>
+                        <valueListItems>
+                            <value>NAME</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>leaseworks__Type__c</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>leaseworks__Start_Date__c</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>leaseworks__Renewal_Date__c</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>leaseworks__Insured_Amount__c</value>
+                        </valueListItems>
+                    </valueList>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListLabel</name>
+                    <value>Insurance Certificate</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>showActionBar</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>sortFieldAlias</name>
+                    <value>leaseworks__Renewal_Date__c</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>sortFieldOrder</name>
+                    <value>Default</value>
+                </componentInstanceProperties>
+                <componentName>lst:dynamicRelatedList</componentName>
+                <identifier>lst_dynamicRelatedList3</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>

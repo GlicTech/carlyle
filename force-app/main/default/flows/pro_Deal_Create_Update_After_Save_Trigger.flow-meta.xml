@@ -6,6 +6,9 @@
         <label>Create Status Updates For Commercial / Legal &amp; Contracts</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Is_New</targetReference>
+        </defaultConnector>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>Yes_Create_Status_Updates</name>
@@ -35,6 +38,28 @@
                 <targetReference>Create_Status_Updates_On_Deal</targetReference>
             </connector>
             <label>Yes - Create Status Updates</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_New</name>
+        <label>Is New?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Create_Deal_Teams</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>f_IsNew</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Create_Deal_Team_Based_On_CMDT</targetReference>
+            </connector>
+            <label>Yes - Create Deal Teams</label>
         </rules>
     </decisions>
     <decisions>
@@ -138,6 +163,11 @@
     </decisions>
     <description>Triggered on Deal Create / Update, this flow runs autolaunched flows off decision elements to send notifications and run other logic required on Deal creation/update.</description>
     <environments>Default</environments>
+    <formulas>
+        <name>f_IsNew</name>
+        <dataType>Boolean</dataType>
+        <expression>ISNEW()</expression>
+    </formulas>
     <interviewLabel>Deal - Create / Update After Save Trigger {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Deal - Create / Update After Save Trigger</label>
     <processMetadataValues>
@@ -165,38 +195,38 @@
         <connector>
             <targetReference>Send_Non_Deal_Approval_Notification</targetReference>
         </connector>
-        <filterLogic>or</filterLogic>
-        <filters>
-            <field>leaseworks__Deal_Status__c</field>
-            <operator>IsChanged</operator>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </filters>
-        <filters>
-            <field>pro_Deal_Team_LOI_Approval__c</field>
-            <operator>IsChanged</operator>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </filters>
-        <filters>
-            <field>pro_AiDs_Documentation_Approved_Count__c</field>
-            <operator>IsChanged</operator>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </filters>
+        <filterFormula>OR(
+     ISNEW(),
+     ISCHANGED({!$Record.leaseworks__Deal_Status__c}),
+     ISCHANGED({!$Record.pro_Deal_Team_LOI_Approval__c}),
+     ISCHANGED({!$Record.pro_AiDs_Documentation_Approved_Count__c})
+)</filterFormula>
         <object>leaseworks__Marketing_Activity__c</object>
         <recordTriggerType>CreateAndUpdate</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>
     </start>
     <status>Active</status>
     <subflows>
+        <name>Create_Deal_Team_Based_On_CMDT</name>
+        <label>Create Deal Team Based On CMDT</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <flowName>pro_Autolaunched_Set_Deal_Teams_From_CMDT</flowName>
+        <inputAssignments>
+            <name>varTriggeringDeal</name>
+            <value>
+                <elementReference>$Record</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
+    <subflows>
         <name>Create_Status_Updates_On_Deal</name>
         <label>Create Status Updates On Deal</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
+        <connector>
+            <targetReference>Is_New</targetReference>
+        </connector>
         <flowName>pro_Autolaunched_Create_Status_Updates_On_Deal</flowName>
         <inputAssignments>
             <name>varTriggeringDeal</name>

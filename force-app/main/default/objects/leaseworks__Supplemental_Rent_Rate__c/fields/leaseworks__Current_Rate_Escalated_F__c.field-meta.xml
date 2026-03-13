@@ -3,8 +3,7 @@
     <fullName>leaseworks__Current_Rate_Escalated_F__c</fullName>
     <deprecated>false</deprecated>
     <description>Displays the latest escalated rate based on the most recent approved actual utilization. This value typically matches the rate from the corresponding period’s rate schedule, if an Advanced Rate Schedule exists. It ensures visibility of the exact rate applied in the latest utilization, even if any updates occurred after the schedule was initially set. Note: If the &quot;Rate Based On&quot; is set to &quot;Ratio Table,&quot; this field will remain blank.</description>
-    <externalId>false</externalId>
-    <formula>IF(  ISPICKVAL(leaseworks__Rate_Based_On__c, &#39;Rate&#39;)  , leaseworks__Current_Rate_Escalated__c , null)</formula>
+    <formula>IF(  ISPICKVAL(leaseworks__Rate_Based_On__c, &apos;Rate&apos;)  , leaseworks__Current_Rate_Escalated__c , null)</formula>
     <inlineHelpText>Displays the latest escalated rate based on the most recent approved actual utilization. This value typically matches the rate from the corresponding period’s rate schedule, if an Advanced Rate Schedule exists. It ensures visibility of the exact rate applied in the latest utilization, even if any updates occurred after the schedule was initially set. Note: If the &quot;Rate Based On&quot; is set to &quot;Ratio Table,&quot; this field will remain blank.</inlineHelpText>
     <label>Escalated Rate Latest</label>
     <precision>18</precision>

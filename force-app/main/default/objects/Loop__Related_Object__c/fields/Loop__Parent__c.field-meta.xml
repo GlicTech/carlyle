@@ -5,11 +5,11 @@
     <externalId>false</externalId>
     <formula>IF( ISBLANK( Loop__Parent_Relationship__c ) ,
     Loop__Parent_Object__c ,
-    HYPERLINK(&#39;/&#39;+Loop__Parent_Relationship__c ,
+    HYPERLINK(&apos;/&apos;+Loop__Parent_Relationship__c ,
         IF( ISBLANK( Loop__Parent_Relationship__r.Loop__Related_Object_Alias__c ),
             Loop__Parent_Relationship__r.Name,
             Loop__Parent_Relationship__r.Loop__Related_Object_Alias__c
-        ) + &#39; (#&#39;+ TEXT( Loop__Parent_Relationship__r.Loop__Index__c ) +&#39;)&#39;
+        ) + &apos; (#&apos;+ TEXT( Loop__Parent_Relationship__r.Loop__Index__c ) +&apos;)&apos;
     )
 )</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>

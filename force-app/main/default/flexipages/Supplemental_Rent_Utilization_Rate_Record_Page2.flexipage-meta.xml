@@ -93,6 +93,16 @@
                 <identifier>Recordleaseworks_No_of_Days_to_be_Prorated_cField</identifier>
             </fieldInstance>
         </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>readonly</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Parent_SRUR__c</fieldItem>
+                <identifier>Recordleaseworks_Parent_SRUR_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
         <name>Facet-575e6bcd-b0f2-4496-9971-a4230cb6fc78</name>
         <type>Facet</type>
     </flexiPageRegions>
@@ -548,6 +558,10 @@
                     <value>Facet-e6adc467-5169-44a4-b146-1ebf9e49430d</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>@@@SFDCInformationSFDC@@@</value>
                 </componentInstanceProperties>
@@ -560,6 +574,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-d302d669-94c4-448a-a2c7-84d0473b7052</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -576,6 +594,10 @@
                     <value>Facet-baefd96e-bd43-43c3-a41f-a6170e107015</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Units, Rates, and Overrides</value>
                 </componentInstanceProperties>
@@ -588,6 +610,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-3ba1ba92-63c5-454d-923f-2caeac63b4d1</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -604,6 +630,10 @@
                     <value>Facet-d62f61a7-1462-468d-93c2-8c8f41477d42</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Total MR</value>
                 </componentInstanceProperties>
@@ -616,6 +646,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-33997e07-4e28-4799-a6e8-8f487b89d913</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -683,21 +717,59 @@
         </itemInstances>
         <itemInstances>
             <componentInstance>
-                <componentName>leaseworks:InterpolationRateTable</componentName>
-                <identifier>c_InterpolationRateTable</identifier>
-                <visibilityRule>
-                    <booleanFilter>1 AND 2</booleanFilter>
-                    <criteria>
-                        <leftValue>{!Record.leaseworks__Supplemental_Rent_Rate__r.leaseworks__Supplemental_Rent__r.leaseworks__Escalation_Type__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>Advanced</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.leaseworks__Supplemental_Rent_Rate__r.leaseworks__Rate_Based_On__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>Ratio Table</rightValue>
-                    </criteria>
-                </visibilityRule>
+                <componentInstanceProperties>
+                    <name>actionNames</name>
+                    <valueList>
+                        <valueListItems>
+                            <value>New</value>
+                        </valueListItems>
+                    </valueList>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>adminFilters</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>maxRecordsToDisplay</name>
+                    <value>10</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>parentFieldApiName</name>
+                    <value>leaseworks__Supplemental_Rent_Utilization_Rate__c.Id</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListApiName</name>
+                    <value>leaseworks__Supplemental_Rent_Utilization_Rates__r</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListDisplayType</name>
+                    <value>ADVGRID</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListFieldAliases</name>
+                    <valueList>
+                        <valueListItems>
+                            <value>NAME</value>
+                        </valueListItems>
+                    </valueList>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListLabel</name>
+                    <value>Sub Fund SRURs</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>showActionBar</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>sortFieldAlias</name>
+                    <value>__DEFAULT__</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>sortFieldOrder</name>
+                    <value>Default</value>
+                </componentInstanceProperties>
+                <componentName>lst:dynamicRelatedList</componentName>
+                <identifier>lst_dynamicRelatedList</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>

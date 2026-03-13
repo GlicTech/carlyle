@@ -288,16 +288,6 @@
                 <identifier>Recordpro_KYC_Comment__cField</identifier>
             </fieldInstance>
         </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.cap_PDP_Target__c</fieldItem>
-                <identifier>Recordcap_PDP_Target__cField</identifier>
-            </fieldInstance>
-        </itemInstances>
         <name>Facet-bca9eafa-ecbb-42c1-8f4b-f66ea5551f36</name>
         <type>Facet</type>
     </flexiPageRegions>
@@ -387,6 +377,78 @@
             </componentInstance>
         </itemInstances>
         <name>Facet-3bbd9c7d-46d1-44a5-b6d4-163a3a304916</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Payments_on_Account__c</fieldItem>
+                <identifier>Recordleaseworks_Payments_on_Account_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Amount_Refunded__c</fieldItem>
+                <identifier>Recordleaseworks_Amount_Refunded_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <name>Facet-2d0eca3a-f46c-4be6-81d6-c5bd1b6d4a16</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Amount_Applied__c</fieldItem>
+                <identifier>Recordleaseworks_Amount_Applied_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Payment_On_Account_Balance__c</fieldItem>
+                <identifier>Recordleaseworks_Payment_On_Account_Balance_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <name>Facet-85c3e5aa-c429-43fb-8bd8-82ae8ccebcc6</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-2d0eca3a-f46c-4be6-81d6-c5bd1b6d4a16</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:column</componentName>
+                <identifier>flexipage_column3</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-85c3e5aa-c429-43fb-8bd8-82ae8ccebcc6</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:column</componentName>
+                <identifier>flexipage_column5</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>Facet-a896e071-a465-4835-b914-5629bfb30b4a</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -715,6 +777,10 @@
                     <value>Facet-3bbd9c7d-46d1-44a5-b6d4-163a3a304916</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Account Information</value>
                 </componentInstanceProperties>
@@ -726,7 +792,29 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>columns</name>
+                    <value>Facet-a896e071-a465-4835-b914-5629bfb30b4a</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>label</name>
+                    <value>Payment on Account</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:fieldSection</componentName>
+                <identifier>flexipage_fieldSection2</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>columns</name>
                     <value>Facet-41fd98af-cee7-4c80-bd1b-51a2bffd7f16</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>true</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -743,6 +831,10 @@
                     <value>Facet-6a90194e-4281-486a-9a83-d0dfe8debe8f</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Contact Information</value>
                 </componentInstanceProperties>
@@ -757,6 +849,10 @@
                     <value>Facet-c72f4718-b169-493f-92a9-14f62071d6b4</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Billing &amp; Tax</value>
                 </componentInstanceProperties>
@@ -769,6 +865,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-c5b3e3f5-c0f6-4be0-8a96-2f0e9affcb8a</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>true</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -1072,6 +1172,78 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Payments_on_Account__c</fieldItem>
+                <identifier>Recordleaseworks_Payments_on_Account_cField2</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Amount_Refunded__c</fieldItem>
+                <identifier>Recordleaseworks_Amount_Refunded_cField2</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <name>Facet-701e57b8-ecfd-49fa-8cb8-ee32d2db3131</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Amount_Applied__c</fieldItem>
+                <identifier>Recordleaseworks_Amount_Applied_cField2</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Payment_On_Account_Balance__c</fieldItem>
+                <identifier>Recordleaseworks_Payment_On_Account_Balance_cField2</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <name>Facet-13f5a4da-6b98-4984-ab7a-a6477554a8f7</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-701e57b8-ecfd-49fa-8cb8-ee32d2db3131</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:column</componentName>
+                <identifier>flexipage_column6</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-13f5a4da-6b98-4984-ab7a-a6477554a8f7</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:column</componentName>
+                <identifier>flexipage_column7</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>Facet-9586f17e-9823-47fb-8d06-4e1c0fcdafc6</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.leaseworks__Date_Of_Last_Interaction_F__c</fieldItem>
                 <identifier>Recordleaseworks_Date_Of_Last_Interaction_F_cField3</identifier>
             </fieldInstance>
@@ -1314,6 +1486,68 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
+                <fieldItem>Record.cap_Sun_Analysis_Code__c</fieldItem>
+                <identifier>Recordcap_Sun_Analysis_Code_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.cap_Record_ID__c</fieldItem>
+                <identifier>Recordcap_Record_ID_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <name>Facet-1b802ff0-74cb-4003-b913-7d1f443ba1d8</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>required</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Name</fieldItem>
+                <identifier>RecordNameField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <name>Facet-5907bb84-f902-4eb7-842b-cc8e02a73a7f</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-1b802ff0-74cb-4003-b913-7d1f443ba1d8</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:column</componentName>
+                <identifier>flexipage_column57</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-5907bb84-f902-4eb7-842b-cc8e02a73a7f</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:column</componentName>
+                <identifier>flexipage_column58</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>Facet-ee4539ee-df2c-41d7-b911-d0cc4b3773c6</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.CreatedById</fieldItem>
                 <identifier>RecordCreatedByIdField3</identifier>
             </fieldInstance>
@@ -1397,6 +1631,10 @@
                     <value>Facet-5c66b78c-b3d5-41cd-a400-5cf23d0d9329</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Account Information</value>
                 </componentInstanceProperties>
@@ -1411,6 +1649,10 @@
                     <value>Facet-2008aec3-de01-4991-9edb-863bd2e71b67</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Credit Risk</value>
                 </componentInstanceProperties>
@@ -1422,7 +1664,29 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>columns</name>
+                    <value>Facet-9586f17e-9823-47fb-8d06-4e1c0fcdafc6</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>label</name>
+                    <value>Payment on Account</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:fieldSection</componentName>
+                <identifier>flexipage_fieldSection3</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>columns</name>
                     <value>Facet-019403f2-27db-4902-b072-13101bf26744</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -1439,6 +1703,10 @@
                     <value>Facet-8b35f22f-8275-4a6f-b2c5-eaf912f2021b</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Contact Information</value>
                 </componentInstanceProperties>
@@ -1453,6 +1721,10 @@
                     <value>Facet-f42ca91a-3a7b-41aa-8c3b-67f763f8f855</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Fleet Information</value>
                 </componentInstanceProperties>
@@ -1464,7 +1736,42 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>columns</name>
+                    <value>Facet-ee4539ee-df2c-41d7-b911-d0cc4b3773c6</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>label</name>
+                    <value>Sun Analysis Code Details</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:fieldSection</componentName>
+                <identifier>flexipage_fieldSection29</identifier>
+                <visibilityRule>
+                    <booleanFilter>1 OR 2</booleanFilter>
+                    <criteria>
+                        <leftValue>{!$User.Profile.Name}</leftValue>
+                        <operator>CONTAINS</operator>
+                        <rightValue>Back Office</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!$User.Profile.Name}</leftValue>
+                        <operator>CONTAINS</operator>
+                        <rightValue>System</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>columns</name>
                     <value>Facet-ab868b1d-8805-4f3d-ab71-a440c21b2e70</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -1647,6 +1954,78 @@
             </componentInstance>
         </itemInstances>
         <name>Facet-7b83ae26-5b57-4e1e-9f17-b03fbb743bef</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Payments_on_Account__c</fieldItem>
+                <identifier>Recordleaseworks_Payments_on_Account_cField3</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Amount_Refunded__c</fieldItem>
+                <identifier>Recordleaseworks_Amount_Refunded_cField3</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <name>Facet-6a99fbe4-4a22-40d6-b4ce-a9ec88500ad9</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Amount_Applied__c</fieldItem>
+                <identifier>Recordleaseworks_Amount_Applied_cField3</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Payment_On_Account_Balance__c</fieldItem>
+                <identifier>Recordleaseworks_Payment_On_Account_Balance_cField3</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <name>Facet-f0f20ab9-72cf-4129-aa41-d97348cb26d5</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-6a99fbe4-4a22-40d6-b4ce-a9ec88500ad9</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:column</componentName>
+                <identifier>flexipage_column8</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-f0f20ab9-72cf-4129-aa41-d97348cb26d5</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:column</componentName>
+                <identifier>flexipage_column9</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>Facet-e0a428ba-65f1-47be-9ee6-5bc674224321</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -1921,6 +2300,10 @@
                     <value>Facet-7b83ae26-5b57-4e1e-9f17-b03fbb743bef</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Account Information</value>
                 </componentInstanceProperties>
@@ -1932,7 +2315,29 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>columns</name>
+                    <value>Facet-e0a428ba-65f1-47be-9ee6-5bc674224321</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>label</name>
+                    <value>Payment on Account</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:fieldSection</componentName>
+                <identifier>flexipage_fieldSection4</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>columns</name>
                     <value>Facet-46787c8e-abd4-4b96-9ca5-fc41d500f807</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -1949,6 +2354,10 @@
                     <value>Facet-dfe621f9-9064-4bec-b148-2a12b23a1919</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Contact Information</value>
                 </componentInstanceProperties>
@@ -1963,6 +2372,10 @@
                     <value>Facet-2657a113-77a7-4ade-856d-0270feac6766</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Japan Registered Tax No. if JCT is applicable</value>
                 </componentInstanceProperties>
@@ -1975,6 +2388,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-47fb2790-4e86-4830-8ff7-feca147a21b6</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -2216,6 +2633,78 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Payments_on_Account__c</fieldItem>
+                <identifier>Recordleaseworks_Payments_on_Account_cField4</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Amount_Refunded__c</fieldItem>
+                <identifier>Recordleaseworks_Amount_Refunded_cField4</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <name>Facet-9da8a400-c82b-45a0-a625-0f0e9c7bd58e</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Amount_Applied__c</fieldItem>
+                <identifier>Recordleaseworks_Amount_Applied_cField4</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Payment_On_Account_Balance__c</fieldItem>
+                <identifier>Recordleaseworks_Payment_On_Account_Balance_cField4</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <name>Facet-1f5e0d6a-a23b-4cce-af51-6bc55d00bed1</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-9da8a400-c82b-45a0-a625-0f0e9c7bd58e</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:column</componentName>
+                <identifier>flexipage_column10</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-1f5e0d6a-a23b-4cce-af51-6bc55d00bed1</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:column</componentName>
+                <identifier>flexipage_column11</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>Facet-78ead1b4-9912-41fd-b811-904cfb71c13c</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Registered_Office_Local__c</fieldItem>
                 <identifier>RecordRegistered_Office_Local_cField3</identifier>
             </fieldInstance>
@@ -2413,6 +2902,10 @@
                     <value>Facet-c8a6dca6-42c3-4163-bf1e-bf1da759de07</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Section</value>
                 </componentInstanceProperties>
@@ -2424,7 +2917,29 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>columns</name>
+                    <value>Facet-78ead1b4-9912-41fd-b811-904cfb71c13c</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>label</name>
+                    <value>Payment on Account</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:fieldSection</componentName>
+                <identifier>flexipage_fieldSection5</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>columns</name>
                     <value>Facet-c7044a8e-dca2-4aa8-9746-96164a2a3fa3</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -2441,6 +2956,10 @@
                     <value>Facet-fe1bd10c-9767-4418-80f8-8965e3987eb3</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Billing &amp; Tax</value>
                 </componentInstanceProperties>
@@ -2453,6 +2972,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-8987fbd1-2816-4220-9e35-902e8de539e3</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -2644,6 +3167,78 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Payments_on_Account__c</fieldItem>
+                <identifier>Recordleaseworks_Payments_on_Account_cField5</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Amount_Applied__c</fieldItem>
+                <identifier>Recordleaseworks_Amount_Applied_cField5</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <name>Facet-4ec72400-0ca1-4650-b69d-df152a9a9993</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Amount_Refunded__c</fieldItem>
+                <identifier>Recordleaseworks_Amount_Refunded_cField5</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Payment_On_Account_Balance__c</fieldItem>
+                <identifier>Recordleaseworks_Payment_On_Account_Balance_cField5</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <name>Facet-f98cd5e9-c981-417a-9239-bbaf3e9d5ab7</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-4ec72400-0ca1-4650-b69d-df152a9a9993</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:column</componentName>
+                <identifier>flexipage_column55</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-f98cd5e9-c981-417a-9239-bbaf3e9d5ab7</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:column</componentName>
+                <identifier>flexipage_column56</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>Facet-28c7b266-549a-405f-8926-192a1324a1a4</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.BillingAddress</fieldItem>
                 <identifier>RecordBillingAddressField6</identifier>
             </fieldInstance>
@@ -2799,6 +3394,10 @@
                     <value>Facet-c96e5b09-be52-4a83-8d52-15a894eb5602</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Section</value>
                 </componentInstanceProperties>
@@ -2810,7 +3409,29 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>columns</name>
+                    <value>Facet-28c7b266-549a-405f-8926-192a1324a1a4</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>label</name>
+                    <value>Payment on Account</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:fieldSection</componentName>
+                <identifier>flexipage_fieldSection6</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>columns</name>
                     <value>Facet-4c8e843d-155f-4e03-be5a-b7fbe389645b</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -2825,6 +3446,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-ec811eb0-70fa-4447-a35d-036bb13a1b2d</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -3532,10 +4157,16 @@
                 <componentName>flexipage:tab</componentName>
                 <identifier>flexipage_tab</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 OR 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.Type}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>Parties</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.Type}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Operator</rightValue>
                     </criteria>
                 </visibilityRule>
             </componentInstance>
@@ -3695,30 +4326,61 @@
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
+                    <name>actionNames</name>
+                    <valueList>
+                        <valueListItems>
+                            <value>New</value>
+                        </valueListItems>
+                    </valueList>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>maxRecordsToDisplay</name>
+                    <value>5</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>parentFieldApiName</name>
                     <value>Account.Id</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>relatedListApiName</name>
-                    <value>leaseworks__Credit_Score__r</value>
+                    <value>Credit_Papers__r</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
-                    <name>relatedListComponentOverride</name>
+                    <name>relatedListDisplayType</name>
                     <value>ADVGRID</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
-                    <name>rowsToDisplay</name>
-                    <value>10</value>
+                    <name>relatedListFieldAliases</name>
+                    <valueList>
+                        <valueListItems>
+                            <value>NAME</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>Review_Date__c</value>
+                        </valueListItems>
+                    </valueList>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListLabel</name>
+                    <value>Credit Reports</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>showActionBar</name>
                     <value>true</value>
                 </componentInstanceProperties>
-                <componentName>force:relatedListSingleContainer</componentName>
-                <identifier>force_relatedListSingleContainer5</identifier>
+                <componentInstanceProperties>
+                    <name>sortFieldAlias</name>
+                    <value>__DEFAULT__</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>sortFieldOrder</name>
+                    <value>Default</value>
+                </componentInstanceProperties>
+                <componentName>lst:dynamicRelatedList</componentName>
+                <identifier>lst_dynamicRelatedList5</identifier>
             </componentInstance>
         </itemInstances>
-        <name>Facet-970eefcd-1c03-4008-8a04-7b7efc01c58b</name>
+        <name>Facet-bf23a47e-78e2-4169-8ec7-60d0d9f33af9</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -3782,11 +4444,11 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>body</name>
-                    <value>Facet-970eefcd-1c03-4008-8a04-7b7efc01c58b</value>
+                    <value>Facet-bf23a47e-78e2-4169-8ec7-60d0d9f33af9</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>title</name>
-                    <value>Credit Score</value>
+                    <value>Credit Reports</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:tab</componentName>
                 <identifier>flexipage_tab12</identifier>

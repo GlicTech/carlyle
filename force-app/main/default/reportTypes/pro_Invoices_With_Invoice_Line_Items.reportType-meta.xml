@@ -5,6 +5,10 @@
     <deployed>true</deployed>
     <description>Invoices With Invoice Line Items</description>
     <join>
+        <join>
+            <outerJoin>false</outerJoin>
+            <relationship>leaseworks__Payment_Line_Items__r</relationship>
+        </join>
         <outerJoin>false</outerJoin>
         <relationship>leaseworks__Invoice_Line_Items__r</relationship>
     </join>
@@ -2119,6 +2123,21 @@
             <field>leaseworks__Rent_Slip_Line_Item__c.leaseworks__Comment__c</field>
             <table>leaseworks__Invoice__c.leaseworks__Invoice_Line_Items__r</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>leaseworks__Payment_Date__c</field>
+            <table>leaseworks__Invoice__c.leaseworks__Invoice_Line_Items__r.leaseworks__Payment_Line_Items__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>CreatedDate</field>
+            <table>leaseworks__Invoice__c.leaseworks__Invoice_Line_Items__r.leaseworks__Payment_Line_Items__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>LastModifiedDate</field>
+            <table>leaseworks__Invoice__c.leaseworks__Invoice_Line_Items__r.leaseworks__Payment_Line_Items__r</table>
+        </columns>
         <masterLabel>Rent Slip Line Item</masterLabel>
     </sections>
     <sections>
@@ -2126,6 +2145,11 @@
             <checkedByDefault>false</checkedByDefault>
             <field>leaseworks__Lease__c.leaseworks__Aircraft__c.leaseworks__MSN_Number__c</field>
             <table>leaseworks__Invoice__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>leaseworks__Assembly_MR_Info__c.Name</field>
+            <table>leaseworks__Invoice__c.leaseworks__Invoice_Line_Items__r</table>
         </columns>
         <masterLabel>Asset Information</masterLabel>
     </sections>

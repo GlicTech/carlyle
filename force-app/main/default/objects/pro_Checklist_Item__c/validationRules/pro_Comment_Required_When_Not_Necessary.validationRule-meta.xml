@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>pro_Comment_Required_When_Not_Necessary</fullName>
+    <active>true</active>
+    <description>Requires a comment when Necessary is set to No</description>
+    <errorConditionFormula>AND(
+  ISPICKVAL(pro_Necessary__c, &apos;No&apos;),
+  ISBLANK(pro_Comment_Notes__c)
+)</errorConditionFormula>
+    <errorDisplayField>pro_Comment_Notes__c</errorDisplayField>
+    <errorMessage>A comment is required when marking an item as Not Necessary. Please provide a justification in the Comment/Notes field.</errorMessage>
+</ValidationRule>

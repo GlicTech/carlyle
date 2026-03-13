@@ -4,8 +4,8 @@
     <active>true</active>
     <description>No Over payments even in Pending status</description>
     <errorConditionFormula>AND(!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c,
-leaseworks__Invoice_Type_F__c != &#39;Interest&#39;,
-ispickVal(leaseworks__Payment_Status__c,&#39;Pending&#39;),			
+leaseworks__Invoice_Type_F__c != &apos;Interest&apos;,
+ispickVal(leaseworks__Payment_Status__c,&apos;Pending&apos;),			
 leaseworks__Amount__c   &gt; leaseworks__Invoice__r.leaseworks__Actual_Balance_Due__c )</errorConditionFormula>
     <errorMessage>The  amount paid/credited should be less than or
 equal to the invoice balance due. If this is a deferred invoice, please check

@@ -4,10 +4,10 @@
     <deprecated>false</deprecated>
     <externalId>false</externalId>
     <formula>CASE(TEXT(leaseworks__Type__c)
-,&#39;Assembly Event&#39;, IF(ISBLANK(leaseworks__Assembly_Maintenance_Event_Invoice__c),&#39;&#39;,HYPERLINK(&#39;/&#39;+leaseworks__Assembly_Maintenance_Event_Invoice__c,leaseworks__Assembly_Maintenance_Event_Invoice__r.Name,&quot;_blank&quot;))
-,&#39;Manual MR Credit Note&#39;,IF(ISBLANK(leaseworks__Invoice_Line_Item__c),&#39;&#39;,HYPERLINK(&#39;/&#39;+leaseworks__Invoice_Line_Item__r.leaseworks__Invoice__c,leaseworks__Invoice_Line_Item__r.leaseworks__Invoice__r.Name,&quot;_blank&quot;))
-,&#39;MR Payment&#39;, 
-IF(ISBLANK(leaseworks__Payment_Line_Item__c),&#39;&#39;,HYPERLINK(&#39;/&#39;+leaseworks__Payment_Line_Item__r.leaseworks__Invoice_Line_Item__r.leaseworks__Invoice__c,leaseworks__Payment_Line_Item__r.leaseworks__Invoice_Line_Item__r.leaseworks__Invoice__r.Name,&quot;_blank&quot;)),&#39;&#39;)</formula>
+,&apos;Assembly Event&apos;, IF(ISBLANK(leaseworks__Assembly_Maintenance_Event_Invoice__c),&apos;&apos;,HYPERLINK(&apos;/&apos;+leaseworks__Assembly_Maintenance_Event_Invoice__c,leaseworks__Assembly_Maintenance_Event_Invoice__r.Name,&quot;_blank&quot;))
+,&apos;Manual MR Credit Note&apos;,IF(ISBLANK(leaseworks__Invoice_Line_Item__c),&apos;&apos;,HYPERLINK(&apos;/&apos;+leaseworks__Invoice_Line_Item__r.leaseworks__Invoice__c,leaseworks__Invoice_Line_Item__r.leaseworks__Invoice__r.Name,&quot;_blank&quot;))
+,&apos;MR Payment&apos;, 
+IF(ISBLANK(leaseworks__Payment_Line_Item__c),&apos;&apos;,HYPERLINK(&apos;/&apos;+leaseworks__Payment_Line_Item__r.leaseworks__Invoice_Line_Item__r.leaseworks__Invoice__c,leaseworks__Payment_Line_Item__r.leaseworks__Invoice_Line_Item__r.leaseworks__Invoice__r.Name,&quot;_blank&quot;)),&apos;&apos;)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Invoice Link</label>
     <required>false</required>

@@ -6,12 +6,12 @@
     <externalId>false</externalId>
     <formula>CASE(
     TEXT(leaseworks__PBH_Rent_Rate__r.leaseworks__Rate_Basis__c),
-    &#39;Hourly&#39;, leaseworks__PBH_Rent_Rate__r.leaseworks__PBH_Rate__c,
-    &#39;FH Matrix&#39;, leaseworks__PBH_Rent_Rate__r.leaseworks__PBH_Rate__c,
-    &#39;Cycle&#39;, leaseworks__PBH_Rent_Rate__r.leaseworks__PBH_Rate_FC__c,
-    &#39;FC matrix&#39;, leaseworks__PBH_Rent_Rate__r.leaseworks__PBH_Rate_FC__c,
-    &#39;Both(FH+FC)&#39;, IF(leaseworks__Y_Hidden_Unit_Type__c == &#39;FH&#39;, leaseworks__PBH_Rent_Rate__r.leaseworks__PBH_Rate__c, leaseworks__PBH_Rent_Rate__r.leaseworks__PBH_Rate_FC__c ),
-    &#39;Greater(FH/FC)&#39;, IF(leaseworks__Y_Hidden_Unit_Type__c == &#39;FH&#39;, leaseworks__PBH_Rent_Rate__r.leaseworks__PBH_Rate__c, leaseworks__PBH_Rent_Rate__r.leaseworks__PBH_Rate_FC__c ),
+    &apos;Hourly&apos;, leaseworks__PBH_Rent_Rate__r.leaseworks__PBH_Rate__c,
+    &apos;FH Matrix&apos;, leaseworks__PBH_Rent_Rate__r.leaseworks__PBH_Rate__c,
+    &apos;Cycle&apos;, leaseworks__PBH_Rent_Rate__r.leaseworks__PBH_Rate_FC__c,
+    &apos;FC matrix&apos;, leaseworks__PBH_Rent_Rate__r.leaseworks__PBH_Rate_FC__c,
+    &apos;Both(FH+FC)&apos;, IF(leaseworks__Y_Hidden_Unit_Type__c == &apos;FH&apos;, leaseworks__PBH_Rent_Rate__r.leaseworks__PBH_Rate__c, leaseworks__PBH_Rent_Rate__r.leaseworks__PBH_Rate_FC__c ),
+    &apos;Greater(FH/FC)&apos;, IF(leaseworks__Y_Hidden_Unit_Type__c == &apos;FH&apos;, leaseworks__PBH_Rent_Rate__r.leaseworks__PBH_Rate__c, leaseworks__PBH_Rent_Rate__r.leaseworks__PBH_Rate_FC__c ),
     0
 )</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>

@@ -21,13 +21,13 @@
     <formulas>
         <name>f_AssigneeNameConcatenation</name>
         <dataType>String</dataType>
-        <expression>{!$Record.pro_Assigned_To__r.FirstName} + &#39; &#39; + {!$Record.pro_Assigned_To__r.LastName}</expression>
+        <expression>{!$Record.pro_Assigned_To__r.FirstName} + &apos; &apos; + {!$Record.pro_Assigned_To__r.LastName}</expression>
     </formulas>
     <formulas>
         <name>f_AssigneeNames</name>
         <dataType>String</dataType>
         <expression>IF(
-       {!varAssigneeNames} = Null, {!Loop_Assignees.pro_Assigned_To__r.FirstName} + &#39; &#39; + {!Loop_Assignees.pro_Assigned_To__r.LastName}    , &#39;, &#39; + {!Loop_Assignees.pro_Assigned_To__r.FirstName} + &#39; &#39; + {!Loop_Assignees.pro_Assigned_To__r.LastName} )</expression>
+       {!varAssigneeNames} = Null, {!Loop_Assignees.pro_Assigned_To__r.FirstName} + &apos; &apos; + {!Loop_Assignees.pro_Assigned_To__r.LastName}    , &apos;, &apos; + {!Loop_Assignees.pro_Assigned_To__r.FirstName} + &apos; &apos; + {!Loop_Assignees.pro_Assigned_To__r.LastName} )</expression>
     </formulas>
     <interviewLabel>Set Assignee Names {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Set Assignee Names</label>

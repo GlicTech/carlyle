@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
-    <excludeButtons>OpenSlackRecordChannel</excludeButtons>
     <layoutSections>
         <customLabel>false</customLabel>
         <detailHeading>false</detailHeading>
@@ -387,8 +386,8 @@
             <sortOrder>1</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
-            <actionName>leaseworks__Generate_Invoice</actionName>
-            <actionType>CustomButton</actionType>
+            <actionName>leaseworks__Invoice__c.Generate_Invoice1</actionName>
+            <actionType>QuickAction</actionType>
             <sortOrder>2</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
@@ -477,6 +476,7 @@
         <fields>leaseworks__Invoice_Type__c</fields>
         <fields>leaseworks__Invoice_Line_Type__c</fields>
         <fields>leaseworks__Converted_Currency_Line_Amount__c</fields>
+        <fields>leaseworks__Comments__c</fields>
         <relatedList>leaseworks__Invoice_Line_Item__c.leaseworks__Invoice__c</relatedList>
     </relatedLists>
     <relatedLists>

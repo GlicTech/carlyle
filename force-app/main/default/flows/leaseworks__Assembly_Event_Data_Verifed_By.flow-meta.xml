@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>63.0</apiVersion>
-    <description>Flow to set &#39;Data Verified By&#39; field when Assembly Event record is created or updated.</description>
+    <description>Flow to set &apos;Data Verified By&apos; field when Assembly Event record is created or updated.</description>
     <environments>Default</environments>
     <formulas>
-        <description>Formula to update Assembly Event object &#39;Data Verified By&#39; field.</description>
+        <description>Formula to update Assembly Event object &apos;Data Verified By&apos; field.</description>
         <name>AssemblyEventSetDataVerifiedByFormula</name>
         <dataType>String</dataType>
-        <expression>{!$User.FirstName} + &#39; &#39; + {!$User.LastName} +&#39;, &#39; + Text(MONTH(TODAY())) + &#39;/&#39; + Text(Day(TODAY())) + &#39;/&#39; + Text(year(TODAY()))</expression>
+        <expression>{!$User.FirstName} + &apos; &apos; + {!$User.LastName} +&apos;, &apos; + Text(MONTH(TODAY())) + &apos;/&apos; + Text(Day(TODAY())) + &apos;/&apos; + Text(year(TODAY()))</expression>
     </formulas>
     <interviewLabel>Assembly Event Data Verifed By {!$Flow.CurrentDateTime}</interviewLabel>
     <isTemplate>true</isTemplate>
@@ -27,7 +27,7 @@
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
     <recordUpdates>
-        <description>Update element to update the &#39;Data Verified By&#39; field on Assembly Event Object.</description>
+        <description>Update element to update the &apos;Data Verified By&apos; field on Assembly Event Object.</description>
         <name>Update_Fields</name>
         <label>Update Fields</label>
         <locationX>176</locationX>

@@ -5,6 +5,19 @@
         <name>Contracts</name>
         <dataType>String</dataType>
     </constants>
+    <customErrors>
+        <name>Exception_Message</name>
+        <label>Exception Message</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Triggers_WFs_On_3</targetReference>
+        </connector>
+        <customErrorMessages>
+            <errorMessage>{!$Flow.FaultMessage}</errorMessage>
+            <isFieldError>false</isFieldError>
+        </customErrorMessages>
+    </customErrors>
     <decisions>
         <name>Check_for_User_Id</name>
         <label>Check for User Id</label>
@@ -320,7 +333,7 @@
     NOT({!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c}),
     NOT({!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c}),
     NOT(ISBLANK({!$Record.leaseworks__Marketing_Activity__c})),
-    OR({!$Record.Name}=&#39;Contracts&#39;,  {!$Record.Name}=&#39;Legal&#39;),
+    OR({!$Record.Name}=&apos;Contracts&apos;,  {!$Record.Name}=&apos;Legal&apos;),
     OR(
         AND(
             ISNEW(),

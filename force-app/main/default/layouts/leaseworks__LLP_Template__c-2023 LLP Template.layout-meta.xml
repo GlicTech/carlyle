@@ -2,6 +2,7 @@
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
     <excludeButtons>ChangeOwnerOne</excludeButtons>
     <excludeButtons>ChangeRecordType</excludeButtons>
+    <excludeButtons>OpenSlackRecordChannel</excludeButtons>
     <excludeButtons>Submit</excludeButtons>
     <layoutSections>
         <customLabel>false</customLabel>
@@ -111,14 +112,12 @@
     </platformActionList>
     <relatedLists>
         <excludeButtons>MassChangeOwner</excludeButtons>
+        <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
-        <fields>leaseworks__Part_Number_New__c</fields>
-        <fields>leaseworks__Ultimate_Life_Limit_Cycles__c</fields>
-        <fields>leaseworks__Catalog_Price__c</fields>
-        <fields>leaseworks__Current_Catalog_Year__c</fields>
-        <relatedList>leaseworks__LLP_Catalog__c.leaseworks__LLP_Template__c</relatedList>
-        <sortField>NAME</sortField>
-        <sortOrder>Asc</sortOrder>
+        <fields>leaseworks__Constituent_Assembly__c</fields>
+        <fields>leaseworks__Part_Number__c</fields>
+        <fields>leaseworks__Serial_Number__c</fields>
+        <relatedList>leaseworks__Sub_Components_LLPs__c.leaseworks__LLP_DB_LLP__c</relatedList>
     </relatedLists>
     <relatedLists>
         <excludeButtons>MassChangeOwner</excludeButtons>
@@ -128,12 +127,14 @@
     </relatedLists>
     <relatedLists>
         <excludeButtons>MassChangeOwner</excludeButtons>
-        <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
-        <fields>leaseworks__Constituent_Assembly__c</fields>
-        <fields>leaseworks__Part_Number__c</fields>
-        <fields>leaseworks__Serial_Number__c</fields>
-        <relatedList>leaseworks__Sub_Components_LLPs__c.leaseworks__LLP_DB_LLP__c</relatedList>
+        <fields>leaseworks__Part_Number_New__c</fields>
+        <fields>leaseworks__Ultimate_Life_Limit_Cycles__c</fields>
+        <fields>leaseworks__Catalog_Price__c</fields>
+        <fields>leaseworks__Current_Catalog_Year__c</fields>
+        <relatedList>leaseworks__LLP_Catalog__c.leaseworks__LLP_Template__c</relatedList>
+        <sortField>NAME</sortField>
+        <sortOrder>Asc</sortOrder>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>

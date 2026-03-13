@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CAP_Team_Responsible__c</fullName>
+    <description>Report field to identify team responsible for current stage.</description>
+    <externalId>false</externalId>
+    <formula>CASE(
+  TEXT(leaseworks__Claim_Status__c),
+
+  &quot;Open&quot;, &quot;Lease Management&quot;,
+  &quot;Future Claim&quot;, &quot;Lease Management&quot;,
+  &quot;Technical Review&quot;, &quot;External Reviewer / Powerplant&quot;,
+  &quot;Operator Engagement&quot;, &quot;With Operator&quot;,
+  &quot;Technical Head/CTO Review&quot;, &quot;PFM / I&amp;S&quot;,
+  &quot;Finance/Accounting Review&quot;, &quot;Lease Management&quot;,
+  &quot;CTO Sign-off&quot;, &quot;Approvers&quot;,
+  &quot;Approved&quot;, &quot;Lease Management&quot;,
+  &quot;Finalised&quot;, &quot;Lease Management&quot;,
+
+  &quot;Unmapped&quot;
+)</formula>
+    <inlineHelpText>Report field to identify team responsible for current stage.</inlineHelpText>
+    <label>Team Responsible</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

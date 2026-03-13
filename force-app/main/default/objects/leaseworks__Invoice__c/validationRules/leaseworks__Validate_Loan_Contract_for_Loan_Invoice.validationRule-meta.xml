@@ -2,7 +2,7 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>leaseworks__Validate_Loan_Contract_for_Loan_Invoice</fullName>
     <active>true</active>
-    <description>Validates that the Loan Contract is not null when Invoice Type is &#39;Loan&#39;.</description>
-    <errorConditionFormula>AND(ISPICKVAL( leaseworks__Invoice_Type__c , &#39;Loan&#39;),  ISBLANK(  leaseworks__Loan_Installment__r.leaseworks__Loan__r.leaseworks__Loan_Contract__c  ) )</errorConditionFormula>
+    <description>Validates that the Loan Contract is not null when Invoice Type is &apos;Loan&apos;.</description>
+    <errorConditionFormula>AND(ISPICKVAL( leaseworks__Invoice_Type__c , &apos;Loan&apos;),  ISBLANK(  leaseworks__Loan_Installment__r.leaseworks__Loan__r.leaseworks__Loan_Contract__c  ) )</errorConditionFormula>
     <errorMessage>The loan must be linked to a contract in order to create loan invoices or payables.</errorMessage>
 </ValidationRule>

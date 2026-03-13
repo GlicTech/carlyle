@@ -222,27 +222,27 @@ When LOI Date field gets populated on AiD, this flow creates Documentation Event
     <formulas>
         <name>f_DraftToCounterpartyDocEventName</name>
         <dataType>String</dataType>
-        <expression>{!$Record.Name} + &#39; -  Draft To Counterparty&#39;</expression>
+        <expression>{!$Record.Name} + &apos; -  Draft To Counterparty&apos;</expression>
     </formulas>
     <formulas>
         <name>f_EngageLawFirmDocEventName</name>
         <dataType>String</dataType>
-        <expression>{!$Record.Name} + &#39; - Engage Law Firm&#39;</expression>
+        <expression>{!$Record.Name} + &apos; - Engage Law Firm&apos;</expression>
     </formulas>
     <formulas>
         <name>f_InitialDraftDocEventName</name>
         <dataType>String</dataType>
-        <expression>{!$Record.Name} + &#39; -  Initial Draft&#39;</expression>
+        <expression>{!$Record.Name} + &apos; -  Initial Draft&apos;</expression>
     </formulas>
     <formulas>
         <name>f_ReviewCommentDocEventName</name>
         <dataType>String</dataType>
-        <expression>{!$Record.Name} + &#39; -  Review &amp; Comment&#39;</expression>
+        <expression>{!$Record.Name} + &apos; -  Review &amp; Comment&apos;</expression>
     </formulas>
     <formulas>
         <name>f_TodayPlus1BdForEngageLawFirm</name>
         <dataType>Date</dataType>
-        <expression>IF(CONTAINS({!Loop_Documentation_Event_Names} , &#39;Engage Law Firm&#39;) , {!Calculate_1_Working_Day.varTargetDate}, Null)</expression>
+        <expression>IF(CONTAINS({!Loop_Documentation_Event_Names} , &apos;Engage Law Firm&apos;) , {!Calculate_1_Working_Day.varTargetDate}, Null)</expression>
     </formulas>
     <interviewLabel>Prodigy - AiD - Create Documentation Events {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Prodigy - AiD - Create Documentation Events</label>

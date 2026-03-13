@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>63.0</apiVersion>
+    <customErrors>
+        <name>Error_wile_updating_the_name_of_the_deal</name>
+        <label>Error wile updating the name of the deal</label>
+        <locationX>440</locationX>
+        <locationY>539</locationY>
+        <connector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Enable_Triggers</targetReference>
+        </connector>
+        <customErrorMessages>
+            <errorMessage>{!$Flow.FaultMessage}</errorMessage>
+            <isFieldError>false</isFieldError>
+        </customErrorMessages>
+    </customErrors>
     <environments>Default</environments>
     <formulas>
         <name>NameForTheDeal</name>

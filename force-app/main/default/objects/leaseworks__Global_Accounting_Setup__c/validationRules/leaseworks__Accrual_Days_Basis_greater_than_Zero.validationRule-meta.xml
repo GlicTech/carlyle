@@ -4,7 +4,7 @@
     <active>true</active>
     <description>Accrual Days Basis should accept value greater than 0</description>
     <errorConditionFormula>AND(
-ISPICKVAL(leaseworks__Accrual_Method__c,&#39;Set Number of Days&#39;),
+ISPICKVAL(leaseworks__Accrual_Method__c,&apos;Set Number of Days&apos;),
 OR(leaseworks__Accrual_Days_Basis__c &lt; 30,leaseworks__Accrual_Days_Basis__c &gt; 31)
 )</errorConditionFormula>
     <errorDisplayField>leaseworks__Accrual_Days_Basis__c</errorDisplayField>

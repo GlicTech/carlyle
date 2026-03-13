@@ -7,6 +7,9 @@
         <locationY>0</locationY>
         <actionName>customNotificationAction</actionName>
         <actionType>customNotificationAction</actionType>
+        <connector>
+            <targetReference>Increment_Approval_Reminder_Count</targetReference>
+        </connector>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
             <name>customNotifTypeId</name>
@@ -38,6 +41,8 @@
                 <elementReference>recordId.Id</elementReference>
             </value>
         </inputParameters>
+        <nameSegment>customNotificationAction</nameSegment>
+        <offset>0</offset>
     </actionCalls>
     <actionCalls>
         <name>Notify_Outstanding_LOI_Approvers</name>
@@ -46,6 +51,9 @@
         <locationY>0</locationY>
         <actionName>customNotificationAction</actionName>
         <actionType>customNotificationAction</actionType>
+        <connector>
+            <targetReference>Increment_Approval_Reminder_Count</targetReference>
+        </connector>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
             <name>customNotifTypeId</name>
@@ -77,6 +85,8 @@
                 <elementReference>recordId.Id</elementReference>
             </value>
         </inputParameters>
+        <nameSegment>customNotificationAction</nameSegment>
+        <offset>0</offset>
     </actionCalls>
     <actionCalls>
         <name>Notify_Outstanding_Non_Deal_Approvers</name>
@@ -85,6 +95,9 @@
         <locationY>0</locationY>
         <actionName>customNotificationAction</actionName>
         <actionType>customNotificationAction</actionType>
+        <connector>
+            <targetReference>Increment_Approval_Reminder_Count</targetReference>
+        </connector>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
             <name>customNotifTypeId</name>
@@ -116,6 +129,8 @@
                 <elementReference>recordId.Id</elementReference>
             </value>
         </inputParameters>
+        <nameSegment>customNotificationAction</nameSegment>
+        <offset>0</offset>
     </actionCalls>
     <apiVersion>64.0</apiVersion>
     <assignments>
@@ -287,10 +302,21 @@
     <description>This flow can be launched, for example, from a button on the Deal record page. When clicked, it will notify any outstanding LOI or Lease Documentation approvers based on the Deal Status.</description>
     <environments>Default</environments>
     <formulas>
+        <name>f_ApprovalReminderCountPlus1</name>
+        <dataType>Number</dataType>
+        <expression>IF(ISBLANK({!recordId.pro_Approval_Reminder_Count__c}), 1, {!recordId.pro_Approval_Reminder_Count__c} + 1)</expression>
+        <scale>2</scale>
+    </formulas>
+    <formulas>
         <name>f_NotificationTitle</name>
         <dataType>String</dataType>
-        <expression>IF(TEXT({!recordId.leaseworks__Deal_Status__c}) = &#39;LOI Signed&#39;, &#39;🔔 LOI Approval Required [&#39; + {!recordId.Name} + &#39;]&#39;, 
-        IF(TEXT({!recordId.leaseworks__Deal_Status__c}) = &#39;Documentation&#39;, &#39;🔔 Lease Documentation Approval Required [&#39; +     {!recordId.Name} + &#39;]&#39;,  &#39;🔔 Non Deal Approval Required [&#39; +     {!recordId.Name} + &#39;]&#39;))</expression>
+        <expression>IF(TEXT({!recordId.leaseworks__Deal_Status__c}) = &apos;LOI Signed&apos;, &apos;🔔 LOI Approval Required [&apos; + {!recordId.Name} + &apos;]&apos;, 
+        IF(TEXT({!recordId.leaseworks__Deal_Status__c}) = &apos;Documentation&apos;, &apos;🔔 Lease Documentation Approval Required [&apos; +     {!recordId.Name} + &apos;]&apos;,  &apos;🔔 Non Deal Approval Required [&apos; +     {!recordId.Name} + &apos;]&apos;))</expression>
+    </formulas>
+    <formulas>
+        <name>f_SubmissionNotes</name>
+        <dataType>String</dataType>
+        <expression>IF(NOT(ISBLANK({!varSubmissionNotes} )), BR() + &apos;&quot;&apos; + {!varSubmissionNotes} + &apos;&quot;&apos;, &apos;&apos;)</expression>
     </formulas>
     <interviewLabel>Prodigy - Auto - Approval Reminder  Notification {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Prodigy - Auto - Approval Reminder  Notification</label>
@@ -524,6 +550,27 @@
         <object>leaseworks__Deal_Team__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
+    <recordUpdates>
+        <name>Increment_Approval_Reminder_Count</name>
+        <label>Increment Approval Reminder Count</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>pro_Approval_Reminder_Count__c</field>
+            <value>
+                <elementReference>f_ApprovalReminderCountPlus1</elementReference>
+            </value>
+        </inputAssignments>
+        <object>leaseworks__Marketing_Activity__c</object>
+    </recordUpdates>
     <start>
         <locationX>0</locationX>
         <locationY>0</locationY>
@@ -536,9 +583,94 @@
         <name>tt_NotificationBody</name>
         <isViewedAsPlainText>true</isViewedAsPlainText>
         <text>Access the Deal record to take an action through the Approval Console. 
+{!f_SubmissionNotes}
 
-Click this notification to view the Deal record.</text>
+Click to view the Deal record.</text>
     </textTemplates>
+    <transforms>
+        <name>Create_AiD_Id_Collection</name>
+        <label>Create AiD Id Collection</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Outstanding_Documentation_Approvers</targetReference>
+        </connector>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>Get_AiDs[$EachItem].Id</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
+    <transforms>
+        <name>Create_List_Of_Approver_Member_Roles</name>
+        <label>Create List Of Approver Member Roles</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Outstanding_LOI_Approvers</targetReference>
+        </connector>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>Get_CMDT_For_LOI_Approvers[$EachItem].pro_Deal_Team_Name__c</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
+    <transforms>
+        <name>Create_LOI_Approver_Id_Collection</name>
+        <label>Create LOI Approver Id Collection</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Notify_Outstanding_LOI_Approvers</targetReference>
+        </connector>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>Get_Outstanding_LOI_Approvers[$EachItem].leaseworks__Assigned_To__c</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
+    <transforms>
+        <name>Create_Non_Deal_Approver_Assignee_Id_Collection</name>
+        <label>Create Non Deal Approver Assignee Id Collection</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Notify_Outstanding_Non_Deal_Approvers</targetReference>
+        </connector>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>Get_Outstanding_Non_Deal_Approvers[$EachItem].leaseworks__Assigned_To__c</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
     <variables>
         <name>recordId</name>
         <dataType>SObject</dataType>
@@ -552,6 +684,13 @@ Click this notification to view the Deal record.</text>
         <dataType>String</dataType>
         <isCollection>true</isCollection>
         <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>varSubmissionNotes</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
         <isOutput>false</isOutput>
     </variables>
 </Flow>

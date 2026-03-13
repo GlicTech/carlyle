@@ -3,6 +3,6 @@
     <fullName>leaseworks__Stop_Create_Modify_Approved_Transaction</fullName>
     <active>true</active>
     <description>You are not allowed to create or modify the Transaction dimension for Approved Transaction</description>
-    <errorConditionFormula>/*AND(!$Setup.LeaseWorksSettings__c.Disable_All_Triggers__c ,Transaction_Status__c != &#39;Pending&#39;)*/false</errorConditionFormula>
+    <errorConditionFormula>/*AND(!$Setup.LeaseWorksSettings__c.Disable_All_Triggers__c ,Transaction_Status__c != &apos;Pending&apos;)*/false</errorConditionFormula>
     <errorMessage>You cannot create or modify a dimension on an approved transaction.</errorMessage>
 </ValidationRule>

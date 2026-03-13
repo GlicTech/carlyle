@@ -3,11 +3,11 @@
     <fullName>pro_Approval_Status__c</fullName>
     <description>Formula to show an approval status or Approved, Pending Update, Pending, or Resubmission required. Based on checkboxes: First Approval Completed, Pending Update, Approval Submitted.</description>
     <externalId>false</externalId>
-    <formula>IF( pro_Bank_Account_Closed__c = True, &#39;Bank Account Closed&#39;,
-IF( pro_First_Approval_Completed__c &amp;&amp; ! pro_Pending_Update__c &amp;&amp; ! pro_Approval_Submitted__c, &#39;Approved&#39;, 
+    <formula>IF( pro_Bank_Account_Closed__c = True, &apos;Bank Account Closed&apos;,
+IF( pro_First_Approval_Completed__c &amp;&amp; ! pro_Pending_Update__c &amp;&amp; ! pro_Approval_Submitted__c, &apos;Approved&apos;, 
 
-     IF( pro_Pending_Update__c &amp;&amp; pro_Approval_Submitted__c, &#39;Pending Update&#39;,
-             IF(! pro_First_Approval_Completed__c &amp;&amp;  pro_Pending_Update__c, &#39;Pending&#39;, &#39;Resubmission Required&#39;  ))))</formula>
+     IF( pro_Pending_Update__c &amp;&amp; pro_Approval_Submitted__c, &apos;Pending Update&apos;,
+             IF(! pro_First_Approval_Completed__c &amp;&amp;  pro_Pending_Update__c, &apos;Pending&apos;, &apos;Resubmission Required&apos;  ))))</formula>
     <label>Approval Status</label>
     <required>false</required>
     <trackHistory>false</trackHistory>

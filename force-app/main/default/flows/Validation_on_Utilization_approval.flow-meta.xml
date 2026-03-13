@@ -24,6 +24,17 @@
             <targetReference>Loop_on_approval_process</targetReference>
         </connector>
     </assignments>
+    <customErrors>
+        <name>Validation_Message</name>
+        <label>Validation Message</label>
+        <locationX>50</locationX>
+        <locationY>803</locationY>
+        <customErrorMessages>
+            <errorMessage>You cannot approve a utilization record that you submitted. Please ask another user to review and Approve the utilization.</errorMessage>
+            <fieldSelection>leaseworks__Status__c</fieldSelection>
+            <isFieldError>true</isFieldError>
+        </customErrorMessages>
+    </customErrors>
     <decisions>
         <name>Decision_1</name>
         <label>Decision 1</label>
@@ -116,7 +127,7 @@
         <connector>
             <targetReference>Get_Approval_Related_Process_Record</targetReference>
         </connector>
-        <filterFormula>ISPICKVAL({!$Record.leaseworks__Status__c}, &#39;Approved By Lessor&#39; ) &amp;&amp;  NOT(ISPICKVAL({!$Record__Prior.leaseworks__Status__c}, &#39;Approved By Lessor&#39; )
+        <filterFormula>ISPICKVAL({!$Record.leaseworks__Status__c}, &apos;Approved By Lessor&apos; ) &amp;&amp;  NOT(ISPICKVAL({!$Record__Prior.leaseworks__Status__c}, &apos;Approved By Lessor&apos; )
 )</filterFormula>
         <object>leaseworks__Utilization_Report__c</object>
         <recordTriggerType>CreateAndUpdate</recordTriggerType>

@@ -209,6 +209,33 @@
     </layoutSections>
     <layoutSections>
         <customLabel>true</customLabel>
+        <detailHeading>true</detailHeading>
+        <editHeading>true</editHeading>
+        <label>Payment on Account</label>
+        <layoutColumns>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>leaseworks__Amount_Refunded__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>leaseworks__Amount_Applied__c</field>
+            </layoutItems>
+        </layoutColumns>
+        <layoutColumns>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>leaseworks__Payments_on_Account__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>leaseworks__Payment_On_Account_Balance__c</field>
+            </layoutItems>
+        </layoutColumns>
+        <style>TwoColumnsLeftToRight</style>
+    </layoutSections>
+    <layoutSections>
+        <customLabel>true</customLabel>
         <detailHeading>false</detailHeading>
         <editHeading>false</editHeading>
         <label>New Section</label>
@@ -487,16 +514,9 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>leaseworks__Invoice_Type__c</fields>
-        <fields>leaseworks__Asset_Type__c</fields>
-        <fields>leaseworks__Default__c</fields>
-        <fields>leaseworks__Email_Address__c</fields>
-        <fields>leaseworks__CC_Email_Address__c</fields>
-        <fields>leaseworks__BCC_Email_Address__c</fields>
-        <relatedList>leaseworks__Invoice_Billing_Details__c.leaseworks__Account__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
+        <fields>leaseworks__Street__c</fields>
+        <fields>leaseworks__State_Province__c</fields>
+        <fields>leaseworks__Zip_Postal_Code__c</fields>
         <relatedList>leaseworks__Addresses__c.leaseworks__Account__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -520,12 +540,14 @@
         <sortOrder>Desc</sortOrder>
     </relatedLists>
     <relatedLists>
-        <fields>CONTACT.FULL_NAME</fields>
-        <fields>CONTACT.TITLE</fields>
-        <fields>CONTACT.EMAIL</fields>
-        <fields>CONTACT.PHONE3</fields>
-        <fields>ACCCONRELATION.IS_DIRECT</fields>
-        <relatedList>RelatedAccountContactRelationList</relatedList>
+        <fields>NAME</fields>
+        <fields>leaseworks__Invoice_Type__c</fields>
+        <fields>leaseworks__Asset_Type__c</fields>
+        <fields>leaseworks__Default__c</fields>
+        <fields>leaseworks__Email_Address__c</fields>
+        <fields>leaseworks__CC_Email_Address__c</fields>
+        <fields>leaseworks__BCC_Email_Address__c</fields>
+        <relatedList>leaseworks__Invoice_Billing_Details__c.leaseworks__Account__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
@@ -538,6 +560,14 @@
         <fields>leaseworks__Base_Rent__c</fields>
         <fields>leaseworks__Rent_Remaining__c</fields>
         <relatedList>leaseworks__Lease__c.leaseworks__Lesor__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>CONTACT.FULL_NAME</fields>
+        <fields>CONTACT.TITLE</fields>
+        <fields>CONTACT.EMAIL</fields>
+        <fields>CONTACT.PHONE3</fields>
+        <fields>ACCCONRELATION.IS_DIRECT</fields>
+        <relatedList>RelatedAccountContactRelationList</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>

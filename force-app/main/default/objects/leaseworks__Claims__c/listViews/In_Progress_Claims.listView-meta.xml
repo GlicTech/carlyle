@@ -3,6 +3,7 @@
     <fullName>In_Progress_Claims</fullName>
     <columns>pro_Claim_Number_Unique__c</columns>
     <columns>NAME</columns>
+    <columns>CAP_Team_Responsible__c</columns>
     <columns>Associated_Contract__c</columns>
     <columns>leaseworks__Assembly__c</columns>
     <columns>leaseworks__Supplemental_Rent__c</columns>
@@ -18,6 +19,11 @@
         <field>leaseworks__Claim_Status__c</field>
         <operation>equals</operation>
         <value>Technical Review,Operator Engagement,Technical Head/CTO Review,Finance/Accounting Review,CTO Sign-off</value>
+    </filters>
+    <filters>
+        <field>pro_Claim_Cancelled__c</field>
+        <operation>equals</operation>
+        <value>0</value>
     </filters>
     <label>In Progress Claims</label>
 </ListView>

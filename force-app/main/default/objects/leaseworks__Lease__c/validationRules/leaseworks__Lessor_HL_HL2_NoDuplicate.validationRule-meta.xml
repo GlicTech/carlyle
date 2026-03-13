@@ -3,7 +3,7 @@
     <fullName>leaseworks__Lessor_HL_HL2_NoDuplicate</fullName>
     <active>true</active>
     <description>The Lessor,Head Lessor and Head Lessor 2 should be unique</description>
-    <errorConditionFormula>AND(RecordType.DeveloperName != &#39;Loan&#39;,  OR(
+    <errorConditionFormula>AND(RecordType.DeveloperName != &apos;Loan&apos;,  OR(
 AND(!ISBLANK(leaseworks__Lesor__c), !ISBLANK(leaseworks__Head_Lesor__c),leaseworks__Lesor__c = leaseworks__Head_Lesor__c),
 AND(!ISBLANK(leaseworks__Head_Lesor__c), !ISBLANK(leaseworks__Head_Lesor_II__c),leaseworks__Head_Lesor__c = leaseworks__Head_Lesor_II__c),
 AND(!ISBLANK(leaseworks__Lesor__c), !ISBLANK(leaseworks__Head_Lesor_II__c),leaseworks__Lesor__c = leaseworks__Head_Lesor_II__c)

@@ -3,7 +3,6 @@
     <fullName>leaseworks__Deposit_Return_Date_F__c</fullName>
     <deprecated>false</deprecated>
     <description>Date when the Security Deposit was returned</description>
-    <externalId>false</externalId>
     <formula>if( AND(leaseworks__Security_Depo_Cash__c == 0.0,
 								NOT(OR (ISBLANK(leaseworks__Last_Deposit_Return_Date__c),  ISNULL(leaseworks__Last_Deposit_Return_Date__c)))),
 leaseworks__Last_Deposit_Return_Date__c,null	)</formula>

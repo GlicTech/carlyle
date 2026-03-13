@@ -2,9 +2,9 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>leaseworks__Dimension_Value_is_required</fullName>
     <active>true</active>
-    <description>#DimensionStory - If &#39;Default Value Required&#39; is marked as Yes, then &#39;Dimension Value&#39; must be filled.</description>
+    <description>#DimensionStory - If &apos;Default Value Required&apos; is marked as Yes, then &apos;Dimension Value&apos; must be filled.</description>
     <errorConditionFormula>false
-    /*!$Setup.LeaseWorksSettings__c.Disable_All_Triggers__c &amp;&amp; ISPICKVAL(Default_Value_Required__c,&#39;Yes&#39;) &amp;&amp; ISBLANK(Dimension_Value__c) &amp;&amp;  NOT( ISBLANK( Lease__r.Accounting_Setup_P__c ))*/</errorConditionFormula>
+    /*!$Setup.LeaseWorksSettings__c.Disable_All_Triggers__c &amp;&amp; ISPICKVAL(Default_Value_Required__c,&apos;Yes&apos;) &amp;&amp; ISBLANK(Dimension_Value__c) &amp;&amp;  NOT( ISBLANK( Lease__r.Accounting_Setup_P__c ))*/</errorConditionFormula>
     <errorDisplayField>leaseworks__Dimension_Value__c</errorDisplayField>
-    <errorMessage>A default dimension value is required if &#39;Default Value Required&#39; is marked as Yes.</errorMessage>
+    <errorMessage>A default dimension value is required if &apos;Default Value Required&apos; is marked as Yes.</errorMessage>
 </ValidationRule>

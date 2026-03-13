@@ -35,13 +35,13 @@
         <fullName>leaseworks__ProspectSetName</fullName>
         <description>Set the name for the record.</description>
         <field>Name</field>
-        <formula>IF(leaseworks__Prospect_New__c==null,&#39;&#39;, leaseworks__Prospect_New__r.Name + &#39;-&#39;)
+        <formula>IF(leaseworks__Prospect_New__c==null,&apos;&apos;, leaseworks__Prospect_New__r.Name + &apos;-&apos;)
 
-+ IF(CONTAINS(leaseworks__Deal__r.leaseworks__MSN_List__c, &#39;,&#39;),
-LEFT(leaseworks__Deal__r.leaseworks__MSN_List__c, FIND(&#39;,&#39;, leaseworks__Deal__r.leaseworks__MSN_List__c)-1),
++ IF(CONTAINS(leaseworks__Deal__r.leaseworks__MSN_List__c, &apos;,&apos;),
+LEFT(leaseworks__Deal__r.leaseworks__MSN_List__c, FIND(&apos;,&apos;, leaseworks__Deal__r.leaseworks__MSN_List__c)-1),
 leaseworks__Deal__r.leaseworks__MSN_List__c)
 
-+ IF(CONTAINS(leaseworks__Deal__r.leaseworks__MSN_List__c, &#39;,&#39;), &#39;*&#39;,&#39;&#39;)</formula>
++ IF(CONTAINS(leaseworks__Deal__r.leaseworks__MSN_List__c, &apos;,&apos;), &apos;*&apos;,&apos;&apos;)</formula>
         <name>ProspectSetName</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>

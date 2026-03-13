@@ -17,6 +17,8 @@
                 <booleanValue>true</booleanValue>
             </value>
         </inputParameters>
+        <nameSegment>NotificationToggle</nameSegment>
+        <offset>0</offset>
     </actionCalls>
     <actionCalls>
         <name>Disable_Notifications_Selected_Team_Branch</name>
@@ -35,6 +37,8 @@
                 <booleanValue>true</booleanValue>
             </value>
         </inputParameters>
+        <nameSegment>NotificationToggle</nameSegment>
+        <offset>0</offset>
     </actionCalls>
     <actionCalls>
         <name>Enable_Notifications_Replace_User_Branch</name>
@@ -53,6 +57,8 @@
                 <booleanValue>false</booleanValue>
             </value>
         </inputParameters>
+        <nameSegment>NotificationToggle</nameSegment>
+        <offset>0</offset>
     </actionCalls>
     <actionCalls>
         <name>Enable_Notifications_Selected_Team_Branch</name>
@@ -71,6 +77,8 @@
                 <booleanValue>false</booleanValue>
             </value>
         </inputParameters>
+        <nameSegment>NotificationToggle</nameSegment>
+        <offset>0</offset>
     </actionCalls>
     <actionCalls>
         <name>Replace_User_On_Teams</name>
@@ -131,6 +139,8 @@
                 <elementReference>Choose_Role_s_To_Update</elementReference>
             </value>
         </inputParameters>
+        <nameSegment>TeamMemberUpdater</nameSegment>
+        <offset>0</offset>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <actionCalls>
@@ -186,6 +196,8 @@
                 <elementReference>Choose_Role_s_To_Update</elementReference>
             </value>
         </inputParameters>
+        <nameSegment>TeamMemberUpdater</nameSegment>
+        <offset>0</offset>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <apiVersion>63.0</apiVersion>
@@ -1073,8 +1085,8 @@
     <dynamicChoiceSets>
         <name>c_RoleToUpdate</name>
         <dataType>Picklist</dataType>
-        <displayField xsi:nil="true" />
-        <object xsi:nil="true" />
+        <displayField xsi:nil="true"/>
+        <object xsi:nil="true"/>
         <picklistField>pro_Team_Roles__c</picklistField>
         <picklistObject>pro_Global_Value_Set__mdt</picklistObject>
     </dynamicChoiceSets>
@@ -1082,7 +1094,7 @@
     <formulas>
         <name>f_AccountingUserOrBlank</name>
         <dataType>String</dataType>
-        <expression>IF(CONTAINS({!Choose_Role_s_To_Update}, &#39;Accounting&#39;), {!UserToBeReplaced.recordId}, &#39;000000000000000AAA&#39;)</expression>
+        <expression>IF(CONTAINS({!Choose_Role_s_To_Update}, &apos;Accounting&apos;), {!UserToBeReplaced.recordId}, &apos;000000000000000AAA&apos;)</expression>
     </formulas>
     <formulas>
         <name>f_AirlineTeamDisplayOrBlank</name>
@@ -1090,7 +1102,6 @@
         <expression>IF(
   NOT(ISBLANK({!sdt_DisplayAirlines.firstSelectedRow.Id})),
   &quot;Record Owner: &quot; &amp; {!sdt_DisplayAirlines.firstSelectedRow.leaseworks__Owner_Full_Name__c} &amp; &quot;&lt;br/&gt;&quot; &amp;
-  &quot;Accounting: &quot; &amp; {!sdt_DisplayAirlines.firstSelectedRow.Accounting__r.FirstName} &amp; &quot; &quot; &amp; {!sdt_DisplayAirlines.firstSelectedRow.Accounting__r.LastName} &amp; &quot;&lt;br/&gt;&quot; &amp;
   &quot;Compliance: &quot; &amp; {!sdt_DisplayAirlines.firstSelectedRow.Compliance__r.FirstName} &amp; &quot; &quot; &amp; {!sdt_DisplayAirlines.firstSelectedRow.Compliance__r.LastName} &amp; &quot;&lt;br/&gt;&quot; &amp;
   &quot;Contracts: &quot; &amp; {!sdt_DisplayAirlines.firstSelectedRow.Contracts__r.FirstName} &amp; &quot; &quot; &amp; {!sdt_DisplayAirlines.firstSelectedRow.Contracts__r.LastName} &amp; &quot;&lt;br/&gt;&quot; &amp;
   &quot;Credit: &quot; &amp; {!sdt_DisplayAirlines.firstSelectedRow.Credit__r.FirstName} &amp; &quot; &quot; &amp; {!sdt_DisplayAirlines.firstSelectedRow.Credit__r.LastName} &amp; &quot;&lt;br/&gt;&quot; &amp;
@@ -1101,7 +1112,6 @@
   &quot;MR Claims: &quot; &amp; {!sdt_DisplayAirlines.firstSelectedRow.MR_Claims__r.FirstName} &amp; &quot; &quot; &amp; {!sdt_DisplayAirlines.firstSelectedRow.MR_Claims__r.LastName} &amp; &quot;&lt;br/&gt;&quot; &amp;
   &quot;Portfolio Management: &quot; &amp; {!sdt_DisplayAirlines.firstSelectedRow.Portfolio_Fund_Management__r.FirstName} &amp; &quot; &quot; &amp; {!sdt_DisplayAirlines.firstSelectedRow.Portfolio_Fund_Management__r.LastName} &amp; &quot;&lt;br/&gt;&quot; &amp;
   &quot;Powerplant: &quot; &amp; {!sdt_DisplayAirlines.firstSelectedRow.Powerplant__r.FirstName} &amp; &quot; &quot; &amp; {!sdt_DisplayAirlines.firstSelectedRow.Powerplant__r.LastName} &amp; &quot;&lt;br/&gt;&quot; &amp;
-  &quot;Pricing: &quot; &amp; {!sdt_DisplayAirlines.firstSelectedRow.Pricing__r.FirstName} &amp; &quot; &quot; &amp; {!sdt_DisplayAirlines.firstSelectedRow.Pricing__r.LastName} &amp; &quot;&lt;br/&gt;&quot; &amp;
   &quot;Lease Management: &quot; &amp; {!sdt_DisplayAirlines.firstSelectedRow.Receivables__r.FirstName} &amp; &quot; &quot; &amp; {!sdt_DisplayAirlines.firstSelectedRow.Receivables__r.LastName} &amp; &quot;&lt;br/&gt;&quot; &amp;
   &quot;Tax: &quot; &amp; {!sdt_DisplayAirlines.firstSelectedRow.Tax__r.FirstName} &amp; &quot; &quot; &amp; {!sdt_DisplayAirlines.firstSelectedRow.Tax__r.LastName} &amp; &quot;&lt;br/&gt;&quot; &amp;
   &quot;Technical: &quot; &amp; {!sdt_DisplayAirlines.firstSelectedRow.Technical__r.FirstName} &amp; &quot; &quot; &amp; {!sdt_DisplayAirlines.firstSelectedRow.Technical__r.LastName} &amp; &quot;&lt;br/&gt;&quot; &amp;
@@ -1112,12 +1122,12 @@
     <formulas>
         <name>f_ComplianceUserOrBlank</name>
         <dataType>String</dataType>
-        <expression>IF(CONTAINS({!Choose_Role_s_To_Update}, &#39;Compliance&#39;), {!UserToBeReplaced.recordId},  &#39;000000000000000AAA&#39;)</expression>
+        <expression>IF(CONTAINS({!Choose_Role_s_To_Update}, &apos;Compliance&apos;), {!UserToBeReplaced.recordId},  &apos;000000000000000AAA&apos;)</expression>
     </formulas>
     <formulas>
         <name>f_ContractsUserOrBlank</name>
         <dataType>String</dataType>
-        <expression>IF(CONTAINS({!Choose_Role_s_To_Update}, &#39;Contracts&#39;), {!UserToBeReplaced.recordId},  &#39;000000000000000AAA&#39;)</expression>
+        <expression>IF(CONTAINS({!Choose_Role_s_To_Update}, &apos;Contracts&apos;), {!UserToBeReplaced.recordId},  &apos;000000000000000AAA&apos;)</expression>
     </formulas>
     <formulas>
         <name>f_CountryAccountingDisplayNameOrBlank</name>
@@ -1134,7 +1144,6 @@
         <expression>IF(
   NOT(ISBLANK({!sdt_DisplayCountries.firstSelectedRow.Id})),
   &quot;Record Owner: &quot; &amp; {!sdt_DisplayCountries.firstSelectedRow.pro_Owner_Name__c} &amp; &quot;&lt;br/&gt;&quot; &amp;
-  &quot;Accounting: &quot; &amp; {!sdt_DisplayCountries.firstSelectedRow.pro_Accounting__r.FirstName} &amp; &quot; &quot; &amp; {!sdt_DisplayCountries.firstSelectedRow.pro_Accounting__r.LastName} &amp; &quot;&lt;br/&gt;&quot; &amp;
   &quot;Compliance: &quot; &amp; {!sdt_DisplayCountries.firstSelectedRow.pro_Compliance__r.FirstName} &amp; &quot; &quot; &amp; {!sdt_DisplayCountries.firstSelectedRow.pro_Compliance__r.LastName} &amp; &quot;&lt;br/&gt;&quot; &amp;
   &quot;Contracts: &quot; &amp; {!sdt_DisplayCountries.firstSelectedRow.pro_Contracts__r.FirstName} &amp; &quot; &quot; &amp; {!sdt_DisplayCountries.firstSelectedRow.pro_Contracts__r.LastName} &amp; &quot;&lt;br/&gt;&quot; &amp;
   &quot;Credit: &quot; &amp; {!sdt_DisplayCountries.firstSelectedRow.pro_Credit__r.FirstName} &amp; &quot; &quot; &amp; {!sdt_DisplayCountries.firstSelectedRow.pro_Credit__r.LastName} &amp; &quot;&lt;br/&gt;&quot; &amp;
@@ -1145,7 +1154,6 @@
   &quot;MR Claims: &quot; &amp; {!sdt_DisplayCountries.firstSelectedRow.pro_MR_Claims__r.FirstName} &amp; &quot; &quot; &amp; {!sdt_DisplayCountries.firstSelectedRow.pro_MR_Claims__r.LastName} &amp; &quot;&lt;br/&gt;&quot; &amp;
   &quot;Portfolio Management: &quot; &amp; {!sdt_DisplayCountries.firstSelectedRow.pro_Portfolio_Management__r.FirstName} &amp; &quot; &quot; &amp; {!sdt_DisplayCountries.firstSelectedRow.pro_Portfolio_Management__r.LastName} &amp; &quot;&lt;br/&gt;&quot; &amp;
   &quot;Powerplant: &quot; &amp; {!sdt_DisplayCountries.firstSelectedRow.pro_Powerplant__r.FirstName} &amp; &quot; &quot; &amp; {!sdt_DisplayCountries.firstSelectedRow.pro_Powerplant__r.LastName} &amp; &quot;&lt;br/&gt;&quot; &amp;
-  &quot;Pricing: &quot; &amp; {!sdt_DisplayCountries.firstSelectedRow.pro_Pricing__r.FirstName} &amp; &quot; &quot; &amp; {!sdt_DisplayCountries.firstSelectedRow.pro_Pricing__r.LastName} &amp; &quot;&lt;br/&gt;&quot; &amp;
   &quot;Lease Management: &quot; &amp; {!sdt_DisplayCountries.firstSelectedRow.pro_Receivables__r.FirstName} &amp; &quot; &quot; &amp; {!sdt_DisplayCountries.firstSelectedRow.pro_Receivables__r.LastName} &amp; &quot;&lt;br/&gt;&quot; &amp;
   &quot;Tax: &quot; &amp; {!sdt_DisplayCountries.firstSelectedRow.pro_Tax__r.FirstName} &amp; &quot; &quot; &amp; {!sdt_DisplayCountries.firstSelectedRow.pro_Tax__r.LastName} &amp; &quot;&lt;br/&gt;&quot; &amp;
   &quot;Technical: &quot; &amp; {!sdt_DisplayCountries.firstSelectedRow.pro_Technical__r.FirstName} &amp; &quot; &quot; &amp; {!sdt_DisplayCountries.firstSelectedRow.pro_Technical__r.LastName} &amp; &quot;&lt;br/&gt;&quot; &amp;
@@ -1156,12 +1164,12 @@
     <formulas>
         <name>f_CreditUserOrBlank</name>
         <dataType>String</dataType>
-        <expression>IF(CONTAINS({!Choose_Role_s_To_Update}, &#39;Credit&#39;), {!UserToBeReplaced.recordId},  &#39;000000000000000AAA&#39;)</expression>
+        <expression>IF(CONTAINS({!Choose_Role_s_To_Update}, &apos;Credit&apos;), {!UserToBeReplaced.recordId},  &apos;000000000000000AAA&apos;)</expression>
     </formulas>
     <formulas>
         <name>f_DebtUserOrBlank</name>
         <dataType>String</dataType>
-        <expression>IF(CONTAINS({!Choose_Role_s_To_Update}, &#39;Debt&#39;), {!UserToBeReplaced.recordId},  &#39;000000000000000AAA&#39;)</expression>
+        <expression>IF(CONTAINS({!Choose_Role_s_To_Update}, &apos;Debt&apos;), {!UserToBeReplaced.recordId},  &apos;000000000000000AAA&apos;)</expression>
     </formulas>
     <formulas>
         <name>f_DisplayRoleSelection</name>
@@ -1171,42 +1179,42 @@
     <formulas>
         <name>f_InvestmentStrategyUserOrBlank</name>
         <dataType>String</dataType>
-        <expression>IF(CONTAINS({!Choose_Role_s_To_Update}, &#39;Investment &amp; Strategy&#39;), {!UserToBeReplaced.recordId},  &#39;000000000000000AAA&#39;)</expression>
+        <expression>IF(CONTAINS({!Choose_Role_s_To_Update}, &apos;Investment &amp; Strategy&apos;), {!UserToBeReplaced.recordId},  &apos;000000000000000AAA&apos;)</expression>
     </formulas>
     <formulas>
         <name>f_LeaseManagementOrBlank</name>
         <dataType>String</dataType>
-        <expression>IF(CONTAINS({!Choose_Role_s_To_Update}, &#39;Lease Management&#39;), {!UserToBeReplaced.recordId},  &#39;000000000000000AAA&#39;)</expression>
+        <expression>IF(CONTAINS({!Choose_Role_s_To_Update}, &apos;Lease Management&apos;), {!UserToBeReplaced.recordId},  &apos;000000000000000AAA&apos;)</expression>
     </formulas>
     <formulas>
         <name>f_LegalUserOrBlank</name>
         <dataType>String</dataType>
-        <expression>IF(CONTAINS({!Choose_Role_s_To_Update}, &#39;Legal&#39;), {!UserToBeReplaced.recordId},  &#39;000000000000000AAA&#39;)</expression>
+        <expression>IF(CONTAINS({!Choose_Role_s_To_Update}, &apos;Legal&apos;), {!UserToBeReplaced.recordId},  &apos;000000000000000AAA&apos;)</expression>
     </formulas>
     <formulas>
         <name>f_MarketingUserOrBlank</name>
         <dataType>String</dataType>
-        <expression>IF(CONTAINS({!Choose_Role_s_To_Update}, &#39;Marketing&#39;), {!UserToBeReplaced.recordId}, &#39;000000000000000AAA&#39;)</expression>
+        <expression>IF(CONTAINS({!Choose_Role_s_To_Update}, &apos;Marketing&apos;), {!UserToBeReplaced.recordId}, &apos;000000000000000AAA&apos;)</expression>
     </formulas>
     <formulas>
         <name>f_MrClaimsUserOrBlank</name>
         <dataType>String</dataType>
-        <expression>IF(CONTAINS({!Choose_Role_s_To_Update}, &#39;MR Claims&#39;), {!UserToBeReplaced.recordId},  &#39;000000000000000AAA&#39;)</expression>
+        <expression>IF(CONTAINS({!Choose_Role_s_To_Update}, &apos;MR Claims&apos;), {!UserToBeReplaced.recordId},  &apos;000000000000000AAA&apos;)</expression>
     </formulas>
     <formulas>
         <name>f_PortfolioManagementUserOrBlank</name>
         <dataType>String</dataType>
-        <expression>IF(CONTAINS({!Choose_Role_s_To_Update}, &#39;Portfolio Management&#39;), {!UserToBeReplaced.recordId},  &#39;000000000000000AAA&#39;)</expression>
+        <expression>IF(CONTAINS({!Choose_Role_s_To_Update}, &apos;Portfolio Management&apos;), {!UserToBeReplaced.recordId},  &apos;000000000000000AAA&apos;)</expression>
     </formulas>
     <formulas>
         <name>f_PowerplantUserOrBlank</name>
         <dataType>String</dataType>
-        <expression>IF(CONTAINS({!Choose_Role_s_To_Update}, &#39;Powerplant&#39;), {!UserToBeReplaced.recordId},  &#39;000000000000000AAA&#39;)</expression>
+        <expression>IF(CONTAINS({!Choose_Role_s_To_Update}, &apos;Powerplant&apos;), {!UserToBeReplaced.recordId},  &apos;000000000000000AAA&apos;)</expression>
     </formulas>
     <formulas>
         <name>f_PricingUserOrBlank</name>
         <dataType>String</dataType>
-        <expression>IF(CONTAINS({!Choose_Role_s_To_Update}, &#39;Pricing&#39;), {!UserToBeReplaced.recordId},  &#39;000000000000000AAA&#39;)</expression>
+        <expression>IF(CONTAINS({!Choose_Role_s_To_Update}, &apos;Pricing&apos;), {!UserToBeReplaced.recordId},  &apos;000000000000000AAA&apos;)</expression>
     </formulas>
     <formulas>
         <name>f_QueryAirlines</name>
@@ -1214,9 +1222,9 @@
         <expression>IF(
   ISBLANK({!Search_Airline}),
   
-  &quot;SELECT Id, Name, OwnerId, leaseworks__Owner_Full_Name__c, Accounting__c, Accounting__r.FirstName, Accounting__r.LastName, Compliance__c, Compliance__r.FirstName, Compliance__r.LastName, Contracts__c, Contracts__r.FirstName, Contracts__r.LastName, Credit__c, Credit__r.FirstName, Credit__r.LastName, Debt__c, Debt__r.FirstName, Debt__r.LastName, Investment_Strategy__c, Investment_Strategy__r.FirstName, Investment_Strategy__r.LastName, Legal__c, Legal__r.FirstName, Legal__r.LastName, MR_Claims__c, MR_Claims__r.FirstName, MR_Claims__r.LastName, Marketing__c, Marketing__r.FirstName, Marketing__r.LastName, Portfolio_Fund_Management__c, Portfolio_Fund_Management__r.FirstName, Portfolio_Fund_Management__r.LastName, Powerplant__c, Powerplant__r.FirstName, Powerplant__r.LastName, Pricing__c, Pricing__r.FirstName, Pricing__r.LastName, Receivables__c, Receivables__r.FirstName, Receivables__r.LastName, Tax__c, Tax__r.FirstName, Tax__r.LastName, Technical__c, Technical__r.FirstName, Technical__r.LastName, Trading__c, Trading__r.FirstName, Trading__r.LastName FROM Account WHERE Type = &#39;Operator&#39; LIMIT 10&quot;,
+  &quot;SELECT Id, Name, OwnerId, leaseworks__Owner_Full_Name__c, Accounting__c, Accounting__r.FirstName, Accounting__r.LastName, Compliance__c, Compliance__r.FirstName, Compliance__r.LastName, Contracts__c, Contracts__r.FirstName, Contracts__r.LastName, Credit__c, Credit__r.FirstName, Credit__r.LastName, Debt__c, Debt__r.FirstName, Debt__r.LastName, Investment_Strategy__c, Investment_Strategy__r.FirstName, Investment_Strategy__r.LastName, Legal__c, Legal__r.FirstName, Legal__r.LastName, MR_Claims__c, MR_Claims__r.FirstName, MR_Claims__r.LastName, Marketing__c, Marketing__r.FirstName, Marketing__r.LastName, Portfolio_Fund_Management__c, Portfolio_Fund_Management__r.FirstName, Portfolio_Fund_Management__r.LastName, Powerplant__c, Powerplant__r.FirstName, Powerplant__r.LastName, Pricing__c, Pricing__r.FirstName, Pricing__r.LastName, Receivables__c, Receivables__r.FirstName, Receivables__r.LastName, Tax__c, Tax__r.FirstName, Tax__r.LastName, Technical__c, Technical__r.FirstName, Technical__r.LastName, Trading__c, Trading__r.FirstName, Trading__r.LastName FROM Account WHERE Type = &apos;Operator&apos; LIMIT 10&quot;,
   
-  &quot;SELECT Id, Name, OwnerId, leaseworks__Owner_Full_Name__c, Accounting__c, Accounting__r.FirstName, Accounting__r.LastName, Compliance__c, Compliance__r.FirstName, Compliance__r.LastName, Contracts__c, Contracts__r.FirstName, Contracts__r.LastName, Credit__c, Credit__r.FirstName, Credit__r.LastName, Debt__c, Debt__r.FirstName, Debt__r.LastName, Investment_Strategy__c, Investment_Strategy__r.FirstName, Investment_Strategy__r.LastName, Legal__c, Legal__r.FirstName, Legal__r.LastName, MR_Claims__c, MR_Claims__r.FirstName, MR_Claims__r.LastName, Marketing__c, Marketing__r.FirstName, Marketing__r.LastName, Portfolio_Fund_Management__c, Portfolio_Fund_Management__r.FirstName, Portfolio_Fund_Management__r.LastName, Powerplant__c, Powerplant__r.FirstName, Powerplant__r.LastName, Pricing__c, Pricing__r.FirstName, Pricing__r.LastName, Receivables__c, Receivables__r.FirstName, Receivables__r.LastName, Tax__c, Tax__r.FirstName, Tax__r.LastName, Technical__c, Technical__r.FirstName, Technical__r.LastName, Trading__c, Trading__r.FirstName, Trading__r.LastName FROM Account WHERE Type = &#39;Operator&#39; AND Name LIKE &#39;&quot; &amp; {!Search_Airline} &amp; &quot;%&#39; LIMIT 10&quot;
+  &quot;SELECT Id, Name, OwnerId, leaseworks__Owner_Full_Name__c, Accounting__c, Accounting__r.FirstName, Accounting__r.LastName, Compliance__c, Compliance__r.FirstName, Compliance__r.LastName, Contracts__c, Contracts__r.FirstName, Contracts__r.LastName, Credit__c, Credit__r.FirstName, Credit__r.LastName, Debt__c, Debt__r.FirstName, Debt__r.LastName, Investment_Strategy__c, Investment_Strategy__r.FirstName, Investment_Strategy__r.LastName, Legal__c, Legal__r.FirstName, Legal__r.LastName, MR_Claims__c, MR_Claims__r.FirstName, MR_Claims__r.LastName, Marketing__c, Marketing__r.FirstName, Marketing__r.LastName, Portfolio_Fund_Management__c, Portfolio_Fund_Management__r.FirstName, Portfolio_Fund_Management__r.LastName, Powerplant__c, Powerplant__r.FirstName, Powerplant__r.LastName, Pricing__c, Pricing__r.FirstName, Pricing__r.LastName, Receivables__c, Receivables__r.FirstName, Receivables__r.LastName, Tax__c, Tax__r.FirstName, Tax__r.LastName, Technical__c, Technical__r.FirstName, Technical__r.LastName, Trading__c, Trading__r.FirstName, Trading__r.LastName FROM Account WHERE Type = &apos;Operator&apos; AND Name LIKE &apos;&quot; &amp; {!Search_Airline} &amp; &quot;%&apos; LIMIT 10&quot;
 )</expression>
     </formulas>
     <formulas>
@@ -1227,7 +1235,7 @@
   
   &quot;SELECT Id, Name, OwnerId, pro_Owner_Name__c, pro_Accounting__c, pro_Accounting__r.FirstName, pro_Accounting__r.LastName, pro_Compliance__c, pro_Compliance__r.FirstName, pro_Compliance__r.LastName, pro_Contracts__c, pro_Contracts__r.FirstName, pro_Contracts__r.LastName, pro_Credit__c, pro_Credit__r.FirstName, pro_Credit__r.LastName, pro_Debt__c, pro_Debt__r.FirstName, pro_Debt__r.LastName, pro_Investment_Strategy__c, pro_Investment_Strategy__r.FirstName, pro_Investment_Strategy__r.LastName, pro_Legal__c, pro_Legal__r.FirstName, pro_Legal__r.LastName, pro_Marketing__c, pro_Marketing__r.FirstName, pro_Marketing__r.LastName, pro_MR_Claims__c, pro_MR_Claims__r.FirstName, pro_MR_Claims__r.LastName, pro_Portfolio_Management__c, pro_Portfolio_Management__r.FirstName, pro_Portfolio_Management__r.LastName, pro_Powerplant__c, pro_Powerplant__r.FirstName, pro_Powerplant__r.LastName, pro_Pricing__c, pro_Pricing__r.FirstName, pro_Pricing__r.LastName, pro_Receivables__c, pro_Receivables__r.FirstName, pro_Receivables__r.LastName, pro_Tax__c, pro_Tax__r.FirstName, pro_Tax__r.LastName, pro_Technical__c, pro_Technical__r.FirstName, pro_Technical__r.LastName, pro_Trading__c, pro_Trading__r.FirstName, pro_Trading__r.LastName FROM leaseworks__Country__c LIMIT 10&quot;,
   
-  &quot;SELECT Id, Name, OwnerId,  pro_Owner_Name__c, pro_Accounting__c, pro_Accounting__r.FirstName, pro_Accounting__r.LastName, pro_Compliance__c, pro_Compliance__r.FirstName, pro_Compliance__r.LastName, pro_Contracts__c, pro_Contracts__r.FirstName, pro_Contracts__r.LastName, pro_Credit__c, pro_Credit__r.FirstName, pro_Credit__r.LastName, pro_Debt__c, pro_Debt__r.FirstName, pro_Debt__r.LastName, pro_Investment_Strategy__c, pro_Investment_Strategy__r.FirstName, pro_Investment_Strategy__r.LastName, pro_Legal__c, pro_Legal__r.FirstName, pro_Legal__r.LastName, pro_Marketing__c, pro_Marketing__r.FirstName, pro_Marketing__r.LastName, pro_MR_Claims__c, pro_MR_Claims__r.FirstName, pro_MR_Claims__r.LastName, pro_Portfolio_Management__c, pro_Portfolio_Management__r.FirstName, pro_Portfolio_Management__r.LastName, pro_Powerplant__c, pro_Powerplant__r.FirstName, pro_Powerplant__r.LastName, pro_Pricing__c, pro_Pricing__r.FirstName, pro_Pricing__r.LastName, pro_Receivables__c, pro_Receivables__r.FirstName, pro_Receivables__r.LastName, pro_Tax__c, pro_Tax__r.FirstName, pro_Tax__r.LastName, pro_Technical__c, pro_Technical__r.FirstName, pro_Technical__r.LastName, pro_Trading__c, pro_Trading__r.FirstName, pro_Trading__r.LastName FROM leaseworks__Country__c WHERE Name LIKE &#39;&quot; &amp; {!Search_Country} &amp; &quot;%&#39; LIMIT 10&quot;
+  &quot;SELECT Id, Name, OwnerId,  pro_Owner_Name__c, pro_Accounting__c, pro_Accounting__r.FirstName, pro_Accounting__r.LastName, pro_Compliance__c, pro_Compliance__r.FirstName, pro_Compliance__r.LastName, pro_Contracts__c, pro_Contracts__r.FirstName, pro_Contracts__r.LastName, pro_Credit__c, pro_Credit__r.FirstName, pro_Credit__r.LastName, pro_Debt__c, pro_Debt__r.FirstName, pro_Debt__r.LastName, pro_Investment_Strategy__c, pro_Investment_Strategy__r.FirstName, pro_Investment_Strategy__r.LastName, pro_Legal__c, pro_Legal__r.FirstName, pro_Legal__r.LastName, pro_Marketing__c, pro_Marketing__r.FirstName, pro_Marketing__r.LastName, pro_MR_Claims__c, pro_MR_Claims__r.FirstName, pro_MR_Claims__r.LastName, pro_Portfolio_Management__c, pro_Portfolio_Management__r.FirstName, pro_Portfolio_Management__r.LastName, pro_Powerplant__c, pro_Powerplant__r.FirstName, pro_Powerplant__r.LastName, pro_Pricing__c, pro_Pricing__r.FirstName, pro_Pricing__r.LastName, pro_Receivables__c, pro_Receivables__r.FirstName, pro_Receivables__r.LastName, pro_Tax__c, pro_Tax__r.FirstName, pro_Tax__r.LastName, pro_Technical__c, pro_Technical__r.FirstName, pro_Technical__r.LastName, pro_Trading__c, pro_Trading__r.FirstName, pro_Trading__r.LastName FROM leaseworks__Country__c WHERE Name LIKE &apos;&quot; &amp; {!Search_Country} &amp; &quot;%&apos; LIMIT 10&quot;
 )</expression>
     </formulas>
     <formulas>
@@ -1237,34 +1245,34 @@
 IF(
    ISBLANK({!Search_Deal}),
    &quot;&quot;,
-   &quot; AND Name LIKE &#39;%&quot; &amp; {!Search_Deal} &amp; &quot;%&#39;&quot;
+   &quot; AND Name LIKE &apos;%&quot; &amp; {!Search_Deal} &amp; &quot;%&apos;&quot;
 ) &amp; 
 &quot; LIMIT 10&quot;</expression>
     </formulas>
     <formulas>
         <name>f_RecordOwnerUserOrBlank</name>
         <dataType>String</dataType>
-        <expression>IF(CONTAINS({!Choose_Role_s_To_Update}, &#39;Record Owner&#39;), {!UserToBeReplaced.recordId}, &#39;000000000000000AAA&#39;)</expression>
+        <expression>IF(CONTAINS({!Choose_Role_s_To_Update}, &apos;Record Owner&apos;), {!UserToBeReplaced.recordId}, &apos;000000000000000AAA&apos;)</expression>
     </formulas>
     <formulas>
         <name>f_TaxUserOrBlank</name>
         <dataType>String</dataType>
-        <expression>IF(CONTAINS({!Choose_Role_s_To_Update}, &#39;Tax&#39;), {!UserToBeReplaced.recordId}, &#39;000000000000000AAA&#39;)</expression>
+        <expression>IF(CONTAINS({!Choose_Role_s_To_Update}, &apos;Tax&apos;), {!UserToBeReplaced.recordId}, &apos;000000000000000AAA&apos;)</expression>
     </formulas>
     <formulas>
         <name>f_TechnicalUserOrBlank</name>
         <dataType>String</dataType>
-        <expression>IF(CONTAINS({!Choose_Role_s_To_Update}, &#39;Technical&#39;), {!UserToBeReplaced.recordId}, &#39;000000000000000AAA&#39;)</expression>
+        <expression>IF(CONTAINS({!Choose_Role_s_To_Update}, &apos;Technical&apos;), {!UserToBeReplaced.recordId}, &apos;000000000000000AAA&apos;)</expression>
     </formulas>
     <formulas>
         <name>f_TradingUserOrBlank</name>
         <dataType>String</dataType>
-        <expression>IF(CONTAINS({!Choose_Role_s_To_Update}, &#39;Technical&#39;), {!UserToBeReplaced.recordId}, &#39;000000000000000AAA&#39;)</expression>
+        <expression>IF(CONTAINS({!Choose_Role_s_To_Update}, &apos;Technical&apos;), {!UserToBeReplaced.recordId}, &apos;000000000000000AAA&apos;)</expression>
     </formulas>
     <formulas>
         <name>f_UserOrReplaceWithLookupValue</name>
         <dataType>String</dataType>
-        <expression>IF({!pl_Choose_A_Mode} = &#39;Add Team Member&#39;, {!User.recordId}    , {!UserToAdd.recordId})</expression>
+        <expression>IF({!pl_Choose_A_Mode} = &apos;Add Team Member&apos;, {!User.recordId}    , {!UserToAdd.recordId})</expression>
     </formulas>
     <formulas>
         <name>varChangeRecordOwner</name>
@@ -2074,6 +2082,7 @@ IF(
             </defaultValue>
             <fieldText>Choose Team Type</fieldText>
             <fieldType>DropdownBox</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
         </fields>
         <fields>
@@ -2087,6 +2096,7 @@ IF(
                     <dataType>String</dataType>
                     <fieldText>Search Country</fieldText>
                     <fieldType>InputField</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                 </fields>
                 <fields>
@@ -2267,6 +2277,7 @@ IF(
                     <dataType>String</dataType>
                     <fieldText>Search Airline</fieldText>
                     <fieldType>InputField</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                 </fields>
                 <fields>
@@ -2447,6 +2458,7 @@ IF(
                     <dataType>String</dataType>
                     <fieldText>Search Deal</fieldText>
                     <fieldType>InputField</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                 </fields>
                 <fields>
@@ -2733,6 +2745,7 @@ IF(
                     </defaultValue>
                     <fieldText>Choose A Mode</fieldText>
                     <fieldType>DropdownBox</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                 </fields>
                 <fields>
@@ -2889,6 +2902,7 @@ IF(
                     </defaultValue>
                     <fieldText>Choose Role(s) To Update</fieldText>
                     <fieldType>MultiSelectCheckboxes</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
@@ -3316,12 +3330,12 @@ IF(
     <textTemplates>
         <name>tt_SoqlFilterCountryOnly</name>
         <isViewedAsPlainText>false</isViewedAsPlainText>
-        <text>&lt;p&gt;WHERE Name LIKE &#39;&quot; &amp;amp; {!Search_Country}&lt;/p&gt;</text>
+        <text>&lt;p&gt;WHERE Name LIKE &apos;&quot; &amp;amp; {!Search_Country}&lt;/p&gt;</text>
     </textTemplates>
     <textTemplates>
         <name>tt_SoqlFilterReplaceeAndCountry</name>
         <isViewedAsPlainText>false</isViewedAsPlainText>
-        <text>&lt;p&gt;WHERE Name LIKE &#39;&quot; &amp;amp; {!Search_Country} &amp;amp; &quot;% AND (&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;pro_Accounting__r.FullName = &#39;{!UserToBeReplaced.recordName}&#39; OR&amp;nbsp;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;pro_Compliance__r.FullName = &#39;{!UserToBeReplaced.recordName}&#39; OR&amp;nbsp;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;pro_Contracts__r.FullName = &#39;{!UserToBeReplaced.recordName}&#39; OR&amp;nbsp;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;pro_Credit__r.FullName = &#39;{!UserToBeReplaced.recordName}&#39; OR&amp;nbsp;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;pro_Debt__r.FullName = &#39;{!UserToBeReplaced.recordName}&#39; OR&amp;nbsp;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;pro_Investment_Strategy__r.FullName = &#39;{!UserToBeReplaced.recordName}&#39; OR&amp;nbsp;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;pro_Legal__r.FullName = &#39;{!UserToBeReplaced.recordName}&#39; OR&amp;nbsp;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;pro_Marketing__r.FullName = &#39;{!UserToBeReplaced.recordName}&#39; OR&amp;nbsp;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;pro_MR_Claims__r.FullName = &#39;{!UserToBeReplaced.recordName}&#39; OR&amp;nbsp;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;pro_Portfolio_Management__r.FullName = &#39;{!UserToBeReplaced.recordName}&#39; OR&amp;nbsp;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;pro_Powerplant__r.FullName = &#39;{!UserToBeReplaced.recordName}&#39; OR&amp;nbsp;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;pro_Pricing__r.FullName = &#39;{!UserToBeReplaced.recordName}&#39; OR&amp;nbsp;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;pro_Receivables__r.FullName = &#39;{!UserToBeReplaced.recordName}&#39; OR&amp;nbsp;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;pro_Tax__r.FullName = &#39;{!UserToBeReplaced.recordName}&#39; OR&amp;nbsp;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;pro_Technical__r.FullName = &#39;{!UserToBeReplaced.recordName}&#39; OR&amp;nbsp;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;pro_Trading__r.FullName = &#39;{!UserToBeReplaced.recordName}&#39;&lt;/p&gt;&lt;p&gt;)&lt;/p&gt;</text>
+        <text>&lt;p&gt;WHERE Name LIKE &apos;&quot; &amp;amp; {!Search_Country} &amp;amp; &quot;% AND (&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;pro_Accounting__r.FullName = &apos;{!UserToBeReplaced.recordName}&apos; OR&amp;nbsp;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;pro_Compliance__r.FullName = &apos;{!UserToBeReplaced.recordName}&apos; OR&amp;nbsp;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;pro_Contracts__r.FullName = &apos;{!UserToBeReplaced.recordName}&apos; OR&amp;nbsp;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;pro_Credit__r.FullName = &apos;{!UserToBeReplaced.recordName}&apos; OR&amp;nbsp;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;pro_Debt__r.FullName = &apos;{!UserToBeReplaced.recordName}&apos; OR&amp;nbsp;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;pro_Investment_Strategy__r.FullName = &apos;{!UserToBeReplaced.recordName}&apos; OR&amp;nbsp;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;pro_Legal__r.FullName = &apos;{!UserToBeReplaced.recordName}&apos; OR&amp;nbsp;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;pro_Marketing__r.FullName = &apos;{!UserToBeReplaced.recordName}&apos; OR&amp;nbsp;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;pro_MR_Claims__r.FullName = &apos;{!UserToBeReplaced.recordName}&apos; OR&amp;nbsp;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;pro_Portfolio_Management__r.FullName = &apos;{!UserToBeReplaced.recordName}&apos; OR&amp;nbsp;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;pro_Powerplant__r.FullName = &apos;{!UserToBeReplaced.recordName}&apos; OR&amp;nbsp;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;pro_Pricing__r.FullName = &apos;{!UserToBeReplaced.recordName}&apos; OR&amp;nbsp;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;pro_Receivables__r.FullName = &apos;{!UserToBeReplaced.recordName}&apos; OR&amp;nbsp;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;pro_Tax__r.FullName = &apos;{!UserToBeReplaced.recordName}&apos; OR&amp;nbsp;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;pro_Technical__r.FullName = &apos;{!UserToBeReplaced.recordName}&apos; OR&amp;nbsp;&lt;/p&gt;&lt;p&gt;&amp;nbsp;&amp;nbsp;pro_Trading__r.FullName = &apos;{!UserToBeReplaced.recordName}&apos;&lt;/p&gt;&lt;p&gt;)&lt;/p&gt;</text>
     </textTemplates>
     <textTemplates>
         <name>tt_TeamDisplayLeftColumn</name>
@@ -3338,6 +3352,345 @@ IF(
         <isViewedAsPlainText>false</isViewedAsPlainText>
         <text>&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;/lightning/r/Report/00OaA000002VzCXUA0/view&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;View Report In LeaseWorks&lt;/a&gt;&lt;/p&gt;</text>
     </textTemplates>
+    <transforms>
+        <name>Create_Airline_Id_Placeholder_Collection</name>
+        <label>Create Airline Id Placeholder Collection</label>
+        <locationX>50</locationX>
+        <locationY>3770</locationY>
+        <connector>
+            <targetReference>Create_Airline_Name_Placeholder_Collection</targetReference>
+        </connector>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>varAirlinesToKeepPlaceholder[$EachItem].Id</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
+    <transforms>
+        <name>Create_Airline_Name_Collection</name>
+        <label>Create Airline Name Collection</label>
+        <locationX>1106</locationX>
+        <locationY>1646</locationY>
+        <connector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Clear_Datatable_Selections</targetReference>
+        </connector>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>varAirlinesToUpdate[$EachItem].Name</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
+    <transforms>
+        <name>Create_Airline_Name_Placeholder_Collection</name>
+        <label>Create Airline Name Placeholder Collection</label>
+        <locationX>50</locationX>
+        <locationY>3878</locationY>
+        <connector>
+            <targetReference>Create_Deal_Name_Placeholder_Collection</targetReference>
+        </connector>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>varAirlinesToKeepPlaceholder[$EachItem].Name</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
+    <transforms>
+        <name>Create_Airlines_To_Remove_Id_List</name>
+        <label>Create Airlines To Remove Id List</label>
+        <locationX>50</locationX>
+        <locationY>1646</locationY>
+        <connector>
+            <targetReference>Create_Deals_To_Remove_Id_Collection</targetReference>
+        </connector>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>dt_SelectedAirlines.selectedRows[$EachItem].Id</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
+    <transforms>
+        <name>Create_Countries_To_Remove_Id_Collection</name>
+        <label>Create Countries To Remove Id Collection</label>
+        <locationX>50</locationX>
+        <locationY>1538</locationY>
+        <connector>
+            <targetReference>Create_Airlines_To_Remove_Id_List</targetReference>
+        </connector>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>dt_SelectedCountries.selectedRows[$EachItem].Id</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
+    <transforms>
+        <name>Create_Country_Id_Placeholder_Collection</name>
+        <label>Create Country Id Placeholder Collection</label>
+        <locationX>50</locationX>
+        <locationY>3554</locationY>
+        <connector>
+            <targetReference>Create_Country_Name_Placeholder_Collection</targetReference>
+        </connector>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>varCountriesToKeepPlaceholder[$EachItem].Id</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
+    <transforms>
+        <name>Create_Country_Name_Collection</name>
+        <label>Create Country Name Collection</label>
+        <locationX>578</locationX>
+        <locationY>1646</locationY>
+        <connector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Clear_Datatable_Selections</targetReference>
+        </connector>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>varCountriesToUpdate[$EachItem].Name</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
+    <transforms>
+        <name>Create_Country_Name_Placeholder_Collection</name>
+        <label>Create Country Name Placeholder Collection</label>
+        <locationX>50</locationX>
+        <locationY>3662</locationY>
+        <connector>
+            <targetReference>Create_Airline_Id_Placeholder_Collection</targetReference>
+        </connector>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>varCountriesToKeepPlaceholder[$EachItem].Name</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
+    <transforms>
+        <name>Create_Deal_Name_Collection</name>
+        <label>Create Deal Name Collection</label>
+        <locationX>1634</locationX>
+        <locationY>1754</locationY>
+        <connector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Clear_Datatable_Selections</targetReference>
+        </connector>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>varDealsToUpdate[$EachItem].Name</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
+    <transforms>
+        <name>Create_Deal_Name_Placeholder_Collection</name>
+        <label>Create Deal Name Placeholder Collection</label>
+        <locationX>50</locationX>
+        <locationY>3986</locationY>
+        <connector>
+            <targetReference>Assign_Placeholder_Values_As_Update_Lists</targetReference>
+        </connector>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>varDealsToKeepPlaceholder[$EachItem].Name</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
+    <transforms>
+        <name>Create_Deal_Placeholder_Id_Collection</name>
+        <label>Create Deal Placeholder Id Collection</label>
+        <locationX>50</locationX>
+        <locationY>3338</locationY>
+        <connector>
+            <targetReference>Get_Deal_Teams_To_Keep</targetReference>
+        </connector>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>varDealsToKeepPlaceholder[$EachItem].Id</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
+    <transforms>
+        <name>Create_Deals_To_Remove_Id_Collection</name>
+        <label>Create Deals To Remove Id Collection</label>
+        <locationX>50</locationX>
+        <locationY>1754</locationY>
+        <connector>
+            <targetReference>Loop_Country_Update_List</targetReference>
+        </connector>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>dt_SelectedDeals.selectedRows[$EachItem].Id</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
+    <transforms>
+        <name>Create_Replacee_Airline_Name_List</name>
+        <label>Create Replacee Airline Name List</label>
+        <locationX>2558</locationX>
+        <locationY>1322</locationY>
+        <connector>
+            <targetReference>Get_Replacee_Deal_Teams</targetReference>
+        </connector>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>Get_Replacee_Airlines[$EachItem].Name</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
+    <transforms>
+        <name>Create_Replacee_Country_Name_List</name>
+        <label>Create Replacee Country Name List</label>
+        <locationX>2558</locationX>
+        <locationY>1106</locationY>
+        <connector>
+            <targetReference>Get_Replacee_Airlines</targetReference>
+        </connector>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>Get_Replacee_Countries[$EachItem].Name</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
+    <transforms>
+        <name>Create_Replacee_Deal_Id_List</name>
+        <label>Create Replacee Deal Id List</label>
+        <locationX>2558</locationX>
+        <locationY>1646</locationY>
+        <connector>
+            <targetReference>Get_Replacee_Deals</targetReference>
+        </connector>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>Filter_Deal_Teams_To_Selected_Roles[$EachItem].leaseworks__Marketing_Activity__c</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
+    <transforms>
+        <name>Create_Replacee_Deal_Name_List</name>
+        <label>Create Replacee Deal Name List</label>
+        <locationX>2558</locationX>
+        <locationY>1862</locationY>
+        <connector>
+            <targetReference>DisplayTeamUpdatesScreen</targetReference>
+        </connector>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>Get_Replacee_Deals[$EachItem].Name</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
     <variables>
         <name>currentItem_Filter_Deal_Teams_To_Selected_Roles</name>
         <dataType>SObject</dataType>

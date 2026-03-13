@@ -490,16 +490,16 @@
 
   &quot;SELECT Id, Name, leaseworks__Type__c, pro_Assembly_Name_And_Type__c &quot; &amp;
   &quot;FROM leaseworks__Constituent_Assembly__c &quot; &amp;
-  &quot;WHERE Name LIKE &#39;&quot; &amp; {!Serial_Number} &amp; &quot;%&#39; &quot; &amp;
-  &quot;OR leaseworks__Asset__r.leaseworks__MSN_Number__c LIKE &#39;&quot; &amp; {!Serial_Number} &amp; &quot;%&#39; &quot; &amp;
-  &quot;OR leaseworks__Attached_Aircraft__r.leaseworks__MSN_Number__c LIKE &#39;&quot; &amp; {!Serial_Number} &amp; &quot;%&#39; &quot; &amp;
+  &quot;WHERE Name LIKE &apos;&quot; &amp; {!Serial_Number} &amp; &quot;%&apos; &quot; &amp;
+  &quot;OR leaseworks__Asset__r.leaseworks__MSN_Number__c LIKE &apos;&quot; &amp; {!Serial_Number} &amp; &quot;%&apos; &quot; &amp;
+  &quot;OR leaseworks__Attached_Aircraft__r.leaseworks__MSN_Number__c LIKE &apos;&quot; &amp; {!Serial_Number} &amp; &quot;%&apos; &quot; &amp;
   &quot;LIMIT 4&quot;
 )</expression>
     </formulas>
     <formulas>
         <name>f_AssemblyOnTicketNameConcatenation</name>
         <dataType>String</dataType>
-        <expression>{!Loop_Selected_Assemblies.leaseworks__Asset__r.Name} + &#39; - &#39; + {!Loop_Selected_Assemblies.Name} + &#39; - &#39;   +TEXT({!Loop_Selected_Assemblies.leaseworks__Type__c})</expression>
+        <expression>{!Loop_Selected_Assemblies.leaseworks__Asset__r.Name} + &apos; - &apos; + {!Loop_Selected_Assemblies.Name} + &apos; - &apos;   +TEXT({!Loop_Selected_Assemblies.leaseworks__Type__c})</expression>
     </formulas>
     <formulas>
         <name>f_AssetsQuery</name>
@@ -507,7 +507,7 @@
         <expression>IF(
   ISBLANK({!Serial_Number}),
   &quot;SELECT Id, Name, leaseworks__Asset_Type_GP__c, leaseworks__MSN_Number__c FROM leaseworks__Aircraft__c LIMIT 4&quot;,
-  &quot;SELECT Id, Name, leaseworks__Asset_Type_GP__c, leaseworks__MSN_Number__c FROM leaseworks__Aircraft__c WHERE leaseworks__MSN_Number__c LIKE &#39;&quot; &amp; {!Serial_Number} &amp; &quot;%&#39; LIMIT 4&quot;
+  &quot;SELECT Id, Name, leaseworks__Asset_Type_GP__c, leaseworks__MSN_Number__c FROM leaseworks__Aircraft__c WHERE leaseworks__MSN_Number__c LIKE &apos;&quot; &amp; {!Serial_Number} &amp; &quot;%&apos; LIMIT 4&quot;
 )</expression>
     </formulas>
     <formulas>
@@ -515,7 +515,7 @@
         <dataType>String</dataType>
         <expression>IF({!Create_Assembly_On_Ticket_Name_Collection} != Null,
     SUBSTITUTE(SUBSTITUTE({!Create_Assembly_On_Ticket_Name_Collection}, &quot;[&quot;, &quot;&quot;), &quot;]&quot;, &quot;&quot;), 
-      &#39;No Assemblies on Ticket&#39;
+      &apos;No Assemblies on Ticket&apos;
 )</expression>
     </formulas>
     <formulas>
@@ -523,7 +523,7 @@
         <dataType>String</dataType>
         <expression>IF({!Create_Asset_On_Ticket_Name_Collection} != Null, 
            SUBSTITUTE(SUBSTITUTE({!Create_Asset_On_Ticket_Name_Collection}, &quot;[&quot;, &quot;&quot;), &quot;]&quot;, &quot;&quot;) ,
-            &#39;No Assets on Ticket&#39;)</expression>
+            &apos;No Assets on Ticket&apos;)</expression>
     </formulas>
     <formulas>
         <name>f_AttachedContractsOrPlaceholder</name>
@@ -545,7 +545,7 @@
   &quot;SELECT Id, Name, leaseworks__Lease_Type_Status__c FROM leaseworks__Lease__c LIMIT 8&quot;,
   &quot;SELECT Id, Name, leaseworks__Lease_Type_Status__c &quot; &amp;
   &quot;FROM leaseworks__Lease__c &quot; &amp;
-  &quot;WHERE pro_Asset_Name__c LIKE &#39;&quot; &amp; {!Serial_Number_Contract} &amp; &quot;%&#39; &quot; &amp;
+  &quot;WHERE pro_Asset_Name__c LIKE &apos;&quot; &amp; {!Serial_Number_Contract} &amp; &quot;%&apos; &quot; &amp;
   &quot;LIMIT 8&quot;
 )</expression>
     </formulas>
@@ -897,6 +897,7 @@
                     </defaultValue>
                     <fieldText>Serial Number</fieldText>
                     <fieldType>InputField</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                 </fields>
                 <fields>
@@ -1270,6 +1271,7 @@
                     </defaultValue>
                     <fieldText>Serial Number</fieldText>
                     <fieldType>InputField</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
@@ -1659,6 +1661,69 @@
             </value>
         </inputAssignments>
     </subflows>
+    <transforms>
+        <name>Create_Assembly_On_Ticket_Name_Collection</name>
+        <label>Create Assembly On Ticket Name Collection</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Create_Contract_On_Ticket_Name_Collection</targetReference>
+        </connector>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>Get_Assemblies_On_Ticket[$EachItem].pro_Assembly_Name_Type__c</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
+    <transforms>
+        <name>Create_Asset_On_Ticket_Name_Collection</name>
+        <label>Create Asset On Ticket Name Collection</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Create_Assembly_On_Ticket_Name_Collection</targetReference>
+        </connector>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>Get_Assets_On_Ticket[$EachItem].Name</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
+    <transforms>
+        <name>Create_Contract_On_Ticket_Name_Collection</name>
+        <label>Create Contract On Ticket Name Collection</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Asset_Assembly_Selection_Screen</targetReference>
+        </connector>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>Get_Contracts_On_Ticket[$EachItem].Name</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
     <variables>
         <name>currentItem_Filter_Out_Assets_That_Are_Already_Attached</name>
         <dataType>SObject</dataType>

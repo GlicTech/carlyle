@@ -3,8 +3,7 @@
     <fullName>leaseworks__Availed_Credit_Amount_Cm__c</fullName>
     <deprecated>false</deprecated>
     <description>sum of  amount of all payments that are credits</description>
-    <externalId>false</externalId>
-    <label>Total Amount Credited</label>
+    <label>Total Amount Credited($)</label>
     <summarizedField>leaseworks__Payment__c.leaseworks__Amount__c</summarizedField>
     <summaryFilterItems>
         <field>leaseworks__Payment__c.leaseworks__Payment_Type__c</field>
@@ -14,7 +13,7 @@
     <summaryFilterItems>
         <field>leaseworks__Payment__c.leaseworks__Payment_Status__c</field>
         <operation>notEqual</operation>
-        <value>Pending, Declined, Cancelled, Submitted for Approval</value>
+        <value>Cancelled, Pending, Declined, Submitted for Approval</value>
     </summaryFilterItems>
     <summaryForeignKey>leaseworks__Payment__c.leaseworks__Invoice__c</summaryForeignKey>
     <summaryOperation>sum</summaryOperation>

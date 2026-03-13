@@ -3,9 +3,9 @@
     <fullName>leaseworks__Prospect_Must_Be_Entered</fullName>
     <active>true</active>
     <description>Choose or enter a prospect based on the prospect type.</description>
-    <errorConditionFormula>AND( RecordType.Name==&#39;Disposal&#39;, OR(ISBLANK(TEXT(leaseworks__Prospect_Type__c)),
-    AND(TEXT(leaseworks__Prospect_Type__c)==&#39;Lessor&#39;, ISBLANK(leaseworks__Lessor__c)),
-  AND(TEXT(leaseworks__Prospect_Type__c)==&#39;Other&#39;, ISBLANK(leaseworks__Other_Party__c))
+    <errorConditionFormula>AND( RecordType.Name==&apos;Disposal&apos;, OR(ISBLANK(TEXT(leaseworks__Prospect_Type__c)),
+    AND(TEXT(leaseworks__Prospect_Type__c)==&apos;Lessor&apos;, ISBLANK(leaseworks__Lessor__c)),
+  AND(TEXT(leaseworks__Prospect_Type__c)==&apos;Other&apos;, ISBLANK(leaseworks__Other_Party__c))
  )
 )</errorConditionFormula>
     <errorDisplayField>leaseworks__Prospect_Type__c</errorDisplayField>

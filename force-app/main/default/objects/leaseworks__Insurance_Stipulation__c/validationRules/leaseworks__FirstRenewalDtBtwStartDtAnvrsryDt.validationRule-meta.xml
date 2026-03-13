@@ -2,8 +2,8 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>leaseworks__FirstRenewalDtBtwStartDtAnvrsryDt</fullName>
     <active>true</active>
-    <description>&#39;First Renewal Date&#39; should be a date between the Start Date and the first anniversary of the Start Date.</description>
+    <description>&apos;First Renewal Date&apos; should be a date between the Start Date and the first anniversary of the Start Date.</description>
     <errorConditionFormula>OR(leaseworks__First_Renewal_Date__c &lt; leaseworks__Start_Date__c, leaseworks__First_Renewal_Date__c &gt; ADDMONTHS(leaseworks__Start_Date__c,12) )</errorConditionFormula>
     <errorDisplayField>leaseworks__First_Renewal_Date__c</errorDisplayField>
-    <errorMessage>&#39;First Renewal Date&#39; should be a date between the Start Date and the first anniversary of the Start Date.</errorMessage>
+    <errorMessage>&apos;First Renewal Date&apos; should be a date between the Start Date and the first anniversary of the Start Date.</errorMessage>
 </ValidationRule>

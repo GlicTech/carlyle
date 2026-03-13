@@ -30,7 +30,7 @@ IF(
     NULL,
     TEXT(leaseworks__Asset_Variant__c) 
 ) + &quot;-&quot; ) + 
-CASE(MONTH( Datevalue(CreatedDate) ),1, &quot;JAN&quot;, 2, &quot;FEB&quot;, 3, &quot;MAR&quot;, 4, &quot;APR&quot;, 5,&quot;MAY&quot;, 6, &quot;JUN&quot;, 7, &quot;JUL&quot;, 8, &quot;AUG&quot;, 9, &quot;SEP&quot;, 10, &quot;OCT&quot;, 11, &quot;NOV&quot;,12, &quot;DEC&quot;,&quot;NONE&quot; ) + &quot;&#39;&quot; + RIGHT(TEXT(YEAR( Datevalue(CreatedDate) )),2)</formula>
+CASE(MONTH( Datevalue(CreatedDate) ),1, &quot;JAN&quot;, 2, &quot;FEB&quot;, 3, &quot;MAR&quot;, 4, &quot;APR&quot;, 5,&quot;MAY&quot;, 6, &quot;JUN&quot;, 7, &quot;JUL&quot;, 8, &quot;AUG&quot;, 9, &quot;SEP&quot;, 10, &quot;OCT&quot;, 11, &quot;NOV&quot;,12, &quot;DEC&quot;,&quot;NONE&quot; ) + &quot;&apos;&quot; + RIGHT(TEXT(YEAR( Datevalue(CreatedDate) )),2)</formula>
         <name>AssetReqDetNameUpdate</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>

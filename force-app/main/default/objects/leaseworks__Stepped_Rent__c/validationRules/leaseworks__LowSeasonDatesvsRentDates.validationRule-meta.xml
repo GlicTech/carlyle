@@ -4,39 +4,39 @@
     <active>true</active>
     <description>Low season Start Month cannot be lesser than the Rent Start Month and Low season End Month cannot be greater than the Rent End Month. Validation should be fired immediately with the below error message</description>
     <errorConditionFormula>AND(
- ISPICKVAL(leaseworks__Rent_Type__c, &#39;Seasonal Rent&#39;), 
+ ISPICKVAL(leaseworks__Rent_Type__c, &apos;Seasonal Rent&apos;), 
  IF(
  OR(VALUE(leaseworks__Low_Season_Start_Year__c)&lt;YEAR(leaseworks__Start_Date__c),VALUE(leaseworks__Low_Season_End_Year__c)&gt;YEAR(leaseworks__Rent_End_Date__c)),true,
  OR(
 AND(
 CASE(
   TEXT(leaseworks__Low_Season_Start_Month__c),
-   &#39;January&#39;,1,
-   &#39;February&#39;,2,
-   &#39;March&#39;,3,
-   &#39;April&#39;,4,
-   &#39;May&#39;,5,
-   &#39;June&#39;,6,
-   &#39;July&#39;,7,
-   &#39;August&#39;,8,
-   &#39;September&#39;,9,
-   &#39;October&#39;,10,
-   &#39;November&#39;,11,
+   &apos;January&apos;,1,
+   &apos;February&apos;,2,
+   &apos;March&apos;,3,
+   &apos;April&apos;,4,
+   &apos;May&apos;,5,
+   &apos;June&apos;,6,
+   &apos;July&apos;,7,
+   &apos;August&apos;,8,
+   &apos;September&apos;,9,
+   &apos;October&apos;,10,
+   &apos;November&apos;,11,
   12)&lt; MONTH(leaseworks__Start_Date__c), VALUE(leaseworks__Low_Season_Start_Year__c)==YEAR(leaseworks__Start_Date__c)),   
   AND(
   CASE(
   TEXT(leaseworks__Low_Season_End_Month__c),
-   &#39;January&#39;,1,
-   &#39;February&#39;,2,
-   &#39;March&#39;,3,
-   &#39;April&#39;,4,
-   &#39;May&#39;,5,
-   &#39;June&#39;,6,
-   &#39;July&#39;,7,
-   &#39;August&#39;,8,
-   &#39;September&#39;,9,
-   &#39;October&#39;,10,
-   &#39;November&#39;,11,
+   &apos;January&apos;,1,
+   &apos;February&apos;,2,
+   &apos;March&apos;,3,
+   &apos;April&apos;,4,
+   &apos;May&apos;,5,
+   &apos;June&apos;,6,
+   &apos;July&apos;,7,
+   &apos;August&apos;,8,
+   &apos;September&apos;,9,
+   &apos;October&apos;,10,
+   &apos;November&apos;,11,
   12)&gt;MONTH(leaseworks__Rent_End_Date__c),VALUE(leaseworks__Low_Season_End_Year__c)==YEAR(leaseworks__Rent_End_Date__c))
   
   )))</errorConditionFormula>

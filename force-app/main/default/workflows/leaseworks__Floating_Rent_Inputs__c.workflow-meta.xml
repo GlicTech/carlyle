@@ -4,31 +4,31 @@
         <fullName>leaseworks__FloatingRentSetName</fullName>
         <description>Deprecated</description>
         <field>Name</field>
-        <formula>Null /*&#39;From &#39; 
+        <formula>Null /*&apos;From &apos; 
 +  Text(From_Period__c)  
-+ &#39; To &#39; 
++ &apos; To &apos; 
 + Text(To_Period__c) 
-+ &#39; ( &#39; 
-+  right(&#39;0&#39; + text(Day(Approximate_Reset_Date__c)),2) 
-+ &#39;-&#39;
++ &apos; ( &apos; 
++  right(&apos;0&apos; + text(Day(Approximate_Reset_Date__c)),2) 
++ &apos;-&apos;
 + case( month(Approximate_Reset_Date__c)
-,1,&#39;JAN&#39;
-,2,&#39;FEB&#39;
-,3,&#39;MAR&#39;
-,4,&#39;APR&#39;
-,5,&#39;MAY&#39;
-,6,&#39;JUN&#39;
-,7,&#39;JUL&#39;
-,8,&#39;AUG&#39;
-,9,&#39;SEP&#39;
-,10,&#39;OCT&#39;
-,11,&#39;NOV&#39;
-,12,&#39;DEC&#39;
+,1,&apos;JAN&apos;
+,2,&apos;FEB&apos;
+,3,&apos;MAR&apos;
+,4,&apos;APR&apos;
+,5,&apos;MAY&apos;
+,6,&apos;JUN&apos;
+,7,&apos;JUL&apos;
+,8,&apos;AUG&apos;
+,9,&apos;SEP&apos;
+,10,&apos;OCT&apos;
+,11,&apos;NOV&apos;
+,12,&apos;DEC&apos;
 ,null
 )
-+ &#39;-&#39;
-+  right(&#39;0000&#39; + text(Year(Approximate_Reset_Date__c)),4) 
-+ &#39; )&#39;*/</formula>
++ &apos;-&apos;
++  right(&apos;0000&apos; + text(Year(Approximate_Reset_Date__c)),4) 
++ &apos; )&apos;*/</formula>
         <name>FloatingRentSetName</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>

@@ -3,16 +3,15 @@
     <fullName>leaseworks__Balance_Due__c</fullName>
     <deprecated>false</deprecated>
     <description>Prepayment functionality is already deprecated. Keeping the lookup to track historical prepayments</description>
-    <externalId>false</externalId>
-    <formula>IF(!ISBLANK(leaseworks__Invoice__c),leaseworks__Invoice__r.leaseworks__Balance_Due__c,
-IF(!ISBLANK(leaseworks__Payments_Credits__c),null,
-IF(!ISBLANK(leaseworks__Prepayment__c),leaseworks__Prepayment__r.leaseworks__Available_Balance_Cur__c,
-IF(!ISBLANK(leaseworks__Payables__c),leaseworks__Payables__r.leaseworks__Payable_Balance__c,
-IF(!ISBLANK(leaseworks__Payouts__c),null,
-IF(!ISBLANK(leaseworks__Credit_Memo__c),leaseworks__Credit_Memo__r.leaseworks__Available_Credit_Memo_Amount_F__c,
-IF(!ISBLANK( leaseworks__Payment_on_Account__c ), leaseworks__Payment_on_Account__r.leaseworks__Balance_Available__c ,
-null)))))))</formula>
-    <label>Balance Due</label>
+    <formula>/*IF(!ISBLANK(Invoice__c),Invoice__r.Balance_Due__c,
+IF(!ISBLANK(Payments_Credits__c),null,
+IF(!ISBLANK(Prepayment__c),Prepayment__r.Available_Balance_Cur__c,
+IF(!ISBLANK(Payables__c),Payables__r.Payable_Balance__c,
+IF(!ISBLANK(Payouts__c),null,
+IF(!ISBLANK(Credit_Memo__c),Credit_Memo__r.Available_Credit_Memo_Amount_F__c,
+IF(!ISBLANK( Payment_on_Account__c ), Payment_on_Account__r.Balance_Available__c ,
+null)))))))*/null</formula>
+    <label>Z_Unused_2508 Balance Due</label>
     <precision>18</precision>
     <required>false</required>
     <scale>2</scale>

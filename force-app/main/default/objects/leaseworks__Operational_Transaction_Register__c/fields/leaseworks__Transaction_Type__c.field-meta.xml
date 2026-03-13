@@ -4,14 +4,14 @@
     <deprecated>false</deprecated>
     <description>Indicates the type of the source operational transaction record. Prepayment functionality is already deprecated.Keeping the lookup to track historical prepayments</description>
     <externalId>false</externalId>
-    <formula>IF(!ISBLANK(leaseworks__Invoice__c),&#39;Invoice&#39;,
-IF(!ISBLANK(leaseworks__Payments_Credits__c),(IF(OR(ISPICKVAL(leaseworks__Payments_Credits__r.leaseworks__Payment_Type__c,&#39;CN_Payment&#39;),ISPICKVAL(leaseworks__Payments_Credits__r.leaseworks__Payment_Type__c,&#39;Credit Memo Correction&#39;)),&#39;Credit&#39;,&#39;Payment&#39;)),
-IF(!ISBLANK(leaseworks__Prepayment__c),&#39;Prepayment&#39;,
-IF(!ISBLANK(leaseworks__Payables__c),&#39;Payable&#39;,
-IF(!ISBLANK(leaseworks__Payouts__c),IF(ISPICKVAL(leaseworks__Payouts__r.leaseworks__Payout_Type__c, &#39;Cash&#39;),&#39;Payout - Cash&#39;,&#39;Payout - Offset&#39;),
-IF(!ISBLANK(leaseworks__Credit_Memo__c),&#39;Credit Memo&#39;,
-IF(!ISBLANK( leaseworks__Payment_on_Account__c ),&#39;Payment on Account&#39;,
-&#39;&#39;)))))))</formula>
+    <formula>IF(!ISBLANK(leaseworks__Invoice__c),&apos;Invoice&apos;,
+IF(!ISBLANK(leaseworks__Payments_Credits__c),(IF(OR(ISPICKVAL(leaseworks__Payments_Credits__r.leaseworks__Payment_Type__c,&apos;CN_Payment&apos;),ISPICKVAL(leaseworks__Payments_Credits__r.leaseworks__Payment_Type__c,&apos;Credit Memo Correction&apos;)),&apos;Credit&apos;,&apos;Payment&apos;)),
+IF(!ISBLANK(leaseworks__Prepayment__c),&apos;Prepayment&apos;,
+IF(!ISBLANK(leaseworks__Payables__c),&apos;Payable&apos;,
+IF(!ISBLANK(leaseworks__Payouts__c),IF(ISPICKVAL(leaseworks__Payouts__r.leaseworks__Payout_Type__c, &apos;Cash&apos;),&apos;Payout - Cash&apos;,&apos;Payout - Offset&apos;),
+IF(!ISBLANK(leaseworks__Credit_Memo__c),&apos;Credit Memo&apos;,
+IF(!ISBLANK( leaseworks__Payment_on_Account__c ),&apos;Payment on Account&apos;,
+&apos;&apos;)))))))</formula>
     <inlineHelpText>Indicates the type of the source operational transaction record.</inlineHelpText>
     <label>Transaction Type</label>
     <required>false</required>

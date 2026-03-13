@@ -4,8 +4,8 @@
         <fullName>leaseworks__UpdateLeaseOptionName</fullName>
         <description>Update Lease Option Name to &lt;Option Type&gt;+&lt;Option/Notice End&gt;</description>
         <field>Name</field>
-        <formula>if ( ISBLANK(leaseworks__Option_Notice_End__c), Text(leaseworks__Option_Type__c),Text(leaseworks__Option_Type__c)+ &#39; - &#39;+ Text(year(leaseworks__Option_Notice_End__c))+&#39;-&#39;
-+ IF( LEN(TEXT(MONTH(leaseworks__Option_Notice_End__c))) &gt; 1 , TEXT(MONTH(leaseworks__Option_Notice_End__c)), &quot;0&quot; + TEXT(MONTH(leaseworks__Option_Notice_End__c))) + &#39;-&#39; + 
+        <formula>if ( ISBLANK(leaseworks__Option_Notice_End__c), Text(leaseworks__Option_Type__c),Text(leaseworks__Option_Type__c)+ &apos; - &apos;+ Text(year(leaseworks__Option_Notice_End__c))+&apos;-&apos;
++ IF( LEN(TEXT(MONTH(leaseworks__Option_Notice_End__c))) &gt; 1 , TEXT(MONTH(leaseworks__Option_Notice_End__c)), &quot;0&quot; + TEXT(MONTH(leaseworks__Option_Notice_End__c))) + &apos;-&apos; + 
 IF( LEN(TEXT(Day(leaseworks__Option_Notice_End__c))) &gt; 1 , TEXT(Day(leaseworks__Option_Notice_End__c)), &quot;0&quot; + TEXT(Day(leaseworks__Option_Notice_End__c))))</formula>
         <name>UpdateLeaseOptionName</name>
         <notifyAssignee>false</notifyAssignee>
@@ -19,7 +19,7 @@ IF( LEN(TEXT(Day(leaseworks__Option_Notice_End__c))) &gt; 1 , TEXT(Day(leasework
             <name>leaseworks__UpdateLeaseOptionName</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>Rule to set name field when Lease Option record is created</description>
         <formula>!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c</formula>
         <triggerType>onAllChanges</triggerType>

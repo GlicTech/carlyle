@@ -5,8 +5,8 @@
         <description>Update standard Name field</description>
         <field>Name</field>
         <formula>IF( (LEN(Name)+LEN(Text(leaseworks__Version_Number__c))+4)&lt;=80,
-Name &amp; &#39; - V&#39; &amp; Text(leaseworks__Version_Number__c),
-(LEFT(Name, 80-((LEN(Text(leaseworks__Version_Number__c))+4))) &amp; &#39; - V&#39; &amp; Text(leaseworks__Version_Number__c)))</formula>
+Name &amp; &apos; - V&apos; &amp; Text(leaseworks__Version_Number__c),
+(LEFT(Name, 80-((LEN(Text(leaseworks__Version_Number__c))+4))) &amp; &apos; - V&apos; &amp; Text(leaseworks__Version_Number__c)))</formula>
         <name>UpdateRevisionName</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>

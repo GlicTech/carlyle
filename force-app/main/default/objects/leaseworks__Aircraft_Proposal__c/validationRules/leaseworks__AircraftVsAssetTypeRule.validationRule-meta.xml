@@ -4,7 +4,7 @@
     <active>true</active>
     <description>Please select either Managed/World Fleet Aircraft or MSN or Asset/Engine Type.</description>
     <errorConditionFormula>AND(
-!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c, AND(leaseworks__Deal_Type__c!=&#39;Payment Deferral Request&#39;,leaseworks__Deal_Type__c!=&#39;Lease Restructuring&#39;),
+!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c, AND(leaseworks__Deal_Type__c!=&apos;Payment Deferral Request&apos;,leaseworks__Deal_Type__c!=&apos;Lease Restructuring&apos;),
 AND( 
 isBlank(leaseworks__MSN_E__c), 
 isBlank(text(leaseworks__Asset_Type__c)), 

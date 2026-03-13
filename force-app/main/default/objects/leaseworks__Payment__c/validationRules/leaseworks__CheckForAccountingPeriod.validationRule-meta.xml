@@ -4,9 +4,9 @@
     <active>false</active>
     <description>Cannot Approve/Reverse/Upost payment for closed Accounting Period</description>
     <errorConditionFormula>/*Y_hidden_AccEnabled__c &amp;&amp;
-isPickVal(Payment_Status__c,&#39;Approved&#39;) &amp;&amp;
+isPickVal(Payment_Status__c,&apos;Approved&apos;) &amp;&amp;
 ISCHANGED(Payment_Status__c) &amp;&amp;
-isPickVal( PRIORVALUE(Payment_Status__c) ,&#39;Pending&#39;) &amp;&amp;
+isPickVal( PRIORVALUE(Payment_Status__c) ,&apos;Pending&apos;) &amp;&amp;
 Accounting_Period__r.Closed__c == true*/ false</errorConditionFormula>
     <errorDisplayField>leaseworks__Accounting_Period__c</errorDisplayField>
     <errorMessage>The Accounting Period is Closed. Please reopen the period or select a new Accounting Period</errorMessage>

@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>65.0</apiVersion>
+    <assignments>
+        <name>Assign_Current_Record_to_Collection_Variable</name>
+        <label>Assign Current Record to Collection Variable</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>v_Collection_Variable</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>v_Current_Account</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_through_Parties_Related_to_Lease</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Values_to_Current_Record</name>
+        <label>Assign Values to Current Record</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>v_Current_Account.Id</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_through_Parties_Related_to_Lease.leaseworks__Account__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>v_Current_Account.pro_Recalculate_Party_to_Active_Lease__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Does_record_Collection_contain_Current_Record</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>Does_record_Collection_contain_Current_Record</name>
+        <label>Does record Collection contain Current Record</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Assign_Current_Record_to_Collection_Variable</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Collection_does_contain_Current_Record</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>v_Collection_Variable</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <elementReference>v_Current_Account</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Loop_through_Parties_Related_to_Lease</targetReference>
+            </connector>
+            <label>Yes - Collection does contain Current Record</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_Contract_Active</name>
+        <label>Is Contract Active?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>No - Contract is Inactive</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Contract_is_Active</name>
+            <conditionLogic>1 AND (2 OR 3 OR 4 OR 5)</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.leaseworks__Active__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.leaseworks__Lease_Type_Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>LOI</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.leaseworks__Lease_Type_Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Awaiting Delivery</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.leaseworks__Lease_Type_Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>On Lease</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.leaseworks__Lease_Type_Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>On Lease [R]</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Parties_related_to_Lease</targetReference>
+            </connector>
+            <label>Yes - Contract is Active</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Were_Parties_related_to_Lease_retrieved</name>
+        <label>Were Parties related to Lease retrieved?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Parties_related_to_Lease_were_retrieved</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Parties_related_to_Lease</leftValueReference>
+                <operator>IsEmpty</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Loop_through_Parties_Related_to_Lease</targetReference>
+            </connector>
+            <label>Yes - Parties related to Lease were retrieved</label>
+        </rules>
+    </decisions>
+    <description>AB 26/02/2026 - Updates to Logic
+AB 25/02/2026 - Updates to Logic
+AB 16/02/2026 - Updates to Logic
+AB 12/02/2026 - Updates to Logic
+AB 11/02/2026 - Created by Prodigy</description>
+    <environments>Default</environments>
+    <interviewLabel>Prodigy - Lease After Create After Update {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Prodigy - Lease After Create After Update</label>
+    <loops>
+        <name>Loop_through_Parties_Related_to_Lease</name>
+        <label>Loop through Parties Related to Lease</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <collectionReference>Get_Parties_related_to_Lease</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Assign_Values_to_Current_Record</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Update_Parties_Related_to_Lease_Accounts</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Parties_related_to_Lease</name>
+        <label>Get Parties related to Lease</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Were_Parties_related_to_Lease_retrieved</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>leaseworks__Contract__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Inactive__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>leaseworks__Role__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Next Operator</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>leaseworks__Parties__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <name>Update_Parties_Related_to_Lease_Accounts</name>
+        <label>Update Parties Related to Lease Accounts</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <inputReference>v_Collection_Variable</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <object>leaseworks__Lease__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <scheduledPaths>
+            <name>Execute_5_Mins_After_Update</name>
+            <connector>
+                <targetReference>Is_Contract_Active</targetReference>
+            </connector>
+            <label>Execute 5 Mins After Update</label>
+            <offsetNumber>5</offsetNumber>
+            <offsetUnit>Minutes</offsetUnit>
+            <recordField>LastModifiedDate</recordField>
+            <timeSource>RecordField</timeSource>
+        </scheduledPaths>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>v_Collection_Variable</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Account</objectType>
+    </variables>
+    <variables>
+        <name>v_Current_Account</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Account</objectType>
+    </variables>
+</Flow>

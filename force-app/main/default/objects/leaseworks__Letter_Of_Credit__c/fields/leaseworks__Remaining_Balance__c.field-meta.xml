@@ -3,7 +3,7 @@
     <fullName>leaseworks__Remaining_Balance__c</fullName>
     <deprecated>false</deprecated>
     <externalId>false</externalId>
-    <formula>if( isPickVal(leaseworks__Status__c, &#39;Inactive&#39;),
+    <formula>if( isPickVal(leaseworks__Status__c, &apos;Inactive&apos;),
 			0.0,leaseworks__LC_Amount_LC_Currency__c  -   BLANKVALUE( leaseworks__Y_Hidden_Draw_Transaction_Amount__c, 0) + 
 BLANKVALUE( leaseworks__Y_Hidden_Adj_Inc_Trx_Amount__c, 0) - BLANKVALUE( leaseworks__Y_Hidden_Adj_Dec_Trx_Amount__c, 0))</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>

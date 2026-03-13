@@ -2,6 +2,6 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>leaseworks__ValidateSecondRentPeriodStartDate</fullName>
     <active>true</active>
-    <errorConditionFormula>AND(!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c, IF(NOT(ISNULL( leaseworks__Second_Fee_Period_Start_Date__c )), leaseworks__Second_Fee_Period_Start_Date__c &gt; ADDMONTHS( leaseworks__Fee_Start_Date__c ,IF(ISPICKVAL(  leaseworks__Frequency__c , &#39;Monthly&#39;),1,IF(ISPICKVAL( leaseworks__Frequency__c, &#39;Quarterly&#39;),3,IF(ISPICKVAL( leaseworks__Frequency__c, &#39;Half-Yearly&#39;),6,IF(ISPICKVAL( leaseworks__Frequency__c, &#39;Annual&#39;),12,1))))),false))</errorConditionFormula>
+    <errorConditionFormula>AND(!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c, IF(NOT(ISNULL( leaseworks__Second_Fee_Period_Start_Date__c )), leaseworks__Second_Fee_Period_Start_Date__c &gt; ADDMONTHS( leaseworks__Fee_Start_Date__c ,IF(ISPICKVAL(  leaseworks__Frequency__c , &apos;Monthly&apos;),1,IF(ISPICKVAL( leaseworks__Frequency__c, &apos;Quarterly&apos;),3,IF(ISPICKVAL( leaseworks__Frequency__c, &apos;Half-Yearly&apos;),6,IF(ISPICKVAL( leaseworks__Frequency__c, &apos;Annual&apos;),12,1))))),false))</errorConditionFormula>
     <errorMessage>The difference between the Fee Start Date and Second Fee Period Start Date is longer than the frequency selected</errorMessage>
 </ValidationRule>

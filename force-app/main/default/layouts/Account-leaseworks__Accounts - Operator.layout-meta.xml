@@ -191,6 +191,33 @@
         <customLabel>true</customLabel>
         <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
+        <label>Payment on Account</label>
+        <layoutColumns>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>leaseworks__Payments_on_Account__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>leaseworks__Payment_On_Account_Balance__c</field>
+            </layoutItems>
+        </layoutColumns>
+        <layoutColumns>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>leaseworks__Amount_Applied__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>leaseworks__Amount_Refunded__c</field>
+            </layoutItems>
+        </layoutColumns>
+        <style>TwoColumnsLeftToRight</style>
+    </layoutSections>
+    <layoutSections>
+        <customLabel>true</customLabel>
+        <detailHeading>true</detailHeading>
+        <editHeading>true</editHeading>
         <label>Contact Summary</label>
         <layoutColumns>
             <layoutItems>
@@ -409,6 +436,9 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>leaseworks__Street__c</fields>
+        <fields>leaseworks__State_Province__c</fields>
+        <fields>leaseworks__Zip_Postal_Code__c</fields>
         <relatedList>leaseworks__Addresses__c.leaseworks__Account__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -555,6 +585,14 @@
         <fields>leaseworks__TSN__c</fields>
         <fields>leaseworks__CSN__c</fields>
         <relatedList>leaseworks__Aircraft__c.pro_Sold_to_External__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>Review_Date__c</fields>
+        <fields>Date_of_Review__c</fields>
+        <relatedList>CAP_Credit_Papers__c.Account__c</relatedList>
+        <sortField>Date_of_Review__c</sortField>
+        <sortOrder>Desc</sortOrder>
     </relatedLists>
     <relatedObjects>ParentId</relatedObjects>
     <showEmailCheckbox>false</showEmailCheckbox>

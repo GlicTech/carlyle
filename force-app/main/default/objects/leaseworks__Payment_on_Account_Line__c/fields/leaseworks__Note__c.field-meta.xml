@@ -2,10 +2,10 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>leaseworks__Note__c</fullName>
     <deprecated>false</deprecated>
-    <description>This field is used to show a message to the user on the &#39;Cancel Payment on Account&#39; quick action.</description>
+    <description>This field is used to show a message to the user on the &apos;Cancel Payment on Account&apos; quick action.</description>
     <externalId>false</externalId>
-    <formula>if( leaseworks__Cash_Unapplied_From__c == null,&#39;Only approved Payment on Account not yet applied to any invoices can be cancelled.&#39;, IF( leaseworks__Cash_Unapplied_From__r.leaseworks__Amount__c !=  leaseworks__Payment_on_Account_Amount__c , 
-    &#39;This Payment on Account was created when a payment to an invoice was partially unapplied. Cancelling this Payment on Account will also cancel the corresponding applied payment, regardless of whether the cash unapplied was partial or full. Do you want to proceed?&#39;, &#39;Only approved Payment on Account not yet applied to any invoices can be cancelled.&#39;))</formula>
+    <formula>if( leaseworks__Cash_Unapplied_From__c == null,&apos;Only approved Payment on Account not yet applied to any invoices can be cancelled.&apos;, IF( leaseworks__Cash_Unapplied_From__r.leaseworks__Amount__c !=  leaseworks__Payment_on_Account_Amount__c , 
+    &apos;This Payment on Account was created when a payment to an invoice was partially unapplied. Cancelling this Payment on Account will also cancel the corresponding applied payment, regardless of whether the cash unapplied was partial or full. Do you want to proceed?&apos;, &apos;Only approved Payment on Account not yet applied to any invoices can be cancelled.&apos;))</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Note</label>
     <required>false</required>

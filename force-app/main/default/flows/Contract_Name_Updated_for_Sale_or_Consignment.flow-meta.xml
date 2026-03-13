@@ -30,12 +30,12 @@
     <formulas>
         <name>varConsignmentContractName</name>
         <dataType>String</dataType>
-        <expression>{!$Record.leaseworks__Aircraft__r.leaseworks__MSN_Number__c} + &#39; | &#39; + {!$Record.Consignee__r.Name} + &#39; | &#39; + TEXT({!$Record.leaseworks__Aircraft__r.leaseworks__Asset_Type_GP__c})</expression>
+        <expression>{!$Record.leaseworks__Aircraft__r.leaseworks__MSN_Number__c} + &apos; | &apos; + {!$Record.Consignee__r.Name} + &apos; | &apos; + TEXT({!$Record.leaseworks__Aircraft__r.leaseworks__Asset_Type_GP__c})</expression>
     </formulas>
     <formulas>
         <name>varSaleContractName</name>
         <dataType>String</dataType>
-        <expression>{!$Record.leaseworks__Aircraft__r.leaseworks__MSN_Number__c} + &#39; | &#39; + (LPAD(TEXT(MONTH({!$Record.leaseworks__Lease_Start_Date_New__c})), 2, &quot;0&quot;)
+        <expression>{!$Record.leaseworks__Aircraft__r.leaseworks__MSN_Number__c} + &apos; | &apos; + {!$Record.Purchaser__r.Name}  + &apos; | &apos; + (LPAD(TEXT(MONTH({!$Record.leaseworks__Lease_Start_Date_New__c})), 2, &quot;0&quot;)
 &amp; &quot; &quot;
 &amp; TEXT(YEAR({!$Record.leaseworks__Lease_Start_Date_New__c})))</expression>
     </formulas>
@@ -99,8 +99,9 @@ ISPICKVAL({!$Record.leaseworks__Lease_Type_Legal__c}, &quot;Sale&quot;)
 ),
 OR (
 ISNEW(),
-ISCHANGED({!$Record.leaseworks__Aircraft__r.Id}),
-ISCHANGED({!$Record.Consignee__r.Id}),
+ISCHANGED({!$Record.leaseworks__Aircraft__c}),
+ISCHANGED({!$Record.Consignee__c}),
+ISCHANGED({!$Record.Purchaser__c}),
 ISCHANGED({!$Record.leaseworks__Lease_Start_Date_New__c})
 )
 )</filterFormula>

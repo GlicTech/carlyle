@@ -2,12 +2,19 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>leaseworks__MR_Ratio_Table_Ranges__c</fullName>
     <deprecated>false</deprecated>
-    <description>MR Comp panel Ratio table ranges used by the system by default for this Aircraft Type. Format is: &quot;Ratio From, Ratio To, Step&quot;</description>
+    <description>MR Comp panel Ratio table ranges used by the system by default for this Aircraft Type. Format is: &quot;Ratio From, Ratio To, Step&quot;
+        [LOAD: No]
+        [JUSTIFICATION: This field is deprecated]
+        [REPLACEMENT OBJECT API: NA]
+        [REPLACEMENT FIELD API: NA]
+        [COMMENTS: Asana link https://app.asana.com/1/7934919496419/project/1150819886958569/task/1207126408685378?focus=true
+            Reason - [Tech debt] Deprecate MR Comps component and associated data
+            Version - v54]</description>
     <externalId>false</externalId>
     <formula>IF(TEXT(leaseworks__Aircraft_Class__c) =&quot;Narrowbody&quot;, &quot;0.5; 4.5; 0.5&quot;, 
   IF(TEXT(leaseworks__Aircraft_Class__c) =&quot;Widebody&quot;, &quot;3.0; 9.0; 1.0&quot;, &quot;no data&quot;))</formula>
     <inlineHelpText>MR Comp panel Ratio table ranges used by the system by default for this Aircraft Type. Format is: &quot;Ratio From, Ratio To, Step&quot;</inlineHelpText>
-    <label>Z_Unused_2507 MR Ratio Table Ranges</label>
+    <label>Z_Unused_2508 MR Ratio Table Ranges</label>
     <required>false</required>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>

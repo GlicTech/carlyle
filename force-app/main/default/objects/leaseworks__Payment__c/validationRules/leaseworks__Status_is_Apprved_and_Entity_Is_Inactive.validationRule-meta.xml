@@ -9,11 +9,11 @@ NOT(ISNEW()),
 ISCHANGED(leaseworks__Payment_Status__c),
 OR(
 AND(
-ISPICKVAL(PRIORVALUE(leaseworks__Payment_Status__c), &#39;Pending&#39;),
-ISPICKVAL(leaseworks__Payment_Status__c, &#39;Approved&#39;)),
+ISPICKVAL(PRIORVALUE(leaseworks__Payment_Status__c), &apos;Pending&apos;),
+ISPICKVAL(leaseworks__Payment_Status__c, &apos;Approved&apos;)),
 AND(
-ISPICKVAL(PRIORVALUE(leaseworks__Payment_Status__c), &#39;Cancelled-Pending&#39;),
-ISPICKVAL(leaseworks__Payment_Status__c, &#39;Cancelled&#39;))),
+ISPICKVAL(PRIORVALUE(leaseworks__Payment_Status__c), &apos;Cancelled-Pending&apos;),
+ISPICKVAL(leaseworks__Payment_Status__c, &apos;Cancelled&apos;))),
 leaseworks__Y_hidden_AccEnabled__c,
 leaseworks__Entity__r.leaseworks__Inactive__c
 )</errorConditionFormula>

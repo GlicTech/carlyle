@@ -146,6 +146,27 @@
         <triggerType>Scheduled</triggerType>
     </start>
     <status>Active</status>
+    <transforms>
+        <name>Create_Group_Member_Calendar_Name_Collection</name>
+        <label>Create Group Member Calendar Name Collection</label>
+        <locationX>176</locationX>
+        <locationY>360</locationY>
+        <connector>
+            <targetReference>Get_Calendar_Views_To_Clone</targetReference>
+        </connector>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>Get_Group_Members_Calendar_Views[$EachItem].Name</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
     <variables>
         <name>varCalendarNameCollection</name>
         <dataType>String</dataType>

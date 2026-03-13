@@ -179,6 +179,27 @@
         <triggerType>RecordAfterSave</triggerType>
     </start>
     <status>Active</status>
+    <transforms>
+        <name>Create_MSN_Name_List</name>
+        <label>Create MSN Name List</label>
+        <locationX>176</locationX>
+        <locationY>539</locationY>
+        <connector>
+            <targetReference>Loop_Asset_Names</targetReference>
+        </connector>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>Get_Assets_In_Deal[$EachItem].leaseworks__MSN__c</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
     <variables>
         <name>varDealName</name>
         <dataType>String</dataType>

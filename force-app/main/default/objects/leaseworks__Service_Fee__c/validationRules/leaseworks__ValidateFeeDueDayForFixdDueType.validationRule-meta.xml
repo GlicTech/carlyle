@@ -3,8 +3,8 @@
     <fullName>leaseworks__ValidateFeeDueDayForFixdDueType</fullName>
     <active>true</active>
     <errorConditionFormula>AND(!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c,
-CONTAINS(text( leaseworks__Fee_Due_Type__c ),&#39;Fixed&#39;),
+CONTAINS(text( leaseworks__Fee_Due_Type__c ),&apos;Fixed&apos;),
 OR( leaseworks__Fee_Due_Day__c &lt; 1, leaseworks__Fee_Due_Day__c &gt; 31)
 )</errorConditionFormula>
-    <errorMessage>Since Fee Due Type &#39;Fixed&#39; has been selected, please enter a value between 1 and 31 (days in the calendar month) on Fee Due Day field.</errorMessage>
+    <errorMessage>Since Fee Due Type &apos;Fixed&apos; has been selected, please enter a value between 1 and 31 (days in the calendar month) on Fee Due Day field.</errorMessage>
 </ValidationRule>

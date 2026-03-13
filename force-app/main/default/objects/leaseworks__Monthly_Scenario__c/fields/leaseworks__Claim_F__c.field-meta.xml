@@ -3,9 +3,8 @@
     <fullName>leaseworks__Claim_F__c</fullName>
     <deprecated>false</deprecated>
     <description>Claim is positive for Airline and negative for lessor</description>
-    <externalId>false</externalId>
     <formula>if( !isblank(leaseworks__Event_Claim_Amount__c)
-,if($Setup.leaseworks__LeaseWorksSettings__c.leaseworks__CustType__c==&#39;AIRLINE&#39;, 1 , -1)  
+,if($Setup.leaseworks__LeaseWorksSettings__c.leaseworks__CustType__c==&apos;AIRLINE&apos;, 1 , -1)  
  *  leaseworks__Event_Claim_Amount__c
 ,null)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>

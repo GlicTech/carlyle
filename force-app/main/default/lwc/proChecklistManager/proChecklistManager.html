@@ -1,0 +1,461 @@
+<template>
+    <div class="checklist-container">
+
+        <!-- Loading Spinner -->
+        <template lwc:if={isLoading}>
+            <div class="spinner-container">
+                <lightning-spinner alternative-text="Loading checklist..." size="medium"></lightning-spinner>
+            </div>
+        </template>
+
+        <template lwc:if={hasAssetInfo}>
+            <!-- Info Panels -->
+            <div class="info-panels">
+                <!-- Overview Panel -->
+                <div class="info-panel">
+                    <div class="info-panel-header">
+                        <div class="panel-icon panel-icon-overview">&#9673;</div>
+                        <span class="info-panel-title">Overview</span>
+                    </div>
+                    <div class="info-panel-body">
+                        <div class="info-panel-row">
+                            <span class="info-panel-label">Deal</span>
+                            <span class="info-panel-value">
+                                <a href={dealUrl} class="record-link" onclick={handleNavigateToDeal}>{dealName}</a>
+                            </span>
+                        </div>
+                        <div class="info-panel-row">
+                            <span class="info-panel-label">Asset in Deal</span>
+                            <span class="info-panel-value">
+                                <a href={assetUrl} class="record-link" onclick={handleNavigateToAsset}>{assetName}</a>
+                            </span>
+                        </div>
+                        <div class="info-panel-row">
+                            <span class="info-panel-label">Deal Type</span>
+                            <span class="info-panel-value">{dealType}</span>
+                        </div>
+                        <div class="info-panel-row">
+                            <span class="info-panel-label">Portfolio / Asset Owner</span>
+                            <span class="info-panel-value">{assetOwner}</span>
+                        </div>
+                        <div class="info-panel-row">
+                            <span class="info-panel-label">Delivery Date</span>
+                            <span class="info-panel-value">{deliveryDateFormatted}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Key Dates Panel -->
+                <div class="info-panel">
+                    <div class="info-panel-header">
+                        <div class="panel-icon panel-icon-dates">&#9707;</div>
+                        <span class="info-panel-title">Key Dates</span>
+                    </div>
+                    <div class="info-panel-body">
+                        <div class="info-panel-row">
+                            <span class="info-panel-label">LOI Date</span>
+                            <span class="info-panel-value">{loiDateFormatted}</span>
+                        </div>
+                        <div class="info-panel-row">
+                            <span class="info-panel-label">Draft to Counterparty</span>
+                            <span class="info-panel-value">{draftToCounterpartyFormatted}</span>
+                        </div>
+                        <div class="info-panel-row">
+                            <span class="info-panel-label">Outside Counsel Engaged</span>
+                            <span class="info-panel-value">{outsideCounselEngagedFormatted}</span>
+                        </div>
+                        <div class="info-panel-row">
+                            <span class="info-panel-label">First Draft from Counsel</span>
+                            <span class="info-panel-value">{firstDraftFromCounselFormatted}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Approvals Panel -->
+                <div class="info-panel">
+                    <div class="info-panel-header">
+                        <div class="panel-icon panel-icon-approvals">&#10003;</div>
+                        <span class="info-panel-title">Approvals</span>
+                    </div>
+                    <div class="info-panel-body">
+                        <div class="info-panel-row">
+                            <span class="info-panel-label">BAC Approval Date</span>
+                            <span class="info-panel-value">{bacApprovalDateFormatted}</span>
+                        </div>
+                        <div class="info-panel-row">
+                            <span class="info-panel-label">Board Approval Date</span>
+                            <span class="info-panel-value">{boardApprovalDateFormatted}</span>
+                        </div>
+                        <div class="info-panel-row">
+                            <span class="info-panel-label">CAP First Review</span>
+                            <span class="info-panel-value">{capFirstReviewFormatted}</span>
+                        </div>
+                        <div class="info-panel-row">
+                            <span class="info-panel-label">Transaction Doc Executed</span>
+                            <span class="info-panel-value">{transactionDocExecutedFormatted}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add Item Form -->
+            <template lwc:if={showAddForm}>
+                <div class="add-item-form">
+                    <div class="form-row">
+                        <div class="form-field form-field-title">
+                            <label for="newTitle">Title</label>
+                            <lightning-input
+                                type="text"
+                                value={newTitle}
+                                placeholder="Enter checklist item title..."
+                                onchange={handleNewTitleChange}
+                                variant="label-hidden"
+                                class="form-input"
+                            ></lightning-input>
+                        </div>
+                        <div class="form-field">
+                            <label for="newPhase">Phase</label>
+                            <lightning-combobox
+                                value={newPhase}
+                                options={phaseOptionsForForm}
+                                onchange={handleNewPhaseChange}
+                                variant="label-hidden"
+                                class="form-input"
+                            ></lightning-combobox>
+                        </div>
+                        <div class="form-field">
+                            <label for="newCategory">Category</label>
+                            <lightning-combobox
+                                value={newCategory}
+                                options={categoryOptionsForForm}
+                                onchange={handleNewCategoryChange}
+                                variant="label-hidden"
+                                class="form-input"
+                            ></lightning-combobox>
+                        </div>
+                        <div class="form-field">
+                            <label for="newResponsibility">Responsibility</label>
+                            <lightning-combobox
+                                value={newResponsibilityId}
+                                options={userOptionsForForm}
+                                onchange={handleNewResponsibilityChange}
+                                variant="label-hidden"
+                                class="form-input"
+                            ></lightning-combobox>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button class="btn btn-brand" onclick={handleAddItem}>Create Item</button>
+                        <button class="btn" onclick={handleCancelAddForm}>Cancel</button>
+                    </div>
+                </div>
+            </template>
+
+            <!-- Processing Spinner Overlay -->
+            <template lwc:if={isProcessing}>
+                <div class="processing-overlay">
+                    <lightning-spinner alternative-text="Processing..." size="small"></lightning-spinner>
+                </div>
+            </template>
+
+            <!-- Phase Toggle Tabs + Toolbar -->
+            <div class="phase-toolbar">
+                <div class="phase-tabs">
+                    <button
+                        class={preClosingTabClass}
+                        data-phase="Pre-Closing"
+                        onclick={handlePhaseToggle}
+                    >
+                        <span class="tab-label">Pre-Closing</span>
+                        <span class="tab-stats">
+                            <span>{preCompletionLabel}</span>
+                            <span class="tab-progress-bar">
+                                <span class="tab-progress-fill" style={preProgressStyle}></span>
+                            </span>
+                            <span>{preCountLabel}</span>
+                        </span>
+                    </button>
+                    <button
+                        class={postClosingTabClass}
+                        data-phase="Post-Closing"
+                        onclick={handlePhaseToggle}
+                    >
+                        <span class="tab-label">Post-Closing</span>
+                        <span class="tab-stats">
+                            <span>{postCompletionLabel}</span>
+                            <span class="tab-progress-bar">
+                                <span class="tab-progress-fill" style={postProgressStyle}></span>
+                            </span>
+                            <span>{postCountLabel}</span>
+                        </span>
+                    </button>
+                    <button
+                        class={documentationTabClass}
+                        data-phase="Documentation"
+                        onclick={handlePhaseToggle}
+                    >
+                        <span class="tab-label">Documentation</span>
+                    </button>
+                </div>
+                <div class="toolbar-actions">
+                    <span class="item-count">{itemCountLabel}</span>
+                    <button class="btn" onclick={handleToggleAddForm}>
+                        + Add Item
+                    </button>
+                    <button class="btn" onclick={handleDiscard} disabled={noDirtyItems}>
+                        &#8634; Discard
+                    </button>
+                    <button class="btn btn-brand" onclick={handleSave} disabled={noDirtyItems}>
+                        Save
+                    </button>
+                </div>
+            </div>
+
+            <!-- Pre-Closing Table -->
+            <template lwc:if={isPreClosingActive}>
+                <div class="phase-body">
+                    <table class="checklist-table">
+                        <thead>
+                            <tr>
+                                <th class="col-actions">Actions</th>
+                                <th class="col-number">#</th>
+                                <th class="col-title">Document/Action Required</th>
+                                <th class="col-necessary">Necessary</th>
+                                <th class="col-responsibility">Responsibility</th>
+                                <th class="col-date">Date</th>
+                                <th class="col-done">Done</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template lwc:if={hasPreClosingItems}>
+                                <template for:each={preClosingItems} for:item="item">
+                                    <tr key={item.Id} class={item.rowClass}>
+                                        <td class="col-actions">
+                                            <template lwc:if={item.showMoveToPost}>
+                                                <button
+                                                    class="moveable-badge"
+                                                    data-id={item.Id}
+                                                    onclick={handleMoveToPostClosing}
+                                                    title="Move to Post-Closing"
+                                                >&#9654; Move</button>
+                                            </template>
+                                        </td>
+                                        <td class="col-number">{item.sortOrderValue}</td>
+                                        <td class="col-title">
+                                            <span class={item.titleClass} title={item.pro_Category__c}>{item.pro_Title__c}</span>
+                                        </td>
+                                        <td class="col-necessary">
+                                            <div class="necessary-cell">
+                                                <lightning-combobox
+                                                    value={item.necessaryValue}
+                                                    options={necessaryComboOptions}
+                                                    data-id={item.Id}
+                                                    onchange={handleNecessaryChange}
+                                                    variant="label-hidden"
+                                                    dropdown-alignment="auto"
+                                                    class="inline-combo"
+                                                ></lightning-combobox>
+                                                <template lwc:if={item.hasComment}>
+                                                    <span class="comment-icon" title={item.commentValue}>&#128172;</span>
+                                                </template>
+                                            </div>
+                                            <template lwc:if={item.hasValidationError}>
+                                                <div class="validation-error">{item.validationError}</div>
+                                            </template>
+                                        </td>
+                                        <td class="col-responsibility">
+                                            <lightning-combobox
+                                                value={item.responsibilityId}
+                                                options={userOptionsForTable}
+                                                data-id={item.Id}
+                                                onchange={handleResponsibilityChange}
+                                                variant="label-hidden"
+                                                dropdown-alignment="auto"
+                                                class="inline-combo"
+                                            ></lightning-combobox>
+                                        </td>
+                                        <td class="col-date">
+                                            <span class="date-display">{item.dateDisplay}</span>
+                                        </td>
+                                        <td class="col-done">
+                                            <label class="done-checkbox">
+                                                <input
+                                                    type="checkbox"
+                                                    checked={item.isCompleted}
+                                                    data-id={item.Id}
+                                                    onchange={handleStatusToggle}
+                                                    class="done-input"
+                                                />
+                                                <span class="done-circle"></span>
+                                            </label>
+                                        </td>
+                                    </tr>
+                                </template>
+                            </template>
+                            <template lwc:else>
+                                <tr>
+                                    <td colspan="7" class="empty-message">No pre-closing items.</td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </div>
+            </template>
+
+            <!-- Post-Closing Table -->
+            <template lwc:if={isPostClosingActive}>
+                <div class="phase-body">
+                    <table class="checklist-table">
+                        <thead>
+                            <tr>
+                                <th class="col-actions">Actions</th>
+                                <th class="col-number">#</th>
+                                <th class="col-title">Document/Action Required</th>
+                                <th class="col-necessary">Necessary</th>
+                                <th class="col-responsibility">Responsibility</th>
+                                <th class="col-date">Date</th>
+                                <th class="col-done">Done</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template lwc:if={hasPostClosingItems}>
+                                <template for:each={postClosingItems} for:item="item">
+                                    <tr key={item.Id} class={item.rowClass}>
+                                        <td class="col-actions">
+                                            <template lwc:if={item.showMoveToPreClosing}>
+                                                <button
+                                                    class="moveable-badge move-back"
+                                                    data-id={item.Id}
+                                                    onclick={handleMoveToPreClosing}
+                                                    title="Move to Pre-Closing"
+                                                >&#9664; Move Back</button>
+                                            </template>
+                                        </td>
+                                        <td class="col-number">{item.sortOrderValue}</td>
+                                        <td class="col-title">
+                                            <span class={item.titleClass} title={item.pro_Category__c}>{item.pro_Title__c}</span>
+                                        </td>
+                                        <td class="col-necessary">
+                                            <div class="necessary-cell">
+                                                <lightning-combobox
+                                                    value={item.necessaryValue}
+                                                    options={necessaryComboOptions}
+                                                    data-id={item.Id}
+                                                    onchange={handleNecessaryChange}
+                                                    variant="label-hidden"
+                                                    dropdown-alignment="auto"
+                                                    class="inline-combo"
+                                                ></lightning-combobox>
+                                                <template lwc:if={item.hasComment}>
+                                                    <span class="comment-icon" title={item.commentValue}>&#128172;</span>
+                                                </template>
+                                            </div>
+                                            <template lwc:if={item.hasValidationError}>
+                                                <div class="validation-error">{item.validationError}</div>
+                                            </template>
+                                        </td>
+                                        <td class="col-responsibility">
+                                            <lightning-combobox
+                                                value={item.responsibilityId}
+                                                options={userOptionsForTable}
+                                                data-id={item.Id}
+                                                onchange={handleResponsibilityChange}
+                                                variant="label-hidden"
+                                                dropdown-alignment="auto"
+                                                class="inline-combo"
+                                            ></lightning-combobox>
+                                        </td>
+                                        <td class="col-date">
+                                            <span class="date-display">{item.dateDisplay}</span>
+                                        </td>
+                                        <td class="col-done">
+                                            <label class="done-checkbox">
+                                                <input
+                                                    type="checkbox"
+                                                    checked={item.isCompleted}
+                                                    data-id={item.Id}
+                                                    onchange={handleStatusToggle}
+                                                    class="done-input"
+                                                />
+                                                <span class="done-circle"></span>
+                                            </label>
+                                        </td>
+                                    </tr>
+                                </template>
+                            </template>
+                            <template lwc:else>
+                                <tr>
+                                    <td colspan="7" class="empty-message">No post-closing items.</td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </div>
+            </template>
+
+            <!-- Documentation Tab -->
+            <template lwc:if={isDocumentationActive}>
+                <div class="doc-grid">
+                    <!-- Pre-Closing Column -->
+                    <div class="doc-column">
+                        <h3 class="doc-column-header">Pre-Closing</h3>
+                        <template for:each={preClosingDocSections} for:item="section">
+                            <div key={section.title} class="doc-section">
+                                <h4 class="doc-section-title">{section.title}</h4>
+                                <template for:each={section.fields} for:item="field">
+                                    <div key={field.label} class="doc-field-row">
+                                        <span class="doc-field-label">{field.label}</span>
+                                        <span class="doc-field-value">{field.value}</span>
+                                    </div>
+                                </template>
+                            </div>
+                        </template>
+                    </div>
+                    <!-- Post-Closing Column -->
+                    <div class="doc-column">
+                        <h3 class="doc-column-header">Post-Closing</h3>
+                        <template for:each={postClosingDocSections} for:item="section">
+                            <div key={section.title} class="doc-section">
+                                <h4 class="doc-section-title">{section.title}</h4>
+                                <template for:each={section.fields} for:item="field">
+                                    <div key={field.label} class="doc-field-row">
+                                        <span class="doc-field-label">{field.label}</span>
+                                        <span class="doc-field-value">{field.value}</span>
+                                    </div>
+                                </template>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </template>
+
+            <!-- Comment Modal -->
+            <template lwc:if={showCommentModal}>
+                <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open comment-modal">
+                    <div class="slds-modal__container">
+                        <div class="comment-modal-content">
+                            <header class="comment-modal-header">
+                                <h2>Comment Required</h2>
+                                <p>Please provide a reason for marking this item as not necessary.</p>
+                            </header>
+                            <div class="comment-modal-body">
+                                <textarea
+                                    class="comment-textarea"
+                                    placeholder="Enter comment / notes..."
+                                    onchange={handleCommentModalInput}
+                                    oninput={handleCommentModalInput}
+                                ></textarea>
+                            </div>
+                            <footer class="comment-modal-footer">
+                                <button class="btn" onclick={handleCommentModalCancel}>Cancel</button>
+                                <button class="btn btn-brand" onclick={handleCommentModalSave}>Save Comment</button>
+                            </footer>
+                        </div>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </template>
+
+        </template>
+    </div>
+</template>

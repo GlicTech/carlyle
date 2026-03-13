@@ -125,6 +125,22 @@
                 <behavior>Readonly</behavior>
                 <field>leaseworks__Deposit_Amount_Returned__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>leaseworks__Manual_SD_Transfer_Amount__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>leaseworks__Manual_SD_transfer_Date__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>leaseworks__Manual_Update_Comment__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>leaseworks__Total_Invoiced_Amount__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
@@ -247,6 +263,7 @@
         <fields>leaseworks__Invoice_Date__c</fields>
         <fields>leaseworks__Total_Amount_Due__c</fields>
         <fields>leaseworks__Amount_Paid_Remaining__c</fields>
+        <fields>leaseworks__Cash_Credit_Applied__c</fields>
         <fields>leaseworks__Balance_Due__c</fields>
         <fields>leaseworks__Status__c</fields>
         <relatedList>leaseworks__Invoice__c.leaseworks__Cash_Security_Deposit__c</relatedList>
@@ -280,6 +297,9 @@
         <fields>leaseworks__Approval_Status__c</fields>
         <fields>leaseworks__Description__c</fields>
         <relatedList>leaseworks__Payment_Receipt__c.leaseworks__Security_Deposit__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <relatedList>RelatedEntityHistoryList</relatedList>
     </relatedLists>
     <relatedLists>
         <relatedList>RelatedFileList</relatedList>

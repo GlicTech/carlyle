@@ -3,9 +3,13 @@
     <fullName>leaseworks__MR_Assembly__c</fullName>
     <deprecated>false</deprecated>
     <description>This Rollup summary field is doing sum of  {MR (Assembly)}(Y_Hidden_MR__c) field from all supplement rent utilization records under a utilization and showing on utilization record.</description>
-    <externalId>false</externalId>
     <label>_MR (Assembly)</label>
     <summarizedField>leaseworks__Utilization_Report_List_Item__c.leaseworks__Y_Hidden_MR__c</summarizedField>
+    <summaryFilterItems>
+        <field>leaseworks__Utilization_Report_List_Item__c.leaseworks__Is_SubFund_SRU__c</field>
+        <operation>equals</operation>
+        <value>False</value>
+    </summaryFilterItems>
     <summaryForeignKey>leaseworks__Utilization_Report_List_Item__c.leaseworks__Utilization_Report__c</summaryForeignKey>
     <summaryOperation>sum</summaryOperation>
     <trackHistory>false</trackHistory>

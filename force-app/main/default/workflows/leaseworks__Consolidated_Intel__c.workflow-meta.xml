@@ -6,12 +6,12 @@
         <field>Name</field>
         <formula>IF(ISBLANK(leaseworks__Lessor_Name__c),
     IF(ISBLANK(leaseworks__Operator_Name__c), 
-      IF(ISBLANK(leaseworks__Other_Party__c), &#39;&#39;,
-      leaseworks__Other_Party__c + &#39;-&#39;), 
-    leaseworks__Operator_Name__c + &#39;-&#39;), 
-   leaseworks__Lessor_Name__c + &#39;-&#39;
+      IF(ISBLANK(leaseworks__Other_Party__c), &apos;&apos;,
+      leaseworks__Other_Party__c + &apos;-&apos;), 
+    leaseworks__Operator_Name__c + &apos;-&apos;), 
+   leaseworks__Lessor_Name__c + &apos;-&apos;
 )
-+ RIGHT(&#39;0&#39;+TEXT(Month(DateValue(CreatedDate) )), 2) + &#39;/&#39;+  TEXT(Year( DateValue(CreatedDate )))</formula>
++ RIGHT(&apos;0&apos;+TEXT(Month(DateValue(CreatedDate) )), 2) + &apos;/&apos;+  TEXT(Year( DateValue(CreatedDate )))</formula>
         <name>ConsolidatedIntelSetName</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>

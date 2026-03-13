@@ -10,7 +10,7 @@
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
             <name>recipientAddresses</name>
-            <value />
+            <value/>
         </inputParameters>
         <inputParameters>
             <name>senderType</name>
@@ -51,11 +51,14 @@
         <inputParameters>
             <name>recipientId</name>
         </inputParameters>
+        <nameSegment>emailSimple</nameSegment>
+        <offset>0</offset>
+        <versionString>2.0.1</versionString>
     </actionCalls>
     <apiVersion>64.0</apiVersion>
     <decisions>
         <name>Is_Running_User_s_Email_Invalid</name>
-        <label>Is Running User&#39;s Email Invalid?</label>
+        <label>Is Running User&apos;s Email Invalid?</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
@@ -75,12 +78,56 @@
             <label>Yes - Invalid</label>
         </rules>
     </decisions>
+    <decisions>
+        <name>Print_Options_Config_Found_For_Contract</name>
+        <label>Print Options Config Found For Contract?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Map_To_Invoice_Config_Record</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Print_Options_Config_Related_To_Contract.Id</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Create_Print_Options_Config_For_Invoice</targetReference>
+            </connector>
+            <label>Yes - Map To Invoice Config Record</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Was_Existing_Config_Record_Found_For_Invoice</name>
+        <label>Was Existing Config Record Found For Invoice?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Get_Print_Options_Config_Related_To_Contract</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No Existing - Create Config File</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Existing_Config_End_Flow</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Existing_Print_Options_Confirg_For_Invoice.Id</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <label>Yes - Existing Config - End Flow</label>
+        </rules>
+    </decisions>
     <description>When an Invoice record is created, this flow retrieves the Print Options Config record associated to the Contract and uses its values to set the Print Options on the Invoice.</description>
     <environments>Default</environments>
     <formulas>
         <name>f_ConcatenatedName</name>
         <dataType>String</dataType>
-        <expression>&#39;Print Options - &#39; + {!$Record.Name}</expression>
+        <expression>&apos;Print Options - &apos; + {!$Record.Name}</expression>
     </formulas>
     <interviewLabel>Prodigy - Inve {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Prodigy - Invoice - Set Print Options on Create</label>
@@ -166,6 +213,12 @@
             </value>
         </inputAssignments>
         <inputAssignments>
+            <field>pro_Include_USD_Euro_Conversion_Rate__c</field>
+            <value>
+                <elementReference>Get_Print_Options_Config_Related_To_Contract.pro_Include_USD_Euro_Conversion_Rate__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>pro_Invoice__c</field>
             <value>
                 <elementReference>$Record.Id</elementReference>
@@ -193,13 +246,34 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordCreates>
     <recordLookups>
+        <name>Get_Existing_Print_Options_Confirg_For_Invoice</name>
+        <label>Get Existing Print Options Confirg For Invoice</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Was_Existing_Config_Record_Found_For_Invoice</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>pro_Invoice__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>pro_Print_Options_Config__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
         <name>Get_Print_Options_Config_Related_To_Contract</name>
         <label>Get Print Options Config Related To Contract</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Create_Print_Options_Config_For_Invoice</targetReference>
+            <targetReference>Print_Options_Config_Found_For_Contract</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -217,7 +291,7 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Get_Print_Options_Config_Related_To_Contract</targetReference>
+            <targetReference>Get_Existing_Print_Options_Confirg_For_Invoice</targetReference>
         </connector>
         <object>leaseworks__Invoice__c</object>
         <recordTriggerType>Create</recordTriggerType>

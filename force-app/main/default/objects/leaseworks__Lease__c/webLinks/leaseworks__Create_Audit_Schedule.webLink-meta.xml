@@ -11,7 +11,7 @@
 {!REQUIRESCRIPT(&quot;/soap/ajax/57.0/apex.js&quot;)}
 
 try{
-var stringPrefix =&#39;{!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Package_Prefix__c}&#39;;
+var stringPrefix =&apos;{!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Package_Prefix__c}&apos;;
 var retVal= &quot;&quot;;
 
 if(stringPrefix == &quot;&quot;){
@@ -22,7 +22,7 @@ else{
 }
 
 }catch(err){
-  retVal=&quot;Unable to create Audit Records, probably because you don&#39;t have necessary permission.&quot; + err;
+  retVal=&quot;Unable to create Audit Records, probably because you don&apos;t have necessary permission.&quot; + err;
 }
 
 window.alert(retVal);

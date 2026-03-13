@@ -2,7 +2,6 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Is_Utilization_Present_Local__c</fullName>
     <description>Field checks whether latest Utilization exists in the system.</description>
-    <externalId>false</externalId>
     <formula>DAY(Today())&gt;=  VALUE(TEXT(leaseworks__UR_Due_Day__c))  &amp;&amp;   
 
 (MONTH(leaseworks__Aircraft__r.Latest_Utilization_For_Aircraft_Local__c)== (MONTH(TODAY())-1) || ( MONTH(leaseworks__Aircraft__r.Latest_Utilization_For_Aircraft_Local__c)== (MONTH(TODAY()) ) &amp;&amp; Year(leaseworks__Aircraft__r.Latest_Utilization_For_Aircraft_Local__c)== (Year(TODAY()) )  ))&amp;&amp; 

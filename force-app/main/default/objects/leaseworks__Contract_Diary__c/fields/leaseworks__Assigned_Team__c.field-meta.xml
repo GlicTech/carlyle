@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Assigned_Team__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <deprecated>false</deprecated>
+    <description>Identify the team responsible for this diary event, populated from the customer’s event→team mapping.</description>
+    <inlineHelpText>This is auto-set from the event-to-team mapping for this customer. You may override if needed.</inlineHelpText>
+    <label>Assigned Team</label>
+    <referenceTo>leaseworks__Contract_Team__c</referenceTo>
+    <relationshipLabel>Contract Diary</relationshipLabel>
+    <relationshipName>Contract_Diary</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

@@ -3,7 +3,7 @@
     <fullName>leaseworks__InvoiceMandatoryForRebates</fullName>
     <active>true</active>
     <description>Please select an Invoice to be able to create Rebates Payable</description>
-    <errorConditionFormula>AND(isPickVal(leaseworks__Payable_Type__c,&#39;Rebate&#39;),
+    <errorConditionFormula>AND(isPickVal(leaseworks__Payable_Type__c,&apos;Rebate&apos;),
 OR(ISNULL(leaseworks__Related_Invoice__c),ISBLANK(leaseworks__Related_Invoice__c)))</errorConditionFormula>
     <errorMessage>Please select an Invoice to be able to create Rebates Payable</errorMessage>
 </ValidationRule>

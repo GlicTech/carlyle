@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
-    <description>Users assigned to this permission set will have access to buttons for making edits through the Target Management Console</description>
-    <hasActivationRequired>false</hasActivationRequired>
-    <label>Manage Targets Edit  Permission</label>
     <customPermissions>
         <enabled>true</enabled>
         <name>pro_View_Only_Manage_Targets_Flow</name>
     </customPermissions>
+    <description>Users assigned to this permission set will have access to buttons for making edits through the Target Management Console</description>
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.pro_Omit_From_Targets__c</field>
@@ -127,6 +125,8 @@
         <field>pro_Asset_Target_Audit__c.pro_Target_Year__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Manage Targets Edit  Permission</label>
     <objectPermissions>
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>
@@ -143,15 +143,6 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>leaseworks__Lease__c</object>
-        <viewAllRecords>false</viewAllRecords>
-    </objectPermissions>
-    <objectPermissions>
-        <allowCreate>true</allowCreate>
-        <allowDelete>false</allowDelete>
-        <allowEdit>true</allowEdit>
-        <allowRead>true</allowRead>
-        <modifyAllRecords>false</modifyAllRecords>
-        <object>pro_Asset_Target_Audit__c</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <recordTypeVisibilities>

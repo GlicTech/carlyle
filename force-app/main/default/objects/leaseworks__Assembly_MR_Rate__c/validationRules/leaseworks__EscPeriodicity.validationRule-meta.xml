@@ -6,7 +6,7 @@
     <errorConditionFormula>AND(!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c , OR( 
 OR(leaseworks__Esc_Periodicity_Mos__c == 0, leaseworks__Esc_Periodicity_Mos__c &gt; 24)
 , 
-REGEX( TEXT( leaseworks__Esc_Periodicity_Mos__c ) , &#39;[0-9]+[.]{1}[0-9]+&#39; ), 
+REGEX( TEXT( leaseworks__Esc_Periodicity_Mos__c ) , &apos;[0-9]+[.]{1}[0-9]+&apos; ), 
 And( !ISBLANK(leaseworks__Esc_Periodicity_Mos__c ) , leaseworks__Esc_Periodicity_Mos__c &lt; 0 )
 ) )</errorConditionFormula>
     <errorDisplayField>leaseworks__Esc_Periodicity_Mos__c</errorDisplayField>

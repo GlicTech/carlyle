@@ -1,0 +1,13 @@
+<template>
+    <template lwc:if={hasRecordId}>
+        <c-pro-checklist-manager record-id={recordId}></c-pro-checklist-manager>
+    </template>
+    <template lwc:else>
+        <div class="slds-illustration slds-illustration_small slds-p-around_large slds-text-align_center">
+            <p class="slds-text-heading_small slds-text-color_weak">No Asset in Deal selected.</p>
+            <p class="slds-text-body_regular slds-text-color_weak slds-m-top_small">
+                Please open the Checklist Manager from an Asset in Deal record.
+            </p>
+        </div>
+    </template>
+</template>

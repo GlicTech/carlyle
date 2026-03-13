@@ -38,6 +38,8 @@
                 <elementReference>$Record.leaseworks__Marketing_Activity__r.Id</elementReference>
             </value>
         </inputParameters>
+        <nameSegment>customNotificationAction</nameSegment>
+        <offset>0</offset>
     </actionCalls>
     <actionCalls>
         <name>Send_Email_To_Deal_Team_Member</name>
@@ -104,6 +106,8 @@
                 <booleanValue>true</booleanValue>
             </value>
         </inputParameters>
+        <nameSegment>emailSimple</nameSegment>
+        <offset>0</offset>
     </actionCalls>
     <apiVersion>61.0</apiVersion>
     <assignments>
@@ -165,7 +169,7 @@
     <formulas>
         <name>f_DocumentLinkOrNull</name>
         <dataType>String</dataType>
-        <expression>IF(ISPICKVAL({!$Record.leaseworks__Marketing_Activity__r.leaseworks__Deal_Type__c}, &#39;Approval&#39;), Null, BR() + &#39;Draft LOI Link: &#39; + {!$Record.leaseworks__Marketing_Activity__r.pro_Long_Document_Link__c})</expression>
+        <expression>IF(ISPICKVAL({!$Record.leaseworks__Marketing_Activity__r.leaseworks__Deal_Type__c}, &apos;Approval&apos;), Null, BR() + &apos;Draft LOI Link: &apos; + {!$Record.leaseworks__Marketing_Activity__r.pro_Long_Document_Link__c})</expression>
     </formulas>
     <formulas>
         <name>f_Email_Subject</name>
@@ -175,7 +179,7 @@
     <formulas>
         <name>f_Record_URL</name>
         <dataType>String</dataType>
-        <expression>LEFT($Api.Partner_Server_URL_260, FIND( &#39;/services&#39;, $Api.Partner_Server_URL_260)) &amp; {!$Record.Id}</expression>
+        <expression>LEFT($Api.Partner_Server_URL_260, FIND( &apos;/services&apos;, $Api.Partner_Server_URL_260)) &amp; {!$Record.Id}</expression>
     </formulas>
     <interviewLabel>Deal Team - Notification of New Deal Team Membership {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Deal Team - Notification of New Deal Team Membership (Creation)</label>
@@ -244,16 +248,18 @@
     <textTemplates>
         <name>TT_EmailBody</name>
         <isViewedAsPlainText>false</isViewedAsPlainText>
-        <text>&lt;p&gt;Hi {!$Record.leaseworks__Assigned_To__r.FirstName},&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;You have just been assigned as a Deal Team Member to the following Deal:&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;https://leaseworks-carlyle.lightning.force.com/{!$Record.leaseworks__Marketing_Activity__c}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;{!$Record.leaseworks__Marketing_Activity__r.Name}&lt;/a&gt;&lt;/li&gt;&lt;li&gt;Role: &lt;a href=&quot;https://leaseworks-carlyle.lightning.force.com/{!$Record.Id}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;{!$Record.Name}&lt;/a&gt;&lt;/li&gt;&lt;li&gt;Draft LOI Link: {!$Record.leaseworks__Marketing_Activity__r.pro_Long_Document_Link__c}&lt;/li&gt;&lt;li&gt;Deal Unique Id: {!$Record.leaseworks__Marketing_Activity__r.Deal_Unique_ID__c}&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong style=&quot;font-size: 10px;&quot;&gt;&lt;em&gt;**This is an automated Email from Salesforce&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;</text>
+        <text>&lt;p&gt;Hi {!$Record.leaseworks__Assigned_To__r.FirstName},&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;You have just been assigned as a Deal Team Member on the Deal &lt;a href=&quot;https://leaseworks-carlyle.lightning.force.com/{!$Record.leaseworks__Marketing_Activity__c}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;{!$Record.leaseworks__Marketing_Activity__r.Name}&lt;/a&gt;.&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Deal Type: {!$Record.leaseworks__Marketing_Activity__r.leaseworks__Deal_Type__c}&lt;/li&gt;&lt;li&gt;{!$Record.leaseworks__Marketing_Activity__c}&lt;/li&gt;&lt;li&gt;Role: {!$Record.Name}&lt;/li&gt;&lt;li&gt;Draft LOI Link: {!$Record.leaseworks__Marketing_Activity__r.pro_Long_Document_Link__c}&lt;/li&gt;&lt;li&gt;Deal Unique Id: {!$Record.leaseworks__Marketing_Activity__r.Deal_Unique_ID__c}&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong style=&quot;font-size: 10px;&quot;&gt;&lt;em&gt;**This is an automated Email from Salesforce&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;</text>
     </textTemplates>
     <textTemplates>
         <name>TT_Notification_Body</name>
         <isViewedAsPlainText>true</isViewedAsPlainText>
-        <text>You have just been assigned as a Deal Team Member to the following Deal:
+        <text>You have just been assigned as a Deal Team Member on the Deal {!$Record.leaseworks__Marketing_Activity__r.Name}
 
-{!$Record.leaseworks__Marketing_Activity__r.Name}
+Deal Type: {!$Record.pro_Deal_Type__c}
 Role: {!$Record.Name}{!f_DocumentLinkOrNull}
-Deal Unique Id: {!$Record.leaseworks__Marketing_Activity__r.Deal_Unique_ID__c}</text>
+Deal Unique Id: {!$Record.leaseworks__Marketing_Activity__r.Deal_Unique_ID__c}
+
+Click to view the Deal.</text>
     </textTemplates>
     <variables>
         <name>col_Recipient_Emails</name>

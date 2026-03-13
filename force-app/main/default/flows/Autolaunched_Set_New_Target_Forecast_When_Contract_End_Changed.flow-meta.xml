@@ -2,6 +2,15 @@
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>64.0</apiVersion>
     <environments>Default</environments>
+    <formulas>
+        <name>f_TargetEndDate</name>
+        <dataType>Date</dataType>
+        <expression>IF(
+  TEXT({!varTriggeringContract.leaseworks__Aircraft__r.leaseworks__Wide_body_Narrow_body__c}) = &quot;Wide-body&quot;,
+  ADDMONTHS({!varTriggeringContract.leaseworks__Lease_End_Date_New__c}, -12),
+  {!varTriggeringContract.leaseworks__Lease_End_Date_New__c}
+)</expression>
+    </formulas>
     <interviewLabel>Autolaunched - Set New Target Forecast When Contract End Changed {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Autolaunched - Set New Target Forecast When Contract End Changed</label>
     <processMetadataValues>
@@ -37,14 +46,14 @@
             <field>pro_Start_Date__c</field>
             <operator>LessThanOrEqualTo</operator>
             <value>
-                <elementReference>varTriggeringContract.leaseworks__Lease_End_Date_New__c</elementReference>
+                <elementReference>f_TargetEndDate</elementReference>
             </value>
         </filters>
         <filters>
             <field>pro_End_Date__c</field>
             <operator>GreaterThanOrEqualTo</operator>
             <value>
-                <elementReference>varTriggeringContract.leaseworks__Lease_End_Date_New__c</elementReference>
+                <elementReference>f_TargetEndDate</elementReference>
             </value>
         </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>

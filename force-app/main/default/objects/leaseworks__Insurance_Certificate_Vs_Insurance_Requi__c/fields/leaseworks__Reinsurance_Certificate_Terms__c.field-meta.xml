@@ -4,9 +4,9 @@
     <deprecated>false</deprecated>
     <externalId>false</externalId>
     <formula>CASE( leaseworks__Insurance_Requirement__r.leaseworks__Requirement_Type__c , &quot;TextArea&quot;, leaseworks__Text_Reinsurance__c , &quot;Long Text Area&quot;, leaseworks__Y_Hidden_Text_Reinsurance__c,
-&quot;Percentage&quot;, IF( ISNULL( leaseworks__Percentage_Reinsurance__c ) , &#39;&#39;,TEXT( leaseworks__Percentage_Reinsurance__c * 100 ) + &#39;%&#39;) ,
+&quot;Percentage&quot;, IF( ISNULL( leaseworks__Percentage_Reinsurance__c ) , &apos;&apos;,TEXT( leaseworks__Percentage_Reinsurance__c * 100 ) + &apos;%&apos;) ,
 
-&quot;Currency&quot;, IF( ISNULL( leaseworks__Currency_Reinsurance__c ) , &#39;&#39;, &#39;$&#39; + IF(
+&quot;Currency&quot;, IF( ISNULL( leaseworks__Currency_Reinsurance__c ) , &apos;&apos;, &apos;$&apos; + IF(
 leaseworks__Currency_Reinsurance__c &gt;= 1000000,
 TEXT(FLOOR(leaseworks__Currency_Reinsurance__c / 1000000)) &amp; &quot;,&quot;,
 &quot;&quot;) &amp;

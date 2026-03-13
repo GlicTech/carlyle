@@ -44,7 +44,9 @@
             <name>Set_Rejected_Status</name>
             <actionName>Prodigy_Bank_Account_Approval_Rejected</actionName>
             <actionType>stepBackground</actionType>
+            <canAssigneeEdit>false</canAssigneeEdit>
             <entryConditionLogic>and</entryConditionLogic>
+            <exitConditionLogic>and</exitConditionLogic>
             <inputParameters>
                 <name>recordId</name>
                 <value>
@@ -53,6 +55,9 @@
             </inputParameters>
             <label>Set Rejected Status</label>
             <requiresAsyncProcessing>false</requiresAsyncProcessing>
+            <runAsUser>false</runAsUser>
+            <shouldLock>false</shouldLock>
+            <stepSubtype>BackgroundStep</stepSubtype>
         </stageSteps>
     </orchestratedStages>
     <orchestratedStages>
@@ -65,31 +70,12 @@
         </connector>
         <exitConditionLogic>and</exitConditionLogic>
         <stageSteps>
-            <name>Clear_Approver_Values</name>
-            <actionName>Prodigy_Autolaunched_Reset_Bank_Account_Approval_Values</actionName>
-            <actionType>stepBackground</actionType>
-            <entryConditionLogic>and</entryConditionLogic>
-            <inputParameters>
-                <name>recordId</name>
-                <value>
-                    <elementReference>$Record.Id</elementReference>
-                </value>
-            </inputParameters>
-            <label>Clear Approver Values</label>
-            <requiresAsyncProcessing>false</requiresAsyncProcessing>
-        </stageSteps>
-        <stageSteps>
             <name>Email_Bank_Account_Approvers</name>
             <actionName>pro_Autolaunched_Email_Bank_Account_Approvers</actionName>
             <actionType>stepBackground</actionType>
+            <canAssigneeEdit>false</canAssigneeEdit>
             <entryConditionLogic>and</entryConditionLogic>
-            <entryConditions>
-                <leftValueReference>Clear_Approver_Values.Status</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Completed</stringValue>
-                </rightValue>
-            </entryConditions>
+            <exitConditionLogic>and</exitConditionLogic>
             <inputParameters>
                 <name>varBankAccountUpdated</name>
                 <value>
@@ -104,6 +90,9 @@
             </inputParameters>
             <label>Email Bank Account Approvers</label>
             <requiresAsyncProcessing>false</requiresAsyncProcessing>
+            <runAsUser>false</runAsUser>
+            <shouldLock>false</shouldLock>
+            <stepSubtype>BackgroundStep</stepSubtype>
         </stageSteps>
         <stageSteps>
             <name>Approval_Action</name>
@@ -115,14 +104,9 @@
                 </assignee>
                 <assigneeType>Group</assigneeType>
             </assignees>
+            <canAssigneeEdit>false</canAssigneeEdit>
             <entryConditionLogic>and</entryConditionLogic>
-            <entryConditions>
-                <leftValueReference>Clear_Approver_Values.Status</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Completed</stringValue>
-                </rightValue>
-            </entryConditions>
+            <exitConditionLogic>and</exitConditionLogic>
             <inputParameters>
                 <name>recordId</name>
                 <value>
@@ -149,6 +133,9 @@
             </inputParameters>
             <label>Approval Action</label>
             <requiresAsyncProcessing>false</requiresAsyncProcessing>
+            <runAsUser>false</runAsUser>
+            <shouldLock>true</shouldLock>
+            <stepSubtype>ApprovalStep</stepSubtype>
         </stageSteps>
     </orchestratedStages>
     <orchestratedStages>
@@ -161,7 +148,9 @@
             <name>Set_Bank_Ac_As_Approved</name>
             <actionName>Prodigy_Bank_Account_Set_As_Approved</actionName>
             <actionType>stepBackground</actionType>
+            <canAssigneeEdit>false</canAssigneeEdit>
             <entryConditionLogic>and</entryConditionLogic>
+            <exitConditionLogic>and</exitConditionLogic>
             <inputParameters>
                 <name>recordId</name>
                 <value>
@@ -170,6 +159,9 @@
             </inputParameters>
             <label>Set Bank Ac As Approved</label>
             <requiresAsyncProcessing>false</requiresAsyncProcessing>
+            <runAsUser>false</runAsUser>
+            <shouldLock>false</shouldLock>
+            <stepSubtype>BackgroundStep</stepSubtype>
         </stageSteps>
     </orchestratedStages>
     <processMetadataValues>

@@ -11,14 +11,14 @@
 
     &quot;Percentage&quot;, IF(
         ISNULL(leaseworks__Percentage_Reinsurance__c),
-        &#39;&#39;,
-        TEXT(leaseworks__Percentage_Reinsurance__c * 100) + &#39;%&#39;
+        &apos;&apos;,
+        TEXT(leaseworks__Percentage_Reinsurance__c * 100) + &apos;%&apos;
     ),
 
     &quot;Currency&quot;, IF(
         ISNULL(leaseworks__Amount_Reinsurance__c),
-        &#39;&#39;,
-        &#39;$&#39; +
+        &apos;&apos;,
+        &apos;$&apos; +
         IF(
             leaseworks__Amount_Reinsurance__c &gt;= (10000000 * 100000000),
             TEXT(FLOOR(leaseworks__Amount_Reinsurance__c / (10000000 * 100000000))) &amp; &quot;,&quot; &amp;

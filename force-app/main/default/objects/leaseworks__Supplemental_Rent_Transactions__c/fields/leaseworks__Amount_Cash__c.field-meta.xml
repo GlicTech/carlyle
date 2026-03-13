@@ -4,19 +4,18 @@
     <deprecated>false</deprecated>
     <description>Formula (currency, 2 decimals) showing amount on the document
 /**The Below transaction types will be considered NULL
-&#39;MR Invoice&#39;
-&#39;MR Invoice Reconciliation&#39;
-&#39;MR Contribution Applied&#39;
-&#39;MR Claim&#39;
-&#39;MR Rebate&#39;
-&#39;MR Manual Payable&#39;
-&#39;Payable - MR Reconciliation&#39;
-&#39;MR Invoice Adjustment&#39;
-&#39;MR Invoice Credit (Adjustment)&#39;
-&#39;MR Lessor Commitment Amount Applied&#39;
+&apos;MR Invoice&apos;
+&apos;MR Invoice Reconciliation&apos;
+&apos;MR Contribution Applied&apos;
+&apos;MR Claim&apos;
+&apos;MR Rebate&apos;
+&apos;MR Manual Payable&apos;
+&apos;Payable - MR Reconciliation&apos;
+&apos;MR Invoice Adjustment&apos;
+&apos;MR Invoice Credit (Adjustment)&apos;
+&apos;MR Lessor Commitment Amount Applied&apos;
 ***/</description>
-    <externalId>false</externalId>
-    <formula>IF(TEXT(leaseworks__Transaction_Type__c)==&#39;Opening Balance&#39;,IF(ISBLANK(leaseworks__Supplemental_Rent__c),0,leaseworks__Supplemental_Rent__r.leaseworks__Starting_MR_Balance__c),IF(TEXT(leaseworks__Transaction_Type__c)==&#39;MR Invoice Overpayment Credit&#39;,leaseworks__AmtCC_CM__c,IF(CONTAINS(TEXT(leaseworks__Transaction_Type__c),&#39;Payment&#39;),leaseworks__AmtCC_PLI__c,IF(TEXT(leaseworks__Transaction_Type__c)==&#39;MR Contribution Used&#39;,leaseworks__AmtCC_Payout__c,IF(CONTAINS(TEXT(leaseworks__Transaction_Type__c),&#39;Claim&#39;),leaseworks__AmtCC_Payout__c,IF(CONTAINS(TEXT(leaseworks__Transaction_Type__c),&#39;Payout&#39;),leaseworks__AmtCC_Payout__c,IF(TEXT(leaseworks__Transaction_Type__c)==&#39;Adjustment&#39;, IF(leaseworks__Y_Hidden_Adjust_Cash_Collected_Amount__c==true, leaseworks__SRAT__c, null),IF(TEXT(leaseworks__Transaction_Type__c)==&#39;MR Transfer&#39;,leaseworks__AmtCC_Other__c,IF(TEXT(leaseworks__Transaction_Type__c)==&#39;MR Lessor Commitment Amount Used&#39;,leaseworks__AmtCC_Other__c,NULL)))))))))</formula>
+    <formula>IF(TEXT(leaseworks__Transaction_Type__c)==&apos;Opening Balance&apos;,IF(ISBLANK(leaseworks__Supplemental_Rent__c),0,leaseworks__Supplemental_Rent__r.leaseworks__Starting_MR_Balance__c),IF(TEXT(leaseworks__Transaction_Type__c)==&apos;MR Invoice Overpayment Credit&apos;,leaseworks__AmtCC_CM__c,IF(CONTAINS(TEXT(leaseworks__Transaction_Type__c),&apos;Payment&apos;),leaseworks__AmtCC_PLI__c,IF(TEXT(leaseworks__Transaction_Type__c)==&apos;MR Contribution Used&apos;,leaseworks__AmtCC_Payout__c,IF(CONTAINS(TEXT(leaseworks__Transaction_Type__c),&apos;Claim&apos;),leaseworks__AmtCC_Payout__c,IF(CONTAINS(TEXT(leaseworks__Transaction_Type__c),&apos;Payout&apos;),leaseworks__AmtCC_Payout__c,IF(TEXT(leaseworks__Transaction_Type__c)==&apos;Adjustment&apos;, IF(leaseworks__Y_Hidden_Adjust_Cash_Collected_Amount__c==true, leaseworks__SRAT__c, null),IF(TEXT(leaseworks__Transaction_Type__c)==&apos;MR Transfer&apos;,leaseworks__AmtCC_Other__c,IF(TEXT(leaseworks__Transaction_Type__c)==&apos;MR Lessor Commitment Amount Used&apos;,leaseworks__AmtCC_Other__c,NULL)))))))))</formula>
     <inlineHelpText>Auto-calculated field, showing invoiced amount as per the source Document. This amount affects Running Balance (Cash). Zero for non-approved transactions and transactions updating only Invoice balance</inlineHelpText>
     <label>Amount(Cash Collected)</label>
     <precision>18</precision>

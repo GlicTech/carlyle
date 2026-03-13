@@ -8,10 +8,10 @@ RecordType.Name = &quot;Drawdown&quot;,
 !$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c,
 NOT( ISNEW()),
 ISCHANGED(leaseworks__Status__c),
-ISPICKVAL(PRIORVALUE(leaseworks__Status__c), &#39;Pending&#39;),
-ISPICKVAL(leaseworks__Status__c,&#39;Open for Payment Studio&#39;),
+ISPICKVAL(PRIORVALUE(leaseworks__Status__c), &apos;Pending&apos;),
+ISPICKVAL(leaseworks__Status__c,&apos;Open for Payment Studio&apos;),
 leaseworks__AccEnabled__c,
 leaseworks__Entity_New__r.leaseworks__Inactive__c
 )</errorConditionFormula>
-    <errorMessage>Unable to update the Drawdown status to &#39;Cash Received&#39; since the entity associated with the Drawdown is inactive. Please link it to an active entity to proceed.</errorMessage>
+    <errorMessage>Unable to update the Drawdown status to &apos;Cash Received&apos; since the entity associated with the Drawdown is inactive. Please link it to an active entity to proceed.</errorMessage>
 </ValidationRule>

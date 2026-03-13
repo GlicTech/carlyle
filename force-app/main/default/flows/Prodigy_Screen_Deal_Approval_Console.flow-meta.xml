@@ -4,13 +4,20 @@
     <assignments>
         <name>Assign_Deal_Team_To_Single_Variable</name>
         <label>Assign Deal Team To Single Variable</label>
-        <locationX>2910</locationX>
+        <locationX>3174</locationX>
         <locationY>2138</locationY>
         <assignmentItems>
             <assignToReference>varDealTeamToUpdate</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>Loop_Single_Deal_Team</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varDealTeamToUpdate.leaseworks__Comment__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Approver_Comment</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -20,7 +27,7 @@
     <assignments>
         <name>Assign_Triggering_Deal_To_List</name>
         <label>Assign Triggering Deal To List and Assign Running User</label>
-        <locationX>1733</locationX>
+        <locationX>2162</locationX>
         <locationY>890</locationY>
         <assignmentItems>
             <assignToReference>varDealCollection</assignToReference>
@@ -36,7 +43,7 @@
     <assignments>
         <name>Assign_Values_To_Approvals_History</name>
         <label>Assign Values To Approvals History</label>
-        <locationX>2822</locationX>
+        <locationX>3086</locationX>
         <locationY>2330</locationY>
         <assignmentItems>
             <assignToReference>varApprovalsHistoryToCreate.pro_User_Name__c</assignToReference>
@@ -80,7 +87,7 @@
     <assignments>
         <name>Reset_Collections_To_Blank</name>
         <label>Reset Collections To Blank</label>
-        <locationX>1733</locationX>
+        <locationX>2162</locationX>
         <locationY>134</locationY>
         <assignmentItems>
             <assignToReference>varDealTeamToUpdateCollection</assignToReference>
@@ -117,6 +124,38 @@
             <assignToReference>dt_DocumentationApprovalsDue.numberOfRowsEdited</assignToReference>
             <operator>Assign</operator>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>dt_DocumentationApprovalsDue.numberOfRowsSelected</assignToReference>
+            <operator>Assign</operator>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>dt_LoiApprovalsDue.numberOfRowsSelected</assignToReference>
+            <operator>Assign</operator>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>bb_ApproverRequiredOrNot.value</assignToReference>
+            <operator>Assign</operator>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>bb_SaveChangesManager.value</assignToReference>
+            <operator>Assign</operator>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>dt_AllAidApprovers.numberOfRowsEdited</assignToReference>
+            <operator>Assign</operator>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>dt_AllAidApprovers.numberOfRowsSelected</assignToReference>
+            <operator>Assign</operator>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>dt_AllDealTeams.numberOfRowsEdited</assignToReference>
+            <operator>Assign</operator>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>dt_AllDealTeams.numberOfRowsSelected</assignToReference>
+            <operator>Assign</operator>
+        </assignmentItems>
         <connector>
             <targetReference>Get_Triggering_Deal</targetReference>
         </connector>
@@ -124,7 +163,7 @@
     <assignments>
         <name>Set_As_Approved</name>
         <label>Set As Approved</label>
-        <locationX>2426</locationX>
+        <locationX>2690</locationX>
         <locationY>2654</locationY>
         <assignmentItems>
             <assignToReference>varDealTeamToUpdate.pro_Approved__c</assignToReference>
@@ -147,7 +186,7 @@
     <assignments>
         <name>Set_Deal_To_Rejected</name>
         <label>Set Deal To Rejected</label>
-        <locationX>2954</locationX>
+        <locationX>3218</locationX>
         <locationY>2654</locationY>
         <assignmentItems>
             <assignToReference>recordId.leaseworks__Deal_Status__c</assignToReference>
@@ -170,7 +209,7 @@
     <assignments>
         <name>Set_varAidApproversFound_To_False</name>
         <label>Set varAidApproversFound To False</label>
-        <locationX>1865</locationX>
+        <locationX>2294</locationX>
         <locationY>1622</locationY>
         <assignmentItems>
             <assignToReference>varAidApproversFound</assignToReference>
@@ -186,7 +225,7 @@
     <assignments>
         <name>Set_varAidApproversFound_To_True</name>
         <label>Set varAidApproversFound To True</label>
-        <locationX>1601</locationX>
+        <locationX>2030</locationX>
         <locationY>1622</locationY>
         <assignmentItems>
             <assignToReference>varAidApproversFound</assignToReference>
@@ -202,7 +241,7 @@
     <assignments>
         <name>Set_varDealTeamsFound_To_False</name>
         <label>Set varDealTeamsFound To False</label>
-        <locationX>1865</locationX>
+        <locationX>2294</locationX>
         <locationY>1322</locationY>
         <assignmentItems>
             <assignToReference>varDealTeamsFound</assignToReference>
@@ -218,7 +257,7 @@
     <assignments>
         <name>Set_varDealTeamsFound_To_True</name>
         <label>Set varDealTeamsFound To True</label>
-        <locationX>1601</locationX>
+        <locationX>2030</locationX>
         <locationY>1322</locationY>
         <assignmentItems>
             <assignToReference>varDealTeamsFound</assignToReference>
@@ -282,7 +321,7 @@
     <decisions>
         <name>Is_This_Deal_Approval_Or_Non_Deal_Approval</name>
         <label>Is This Deal Approval Or Non Deal Approval?</label>
-        <locationX>1733</locationX>
+        <locationX>2162</locationX>
         <locationY>1814</locationY>
         <defaultConnector>
             <targetReference>NonDealApprovalConsoleScreen</targetReference>
@@ -305,34 +344,9 @@
         </rules>
     </decisions>
     <decisions>
-        <name>Send_Approval_Reminder_Notification</name>
-        <label>Send Approval Reminder Notification?</label>
-        <locationX>644</locationX>
-        <locationY>2462</locationY>
-        <defaultConnector>
-            <targetReference>What_Update_Action_To_Take</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
-        <rules>
-            <name>Yes_Send_Approval_Reminder</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>bb_ApprovalReminderNotification.value</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Send Approval Reminder</stringValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Send_Approval_Reminder</targetReference>
-            </connector>
-            <label>Yes - Send Approval Reminder</label>
-        </rules>
-    </decisions>
-    <decisions>
         <name>Was_Approval_Rejected_OR_Given_OR_Resubmission_Requested</name>
         <label>Was Approval Rejected OR Given OR Resubmission Requested?</label>
-        <locationX>2822</locationX>
+        <locationX>3086</locationX>
         <locationY>2546</locationY>
         <defaultConnector>
             <targetReference>Update_Deal_Status</targetReference>
@@ -372,7 +386,7 @@
     <decisions>
         <name>Were_AiD_Approvers_Found</name>
         <label>Were AiD Approvers Found?</label>
-        <locationX>1733</locationX>
+        <locationX>2162</locationX>
         <locationY>1514</locationY>
         <defaultConnector>
             <targetReference>Set_varAidApproversFound_To_False</targetReference>
@@ -397,7 +411,7 @@
     <decisions>
         <name>Were_Deal_Teams_Found_For_Running_User</name>
         <label>Were Deal Teams Found For Running User?</label>
-        <locationX>1733</locationX>
+        <locationX>2162</locationX>
         <locationY>1214</locationY>
         <defaultConnector>
             <targetReference>Set_varDealTeamsFound_To_False</targetReference>
@@ -430,16 +444,23 @@
         <name>What_Update_Action_To_Take</name>
         <label>What Update Action To Take?</label>
         <locationX>1238</locationX>
-        <locationY>2570</locationY>
+        <locationY>2462</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
-            <name>Bulk_Update_LOI_Signature_Approval</name>
-            <conditionLogic>and</conditionLogic>
+            <name>Update_LOI_Approval</name>
+            <conditionLogic>(1 OR 2) AND 3</conditionLogic>
             <conditions>
                 <leftValueReference>bb_LoiSignatureButtons.value</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue>Approve LOI</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>bb_SaveChangesApprover.value</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Save Changes</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
@@ -450,20 +471,13 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Update_Deal_Teams</targetReference>
+                <targetReference>Create_Id_Collection_For_Selected_Deal_Team_Records</targetReference>
             </connector>
-            <label>Bulk Update LOI Signature Approval</label>
+            <label>Update LOI Approval</label>
         </rules>
         <rules>
-            <name>Bulk_Update_Documentation_Approval</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>recordId.leaseworks__Deal_Status__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Documentation</stringValue>
-                </rightValue>
-            </conditions>
+            <name>Update_Documentation_Approval</name>
+            <conditionLogic>(1 OR  2) AND 3</conditionLogic>
             <conditions>
                 <leftValueReference>bb_LoiSignatureButtons.value</leftValueReference>
                 <operator>EqualTo</operator>
@@ -471,25 +485,46 @@
                     <stringValue>Approve LOI</stringValue>
                 </rightValue>
             </conditions>
+            <conditions>
+                <leftValueReference>bb_SaveChangesApprover.value</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Save Changes</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>recordId.leaseworks__Deal_Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Documentation</stringValue>
+                </rightValue>
+            </conditions>
             <connector>
-                <targetReference>Set_Documentation_Approval</targetReference>
+                <targetReference>Create_Id_Collection_For_Selected_AiD_Approvers</targetReference>
             </connector>
-            <label>Bulk Update Documentation Approval</label>
+            <label>Update Documentation Approval</label>
         </rules>
         <rules>
-            <name>Bulk_Exclude_Include_LOI_Approver</name>
+            <name>Manage_Approvers</name>
             <conditionLogic>or</conditionLogic>
             <conditions>
-                <leftValueReference>bb_SaveChanges.value</leftValueReference>
+                <leftValueReference>bb_SaveChangesManager.value</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>bb_ApproverRequiredOrNot.value</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Update_LOI_Required</targetReference>
+                <targetReference>Update_Deal_Teams_With_Manager_s_Datatable_Inline_Comments</targetReference>
             </connector>
-            <label>Bulk Exclude/Include LOI Approver</label>
+            <label>Manage Approvers</label>
         </rules>
     </decisions>
     <description>Approvals
@@ -499,29 +534,34 @@ Screen flow allows users to offer approval or rejection on LOI, Lease Documentat
     <formulas>
         <name>f_ApprovalEvent</name>
         <dataType>String</dataType>
-        <expression>IF({!bb_NonDealApprovalButtons.value} = &#39;Approve&#39;, &#39;Approved&#39;,
-     IF({!bb_NonDealApprovalButtons.value} = &#39;Reject&#39;, &#39;Rejected&#39;, &#39;Resubmission Requested&#39;))</expression>
+        <expression>IF({!bb_NonDealApprovalButtons.value} = &apos;Approve&apos;, &apos;Approved&apos;,
+     IF({!bb_NonDealApprovalButtons.value} = &apos;Reject&apos;, &apos;Rejected&apos;, &apos;Resubmission Requested&apos;))</expression>
     </formulas>
     <formulas>
         <name>f_ApprovalsRequiredOrPlaceholder</name>
         <dataType>String</dataType>
-        <expression>IF(TEXT({!recordId.leaseworks__Deal_Status__c}) = &#39;LOI Signed&#39; &amp;&amp; {!Deal_Teams_Found} = True, {!Create_Member_Role_Collection_For_Approver_Deal_Teams}, IF(TEXT({!recordId.leaseworks__Deal_Status__c}) = &#39;Documentation&#39; &amp;&amp; {!varAidApproversFound} = True, {!Create_Member_Role_Collection_For_AiD_Approvers}, &#39;&#39;))</expression>
+        <expression>IF(TEXT({!recordId.leaseworks__Deal_Status__c}) = &apos;LOI Signed&apos; &amp;&amp; {!Deal_Teams_Found} = True, {!Create_Member_Role_Collection_For_Approver_Deal_Teams}, IF(TEXT({!recordId.leaseworks__Deal_Status__c}) = &apos;Documentation&apos; &amp;&amp; {!varAidApproversFound} = True, {!Create_Member_Role_Collection_For_AiD_Approvers}, &apos;&apos;))</expression>
     </formulas>
     <formulas>
         <name>f_ApproveOrRejectLOI</name>
         <dataType>Boolean</dataType>
-        <expression>IF({!bb_LoiSignatureButtons.value} = &#39;Reject LOI Approval&#39;, False, True)</expression>
+        <expression>IF({!bb_LoiSignatureButtons.value} = &apos;Reject LOI Approval&apos;, False, True)</expression>
     </formulas>
     <formulas>
         <name>f_DealTeamFullName</name>
         <dataType>String</dataType>
-        <expression>{!$User.FirstName} + &#39; &#39; + {!$User.LastName}</expression>
+        <expression>{!$User.FirstName} + &apos; &apos; + {!$User.LastName}</expression>
+    </formulas>
+    <formulas>
+        <name>f_IncludeOrExclude</name>
+        <dataType>Boolean</dataType>
+        <expression>IF({!bb_ApproverRequiredOrNot.value} = &apos;Required&apos;, True, False)</expression>
     </formulas>
     <formulas>
         <name>f_NonDealApprovalStatus</name>
         <dataType>Boolean</dataType>
         <expression>IF(
-    {!bb_NonDealApprovalButtons.value} = &#39;Approve&#39;,
+    {!bb_NonDealApprovalButtons.value} = &apos;Approve&apos;,
     TRUE,
     FALSE
 )</expression>
@@ -531,7 +571,7 @@ Screen flow allows users to offer approval or rejection on LOI, Lease Documentat
     <loops>
         <name>Loop_Single_Deal_Team</name>
         <label>Loop Single Deal Team</label>
-        <locationX>2822</locationX>
+        <locationX>3086</locationX>
         <locationY>2030</locationY>
         <collectionReference>Get_Non_Deal_Approver_Deal_Team_Records_For_Running_User</collectionReference>
         <iterationOrder>Asc</iterationOrder>
@@ -564,7 +604,7 @@ Screen flow allows users to offer approval or rejection on LOI, Lease Documentat
     <recordCreates>
         <name>Create_Approvals_History_Record</name>
         <label>Create Approvals History Record</label>
-        <locationX>2822</locationX>
+        <locationX>3086</locationX>
         <locationY>2438</locationY>
         <connector>
             <targetReference>Was_Approval_Rejected_OR_Given_OR_Resubmission_Requested</targetReference>
@@ -578,7 +618,7 @@ Screen flow allows users to offer approval or rejection on LOI, Lease Documentat
     <recordLookups>
         <name>Get_All_Documentation_Approvers_For_Deal</name>
         <label>Get All Documentation Approvers For Deal</label>
-        <locationX>644</locationX>
+        <locationX>1238</locationX>
         <locationY>2030</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -599,7 +639,7 @@ Screen flow allows users to offer approval or rejection on LOI, Lease Documentat
     <recordLookups>
         <name>Get_All_LOI_Approvers_For_Deal</name>
         <label>Get All LOI Approvers For Deal</label>
-        <locationX>644</locationX>
+        <locationX>1238</locationX>
         <locationY>1922</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -620,7 +660,7 @@ Screen flow allows users to offer approval or rejection on LOI, Lease Documentat
     <recordLookups>
         <name>Get_Asset_In_Deal_Approvers_For_Running_User</name>
         <label>Get Asset In Deal Approvers For Running User</label>
-        <locationX>1733</locationX>
+        <locationX>2162</locationX>
         <locationY>1106</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -669,7 +709,7 @@ Screen flow allows users to offer approval or rejection on LOI, Lease Documentat
     <recordLookups>
         <name>Get_Assets_In_Deal</name>
         <label>Get Assets In Deal</label>
-        <locationX>1733</locationX>
+        <locationX>2162</locationX>
         <locationY>782</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -690,7 +730,7 @@ Screen flow allows users to offer approval or rejection on LOI, Lease Documentat
     <recordLookups>
         <name>Get_Manage_Deal_Approval_Permission_Set</name>
         <label>Get Manage Deal Approval Permission Set</label>
-        <locationX>1733</locationX>
+        <locationX>2162</locationX>
         <locationY>350</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -711,7 +751,7 @@ Screen flow allows users to offer approval or rejection on LOI, Lease Documentat
     <recordLookups>
         <name>Get_Manage_Deal_Approval_Permission_Set_Assignment</name>
         <label>Get Manage Deal Approval Permission Set Assignment</label>
-        <locationX>1733</locationX>
+        <locationX>2162</locationX>
         <locationY>458</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -739,7 +779,7 @@ Screen flow allows users to offer approval or rejection on LOI, Lease Documentat
     <recordLookups>
         <name>Get_Non_Deal_Approver_Deal_Team_Records_For_Running_User</name>
         <label>Get Non Deal Approver Deal Team Records For Running User</label>
-        <locationX>1733</locationX>
+        <locationX>2162</locationX>
         <locationY>674</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -774,7 +814,7 @@ Screen flow allows users to offer approval or rejection on LOI, Lease Documentat
     <recordLookups>
         <name>Get_Open_LOI_Deal_Team_Records_For_Running_User</name>
         <label>Get Open LOI Deal Team Records For Running User</label>
-        <locationX>1733</locationX>
+        <locationX>2162</locationX>
         <locationY>566</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -823,7 +863,7 @@ Screen flow allows users to offer approval or rejection on LOI, Lease Documentat
     <recordLookups>
         <name>Get_Triggering_Deal</name>
         <label>Get Triggering Deal</label>
-        <locationX>1733</locationX>
+        <locationX>2162</locationX>
         <locationY>242</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -844,7 +884,7 @@ Screen flow allows users to offer approval or rejection on LOI, Lease Documentat
     <recordUpdates>
         <name>Reset_Deal_Team_Approval</name>
         <label>Reset Deal Team Approval</label>
-        <locationX>2822</locationX>
+        <locationX>3086</locationX>
         <locationY>3170</locationY>
         <faultConnector>
             <targetReference>ErrorScreen</targetReference>
@@ -866,10 +906,59 @@ Screen flow allows users to offer approval or rejection on LOI, Lease Documentat
         <object>leaseworks__Deal_Team__c</object>
     </recordUpdates>
     <recordUpdates>
-        <name>Set_Documentation_Approval</name>
-        <label>Set Documentation Approval</label>
+        <name>Set_AiD_Approvers_As_Included_Excluded_In_Approvals</name>
+        <label>Set AiD Approvers As Included / Excluded In Approvals</label>
+        <locationX>1634</locationX>
+        <locationY>3110</locationY>
+        <connector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Reset_Collections_To_Blank</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>In</operator>
+            <value>
+                <elementReference>Create_Id_Collection_For_AiD_Approvers_Selected_To_Include_Exclude</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>pro_Include_In_Documentation_Approval__c</field>
+            <value>
+                <elementReference>f_IncludeOrExclude</elementReference>
+            </value>
+        </inputAssignments>
+        <object>pro_Asset_In_Deal_Approver__c</object>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Set_Deal_Teams_As_Included_Excluded_In_Approvals</name>
+        <label>Set Deal Teams As Included / Excluded In Approvals</label>
+        <locationX>1634</locationX>
+        <locationY>3002</locationY>
+        <connector>
+            <targetReference>Set_AiD_Approvers_As_Included_Excluded_In_Approvals</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>In</operator>
+            <value>
+                <elementReference>Create_Id_Collection_For_Deal_Teams_Selected_To_Include_Exclude</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>pro_Include_In_LOI_Approvals__c</field>
+            <value>
+                <elementReference>f_IncludeOrExclude</elementReference>
+            </value>
+        </inputAssignments>
+        <object>leaseworks__Deal_Team__c</object>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Set_Lease_Documentation_Approved_On_AiD_Approvers</name>
+        <label>Set Lease Documentation Approved On AiD Approvers</label>
         <locationX>842</locationX>
-        <locationY>2678</locationY>
+        <locationY>2786</locationY>
         <connector>
             <isGoTo>true</isGoTo>
             <targetReference>Reset_Collections_To_Blank</targetReference>
@@ -878,12 +967,83 @@ Screen flow allows users to offer approval or rejection on LOI, Lease Documentat
             <isGoTo>true</isGoTo>
             <targetReference>ErrorScreen</targetReference>
         </faultConnector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>In</operator>
+            <value>
+                <elementReference>Create_Id_Collection_For_Selected_AiD_Approvers</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>pro_Lease_Documentation_Approved__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <object>pro_Asset_In_Deal_Approver__c</object>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Set_LOI_Signed_Approved_On_Deal_Teams</name>
+        <label>Set LOI Signed Approved On Deal Teams</label>
+        <locationX>50</locationX>
+        <locationY>2786</locationY>
+        <connector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Reset_Collections_To_Blank</targetReference>
+        </connector>
+        <faultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>ErrorScreen</targetReference>
+        </faultConnector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>In</operator>
+            <value>
+                <elementReference>Create_Id_Collection_For_Selected_Deal_Team_Records</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>pro_LOI_Signed_Approved__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <object>leaseworks__Deal_Team__c</object>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_AiD_Approvers_With_Datatable_Inline_Comments</name>
+        <label>Update AiD Approvers With Datatable Inline Comments</label>
+        <locationX>842</locationX>
+        <locationY>2678</locationY>
+        <connector>
+            <targetReference>Set_Lease_Documentation_Approved_On_AiD_Approvers</targetReference>
+        </connector>
+        <faultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>ErrorScreen</targetReference>
+        </faultConnector>
         <inputReference>dt_DocumentationApprovalsDue.outputEditedRows</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_AiD_Approvers_With_Manager_s_Datable_Inline_Comments</name>
+        <label>Update AiD Approvers With Manager&apos;s Datable Inline Comments</label>
+        <locationX>1634</locationX>
+        <locationY>2678</locationY>
+        <connector>
+            <targetReference>Create_Id_Collection_For_Deal_Teams_Selected_To_Include_Exclude</targetReference>
+        </connector>
+        <faultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>ErrorScreen</targetReference>
+        </faultConnector>
+        <inputReference>dt_AllAidApprovers.outputEditedRows</inputReference>
     </recordUpdates>
     <recordUpdates>
         <name>Update_Deal_Status</name>
         <label>Update Deal Status</label>
-        <locationX>2822</locationX>
+        <locationX>3086</locationX>
         <locationY>3062</locationY>
         <connector>
             <targetReference>Reset_Deal_Team_Approval</targetReference>
@@ -897,7 +1057,7 @@ Screen flow allows users to offer approval or rejection on LOI, Lease Documentat
     <recordUpdates>
         <name>Update_Deal_Team_Approval</name>
         <label>Update Deal Team Approval</label>
-        <locationX>2426</locationX>
+        <locationX>2690</locationX>
         <locationY>2762</locationY>
         <faultConnector>
             <isGoTo>true</isGoTo>
@@ -906,13 +1066,12 @@ Screen flow allows users to offer approval or rejection on LOI, Lease Documentat
         <inputReference>varDealTeamToUpdateCollection</inputReference>
     </recordUpdates>
     <recordUpdates>
-        <name>Update_Deal_Teams</name>
-        <label>Update Deal Teams</label>
-        <locationX>314</locationX>
+        <name>Update_Deal_Teams_With_Datatable_Inline_Comments</name>
+        <label>Update Deal Teams With Datatable Inline Comments</label>
+        <locationX>50</locationX>
         <locationY>2678</locationY>
         <connector>
-            <isGoTo>true</isGoTo>
-            <targetReference>Reset_Collections_To_Blank</targetReference>
+            <targetReference>Set_LOI_Signed_Approved_On_Deal_Teams</targetReference>
         </connector>
         <faultConnector>
             <isGoTo>true</isGoTo>
@@ -921,27 +1080,12 @@ Screen flow allows users to offer approval or rejection on LOI, Lease Documentat
         <inputReference>dt_LoiApprovalsDue.outputEditedRows</inputReference>
     </recordUpdates>
     <recordUpdates>
-        <name>Update_Lease_Documentation_Required</name>
-        <label>Update Lease Documentation Required</label>
-        <locationX>1370</locationX>
-        <locationY>2786</locationY>
+        <name>Update_Deal_Teams_With_Manager_s_Datatable_Inline_Comments</name>
+        <label>Update Deal Teams With Manager&apos;s Datatable Inline Comments</label>
+        <locationX>1634</locationX>
+        <locationY>2570</locationY>
         <connector>
-            <isGoTo>true</isGoTo>
-            <targetReference>Reset_Collections_To_Blank</targetReference>
-        </connector>
-        <faultConnector>
-            <isGoTo>true</isGoTo>
-            <targetReference>ErrorScreen</targetReference>
-        </faultConnector>
-        <inputReference>dt_AllAidApprovers.outputEditedRows</inputReference>
-    </recordUpdates>
-    <recordUpdates>
-        <name>Update_LOI_Required</name>
-        <label>Update LOI Required</label>
-        <locationX>1370</locationX>
-        <locationY>2678</locationY>
-        <connector>
-            <targetReference>Update_Lease_Documentation_Required</targetReference>
+            <targetReference>Update_AiD_Approvers_With_Manager_s_Datable_Inline_Comments</targetReference>
         </connector>
         <faultConnector>
             <isGoTo>true</isGoTo>
@@ -953,13 +1097,13 @@ Screen flow allows users to offer approval or rejection on LOI, Lease Documentat
     <screens>
         <name>ApproverConsoleScreen</name>
         <label>ApproverConsoleScreen</label>
-        <locationX>644</locationX>
+        <locationX>1238</locationX>
         <locationY>2354</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <connector>
-            <targetReference>Send_Approval_Reminder_Notification</targetReference>
+            <targetReference>What_Update_Action_To_Take</targetReference>
         </connector>
         <fields>
             <name>bb_ToggleMode</name>
@@ -1060,15 +1204,15 @@ Screen flow allows users to offer approval or rejection on LOI, Lease Documentat
                         </value>
                     </inputParameters>
                     <inputParameters>
-                        <name>maxRowSelection</name>
-                        <value>
-                            <numberValue>0.0</numberValue>
-                        </value>
-                    </inputParameters>
-                    <inputParameters>
                         <name>columns</name>
                         <value>
                             <stringValue>[{&quot;apiName&quot;:&quot;pro_LOI_Team_Approval__c&quot;,&quot;guid&quot;:&quot;column-2ae0&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:false,&quot;customHeaderLabel&quot;:&quot;&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:0,&quot;label&quot;:&quot;LOI Team Approval&quot;,&quot;type&quot;:&quot;customRichText&quot;},{&quot;apiName&quot;:&quot;pro_LOI_Approval_Progress__c&quot;,&quot;guid&quot;:&quot;column-1307&quot;,&quot;editable&quot;:false,&quot;hasCustomHeaderLabel&quot;:false,&quot;customHeaderLabel&quot;:&quot;&quot;,&quot;wrapText&quot;:true,&quot;order&quot;:1,&quot;label&quot;:&quot;LOI Approval Progress&quot;,&quot;type&quot;:&quot;customRichText&quot;}]</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>maxRowSelection</name>
+                        <value>
+                            <numberValue>0.0</numberValue>
                         </value>
                     </inputParameters>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
@@ -1139,61 +1283,6 @@ Screen flow allows users to offer approval or rejection on LOI, Lease Documentat
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <storeOutputAutomatically>true</storeOutputAutomatically>
-                </fields>
-                <fields>
-                    <name>bb_ApprovalReminderNotification</name>
-                    <extensionName>c:fsc_flowButtonBar</extensionName>
-                    <fieldType>ComponentInstance</fieldType>
-                    <inputParameters>
-                        <name>alignment</name>
-                        <value>
-                            <stringValue>right</stringValue>
-                        </value>
-                    </inputParameters>
-                    <inputParameters>
-                        <name>orientation</name>
-                        <value>
-                            <stringValue>horizontal</stringValue>
-                        </value>
-                    </inputParameters>
-                    <inputParameters>
-                        <name>showLines</name>
-                        <value>
-                            <stringValue>neither</stringValue>
-                        </value>
-                    </inputParameters>
-                    <inputParameters>
-                        <name>actionMode</name>
-                        <value>
-                            <stringValue>navigation</stringValue>
-                        </value>
-                    </inputParameters>
-                    <inputParameters>
-                        <name>buttons</name>
-                        <value>
-                            <stringValue>[{&quot;label&quot;:&quot;Send Approval Reminder&quot;,&quot;value&quot;:&quot;Send Approval Reminder&quot;,&quot;iconPosition&quot;:&quot;left&quot;,&quot;variant&quot;:&quot;brand-outline&quot;,&quot;iconName&quot;:&quot;utility:notification&quot;,&quot;index&quot;:0}]</stringValue>
-                        </value>
-                    </inputParameters>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-                    <isRequired>true</isRequired>
-                    <storeOutputAutomatically>true</storeOutputAutomatically>
-                    <visibilityRule>
-                        <conditionLogic>or</conditionLogic>
-                        <conditions>
-                            <leftValueReference>recordId.leaseworks__Deal_Status__c</leftValueReference>
-                            <operator>EqualTo</operator>
-                            <rightValue>
-                                <stringValue>LOI Signed</stringValue>
-                            </rightValue>
-                        </conditions>
-                        <conditions>
-                            <leftValueReference>recordId.leaseworks__Deal_Status__c</leftValueReference>
-                            <operator>EqualTo</operator>
-                            <rightValue>
-                                <stringValue>Documentation</stringValue>
-                            </rightValue>
-                        </conditions>
-                    </visibilityRule>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -1321,7 +1410,7 @@ Screen flow allows users to offer approval or rejection on LOI, Lease Documentat
                     <inputParameters>
                         <name>columnEdits</name>
                         <value>
-                            <stringValue>pro_LOI_Signed_Approved__c:true, pro_LOI_Approver_Comments__c:true</stringValue>
+                            <stringValue>pro_LOI_Approver_Comments__c:true</stringValue>
                         </value>
                     </inputParameters>
                     <inputParameters>
@@ -1339,19 +1428,13 @@ Screen flow allows users to offer approval or rejection on LOI, Lease Documentat
                     <inputParameters>
                         <name>columnLabels</name>
                         <value>
-                            <stringValue>pro_Member_Role__c:Role, pro_LOI_Signed_Approved__c:Approve</stringValue>
+                            <stringValue>pro_Member_Role__c:Role, pro_LOI_Signed_Approved__c:Approved</stringValue>
                         </value>
                     </inputParameters>
                     <inputParameters>
                         <name>columnWidths</name>
                         <value>
                             <stringValue>pro_Member_Role__c:171, pro_LOI_Signed_Approved__c:98, pro_LOI_Approver_Comments__c:394</stringValue>
-                        </value>
-                    </inputParameters>
-                    <inputParameters>
-                        <name>suppressBottomBar</name>
-                        <value>
-                            <booleanValue>true</booleanValue>
                         </value>
                     </inputParameters>
                     <inputParameters>
@@ -1367,15 +1450,9 @@ Screen flow allows users to offer approval or rejection on LOI, Lease Documentat
                         </value>
                     </inputParameters>
                     <inputParameters>
-                        <name>hideCheckboxColumn</name>
-                        <value>
-                            <booleanValue>true</booleanValue>
-                        </value>
-                    </inputParameters>
-                    <inputParameters>
                         <name>cb_hideCheckboxColumn</name>
                         <value>
-                            <stringValue>CB_TRUE</stringValue>
+                            <stringValue>CB_FALSE</stringValue>
                         </value>
                     </inputParameters>
                     <inputParameters>
@@ -1420,6 +1497,12 @@ Screen flow allows users to offer approval or rejection on LOI, Lease Documentat
                             <stringValue>pro_Member_Role__c:true, pro_LOI_Signed_Approved__c:false, pro_LOI_Approver_Comments__c:true</stringValue>
                         </value>
                     </inputParameters>
+                    <inputParameters>
+                        <name>suppressBottomBar</name>
+                        <value>
+                            <booleanValue>true</booleanValue>
+                        </value>
+                    </inputParameters>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <storeOutputAutomatically>true</storeOutputAutomatically>
@@ -1462,15 +1545,9 @@ Screen flow allows users to offer approval or rejection on LOI, Lease Documentat
                         </value>
                     </inputParameters>
                     <inputParameters>
-                        <name>hideCheckboxColumn</name>
-                        <value>
-                            <booleanValue>true</booleanValue>
-                        </value>
-                    </inputParameters>
-                    <inputParameters>
                         <name>cb_hideCheckboxColumn</name>
                         <value>
-                            <stringValue>CB_TRUE</stringValue>
+                            <stringValue>CB_FALSE</stringValue>
                         </value>
                     </inputParameters>
                     <inputParameters>
@@ -1494,7 +1571,7 @@ Screen flow allows users to offer approval or rejection on LOI, Lease Documentat
                     <inputParameters>
                         <name>columnEdits</name>
                         <value>
-                            <stringValue>pro_Lease_Documentation_Approved__c:true, pro_Lease_Documentation_Approver_Comment__c:true</stringValue>
+                            <stringValue>pro_Lease_Documentation_Approver_Comment__c:true</stringValue>
                         </value>
                     </inputParameters>
                     <inputParameters>
@@ -1512,19 +1589,13 @@ Screen flow allows users to offer approval or rejection on LOI, Lease Documentat
                     <inputParameters>
                         <name>columnLabels</name>
                         <value>
-                            <stringValue>pro_AiD_Name__c:Asset, pro_Member_Role__c:Role, pro_Lease_Documentation_Approved__c:Approve</stringValue>
+                            <stringValue>pro_AiD_Name__c:Asset, pro_Member_Role__c:Role, pro_Lease_Documentation_Approved__c:Approved</stringValue>
                         </value>
                     </inputParameters>
                     <inputParameters>
                         <name>columnWidths</name>
                         <value>
-                            <stringValue>pro_AiD_Name__c:123, pro_Member_Role__c:149, pro_Lease_Documentation_Approved__c:95, pro_Lease_Documentation_Approver_Comment__c:302</stringValue>
-                        </value>
-                    </inputParameters>
-                    <inputParameters>
-                        <name>suppressBottomBar</name>
-                        <value>
-                            <booleanValue>true</booleanValue>
+                            <stringValue>pro_AiD_Name__c:123, pro_Member_Role__c:149, pro_Lease_Documentation_Approved__c:107, pro_Lease_Documentation_Approver_Comment__c:302</stringValue>
                         </value>
                     </inputParameters>
                     <inputParameters>
@@ -1561,6 +1632,12 @@ Screen flow allows users to offer approval or rejection on LOI, Lease Documentat
                         <name>columnWraps</name>
                         <value>
                             <stringValue>pro_AiD_Name__c:false, pro_Member_Role__c:true, pro_Lease_Documentation_Approved__c:false, pro_Lease_Documentation_Approver_Comment__c:true</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>suppressBottomBar</name>
+                        <value>
+                            <booleanValue>true</booleanValue>
                         </value>
                     </inputParameters>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
@@ -1624,6 +1701,61 @@ Screen flow allows users to offer approval or rejection on LOI, Lease Documentat
                     <visibilityRule>
                         <conditionLogic>or</conditionLogic>
                         <conditions>
+                            <leftValueReference>dt_LoiApprovalsDue.numberOfRowsSelected</leftValueReference>
+                            <operator>GreaterThan</operator>
+                            <rightValue>
+                                <numberValue>0.0</numberValue>
+                            </rightValue>
+                        </conditions>
+                        <conditions>
+                            <leftValueReference>dt_DocumentationApprovalsDue.numberOfRowsSelected</leftValueReference>
+                            <operator>GreaterThan</operator>
+                            <rightValue>
+                                <numberValue>0.0</numberValue>
+                            </rightValue>
+                        </conditions>
+                    </visibilityRule>
+                </fields>
+                <fields>
+                    <name>bb_SaveChangesApprover</name>
+                    <extensionName>c:fsc_flowButtonBar</extensionName>
+                    <fieldType>ComponentInstance</fieldType>
+                    <inputParameters>
+                        <name>alignment</name>
+                        <value>
+                            <stringValue>center</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>orientation</name>
+                        <value>
+                            <stringValue>horizontal</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>showLines</name>
+                        <value>
+                            <stringValue>neither</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>actionMode</name>
+                        <value>
+                            <stringValue>navigation</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>buttons</name>
+                        <value>
+                            <stringValue>[{&quot;label&quot;:&quot;Save Changes&quot;,&quot;value&quot;:&quot;Save Changes&quot;,&quot;iconPosition&quot;:&quot;left&quot;,&quot;variant&quot;:&quot;brand-outline&quot;,&quot;index&quot;:0}]</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>true</isRequired>
+                    <storeOutputAutomatically>true</storeOutputAutomatically>
+                    <visibilityRule>
+                        <conditionLogic>(1 OR 2) AND (3 OR 5) AND ( 4 OR 6)</conditionLogic>
+                        <conditions>
                             <leftValueReference>dt_LoiApprovalsDue.numberOfRowsEdited</leftValueReference>
                             <operator>GreaterThan</operator>
                             <rightValue>
@@ -1635,6 +1767,34 @@ Screen flow allows users to offer approval or rejection on LOI, Lease Documentat
                             <operator>GreaterThan</operator>
                             <rightValue>
                                 <numberValue>0.0</numberValue>
+                            </rightValue>
+                        </conditions>
+                        <conditions>
+                            <leftValueReference>dt_LoiApprovalsDue.numberOfRowsSelected</leftValueReference>
+                            <operator>LessThan</operator>
+                            <rightValue>
+                                <numberValue>1.0</numberValue>
+                            </rightValue>
+                        </conditions>
+                        <conditions>
+                            <leftValueReference>dt_DocumentationApprovalsDue.numberOfRowsSelected</leftValueReference>
+                            <operator>LessThan</operator>
+                            <rightValue>
+                                <numberValue>1.0</numberValue>
+                            </rightValue>
+                        </conditions>
+                        <conditions>
+                            <leftValueReference>dt_LoiApprovalsDue.numberOfRowsSelected</leftValueReference>
+                            <operator>IsNull</operator>
+                            <rightValue>
+                                <booleanValue>true</booleanValue>
+                            </rightValue>
+                        </conditions>
+                        <conditions>
+                            <leftValueReference>dt_DocumentationApprovalsDue.numberOfRowsSelected</leftValueReference>
+                            <operator>IsNull</operator>
+                            <rightValue>
+                                <booleanValue>true</booleanValue>
                             </rightValue>
                         </conditions>
                     </visibilityRule>
@@ -1714,7 +1874,7 @@ Screen flow allows users to offer approval or rejection on LOI, Lease Documentat
                     <inputParameters>
                         <name>columnEdits</name>
                         <value>
-                            <stringValue>pro_Assigned_To_Name__c:true, pro_Member_Role__c:true, pro_Include_In_LOI_Approvals__c:true, pro_Reason_For_LOI_Exclusion__c:true</stringValue>
+                            <stringValue>pro_Member_Role__c:true, pro_Reason_For_LOI_Exclusion__c:true</stringValue>
                         </value>
                     </inputParameters>
                     <inputParameters>
@@ -1742,15 +1902,9 @@ Screen flow allows users to offer approval or rejection on LOI, Lease Documentat
                         </value>
                     </inputParameters>
                     <inputParameters>
-                        <name>hideCheckboxColumn</name>
-                        <value>
-                            <booleanValue>true</booleanValue>
-                        </value>
-                    </inputParameters>
-                    <inputParameters>
                         <name>cb_hideCheckboxColumn</name>
                         <value>
-                            <stringValue>CB_TRUE</stringValue>
+                            <stringValue>CB_FALSE</stringValue>
                         </value>
                     </inputParameters>
                     <inputParameters>
@@ -1838,15 +1992,9 @@ Screen flow allows users to offer approval or rejection on LOI, Lease Documentat
                         </value>
                     </inputParameters>
                     <inputParameters>
-                        <name>hideCheckboxColumn</name>
-                        <value>
-                            <booleanValue>true</booleanValue>
-                        </value>
-                    </inputParameters>
-                    <inputParameters>
                         <name>cb_hideCheckboxColumn</name>
                         <value>
-                            <stringValue>CB_TRUE</stringValue>
+                            <stringValue>CB_FALSE</stringValue>
                         </value>
                     </inputParameters>
                     <inputParameters>
@@ -1870,7 +2018,7 @@ Screen flow allows users to offer approval or rejection on LOI, Lease Documentat
                     <inputParameters>
                         <name>columnEdits</name>
                         <value>
-                            <stringValue>pro_Member_Role__c:true, pro_Include_In_Documentation_Approval__c:true, pro_Reason_For_Documentation_Exclusion__c:true, pro_Assigned_To__r_lookup:true</stringValue>
+                            <stringValue>pro_Member_Role__c:true, pro_Reason_For_Documentation_Exclusion__c:true</stringValue>
                         </value>
                     </inputParameters>
                     <inputParameters>
@@ -1926,13 +2074,68 @@ Screen flow allows users to offer approval or rejection on LOI, Lease Documentat
                     <storeOutputAutomatically>true</storeOutputAutomatically>
                 </fields>
                 <fields>
-                    <name>bb_SaveChanges</name>
+                    <name>bb_ApproverRequiredOrNot</name>
                     <extensionName>c:fsc_flowButtonBar</extensionName>
                     <fieldType>ComponentInstance</fieldType>
                     <inputParameters>
                         <name>alignment</name>
                         <value>
-                            <stringValue>left</stringValue>
+                            <stringValue>center</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>orientation</name>
+                        <value>
+                            <stringValue>horizontal</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>showLines</name>
+                        <value>
+                            <stringValue>neither</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>actionMode</name>
+                        <value>
+                            <stringValue>navigation</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>buttons</name>
+                        <value>
+                            <stringValue>[{&quot;label&quot;:&quot;Required&quot;,&quot;value&quot;:&quot;Required&quot;,&quot;iconPosition&quot;:&quot;left&quot;,&quot;variant&quot;:&quot;brand-outline&quot;,&quot;index&quot;:0},{&quot;label&quot;:&quot;Not Required&quot;,&quot;value&quot;:&quot;Not Required&quot;,&quot;iconPosition&quot;:&quot;left&quot;,&quot;variant&quot;:&quot;destructive-text&quot;,&quot;index&quot;:1}]</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>true</isRequired>
+                    <storeOutputAutomatically>true</storeOutputAutomatically>
+                    <visibilityRule>
+                        <conditionLogic>or</conditionLogic>
+                        <conditions>
+                            <leftValueReference>dt_AllAidApprovers.numberOfRowsSelected</leftValueReference>
+                            <operator>GreaterThan</operator>
+                            <rightValue>
+                                <numberValue>0.0</numberValue>
+                            </rightValue>
+                        </conditions>
+                        <conditions>
+                            <leftValueReference>dt_AllDealTeams.numberOfRowsSelected</leftValueReference>
+                            <operator>GreaterThan</operator>
+                            <rightValue>
+                                <numberValue>0.0</numberValue>
+                            </rightValue>
+                        </conditions>
+                    </visibilityRule>
+                </fields>
+                <fields>
+                    <name>bb_SaveChangesManager</name>
+                    <extensionName>c:fsc_flowButtonBar</extensionName>
+                    <fieldType>ComponentInstance</fieldType>
+                    <inputParameters>
+                        <name>alignment</name>
+                        <value>
+                            <stringValue>center</stringValue>
                         </value>
                     </inputParameters>
                     <inputParameters>
@@ -1963,7 +2166,7 @@ Screen flow allows users to offer approval or rejection on LOI, Lease Documentat
                     <isRequired>true</isRequired>
                     <storeOutputAutomatically>true</storeOutputAutomatically>
                     <visibilityRule>
-                        <conditionLogic>or</conditionLogic>
+                        <conditionLogic>(1 OR 2) AND (3 OR 4) AND (5 OR 6)</conditionLogic>
                         <conditions>
                             <leftValueReference>dt_AllDealTeams.numberOfRowsEdited</leftValueReference>
                             <operator>GreaterThan</operator>
@@ -1976,6 +2179,34 @@ Screen flow allows users to offer approval or rejection on LOI, Lease Documentat
                             <operator>GreaterThan</operator>
                             <rightValue>
                                 <numberValue>0.0</numberValue>
+                            </rightValue>
+                        </conditions>
+                        <conditions>
+                            <leftValueReference>dt_AllDealTeams.numberOfRowsSelected</leftValueReference>
+                            <operator>LessThan</operator>
+                            <rightValue>
+                                <numberValue>1.0</numberValue>
+                            </rightValue>
+                        </conditions>
+                        <conditions>
+                            <leftValueReference>dt_AllDealTeams.numberOfRowsSelected</leftValueReference>
+                            <operator>IsNull</operator>
+                            <rightValue>
+                                <booleanValue>true</booleanValue>
+                            </rightValue>
+                        </conditions>
+                        <conditions>
+                            <leftValueReference>dt_AllAidApprovers.numberOfRowsSelected</leftValueReference>
+                            <operator>LessThan</operator>
+                            <rightValue>
+                                <numberValue>1.0</numberValue>
+                            </rightValue>
+                        </conditions>
+                        <conditions>
+                            <leftValueReference>dt_AllAidApprovers.numberOfRowsSelected</leftValueReference>
+                            <operator>IsNull</operator>
+                            <rightValue>
+                                <booleanValue>true</booleanValue>
                             </rightValue>
                         </conditions>
                     </visibilityRule>
@@ -2008,7 +2239,7 @@ Screen flow allows users to offer approval or rejection on LOI, Lease Documentat
     <screens>
         <name>ErrorScreen</name>
         <label>ErrorScreen</label>
-        <locationX>3394</locationX>
+        <locationX>3658</locationX>
         <locationY>3278</locationY>
         <allowBack>true</allowBack>
         <allowFinish>false</allowFinish>
@@ -2024,7 +2255,7 @@ Screen flow allows users to offer approval or rejection on LOI, Lease Documentat
     <screens>
         <name>NonDealApprovalConsoleScreen</name>
         <label>NonDealApprovalConsoleScreen</label>
-        <locationX>2822</locationX>
+        <locationX>3086</locationX>
         <locationY>1922</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
@@ -2094,6 +2325,7 @@ Screen flow allows users to offer approval or rejection on LOI, Lease Documentat
                     <name>Approver_Comment</name>
                     <fieldText>Approver Comment</fieldText>
                     <fieldType>LargeTextArea</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                 </fields>
                 <fields>
@@ -2174,52 +2406,161 @@ Screen flow allows users to offer approval or rejection on LOI, Lease Documentat
         <showFooter>false</showFooter>
         <showHeader>false</showHeader>
     </screens>
-    <screens>
-        <name>Notification_Success_Screen</name>
-        <label>Notification Success Screen</label>
-        <locationX>50</locationX>
-        <locationY>2678</locationY>
-        <allowBack>false</allowBack>
-        <allowFinish>true</allowFinish>
-        <allowPause>false</allowPause>
-        <connector>
-            <isGoTo>true</isGoTo>
-            <targetReference>ApproverConsoleScreen</targetReference>
-        </connector>
-        <fields>
-            <name>ApprovalReminderSuccessText</name>
-            <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;&lt;strong&gt;Notifications have successfully been sent to all outstanding approvers &lt;/strong&gt;&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-size: 36px; font-family: &amp;quot;Google Sans&amp;quot;, Arial, sans-serif; color: rgb(0, 144, 10);&quot;&gt;✔&lt;/span&gt;&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-        </fields>
-        <nextOrFinishButtonLabel>Return To Console</nextOrFinishButtonLabel>
-        <showFooter>true</showFooter>
-        <showHeader>false</showHeader>
-    </screens>
     <start>
-        <locationX>1607</locationX>
+        <locationX>2036</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Reset_Collections_To_Blank</targetReference>
         </connector>
     </start>
     <status>Active</status>
-    <subflows>
-        <description>Autolaunched flow to send a reminder notification to any outstanding approvers</description>
-        <name>Send_Approval_Reminder</name>
-        <label>Send Approval Reminder</label>
+    <transforms>
+        <name>Create_AiD_Id_Collection</name>
+        <label>Create AiD Id Collection</label>
+        <locationX>2162</locationX>
+        <locationY>998</locationY>
+        <connector>
+            <targetReference>Get_Asset_In_Deal_Approvers_For_Running_User</targetReference>
+        </connector>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>Get_Assets_In_Deal[$EachItem].Id</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
+    <transforms>
+        <name>Create_Id_Collection_For_AiD_Approvers_Selected_To_Include_Exclude</name>
+        <label>Create Id Collection For AiD Approvers Selected To Include / Exclude</label>
+        <locationX>1634</locationX>
+        <locationY>2894</locationY>
+        <connector>
+            <targetReference>Set_Deal_Teams_As_Included_Excluded_In_Approvals</targetReference>
+        </connector>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>dt_AllAidApprovers.outputSelectedRows[$EachItem].Id</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
+    <transforms>
+        <name>Create_Id_Collection_For_Deal_Teams_Selected_To_Include_Exclude</name>
+        <label>Create Id Collection For Deal Teams Selected To Include / Exclude</label>
+        <locationX>1634</locationX>
+        <locationY>2786</locationY>
+        <connector>
+            <targetReference>Create_Id_Collection_For_AiD_Approvers_Selected_To_Include_Exclude</targetReference>
+        </connector>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>dt_AllDealTeams.outputSelectedRows[$EachItem].Id</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
+    <transforms>
+        <name>Create_Id_Collection_For_Selected_AiD_Approvers</name>
+        <label>Create Id Collection For Selected AiD Approvers</label>
+        <locationX>842</locationX>
+        <locationY>2570</locationY>
+        <connector>
+            <targetReference>Update_AiD_Approvers_With_Datatable_Inline_Comments</targetReference>
+        </connector>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>dt_DocumentationApprovalsDue.outputSelectedRows[$EachItem].Id</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
+    <transforms>
+        <name>Create_Id_Collection_For_Selected_Deal_Team_Records</name>
+        <label>Create Id Collection For Selected Deal Team Records</label>
         <locationX>50</locationX>
         <locationY>2570</locationY>
         <connector>
-            <targetReference>Notification_Success_Screen</targetReference>
+            <targetReference>Update_Deal_Teams_With_Datatable_Inline_Comments</targetReference>
         </connector>
-        <flowName>Prodigy_Auto_Approval_Reminder_Notification</flowName>
-        <inputAssignments>
-            <name>recordId</name>
-            <value>
-                <elementReference>recordId</elementReference>
-            </value>
-        </inputAssignments>
-    </subflows>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>dt_LoiApprovalsDue.outputSelectedRows[$EachItem].Id</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
+    <transforms>
+        <name>Create_Member_Role_Collection_For_AiD_Approvers</name>
+        <label>Create Member Role Collection For AiD Approvers</label>
+        <locationX>1238</locationX>
+        <locationY>2246</locationY>
+        <connector>
+            <targetReference>ApproverConsoleScreen</targetReference>
+        </connector>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>Get_Asset_In_Deal_Approvers_For_Running_User[$EachItem].pro_Member_Role__c</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
+    <transforms>
+        <name>Create_Member_Role_Collection_For_Approver_Deal_Teams</name>
+        <label>Create Member Role Collection For Approver Deal Teams</label>
+        <locationX>1238</locationX>
+        <locationY>2138</locationY>
+        <connector>
+            <targetReference>Create_Member_Role_Collection_For_AiD_Approvers</targetReference>
+        </connector>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>Get_Open_LOI_Deal_Team_Records_For_Running_User[$EachItem].pro_Member_Role__c</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
     <variables>
         <name>recordId</name>
         <dataType>SObject</dataType>
@@ -2279,7 +2620,7 @@ Screen flow allows users to offer approval or rejection on LOI, Lease Documentat
         <scale>0</scale>
     </variables>
     <variables>
-        <description>Used as a placeholder in the element &#39;Are Internal And External Loops On The Same Deal Team?&#39; allowing for the datatable output selectedRows to be replaced with the editedRows output</description>
+        <description>Used as a placeholder in the element &apos;Are Internal And External Loops On The Same Deal Team?&apos; allowing for the datatable output selectedRows to be replaced with the editedRows output</description>
         <name>varDealTeamPlaceholder</name>
         <dataType>SObject</dataType>
         <isCollection>false</isCollection>

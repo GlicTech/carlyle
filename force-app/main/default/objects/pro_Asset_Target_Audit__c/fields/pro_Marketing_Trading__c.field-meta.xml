@@ -4,8 +4,8 @@
     <description>If linked to an AiD, this field pulls in the Department of the User who is the owner of the Deal. Otherwise, this field pulls in the value from Marketing / Trading on related Asset.</description>
     <externalId>false</externalId>
     <formula>IF( pro_Asset_in_Deal__r.LOI_Date__c = Null ||  pro_Asset_in_Deal__c = Null, TEXT(pro_Asset__r.pro_Marketing_Trading__c),
-        IF(   pro_Asset_in_Deal__r.leaseworks__Marketing_Activity__r.leaseworks__Marketing_Representative_User__r.Department   != Null,      pro_Asset_in_Deal__r.leaseworks__Marketing_Activity__r.leaseworks__Marketing_Representative_User__r.Department,   pro_Asset_in_Deal__r.leaseworks__Marketing_Activity__r.leaseworks__Marketing_Representative_User__r.FirstName  + &#39; &#39; + pro_Asset_in_Deal__r.leaseworks__Marketing_Activity__r.leaseworks__Marketing_Representative_User__r.LastName + &#39; - No Department Defined&#39;))</formula>
-    <label>Marketing / Trading</label>
+        IF(   pro_Asset_in_Deal__r.leaseworks__Marketing_Activity__r.leaseworks__Marketing_Representative_User__r.Department   != Null,      pro_Asset_in_Deal__r.leaseworks__Marketing_Activity__r.leaseworks__Marketing_Representative_User__r.Department,   pro_Asset_in_Deal__r.leaseworks__Marketing_Activity__r.leaseworks__Marketing_Representative_User__r.FirstName  + &apos; &apos; + pro_Asset_in_Deal__r.leaseworks__Marketing_Activity__r.leaseworks__Marketing_Representative_User__r.LastName + &apos; - No Department Defined&apos;))</formula>
+    <label>Redeploy Type</label>
     <required>false</required>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>

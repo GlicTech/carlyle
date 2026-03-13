@@ -13,7 +13,7 @@
                             <value>Submit</value>
                         </valueListItems>
                         <valueListItems>
-                            <value>CustomButton.leaseworks__Invoice__c.leaseworks__Generate_Invoice</value>
+                            <value>leaseworks__Invoice__c.Generate_Invoice1</value>
                         </valueListItems>
                         <valueListItems>
                             <value>leaseworks__Invoice__c.leaseworks__Cancel_Invoice</value>
@@ -704,6 +704,26 @@
                 <identifier>Recordleaseworks_Balance_Due_cField</identifier>
             </fieldInstance>
         </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Sec_Dep_Refund_Offset_Applied__c</fieldItem>
+                <identifier>Recordleaseworks_Sec_Dep_Refund_Offset_Applied_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>readonly</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Ageing__c</fieldItem>
+                <identifier>Recordleaseworks_Ageing_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
         <name>Facet-ba8de196-dca3-4b5f-a711-d23e6c0a3baf</name>
         <type>Facet</type>
     </flexiPageRegions>
@@ -734,8 +754,18 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Sec_Dep_Refund_Offset_Applied__c</fieldItem>
-                <identifier>Recordleaseworks_Sec_Dep_Refund_Offset_Applied_cField</identifier>
+                <fieldItem>Record.leaseworks__Billing_Adj_Credit_Applied__c</fieldItem>
+                <identifier>Recordleaseworks_Billing_Adj_Credit_Applied_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Cash_Credit_Applied__c</fieldItem>
+                <identifier>Recordleaseworks_Cash_Credit_Applied_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -756,16 +786,6 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.leaseworks__Date_Paid_In_Full_F__c</fieldItem>
                 <identifier>Recordleaseworks_Date_Paid_In_Full_F_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>readonly</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Ageing__c</fieldItem>
-                <identifier>Recordleaseworks_Ageing_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-ba75f2e8-9149-40e5-9413-4266d8168b4b</name>
@@ -1285,6 +1305,10 @@
                     <value>Facet-9dbd7c05-4097-4535-a978-0aabd2c9a364</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>@@@SFDCInformationSFDC@@@</value>
                 </componentInstanceProperties>
@@ -1297,6 +1321,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-80ad9172-8714-4302-b41d-80454d2613de</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -1313,6 +1341,10 @@
                     <value>Facet-cd6c3268-0d13-47da-9343-8079e9f61801</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Key Dates</value>
                 </componentInstanceProperties>
@@ -1325,6 +1357,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-f5cb067b-6f7f-4f11-b4b7-dd480604b75b</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -1341,6 +1377,10 @@
                     <value>Facet-bf1e1829-fdd7-41ba-a478-f38f5e70d320</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Total Amounts Due and Aging</value>
                 </componentInstanceProperties>
@@ -1353,6 +1393,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-03481c06-4c3c-4118-88f4-d8cf2b6cfe63</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -1369,6 +1413,10 @@
                     <value>Facet-1e39f977-8440-454a-b37b-1127868b3339</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Deferral</value>
                 </componentInstanceProperties>
@@ -1381,6 +1429,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-874b0358-313a-4ec6-aaf0-26c151fe3d0f</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -1397,6 +1449,10 @@
                     <value>Facet-6364bd31-c0f7-4335-8279-b1409b2eabfc</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Accounting Details</value>
                 </componentInstanceProperties>
@@ -1411,6 +1467,10 @@
                     <value>Facet-cf5bf533-21f2-4f19-a922-31875c7d780d</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>@@@SFDCOther_InformationSFDC@@@</value>
                 </componentInstanceProperties>
@@ -1423,6 +1483,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-cf97e9a3-9d13-44cb-9b80-db3ea9d5bee4</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>

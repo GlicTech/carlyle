@@ -6,6 +6,10 @@
     <description>Leases with Invoice and Payment</description>
     <join>
         <join>
+            <join>
+                <outerJoin>false</outerJoin>
+                <relationship>leaseworks__Payment_Line_Items__r</relationship>
+            </join>
             <outerJoin>false</outerJoin>
             <relationship>leaseworks__Payments__r</relationship>
         </join>
@@ -1976,11 +1980,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>leaseworks__Lessee__c</field>
-            <table>leaseworks__Lease__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>leaseworks__Lessee_Bank_Account_Number_New__c</field>
             <table>leaseworks__Lease__c</table>
         </columns>
@@ -2007,11 +2006,6 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>leaseworks__Lessee_Swift_Code_New__c</field>
-            <table>leaseworks__Lease__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>leaseworks__Operator__c</field>
             <table>leaseworks__Lease__c</table>
         </columns>
         <columns>
@@ -3437,6 +3431,11 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>leaseworks__Assembly_MR_Info__c</field>
+            <table>leaseworks__Lease__c.leaseworks__Invoices__r.leaseworks__Payments__r.leaseworks__Payment_Line_Items__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>leaseworks__Lease__c</field>
             <table>leaseworks__Lease__c.leaseworks__Invoices__r.leaseworks__Payments__r</table>
         </columns>
@@ -3444,6 +3443,11 @@
             <checkedByDefault>false</checkedByDefault>
             <field>leaseworks__Lessor_Bank_Name__c</field>
             <table>leaseworks__Lease__c.leaseworks__Invoices__r.leaseworks__Payments__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>leaseworks__Amount_Paid__c</field>
+            <table>leaseworks__Lease__c.leaseworks__Invoices__r.leaseworks__Payments__r.leaseworks__Payment_Line_Items__r</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
@@ -3735,6 +3739,31 @@
             <field>leaseworks__Prepayment_lkp__c</field>
             <table>leaseworks__Lease__c.leaseworks__Invoices__r.leaseworks__Payments__r</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>leaseworks__Credit_Memo__c.leaseworks__Memo__c</field>
+            <table>leaseworks__Lease__c.leaseworks__Invoices__r.leaseworks__Payments__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>leaseworks__Event_claim_payable__c.leaseworks__Payable_Short_Comment__c</field>
+            <table>leaseworks__Lease__c.leaseworks__Invoices__r.leaseworks__Payments__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>leaseworks__Event_claim_payable__c.leaseworks__Payable_Type__c</field>
+            <table>leaseworks__Lease__c.leaseworks__Invoices__r.leaseworks__Payments__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>leaseworks__Event_claim_payable__c.leaseworks__Claim__c.Name</field>
+            <table>leaseworks__Lease__c.leaseworks__Invoices__r.leaseworks__Payments__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>leaseworks__Y_Hidden_Payment_Std_Line_Item__c.leaseworks__Payment_Receipt__c.leaseworks__Description__c</field>
+            <table>leaseworks__Lease__c.leaseworks__Invoices__r.leaseworks__Payments__r</table>
+        </columns>
         <masterLabel>Payments &amp; Credits</masterLabel>
     </sections>
     <sections>
@@ -3871,6 +3900,26 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>cap_Record_ID__c</field>
+            <table>leaseworks__Lease__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>cap_Total_Invoiced_Balance__c</field>
+            <table>leaseworks__Lease__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Fixed_Interest__c</field>
+            <table>leaseworks__Lease__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Margin__c</field>
+            <table>leaseworks__Lease__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>SSD_Cash_LoC_RSD_Cash_LoC__c</field>
             <table>leaseworks__Lease__c</table>
         </columns>
         <masterLabel>Contracts</masterLabel>

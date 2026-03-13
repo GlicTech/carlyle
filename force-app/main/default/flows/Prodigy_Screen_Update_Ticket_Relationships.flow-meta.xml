@@ -232,12 +232,12 @@ AND(
     <formulas>
         <name>f_QueryRelatedAssemblies</name>
         <dataType>String</dataType>
-        <expression>&quot;SELECT Name, Id, leaseworks__Type__c, leaseworks__Last_CSN_Utilization__c, leaseworks__Last_TSN_Utilization__c, leaseworks__Comments__c FROM leaseworks__Constituent_Assembly__c WHERE leaseworks__Attached_Aircraft__c = &#39;&quot; &amp; {!recordId.pro_Asset__c} &amp; &quot;&#39;&quot;</expression>
+        <expression>&quot;SELECT Name, Id, leaseworks__Type__c, leaseworks__Last_CSN_Utilization__c, leaseworks__Last_TSN_Utilization__c, leaseworks__Comments__c FROM leaseworks__Constituent_Assembly__c WHERE leaseworks__Attached_Aircraft__c = &apos;&quot; &amp; {!recordId.pro_Asset__c} &amp; &quot;&apos;&quot;</expression>
     </formulas>
     <formulas>
         <name>f_QueryRelatedUtilizations</name>
         <dataType>String</dataType>
-        <expression>&quot;SELECT Name, Id, leaseworks__Month_Ending__c, leaseworks__Airframe_Cycles_Landing_During_Month__c, leaseworks__Airframe_Flight_Hours_Month__c, leaseworks__Engineering_Modifications_or_Changes__c	 FROM leaseworks__Utilization_Report__c WHERE leaseworks__Aircraft__c = &#39;&quot; &amp; {!recordId.pro_Asset__c}&amp; &quot;&#39; ORDER BY leaseworks__Month_Ending__c DESC&quot;</expression>
+        <expression>&quot;SELECT Name, Id, leaseworks__Month_Ending__c, leaseworks__Airframe_Cycles_Landing_During_Month__c, leaseworks__Airframe_Flight_Hours_Month__c, leaseworks__Engineering_Modifications_or_Changes__c	 FROM leaseworks__Utilization_Report__c WHERE leaseworks__Aircraft__c = &apos;&quot; &amp; {!recordId.pro_Asset__c}&amp; &quot;&apos; ORDER BY leaseworks__Month_Ending__c DESC&quot;</expression>
     </formulas>
     <interviewLabel>Prodigy - Screen - Update Ticket Relationships {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Prodigy - Screen - Update Ticket Relationships</label>
@@ -292,6 +292,7 @@ AND(
                     </defaultValue>
                     <fieldText>Non Carlyle Asset</fieldText>
                     <fieldType>InputField</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                 </fields>
                 <fields>
@@ -338,6 +339,7 @@ AND(
                 </fields>
                 <fields>
                     <fieldType>ObjectProvided</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                     <objectFieldReference>recordId.pro_Non_Carlyle_Asset_MSN__c</objectFieldReference>
                     <visibilityRule>
@@ -457,11 +459,13 @@ AND(
                 <fieldType>Region</fieldType>
                 <fields>
                     <fieldType>ObjectProvided</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                     <objectFieldReference>recordId.pro_Lease__c</objectFieldReference>
                 </fields>
                 <fields>
                     <fieldType>ObjectProvided</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                     <objectFieldReference>recordId.pro_External_Party__c</objectFieldReference>
                 </fields>
@@ -478,11 +482,13 @@ AND(
                 <fieldType>Region</fieldType>
                 <fields>
                     <fieldType>ObjectProvided</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                     <objectFieldReference>recordId.pro_Deal__c</objectFieldReference>
                 </fields>
                 <fields>
                     <fieldType>ObjectProvided</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                     <objectFieldReference>recordId.pro_Technical_Project__c</objectFieldReference>
                 </fields>

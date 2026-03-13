@@ -1,67 +1,79 @@
 <template>
-    <lightning-card title="👥 Record Sharing Report" icon-name="standard:report">
-        <!-- Loading Spinner -->
-        <template if:true={isLoading}>
-            <div class="slds-is-relative slds-p-around_medium">
-                <lightning-spinner size="medium" alternative-text="Loading..."></lightning-spinner>
-            </div>
-        </template>
+  <lightning-card title="👥 Record Sharing Report" icon-name="standard:report">
+    <!-- Loading Spinner -->
+    <template if:true={isLoading}>
+      <div class="slds-is-relative slds-p-around_medium">
+        <lightning-spinner
+          size="medium"
+          alternative-text="Loading..."
+        ></lightning-spinner>
+      </div>
+    </template>
 
-        <!-- Search Bar -->
-        <div class="slds-p-horizontal_medium slds-p-bottom_small">
-            <lightning-input
-                type="search"
-                placeholder="Search by record or user..."
-                onchange={handleSearch}
-                value={searchKey}>
-            </lightning-input>
-        </div>
+    <!-- Search Bar -->
+    <div class="slds-p-horizontal_medium slds-p-bottom_small">
+      <lightning-input
+        type="search"
+        placeholder="Search by record or user..."
+        onchange={handleSearch}
+        value={searchKey}
+      >
+      </lightning-input>
+    </div>
 
-        <!-- Grouped Accordion View -->
-        <template if:true={filteredGroups}>
-            <div class="slds-p-horizontal_medium slds-m-bottom_medium">
-                <template for:each={filteredGroups} for:item="group">
-                    <lightning-accordion key={group.key} allow-multiple-sections-open>
-                        <lightning-accordion-section label={group.label}>
-                            <table class="slds-table slds-table_bordered slds-table_cell-buffer">
-                                <thead>
-                                    <tr class="header-row">
-                                        <th>Record Name</th>
-                                        <th>User / Group</th>
-                                        <th>Access Level</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <template for:each={group.records} for:item="row">
-                                        <tr key={row.keyValue}>
-                                            <td>
-                                                <a href="javascript:void(0);" 
-                                                   data-id={row.RecordId}
-                                                   onclick={navigateToRecord} 
-                                                   class="record-link">
-                                                   {row.RecordName}
-                                                </a>
-                                            </td>
-                                            <td>{row.UserOrGroupName}</td>
-                                            <td>
-                                                <lightning-badge class="access-badge" 
-                                                    label={row.AccessLevel}></lightning-badge>
-                                            </td>
-                                        </tr>
-                                    </template>
-                                </tbody>
-                            </table>
-                        </lightning-accordion-section>
-                    </lightning-accordion>
-                </template>
-            </div>
+    <!-- Grouped Accordion View -->
+    <template if:true={filteredGroups}>
+      <div class="slds-p-horizontal_medium slds-m-bottom_medium">
+        <template for:each={filteredGroups} for:item="group">
+          <lightning-accordion key={group.key} allow-multiple-sections-open>
+            <lightning-accordion-section label={group.label}>
+              <table
+                class="slds-table slds-table_bordered slds-table_cell-buffer"
+              >
+                <thead>
+                  <tr class="header-row">
+                    <th>Record Name</th>
+                    <th>User / Group</th>
+                    <th>Access Level</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <template for:each={group.records} for:item="row">
+                    <tr key={row.keyValue}>
+                      <td>
+                        <a
+                          href="javascript:void(0);"
+                          data-id={row.RecordId}
+                          onclick={navigateToRecord}
+                          class="record-link"
+                        >
+                          {row.RecordName}
+                        </a>
+                      </td>
+                      <td>{row.UserOrGroupName}</td>
+                      <td>
+                        <lightning-badge
+                          class="access-badge"
+                          label={row.AccessLevel}
+                        ></lightning-badge>
+                      </td>
+                    </tr>
+                  </template>
+                </tbody>
+              </table>
+            </lightning-accordion-section>
+          </lightning-accordion>
         </template>
+      </div>
+    </template>
 
-        <!-- No Data -->
-        <template if:false={filteredGroups.length}>
-            <div class="slds-text-color_weak slds-text-align_center slds-p-around_medium">
-                No sharing records found.
-            </div>
-        </template>
-    </lightning-card>
+    <!-- No Data -->
+    <template if:false={filteredGroups.length}>
+      <div
+        class="slds-text-color_weak slds-text-align_center slds-p-around_medium"
+      >
+        No sharing records found.
+      </div>
+    </template>
+  </lightning-card>
 </template>

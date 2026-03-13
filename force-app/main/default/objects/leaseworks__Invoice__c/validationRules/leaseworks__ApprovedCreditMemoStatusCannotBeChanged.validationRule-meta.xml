@@ -3,8 +3,8 @@
     <fullName>leaseworks__ApprovedCreditMemoStatusCannotBeChanged</fullName>
     <active>false</active>
     <description>Deprecated : You cannot the change the status of credit note once its approved</description>
-    <errorConditionFormula>/*AND(RecordType.DeveloperName =&#39;Credit_Note&#39;,
-				TEXT(PRIORVALUE(Status__c))=&#39;Approved&#39;,TEXT(Status__c)!=&#39;Approved&#39;)*/
+    <errorConditionFormula>/*AND(RecordType.DeveloperName =&apos;Credit_Note&apos;,
+				TEXT(PRIORVALUE(Status__c))=&apos;Approved&apos;,TEXT(Status__c)!=&apos;Approved&apos;)*/
 				false</errorConditionFormula>
     <errorMessage>You cannot change the status once the Credit Note is Approved</errorMessage>
 </ValidationRule>

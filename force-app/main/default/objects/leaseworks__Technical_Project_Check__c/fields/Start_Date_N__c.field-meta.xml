@@ -2,8 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Start_Date_N__c</fullName>
     <description>Checklist Start Date</description>
-    <externalId>false</externalId>
-    <formula>IF( leaseworks__Technical_Project__r.leaseworks__Lease_Status__c = &#39;On Lease&#39;, leaseworks__Technical_Project__r.leaseworks__Lease_End_Date__c -  Day_Prior__c,  leaseworks__Technical_Project__r.Estimated_Redelivery_Date_N__c - Day_Prior__c)</formula>
+    <formula>IF( leaseworks__Technical_Project__r.leaseworks__Lease_Status__c = &apos;On Lease&apos;, leaseworks__Technical_Project__r.leaseworks__Lease_End_Date__c -  Day_Prior__c,  leaseworks__Technical_Project__r.Estimated_Redelivery_Date_N__c - Day_Prior__c)</formula>
     <label>Est Start Date</label>
     <required>false</required>
     <trackHistory>false</trackHistory>

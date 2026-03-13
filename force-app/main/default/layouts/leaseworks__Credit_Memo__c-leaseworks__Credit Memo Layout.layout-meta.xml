@@ -19,23 +19,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>leaseworks__Amount__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>leaseworks__Available_Credit_Memo_Amount_F__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Required</behavior>
-                <field>leaseworks__Currency__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>leaseworks__Memo__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Required</behavior>
                 <field>leaseworks__Status__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>leaseworks__Billing_Currency__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
@@ -65,8 +53,28 @@
                 <behavior>Readonly</behavior>
                 <field>Days_Past_Due__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>leaseworks__Credit_Memo_Amount_New__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Credit_Memo_Amount_Reported__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>leaseworks__Memo__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>leaseworks__Ledger_Amount__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>leaseworks__Credit_Memo_Type__c</field>
+            </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>leaseworks__Lease__c</field>
@@ -104,8 +112,16 @@
                 <field>Exclude_from_Receivables_Reporting__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
-                <field>leaseworks__Credit_Memo_Type__c</field>
+                <behavior>Edit</behavior>
+                <field>leaseworks__Exchange_Rate__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>leaseworks__Balance_Available_New__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>leaseworks__Credit_Memo_Sent__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -142,8 +158,8 @@
     <platformActionList>
         <actionListContext>Record</actionListContext>
         <platformActionListItems>
-            <actionName>Generate_Credit_Note</actionName>
-            <actionType>CustomButton</actionType>
+            <actionName>leaseworks__Credit_Memo__c.Generate_Credit_Note1</actionName>
+            <actionType>QuickAction</actionType>
             <sortOrder>0</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
@@ -191,11 +207,15 @@
         </quickActionListItems>
     </quickActionList>
     <relatedLists>
+        <excludeButtons>MassChangeOwner</excludeButtons>
+        <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
         <fields>leaseworks__Invoice__c</fields>
-        <fields>leaseworks__Amount__c</fields>
-        <fields>leaseworks__Credit_Memo_Reason__c</fields>
+        <fields>leaseworks__Amount_Applied_To_Invoice_num__c</fields>
+        <fields>leaseworks__Transaction_Currency__c</fields>
+        <fields>leaseworks__Payment_Status__c</fields>
         <fields>CREATED_DATE</fields>
+        <fields>leaseworks__Credit_Memo_Reason__c</fields>
         <relatedList>leaseworks__Payment__c.leaseworks__Credit_Memo__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -203,6 +223,14 @@
     </relatedLists>
     <relatedLists>
         <relatedList>RelatedFileList</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>leaseworks__Supplemental_Rent__c</fields>
+        <fields>leaseworks__Amount_Number__c</fields>
+        <fields>leaseworks__Credit_Memo_P__c</fields>
+        <fields>leaseworks__Lessee_New__c</fields>
+        <relatedList>leaseworks__Credit_Memo_Issuance__c.leaseworks__Credit_Memo__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>

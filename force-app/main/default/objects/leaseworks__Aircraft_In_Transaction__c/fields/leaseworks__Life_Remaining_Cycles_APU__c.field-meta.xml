@@ -2,7 +2,6 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>leaseworks__Life_Remaining_Cycles_APU__c</fullName>
     <deprecated>false</deprecated>
-    <externalId>false</externalId>
     <formula>If( leaseworks__Performance_Limit_Cycles_APU__c == 0, 0,1-((((( leaseworks__Lease_End_Date__c - leaseworks__Data_as_of_Eng_1__c +1)/(366/12))*  leaseworks__Average_Monthly_Cycles_APU__c)+ leaseworks__APU_CSN__c )/leaseworks__Performance_Limit_Cycles_APU__c))</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>% Life Remaining - (Cycles) APU</label>

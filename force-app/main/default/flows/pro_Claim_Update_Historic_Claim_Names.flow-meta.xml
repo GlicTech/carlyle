@@ -20,6 +20,8 @@
                 <stringValue>Lock</stringValue>
             </value>
         </inputParameters>
+        <nameSegment>lockRecord</nameSegment>
+        <offset>0</offset>
     </actionCalls>
     <actionCalls>
         <name>Unlock_Triggering_Record</name>
@@ -44,6 +46,8 @@
                 <stringValue>Unlock</stringValue>
             </value>
         </inputParameters>
+        <nameSegment>lockRecord</nameSegment>
+        <offset>0</offset>
     </actionCalls>
     <apiVersion>65.0</apiVersion>
     <description>Flow built to run once updating Claim names including locked claim records</description>
@@ -51,7 +55,7 @@
     <formulas>
         <name>f_NameConcatenation</name>
         <dataType>String</dataType>
-        <expression>{!$Record.leaseworks__Supplemental_Rent__r.leaseworks__Lease__r.leaseworks__Operator_New__r.Name}+ &#39; - &#39; +{!$Record.leaseworks__Assembly__r.Name} + &#39; - &#39; + TEXT({!$Record.leaseworks__Event__r.leaseworks__Event_Type__c})</expression>
+        <expression>{!$Record.leaseworks__Supplemental_Rent__r.leaseworks__Lease__r.leaseworks__Operator_New__r.Name}+ &apos; - &apos; +{!$Record.leaseworks__Assembly__r.Name} + &apos; - &apos; + TEXT({!$Record.leaseworks__Event__r.leaseworks__Event_Type__c})</expression>
     </formulas>
     <interviewLabel>Claim - Update Historic Claim Names {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Claim - Update Historic Claim Names</label>

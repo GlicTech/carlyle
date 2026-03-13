@@ -613,7 +613,7 @@
     <fieldUpdates>
         <fullName>leaseworks__Update_TSLV</fullName>
         <description>Checks to see if the date of UR is &gt; date on last C-Check. If so, increment TSLV. Also if new AC and no C-Check date is available, then we need to update as well.
-BM 24-Oct-12 : Don&#39;t use this. Logic moved to trigger URHandleAfterInsert.</description>
+BM 24-Oct-12 : Don&apos;t use this. Logic moved to trigger URHandleAfterInsert.</description>
         <field>leaseworks__Time_Since_Last_C_Check__c</field>
         <formula>IF(OR(leaseworks__Month_Ending__c &gt;leaseworks__Aircraft__r.leaseworks__Last_C_Check__c, ISBLANK(leaseworks__Aircraft__r.leaseworks__Last_C_Check__c)) , 
 IF(ISNEW(), 

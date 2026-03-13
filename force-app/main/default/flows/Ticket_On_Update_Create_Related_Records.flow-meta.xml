@@ -209,17 +209,17 @@
             <label>Yes - Non Carlyle Asset</label>
         </rules>
     </decisions>
-    <description>A flow designed one time to take the references from a Ticket&#39;s Assigned To, Asset, Assembly fields and set up Ticket Assignee, Asset On Ticket, Assembly On Ticket Records</description>
+    <description>A flow designed one time to take the references from a Ticket&apos;s Assigned To, Asset, Assembly fields and set up Ticket Assignee, Asset On Ticket, Assembly On Ticket Records</description>
     <environments>Default</environments>
     <formulas>
         <name>f_AssigneeFullName</name>
         <dataType>String</dataType>
-        <expression>{!$Record.pro_Assigned_To__r.FirstName} + &#39; &#39; + {!$Record.pro_Assigned_To__r.LastName}</expression>
+        <expression>{!$Record.pro_Assigned_To__r.FirstName} + &apos; &apos; + {!$Record.pro_Assigned_To__r.LastName}</expression>
     </formulas>
     <formulas>
         <name>f_SerialNumberTransactionCode</name>
         <dataType>String</dataType>
-        <expression>{!$Record.pro_Asset__r.leaseworks__MSN_Number__c} + &#39;(&#39; + {!$Record.pro_Asset__r.Transaction_Code__c} + &#39;)&#39;</expression>
+        <expression>{!$Record.pro_Asset__r.leaseworks__MSN_Number__c} + &apos;(&apos; + {!$Record.pro_Asset__r.Transaction_Code__c} + &apos;)&apos;</expression>
     </formulas>
     <interviewLabel>Ticket - On Update Create Related Records {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Ticket - On Update Create Related Records</label>

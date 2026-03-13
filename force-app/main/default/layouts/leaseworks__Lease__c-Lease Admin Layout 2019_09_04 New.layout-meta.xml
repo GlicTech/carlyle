@@ -138,6 +138,10 @@
                 <behavior>Readonly</behavior>
                 <field>cap_Record_ID__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>cap_Total_Invoiced_Balance__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -867,8 +871,8 @@
             <sortOrder>0</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
-            <actionName>leaseworks__Run_DDP</actionName>
-            <actionType>CustomButton</actionType>
+            <actionName>leaseworks__Lease__c.Generate_Lease_Summary_new</actionName>
+            <actionType>QuickAction</actionType>
             <sortOrder>1</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
@@ -954,14 +958,20 @@
         <sortOrder>Asc</sortOrder>
     </relatedLists>
     <relatedLists>
+        <fields>NAME</fields>
+        <fields>leaseworks__Role__c</fields>
+        <fields>leaseworks__Team_Member__c</fields>
+        <relatedList>leaseworks__Contract_Team__c.leaseworks__Contract__c</relatedList>
+    </relatedLists>
+    <relatedLists>
         <excludeButtons>MassChangeOwner</excludeButtons>
         <fields>NAME</fields>
         <fields>leaseworks__Credit_Memo_Date__c</fields>
         <fields>leaseworks__Due_Date__c</fields>
         <fields>leaseworks__Credit_Memo_Reason__c</fields>
         <fields>leaseworks__Memo__c</fields>
-        <fields>leaseworks__Amount__c</fields>
-        <fields>leaseworks__Available_Credit_Memo_Amount_F__c</fields>
+        <fields>leaseworks__Credit_Memo_Amount_New__c</fields>
+        <fields>leaseworks__Balance_Available_New__c</fields>
         <fields>leaseworks__Status__c</fields>
         <relatedList>leaseworks__Credit_Memo__c.leaseworks__Lease__c</relatedList>
     </relatedLists>
@@ -1114,16 +1124,6 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>leaseworks__Asset__c</fields>
-        <fields>leaseworks__Status__c</fields>
-        <fields>leaseworks__Start_Date__c</fields>
-        <fields>leaseworks__End_Date__c</fields>
-        <fields>CREATEDBY_USER.ALIAS</fields>
-        <fields>CREATED_DATE</fields>
-        <relatedList>leaseworks__Non_Lease_Agreements__c.leaseworks__Lease__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
         <fields>leaseworks__Type__c</fields>
         <fields>leaseworks__Description__c</fields>
         <fields>leaseworks__Due_Date__c</fields>
@@ -1146,6 +1146,7 @@
         <fields>leaseworks__Payable_Balance__c</fields>
         <fields>leaseworks__Payable_Date__c</fields>
         <fields>leaseworks__Payable_Short_Comment__c</fields>
+        <fields>leaseworks__Status__c</fields>
         <relatedList>leaseworks__Payable__c.leaseworks__Lease__c</relatedList>
     </relatedLists>
     <relatedLists>

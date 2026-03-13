@@ -982,12 +982,12 @@
     <formulas>
         <name>f_CompanyBoardApprovalRequired</name>
         <dataType>String</dataType>
-        <expression>IF({!NAButton.value} = &#39;NA Board Approval&#39;, &#39;No&#39;, &#39;Yes&#39;)</expression>
+        <expression>IF({!NAButton.value} = &apos;NA Board Approval&apos;, &apos;No&apos;, &apos;Yes&apos;)</expression>
     </formulas>
     <formulas>
         <name>f_SetDateTrueOrFalse</name>
         <dataType>Boolean</dataType>
-        <expression>IF({!bb_SetOrRemoveDate.value} = &#39;Set Date&#39;, True, False)</expression>
+        <expression>IF({!bb_SetOrRemoveDate.value} = &apos;Set Date&apos;, True, False)</expression>
     </formulas>
     <formulas>
         <name>f_TodaysDate</name>
@@ -997,7 +997,7 @@
     <formulas>
         <name>SOQL_Contract</name>
         <dataType>String</dataType>
-        <expression>&quot;SELECT Id, Name, leaseworks__Lease_Start_Date_New__c, leaseworks__Lease_End_Date_New__c, 	leaseworks__Operator_New__c, leaseworks__Lease_Type_Status__c  FROM leaseworks__Lease__c WHERE Id = &#39;&quot; + {!pro_Assets_In_Deal_Datatable.outputSelectedRow.leaseworks__Aircraft__r.leaseworks__Lease__c} + &quot;&#39;&quot;</expression>
+        <expression>&quot;SELECT Id, Name, leaseworks__Lease_Start_Date_New__c, leaseworks__Lease_End_Date_New__c, 	leaseworks__Operator_New__c, leaseworks__Lease_Type_Status__c  FROM leaseworks__Lease__c WHERE Id = &apos;&quot; + {!pro_Assets_In_Deal_Datatable.outputSelectedRow.leaseworks__Aircraft__r.leaseworks__Lease__c} + &quot;&apos;&quot;</expression>
     </formulas>
     <interviewLabel>Asset In Deal - Datatable ScreenFlow {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Asset In Deal - Datatable ScreenFlow</label>
@@ -1407,6 +1407,7 @@
                     <dataType>String</dataType>
                     <fieldText>Choose Column To Edit</fieldText>
                     <fieldType>DropdownBox</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
@@ -1427,6 +1428,7 @@
                     </defaultValue>
                     <fieldText>Choose Date To Set</fieldText>
                     <fieldType>InputField</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
