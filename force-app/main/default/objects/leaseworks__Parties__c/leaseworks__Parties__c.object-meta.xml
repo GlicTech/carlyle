@@ -150,7 +150,13 @@
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <deprecated>false</deprecated>
-    <description>This section links Leases (and Assets) to parties like Lessors, Lessees, and Operators. Primary parties (Lessor, Operator) automatically update relevant fields on the Lease page through this connection. Using the Parties table lets you skip loading parties on the Lease page as they will be auto populated</description>
+    <description>This section links Leases (and Assets) to parties like Lessors, Lessees, and Operators. Primary parties (Lessor, Operator) automatically update relevant fields on the Lease page through this connection. Using the Parties table lets you skip loading parties on the Lease page as they will be auto populated
+Information about Parties (e.g. Operators, Counterparties, SPVs) associated to an asset are stored in this object. There are fields on the the Asset and Lease pages with the similar naming (for easier reporting). But Parties from this list will rewrite Asset and Lease page fields as Parties list has higher priority
+[MODULE: Asset]
+[LOAD: Optional]
+[PREREQUISITES: Asset, Account]
+[REPLACEMENT OBJECT API: NA]
+[COMMENTS: NA]</description>
     <enableActivities>true</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -168,7 +174,7 @@
         <type>Text</type>
     </nameField>
     <pluralLabel>Parties</pluralLabel>
-    <searchLayouts />
+    <searchLayouts></searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

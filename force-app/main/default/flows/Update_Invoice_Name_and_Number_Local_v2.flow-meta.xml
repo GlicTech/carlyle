@@ -23,8 +23,8 @@
             <label>ALL_WF_DISABLED</label>
         </rules>
     </decisions>
-    <description>The flow calculate &#39;Invoice Name&#39; and &#39;Invoice Number&#39; with same logic as we have in packaged WFs: &#39;InvoiceCreatedUpdated&#39; and &#39;Invoice Set Invoice Name&#39; if field &#39;Custom Invoice Number&#39; (Custom_Invoice_Number__c)  is blank, else set 
-custom &#39;Invoice Name&#39; and &#39;Invoice Number&#39; from field &#39;Custom Invoice Number&#39; (Custom_Invoice_Number__c).</description>
+    <description>The flow calculate &apos;Invoice Name&apos; and &apos;Invoice Number&apos; with same logic as we have in packaged WFs: &apos;InvoiceCreatedUpdated&apos; and &apos;Invoice Set Invoice Name&apos; if field &apos;Custom Invoice Number&apos; (Custom_Invoice_Number__c)  is blank, else set 
+custom &apos;Invoice Name&apos; and &apos;Invoice Number&apos; from field &apos;Custom Invoice Number&apos; (Custom_Invoice_Number__c).</description>
     <environments>Default</environments>
     <formulas>
         <description>If Field leaseworks__Revised_Invoice_Number__c is blank - Use Invoice Number LW (by formula from WF), else Custom Invoice Number</description>
@@ -39,80 +39,80 @@ custom &#39;Invoice Name&#39; and &#39;Invoice Number&#39; from field &#39;Custo
         <expression>IF(ISBLANK({!$Record.CMS_Invoice_Number__c}), {!InvoiceNumber_WF}, {!$Record.CMS_Invoice_Number__c})</expression>
     </formulas>
     <formulas>
-        <description>Get the Invoice Name with formula from WF: &#39;Invoice Set Name&#39;</description>
+        <description>Get the Invoice Name with formula from WF: &apos;Invoice Set Name&apos;</description>
         <name>Invoice_Name_WF</name>
         <dataType>String</dataType>
-        <expression>if(Contains(TEXT({!$Record.leaseworks__Invoice_Type__c}),&#39;HL/SL-&#39;), {!$Record.leaseworks__Lessor_Level__c} &amp; &#39;-&#39;,&#39;&#39;)&amp; TEXT(YEAR( {!$Record.leaseworks__Invoice_Date__c} )) &amp; &#39;-&#39;
+        <expression>if(Contains(TEXT({!$Record.leaseworks__Invoice_Type__c}),&apos;HL/SL-&apos;), {!$Record.leaseworks__Lessor_Level__c} &amp; &apos;-&apos;,&apos;&apos;)&amp; TEXT(YEAR( {!$Record.leaseworks__Invoice_Date__c} )) &amp; &apos;-&apos;
 &amp;
 Case(TEXT({!$Record.leaseworks__Invoice_Type__c}),
-&#39;Aircraft MR&#39;,&#39;U&#39; ,
-&#39;Rent&#39;, &#39;R&#39;,
-&#39;Loan&#39;, &#39;L&#39;,
-&#39;Security Deposit&#39;, &#39;S&#39;,
-&#39;Interest&#39;,&#39;I&#39;,
-&#39;HL/SL-Rent&#39;,&#39;R&#39;,
-&#39;HL/SL-MR&#39;,&#39;U&#39;,
-&#39;HL/SL-SD&#39;,&#39;S&#39;,
-&#39;Service Fee&#39;,&#39;SF-&#39;,
-&#39;HL/SL-Interest&#39;,&#39;I&#39;,
-&#39;M&#39;
+&apos;Aircraft MR&apos;,&apos;U&apos; ,
+&apos;Rent&apos;, &apos;R&apos;,
+&apos;Loan&apos;, &apos;L&apos;,
+&apos;Security Deposit&apos;, &apos;S&apos;,
+&apos;Interest&apos;,&apos;I&apos;,
+&apos;HL/SL-Rent&apos;,&apos;R&apos;,
+&apos;HL/SL-MR&apos;,&apos;U&apos;,
+&apos;HL/SL-SD&apos;,&apos;S&apos;,
+&apos;Service Fee&apos;,&apos;SF-&apos;,
+&apos;HL/SL-Interest&apos;,&apos;I&apos;,
+&apos;M&apos;
 )
 &amp;
-IF(NOT(TEXT({!$Record.leaseworks__Invoice_Type__c}) = &#39;Service Fee&#39;),
-&#39;I&#39; &amp; &#39;-&#39; ,&#39;&#39;)
+IF(NOT(TEXT({!$Record.leaseworks__Invoice_Type__c}) = &apos;Service Fee&apos;),
+&apos;I&apos; &amp; &apos;-&apos; ,&apos;&apos;)
 &amp;
 Case({!$Record.leaseworks__Monthly_Utilization_Type_F__c},
-&#39;True Up Gross&#39;,&#39;TU&#39; ,
-&#39;Assumed/Estimated&#39;, &#39;AE&#39;,
-&#39;Manual Credits/Adjustments&#39;, &#39;MC&#39;,
-&#39;Provision&#39;,&#39;PR&#39;,
-&#39;&#39;
+&apos;True Up Gross&apos;,&apos;TU&apos; ,
+&apos;Assumed/Estimated&apos;, &apos;AE&apos;,
+&apos;Manual Credits/Adjustments&apos;, &apos;MC&apos;,
+&apos;Provision&apos;,&apos;PR&apos;,
+&apos;&apos;
 )
 &amp;
 IF( !ISBLANK({!$Record.leaseworks__Y_Hidden_Sequence_Number__c}),
-(&#39;-&#39;&amp;RIGHT(&#39;00000&#39; &amp; TEXT( {!$Record.leaseworks__Y_Hidden_Sequence_Number__c} ),6)), &#39;&#39;)
+(&apos;-&apos;&amp;RIGHT(&apos;00000&apos; &amp; TEXT( {!$Record.leaseworks__Y_Hidden_Sequence_Number__c} ),6)), &apos;&apos;)
 &amp;
-if({!$Record.leaseworks__Y_Hidden_Record_Type__c} == &#39;MR_Reconciliation&#39;
-, &#39;(Reconciliation)&#39; , &#39;&#39;)</expression>
+if({!$Record.leaseworks__Y_Hidden_Record_Type__c} == &apos;MR_Reconciliation&apos;
+, &apos;(Reconciliation)&apos; , &apos;&apos;)</expression>
     </formulas>
     <formulas>
-        <description>get the &#39;_Invoice Number&#39; with formula from WF: &#39;Invoice Set Invoice Number&#39;</description>
+        <description>get the &apos;_Invoice Number&apos; with formula from WF: &apos;Invoice Set Invoice Number&apos;</description>
         <name>InvoiceNumber_WF</name>
         <dataType>String</dataType>
-        <expression>IF(CONTAINS(TEXT({!$Record.leaseworks__Invoice_Type__c}) , &#39;HL/SL&#39;) , {!$Record.Name} ,TEXT(YEAR( {!$Record.leaseworks__Invoice_Date__c} )) &amp; &#39;-&#39; &amp;
+        <expression>IF(CONTAINS(TEXT({!$Record.leaseworks__Invoice_Type__c}) , &apos;HL/SL&apos;) , {!$Record.Name} ,TEXT(YEAR( {!$Record.leaseworks__Invoice_Date__c} )) &amp; &apos;-&apos; &amp;
 
 Case(TEXT({!$Record.leaseworks__Invoice_Type__c}),
 
-&#39;Aircraft MR&#39;,&#39;U&#39; ,
+&apos;Aircraft MR&apos;,&apos;U&apos; ,
 
-&#39;Rent&#39;, &#39;R&#39;,
-&#39;Loan&#39; , &#39;L&#39;,
+&apos;Rent&apos;, &apos;R&apos;,
+&apos;Loan&apos; , &apos;L&apos;,
 
-&#39;Security Deposit&#39;, &#39;S&#39;,
+&apos;Security Deposit&apos;, &apos;S&apos;,
 
-&#39;Interest&#39;,&#39;I&#39;,
-&#39;Service Fee&#39;, &#39;SF-&#39;,
+&apos;Interest&apos;,&apos;I&apos;,
+&apos;Service Fee&apos;, &apos;SF-&apos;,
 
-&#39;M&#39;
+&apos;M&apos;
 
 )
 &amp;
-IF(NOT(TEXT({!$Record.leaseworks__Invoice_Type__c}) = &#39;Service Fee&#39;),
-&#39;I&#39; &amp; &#39;-&#39; ,&#39;&#39;)
+IF(NOT(TEXT({!$Record.leaseworks__Invoice_Type__c}) = &apos;Service Fee&apos;),
+&apos;I&apos; &amp; &apos;-&apos; ,&apos;&apos;)
 &amp;
 
 
 Case({!$Record.leaseworks__Monthly_Utilization_Type_F__c},
 
-&#39;True Up Gross&#39;,&#39;TU&#39; ,
+&apos;True Up Gross&apos;,&apos;TU&apos; ,
 
-&#39;Assumed/Estimated&#39;, &#39;AE&#39;,
+&apos;Assumed/Estimated&apos;, &apos;AE&apos;,
 
-&#39;Manual Credits/Adjustments&#39;, &#39;MC&#39;,
+&apos;Manual Credits/Adjustments&apos;, &apos;MC&apos;,
 
-&#39;Provision&#39;,&#39;PR&#39;,
+&apos;Provision&apos;,&apos;PR&apos;,
 
-&#39;&#39;
+&apos;&apos;
 
 )
 
@@ -120,7 +120,7 @@ Case({!$Record.leaseworks__Monthly_Utilization_Type_F__c},
 
 IF( !ISBLANK({!$Record.leaseworks__Y_Hidden_Sequence_Number__c}),
 
-(&#39;-&#39;&amp;RIGHT(&#39;00000&#39; &amp; TEXT( {!$Record.leaseworks__Y_Hidden_Sequence_Number__c} ),6)), &#39;&#39;))</expression>
+(&apos;-&apos;&amp;RIGHT(&apos;00000&apos; &amp; TEXT( {!$Record.leaseworks__Y_Hidden_Sequence_Number__c} ),6)), &apos;&apos;))</expression>
     </formulas>
     <interviewLabel>Update Invoice Name and Number Local {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Update Invoice Name and Number Local v2</label>

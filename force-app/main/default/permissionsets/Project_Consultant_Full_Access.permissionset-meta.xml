@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
-    <description>This permission set gives full CRUD access to Project Consultant object and its fields. Allso, includes access to fields on Contact and Time Log Entry objects</description>
-    <hasActivationRequired>false</hasActivationRequired>
-    <label>Project Consultant Full Access</label>
     <classAccesses>
         <apexClass>proTimeLogController</apexClass>
         <enabled>true</enabled>
@@ -11,6 +8,7 @@
         <apexClass>proTimeLogControllerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
+    <description>This permission set gives full CRUD access to Project Consultant object and its fields. Allso, includes access to fields on Contact and Time Log Entry objects</description>
     <fieldPermissions>
         <editable>true</editable>
         <field>Contact.pro_Currency__c</field>
@@ -1026,6 +1024,8 @@
         <field>pro_Time_Log_Entry__c.pro_Work_Location__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Project Consultant Full Access</label>
     <objectPermissions>
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Invoke_Generate_PostClosing</name>
+        <label>Generate Post-Closing Items</label>
+        <locationX>176</locationX>
+        <locationY>134</locationY>
+        <actionName>pro_ChecklistAutoGenerator</actionName>
+        <actionType>apex</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>dealId</name>
+            <value>
+                <elementReference>varDealId</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>triggerStatus</name>
+            <value>
+                <stringValue>Closed - Won</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>pro_ChecklistAutoGenerator</nameSegment>
+    </actionCalls>
+    <apiVersion>62.0</apiVersion>
+    <description>Autolaunched subflow: generates Post-Closing checklist items for all active Assets in Deal when the Deal status changes to Closed - Won. Delegates to pro_ChecklistAutoGenerator invocable Apex.</description>
+    <label>Auto Generate Post-Closing Items</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>176</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Invoke_Generate_PostClosing</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>varDealId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

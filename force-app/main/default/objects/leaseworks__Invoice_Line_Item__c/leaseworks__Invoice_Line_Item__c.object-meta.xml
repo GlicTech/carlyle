@@ -147,7 +147,15 @@
     <compactLayoutAssignment>leaseworks__Invoice_Line_Item_Compact_Layout</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <deprecated>false</deprecated>
-    <description>Line Items that constitute the invoice details</description>
+    <description>Line Items that constitute the invoice details
+An invoice line item represents a specific entry on an invoice, offering a detailed breakdown of the total invoiced amount. 
+Population Requirement Details: If the triggers are ON, the system will automatically create lines with line amounts for MR invoices based on the supplemental Rent amount calculated on utilization, and for Rent invoices based on the Rent Slip lines. Security deposit and other types of invoices will only have one line auto-created by the system.
+If the trigger is OFF, the data for the invoice line items must be manually loaded. However, this is not a recommended method for loading invoice line data.
+[MODULE: Finance]
+[LOAD: Optional]
+[PREREQUISITES: Invoice (if loading with Triggers OFF)]
+[REPLACEMENT OBJECT API: NA]
+[COMMENTS: NA]</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -166,7 +174,7 @@
     </nameField>
     <pluralLabel>Invoice Line Items</pluralLabel>
     <recordTypeTrackHistory>false</recordTypeTrackHistory>
-    <searchLayouts />
+    <searchLayouts></searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
     <startsWith>Vowel</startsWith>
     <visibility>Public</visibility>

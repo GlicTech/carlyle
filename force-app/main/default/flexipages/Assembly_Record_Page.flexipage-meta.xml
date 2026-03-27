@@ -42,7 +42,7 @@
                             </visibilityRule>
                         </valueListItems>
                         <valueListItems>
-                            <value>CustomButton.leaseworks__Constituent_Assembly__c.Disk_Sheet_Report</value>
+                            <value>leaseworks__Constituent_Assembly__c.Disk_Sheet_Report1</value>
                             <visibilityRule>
                                 <booleanFilter>1 OR 2</booleanFilter>
                                 <criteria>
@@ -821,10 +821,102 @@
     </flexiPageRegions>
     <flexiPageRegions>
         <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.cap_Sun_Analysis_Code__c</fieldItem>
+                <identifier>Recordcap_Sun_Analysis_Code__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Name</fieldItem>
+                <identifier>RecordNameField2</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.cap_Record_ID__c</fieldItem>
+                <identifier>Recordcap_Record_ID__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <name>Facet-e48a62bb-9279-4e95-9456-c7e278c0528e</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Engine_Type_GP__c</fieldItem>
+                <identifier>Recordleaseworks_Engine_Type_GP_cField2</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Engine_Variant_GP__c</fieldItem>
+                <identifier>Recordleaseworks_Engine_Variant_GP_cField2</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldItem>Record.leaseworks__Attached_Aircraft__r.leaseworks__Asset_Owner_new__c</fieldItem>
+                <identifier>Recordleaseworks_Attached_Aircraft_rleaseworks_Asset_Owner_new_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <name>Facet-7bf3a311-b647-4a4f-a2ae-3dc69c1e772d</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-e48a62bb-9279-4e95-9456-c7e278c0528e</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:column</componentName>
+                <identifier>flexipage_column41</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-7bf3a311-b647-4a4f-a2ae-3dc69c1e772d</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:column</componentName>
+                <identifier>flexipage_column42</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>Facet-c5829f86-4e5f-479e-9b72-3a1603e09b94</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-dd976a8c-8734-4f23-9c9b-6e03692f971a</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>true</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -841,6 +933,10 @@
                     <value>Facet-b18a3280-81b5-4945-a6dc-7700a1ed3381</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Status</value>
                 </componentInstanceProperties>
@@ -853,6 +949,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-7c872260-37cc-4b7d-a1ca-c0fa6403b4a6</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -869,6 +969,10 @@
                     <value>Facet-5383dc15-bbb5-4ae8-bd7a-07b2baddc8b4</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Dates</value>
                 </componentInstanceProperties>
@@ -883,13 +987,17 @@
                     <value>Facet-22a05f4b-5f23-430d-98df-ffe511e638e4</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Engine</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:fieldSection</componentName>
                 <identifier>flexipage_fieldSection3</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 OR 2 OR 3 OR 4</booleanFilter>
+                    <booleanFilter>1 OR 2 OR 3 OR 4 OR 5</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.leaseworks__Type__c}</leftValue>
                         <operator>EQUAL</operator>
@@ -910,6 +1018,11 @@
                         <operator>EQUAL</operator>
                         <rightValue>Engine 4</rightValue>
                     </criteria>
+                    <criteria>
+                        <leftValue>{!Record.RecordType.Name}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>ENG Assembly</rightValue>
+                    </criteria>
                 </visibilityRule>
             </componentInstance>
         </itemInstances>
@@ -918,6 +1031,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-12d6c0d1-bd17-4ab5-a669-baab71dec9b4</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>true</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -941,6 +1058,10 @@
                     <value>Facet-2403d6ef-527f-454d-8060-47e95989a6b7</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Landing Gear</value>
                 </componentInstanceProperties>
@@ -962,6 +1083,10 @@
                     <value>Facet-79e1bfc4-0948-4086-a3d8-1b84a889cdfd</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>APU</value>
                 </componentInstanceProperties>
@@ -972,6 +1097,37 @@
                         <leftValue>{!Record.leaseworks__Type__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>APU</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>columns</name>
+                    <value>Facet-c5829f86-4e5f-479e-9b72-3a1603e09b94</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>label</name>
+                    <value>Sun Analysis Code Details</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:fieldSection</componentName>
+                <identifier>flexipage_fieldSection21</identifier>
+                <visibilityRule>
+                    <booleanFilter>1 OR 2</booleanFilter>
+                    <criteria>
+                        <leftValue>{!$User.Profile.Name}</leftValue>
+                        <operator>CONTAINS</operator>
+                        <rightValue>System</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!$User.Profile.Name}</leftValue>
+                        <operator>CONTAINS</operator>
+                        <rightValue>Back Office</rightValue>
                     </criteria>
                 </visibilityRule>
             </componentInstance>
@@ -1377,6 +1533,10 @@
                     <value>Facet-29b5f98d-b6f3-4289-8702-6d431b34e785</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Current Status</value>
                 </componentInstanceProperties>
@@ -1389,6 +1549,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-bb3026f2-3bb7-464b-bf97-a690fdcb294c</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>true</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -1405,6 +1569,10 @@
                     <value>Facet-6af2f5ba-bf13-4e70-a06b-f491e5cf6830</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Utilization</value>
                 </componentInstanceProperties>
@@ -1419,6 +1587,10 @@
                     <value>Facet-f3a45708-8bf1-4027-a4c1-c25146c94adb</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>FH:FC Ratio</value>
                 </componentInstanceProperties>
@@ -1431,6 +1603,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-966cf440-bb8f-4d56-b8f1-9454a1c12963</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -1739,6 +1915,10 @@
                     <value>Facet-1d67f5e6-a32a-427d-9199-6ce87ef0e8f8</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Maintenance Status</value>
                 </componentInstanceProperties>
@@ -1753,6 +1933,10 @@
                     <value>Facet-d82434cb-2964-40be-a4db-7773833509df</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Remaining Life</value>
                 </componentInstanceProperties>
@@ -1765,6 +1949,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-753db936-db91-4308-bee0-328caf427d6d</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -1802,6 +1990,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-d72e7307-b580-4f72-8fa0-aa14662e4292</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -1904,6 +2096,10 @@
                     <value>Facet-dfc05e3e-d7d1-49d0-b4b1-72e363cfcda1</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Information</value>
                 </componentInstanceProperties>
@@ -1992,6 +2188,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-3fdbbbbb-82d9-4ff0-91d0-0c4733ebbd19</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>true</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -2156,6 +2356,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-dd5ea645-33f7-4bc6-ae27-d9ca1ad9e52d</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>true</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>

@@ -146,6 +146,14 @@
     <compactLayoutAssignment>leaseworks__LW_Default</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <deprecated>false</deprecated>
+    <description>The Payments &amp; Credits serves as a vital record capturing payments made against individual invoices. Users can specify whether the payment was made in cash or as an offset against other outstanding amounts.
+When loaded via Payment Studio, these records are automatically created with an approved status and associated with individual invoices upon Payment Studio record approval.
+Population Requirement Details: Conditionally Required if legacy data loading is required and is not loaded via payment studio
+[MODULE: Finance]
+[LOAD: Yes]
+[PREREQUISITES: If the Payment Type (Payment/Credit field) equals Cash Payment, Invoice, Payment on Account. If the Payment Type (Payment/Credit field) is not equal to &apos;Cash Payment&apos; then the below are required., Invoice, Letter of Credit, Payable, Security Deposit, Credit Memo]
+[REPLACEMENT OBJECT API: NA]
+[COMMENTS: NA]</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -164,7 +172,7 @@
     </nameField>
     <pluralLabel>Payments &amp; Credits</pluralLabel>
     <recordTypeTrackHistory>false</recordTypeTrackHistory>
-    <searchLayouts />
+    <searchLayouts></searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

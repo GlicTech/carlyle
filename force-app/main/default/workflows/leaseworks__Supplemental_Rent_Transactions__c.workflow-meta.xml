@@ -59,8 +59,8 @@
         <fullName>leaseworks__UpdateTransactionName</fullName>
         <field>Name</field>
         <formula>TEXT(YEAR(DATEVALUE(leaseworks__Transaction_Date__c)))+&quot;-&quot; +
-IF(MONTH(DATEVALUE(leaseworks__Transaction_Date__c)) &lt; 10, &#39;0&#39;+ TEXT(MONTH(DATEVALUE(leaseworks__Transaction_Date__c))), TEXT(MONTH(DATEVALUE(leaseworks__Transaction_Date__c))))+&quot;-&quot; +
-IF(DAY(DATEVALUE(leaseworks__Transaction_Date__c)) &lt; 10, &#39;0&#39;+ TEXT(DAY(DATEVALUE(leaseworks__Transaction_Date__c))), TEXT(DAY(DATEVALUE(leaseworks__Transaction_Date__c))))+&quot;-&quot; +
+IF(MONTH(DATEVALUE(leaseworks__Transaction_Date__c)) &lt; 10, &apos;0&apos;+ TEXT(MONTH(DATEVALUE(leaseworks__Transaction_Date__c))), TEXT(MONTH(DATEVALUE(leaseworks__Transaction_Date__c))))+&quot;-&quot; +
+IF(DAY(DATEVALUE(leaseworks__Transaction_Date__c)) &lt; 10, &apos;0&apos;+ TEXT(DAY(DATEVALUE(leaseworks__Transaction_Date__c))), TEXT(DAY(DATEVALUE(leaseworks__Transaction_Date__c))))+&quot;-&quot; +
 TEXT(leaseworks__Transaction_Type__c)</formula>
         <name>UpdateTransactionName</name>
         <notifyAssignee>false</notifyAssignee>

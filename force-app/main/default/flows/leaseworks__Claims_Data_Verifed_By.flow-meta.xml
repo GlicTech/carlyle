@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>63.0</apiVersion>
-    <description>This flow updates the Data Verified By field on Claim records with the current user&#39;s username and date (MM/DD/YYYY) when record is created/update.</description>
+    <description>This flow updates the Data Verified By field on Claim records with the current user&apos;s username and date (MM/DD/YYYY) when record is created/update.</description>
     <environments>Default</environments>
     <formulas>
         <name>dateVerifiedBy</name>
         <dataType>String</dataType>
-        <expression>{!$User.FirstName} + &#39; &#39; + {!$User.LastName} +&#39;, &#39; + Text(MONTH(TODAY())) + &#39;/&#39; + Text(Day(TODAY())) + &#39;/&#39; + Text(year(TODAY()))</expression>
+        <expression>{!$User.FirstName} + &apos; &apos; + {!$User.LastName} +&apos;, &apos; + Text(MONTH(TODAY())) + &apos;/&apos; + Text(Day(TODAY())) + &apos;/&apos; + Text(year(TODAY()))</expression>
     </formulas>
     <interviewLabel>Claims Data Verifed By {!$Flow.CurrentDateTime}</interviewLabel>
     <isTemplate>true</isTemplate>

@@ -147,6 +147,13 @@
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <deprecated>false</deprecated>
+    <description>Related list on Payment Studio. Holds the detailed information regarding the allocation of payments to specific invoices. Each payment batch received is broken down into individual line items, with each line item representing a specific invoice or transaction.
+Population Requirement Details: Conditionally Required if legacy data loading is required
+[MODULE: Finance]
+[LOAD: Yes]
+[PREREQUISITES: Payment Studio]
+[REPLACEMENT OBJECT API: NA]
+[COMMENTS: NA]</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -164,7 +171,7 @@
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Payment Line Item</pluralLabel>
-    <searchLayouts />
+    <searchLayouts></searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

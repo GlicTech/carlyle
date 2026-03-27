@@ -4,5 +4,5 @@
     <active>true</active>
     <description>Should not allow the user to enter negative value in Fixed Interest Rate.</description>
     <errorConditionFormula>AND(!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c,NOT( ISNULL(leaseworks__Interest_Rate_percent__c )),leaseworks__Interest_Rate_percent__c &lt;= 0)</errorConditionFormula>
-    <errorMessage>&#39;Fixed Interest Rate&#39; should be greater than 0.</errorMessage>
+    <errorMessage>&apos;Fixed Interest Rate&apos; should be greater than 0.</errorMessage>
 </ValidationRule>

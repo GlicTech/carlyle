@@ -3,6 +3,6 @@
     <fullName>leaseworks__Rate_Unit_Based_On_Assembly_Type</fullName>
     <active>true</active>
     <description>APU H and APU C can only be used with Supplemental Rent linked to an APU Assembly</description>
-    <errorConditionFormula>IF(AND(NOT(ISPICKVAL(leaseworks__Supplemental_Rent__r.leaseworks__Assembly_Lkp__r.leaseworks__Type__c , &#39;APU&#39;)), OR(ISPICKVAL(leaseworks__Rate_Unit__c, &#39;APU H&#39;),ISPICKVAL(leaseworks__Rate_Unit__c, &#39;APU C&#39;))), true, false)</errorConditionFormula>
+    <errorConditionFormula>IF(AND(NOT(ISPICKVAL(leaseworks__Supplemental_Rent__r.leaseworks__Assembly_Lkp__r.leaseworks__Type__c , &apos;APU&apos;)), OR(ISPICKVAL(leaseworks__Rate_Unit__c, &apos;APU H&apos;),ISPICKVAL(leaseworks__Rate_Unit__c, &apos;APU C&apos;))), true, false)</errorConditionFormula>
     <errorMessage>APU H and APU C can only be used with Supplemental Rent linked to an APU Assembly. Please select a different unit (e.g., Hours or Cycles) for non-APU Supplemental Rents.</errorMessage>
 </ValidationRule>

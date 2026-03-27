@@ -17,12 +17,17 @@ private class TestConsolidationCoverPageController {
     static leaseworks__Invoice__c testInvoice, testInvoice2, testInvoice3, testInvoice4;
     
     static void dataSetup() {  
+               
+        leaseworks__Lessor__c lessorSetup = new leaseworks__Lessor__c();
+        lessorSetup.Name= 'Test';
+        insert lessorSetup;
+        
         List<leaseworks__Global_Accounting_Setup__c> setUp = [select id, leaseworks__Accounting_ON__c from leaseworks__Global_Accounting_Setup__c LIMIT 1];
         if(!setUp.IsEmpty()){
             setUp[0].leaseworks__Accounting_ON__c = false;
             update setUp; 
         }        
-        testLessor = [Select Id, Name, leaseworks__Lease_Logo__c, leaseworks__AviatorApiKey__c from leaseworks__Lessor__c];
+        testLessor = [Select Id, Name from leaseworks__Lessor__c];
         Map<String, Object> objectValuesByKey = new Map<String, Object>();
         
         //query or insert leaseworks__Country__c
@@ -34,7 +39,7 @@ private class TestConsolidationCoverPageController {
             insert testCountry;
         }
         
-        // query leaseworks__Operator__c 
+        
         try{
             Account[] operatorList = [Select Id, Name, leaseworks__Country__c from Account where Type='Operator'];
             testOperator = operatorList[0];
@@ -81,6 +86,7 @@ private class TestConsolidationCoverPageController {
     }
     
     static void dataSetup_coverPage() {
+        
         Map<String, Object> objectValuesByKey = new Map<String, Object>();
         Integer numberOfDays = Date.daysInMonth(System.today().year(), System.today().month());
         Date monthEnding  = Date.newInstance(System.today().year(), System.today().month(), numberOfDays);
@@ -117,6 +123,14 @@ private class TestConsolidationCoverPageController {
         createTestUtilization(objectValuesByKey);      
         testUtilization2 = (leaseworks__Utilization_Report__c) objectValuesByKey.get('leaseworks__Utilization_Report__c');  // Monthly Utilization
         
+         leaseworks__chart_of_Accounts__c coa = new leaseworks__chart_of_Accounts__c(name = 'Cash - Rent', leaseworks__GL_Code__c = '12345', leaseworks__GL_Account_Description__c = 'Cash - Rent', leaseworks__Account_Type__c = 'Asset');
+        insert coa;
+        
+      // leaseworks__Bank_Account__c bank = new leaseworks__Bank_Account__c(name = 'test_inv', leaseworks__Bank_GL_Account__c = coa.id,
+                                                                          // leaseworks__Account_Currency__c = 'USD', leaseworks__Financial_Institution__c = 'CIBANK', leaseworks__Account_Number__c = '123466', leaseworks__approval_status__c = 'Approved',pro_First_Approval_Completed__c = true);
+        //LeaseWareUtils.clearFromTrigger();
+       // insert bank;
+
         //Create leaseworks__Invoice__c records 
         List<leaseworks__Invoice__c> invoiceList = new List<leaseworks__Invoice__c>();  
         testInvoice = new leaseworks__Invoice__c();
@@ -129,6 +143,7 @@ private class TestConsolidationCoverPageController {
         testInvoice.leaseworks__Cash_Security_Deposit__c = testCSD.Id;
         testInvoice.leaseworks__Utilization_Report__c = testUtilization.Id;
         testInvoice.leaseworks__Payment_Status__c = 'Open';
+       // testInvoice.leaseworks__Bank_Account__c = bank.id;
         invoiceList.add(testInvoice);
         
         testInvoice2 = new leaseworks__Invoice__c();
@@ -141,6 +156,7 @@ private class TestConsolidationCoverPageController {
         testInvoice2.leaseworks__Rent__c = testRentSlip.Id;
         testInvoice2.leaseworks__Cash_Security_Deposit__c = testCSD.Id;
         testInvoice2.leaseworks__Payment_Status__c = 'Open';
+       // testInvoice2.leaseworks__Bank_Account__c = bank.id;
         invoiceList.add(testInvoice2);
         
         testInvoice3 = new leaseworks__Invoice__c();
@@ -152,6 +168,7 @@ private class TestConsolidationCoverPageController {
         testInvoice3.leaseworks__Month_Ending__c = monthEnding;
         testInvoice3.leaseworks__Cash_Security_Deposit__c = testCSD.Id;
         testInvoice3.leaseworks__Payment_Status__c = 'Open';
+      //  testInvoice3.leaseworks__Bank_Account__c = bank.id;
         invoiceList.add(testInvoice3);
         
         testInvoice4 = new leaseworks__Invoice__c();
@@ -163,6 +180,7 @@ private class TestConsolidationCoverPageController {
         testInvoice4.leaseworks__Month_Ending__c = monthEnding;
         testInvoice4.leaseworks__Cash_Security_Deposit__c = testCSD.Id;
         testInvoice4.leaseworks__Payment_Status__c = 'Open';
+       // testInvoice4.leaseworks__Bank_Account__c = bank.id;
         invoiceList.add(testInvoice4);
         
         insert invoiceList;
@@ -221,9 +239,22 @@ private class TestConsolidationCoverPageController {
         insert coa;
         
         leaseworks__Bank_Account__c bank = new leaseworks__Bank_Account__c(name = 'test1', leaseworks__Bank_GL_Account__c = coa.id,
-                                                                           leaseworks__Account_Currency__c = 'USD', leaseworks__Financial_Institution__c = 'CIBANK', leaseworks__Account_Number__c = '12346', leaseworks__approval_status__c = 'Approved');
-        //LeaseWareUtils.clearFromTrigger();
+        leaseworks__approval_status__c= 'Approved',
+                                                                           leaseworks__Account_Currency__c = 'USD', leaseworks__Financial_Institution__c = 'CIBANK', leaseworks__Account_Number__c = '12346');
+        try{
+            	        LeaseWareUtilsLocal.clearFromTrigger();
         insert bank;
+        
+        leaseworks__Bank_Account__c bank2 = [select id, name from leaseworks__Bank_Account__c];
+        system.debug('CHECK:' + bank2.id); 
+        bank2.leaseworks__approval_status__c = 'Approved';
+        LeaseWareUtilsLocal.clearFromTrigger();
+        update bank;
+        }catch(Exception e){
+            
+            system.debug('CHECK:' + e.getMessage());
+        }
+
         
         leaseworks__Entity__c entity = new leaseworks__Entity__c(name = 'TestEntity', leaseworks__entity_description__c = 'Test', leaseworks__entity_type__c = 'Posting');
         insert entity;
@@ -243,12 +274,14 @@ private class TestConsolidationCoverPageController {
                                                                      leaseworks__Rent_Date__c = System.today(), 
                                                                      leaseworks__Rent_End_Date__c = System.today().addYears(2),
                                                                      leaseworks__entity__c = entity.id,
-                                                                     leaseworks__Lessor_Bnk_For_SD__c = bank.id,
-                                                                     leaseworks__Lessor_Bnk_For_MR__c = bank.id,
+                                                                    leaseworks__Lessor_Bnk_For_SD__c = bank.id,
+                                                                    leaseworks__Lessor_Bnk_For_MR__c = bank.id,
                                                                      leaseworks__Bank_Account_For_Others__c = bank.id,
-                                                                     leaseworks__Lesor_Bank_for_Rent__c = bank.id);
+                                                                     leaseworks__Lesor_Bank_for_Rent__c = bank.id
+                                                                     );
         
         if(!objectValuesByKey.containsKey('leaseworks__Lease__c.Insert') ){
+             LeaseWareUtilsLocal.clearFromTrigger();
             insert testLeaseRec;
             objectValuesByKey.put('leaseworks__Lease__c.Id', testLeaseRec.Id);
         }
@@ -360,7 +393,7 @@ private class TestConsolidationCoverPageController {
     }
     
     //This method is used to cover the Handle Consolidation Methods.
-    @isTest(seeAllData=true)
+    @isTest(seeAllData=false)
     static void handleConsolidationCoverPage_Test(){
         dataSetup();
         User user = [Select Id from User where Profile.Name = 'System Administrator' AND isActive = true limit 1 ];
@@ -373,7 +406,8 @@ private class TestConsolidationCoverPageController {
         Set<Id> invoiceIds = new Set<Id>();
         List<leaseworks__Invoice__c> invoiceList = new List<leaseworks__Invoice__c>();
         String lesseeId;
-        for(leaseworks__Invoice__c testInvoiceRec : [Select Id, leaseworks__Month_Ending__c, leaseworks__Lease__c, leaseworks__Lease__r.leaseworks__Lessee__c, leaseworks__Invoice_Type__c from leaseworks__Invoice__c where leaseworks__Lease__r.leaseworks__Aircraft__c =: testAircraft.Id]) {
+        for(leaseworks__Invoice__c testInvoiceRec : [Select Id, leaseworks__Month_Ending__c, leaseworks__Lease__c        
+        , leaseworks__Invoice_Type__c from leaseworks__Invoice__c where leaseworks__Lease__r.leaseworks__Aircraft__c =: testAircraft.Id]) {
             System.debug('testInvoiceRec === ' + testInvoiceRec);
             lesseeId = testInvoiceRec.leaseworks__Lease__c;
             invoiceIds.add(testInvoiceRec.Id);

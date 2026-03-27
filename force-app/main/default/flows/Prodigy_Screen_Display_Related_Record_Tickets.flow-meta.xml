@@ -6,14 +6,14 @@
         <name>f_QueryRelatedTickets</name>
         <dataType>String</dataType>
         <expression>&quot;SELECT pro_Subject_Name__c, pro_Ticket_Level__c, pro_Priority__c, pro_Status__c, pro_Assigned_To_Formula__c, pro_Requested_By_Formula__c, pro_Owner_Formula__c, pro_Comments__c FROM pro_Ticket__c WHERE (&quot; &amp; 
-IF(NOT(ISBLANK({!recordId.pro_Asset__c})), &quot;pro_Asset__c = &#39;&quot; &amp; {!recordId.pro_Asset__c} &amp; &quot;&#39;&quot;, &quot;&quot;) &amp; 
+IF(NOT(ISBLANK({!recordId.pro_Asset__c})), &quot;pro_Asset__c = &apos;&quot; &amp; {!recordId.pro_Asset__c} &amp; &quot;&apos;&quot;, &quot;&quot;) &amp; 
 IF(AND(NOT(ISBLANK({!recordId.pro_Asset__c})), NOT(ISBLANK({!recordId.pro_Lease__c}))), &quot; OR &quot;, &quot;&quot;) &amp; 
-IF(NOT(ISBLANK({!recordId.pro_Lease__c})), &quot;pro_Lease__c = &#39;&quot; &amp; {!recordId.pro_Lease__c} &amp; &quot;&#39;&quot;, &quot;&quot;) &amp; 
+IF(NOT(ISBLANK({!recordId.pro_Lease__c})), &quot;pro_Lease__c = &apos;&quot; &amp; {!recordId.pro_Lease__c} &amp; &quot;&apos;&quot;, &quot;&quot;) &amp; 
 IF(AND(OR(NOT(ISBLANK({!recordId.pro_Asset__c})), NOT(ISBLANK({!recordId.pro_Lease__c}))), NOT(ISBLANK({!recordId.pro_Deal__c}))), &quot; OR &quot;, &quot;&quot;) &amp; 
-IF(NOT(ISBLANK({!recordId.pro_Deal__c})), &quot;pro_Deal__c = &#39;&quot; &amp; {!recordId.pro_Deal__c} &amp; &quot;&#39;&quot;, &quot;&quot;) &amp; 
+IF(NOT(ISBLANK({!recordId.pro_Deal__c})), &quot;pro_Deal__c = &apos;&quot; &amp; {!recordId.pro_Deal__c} &amp; &quot;&apos;&quot;, &quot;&quot;) &amp; 
 IF(AND(OR(NOT(ISBLANK({!recordId.pro_Asset__c})), NOT(ISBLANK({!recordId.pro_Lease__c})), NOT(ISBLANK({!recordId.pro_Deal__c}))), NOT(ISBLANK({!recordId.pro_Technical_Project__c}))), &quot; OR &quot;, &quot;&quot;) &amp; 
-IF(NOT(ISBLANK({!recordId.pro_Technical_Project__c})), &quot;pro_Technical_Project__c = &#39;&quot; &amp; {!recordId.pro_Technical_Project__c} &amp; &quot;&#39;&quot;, &quot;&quot;) &amp; 
-&quot;) AND Id != &#39;&quot; &amp; {!recordId.Id} &amp; &quot;&#39; ORDER BY pro_Expected_Due_Date__c DESC&quot;</expression>
+IF(NOT(ISBLANK({!recordId.pro_Technical_Project__c})), &quot;pro_Technical_Project__c = &apos;&quot; &amp; {!recordId.pro_Technical_Project__c} &amp; &quot;&apos;&quot;, &quot;&quot;) &amp; 
+&quot;) AND Id != &apos;&quot; &amp; {!recordId.Id} &amp; &quot;&apos; ORDER BY pro_Expected_Due_Date__c DESC&quot;</expression>
     </formulas>
     <interviewLabel>Prodigy - Screen - Display Related Record Tickets {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Prodigy - Screen - Display Related Record Tickets</label>
@@ -499,6 +499,90 @@ IF(NOT(ISBLANK({!recordId.pro_Technical_Project__c})), &quot;pro_Technical_Proje
         </connector>
     </start>
     <status>Active</status>
+    <transforms>
+        <name>Create_Assembly_Id_Collection</name>
+        <label>Create Assembly Id Collection</label>
+        <locationX>176</locationX>
+        <locationY>458</locationY>
+        <connector>
+            <targetReference>Get_All_Assets_On_Ticket_For_Asset_Id_Collection</targetReference>
+        </connector>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>Get_Assemblies_On_Ticket[$EachItem].pro_Assembly__c</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
+    <transforms>
+        <name>Create_Asset_Id_Collection</name>
+        <label>Create Asset Id Collection</label>
+        <locationX>176</locationX>
+        <locationY>242</locationY>
+        <connector>
+            <targetReference>Get_Assemblies_On_Ticket</targetReference>
+        </connector>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>Get_Assets_On_Ticket[$EachItem].pro_Asset__c</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
+    <transforms>
+        <name>Create_Ticket_Id_Collection_For_Assemblies</name>
+        <label>Create Ticket Id Collection For Assemblies</label>
+        <locationX>176</locationX>
+        <locationY>890</locationY>
+        <connector>
+            <targetReference>Get_Related_Tickets</targetReference>
+        </connector>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>Get_All_Assemblies_On_Ticket_For_Assembly_ID_Collection[$EachItem].pro_Assembly__c</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
+    <transforms>
+        <name>Create_Ticket_Id_Collection_For_Assets</name>
+        <label>Create Ticket Id Collection For Assets</label>
+        <locationX>176</locationX>
+        <locationY>674</locationY>
+        <connector>
+            <targetReference>Get_All_Assemblies_On_Ticket_For_Assembly_ID_Collection</targetReference>
+        </connector>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>Get_All_Assets_On_Ticket_For_Asset_Id_Collection[$EachItem].pro_Ticket__c</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
     <variables>
         <name>recordId</name>
         <dataType>SObject</dataType>

@@ -3,8 +3,7 @@
     <fullName>leaseworks__Balance_Due__c</fullName>
     <deprecated>false</deprecated>
     <description>Balance due on invoice line item after Payment creation and updation. Amount Due- Sum of all pyament line item for that Invoice Line item</description>
-    <externalId>false</externalId>
-    <formula>IF( OR(leaseworks__Invoice_Status__c ==&#39;Declined&#39;,leaseworks__Invoice_Status__c ==&#39;Cancelled&#39;),0,  leaseworks__Total_Line_Amount__c  -  (leaseworks__Total_Amount_Paid__c + leaseworks__Total_Amount_Credited__c))</formula>
+    <formula>IF( OR(leaseworks__Invoice_Status__c ==&apos;Declined&apos;,leaseworks__Invoice_Status__c ==&apos;Cancelled&apos;),0,  leaseworks__Total_Line_Amount__c  -  (leaseworks__Total_Amount_Paid__c + leaseworks__Total_Amount_Credited__c))</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <inlineHelpText>Displays Total Line Amount less any approved Payments/Credits</inlineHelpText>
     <label>Line Amount Balance Due($)</label>

@@ -40,9 +40,22 @@
             <targetReference>Loop_over_Rent_slips</targetReference>
         </connector>
     </assignments>
+    <customErrors>
+        <name>Error_Message</name>
+        <label>Error Message</label>
+        <locationX>440</locationX>
+        <locationY>1355</locationY>
+        <connector>
+            <targetReference>Enable_all_Triggers</targetReference>
+        </connector>
+        <customErrorMessages>
+            <errorMessage>{!$Flow.FaultMessage}</errorMessage>
+            <isFieldError>false</isFieldError>
+        </customErrorMessages>
+    </customErrors>
     <environments>Default</environments>
-    <interviewLabel>Updates the Invoice Category on  Rent Schedule to &#39;Ad Hoc&#39; . {!$Flow.CurrentDateTime}</interviewLabel>
-    <label>Updates the Invoice Category on Rent Schedule to &#39;Ad Hoc&#39; .</label>
+    <interviewLabel>Updates the Invoice Category on  Rent Schedule to &apos;Ad Hoc&apos; . {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Updates the Invoice Category on Rent Schedule to &apos;Ad Hoc&apos; .</label>
     <loops>
         <name>Loop_over_Rent_slips</name>
         <label>Loop over Rent slips</label>

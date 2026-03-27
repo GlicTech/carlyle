@@ -149,7 +149,14 @@
     <compactLayoutAssignment>leaseworks__INVOICES</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <deprecated>false</deprecated>
-    <description>Generic Object to hold Invoice information.</description>
+    <description>Generic Object to hold Invoice information.
+Record and associate each invoice with the financial component—such as lease rent schedules (Rent), asset utilization (MR), cash security deposits (SD), overdue amounts under the lease (Interest), and any other receivable types (Manual). For each associated invoice, capture key details like Total Amount, Invoice Date, Due Date, and Status. Additionally, for Interest invoice types, record the parameters used for interest calculation, including:Interest Start and End Dates, Interest Rate, Interest Base(actual days/30-360), simple or compounding calculation etc.
+Population Requirement Details: Conditionally Required if legacy data loading is required
+[MODULE: Finance]
+[LOAD: Yes]
+[PREREQUISITES: Lease, Bank Accounts, Required based on Invoice Type: Rent - Rent Schedule, MR - Utilization,SR,SRR,  SD - Security Deposit]
+[REPLACEMENT OBJECT API: NA]
+[COMMENTS: NA]</description>
     <enableActivities>true</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableEnhancedLookup>true</enableEnhancedLookup>

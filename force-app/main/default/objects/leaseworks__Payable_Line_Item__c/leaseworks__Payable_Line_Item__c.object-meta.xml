@@ -144,7 +144,14 @@
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <deprecated>false</deprecated>
-    <description>Junction Object for Payables and Payouts</description>
+    <description>Junction Object for Payables and Payouts
+This is a junction object to define the link between the payable and related payout records. Once records are created within this object, the &apos;Payouts&apos; related list will get updated on the Payable page
+Population Requirement Details: Conditionally Required if legacy data loading is required
+[MODULE: Finance]
+[LOAD: Yes]
+[PREREQUISITES: Payable, Payout]
+[REPLACEMENT OBJECT API: NA]
+[COMMENTS: NA]</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -163,7 +170,7 @@
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Accounts Payables</pluralLabel>
-    <searchLayouts />
+    <searchLayouts></searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <startsWith>Vowel</startsWith>
     <visibility>Public</visibility>

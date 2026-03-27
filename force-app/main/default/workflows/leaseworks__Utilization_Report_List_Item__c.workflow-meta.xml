@@ -527,7 +527,7 @@ Monthly_Cap_Flat_Rate_Cycles should be Monthly_Cap_Flat_Rate_LLPs</description>
     </fieldUpdates>
     <fieldUpdates>
         <fullName>leaseworks__Update_MR_Landing_Gear</fullName>
-        <description>Deprecated. Don&#39;t Use. /*Update MR for landing gear - please note that the Landing Gear cycles variable name here is Landing Gear per hour though its really per cycle (the user label says cycles). Unable to rename the variable name due to mgd package.*/</description>
+        <description>Deprecated. Don&apos;t Use. /*Update MR for landing gear - please note that the Landing Gear cycles variable name here is Landing Gear per hour though its really per cycle (the user label says cycles). Unable to rename the variable name due to mgd package.*/</description>
         <field>leaseworks__Maintenance_Reserve_Landing_Gear__c</field>
         <formula>-999999999</formula>
         <name>Update MR Landing Gear</name>
@@ -616,7 +616,7 @@ Monthly_Cap_Flat_Rate_Cycles should be Monthly_Cap_Flat_Rate_LLPs</description>
         </actions>
         <active>false</active>
         <description>Workflow to use when engine 1 fields are updated</description>
-        <formula>!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c &amp;&amp; TEXT(leaseworks__Report_Item__c) == &#39;Other&#39;</formula>
+        <formula>!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c &amp;&amp; TEXT(leaseworks__Report_Item__c) == &apos;Other&apos;</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
@@ -631,7 +631,7 @@ Monthly_Cap_Flat_Rate_Cycles should be Monthly_Cap_Flat_Rate_LLPs</description>
         </actions>
         <active>false</active>
         <description>Workflow to update landing gear MR on the utilization report</description>
-        <formula>!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c &amp;&amp; TEXT(leaseworks__Report_Item__c) == &#39;Landing Gear - Center&#39;</formula>
+        <formula>!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c &amp;&amp; TEXT(leaseworks__Report_Item__c) == &apos;Landing Gear - Center&apos;</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
@@ -701,7 +701,7 @@ Monthly_Cap_Flat_Rate_Cycles should be Monthly_Cap_Flat_Rate_LLPs</description>
             <operation>startsWith</operation>
             <value>This Rule No More Used - Landing Gear</value>
         </criteriaItems>
-        <description>Deprecated. Don&#39;t Use. /*Workflow to update landing gear MR on the utilization report*/</description>
+        <description>Deprecated. Don&apos;t Use. /*Workflow to update landing gear MR on the utilization report*/</description>
         <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
@@ -711,7 +711,7 @@ Monthly_Cap_Flat_Rate_Cycles should be Monthly_Cap_Flat_Rate_LLPs</description>
             <type>FieldUpdate</type>
         </actions>
         <active>false</active>
-        <formula>!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c &amp;&amp; LEFT(TEXT(leaseworks__Constituent_Assembly__r.leaseworks__Type__c),19)== &#39;Landing Gear - Left&#39;</formula>
+        <formula>!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c &amp;&amp; LEFT(TEXT(leaseworks__Constituent_Assembly__r.leaseworks__Type__c),19)== &apos;Landing Gear - Left&apos;</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
@@ -721,7 +721,7 @@ Monthly_Cap_Flat_Rate_Cycles should be Monthly_Cap_Flat_Rate_LLPs</description>
             <type>FieldUpdate</type>
         </actions>
         <active>false</active>
-        <formula>AND(!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c, LEFT(TEXT(leaseworks__Constituent_Assembly__r.leaseworks__Type__c),3)== &#39;Lan&#39;,  LEFT(TEXT(leaseworks__Constituent_Assembly__r.leaseworks__Type__c),19)!= &#39;Landing Gear - Left&#39;)</formula>
+        <formula>AND(!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c, LEFT(TEXT(leaseworks__Constituent_Assembly__r.leaseworks__Type__c),3)== &apos;Lan&apos;,  LEFT(TEXT(leaseworks__Constituent_Assembly__r.leaseworks__Type__c),19)!= &apos;Landing Gear - Left&apos;)</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
@@ -731,7 +731,7 @@ Monthly_Cap_Flat_Rate_Cycles should be Monthly_Cap_Flat_Rate_LLPs</description>
             <type>FieldUpdate</type>
         </actions>
         <active>false</active>
-        <formula>!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c &amp;&amp; LEFT(TEXT(leaseworks__Constituent_Assembly__r.leaseworks__Type__c),3)!= &#39;Lan&#39;</formula>
+        <formula>!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c &amp;&amp; LEFT(TEXT(leaseworks__Constituent_Assembly__r.leaseworks__Type__c),3)!= &apos;Lan&apos;</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>

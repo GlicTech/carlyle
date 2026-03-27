@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Multicurrency_Enabled__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Indicates if the transaction currency is non-USD.</description>
+    <formula>IF(
+NOT(ISBLANK(leaseworks__Transaction_Currency__c)),
+leaseworks__Transaction_Currency__c != &quot;USD&quot;,
+FALSE
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Indicates if the transaction currency is non-USD.</inlineHelpText>
+    <label>_Multicurrency Enabled</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

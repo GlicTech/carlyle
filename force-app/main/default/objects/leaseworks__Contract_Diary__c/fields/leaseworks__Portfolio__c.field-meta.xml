@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Portfolio__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Links the Contract Diary record to the Portfolio field on the related Contract record.
+[LOAD:No]
+[JUSTIFICATION:Contract Diary records are not data-loaded. They are created through a scheduler/flow.]
+[REPLACEMENT OBJECT API:NA]
+[REPLACEMENT FIELD API:NA]
+[COMMENTS:NA]</description>
+    <externalId>false</externalId>
+    <formula>HYPERLINK( &apos;/&apos; + leaseworks__Contract__r.leaseworks__Portfolios__c , leaseworks__Contract__r.leaseworks__Portfolios__r.Name, &quot;_self&quot;)</formula>
+    <inlineHelpText>Indicates where the contract is grouped within the company’s overall portfolio structure.</inlineHelpText>
+    <label>Portfolio</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

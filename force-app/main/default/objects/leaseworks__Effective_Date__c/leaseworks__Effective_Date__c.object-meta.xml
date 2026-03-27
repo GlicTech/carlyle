@@ -144,6 +144,12 @@
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <deprecated>false</deprecated>
+    <description>This object tracks the history of changes to a set of pre-configured fields on a given object. Please use the &quot;Effective Date Configuration&quot; tool available under the LeaseWorks Setup record to configure the object for history tracking before loading data into this object. This configuration needs to be repeated for each object that you wish to track effective dates. The first column in the Data Load Template is a sample. You will need to either repeat this column for each object that you wish to load effective records for, or create one data load spreadsheet per object. Please refer to the Effective date configuration document (Leaseworks Internal) for more details on configuation.
+[MODULE: Asset]
+[LOAD: Optional]
+[PREREQUISITES: Objects must be preconfigured using the &quot;Effective Date Configuration&quot; tool available under the LeaseWorks Setup record.]
+[REPLACEMENT OBJECT API: NA]
+[COMMENTS: NA]</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -161,7 +167,7 @@
         <type>Text</type>
     </nameField>
     <pluralLabel>Effective Dates</pluralLabel>
-    <searchLayouts />
+    <searchLayouts></searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

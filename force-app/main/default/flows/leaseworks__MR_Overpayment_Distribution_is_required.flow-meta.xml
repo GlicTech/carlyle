@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>64.0</apiVersion>
+    <customErrors>
+        <description>MR Overpayment Distribution is required if the CM Type is Cash Credit &amp; CM Reason is &apos;MR Reconciliation Refund&apos; or &apos;MR Overpayment&apos;</description>
+        <name>MR_Overpayment_Distribution_is_required</name>
+        <label>MR Overpayment Distribution is required</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <customErrorMessages>
+            <errorMessage>MR Overpayment Distribution is required for Cash Credits with reason MR Reconciliation Refund or MR Overpayments. Please create a distribution before approving.</errorMessage>
+            <isFieldError>false</isFieldError>
+        </customErrorMessages>
+    </customErrors>
     <decisions>
         <description>This Decision is used to check the size of MR Overpayment Distribution list, if size is Empty or Zero then it will fire Custom Error, if not then it goes in Default outcome.</description>
         <name>MR_Overpayment_Distribution_List_Size_check</name>
@@ -25,7 +36,7 @@
         </rules>
     </decisions>
     <decisions>
-        <description>This decision is used to restrict the User to make CM Status to Approved, if the CM type is &#39;Cash Credit&#39; &amp; the CM reason is &#39;MR Overpayment&#39; / &#39;MR Reconciliation Refund.&#39;</description>
+        <description>This decision is used to restrict the User to make CM Status to Approved, if the CM type is &apos;Cash Credit&apos; &amp; the CM reason is &apos;MR Overpayment&apos; / &apos;MR Reconciliation Refund.&apos;</description>
         <name>Restrict_Approval_of_CM_if_Cash_Credit</name>
         <label>Restrict Approval of CM if Cash Credit</label>
         <locationX>0</locationX>

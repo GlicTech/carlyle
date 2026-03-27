@@ -41,6 +41,13 @@
                 <elementReference>Optional_Footer_Note</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Get_Related_Print_Options_Config_Record.pro_Include_USD_Euro_Conversion_Rate__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Include_USD_Euro_Conversion_Rate</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>Update_Print_Options_Config_Record</targetReference>
         </connector>
@@ -101,8 +108,8 @@
         <description>The values from the Mr Invoice Names picklist on the Print Options Config object</description>
         <name>pcs_MrInvoiceNames</name>
         <dataType>Picklist</dataType>
-        <displayField xsi:nil="true" />
-        <object xsi:nil="true" />
+        <displayField xsi:nil="true"/>
+        <object xsi:nil="true"/>
         <picklistField>pro_MR_Invoice_Name__c</picklistField>
         <picklistObject>pro_Print_Options_Config__c</picklistObject>
     </dynamicChoiceSets>
@@ -121,7 +128,7 @@
     <formulas>
         <name>f_PlaceholderOrBankAddress</name>
         <dataType>String</dataType>
-        <expression>IF({!varTriggeringContract.Id} != Null, &#39;Selected Based On Invoice Type&#39;, {!varTriggeringInvoice.leaseworks__Bank_Account__r.pro_Branch_Address_Formula__c})</expression>
+        <expression>IF({!varTriggeringContract.Id} != Null, &apos;Selected Based On Invoice Type&apos;, {!varTriggeringInvoice.leaseworks__Bank_Account__r.pro_Branch_Address_Formula__c})</expression>
     </formulas>
     <interviewLabel>Prodigy - Screen - Print Options On Contract {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Prodigy - Screen - Print Options On Contract</label>
@@ -347,6 +354,12 @@
             </value>
         </inputAssignments>
         <inputAssignments>
+            <field>pro_Include_USD_Euro_Conversion_Rate__c</field>
+            <value>
+                <elementReference>Include_USD_Euro_Conversion_Rate</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>pro_MR_Invoice_Name__c</field>
             <value>
                 <elementReference>Get_Related_Print_Options_Config_Record.pro_MR_Invoice_Name__c</elementReference>
@@ -442,6 +455,7 @@
                     </defaultValue>
                     <fieldText>Include PO Number?</fieldText>
                     <fieldType>InputField</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                 </fields>
                 <inputParameters>
@@ -457,6 +471,7 @@
                 <fieldType>Region</fieldType>
                 <fields>
                     <fieldType>ObjectProvided</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                     <objectFieldReference>Get_Related_Print_Options_Config_Record.pro_PO_Number__c</objectFieldReference>
                 </fields>
@@ -478,13 +493,14 @@
                 <name>Print_Options_Input_Screen_Section2_Column1</name>
                 <fieldType>Region</fieldType>
                 <fields>
-                    <name>Include_Aircraft_Registration_Number</name>
+                    <name>Include_USD_Euro_Conversion_Rate</name>
                     <dataType>Boolean</dataType>
                     <defaultValue>
-                        <elementReference>Get_Related_Print_Options_Config_Record.pro_Include_Aircraft_Registration_Number__c</elementReference>
+                        <elementReference>Get_Related_Print_Options_Config_Record.pro_Include_USD_Euro_Conversion_Rate__c</elementReference>
                     </defaultValue>
-                    <fieldText>Include Aircraft Registration Number?</fieldText>
+                    <fieldText>Include USD-Euro Conversion Rate</fieldText>
                     <fieldType>InputField</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                 </fields>
                 <inputParameters>
@@ -498,19 +514,6 @@
             <fields>
                 <name>Print_Options_Input_Screen_Section2_Column2</name>
                 <fieldType>Region</fieldType>
-                <fields>
-                    <name>Aircraft_Registration_Number</name>
-                    <dataType>String</dataType>
-                    <defaultValue>
-                        <elementReference>varTriggeringContract.leaseworks__Aircraft__r.leaseworks__Registration_Number__c</elementReference>
-                    </defaultValue>
-                    <fieldText>Aircraft Registration Number</fieldText>
-                    <fieldType>InputField</fieldType>
-                    <isReadOnly>
-                        <booleanValue>true</booleanValue>
-                    </isReadOnly>
-                    <isRequired>false</isRequired>
-                </fields>
                 <inputParameters>
                     <name>width</name>
                     <value>
@@ -529,13 +532,14 @@
                 <name>Print_Options_Input_Screen_Section3_Column1</name>
                 <fieldType>Region</fieldType>
                 <fields>
-                    <name>Include_Bank_Account_Address</name>
+                    <name>Include_Aircraft_Registration_Number</name>
                     <dataType>Boolean</dataType>
                     <defaultValue>
-                        <elementReference>Get_Related_Print_Options_Config_Record.pro_Include_Bank_Account_Address__c</elementReference>
+                        <elementReference>Get_Related_Print_Options_Config_Record.pro_Include_Aircraft_Registration_Number__c</elementReference>
                     </defaultValue>
-                    <fieldText>Include Bank Account Address?</fieldText>
+                    <fieldText>Include Aircraft Registration Number?</fieldText>
                     <fieldType>InputField</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                 </fields>
                 <inputParameters>
@@ -550,13 +554,14 @@
                 <name>Print_Options_Input_Screen_Section3_Column2</name>
                 <fieldType>Region</fieldType>
                 <fields>
-                    <name>Bank_Account_Address</name>
+                    <name>Aircraft_Registration_Number</name>
                     <dataType>String</dataType>
                     <defaultValue>
-                        <elementReference>f_PlaceholderOrBankAddress</elementReference>
+                        <elementReference>varTriggeringContract.leaseworks__Aircraft__r.leaseworks__Registration_Number__c</elementReference>
                     </defaultValue>
-                    <fieldText>Bank Account Address</fieldText>
+                    <fieldText>Aircraft Registration Number</fieldText>
                     <fieldType>InputField</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isReadOnly>
                         <booleanValue>true</booleanValue>
                     </isReadOnly>
@@ -580,9 +585,15 @@
                 <name>Print_Options_Input_Screen_Section4_Column1</name>
                 <fieldType>Region</fieldType>
                 <fields>
-                    <fieldType>ObjectProvided</fieldType>
-                    <isRequired>false</isRequired>
-                    <objectFieldReference>Get_Related_Print_Options_Config_Record.pro_Include_Optional_Footer_Note__c</objectFieldReference>
+                    <name>Include_Bank_Account_Address</name>
+                    <dataType>Boolean</dataType>
+                    <defaultValue>
+                        <elementReference>Get_Related_Print_Options_Config_Record.pro_Include_Bank_Account_Address__c</elementReference>
+                    </defaultValue>
+                    <fieldText>Include Bank Account Address?</fieldText>
+                    <fieldType>InputField</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>true</isRequired>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -596,13 +607,17 @@
                 <name>Print_Options_Input_Screen_Section4_Column2</name>
                 <fieldType>Region</fieldType>
                 <fields>
-                    <name>Optional_Footer_Note</name>
+                    <name>Bank_Account_Address</name>
                     <dataType>String</dataType>
                     <defaultValue>
-                        <elementReference>Get_Related_Print_Options_Config_Record.pro_Optional_Footer_Note__c</elementReference>
+                        <elementReference>f_PlaceholderOrBankAddress</elementReference>
                     </defaultValue>
-                    <fieldText>Optional Footer Note</fieldText>
+                    <fieldText>Bank Account Address</fieldText>
                     <fieldType>InputField</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isReadOnly>
+                        <booleanValue>true</booleanValue>
+                    </isReadOnly>
                     <isRequired>false</isRequired>
                 </fields>
                 <inputParameters>
@@ -624,8 +639,9 @@
                 <fieldType>Region</fieldType>
                 <fields>
                     <fieldType>ObjectProvided</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
-                    <objectFieldReference>Get_Related_Print_Options_Config_Record.pro_Include_Customer_VAT_Number__c</objectFieldReference>
+                    <objectFieldReference>Get_Related_Print_Options_Config_Record.pro_Include_Optional_Footer_Note__c</objectFieldReference>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -639,16 +655,14 @@
                 <name>Print_Options_Input_Screen_Section5_Column2</name>
                 <fieldType>Region</fieldType>
                 <fields>
-                    <name>Customer_VAT_Number</name>
+                    <name>Optional_Footer_Note</name>
                     <dataType>String</dataType>
                     <defaultValue>
-                        <elementReference>Get_Invoiced_Party.leaseworks__Account__r.Other_VAT_GST_Number__c</elementReference>
+                        <elementReference>Get_Related_Print_Options_Config_Record.pro_Optional_Footer_Note__c</elementReference>
                     </defaultValue>
-                    <fieldText>Customer VAT Number</fieldText>
+                    <fieldText>Optional Footer Note</fieldText>
                     <fieldType>InputField</fieldType>
-                    <isReadOnly>
-                        <booleanValue>true</booleanValue>
-                    </isReadOnly>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                 </fields>
                 <inputParameters>
@@ -670,8 +684,9 @@
                 <fieldType>Region</fieldType>
                 <fields>
                     <fieldType>ObjectProvided</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
-                    <objectFieldReference>Get_Related_Print_Options_Config_Record.pro_Include_Attention_To__c</objectFieldReference>
+                    <objectFieldReference>Get_Related_Print_Options_Config_Record.pro_Include_Customer_VAT_Number__c</objectFieldReference>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -685,9 +700,18 @@
                 <name>Print_Options_Input_Screen_Section6_Column2</name>
                 <fieldType>Region</fieldType>
                 <fields>
-                    <fieldType>ObjectProvided</fieldType>
+                    <name>Customer_VAT_Number</name>
+                    <dataType>String</dataType>
+                    <defaultValue>
+                        <elementReference>Get_Invoiced_Party.leaseworks__Account__r.Other_VAT_GST_Number__c</elementReference>
+                    </defaultValue>
+                    <fieldText>Customer VAT Number</fieldText>
+                    <fieldType>InputField</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isReadOnly>
+                        <booleanValue>true</booleanValue>
+                    </isReadOnly>
                     <isRequired>false</isRequired>
-                    <objectFieldReference>Get_Related_Print_Options_Config_Record.pro_Attention_To__c</objectFieldReference>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -708,8 +732,9 @@
                 <fieldType>Region</fieldType>
                 <fields>
                     <fieldType>ObjectProvided</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
-                    <objectFieldReference>Get_Related_Print_Options_Config_Record.pro_Include_Email_Address__c</objectFieldReference>
+                    <objectFieldReference>Get_Related_Print_Options_Config_Record.pro_Include_Attention_To__c</objectFieldReference>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -723,6 +748,46 @@
                 <name>Print_Options_Input_Screen_Section7_Column2</name>
                 <fieldType>Region</fieldType>
                 <fields>
+                    <fieldType>ObjectProvided</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>false</isRequired>
+                    <objectFieldReference>Get_Related_Print_Options_Config_Record.pro_Attention_To__c</objectFieldReference>
+                </fields>
+                <inputParameters>
+                    <name>width</name>
+                    <value>
+                        <stringValue>6</stringValue>
+                    </value>
+                </inputParameters>
+                <isRequired>false</isRequired>
+            </fields>
+            <isRequired>false</isRequired>
+            <regionContainerType>SectionWithoutHeader</regionContainerType>
+        </fields>
+        <fields>
+            <name>Print_Options_Input_Screen_Section8</name>
+            <fieldType>RegionContainer</fieldType>
+            <fields>
+                <name>Print_Options_Input_Screen_Section8_Column1</name>
+                <fieldType>Region</fieldType>
+                <fields>
+                    <fieldType>ObjectProvided</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>false</isRequired>
+                    <objectFieldReference>Get_Related_Print_Options_Config_Record.pro_Include_Email_Address__c</objectFieldReference>
+                </fields>
+                <inputParameters>
+                    <name>width</name>
+                    <value>
+                        <stringValue>6</stringValue>
+                    </value>
+                </inputParameters>
+                <isRequired>false</isRequired>
+            </fields>
+            <fields>
+                <name>Print_Options_Input_Screen_Section8_Column2</name>
+                <fieldType>Region</fieldType>
+                <fields>
                     <name>Email_Address</name>
                     <dataType>String</dataType>
                     <defaultValue>
@@ -730,6 +795,7 @@
                     </defaultValue>
                     <fieldText>Email Address</fieldText>
                     <fieldType>InputField</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isReadOnly>
                         <booleanValue>true</booleanValue>
                     </isReadOnly>
@@ -755,6 +821,7 @@
             </defaultValue>
             <fieldText>MR Invoice Name</fieldText>
             <fieldType>DropdownBox</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
         </fields>
         <fields>
@@ -833,6 +900,27 @@
         </connector>
     </start>
     <status>Active</status>
+    <transforms>
+        <name>Create_Invoice_Id_Collection</name>
+        <label>Create Invoice Id Collection</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Update_Print_Options_Configs_for_Invoices</targetReference>
+        </connector>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>Get_All_Invoices_Under_The_Contract[$EachItem].Id</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
     <variables>
         <description>Holds a reference to the Contract record from which this flow was launched.</description>
         <name>varTriggeringContract</name>

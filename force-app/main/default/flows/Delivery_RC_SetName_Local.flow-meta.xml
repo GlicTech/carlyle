@@ -4,10 +4,10 @@
     <description>Flow to set name field when Delivery/Return Condition Life record is created or updated.</description>
     <environments>Default</environments>
     <formulas>
-        <description>Formula to update &#39;Delivery/Return Condition Life&#39; object record name</description>
+        <description>Formula to update &apos;Delivery/Return Condition Life&apos; object record name</description>
         <name>UpdateDelivery_RCNameFormula</name>
         <dataType>String</dataType>
-        <expression>Text($Record.leaseworks__Assembly_Type__c) +&#39; - &#39;+ Text($Record.leaseworks__Event_Type__c) + &#39; - &#39;+ Text($Record.leaseworks__Applicability__c)</expression>
+        <expression>Text($Record.leaseworks__Assembly_Type__c) +&apos; - &apos;+ Text($Record.leaseworks__Event_Type__c) + &apos; - &apos;+ Text($Record.leaseworks__Applicability__c)</expression>
     </formulas>
     <interviewLabel>Delivery/RC_SetName {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Delivery/RC_SetName Local</label>

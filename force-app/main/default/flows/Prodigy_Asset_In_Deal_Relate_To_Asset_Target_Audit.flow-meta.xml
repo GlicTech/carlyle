@@ -90,7 +90,7 @@
         <connector>
             <targetReference>Was_LOI_Date_Populated</targetReference>
         </connector>
-        <filterLogic>1 OR (1 AND 2)</filterLogic>
+        <filterLogic>1 OR 2</filterLogic>
         <filters>
             <field>leaseworks__Aircraft__c</field>
             <operator>IsNull</operator>
@@ -99,8 +99,8 @@
             </value>
         </filters>
         <filters>
-            <field>pro_LOI_Date_Required__c</field>
-            <operator>EqualTo</operator>
+            <field>leaseworks__Engine__c</field>
+            <operator>IsNull</operator>
             <value>
                 <booleanValue>false</booleanValue>
             </value>

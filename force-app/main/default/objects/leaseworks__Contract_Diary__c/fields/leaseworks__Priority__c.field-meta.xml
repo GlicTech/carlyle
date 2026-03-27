@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Priority__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Specifies the urgency level of the event for sorting and reporting.
+[LOAD:No]
+[JUSTIFICATION:Contract Diary records are not data-loaded. They are created through a scheduler/flow.]
+[REPLACEMENT OBJECT API:NA]
+[REPLACEMENT FIELD API:NA]
+[COMMENTS:NA]</description>
+    <inlineHelpText>Select the event’s urgency level for prioritization and reporting.</inlineHelpText>
+    <label>Priority</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>High</fullName>
+                <default>false</default>
+                <label>High</label>
+            </value>
+            <value>
+                <fullName>Medium</fullName>
+                <default>false</default>
+                <label>Medium</label>
+            </value>
+            <value>
+                <fullName>Low</fullName>
+                <default>false</default>
+                <label>Low</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

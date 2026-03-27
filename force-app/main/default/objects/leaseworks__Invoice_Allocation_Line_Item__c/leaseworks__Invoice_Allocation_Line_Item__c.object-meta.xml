@@ -147,7 +147,14 @@
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <deprecated>false</deprecated>
-    <description>The object is designed to record the line-level allocation performed by the user for each individual payment within bulk payments made via Payment Studio application.</description>
+    <description>The object is designed to record the line-level allocation performed by the user for each individual payment within bulk payments made via Payment Studio application.
+The object is designed to record the line-level allocation performed by the user for each individual payment within bulk payments made via Payment Studio application.
+Population Requirement Details: Conditionally Required if legacy data loading is required and the line allocation of payments needs an override
+[MODULE: Finance]
+[LOAD: Yes]
+[PREREQUISITES: Payment Studio, Payment Line Item(Payment_Receipt_Line_Item__c)]
+[REPLACEMENT OBJECT API: NA]
+[COMMENTS: NA]</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -165,7 +172,7 @@
         <type>Text</type>
     </nameField>
     <pluralLabel>Invoice Allocation Line Items</pluralLabel>
-    <searchLayouts />
+    <searchLayouts></searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

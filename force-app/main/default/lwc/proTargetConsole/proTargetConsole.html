@@ -1,0 +1,992 @@
+<template>
+  <div class="target-console-container">
+    <!-- TAB NAVIGATION -->
+    <lightning-tabset active-tab-value={activeTab} variant="scoped">
+      <!-- ASSETS TAB -->
+      <lightning-tab
+        label="Assets"
+        value="assets"
+        onactive={handleAssetsTabActive}
+      >
+        <!-- Assets Toolbar -->
+        <div
+          class="toolbar slds-grid slds-grid_align-spread slds-grid_vertical-align-end slds-p-around_small"
+        >
+          <!-- Left: Year Picker + Toggle + Search -->
+          <div
+            class="slds-grid slds-gutters_x-small slds-grid_vertical-align-end"
+          >
+            <div class="slds-col">
+              <label class="picker-label">Target Year</label>
+              <lightning-combobox
+                label="Target Year"
+                value={selectedYear}
+                options={yearOptions}
+                onchange={handleYearChange}
+                variant="label-hidden"
+                class="year-picker"
+                disabled={yearPickerDisabled}
+              ></lightning-combobox>
+            </div>
+            <div class="slds-col">
+              <label class="picker-label">Aircraft/Engine</label>
+              <lightning-combobox
+                label="Aircraft/Engine"
+                value={assetTypeFilter}
+                options={assetTypeFilterOptions}
+                onchange={handleAssetTypeFilterChange}
+                variant="label-hidden"
+                class="outcome-picker"
+              ></lightning-combobox>
+            </div>
+            <div class="slds-col">
+              <label class="picker-label">Show</label>
+              <lightning-combobox
+                label="Show"
+                value={assetShowFilter}
+                options={assetShowFilterOptions}
+                onchange={handleAssetShowFilterChange}
+                variant="label-hidden"
+                class="outcome-picker"
+              ></lightning-combobox>
+            </div>
+            <div class="slds-col">
+              <label class="picker-label">Asset Status</label>
+              <lightning-combobox
+                label="Asset Status"
+                value={assetStatusFilter}
+                options={assetStatusFilterOptions}
+                onchange={handleAssetStatusFilterChange}
+                variant="label-hidden"
+                class="outcome-picker"
+              ></lightning-combobox>
+            </div>
+            <div class="slds-col">
+              <label class="picker-label">Redeploy Type</label>
+              <lightning-combobox
+                label="Redeploy Type"
+                value={assetRedeployTypeFilter}
+                options={redeployTypeFilterOptions}
+                onchange={handleAssetRedeployTypeFilterChange}
+                variant="label-hidden"
+                class="outcome-picker"
+              ></lightning-combobox>
+            </div>
+            <div class="slds-col">
+              <lightning-input
+                type="search"
+                label="Search"
+                variant="label-hidden"
+                placeholder="Search assets..."
+                value={assetSearchTerm}
+                onchange={handleAssetSearch}
+                class="search-input"
+              ></lightning-input>
+            </div>
+          </div>
+
+          <!-- Right: Target Count + Record Count + Page Size -->
+          <div
+            class="slds-grid slds-gutters_x-small slds-grid_vertical-align-center"
+          >
+            <template lwc:if={showForecastColumn}>
+              <div class="slds-col">
+                <span class="target-count-badge">{activeTargetCountLabel}</span>
+              </div>
+            </template>
+            <div class="slds-col">
+              <span class="record-count">{assetPaginationSummary}</span>
+            </div>
+            <div class="slds-col">
+              <label class="picker-label">Per Page</label>
+              <lightning-combobox
+                label="Per Page"
+                value={assetPageSize}
+                options={pageSizeOptions}
+                onchange={handleAssetPageSizeChange}
+                variant="label-hidden"
+                class="page-size-picker"
+              ></lightning-combobox>
+            </div>
+          </div>
+        </div>
+
+        <!-- Assets Action Row (inside toolbar area, visible when items selected or edits pending) -->
+        <template lwc:if={canEdit}>
+          <template lwc:if={showAssetActionRow}>
+            <div
+              class="action-row slds-grid slds-grid_align-spread slds-grid_vertical-align-center slds-p-horizontal_small slds-p-vertical_xx-small"
+            >
+              <!-- Left: Selection count + Target picker + Set Targets -->
+              <div
+                class="slds-grid slds-gutters_x-small slds-grid_vertical-align-center"
+              >
+                <template lwc:if={hasSelectedAssets}>
+                  <div class="slds-col">
+                    <span class="selection-count"
+                      >{selectedAssetCount} selected</span
+                    >
+                  </div>
+                  <div class="slds-col">
+                    <lightning-combobox
+                      label="Target"
+                      variant="label-hidden"
+                      placeholder="Select Target..."
+                      value={selectedTargetId}
+                      options={targetOptions}
+                      onchange={handleTargetSelection}
+                      class="target-picker"
+                    ></lightning-combobox>
+                  </div>
+                  <template lwc:if={showSetTargetsButton}>
+                    <div class="slds-col">
+                      <lightning-button
+                        label="Set Targets"
+                        variant="brand"
+                        onclick={handleSetTargets}
+                      ></lightning-button>
+                    </div>
+                  </template>
+                </template>
+              </div>
+
+              <!-- Right: Save Changes -->
+              <div class="slds-col">
+                <lightning-button
+                  label="Save Changes"
+                  variant="brand"
+                  onclick={handleSaveAssetEdits}
+                  disabled={saveEditsDisabled}
+                ></lightning-button>
+              </div>
+            </div>
+          </template>
+        </template>
+
+        <!-- Assets Data Table -->
+        <div class="table-container">
+          <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+            <thead>
+              <tr>
+                <template lwc:if={canEdit}>
+                  <th scope="col" class="checkbox-column">
+                    <lightning-input
+                      type="checkbox"
+                      label="Select All"
+                      variant="label-hidden"
+                      checked={selectAllChecked}
+                      onchange={handleSelectAllChange}
+                    ></lightning-input>
+                  </th>
+                </template>
+                <template for:each={assetColumnsWithSort} for:item="col">
+                  <th
+                    key={col.fieldName}
+                    class="sortable-header"
+                    data-field={col.fieldName}
+                    onclick={handleAssetSort}
+                    scope="col"
+                  >
+                    <div class="slds-grid slds-grid_vertical-align-center">
+                      <span>{col.label}</span>
+                      <template lwc:if={col.isSorted}>
+                        <lightning-icon
+                          icon-name={col.sortIcon}
+                          size="xx-small"
+                          class="slds-m-left_xx-small sort-icon"
+                        ></lightning-icon>
+                      </template>
+                    </div>
+                  </th>
+                </template>
+                <template lwc:if={showForecastColumn}>
+                  <th
+                    class="sortable-header"
+                    data-field="targetForecastDate"
+                    onclick={handleAssetSort}
+                    scope="col"
+                  >
+                    <div class="slds-grid slds-grid_vertical-align-center">
+                      <span>Target Forecast</span>
+                    </div>
+                  </th>
+                </template>
+                <th
+                  class="sortable-header"
+                  data-field="leaseEndDate"
+                  onclick={handleAssetSort}
+                  scope="col"
+                >
+                  <div class="slds-grid slds-grid_vertical-align-center">
+                    <span>Lease End Date</span>
+                  </div>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <template lwc:if={assetsDisplayData.length}>
+                <template for:each={assetsDisplayData} for:item="row">
+                  <tr key={row.id}>
+                    <!-- Checkbox (edit permission required) -->
+                    <template lwc:if={canEdit}>
+                      <td class="checkbox-column">
+                        <lightning-input
+                          type="checkbox"
+                          label="Select"
+                          variant="label-hidden"
+                          data-id={row.id}
+                          checked={row.isSelected}
+                          onchange={handleAssetCheckboxChange}
+                        ></lightning-input>
+                      </td>
+                    </template>
+                    <!-- Asset Name (clickable link, sticky) -->
+                    <td class="sticky-column">
+                      <a
+                        href={row.recordUrl}
+                        data-id={row.id}
+                        onclick={handleAssetNameClick}
+                        class="asset-link"
+                      >
+                        {row.name}
+                      </a>
+                    </td>
+                    <!-- Aircraft/Engine -->
+                    <td>{row.aircraftType}</td>
+                    <!-- Status -->
+                    <td>{row.statusLabel}</td>
+                    <!-- Assigned Operator (hyperlink) -->
+                    <td>
+                      <template lwc:if={row.operatorUrl}>
+                        <a href={row.operatorUrl} class="asset-link">
+                          {row.operatorName}
+                        </a>
+                      </template>
+                      <template lwc:else>{row.operatorName}</template>
+                    </td>
+                    <!-- Likely Outcome (inline edit / read-only) -->
+                    <template lwc:if={canEdit}>
+                      <td class={row.editableCellClass}>
+                        <lightning-combobox
+                          label="Likely Outcome"
+                          variant="label-hidden"
+                          value={row.likelyOutcome}
+                          options={likelyOutcomeOptions}
+                          data-id={row.id}
+                          onchange={handleLikelyOutcomeChange}
+                          class="editable-combobox"
+                        ></lightning-combobox>
+                      </td>
+                    </template>
+                    <template lwc:else>
+                      <td>{row.likelyOutcome}</td>
+                    </template>
+                    <!-- Moved To Trading (inline edit / read-only) -->
+                    <template lwc:if={canEdit}>
+                      <td class={row.editableCellClass}>
+                        <lightning-input
+                          type="checkbox"
+                          label="Moved To Trading"
+                          variant="label-hidden"
+                          checked={row.movedToTrading}
+                          data-id={row.id}
+                          onchange={handleMovedToTradingChange}
+                        ></lightning-input>
+                      </td>
+                    </template>
+                    <template lwc:else>
+                      <td class="slds-text-align_center">
+                        <template lwc:if={row.movedToTrading}>Yes</template>
+                      </td>
+                    </template>
+                    <!-- Marketing/Trading (inline edit / read-only) -->
+                    <template lwc:if={canEdit}>
+                      <td class={row.editableCellClass}>
+                        <lightning-combobox
+                          label="Marketing/Trading"
+                          variant="label-hidden"
+                          value={row.marketingTrading}
+                          options={marketingTradingOptions}
+                          data-id={row.id}
+                          onchange={handleMarketingTradingChange}
+                          class="editable-combobox"
+                        ></lightning-combobox>
+                      </td>
+                    </template>
+                    <template lwc:else>
+                      <td>{row.marketingTrading}</td>
+                    </template>
+                    <!-- Target Forecast (multi-link, conditional) -->
+                    <template lwc:if={showForecastColumn}>
+                      <td class="forecast-cell">
+                        <template lwc:if={row.forecastEntries.length}>
+                          <template
+                            for:each={row.forecastEntries}
+                            for:item="fe"
+                          >
+                            <div key={fe.ataId} class="forecast-row">
+                              <a
+                                href={fe.ataUrl}
+                                class="asset-link forecast-link"
+                                title={fe.progressStatus}
+                                >{fe.forecastLabel}</a
+                              >
+                            </div>
+                          </template>
+                        </template>
+                      </td>
+                    </template>
+                    <!-- Lease End Date -->
+                    <td>{row.leaseEndDateFormatted}</td>
+                  </tr>
+                </template>
+              </template>
+              <template lwc:else>
+                <tr>
+                  <td
+                    colspan={assetColumnCount}
+                    class="slds-text-align_center empty-message"
+                  >
+                    No assets found for the selected criteria.
+                  </td>
+                </tr>
+              </template>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Pagination Footer -->
+        <div
+          class="pagination-footer slds-grid slds-grid_align-center slds-p-around_small"
+        >
+          <lightning-button
+            label="Previous"
+            onclick={handleAssetPrevPage}
+            disabled={assetPrevDisabled}
+            variant="neutral"
+            class="slds-m-right_x-small"
+          ></lightning-button>
+          <span class="page-indicator">
+            Page {assetCurrentPage} of {assetTotalPages}
+          </span>
+          <lightning-button
+            label="Next"
+            onclick={handleAssetNextPage}
+            disabled={assetNextDisabled}
+            variant="neutral"
+            class="slds-m-left_x-small"
+          ></lightning-button>
+        </div>
+
+      </lightning-tab>
+
+      <!-- TARGETS TAB -->
+      <lightning-tab
+        label="Targets"
+        value="targets"
+        onactive={handleTargetsTabActive}
+      >
+        <!-- Targets Toolbar -->
+        <div
+          class="toolbar slds-grid slds-grid_align-spread slds-grid_vertical-align-end slds-p-around_small"
+        >
+          <!-- Left: Year Picker + Progress + Redeploy Type + Search -->
+          <div
+            class="slds-grid slds-gutters_x-small slds-grid_vertical-align-end"
+          >
+            <div class="slds-col">
+              <label class="picker-label">Target Year</label>
+              <lightning-combobox
+                label="Target Year"
+                value={selectedYear}
+                options={yearOptions}
+                onchange={handleYearChange}
+                variant="label-hidden"
+                class="year-picker"
+              ></lightning-combobox>
+            </div>
+            <div class="slds-col">
+              <label class="picker-label">Aircraft/Engine</label>
+              <lightning-combobox
+                label="Aircraft/Engine"
+                value={assetTypeFilter}
+                options={assetTypeFilterOptions}
+                onchange={handleAssetTypeFilterChange}
+                variant="label-hidden"
+                class="outcome-picker"
+              ></lightning-combobox>
+            </div>
+            <div class="slds-col">
+              <label class="picker-label">Progress</label>
+              <lightning-combobox
+                label="Progress"
+                variant="label-hidden"
+                value={targetOutcomeFilter}
+                options={outcomeFilterOptions}
+                onchange={handleOutcomeFilterChange}
+                class="outcome-picker"
+              ></lightning-combobox>
+            </div>
+            <div class="slds-col">
+              <label class="picker-label">Redeploy Type</label>
+              <lightning-combobox
+                label="Redeploy Type"
+                variant="label-hidden"
+                value={targetAchievedByFilter}
+                options={marketingTradingFilterOptions}
+                onchange={handleAchievedByFilterChange}
+                class="outcome-picker"
+              ></lightning-combobox>
+            </div>
+            <div class="slds-col">
+              <lightning-input
+                type="search"
+                label="Search"
+                variant="label-hidden"
+                placeholder="Search targets..."
+                value={targetSearchTerm}
+                onchange={handleTargetSearch}
+                class="search-input"
+              ></lightning-input>
+            </div>
+          </div>
+
+          <!-- Right: Snapshot Controls + Record Count + Page Size -->
+          <div
+            class="slds-grid slds-gutters_x-small slds-grid_vertical-align-center"
+          >
+            <div class="slds-col snapshot-controls">
+              <lightning-button
+                label={snapshotModeLabel}
+                variant={snapshotModeVariant}
+                onclick={handleSnapshotModeToggle}
+                icon-name="utility:snapshot"
+              ></lightning-button>
+              <template lwc:if={isSnapshotMode}>
+                <template lwc:if={hasSnapshots}>
+                  <lightning-combobox
+                    label="Snapshot"
+                    variant="label-hidden"
+                    placeholder="Select snapshot..."
+                    value={selectedSnapshotId}
+                    options={snapshotOptions}
+                    onchange={handleSnapshotSelect}
+                    class="snapshot-picker"
+                  ></lightning-combobox>
+                </template>
+                <template lwc:if={selectedSnapshotId}>
+                  <lightning-button
+                    label="Snapshot Report"
+                    variant="neutral"
+                    onclick={handleSnapshotReport}
+                    icon-name="utility:chart"
+                  ></lightning-button>
+                  <template lwc:if={canEdit}>
+                    <lightning-button
+                      label="Delete Snapshot"
+                      variant="destructive"
+                      onclick={handleDeleteSnapshotClick}
+                      icon-name="utility:delete"
+                    ></lightning-button>
+                  </template>
+                </template>
+              </template>
+              <template lwc:if={isNotSnapshotMode}>
+                <template lwc:if={canEdit}>
+                  <lightning-button
+                    label="Take Snapshot"
+                    variant="neutral"
+                    onclick={handleTakeSnapshot}
+                    icon-name="utility:add"
+                  ></lightning-button>
+                </template>
+              </template>
+            </div>
+            <div class="slds-col">
+              <span class="record-count">{targetPaginationSummary}</span>
+            </div>
+            <div class="slds-col">
+              <label class="picker-label">Per Page</label>
+              <lightning-combobox
+                label="Per Page"
+                value={targetPageSize}
+                options={pageSizeOptions}
+                onchange={handleTargetPageSizeChange}
+                variant="label-hidden"
+                class="page-size-picker"
+              ></lightning-combobox>
+            </div>
+          </div>
+        </div>
+
+        <!-- Targets Action Row (inside toolbar area, visible when audits selected) -->
+        <template lwc:if={canEdit}>
+          <template lwc:if={isNotSnapshotMode}>
+            <template lwc:if={hasSelectedAudits}>
+              <div
+                class="action-row slds-grid slds-grid_align-spread slds-grid_vertical-align-center slds-p-horizontal_small slds-p-vertical_xx-small"
+              >
+                <!-- Left: Selection count + Target picker + Set Targets -->
+                <div
+                  class="slds-grid slds-gutters_x-small slds-grid_vertical-align-center"
+                >
+                  <div class="slds-col">
+                    <span class="selection-count"
+                      >{selectedAuditCount} selected</span
+                    >
+                  </div>
+                  <div class="slds-col">
+                    <lightning-combobox
+                      label="Target"
+                      variant="label-hidden"
+                      placeholder="Select Target..."
+                      value={selectedTargetIdForAudits}
+                      options={targetOptions}
+                      onchange={handleTargetSelectionForAudits}
+                      class="target-picker"
+                    ></lightning-combobox>
+                  </div>
+                  <template lwc:if={showSetTargetsButtonForAudits}>
+                    <div class="slds-col">
+                      <lightning-button
+                        label="Set Targets"
+                        variant="brand"
+                        onclick={handleSetTargetsForAudits}
+                      ></lightning-button>
+                    </div>
+                  </template>
+                </div>
+
+                <!-- Right: Delete Selected -->
+                <div class="slds-col">
+                  <lightning-button
+                    label="Delete Selected"
+                    variant="destructive"
+                    onclick={handleDeleteSelected}
+                  ></lightning-button>
+                </div>
+              </div>
+            </template>
+          </template>
+        </template>
+
+        <!-- Targets Data Table -->
+        <div class="table-container targets-table">
+          <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+            <thead>
+              <tr>
+                <template lwc:if={canEdit}>
+                  <template lwc:if={isNotSnapshotMode}>
+                    <th scope="col" class="checkbox-column">
+                      <lightning-input
+                        type="checkbox"
+                        label="Select All"
+                        variant="label-hidden"
+                        checked={auditSelectAllChecked}
+                        onchange={handleAuditSelectAllChange}
+                      ></lightning-input>
+                    </th>
+                  </template>
+                </template>
+                <template for:each={targetColumnsWithSort} for:item="col">
+                  <th
+                    key={col.fieldName}
+                    class="sortable-header"
+                    data-field={col.fieldName}
+                    onclick={handleTargetSort}
+                    scope="col"
+                  >
+                    <div class="slds-grid slds-grid_vertical-align-center">
+                      <span>{col.label}</span>
+                      <template lwc:if={col.isSorted}>
+                        <lightning-icon
+                          icon-name={col.sortIcon}
+                          size="xx-small"
+                          class="slds-m-left_xx-small sort-icon"
+                        ></lightning-icon>
+                      </template>
+                    </div>
+                  </th>
+                </template>
+              </tr>
+            </thead>
+            <tbody>
+              <template lwc:if={targetsDisplayData.length}>
+                <template for:each={targetsDisplayData} for:item="row">
+                  <tr key={row.id}>
+                    <!-- Checkbox (hidden in snapshot mode, edit permission required) -->
+                    <template lwc:if={canEdit}>
+                      <template lwc:if={isNotSnapshotMode}>
+                        <td class="checkbox-column">
+                          <lightning-input
+                            type="checkbox"
+                            label="Select"
+                            variant="label-hidden"
+                            data-id={row.id}
+                            checked={row.isSelected}
+                            onchange={handleAuditCheckboxChange}
+                          ></lightning-input>
+                        </td>
+                      </template>
+                    </template>
+                    <!-- Asset Name (hyperlink) -->
+                    <td>
+                      <template lwc:if={row.assetUrl}>
+                        <a href={row.assetUrl} class="asset-link"
+                          >{row.assetName}</a
+                        >
+                      </template>
+                      <template lwc:else>{row.assetName}</template>
+                    </td>
+                    <!-- Contract (hyperlink) -->
+                    <td>
+                      <template lwc:if={row.contractUrl}>
+                        <a href={row.contractUrl} class="asset-link"
+                          >{row.contractName}</a
+                        >
+                      </template>
+                      <template lwc:else>{row.contractName}</template>
+                    </td>
+                    <td>{row.progress}</td>
+                    <td>{row.loiDealType}</td>
+                    <td>{row.likelyOutcome}</td>
+                    <td>{row.marketingTrading}</td>
+                    <!-- Target Forecast (hyperlink) -->
+                    <td>
+                      <template lwc:if={row.targetForecastUrl}>
+                        <a href={row.targetForecastUrl} class="asset-link"
+                          >{row.targetForecast}</a
+                        >
+                      </template>
+                      <template lwc:else>{row.targetForecast}</template>
+                    </td>
+                    <!-- Target Reached (hyperlink) -->
+                    <td>
+                      <template lwc:if={row.targetReachedUrl}>
+                        <a href={row.targetReachedUrl} class="asset-link"
+                          >{row.targetReached}</a
+                        >
+                      </template>
+                      <template lwc:else>{row.targetReached}</template>
+                    </td>
+                  </tr>
+                </template>
+              </template>
+              <template lwc:else>
+                <tr>
+                  <td
+                    colspan={targetColumnCount}
+                    class="slds-text-align_center empty-message"
+                  >
+                    No target audit records found for the selected criteria.
+                  </td>
+                </tr>
+              </template>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Targets Pagination Footer -->
+        <div
+          class="pagination-footer slds-grid slds-grid_align-center slds-p-around_small"
+        >
+          <lightning-button
+            label="Previous"
+            onclick={handleTargetPrevPage}
+            disabled={targetPrevDisabled}
+            variant="neutral"
+            class="slds-m-right_x-small"
+          ></lightning-button>
+          <span class="page-indicator">
+            Page {targetCurrentPage} of {targetTotalPages}
+          </span>
+          <lightning-button
+            label="Next"
+            onclick={handleTargetNextPage}
+            disabled={targetNextDisabled}
+            variant="neutral"
+            class="slds-m-left_x-small"
+          ></lightning-button>
+        </div>
+
+      </lightning-tab>
+
+      <!-- TARGET PERFORMANCE TAB -->
+      <lightning-tab
+        label="Target Performance"
+        value="targetPlan"
+        onactive={handleTargetPlanTabActive}
+      >
+        <!-- Target Performance Toolbar -->
+        <div
+          class="toolbar slds-grid slds-grid_align-spread slds-grid_vertical-align-end slds-p-around_small"
+        >
+          <div
+            class="slds-grid slds-gutters_x-small slds-grid_vertical-align-end"
+          >
+            <div class="slds-col">
+              <label class="picker-label">Target Year</label>
+              <lightning-combobox
+                label="Target Year"
+                value={selectedYear}
+                options={yearOptions}
+                onchange={handleYearChange}
+                variant="label-hidden"
+                class="year-picker"
+              ></lightning-combobox>
+            </div>
+            <div class="slds-col">
+              <label class="picker-label">Aircraft/Engine</label>
+              <lightning-combobox
+                label="Aircraft/Engine"
+                value={assetTypeFilter}
+                options={assetTypeFilterOptions}
+                onchange={handleAssetTypeFilterChange}
+                variant="label-hidden"
+                class="outcome-picker"
+              ></lightning-combobox>
+            </div>
+          </div>
+        </div>
+
+        <!-- Target Performance Data Table -->
+        <div class="table-container">
+          <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+            <thead>
+              <tr>
+                <th scope="col">Target</th>
+                <th scope="col">Run Rate Targets (Manual)</th>
+                <th scope="col">Roll Off Targets</th>
+                <th scope="col">Achieved Targets</th>
+              </tr>
+            </thead>
+            <tbody>
+              <template lwc:if={targetPlanWithEdits.length}>
+                <template for:each={targetPlanWithEdits} for:item="row">
+                  <tr key={row.id}>
+                    <td>
+                      <a href={row.recordUrl} class="asset-link">{row.name}</a>
+                    </td>
+                    <template lwc:if={canEdit}>
+                      <td class={row.planCellClass}>
+                        <lightning-input
+                          type="number"
+                          label="Run Rate Targets"
+                          variant="label-hidden"
+                          value={row.targetAmount}
+                          data-id={row.id}
+                          onchange={handleTargetAmountChange}
+                          step="1"
+                          class="editable-number"
+                        ></lightning-input>
+                      </td>
+                    </template>
+                    <template lwc:else>
+                      <td>{row.targetAmount}</td>
+                    </template>
+                    <td>{row.rollOffTargets}</td>
+                    <td>{row.achievedTargets}</td>
+                  </tr>
+                </template>
+              </template>
+              <template lwc:else>
+                <tr>
+                  <td colspan="4" class="slds-text-align_center empty-message">
+                    No target plan records found for the selected year.
+                  </td>
+                </tr>
+              </template>
+            </tbody>
+            <template lwc:if={targetPlanWithEdits.length}>
+              <tfoot>
+                <tr>
+                  <td><strong>Total</strong></td>
+                  <td><strong>{targetPlanTotals.targetAmount}</strong></td>
+                  <td><strong>{targetPlanTotals.rollOffTargets}</strong></td>
+                  <td><strong>{targetPlanTotals.achievedTargets}</strong></td>
+                </tr>
+              </tfoot>
+            </template>
+          </table>
+        </div>
+
+        <!-- Target Performance Action Bar (edit permission required) -->
+        <template lwc:if={canEdit}>
+          <div
+            class="action-bar slds-p-around_small slds-grid slds-grid_align-end"
+          >
+            <lightning-button
+              label="Save Changes"
+              variant="brand"
+              onclick={handleSaveTargetPlan}
+              disabled={saveTargetPlanDisabled}
+            ></lightning-button>
+          </div>
+        </template>
+      </lightning-tab>
+    </lightning-tabset>
+
+    <!-- LOADING SPINNER -->
+    <template lwc:if={isLoading}>
+      <div class="spinner-overlay">
+        <lightning-spinner
+          alternative-text="Loading"
+          size="medium"
+        ></lightning-spinner>
+      </div>
+    </template>
+
+    <!-- DELETE CONFIRMATION MODAL -->
+    <template lwc:if={showDeleteConfirmModal}>
+      <section
+        role="dialog"
+        tabindex="-1"
+        aria-modal="true"
+        aria-labelledby="delete-modal-heading"
+        class="slds-modal slds-fade-in-open modal-container"
+      >
+        <div class="slds-modal__container">
+          <button
+            class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+            onclick={handleCancelDelete}
+          >
+            <lightning-icon
+              icon-name="utility:close"
+              size="small"
+              variant="inverse"
+            ></lightning-icon>
+            <span class="slds-assistive-text">Cancel and close</span>
+          </button>
+          <div class="slds-modal__header">
+            <h2
+              id="delete-modal-heading"
+              class="slds-modal__title slds-hyphenate"
+            >
+              Delete Target Audit Records
+            </h2>
+          </div>
+          <div class="slds-modal__content slds-p-around_medium">
+            <p>
+              Are you sure you want to delete {selectedAuditCount} selected
+              target audit record(s)? This action cannot be undone.
+            </p>
+          </div>
+          <div class="slds-modal__footer">
+            <lightning-button
+              label="Cancel"
+              onclick={handleCancelDelete}
+              class="slds-m-right_x-small"
+            ></lightning-button>
+            <lightning-button
+              label="Delete"
+              variant="destructive"
+              onclick={handleConfirmDelete}
+            ></lightning-button>
+          </div>
+        </div>
+      </section>
+      <div class="slds-backdrop slds-backdrop_open modal-backdrop"></div>
+    </template>
+
+    <!-- REASSIGN TARGET CONFIRMATION MODAL -->
+    <template lwc:if={showReassignConfirmModal}>
+      <section
+        role="dialog"
+        tabindex="-1"
+        aria-modal="true"
+        aria-labelledby="reassign-modal-heading"
+        class="slds-modal slds-fade-in-open modal-container"
+      >
+        <div class="slds-modal__container">
+          <button
+            class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+            onclick={handleCancelReassign}
+          >
+            <lightning-icon
+              icon-name="utility:close"
+              size="small"
+              variant="inverse"
+            ></lightning-icon>
+            <span class="slds-assistive-text">Cancel and close</span>
+          </button>
+          <div class="slds-modal__header">
+            <h2
+              id="reassign-modal-heading"
+              class="slds-modal__title slds-hyphenate"
+            >
+              Reassign Targets
+            </h2>
+          </div>
+          <div class="slds-modal__content slds-p-around_medium">
+            <p>{reassignConfirmMessage}</p>
+          </div>
+          <div class="slds-modal__footer">
+            <lightning-button
+              label="Cancel"
+              onclick={handleCancelReassign}
+              class="slds-m-right_x-small"
+            ></lightning-button>
+            <lightning-button
+              label="Continue"
+              variant="brand"
+              onclick={handleConfirmReassign}
+            ></lightning-button>
+          </div>
+        </div>
+      </section>
+      <div class="slds-backdrop slds-backdrop_open modal-backdrop"></div>
+    </template>
+
+    <!-- DELETE SNAPSHOT CONFIRMATION MODAL -->
+    <template lwc:if={showDeleteSnapshotModal}>
+      <section
+        role="dialog"
+        tabindex="-1"
+        aria-modal="true"
+        aria-labelledby="delete-snapshot-modal-heading"
+        class="slds-modal slds-fade-in-open modal-container"
+      >
+        <div class="slds-modal__container">
+          <button
+            class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+            onclick={handleCancelDeleteSnapshot}
+          >
+            <lightning-icon
+              icon-name="utility:close"
+              size="small"
+              variant="inverse"
+            ></lightning-icon>
+            <span class="slds-assistive-text">Cancel and close</span>
+          </button>
+          <div class="slds-modal__header">
+            <h2
+              id="delete-snapshot-modal-heading"
+              class="slds-modal__title slds-hyphenate"
+            >
+              Delete Snapshot
+            </h2>
+          </div>
+          <div class="slds-modal__content slds-p-around_medium">
+            <p>
+              Are you sure you want to delete this snapshot? This action cannot
+              be undone.
+            </p>
+          </div>
+          <div class="slds-modal__footer">
+            <lightning-button
+              label="Cancel"
+              onclick={handleCancelDeleteSnapshot}
+              class="slds-m-right_x-small"
+            ></lightning-button>
+            <lightning-button
+              label="Delete"
+              variant="destructive"
+              onclick={handleConfirmDeleteSnapshot}
+            ></lightning-button>
+          </div>
+        </div>
+      </section>
+      <div class="slds-backdrop slds-backdrop_open modal-backdrop"></div>
+    </template>
+  </div>
+</template>

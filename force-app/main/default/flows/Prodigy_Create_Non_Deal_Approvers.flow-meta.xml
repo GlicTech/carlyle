@@ -54,6 +54,17 @@
             <targetReference>Get_Custom_Approvers_Custom_Metadata_Type</targetReference>
         </connector>
     </assignments>
+    <customErrors>
+        <name>Throw_Username_Error</name>
+        <label>Throw Username Error</label>
+        <locationX>440</locationX>
+        <locationY>755</locationY>
+        <customErrorMessages>
+            <errorMessage>A designated approver record was not found. 
+{!$Flow.FaultMessage}</errorMessage>
+            <isFieldError>false</isFieldError>
+        </customErrorMessages>
+    </customErrors>
     <decisions>
         <name>Does_Inner_Loop_User_Match_Outer_Loop_User</name>
         <label>Does Inner Loop User Match Outer Loop User?</label>
@@ -62,7 +73,7 @@
         <defaultConnector>
             <targetReference>Loop_Users</targetReference>
         </defaultConnector>
-        <defaultConnectorLabel>Doesn&#39;t Match</defaultConnectorLabel>
+        <defaultConnectorLabel>Doesn&apos;t Match</defaultConnectorLabel>
         <rules>
             <name>Matches</name>
             <conditionLogic>and</conditionLogic>
@@ -214,6 +225,27 @@
         <triggerType>RecordAfterSave</triggerType>
     </start>
     <status>Active</status>
+    <transforms>
+        <name>Create_Approver_Username_List</name>
+        <label>Create Approver Username List</label>
+        <locationX>176</locationX>
+        <locationY>539</locationY>
+        <connector>
+            <targetReference>Get_Approvers</targetReference>
+        </connector>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>Get_Custom_Approvers_Custom_Metadata_Type[$EachItem].pro_Assigned_To__c</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
     <variables>
         <name>varDealTeamsToCreateCollection</name>
         <dataType>SObject</dataType>

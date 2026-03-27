@@ -230,8 +230,8 @@ This flow allows users to create multiple Ticket Assignee records, thereby assig
     <dynamicChoiceSets>
         <name>pcs_AssigneeRoles</name>
         <dataType>Multipicklist</dataType>
-        <displayField xsi:nil="true" />
-        <object xsi:nil="true" />
+        <displayField xsi:nil="true"/>
+        <object xsi:nil="true"/>
         <picklistField>pro_Assignee_Roles__c</picklistField>
         <picklistObject>pro_Ticket_Assignee__c</picklistObject>
     </dynamicChoiceSets>
@@ -239,7 +239,7 @@ This flow allows users to create multiple Ticket Assignee records, thereby assig
     <formulas>
         <name>f_AssigneeFullName</name>
         <dataType>String</dataType>
-        <expression>{!varAssigneeToCreate.pro_Assigned_To__r.FirstName} + &#39; &#39; +  {!varAssigneeToCreate.pro_Assigned_To__r.LastName}</expression>
+        <expression>{!varAssigneeToCreate.pro_Assigned_To__r.FirstName} + &apos; &apos; +  {!varAssigneeToCreate.pro_Assigned_To__r.LastName}</expression>
     </formulas>
     <interviewLabel>Prodigy - Auto - Multi Assign Tickets {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Prodigy - Auto - Multi Assign Tickets</label>
@@ -670,6 +670,7 @@ This flow allows users to create multiple Ticket Assignee records, thereby assig
                     <extensionName>flowruntime:choiceLookup</extensionName>
                     <fieldText>Assignee Roles</fieldText>
                     <fieldType>ComponentMultiChoice</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                     <storeOutputAutomatically>true</storeOutputAutomatically>
                     <visibilityRule>
@@ -703,6 +704,7 @@ This flow allows users to create multiple Ticket Assignee records, thereby assig
                 <fieldType>Region</fieldType>
                 <fields>
                     <fieldType>ObjectProvided</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                     <objectFieldReference>varAssigneeToCreate.pro_Assignee_Instruction__c</objectFieldReference>
                 </fields>

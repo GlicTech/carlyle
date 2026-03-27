@@ -63,9 +63,9 @@
     <fieldUpdates>
         <fullName>leaseworks__AssemblyEventSetDataVerifiedBy</fullName>
         <field>leaseworks__Data_Verified_By__c</field>
-        <formula>$User.FirstName + &#39; &#39; + $User.LastName +&#39;, &#39; +
+        <formula>$User.FirstName + &apos; &apos; + $User.LastName +&apos;, &apos; +
 
-Text(MONTH(TODAY())) + &#39;/&#39; + Text(Day(TODAY())) + &#39;/&#39; + Text(year(TODAY()))</formula>
+Text(MONTH(TODAY())) + &apos;/&apos; + Text(Day(TODAY())) + &apos;/&apos; + Text(year(TODAY()))</formula>
         <name>AssemblyEventSetDataVerifiedBy</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
@@ -111,12 +111,12 @@ Text(MONTH(TODAY())) + &#39;/&#39; + Text(Day(TODAY())) + &#39;/&#39; + Text(yea
         <description>Updates the CA EE name</description>
         <field>Name</field>
         <formula>IF(AND(OR(ISNULL(leaseworks__Projected_Event__c),ISBLANK(leaseworks__Projected_Event__c)),OR(ISNULL(leaseworks__Custom_PE_Record_Number__c),ISBLANK(leaseworks__Custom_PE_Record_Number__c))), 
-IF(CONTAINS(Name,&#39;&lt;System Generated&gt;&#39;),TEXT(leaseworks__Event_Type__c),Name) ,
+IF(CONTAINS(Name,&apos;&lt;System Generated&gt;&apos;),TEXT(leaseworks__Event_Type__c),Name) ,
 IF( AND(OR(ISNULL(leaseworks__Projected_Event__c),ISBLANK(leaseworks__Projected_Event__c)), OR(ISNULL(leaseworks__Y_Hidden_Maintenance_Program_Event__c),ISBLANK(leaseworks__Y_Hidden_Maintenance_Program_Event__c))),
-IF( OR(ISNULL(leaseworks__Custom_PE_Record_Number__c),ISBLANK(leaseworks__Custom_PE_Record_Number__c)) , &#39;&#39; , &#39;Custom Event(&#39; &amp; TEXT(leaseworks__Custom_PE_Record_Number__c) &amp; &#39;)&#39; ),
-IF( OR(ISNULL(leaseworks__Custom_PE_Record_Number__c),ISBLANK(leaseworks__Custom_PE_Record_Number__c)) , leaseworks__Projected_Event__r.leaseworks__Event_Type__c , &#39;Custom Event(&#39; &amp; TEXT(leaseworks__Custom_PE_Record_Number__c) &amp; &#39;)&#39; )
+IF( OR(ISNULL(leaseworks__Custom_PE_Record_Number__c),ISBLANK(leaseworks__Custom_PE_Record_Number__c)) , &apos;&apos; , &apos;Custom Event(&apos; &amp; TEXT(leaseworks__Custom_PE_Record_Number__c) &amp; &apos;)&apos; ),
+IF( OR(ISNULL(leaseworks__Custom_PE_Record_Number__c),ISBLANK(leaseworks__Custom_PE_Record_Number__c)) , leaseworks__Projected_Event__r.leaseworks__Event_Type__c , &apos;Custom Event(&apos; &amp; TEXT(leaseworks__Custom_PE_Record_Number__c) &amp; &apos;)&apos; )
 )
-&amp; &#39;-&#39; &amp; TEXT(leaseworks__End_Date__c)&amp;&quot;-&quot;&amp;leaseworks__Constituent_Assembly__r.leaseworks__Serial_Number__c
+&amp; &apos;-&apos; &amp; TEXT(leaseworks__End_Date__c)&amp;&quot;-&quot;&amp;leaseworks__Constituent_Assembly__r.leaseworks__Serial_Number__c
 )</formula>
         <name>Update CAEE Name</name>
         <notifyAssignee>false</notifyAssignee>
@@ -127,7 +127,7 @@ IF( OR(ISNULL(leaseworks__Custom_PE_Record_Number__c),ISBLANK(leaseworks__Custom
     <fieldUpdates>
         <fullName>leaseworks__Update_Certified_By</fullName>
         <field>leaseworks__Certified_By__c</field>
-        <formula>IF( !isBlank(leaseworks__End_Date__c) &amp;&amp; ISCHANGED(leaseworks__End_Date__c) , $User.FirstName + &#39; &#39; + $User.LastName, &#39;&#39;)</formula>
+        <formula>IF( !isBlank(leaseworks__End_Date__c) &amp;&amp; ISCHANGED(leaseworks__End_Date__c) , $User.FirstName + &apos; &apos; + $User.LastName, &apos;&apos;)</formula>
         <name>Update Certified By</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
@@ -154,7 +154,7 @@ IF( OR(ISNULL(leaseworks__Custom_PE_Record_Number__c),ISBLANK(leaseworks__Custom
             <name>leaseworks__Update_CAEE_Name</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>Workflow for when Assembly Eligible event is created or updated</description>
         <formula>TRUE</formula>
         <triggerType>onAllChanges</triggerType>

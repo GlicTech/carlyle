@@ -150,7 +150,13 @@
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <deprecated>false</deprecated>
-    <description>Keep track of asset history like Status changes, dates on which the status change happens, Operator etc.</description>
+    <description>Keep track of asset history like Status changes, dates on which the status change happens, Operator etc.
+History Associated with the Asset and Assemblies. Including removal/installations, Deliveries and Returns and etc. This is a place where multiple different history records are stored, therefore
+[MODULE: Asset]
+[LOAD: Optional]
+[PREREQUISITES: Asset or Assembly or Lease]
+[REPLACEMENT OBJECT API: NA]
+[COMMENTS: NA]</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -168,7 +174,7 @@
         <type>Text</type>
     </nameField>
     <pluralLabel>Asset History Tracking</pluralLabel>
-    <searchLayouts />
+    <searchLayouts></searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <startsWith>Vowel</startsWith>
     <visibility>Public</visibility>

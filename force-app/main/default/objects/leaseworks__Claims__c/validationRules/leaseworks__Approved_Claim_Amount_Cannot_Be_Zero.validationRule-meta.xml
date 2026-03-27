@@ -3,6 +3,6 @@
     <fullName>leaseworks__Approved_Claim_Amount_Cannot_Be_Zero</fullName>
     <active>true</active>
     <description>Approved Claim Amount must be entered to approve the Claim.</description>
-    <errorConditionFormula>ISCHANGED( leaseworks__Claim_Status__c ) &amp;&amp; ISPICKVAL( leaseworks__Claim_Status__c , &#39;Approved&#39;) &amp;&amp; (leaseworks__Approved_Claim_Amount__c = 0 || ISBLANK(leaseworks__Approved_Claim_Amount__c))</errorConditionFormula>
+    <errorConditionFormula>ISCHANGED( leaseworks__Claim_Status__c ) &amp;&amp; ISPICKVAL( leaseworks__Claim_Status__c , &apos;Approved&apos;) &amp;&amp; (leaseworks__Approved_Claim_Amount__c = 0 || ISBLANK(leaseworks__Approved_Claim_Amount__c))</errorConditionFormula>
     <errorMessage>Approved Claim Amount must be entered to approve the Claim.</errorMessage>
 </ValidationRule>

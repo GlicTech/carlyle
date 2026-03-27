@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>pro_Completion_Provided_By_Required</fullName>
+    <active>true</active>
+    <description>Prevents completing an item when Provided By is configured as a required completion field but has not been populated.</description>
+    <errorConditionFormula>AND(
+  ISPICKVAL(pro_Status__c, &quot;Completed&quot;),
+  CONTAINS(pro_Completion_Fields__c, &quot;pro_Provided_By__c&quot;),
+  ISBLANK(TEXT(pro_Provided_By__c))
+)</errorConditionFormula>
+    <errorDisplayField>pro_Provided_By__c</errorDisplayField>
+    <errorMessage>Provided By is required to complete this item.</errorMessage>
+</ValidationRule>

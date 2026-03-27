@@ -128,17 +128,17 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
-        <comment>Action override created by Lightning App Builder during activation.</comment>
-        <content>Payment_Studio_Record_Page1</content>
-        <formFactor>Small</formFactor>
+        <comment>Action override updated by Lightning App Builder during activation.</comment>
+        <content>Payment_Studio_Record_Page2</content>
+        <formFactor>Large</formFactor>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Flexipage</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
-        <comment>Action override updated by Lightning App Builder during activation.</comment>
-        <content>Payment_Studio_Record_Page2</content>
-        <formFactor>Large</formFactor>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Payment_Studio_Record_Page1</content>
+        <formFactor>Small</formFactor>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Flexipage</type>
     </actionOverrides>
@@ -150,6 +150,18 @@
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <deprecated>false</deprecated>
+    <description>Allows users to manage and reconcile bulk payment batches and accurately allocate payments to related invoices. Use Payment Studio to load payments from a single bank transaction. Use Payments &amp; Credits to load individual payments per invoice.
+Population Requirement Details: Conditionally Required if legacy data loading is required.
+Steps for loading data with trigger turned ON
+1. Load the Payment Studio record.
+2. Create Payment Line Items with Invoices allocated with Payment Studio association
+3. Approve the Payment Studio record.
+4. System will autocreate the Payment &amp; Credit records asscoaited with each selected invoice.
+[MODULE: Finance]
+[LOAD: Yes]
+[PREREQUISITES: Invoice (Approved Status), If the Source Source = Cash Payment, Invoice. If the Payment Source is not equal to &apos;Cash&apos; then the below are required., Invoice, Letter of Credit, Payable, Security Deposit]
+[REPLACEMENT OBJECT API: NA]
+[COMMENTS: NA]</description>
     <enableActivities>true</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>

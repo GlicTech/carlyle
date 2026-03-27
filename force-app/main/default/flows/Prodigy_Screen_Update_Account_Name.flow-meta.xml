@@ -24,9 +24,11 @@
                 <stringValue>Lock</stringValue>
             </value>
         </inputParameters>
+        <nameSegment>lockRecord</nameSegment>
+        <offset>0</offset>
     </actionCalls>
     <actionCalls>
-        <description>Unlock the Account record so it&#39;s name can be updated</description>
+        <description>Unlock the Account record so it&apos;s name can be updated</description>
         <name>Unlock_Account</name>
         <label>Unlock Account</label>
         <locationX>0</locationX>
@@ -49,6 +51,8 @@
                 <stringValue>Unlock</stringValue>
             </value>
         </inputParameters>
+        <nameSegment>lockRecord</nameSegment>
+        <offset>0</offset>
     </actionCalls>
     <apiVersion>64.0</apiVersion>
     <description>Flow is surfaced as an action on Account page, allowing privilaged users to update the Account Name field even though the record is locked.</description>
@@ -166,6 +170,7 @@
         </connector>
         <fields>
             <fieldType>ObjectProvided</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>false</isRequired>
             <objectFieldReference>Get_Tiggering_Account.Name</objectFieldReference>
         </fields>

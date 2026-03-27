@@ -150,4 +150,25 @@
         <triggerType>RecordAfterSave</triggerType>
     </start>
     <status>Active</status>
+    <transforms>
+        <name>Create_Approver_ID_Collection</name>
+        <label>Create Approver ID Collection</label>
+        <locationX>50</locationX>
+        <locationY>647</locationY>
+        <connector>
+            <targetReference>Flag_Same_Department_Approvers</targetReference>
+        </connector>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>Get_Same_Department_LOI_Approvers[$EachItem].Id</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
 </Flow>

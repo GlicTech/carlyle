@@ -2,8 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>leaseworks__AccEnabled__c</fullName>
     <deprecated>false</deprecated>
-    <description>#DimensionStory-Recognise the parent Transaction&#39;s AccEnabled</description>
-    <externalId>false</externalId>
+    <description>#DimensionStory-Recognise the parent Transaction&apos;s AccEnabled</description>
     <formula>IF( NOT(ISBLANK(leaseworks__Invoice__c)), leaseworks__Invoice__r.leaseworks__Y_hidden_AccEnabled__c ,
 IF( NOT( ISBLANK(leaseworks__Payment__c)), leaseworks__Payment__r.leaseworks__Y_hidden_AccEnabled__c ,
 IF( NOT( ISBLANK(leaseworks__LOC_Transactions__c)),  leaseworks__LOC_Transactions__r.leaseworks__AccEnabled__c ,

@@ -7,7 +7,7 @@
 AND(!ISNEW(), leaseworks__First_Name__c== PRIORVALUE(leaseworks__First_Name__c), Name!= PRIORVALUE(Name) )
 )
 
-, left(Name,find(&#39; &#39;,Name))
+, left(Name,find(&apos; &apos;,Name))
 , leaseworks__First_Name__c
 
 )</formula>
@@ -24,7 +24,7 @@ AND(!ISNEW(), leaseworks__First_Name__c== PRIORVALUE(leaseworks__First_Name__c),
     AND(!ISNEW(), leaseworks__Last_Name__c==  PRIORVALUE(leaseworks__Last_Name__c), Name!=  PRIORVALUE(Name) )
    )
 
-, right(Name,find(&#39; &#39;,Name))
+, right(Name,find(&apos; &apos;,Name))
 , leaseworks__Last_Name__c
 
    )</formula>
@@ -38,7 +38,7 @@ AND(!ISNEW(), leaseworks__First_Name__c== PRIORVALUE(leaseworks__First_Name__c),
         <fullName>leaseworks__Contact_Set_Name</fullName>
         <field>Name</field>
         <formula>if( !ISNEW() &amp;&amp; Name==  PRIORVALUE(Name) &amp;&amp; ( leaseworks__First_Name__c!=  PRIORVALUE(leaseworks__First_Name__c) || leaseworks__Last_Name__c!=  PRIORVALUE(leaseworks__Last_Name__c)  )
- , leaseworks__First_Name__c + IF(ISBLANK(leaseworks__First_Name__c),&#39;&#39; ,&#39; &#39;) + leaseworks__Last_Name__c , Name)</formula>
+ , leaseworks__First_Name__c + IF(ISBLANK(leaseworks__First_Name__c),&apos;&apos; ,&apos; &apos;) + leaseworks__Last_Name__c , Name)</formula>
         <name>Contact Set Name</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>

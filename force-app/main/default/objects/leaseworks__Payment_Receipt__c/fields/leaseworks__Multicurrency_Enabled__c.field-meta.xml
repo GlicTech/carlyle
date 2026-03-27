@@ -3,7 +3,6 @@
     <fullName>leaseworks__Multicurrency_Enabled__c</fullName>
     <deprecated>false</deprecated>
     <description>Controls conditional display of fields when multicurrency is enabled (i.e., Transaction Currency not equal to USD).</description>
-    <externalId>false</externalId>
     <formula>IF(NOT(ISBLANK(TEXT(leaseworks__Transaction_Currency__c))),
 IF(ISPICKVAL(leaseworks__Transaction_Currency__c, &quot;USD&quot;),false,true), false)</formula>
     <inlineHelpText>Controls conditional display of fields when multicurrency is enabled (i.e., Transaction Currency not equal to USD).</inlineHelpText>

@@ -144,7 +144,17 @@
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <deprecated>false</deprecated>
-    <description>Dimensions store dimension codes that can be used on accounting transactions that create journal entries.</description>
+    <description>Dimensions store dimension codes that can be used on accounting transactions that create journal entries.
+Can be used to upload any custom dimensions that are need for the financial reporting purpose.
+Standard Dimensions are auto-created by the system: MSN/ESN, Lease, Lessee, Entity and Bank Account
+For standard dimensions, the dimension values will be auto-populated by the system based on the aircraft, lease, lessee, entity and bank account information available in the system.
+Example for custom dimension : Asset Type Variant, Location/Region
+Population Requirement Details: Conditionally required when additional dimensions beyond the standard system-supported dimensions are necessary for the journals.
+[MODULE: Accounting]
+[LOAD: Optional]
+[PREREQUISITES: NA]
+[REPLACEMENT OBJECT API: NA]
+[COMMENTS: NA]</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -161,7 +171,7 @@
         <type>Text</type>
     </nameField>
     <pluralLabel>Dimensions</pluralLabel>
-    <searchLayouts />
+    <searchLayouts></searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

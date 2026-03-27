@@ -11,14 +11,14 @@
     <url>{!REQUIRESCRIPT(&quot;/soap/ajax/57.0/connection.js&quot;)}
 {!REQUIRESCRIPT(&quot;/soap/ajax/57.0/apex.js&quot;)}
 
-var pkgPrefix = &#39;&#39;;
-if(&#39;{!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Package_Prefix__c}&#39;!= &#39;&#39;) pkgPrefix = &#39;leaseworks/&#39;;
+var pkgPrefix = &apos;&apos;;
+if(&apos;{!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Package_Prefix__c}&apos;!= &apos;&apos;) pkgPrefix = &apos;leaseworks/&apos;;
 
 
 try{
     var result = sforce.apex.execute(pkgPrefix + &quot;LWGlobalUtils&quot;, &quot;UpdateWorldFleetReferences&quot;, {});
 }catch(e){
-    var result = &#39;Error While Scheduling The Job! &#39; + e;
+    var result = &apos;Error While Scheduling The Job! &apos; + e;
 }
 alert(result);</url>
 </WebLink>

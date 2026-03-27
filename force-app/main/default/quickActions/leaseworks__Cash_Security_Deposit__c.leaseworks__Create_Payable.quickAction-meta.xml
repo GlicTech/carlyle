@@ -8,12 +8,6 @@
         <field>leaseworks__Lease__c</field>
         <formula>leaseworks__Cash_Security_Deposit__c.leaseworks__Lease__c</formula>
     </fieldOverrides>
-    <fieldOverrides>
-        <field>leaseworks__Lessee__c</field>
-        <formula>if(leaseworks__Cash_Security_Deposit__c.leaseworks__Lease__r.leaseworks__Lessee__c==null,
-			leaseworks__Cash_Security_Deposit__c.leaseworks__Lease__r.leaseworks__Operator__c,
-			leaseworks__Cash_Security_Deposit__c.leaseworks__Lease__r.leaseworks__Lessee__c)</formula>
-    </fieldOverrides>
     <label>Create Payable</label>
     <optionsCreateFeedItem>true</optionsCreateFeedItem>
     <quickActionLayout>

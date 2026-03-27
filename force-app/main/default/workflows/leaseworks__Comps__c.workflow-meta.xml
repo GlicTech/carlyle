@@ -3,21 +3,21 @@
     <fieldUpdates>
         <fullName>leaseworks__GovCompsSetName</fullName>
         <field>Name</field>
-        <formula>Text(leaseworks__Benchmark__c)  + &#39; &#39; +  Text(leaseworks__Benchmark_Yield__c*100)  + &#39;% &#39; +  Text(day(leaseworks__Maturity__c)) + &#39; &#39; +
+        <formula>Text(leaseworks__Benchmark__c)  + &apos; &apos; +  Text(leaseworks__Benchmark_Yield__c*100)  + &apos;% &apos; +  Text(day(leaseworks__Maturity__c)) + &apos; &apos; +
 case(month(leaseworks__Maturity__c)
-,1,&#39;Jan&#39;
-,2,&#39;Feb&#39;
-,3,&#39;Mar&#39;
-,4,&#39;Apr&#39;
-,5,&#39;May&#39;
-,6,&#39;Jun&#39;
-,7,&#39;Jul&#39;
-,8,&#39;Aug&#39;
-,9,&#39;Sep&#39;
-,10,&#39;Oct&#39;
-,11,&#39;Nov&#39;
-,&#39;Dec&#39;)
-+ &#39; &#39; + Text(Year(leaseworks__Maturity__c))</formula>
+,1,&apos;Jan&apos;
+,2,&apos;Feb&apos;
+,3,&apos;Mar&apos;
+,4,&apos;Apr&apos;
+,5,&apos;May&apos;
+,6,&apos;Jun&apos;
+,7,&apos;Jul&apos;
+,8,&apos;Aug&apos;
+,9,&apos;Sep&apos;
+,10,&apos;Oct&apos;
+,11,&apos;Nov&apos;
+,&apos;Dec&apos;)
++ &apos; &apos; + Text(Year(leaseworks__Maturity__c))</formula>
         <name>GovCompsSetName</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
@@ -30,7 +30,7 @@ case(month(leaseworks__Maturity__c)
             <name>leaseworks__GovCompsSetName</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <formula>true</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>

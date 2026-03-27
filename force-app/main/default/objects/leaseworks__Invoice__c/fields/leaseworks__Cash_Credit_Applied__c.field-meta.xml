@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Cash_Credit_Applied__c</fullName>
+    <deprecated>false</deprecated>
+    <description>This value rolls up all approved Cash Credit applications (excluding those with status Cancelled, Pending, Declined, or Submitted for Approval). Used to reduce the Balance Due without changing the Total Invoiced Amount.</description>
+    <inlineHelpText>Displays the total amount of Cash Credit Memos applied to this invoice. Used to reduce the Balance Due without changing the Total Invoiced Amount.</inlineHelpText>
+    <label>Cash Credit Applied</label>
+    <summarizedField>leaseworks__Payment__c.leaseworks__Amount_number__c</summarizedField>
+    <summaryFilterItems>
+        <field>leaseworks__Payment__c.leaseworks__Payment_Type__c</field>
+        <operation>equals</operation>
+        <value>Credit Memo-Cash Credits</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>leaseworks__Payment__c.leaseworks__Payment_Status__c</field>
+        <operation>equals</operation>
+        <value>Approved, Cancelled-Pending</value>
+    </summaryFilterItems>
+    <summaryForeignKey>leaseworks__Payment__c.leaseworks__Invoice__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

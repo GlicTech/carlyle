@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Completed_By__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <deprecated>false</deprecated>
+    <description>Identifies the user who marked the event as closed.
+[LOAD:No]
+[JUSTIFICATION:Contract Diary records are not data-loaded. They are created through a scheduler/flow.]
+[REPLACEMENT OBJECT API:NA]
+[REPLACEMENT FIELD API:NA]
+[COMMENTS:NA]</description>
+    <inlineHelpText>Automatically populated when Event Status = Closed.</inlineHelpText>
+    <label>Completed By</label>
+    <referenceTo>User</referenceTo>
+    <relationshipName>Contract_Diary2</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

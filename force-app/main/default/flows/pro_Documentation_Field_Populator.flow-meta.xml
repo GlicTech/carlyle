@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Call_Field_Populator</name>
+        <label>Populate AiD Documentation Fields</label>
+        <locationX>176</locationX>
+        <locationY>134</locationY>
+        <actionName>pro_ChecklistFieldPopulator</actionName>
+        <actionType>apex</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>checklistItemId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>pro_ChecklistFieldPopulator</nameSegment>
+    </actionCalls>
+    <apiVersion>62.0</apiVersion>
+    <description>GT-07/GT-08: Triggers pro_ChecklistFieldPopulator when a checklist item with a Documentation Tab Field mapping is completed. Populates corresponding AiD fields automatically.</description>
+    <label>Documentation Field Populator</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>176</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Call_Field_Populator</targetReference>
+        </connector>
+        <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+        <filterLogic>1 AND 2</filterLogic>
+        <filters>
+            <field>pro_Status__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Completed</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>pro_Documentation_Tab_Field__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <object>pro_Checklist_Item__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

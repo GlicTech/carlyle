@@ -130,7 +130,7 @@
         <actionName>View</actionName>
         <comment>Action override created by Lightning App Builder during activation.</comment>
         <content>Holiday_Event_Calendar_Record_Page</content>
-        <formFactor>Small</formFactor>
+        <formFactor>Large</formFactor>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Flexipage</type>
     </actionOverrides>
@@ -138,7 +138,7 @@
         <actionName>View</actionName>
         <comment>Action override created by Lightning App Builder during activation.</comment>
         <content>Holiday_Event_Calendar_Record_Page</content>
-        <formFactor>Large</formFactor>
+        <formFactor>Small</formFactor>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Flexipage</type>
     </actionOverrides>
@@ -150,7 +150,12 @@
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <deprecated>false</deprecated>
-    <description>This table acts as a dedicated repository for storing the exact dates associated with specific holidays within a particular Holiday Schedule. This ensures accurate adjustments in the system based on the observed holiday dates.</description>
+    <description>This table acts as a dedicated repository for storing the exact dates associated with specific holidays within a particular Holiday Schedule. This ensures accurate adjustments in the system based on the observed holiday dates.
+[MODULE: Contract]
+[LOAD: Yes]
+[PREREQUISITES: Holiday Schedule]
+[REPLACEMENT OBJECT API: NA]
+[COMMENTS: NA]</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -167,7 +172,7 @@
         <type>Text</type>
     </nameField>
     <pluralLabel>Holiday Event Calendars</pluralLabel>
-    <searchLayouts />
+    <searchLayouts></searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

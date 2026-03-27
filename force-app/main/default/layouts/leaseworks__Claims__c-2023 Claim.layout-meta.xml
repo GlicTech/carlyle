@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <excludeButtons>OpenSlackRecordChannel</excludeButtons>
     <layoutSections>
         <customLabel>false</customLabel>
         <detailHeading>false</detailHeading>
@@ -137,6 +138,14 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>All_Required_Records_Received__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Priority__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>CAP_Team_Responsible__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -433,6 +442,18 @@
         <fields>pro_Status__c</fields>
         <fields>pro_Expected_Due_Date__c</fields>
         <relatedList>pro_Ticket__c.pro_Claim__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <excludeButtons>MassChangeOwner</excludeButtons>
+        <excludeButtons>New</excludeButtons>
+        <fields>NAME</fields>
+        <fields>Previous_Status__c</fields>
+        <fields>New_Status__c</fields>
+        <fields>Updated_By__c</fields>
+        <fields>Updated_On__c</fields>
+        <relatedList>Claims_Status_Tracking__c.Claim__c</relatedList>
+        <sortField>Updated_On__c</sortField>
+        <sortOrder>Desc</sortOrder>
     </relatedLists>
     <relatedLists>
         <fields>CreatedDate</fields>

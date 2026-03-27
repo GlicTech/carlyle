@@ -6,42 +6,18 @@
         <formula>leaseworks__Invoice__c.leaseworks__Accounting_Period__c</formula>
     </fieldOverrides>
     <fieldOverrides>
-        <field>leaseworks__Compound_Interest__c</field>
-        <formula>leaseworks__Invoice__c.leaseworks__Lease__r.leaseworks__Compound_Interest__c</formula>
-    </fieldOverrides>
-    <fieldOverrides>
-        <field>leaseworks__Compounding_Base__c</field>
-        <formula>TEXT(leaseworks__Invoice__c.leaseworks__Lease__r.leaseworks__Compounding_Base__c)</formula>
-    </fieldOverrides>
-    <fieldOverrides>
-        <field>leaseworks__Custom_Days__c</field>
-        <formula>leaseworks__Invoice__c.leaseworks__Lease__r.leaseworks__Custom_Days__c</formula>
-    </fieldOverrides>
-    <fieldOverrides>
         <field>leaseworks__Date_of_MR_Payment_Due__c</field>
         <formula>IF( MONTH( TODAY()) == 12,
 DATE( YEAR( TODAY()), 12, 31 ),
 DATE( YEAR(TODAY()), MONTH(TODAY()) + 1, 1 ) - 1)</formula>
     </fieldOverrides>
     <fieldOverrides>
-        <field>leaseworks__Days_In_A_Year__c</field>
-        <formula>IF(ISBLANK(TEXT(leaseworks__Invoice__c.leaseworks__Lease__r.leaseworks__Interest_Base__c)),&#39;365&#39;,TEXT(leaseworks__Invoice__c.leaseworks__Lease__r.leaseworks__Interest_Base__c))</formula>
-    </fieldOverrides>
-    <fieldOverrides>
-        <field>leaseworks__Interest_Calculation_Method__c</field>
-        <formula>IF(ISBLANK(TEXT(leaseworks__Invoice__c.leaseworks__Lease__r.leaseworks__Interest_Calculation_Method__c)),&#39;&#39;,TEXT(leaseworks__Invoice__c.leaseworks__Lease__r.leaseworks__Interest_Calculation_Method__c))</formula>
-    </fieldOverrides>
-    <fieldOverrides>
         <field>leaseworks__Interest_End_Date__c</field>
         <formula>today()</formula>
     </fieldOverrides>
     <fieldOverrides>
-        <field>leaseworks__Interest_Rate_percent__c</field>
-        <formula>(leaseworks__Invoice__c.leaseworks__Lease__r.leaseworks__Interest_Rate__c)*100</formula>
-    </fieldOverrides>
-    <fieldOverrides>
         <field>leaseworks__Interest_Start_Date__c</field>
-        <formula>IF(AND(!ISBLANK(leaseworks__Invoice__c.leaseworks__Interest_End_Date__c), !ISPICKVAL(leaseworks__Invoice__c.leaseworks__Invoice_Type__c, &#39;Interest&#39;)), IF(leaseworks__Invoice__c.leaseworks__Interest_End_Date__c + 1&gt; TODAY(),TODAY(), leaseworks__Invoice__c.leaseworks__Interest_End_Date__c + 1),
+        <formula>IF(AND(!ISBLANK(leaseworks__Invoice__c.leaseworks__Interest_End_Date__c), !ISPICKVAL(leaseworks__Invoice__c.leaseworks__Invoice_Type__c, &apos;Interest&apos;)), IF(leaseworks__Invoice__c.leaseworks__Interest_End_Date__c + 1&gt; TODAY(),TODAY(), leaseworks__Invoice__c.leaseworks__Interest_End_Date__c + 1),
 IF(!ISBLANK(leaseworks__Invoice__c.leaseworks__Date_of_MR_Payment_Due__c),
 IF(leaseworks__Invoice__c.leaseworks__Date_of_MR_Payment_Due__c+ 1&gt; TODAY(),TODAY(), leaseworks__Invoice__c.leaseworks__Date_of_MR_Payment_Due__c+ 1),leaseworks__Invoice__c.leaseworks__Date_of_MR_Payment_Due__c))</formula>
     </fieldOverrides>

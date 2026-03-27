@@ -2,9 +2,13 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>leaseworks__Billing_Currency__c</fullName>
     <deprecated>false</deprecated>
-    <description>Select the billing currency applicable for Rent and Fee invoices. This value defaults to the Transaction Currency on the Rent Schedule but can be updated there if needed. All other invoice types will continue to be issued in USD.</description>
-    <externalId>false</externalId>
-    <inlineHelpText>Select the billing currency applicable for Rent and Fee invoices. This value defaults to the Transaction Currency on the Rent Schedule but can be updated there if needed. All other invoice types will continue to be issued in USD.</inlineHelpText>
+    <description>Select the billing currency applicable for Rent, Fee and Manual(Other) invoices. This value defaults to the Transaction Currency on the Rent Schedule and Manual(Other) Invoice while creation but can be updated there if needed. All other invoice types will continue to be issued in USD.
+    [LOAD: Optional]
+    [JUSTIFICATION: Optional. If not selected will be defaulted to USD.]
+    [REPLACEMENT OBJECT API: NA]
+    [REPLACEMENT FIELD API: NA]
+    [COMMENTS: NA]</description>
+    <inlineHelpText>Select the billing currency applicable for rent, fee, and manual (other) invoices. This value defaults to the transaction currency on the rent schedule and manual (other) invoice during creation but can be updated there if needed. All other invoice types will continue to be issued in USD.</inlineHelpText>
     <label>Billing Currency</label>
     <required>false</required>
     <trackHistory>false</trackHistory>

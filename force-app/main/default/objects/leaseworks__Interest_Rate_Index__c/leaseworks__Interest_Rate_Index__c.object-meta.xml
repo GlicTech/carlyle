@@ -144,6 +144,13 @@
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <deprecated>false</deprecated>
+    <description>An interest rate index serves as a benchmark to calculate the interest rate for Floating Rent, Default Interest and mortgage payment amount. By recording various interest rate indices such as LIBOR, SOFR, and others, along with their respective frequencies help the system calculate interest as needed.
+Population Requirement Details: Conditionally Required if floating rent is applicable on leases and also if default interest calculation is based on floating rate
+[MODULE: Finance]
+[LOAD: Yes]
+[PREREQUISITES: NA]
+[REPLACEMENT OBJECT API: NA]
+[COMMENTS: NA]</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -161,7 +168,7 @@
         <type>Text</type>
     </nameField>
     <pluralLabel>Interest Rate Indices</pluralLabel>
-    <searchLayouts />
+    <searchLayouts></searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

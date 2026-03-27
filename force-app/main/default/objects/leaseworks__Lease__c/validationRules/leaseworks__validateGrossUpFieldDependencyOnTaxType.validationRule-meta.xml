@@ -2,7 +2,7 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>leaseworks__validateGrossUpFieldDependencyOnTaxType</fullName>
     <active>true</active>
-    <errorConditionFormula>AND(NOT(ISPICKVAL(leaseworks__Tax__r.leaseworks__Tax_Type_New__c, &#39;JCT&#39;)), NOT(OR(ISNULL(leaseworks__Gross_Up_Withholding_Tax_applicability__c),  ISBLANK(leaseworks__Gross_Up_Withholding_Tax_applicability__c))))</errorConditionFormula>
+    <errorConditionFormula>AND(NOT(ISPICKVAL(leaseworks__Tax__r.leaseworks__Tax_Type_New__c, &apos;JCT&apos;)), NOT(OR(ISNULL(leaseworks__Gross_Up_Withholding_Tax_applicability__c),  ISBLANK(leaseworks__Gross_Up_Withholding_Tax_applicability__c))))</errorConditionFormula>
     <errorDisplayField>leaseworks__Gross_Up_Withholding_Tax_applicability__c</errorDisplayField>
     <errorMessage>Gross-Up Amount/Withholding Tax Applicability is currently functional for JCT tax type only. Please remove the selection on this field or change the associated tax record to JCT.</errorMessage>
 </ValidationRule>

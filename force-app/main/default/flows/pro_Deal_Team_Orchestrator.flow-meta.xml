@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>65.0</apiVersion>
+    <description>Orchestrator for Deal Team record triggers. When a Contracts team member is created or their Assigned To changes, delegates assignee sync to the pro_Checklist_Assignee_Sync subflow. Runs synchronously (after save) because async paths require doesRequireRecordChangedToMeetCriteria=true which prevents firing on field changes within an already-matching record.</description>
+    <label>Deal Team Orchestrator</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>176</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Call_Checklist_Assignee_Sync</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>pro_Member_Role__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Contracts</stringValue>
+            </value>
+        </filters>
+        <object>leaseworks__Deal_Team__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <subflows>
+        <name>Call_Checklist_Assignee_Sync</name>
+        <label>Call Checklist Assignee Sync</label>
+        <locationX>176</locationX>
+        <locationY>134</locationY>
+        <flowName>pro_Checklist_Assignee_Sync</flowName>
+        <inputAssignments>
+            <name>varDealId</name>
+            <value>
+                <elementReference>$Record.leaseworks__Marketing_Activity__c</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
+</Flow>

@@ -4,17 +4,62 @@
     <description>Generates Analysis code to be used in SUN / WMS</description>
     <externalId>false</externalId>
     <formula>IF(
-RecordType.Name = &quot;Aircraft Asset&quot;,
-&quot;A&quot;,
-IF(
-RecordType.Name = &quot;Engine Asset&quot;,
-&quot;E&quot;,
-&quot;&quot;
-)
+  RecordType.Name = &quot;Aircraft Asset&quot;,
+  &quot;A&quot;,
+  IF(
+    RecordType.Name = &quot;Engine Asset&quot;,
+    &quot;E&quot;,
+    &quot;&quot;
+  )
 )
 &amp; &quot;-&quot; &amp;
 (leaseworks__MSN_Number__c)
-&amp; TEXT(leaseworks__Asset_Type_GP__c)</formula>
+&amp;
+IF(
+  ISBLANK( TEXT( leaseworks__Asset_Type_GP__c ) ),
+  &quot;&quot;,
+  IF(
+    RIGHT(
+      IF(
+        CONTAINS( TEXT( leaseworks__Asset_Type_GP__c ), &quot;-(&quot; ),
+        LEFT(
+          TEXT( leaseworks__Asset_Type_GP__c ),
+          FIND( &quot;-(&quot;, TEXT( leaseworks__Asset_Type_GP__c ) ) - 1
+        ),
+        TEXT( leaseworks__Asset_Type_GP__c )
+      ),
+      3
+    ) = &quot;MAX&quot;,
+    LEFT(
+      IF(
+        CONTAINS( TEXT( leaseworks__Asset_Type_GP__c ), &quot;-(&quot; ),
+        LEFT(
+          TEXT( leaseworks__Asset_Type_GP__c ),
+          FIND( &quot;-(&quot;, TEXT( leaseworks__Asset_Type_GP__c ) ) - 1
+        ),
+        TEXT( leaseworks__Asset_Type_GP__c )
+      ),
+      LEN(
+        IF(
+          CONTAINS( TEXT( leaseworks__Asset_Type_GP__c ), &quot;-(&quot; ),
+          LEFT(
+            TEXT( leaseworks__Asset_Type_GP__c ),
+            FIND( &quot;-(&quot;, TEXT( leaseworks__Asset_Type_GP__c ) ) - 1
+          ),
+          TEXT( leaseworks__Asset_Type_GP__c )
+        )
+      ) - 2
+    ),
+    IF(
+      CONTAINS( TEXT( leaseworks__Asset_Type_GP__c ), &quot;-(&quot; ),
+      LEFT(
+        TEXT( leaseworks__Asset_Type_GP__c ),
+        FIND( &quot;-(&quot;, TEXT( leaseworks__Asset_Type_GP__c ) ) - 1
+      ),
+      TEXT( leaseworks__Asset_Type_GP__c )
+    )
+  )
+)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <inlineHelpText>Analysis Code for SUN</inlineHelpText>
     <label>SUN Analysis Code</label>

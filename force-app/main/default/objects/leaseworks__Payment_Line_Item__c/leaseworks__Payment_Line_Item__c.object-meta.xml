@@ -144,7 +144,14 @@
     <compactLayoutAssignment>leaseworks__Payment_Line_Items_Compact_layout</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <deprecated>false</deprecated>
-    <description>Line Items that constitute the invoice details</description>
+    <description>Line Items that constitute the invoice details
+Payment Line Items represent individual entries associated with a payment transaction. Each line item provides detailed information about the specific amount applied to each invoice line on the applied invoice
+Population Requirement Details: If triggers are ON, system will automatically create the payment lines on creation of the payment record. If triggers are turned OFF, then can be loaded manually. Individual allocation update - it has to be done at the payment line level. The amount on the payment line is to be less than or equal to the invoice line item.
+[MODULE: Finance]
+[LOAD: Optional]
+[PREREQUISITES: Payments &amp; Credits (if loading with Triggers OFF)]
+[REPLACEMENT OBJECT API: NA]
+[COMMENTS: NA]</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -163,7 +170,7 @@
     </nameField>
     <pluralLabel>View Payment Line Items</pluralLabel>
     <recordTypeTrackHistory>false</recordTypeTrackHistory>
-    <searchLayouts />
+    <searchLayouts></searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
     <startsWith>Vowel</startsWith>
     <visibility>Public</visibility>

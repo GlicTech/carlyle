@@ -1568,7 +1568,7 @@
             <name>Commercial</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>Get_Record_Type.Name</leftValueReference>
+                <leftValueReference>Get_Record_Type.DeveloperName</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue>Commercial</stringValue>
@@ -1598,7 +1598,7 @@
             <name>LEgal_Contracts</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>Get_Record_Type.Name</leftValueReference>
+                <leftValueReference>Get_Record_Type.DeveloperName</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue>Legal_Contracts</stringValue>
@@ -1741,24 +1741,24 @@
     <dynamicChoiceSets>
         <name>c_PriorityChoices</name>
         <dataType>Picklist</dataType>
-        <displayField xsi:nil="true" />
-        <object xsi:nil="true" />
+        <displayField xsi:nil="true"/>
+        <object xsi:nil="true"/>
         <picklistField>pro_Priority__c</picklistField>
         <picklistObject>pro_Ticket__c</picklistObject>
     </dynamicChoiceSets>
     <dynamicChoiceSets>
         <name>c_StatusChoices</name>
         <dataType>Picklist</dataType>
-        <displayField xsi:nil="true" />
-        <object xsi:nil="true" />
+        <displayField xsi:nil="true"/>
+        <object xsi:nil="true"/>
         <picklistField>pro_Status__c</picklistField>
         <picklistObject>pro_Ticket__c</picklistObject>
     </dynamicChoiceSets>
     <dynamicChoiceSets>
         <name>c_TicketRecordTypes</name>
         <dataType>Picklist</dataType>
-        <displayField xsi:nil="true" />
-        <object xsi:nil="true" />
+        <displayField xsi:nil="true"/>
+        <object xsi:nil="true"/>
         <picklistField>pro_Ticket_Record_Types__c</picklistField>
         <picklistObject>pro_Global_Value_Set__mdt</picklistObject>
     </dynamicChoiceSets>
@@ -1781,40 +1781,40 @@
     <dynamicChoiceSets>
         <name>pcs_AffectedSystem</name>
         <dataType>Picklist</dataType>
-        <displayField xsi:nil="true" />
-        <object xsi:nil="true" />
+        <displayField xsi:nil="true"/>
+        <object xsi:nil="true"/>
         <picklistField>pro_Affected_System__c</picklistField>
         <picklistObject>pro_Ticket__c</picklistObject>
     </dynamicChoiceSets>
     <dynamicChoiceSets>
         <name>pcs_DataQualityObjects</name>
         <dataType>Picklist</dataType>
-        <displayField xsi:nil="true" />
-        <object xsi:nil="true" />
+        <displayField xsi:nil="true"/>
+        <object xsi:nil="true"/>
         <picklistField>pro_Data_Quality_Objects__c</picklistField>
         <picklistObject>pro_Global_Value_Set__mdt</picklistObject>
     </dynamicChoiceSets>
     <dynamicChoiceSets>
         <name>pcs_SecurityAndDataConsiderations</name>
         <dataType>Picklist</dataType>
-        <displayField xsi:nil="true" />
-        <object xsi:nil="true" />
+        <displayField xsi:nil="true"/>
+        <object xsi:nil="true"/>
         <picklistField>pro_Security_Data_Considerations__c</picklistField>
         <picklistObject>pro_Global_Value_Set__mdt</picklistObject>
     </dynamicChoiceSets>
     <dynamicChoiceSets>
         <name>pcs_TicketAssigneeRoles</name>
         <dataType>Multipicklist</dataType>
-        <displayField xsi:nil="true" />
-        <object xsi:nil="true" />
+        <displayField xsi:nil="true"/>
+        <object xsi:nil="true"/>
         <picklistField>pro_Assignee_Roles__c</picklistField>
         <picklistObject>pro_Ticket_Assignee__c</picklistObject>
     </dynamicChoiceSets>
     <dynamicChoiceSets>
         <name>pcs_TicketTypes</name>
         <dataType>Picklist</dataType>
-        <displayField xsi:nil="true" />
-        <object xsi:nil="true" />
+        <displayField xsi:nil="true"/>
+        <object xsi:nil="true"/>
         <picklistField>pro_Type__c</picklistField>
         <picklistObject>pro_Ticket__c</picklistObject>
     </dynamicChoiceSets>
@@ -1862,7 +1862,7 @@
     <formulas>
         <name>f_AffectedObjectPicklistOrChoiceLookupValue</name>
         <dataType>String</dataType>
-        <expression>IF({!Select_a_Ticket_type} = &#39;Data Quality Request&#39;, {!Object}, {!Object_SysEnhancement})</expression>
+        <expression>IF({!Select_a_Ticket_type} = &apos;Data Quality Request&apos;, {!Object}, {!Object_SysEnhancement})</expression>
     </formulas>
     <formulas>
         <description>Dynamically queries Assemblies that are attached to the Asset referenced in the Serial Number input box.</description>
@@ -1876,9 +1876,9 @@
 
   &quot;SELECT Id, Name, leaseworks__Type__c, pro_Assembly_Name_And_Type__c, leaseworks__Engine_Type_Variant__c &quot; &amp;
   &quot;FROM leaseworks__Constituent_Assembly__c &quot; &amp;
-  &quot;WHERE Name LIKE &#39;&quot; &amp; {!Serial_Number} &amp; &quot;%&#39; &quot; &amp;
-  &quot;OR leaseworks__Asset__r.leaseworks__MSN_Number__c LIKE &#39;&quot; &amp; {!Serial_Number} &amp; &quot;%&#39; &quot; &amp;
-  &quot;OR leaseworks__Attached_Aircraft__r.leaseworks__MSN_Number__c LIKE &#39;&quot; &amp; {!Serial_Number} &amp; &quot;%&#39; &quot; &amp;
+  &quot;WHERE Name LIKE &apos;&quot; &amp; {!Serial_Number} &amp; &quot;%&apos; &quot; &amp;
+  &quot;OR leaseworks__Asset__r.leaseworks__MSN_Number__c LIKE &apos;&quot; &amp; {!Serial_Number} &amp; &quot;%&apos; &quot; &amp;
+  &quot;OR leaseworks__Attached_Aircraft__r.leaseworks__MSN_Number__c LIKE &apos;&quot; &amp; {!Serial_Number} &amp; &quot;%&apos; &quot; &amp;
   &quot;LIMIT 3&quot;
 )</expression>
     </formulas>
@@ -1924,26 +1924,26 @@ AND(
         <expression>IF(
   ISBLANK({!Serial_Number}),
   &quot;SELECT Id, Name, leaseworks__Asset_Type_GP__c, leaseworks__MSN_Number__c, Transaction_Code__c FROM leaseworks__Aircraft__c LIMIT 1&quot;,
-  &quot;SELECT Id, Name, leaseworks__Asset_Type_GP__c, leaseworks__MSN_Number__c, Transaction_Code__c FROM leaseworks__Aircraft__c WHERE leaseworks__MSN_Number__c LIKE &#39;&quot; &amp; {!Serial_Number} &amp; &quot;%&#39; LIMIT 1&quot;
+  &quot;SELECT Id, Name, leaseworks__Asset_Type_GP__c, leaseworks__MSN_Number__c, Transaction_Code__c FROM leaseworks__Aircraft__c WHERE leaseworks__MSN_Number__c LIKE &apos;&quot; &amp; {!Serial_Number} &amp; &quot;%&apos; LIMIT 1&quot;
 )</expression>
     </formulas>
     <formulas>
         <name>f_AssetsRequired</name>
         <dataType>Boolean</dataType>
         <expression>IF(
-    {!Get_Record_Type.DeveloperName} = &#39;pro_System_Enhancement_Request&#39;
+    {!Get_Record_Type.DeveloperName} = &apos;pro_System_Enhancement_Request&apos;
     ||
-    {!Get_Record_Type.DeveloperName} = &#39;Lease_Management&#39;
+    {!Get_Record_Type.DeveloperName} = &apos;Lease_Management&apos;
     ||
     (
-        {!Get_Record_Type.DeveloperName}  = &#39;pro_Data_Quality_Request&#39;
+        {!Get_Record_Type.DeveloperName}  = &apos;pro_Data_Quality_Request&apos;
         &amp;&amp;
         NOT(
-            CONTAINS({!Object}, &#39;Asset&#39;)        
+            CONTAINS({!Object}, &apos;Asset&apos;)        
         )
         &amp;&amp;
         NOT(
-            CONTAINS({!Object}, &#39;Assembly&#39;)
+            CONTAINS({!Object}, &apos;Assembly&apos;)
         )
     ),
     False,
@@ -1955,21 +1955,21 @@ AND(
         <name>f_AssigneeInstructionOrBlankMainTicket</name>
         <dataType>String</dataType>
         <expression>IF({!varTicketAssigneeToCreate.pro_Assignee_Instruction__c} != Null, 
-              {!varTicketAssigneeToCreate.pro_Assignee_Instruction__c} + &#39;: &#39;, &#39;&#39;)</expression>
+              {!varTicketAssigneeToCreate.pro_Assignee_Instruction__c} + &apos;: &apos;, &apos;&apos;)</expression>
     </formulas>
     <formulas>
         <description>If user has inputted asignee instructions for this loop through sub-ticket creation inputs, the instruction is returned by this formula. Otherwise, a blank string is returned.</description>
         <name>f_AssigneeInstructionsOrBlankSubTicket</name>
         <dataType>String</dataType>
         <expression>IF({!Loop_Repeater_Items.Assignee_Instruction_SubTicket} != Null,
-        {!Loop_Repeater_Items.Assignee_Instruction_SubTicket} + &#39;: &#39;, &#39;&#39;)</expression>
+        {!Loop_Repeater_Items.Assignee_Instruction_SubTicket} + &apos;: &apos;, &apos;&apos;)</expression>
     </formulas>
     <formulas>
         <name>f_AttachedAssembliesOrPlaceholder</name>
         <dataType>String</dataType>
         <expression>IF({!Create_Assemblies_To_Attach_Name_Collection} != Null,
     SUBSTITUTE(SUBSTITUTE({!Create_Assemblies_To_Attach_Name_Collection}, &quot;[&quot;, &quot;&quot;), &quot;]&quot;, &quot;&quot;), 
-      &#39;No Assemblies on Ticket&#39;
+      &apos;No Assemblies on Ticket&apos;
 )</expression>
     </formulas>
     <formulas>
@@ -1977,7 +1977,7 @@ AND(
         <dataType>String</dataType>
         <expression>IF({!Create_Assets_To_Attach_Name_Collection} != Null, 
            SUBSTITUTE(SUBSTITUTE({!Create_Assets_To_Attach_Name_Collection}, &quot;[&quot;, &quot;&quot;), &quot;]&quot;, &quot;&quot;) ,
-            &#39;No Assets on Ticket&#39;)</expression>
+            &apos;No Assets on Ticket&apos;)</expression>
     </formulas>
     <formulas>
         <name>f_AttachedContractsOrPlaceholder</name>
@@ -1994,7 +1994,7 @@ AND(
     <formulas>
         <name>f_ClaimLookupBasedOnTicketType</name>
         <dataType>String</dataType>
-        <expression>IF({!Select_a_Ticket_type} = &#39;Data Quality Request&#39;, {!Claim.recordId}, {!varTicketToCreate.pro_Claim__c})</expression>
+        <expression>IF({!Select_a_Ticket_type} = &apos;Data Quality Request&apos;, {!Claim.recordId}, {!varTicketToCreate.pro_Claim__c})</expression>
     </formulas>
     <formulas>
         <name>f_ContractsQuery</name>
@@ -2004,14 +2004,14 @@ AND(
   &quot;SELECT Id, Name, leaseworks__Lease_Type_Status__c FROM leaseworks__Lease__c LIMIT 4&quot;,
   &quot;SELECT Id, Name, leaseworks__Lease_Type_Status__c &quot; &amp;
   &quot;FROM leaseworks__Lease__c &quot; &amp;
-  &quot;WHERE pro_Asset_Name__c LIKE &#39;&quot; &amp; {!Serial_Number_Contracts} &amp; &quot;%&#39; &quot; &amp;
+  &quot;WHERE pro_Asset_Name__c LIKE &apos;&quot; &amp; {!Serial_Number_Contracts} &amp; &quot;%&apos; &quot; &amp;
   &quot;LIMIT 4&quot;
 )</expression>
     </formulas>
     <formulas>
         <name>f_DealIdBasedOnTicketType</name>
         <dataType>String</dataType>
-        <expression>IF({!Select_a_Ticket_type} = &#39;Data Quality Request&#39;, {!Deal.recordId}, {!varTicketToCreate.pro_Deal__c})</expression>
+        <expression>IF({!Select_a_Ticket_type} = &apos;Data Quality Request&apos;, {!Deal.recordId}, {!varTicketToCreate.pro_Deal__c})</expression>
     </formulas>
     <formulas>
         <name>f_DueDateBasedOnPriority</name>
@@ -2027,12 +2027,12 @@ AND(
         <description>Includes current File upload selections along with selections on previous visit to the screen.</description>
         <name>f_FileSelectedForUpload</name>
         <dataType>String</dataType>
-        <expression> {!varFileUplaodNameCollection} + &#39;  &#39; + {!TicketFileUpload.fileNames}</expression>
+        <expression> {!varFileUplaodNameCollection} + &apos;  &apos; + {!TicketFileUpload.fileNames}</expression>
     </formulas>
     <formulas>
         <name>f_FleetWideValue</name>
         <dataType>Boolean</dataType>
-        <expression>IF({!Get_Record_Type.DeveloperName} = &#39;pro_System_Enhancement_Request&#39; || {!Get_Record_Type.DeveloperName}  = &#39;pro_Data_Quality_Request&#39; ||   {!Get_Record_Type.DeveloperName} = &#39;Lease_Management&#39;  , False, 
+        <expression>IF({!Get_Record_Type.DeveloperName} = &apos;pro_System_Enhancement_Request&apos; || {!Get_Record_Type.DeveloperName}  = &apos;pro_Data_Quality_Request&apos; ||   {!Get_Record_Type.DeveloperName} = &apos;Lease_Management&apos;  , False, 
 
 IF({!pl_AssetORNonCarlyeAssetORFleetWide} = {!c_Fleet_Wide}, True,
 
@@ -2042,22 +2042,22 @@ False))</expression>
     <formulas>
         <name>f_LeaseLookupIdBasedOnTicketType</name>
         <dataType>String</dataType>
-        <expression>IF({!Get_Record_Type.DeveloperName} = &#39;pro_Data_Quality_Request&#39;, {!Contract.recordId}, {!LeaseLookup.recordId})</expression>
+        <expression>IF({!Get_Record_Type.DeveloperName} = &apos;pro_Data_Quality_Request&apos;, {!Contract.recordId}, {!LeaseLookup.recordId})</expression>
     </formulas>
     <formulas>
         <name>f_MiddleSectionTitleDynamic</name>
         <dataType>String</dataType>
-        <expression>IF({!Get_Record_Type.DeveloperName} = &#39;pro_System_Enhancement_Request&#39;, &#39;Business Case &amp; Security Considerations&#39;, &#39;Link Ticket To Records&#39;)</expression>
+        <expression>IF({!Get_Record_Type.DeveloperName} = &apos;pro_System_Enhancement_Request&apos;, &apos;Business Case &amp; Security Considerations&apos;, &apos;Link Ticket To Records&apos;)</expression>
     </formulas>
     <formulas>
         <name>f_NonCarlyleAssetMSN</name>
         <dataType>String</dataType>
-        <expression>IF({!Get_Record_Type.DeveloperName} = &#39;pro_System_Enhancement_Request&#39; ||  {!Get_Record_Type.DeveloperName} = &#39;pro_Data_Quality_Request&#39;, &#39;&#39;, {!varTicketToCreate.pro_Non_Carlyle_Asset_MSN__c})</expression>
+        <expression>IF({!Get_Record_Type.DeveloperName} = &apos;pro_System_Enhancement_Request&apos; ||  {!Get_Record_Type.DeveloperName} = &apos;pro_Data_Quality_Request&apos;, &apos;&apos;, {!varTicketToCreate.pro_Non_Carlyle_Asset_MSN__c})</expression>
     </formulas>
     <formulas>
         <name>f_NonCarlyleAssetValue</name>
         <dataType>Boolean</dataType>
-        <expression>IF({!Get_Record_Type.DeveloperName} = &#39;pro_System_Enhancement_Request&#39; || {!Get_Record_Type.DeveloperName}  = &#39;pro_Data_Quality_Request&#39; ||   {!Get_Record_Type.DeveloperName} = &#39;Lease_Management&#39;  , False, 
+        <expression>IF({!Get_Record_Type.DeveloperName} = &apos;pro_System_Enhancement_Request&apos; || {!Get_Record_Type.DeveloperName}  = &apos;pro_Data_Quality_Request&apos; ||   {!Get_Record_Type.DeveloperName} = &apos;Lease_Management&apos;  , False, 
 
 IF({!pl_AssetORNonCarlyeAssetORFleetWide} = {!c_Non_Carlyle_Asset}, True,
 
@@ -2067,27 +2067,27 @@ False))</expression>
     <formulas>
         <name>f_QueryRelatedAssemblies</name>
         <dataType>String</dataType>
-        <expression>&quot;SELECT Name, Id, leaseworks__Type__c, leaseworks__Last_CSN_Utilization__c, leaseworks__Last_TSN_Utilization__c, leaseworks__Comments__c FROM leaseworks__Constituent_Assembly__c WHERE leaseworks__Attached_Aircraft__c = &#39;&quot; &amp; {!varTicketToCreate.pro_Asset__c} &amp; &quot;&#39;&quot;</expression>
+        <expression>&quot;SELECT Name, Id, leaseworks__Type__c, leaseworks__Last_CSN_Utilization__c, leaseworks__Last_TSN_Utilization__c, leaseworks__Comments__c FROM leaseworks__Constituent_Assembly__c WHERE leaseworks__Attached_Aircraft__c = &apos;&quot; &amp; {!varTicketToCreate.pro_Asset__c} &amp; &quot;&apos;&quot;</expression>
     </formulas>
     <formulas>
         <name>f_QueryRelatedUtilizations</name>
         <dataType>String</dataType>
-        <expression>&quot;SELECT Name, Id, leaseworks__Month_Ending__c, leaseworks__Airframe_Cycles_Landing_During_Month__c, leaseworks__Airframe_Flight_Hours_Month__c, leaseworks__Engineering_Modifications_or_Changes__c	 FROM leaseworks__Utilization_Report__c WHERE leaseworks__Aircraft__c = &#39;&quot; &amp; {!varTicketToCreate.pro_Asset__c} &amp; &quot;&#39; ORDER BY leaseworks__Month_Ending__c DESC&quot;</expression>
+        <expression>&quot;SELECT Name, Id, leaseworks__Month_Ending__c, leaseworks__Airframe_Cycles_Landing_During_Month__c, leaseworks__Airframe_Flight_Hours_Month__c, leaseworks__Engineering_Modifications_or_Changes__c	 FROM leaseworks__Utilization_Report__c WHERE leaseworks__Aircraft__c = &apos;&quot; &amp; {!varTicketToCreate.pro_Asset__c} &amp; &quot;&apos; ORDER BY leaseworks__Month_Ending__c DESC&quot;</expression>
     </formulas>
     <formulas>
         <name>f_RemoveAssetsAssembliesButtonLabelOrBlank</name>
         <dataType>String</dataType>
-        <expression>IF(ISBLANK({!Create_Assets_To_Attach_Name_Collection}) &amp;&amp; ISBLANK({!Create_Assemblies_To_Attach_Name_Collection}), &#39;&#39;, &#39;Remove Assets / Assemblies&#39; )</expression>
+        <expression>IF(ISBLANK({!Create_Assets_To_Attach_Name_Collection}) &amp;&amp; ISBLANK({!Create_Assemblies_To_Attach_Name_Collection}), &apos;&apos;, &apos;Remove Assets / Assemblies&apos; )</expression>
     </formulas>
     <formulas>
         <name>f_RemoveAssetsInstructionText</name>
         <dataType>String</dataType>
-        <expression>IF(ISBLANK({!Create_Assets_To_Attach_Name_Collection}) &amp;&amp; ISBLANK({!Create_Assemblies_To_Attach_Name_Collection}), &#39;No Assets or Assemblies on Ticket&#39;, &#39;Select the desired Assets or Assemblies from the datatables then click &#39; )</expression>
+        <expression>IF(ISBLANK({!Create_Assets_To_Attach_Name_Collection}) &amp;&amp; ISBLANK({!Create_Assemblies_To_Attach_Name_Collection}), &apos;No Assets or Assemblies on Ticket&apos;, &apos;Select the desired Assets or Assemblies from the datatables then click &apos; )</expression>
     </formulas>
     <formulas>
         <name>f_TechnicalProjectIdBasedOnTicketType</name>
         <dataType>String</dataType>
-        <expression>IF({!Select_a_Ticket_type} = &#39;Data Quality Request&#39;, {!TechnicalProject.recordId}, {!varTicketToCreate.pro_Technical_Project__c})</expression>
+        <expression>IF({!Select_a_Ticket_type} = &apos;Data Quality Request&apos;, {!TechnicalProject.recordId}, {!varTicketToCreate.pro_Technical_Project__c})</expression>
     </formulas>
     <formulas>
         <name>f_TodayPlusSeven</name>
@@ -2099,10 +2099,10 @@ False))</expression>
         <name>f_varActionInputVariable</name>
         <dataType>String</dataType>
         <expression>IF(
-     {!bb_LinkSelectedRecords.value} = &#39;Link Selected Records&#39;, &#39;Add&#39;,
+     {!bb_LinkSelectedRecords.value} = &apos;Link Selected Records&apos;, &apos;Add&apos;,
 
 IF(
-    {!bb_RemoveSelectedRecords.value} = &#39;Remove&#39;, &#39;Remove&#39;, &#39;&#39;
+    {!bb_RemoveSelectedRecords.value} = &apos;Remove&apos;, &apos;Remove&apos;, &apos;&apos;
 ))</expression>
     </formulas>
     <interviewLabel>Prodigy - Screen - Create New Ticket {!$Flow.CurrentDateTime}</interviewLabel>
@@ -2719,6 +2719,7 @@ IF(
                     <dataType>String</dataType>
                     <fieldText>Select a Ticket type</fieldText>
                     <fieldType>RadioButtons</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                 </fields>
                 <inputParameters>
@@ -2797,6 +2798,7 @@ IF(
                     <defaultSelectedChoiceReference>c_Carlyle_Assets</defaultSelectedChoiceReference>
                     <fieldText>Asset Source</fieldText>
                     <fieldType>DropdownBox</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
@@ -2871,6 +2873,7 @@ IF(
                     </defaultValue>
                     <fieldText>Non Carlyle Asset MSN</fieldText>
                     <fieldType>InputField</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
@@ -3040,6 +3043,7 @@ IF(
                     </defaultValue>
                     <fieldText>Serial Number</fieldText>
                     <fieldType>InputField</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
@@ -3552,6 +3556,7 @@ IF(
                     <dataType>String</dataType>
                     <fieldText>Serial Number</fieldText>
                     <fieldType>InputField</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
@@ -3815,6 +3820,7 @@ IF(
                     <extensionName>flowruntime:choiceLookup</extensionName>
                     <fieldText>Assignee Roles</fieldText>
                     <fieldType>ComponentMultiChoice</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                     <storeOutputAutomatically>true</storeOutputAutomatically>
                     <visibilityRule>
@@ -3840,6 +3846,7 @@ IF(
                     <dataType>Boolean</dataType>
                     <fieldText>Create Sub-Tickets</fieldText>
                     <fieldType>InputField</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                 </fields>
                 <inputParameters>
@@ -3855,6 +3862,7 @@ IF(
                 <fieldType>Region</fieldType>
                 <fields>
                     <fieldType>ObjectProvided</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                     <objectFieldReference>varTicketAssigneeToCreate.pro_Assignee_Instruction__c</objectFieldReference>
                 </fields>
@@ -3940,6 +3948,7 @@ IF(
                 <extensionName>flowruntime:choiceLookup</extensionName>
                 <fieldText>Assignee</fieldText>
                 <fieldType>ComponentChoice</fieldType>
+                <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                 <isRequired>false</isRequired>
                 <storeOutputAutomatically>true</storeOutputAutomatically>
             </fields>
@@ -3948,6 +3957,7 @@ IF(
                 <dataType>String</dataType>
                 <fieldText>Assignee Instruction</fieldText>
                 <fieldType>InputField</fieldType>
+                <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                 <isRequired>false</isRequired>
             </fields>
             <inputParameters>
@@ -4249,6 +4259,7 @@ IF(
                 </fields>
                 <fields>
                     <fieldType>ObjectProvided</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                     <objectFieldReference>varTicketToCreate.pro_Type__c</objectFieldReference>
                 </fields>
@@ -4261,6 +4272,7 @@ IF(
                     </defaultValue>
                     <fieldText>System</fieldText>
                     <fieldType>DropdownBox</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <visibilityRule>
                         <conditionLogic>or</conditionLogic>
@@ -4289,6 +4301,7 @@ IF(
                     </defaultValue>
                     <fieldText>Object</fieldText>
                     <fieldType>DropdownBox</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <visibilityRule>
                         <conditionLogic>or</conditionLogic>
@@ -4324,6 +4337,7 @@ IF(
                     </defaultValue>
                     <fieldText>Status</fieldText>
                     <fieldType>DropdownBox</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                 </fields>
                 <fields>
@@ -4335,6 +4349,7 @@ IF(
                     </defaultValue>
                     <fieldText>Priority</fieldText>
                     <fieldType>DropdownBox</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                 </fields>
                 <fields>
@@ -4345,10 +4360,12 @@ IF(
                     </defaultValue>
                     <fieldText>Expected Due Date</fieldText>
                     <fieldType>InputField</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                 </fields>
                 <fields>
                     <fieldType>ObjectProvided</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                     <objectFieldReference>varTicketToCreate.pro_Impacted_Teams_Departments__c</objectFieldReference>
                     <visibilityRule>
@@ -4375,6 +4392,7 @@ IF(
         </fields>
         <fields>
             <fieldType>ObjectProvided</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>false</isRequired>
             <objectFieldReference>varTicketToCreate.pro_Title__c</objectFieldReference>
         </fields>
@@ -4385,6 +4403,7 @@ IF(
             </defaultValue>
             <fieldText>Comment</fieldText>
             <fieldType>LargeTextArea</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>false</isRequired>
             <visibilityRule>
                 <conditionLogic>and</conditionLogic>
@@ -4496,6 +4515,7 @@ IF(
                     </defaultValue>
                     <fieldText>Current Challenge / Pain Point (what is not working today?)</fieldText>
                     <fieldType>LargeTextArea</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
@@ -4515,6 +4535,7 @@ IF(
                     </defaultValue>
                     <fieldText>Proposed Change (plain English)</fieldText>
                     <fieldType>LargeTextArea</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
@@ -4534,6 +4555,7 @@ IF(
                     </defaultValue>
                     <fieldText>Expected Outcome (time saved, risk reduction, compliance, revenue)</fieldText>
                     <fieldType>LargeTextArea</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
@@ -4582,6 +4604,7 @@ IF(
                     </defaultValue>
                     <fieldText>Object</fieldText>
                     <fieldType>DropdownBox</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                 </fields>
                 <inputParameters>
@@ -5452,6 +5475,7 @@ IF(
                 <fieldType>Region</fieldType>
                 <fields>
                     <fieldType>ObjectProvided</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                     <objectFieldReference>varTicketToCreate.pro_External_Party__c</objectFieldReference>
                 </fields>
@@ -5551,11 +5575,13 @@ IF(
                 <fieldType>Region</fieldType>
                 <fields>
                     <fieldType>ObjectProvided</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                     <objectFieldReference>varTicketToCreate.pro_Deal__c</objectFieldReference>
                 </fields>
                 <fields>
                     <fieldType>ObjectProvided</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                     <objectFieldReference>varTicketToCreate.pro_Claim__c</objectFieldReference>
                 </fields>
@@ -5572,6 +5598,7 @@ IF(
                 <fieldType>Region</fieldType>
                 <fields>
                     <fieldType>ObjectProvided</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                     <objectFieldReference>varTicketToCreate.pro_Technical_Project__c</objectFieldReference>
                 </fields>
@@ -5958,6 +5985,69 @@ IF(
         <isViewedAsPlainText>true</isViewedAsPlainText>
         <text>{!f_AssigneeInstructionsOrBlankSubTicket}{!varCommentsPlaceholder}</text>
     </textTemplates>
+    <transforms>
+        <name>Create_Assemblies_To_Attach_Name_Collection</name>
+        <label>Create Assemblies To Attach Name Collection</label>
+        <locationX>792</locationX>
+        <locationY>1838</locationY>
+        <connector>
+            <targetReference>Create_Contracts_To_Attach_Name_Collection</targetReference>
+        </connector>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>varAssembliesToAttach[$EachItem].pro_Assembly_Name_And_Type__c</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
+    <transforms>
+        <name>Create_Assets_To_Attach_Name_Collection</name>
+        <label>Create Assets To Attach Name Collection</label>
+        <locationX>792</locationX>
+        <locationY>1730</locationY>
+        <connector>
+            <targetReference>Create_Assemblies_To_Attach_Name_Collection</targetReference>
+        </connector>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>varAssetsToAttach[$EachItem].Name</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
+    <transforms>
+        <name>Create_Contracts_To_Attach_Name_Collection</name>
+        <label>Create Contracts To Attach Name Collection</label>
+        <locationX>792</locationX>
+        <locationY>1946</locationY>
+        <connector>
+            <targetReference>Ticket_Management_Screen</targetReference>
+        </connector>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>varContractsToAttach[$EachItem].Name</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
     <variables>
         <name>currentItem_Collection_Filter_1</name>
         <dataType>SObject</dataType>

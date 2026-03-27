@@ -14,9 +14,9 @@
         <fullName>leaseworks__AssetTermSetName</fullName>
         <field>Name</field>
         <formula>CASE(leaseworks__Serial_Number__c 
-, null, if(isBlank( text( leaseworks__Asset_Type__c  )  ),if(isBlank(text(leaseworks__Engine_Type_GP__c)),&#39;NA&#39;,text( leaseworks__Engine_Type_GP__c  )),text( leaseworks__Asset_Type__c  ))  
+, null, if(isBlank( text( leaseworks__Asset_Type__c  )  ),if(isBlank(text(leaseworks__Engine_Type_GP__c)),&apos;NA&apos;,text( leaseworks__Engine_Type_GP__c  )),text( leaseworks__Asset_Type__c  ))  
 , if(isBlank(leaseworks__Serial_Number__c), Name , leaseworks__Serial_Number__c) 
-) &amp; &#39;_&#39; &amp;  leaseworks__Prospect__c &amp; IF( AND(NOT( ISBLANK( leaseworks__Y_Hidden_Asset_Quantity__c ) ),isBlank(leaseworks__Serial_Number__c)), &#39; - &#39; +  leaseworks__Y_Hidden_Asset_Quantity__c, &#39;&#39; )</formula>
+) &amp; &apos;_&apos; &amp;  leaseworks__Prospect__c &amp; IF( AND(NOT( ISBLANK( leaseworks__Y_Hidden_Asset_Quantity__c ) ),isBlank(leaseworks__Serial_Number__c)), &apos; - &apos; +  leaseworks__Y_Hidden_Asset_Quantity__c, &apos;&apos; )</formula>
         <name>AssetTermSetName</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>

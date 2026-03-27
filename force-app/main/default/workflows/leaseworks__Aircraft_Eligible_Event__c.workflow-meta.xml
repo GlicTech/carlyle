@@ -13,9 +13,9 @@
     <fieldUpdates>
         <fullName>leaseworks__AircraftEventSetDataVerifiedBy</fullName>
         <field>leaseworks__Data_Verified_By__c</field>
-        <formula>$User.FirstName + &#39; &#39; + $User.LastName +&#39;, &#39; +
+        <formula>$User.FirstName + &apos; &apos; + $User.LastName +&apos;, &apos; +
 
-Text(MONTH(TODAY())) + &#39;/&#39; + Text(Day(TODAY())) + &#39;/&#39; + Text(year(TODAY()))</formula>
+Text(MONTH(TODAY())) + &apos;/&apos; + Text(Day(TODAY())) + &apos;/&apos; + Text(year(TODAY()))</formula>
         <name>AircraftEventSetDataVerifiedBy</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
@@ -26,7 +26,7 @@ Text(MONTH(TODAY())) + &#39;/&#39; + Text(Day(TODAY())) + &#39;/&#39; + Text(yea
         <fullName>leaseworks__Set_CSLV</fullName>
         <description>Set CSLV to 0</description>
         <field>leaseworks__Cycles_Since_Last_C_Check__c</field>
-        <formula>IF ( TEXT(leaseworks__Event_Type__c)=&#39;C-Check&#39;, 0, leaseworks__Aircraft__r.leaseworks__Cycles_Since_Last_C_Check__c )</formula>
+        <formula>IF ( TEXT(leaseworks__Event_Type__c)=&apos;C-Check&apos;, 0, leaseworks__Aircraft__r.leaseworks__Cycles_Since_Last_C_Check__c )</formula>
         <name>Set CSLV</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
@@ -50,7 +50,7 @@ Text(MONTH(TODAY())) + &#39;/&#39; + Text(Day(TODAY())) + &#39;/&#39; + Text(yea
         <description>Set TSLV to 0
 BM 24-Oct-2012 : Do not use this. Logic changed to trigger.</description>
         <field>leaseworks__Time_Since_Last_C_Check__c</field>
-        <formula>IF ( TEXT(leaseworks__Event_Type__c)=&#39;C-Check&#39; &amp;&amp; false,  0, leaseworks__Aircraft__r.leaseworks__Time_Since_Last_C_Check__c )</formula>
+        <formula>IF ( TEXT(leaseworks__Event_Type__c)=&apos;C-Check&apos; &amp;&amp; false,  0, leaseworks__Aircraft__r.leaseworks__Time_Since_Last_C_Check__c )</formula>
         <name>Set TSLV</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
@@ -84,7 +84,7 @@ BM 24-Oct-2012 : Do not use this. Logic changed to trigger.</description>
         <fullName>leaseworks__Update_AEE_Name</fullName>
         <description>Unused--- Updates the AEE name to reflect Aircraft ID and date and type of event</description>
         <field>Name</field>
-        <formula>&#39;&#39;</formula>
+        <formula>&apos;&apos;</formula>
         <name>Update AEE Name</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>

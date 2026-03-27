@@ -147,7 +147,13 @@
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <deprecated>false</deprecated>
-    <description>Capture the PBH related field details such as which Assemblies has been chosen and Rates</description>
+    <description>Capture the PBH related field details such as which Assemblies has been chosen and Rates
+If applicable and the Rent Type is PBH, provide details of the PBH Rent calculation, including charge items per FH and FC.
+[MODULE: Contract]
+[LOAD: Yes]
+[PREREQUISITES: Rent Schedule (PBH)]
+[REPLACEMENT OBJECT API: NA]
+[COMMENTS: NA]</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -165,7 +171,7 @@
         <type>Text</type>
     </nameField>
     <pluralLabel>PBH Rates</pluralLabel>
-    <searchLayouts />
+    <searchLayouts></searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

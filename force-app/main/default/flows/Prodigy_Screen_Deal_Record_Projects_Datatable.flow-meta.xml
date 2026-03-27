@@ -158,6 +158,27 @@
         </connector>
     </start>
     <status>Active</status>
+    <transforms>
+        <name>Create_Asset_Id</name>
+        <label>Create Asset Id</label>
+        <locationX>176</locationX>
+        <locationY>242</locationY>
+        <connector>
+            <targetReference>Get_Related_Projects</targetReference>
+        </connector>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>Get_Related_Assets_In_Deal[$EachItem].leaseworks__Aircraft__c</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
     <variables>
         <name>recordId</name>
         <dataType>SObject</dataType>

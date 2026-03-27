@@ -99,6 +99,14 @@
                 <behavior>Readonly</behavior>
                 <field>cap_Record_ID__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>CAP_Prior_Year_Flight_Hours__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>CAP_Prior_Year_Flight_Cycles__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -231,6 +239,11 @@
             <quickActionName>FeedItem.QuestionPost</quickActionName>
         </quickActionListItems>
     </quickActionList>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>pro_Progress__c</fields>
+        <relatedList>pro_Asset_Target_Audit__c.pro_Asset__c</relatedList>
+    </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
         <fields>RECORDTYPE</fields>

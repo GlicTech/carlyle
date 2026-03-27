@@ -2,8 +2,8 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>leaseworks__FixedInterestRateNeededFixedType</fullName>
     <active>true</active>
-    <description>For loan type= &#39;fixed&#39;, &#39;Fixed Interest rate&#39; cannot be null</description>
-    <errorConditionFormula>AND( ISPICKVAL(leaseworks__Loan_Type__c, &#39;Fixed&#39;) , OR ( ISBLANK( leaseworks__Fixed_Interest_Rate__c ), ISNULL( leaseworks__Fixed_Interest_Rate__c ) ) )</errorConditionFormula>
+    <description>For loan type= &apos;fixed&apos;, &apos;Fixed Interest rate&apos; cannot be null</description>
+    <errorConditionFormula>AND( ISPICKVAL(leaseworks__Loan_Type__c, &apos;Fixed&apos;) , OR ( ISBLANK( leaseworks__Fixed_Interest_Rate__c ), ISNULL( leaseworks__Fixed_Interest_Rate__c ) ) )</errorConditionFormula>
     <errorDisplayField>leaseworks__Fixed_Interest_Rate__c</errorDisplayField>
     <errorMessage>Please select the Fixed Interest Rate. This is required for Fixed loan type.</errorMessage>
 </ValidationRule>

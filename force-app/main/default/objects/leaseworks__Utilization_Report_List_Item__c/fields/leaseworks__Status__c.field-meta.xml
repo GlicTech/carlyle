@@ -3,8 +3,7 @@
     <fullName>leaseworks__Status__c</fullName>
     <deprecated>false</deprecated>
     <description>System-controlled field reflecting async batch state.</description>
-    <externalId>false</externalId>
-    <inlineHelpText>Status for the approval workflow of the assembly utilization</inlineHelpText>
+    <inlineHelpText>Indicates the current processing state of this utilization batch. Error status occurs only if processing fails.</inlineHelpText>
     <label>Processing State</label>
     <required>false</required>
     <trackHistory>false</trackHistory>
@@ -14,24 +13,38 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>Open</fullName>
+                <fullName>Success</fullName>
                 <default>true</default>
+                <label>Success</label>
+            </value>
+            <value>
+                <fullName>Error</fullName>
+                <default>false</default>
+                <label>Error</label>
+            </value>
+            <value>
+                <fullName>Approved</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Approved</label>
+            </value>
+            <value>
+                <fullName>Open</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
                 <label>Open</label>
             </value>
             <value>
                 <fullName>Pending</fullName>
                 <default>false</default>
+                <isActive>false</isActive>
                 <label>Pending</label>
             </value>
             <value>
                 <fullName>Rejected</fullName>
                 <default>false</default>
+                <isActive>false</isActive>
                 <label>Rejected</label>
-            </value>
-            <value>
-                <fullName>Approved</fullName>
-                <default>false</default>
-                <label>Approved</label>
             </value>
         </valueSetDefinition>
     </valueSet>

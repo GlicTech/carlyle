@@ -152,7 +152,12 @@
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <deprecated>false</deprecated>
-    <description>This placeholder stores all rate details for the MR calculations. Multiple MR charges can be defined for supplemental rent, and the utilization MR calculation will consider all of them. Based on the method defined in the supplemental rent, the total MR calculation for a particular component will be performed.</description>
+    <description>This placeholder stores all rate details for the MR calculations. Multiple MR charges can be defined for supplemental rent, and the utilization MR calculation will consider all of them. Based on the method defined in the supplemental rent, the total MR calculation for a particular component will be performed.
+[MODULE: Contract]
+[LOAD: Yes]
+[PREREQUISITES: Supplemental Rent]
+[REPLACEMENT OBJECT API: NA]
+[COMMENTS: NA]</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -170,7 +175,7 @@
         <type>Text</type>
     </nameField>
     <pluralLabel>Supplemental Rent Rate</pluralLabel>
-    <searchLayouts />
+    <searchLayouts></searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

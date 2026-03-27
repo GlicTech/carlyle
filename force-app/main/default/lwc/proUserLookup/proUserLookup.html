@@ -1,0 +1,49 @@
+<template>
+    <div class="slds-form-element pro-user-lookup">
+        <div class="slds-form-element__control">
+            <!-- Search state: no value selected -->
+            <template if:false={isValueSelected}>
+                <div class="lookup-input-block">
+                    <div class="slds-combobox_container">
+                        <div class={comboboxClass}>
+                            <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right" role="none">
+                                <lightning-input
+                                    type="search"
+                                    autocomplete="off"
+                                    label={label}
+                                    placeholder={placeholder}
+                                    value={searchString}
+                                    onchange={handleChange}
+                                    onblur={handleInputBlur}>
+                                </lightning-input>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </template>
+            <!-- Selected state: show selected value and clear button -->
+            <template if:true={isValueSelected}>
+                <label class="slds-form-element__label" for="user-lookup-selected">{label}</label>
+                <div class="slds-combobox_container slds-has-selection">
+                    <div class="slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click">
+                        <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_left-right" role="none">
+                            <span class="slds-icon_container slds-icon-standard-user slds-combobox__input-entity-icon">
+                                <lightning-icon icon-name="standard:user" alternative-text="User" size="x-small"></lightning-icon>
+                            </span>
+                            <span class="slds-input_faux slds-combobox__input slds-combobox__input-value" id="user-lookup-selected">
+                                <span class="slds-truncate">{selectedRecordName}</span>
+                            </span>
+                            <button
+                                type="button"
+                                class="slds-button slds-button_icon slds-input__icon slds-input__icon_right"
+                                title="Clear selection"
+                                onclick={handleClear}>
+                                <lightning-icon icon-name="utility:close" alternative-text="Clear" size="x-small"></lightning-icon>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </div>
+</template>

@@ -7,9 +7,9 @@
         <name>UpdMRShareName</name>
         <dataType>String</dataType>
         <expression>IF(
-  LEN({!$Record.leaseworks__Assembly_MR_Info__r.Name} +  &#39; - &#39;  + {!$Record.leaseworks__Assembly__c} + &#39; - &#39; + {!$Record.leaseworks__Maintenance_Event_Name__c}) &gt; 80,
-  LEFT({!$Record.leaseworks__Assembly_MR_Info__r.Name} + &#39; - &#39; + {!$Record.leaseworks__Assembly__c} + &#39; - &#39; + {!$Record.leaseworks__Maintenance_Event_Name__c}, 77) + &#39;...&#39;,
-  {!$Record.leaseworks__Assembly_MR_Info__r.Name} + &#39; - &#39; + {!$Record.leaseworks__Assembly__c} + &#39; - &#39; + {!$Record.leaseworks__Maintenance_Event_Name__c}
+  LEN({!$Record.leaseworks__Assembly_MR_Info__r.Name} +  &apos; - &apos;  + {!$Record.leaseworks__Assembly__c} + &apos; - &apos; + {!$Record.leaseworks__Maintenance_Event_Name__c}) &gt; 80,
+  LEFT({!$Record.leaseworks__Assembly_MR_Info__r.Name} + &apos; - &apos; + {!$Record.leaseworks__Assembly__c} + &apos; - &apos; + {!$Record.leaseworks__Maintenance_Event_Name__c}, 77) + &apos;...&apos;,
+  {!$Record.leaseworks__Assembly_MR_Info__r.Name} + &apos; - &apos; + {!$Record.leaseworks__Assembly__c} + &apos; - &apos; + {!$Record.leaseworks__Maintenance_Event_Name__c}
 )</expression>
     </formulas>
     <interviewLabel>UpdateMRShare Name {!$Flow.CurrentDateTime}</interviewLabel>

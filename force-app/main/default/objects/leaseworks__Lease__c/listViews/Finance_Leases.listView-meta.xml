@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Finance_Leases</fullName>
+    <columns>NAME</columns>
+    <columns>leaseworks__Lease_Start_Date_New__c</columns>
+    <columns>leaseworks__Lease_End_Date_New__c</columns>
+    <columns>leaseworks__Current_Rent_New__c</columns>
+    <columns>leaseworks__Contractual_Redelivery_Date__c</columns>
+    <columns>leaseworks__Active__c</columns>
+    <columns>leaseworks__Lease_Type_Status__c</columns>
+    <columns>leaseworks__Lease_Type_Legal__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>leaseworks__Lease_Type_Legal__c</field>
+        <operation>equals</operation>
+        <value>Finance Lease</value>
+    </filters>
+    <label>Finance Leases</label>
+</ListView>

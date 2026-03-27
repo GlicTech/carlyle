@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>66.0</apiVersion>
+    <assignments>
+        <name>Set_ADM_Approval_Required_to_False</name>
+        <label>Set ADM Approval Required to False</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.pro_ADM_Approval_Required__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <environments>Default</environments>
+    <interviewLabel>Pro_ADM Approval required FALSE for Lending and Non-Deal Approval {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Pro_ADM Approval required FALSE for Lending and Non-Deal Approval</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Set_ADM_Approval_Required_to_False</targetReference>
+        </connector>
+        <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+        <filterLogic>or</filterLogic>
+        <filters>
+            <field>leaseworks__Deal_Type__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Lending</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>leaseworks__Deal_Type__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Approval</stringValue>
+            </value>
+        </filters>
+        <object>leaseworks__Aircraft_Proposal__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

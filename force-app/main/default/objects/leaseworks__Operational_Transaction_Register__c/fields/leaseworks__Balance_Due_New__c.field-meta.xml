@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Balance_Due_New__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Displays the balance amount  in transaction currency from the linked transaction (e.g., Invoice, Prepayment, Payable, Credit Memo). Not populated for Payments/Credits and Payouts.</description>
+    <externalId>false</externalId>
+    <formula>IF(!ISBLANK(leaseworks__Invoice__c),leaseworks__Invoice__r.leaseworks__Balance_Due__c,
+IF(!ISBLANK(leaseworks__Payments_Credits__c),null,
+IF(!ISBLANK(leaseworks__Prepayment__c),leaseworks__Prepayment__r.leaseworks__Available_Balance_Cur__c,
+IF(!ISBLANK(leaseworks__Payables__c),leaseworks__Payables__r.leaseworks__Payable_Balance__c,
+IF(!ISBLANK(leaseworks__Payouts__c),null,
+IF(!ISBLANK(leaseworks__Credit_Memo__c),leaseworks__Credit_Memo__r.leaseworks__Balance_Available_New__c,
+IF(!ISBLANK( leaseworks__Payment_on_Account__c ), leaseworks__Payment_on_Account__r.leaseworks__Balance_Available__c ,
+null)))))))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Displays the balance amount  in transaction currency from the linked transaction (e.g., Invoice, Prepayment, Payable, Credit Memo). Not populated for Payments/Credits and Payouts.</inlineHelpText>
+    <label>Balance Due</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

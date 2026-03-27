@@ -4,7 +4,7 @@
     <deleteConstraint>SetNull</deleteConstraint>
     <deprecated>false</deprecated>
     <description>Users can select the address associated with the Operator/Lessee to be used for the Lease.</description>
-    <externalId>false</externalId>
+    <inlineHelpText>Optional. Selects the billing address to appear on invoice PDFs (typically pulled from the Invoiced Party&apos;s Account).</inlineHelpText>
     <label>Invoice Address</label>
     <lookupFilter>
         <active>true</active>
@@ -22,12 +22,12 @@
         <filterItems>
             <field>$Source.leaseworks__Lessee_New__c</field>
             <operation>equals</operation>
-            <value />
+            <value></value>
         </filterItems>
         <filterItems>
             <field>$Source.leaseworks__Operator_New__c</field>
             <operation>equals</operation>
-            <value />
+            <value></value>
         </filterItems>
         <isOptional>false</isOptional>
     </lookupFilter>

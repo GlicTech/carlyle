@@ -17,6 +17,19 @@
             <targetReference>Update_Sequence_Number_Setting</targetReference>
         </connector>
     </assignments>
+    <customErrors>
+        <name>Show_Error_Message</name>
+        <label>Show Error Message</label>
+        <locationX>896</locationX>
+        <locationY>719</locationY>
+        <connector>
+            <targetReference>Enable_Triggers</targetReference>
+        </connector>
+        <customErrorMessages>
+            <errorMessage>{!$Flow.FaultMessage}</errorMessage>
+            <isFieldError>false</isFieldError>
+        </customErrorMessages>
+    </customErrors>
     <environments>Default</environments>
     <formulas>
         <name>IsNewRecord</name>
@@ -26,7 +39,7 @@
     <formulas>
         <name>NameOfTechnicalProject</name>
         <dataType>String</dataType>
-        <expression>&#39;FPM_&#39;+ RIGHT((&#39;0000&#39;+TEXT({!SequenceNumberForProject})), 5)</expression>
+        <expression>&apos;FPM_&apos;+ RIGHT((&apos;0000&apos;+TEXT({!SequenceNumberForProject})), 5)</expression>
     </formulas>
     <formulas>
         <name>RecordTypeIdProject</name>
@@ -156,7 +169,7 @@ IF(ISNULL({!GetSequenceNumberRec.leaseworks__Sequence_Number_New__c}), {!Technic
         <connector>
             <targetReference>GetSequenceNumberRec</targetReference>
         </connector>
-        <filterFormula>{!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c} == FALSE &amp;&amp; {!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c} == FALSE  &amp;&amp; {!$Record.RecordType.DeveloperName} &lt;&gt; &#39;Technical_Project_Template&#39; &amp;&amp; {!$Record.RecordType.DeveloperName} &lt;&gt; &#39;Fleet_Maintenance_Power_Plant&#39;</filterFormula>
+        <filterFormula>{!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c} == FALSE &amp;&amp; {!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c} == FALSE  &amp;&amp; {!$Record.RecordType.DeveloperName} &lt;&gt; &apos;Technical_Project_Template&apos; &amp;&amp; {!$Record.RecordType.DeveloperName} &lt;&gt; &apos;Fleet_Maintenance_Power_Plant&apos;</filterFormula>
         <object>leaseworks__Technical_Project__c</object>
         <recordTriggerType>Create</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>

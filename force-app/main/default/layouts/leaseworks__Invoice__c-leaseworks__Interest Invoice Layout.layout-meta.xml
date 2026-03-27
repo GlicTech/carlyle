@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <excludeButtons>OpenSlackRecordChannel</excludeButtons>
     <layoutSections>
         <customLabel>false</customLabel>
         <detailHeading>false</detailHeading>
@@ -380,8 +381,8 @@
             <sortOrder>1</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
-            <actionName>leaseworks__Generate_Invoice</actionName>
-            <actionType>CustomButton</actionType>
+            <actionName>leaseworks__Invoice__c.Generate_Invoice1</actionName>
+            <actionType>QuickAction</actionType>
             <sortOrder>2</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
@@ -512,6 +513,7 @@
         <fields>leaseworks__Invoice_Type__c</fields>
         <fields>leaseworks__Invoice_Line_Type__c</fields>
         <fields>leaseworks__Converted_Currency_Line_Amount__c</fields>
+        <fields>leaseworks__Comments__c</fields>
         <relatedList>leaseworks__Invoice_Line_Item__c.leaseworks__Invoice__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -546,13 +548,13 @@
         <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
         <fields>leaseworks__JE_Description__c</fields>
+        <fields>leaseworks__Credit_Number__c</fields>
+        <fields>leaseworks__Debit_Number__c</fields>
         <fields>leaseworks__Transaction_Type__c</fields>
         <fields>leaseworks__GL_Account_Code__c</fields>
+        <fields>leaseworks__Legal_Entity__c</fields>
+        <fields>leaseworks__Intercompany_Affiliate__c</fields>
         <fields>leaseworks__Calendar_Period__c</fields>
-        <fields>leaseworks__Debit_Number__c</fields>
-        <fields>leaseworks__Credit_Number__c</fields>
-        <fields>leaseworks__Journal_Status__c</fields>
-        <fields>leaseworks__Transaction_Type_F__c</fields>
         <relatedList>leaseworks__Journal_Entry__c.leaseworks__Invoice__c</relatedList>
         <sortField>leaseworks__JE_Description__c</sortField>
         <sortOrder>Asc</sortOrder>

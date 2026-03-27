@@ -801,24 +801,24 @@
     <dynamicChoiceSets>
         <name>c_PriorityChoices</name>
         <dataType>Picklist</dataType>
-        <displayField xsi:nil="true" />
-        <object xsi:nil="true" />
+        <displayField xsi:nil="true"/>
+        <object xsi:nil="true"/>
         <picklistField>pro_Priority__c</picklistField>
         <picklistObject>pro_Ticket__c</picklistObject>
     </dynamicChoiceSets>
     <dynamicChoiceSets>
         <name>c_StatusChoices</name>
         <dataType>Picklist</dataType>
-        <displayField xsi:nil="true" />
-        <object xsi:nil="true" />
+        <displayField xsi:nil="true"/>
+        <object xsi:nil="true"/>
         <picklistField>pro_Status__c</picklistField>
         <picklistObject>pro_Ticket__c</picklistObject>
     </dynamicChoiceSets>
     <dynamicChoiceSets>
         <name>c_TicketRecordTypes</name>
         <dataType>Picklist</dataType>
-        <displayField xsi:nil="true" />
-        <object xsi:nil="true" />
+        <displayField xsi:nil="true"/>
+        <object xsi:nil="true"/>
         <picklistField>pro_Ticket_Record_Types__c</picklistField>
         <picklistObject>pro_Global_Value_Set__mdt</picklistObject>
     </dynamicChoiceSets>
@@ -871,18 +871,18 @@ AND(
     <formulas>
         <name>f_QueryRelatedAssemblies</name>
         <dataType>String</dataType>
-        <expression>&quot;SELECT Name, Id, leaseworks__Type__c, leaseworks__Last_CSN_Utilization__c, leaseworks__Last_TSN_Utilization__c, leaseworks__Comments__c FROM leaseworks__Constituent_Assembly__c WHERE leaseworks__Attached_Aircraft__c = &#39;&quot; &amp; {!varTicketToCreate.pro_Asset__c} &amp; &quot;&#39;&quot;</expression>
+        <expression>&quot;SELECT Name, Id, leaseworks__Type__c, leaseworks__Last_CSN_Utilization__c, leaseworks__Last_TSN_Utilization__c, leaseworks__Comments__c FROM leaseworks__Constituent_Assembly__c WHERE leaseworks__Attached_Aircraft__c = &apos;&quot; &amp; {!varTicketToCreate.pro_Asset__c} &amp; &quot;&apos;&quot;</expression>
     </formulas>
     <formulas>
         <name>f_QueryRelatedUtilizations</name>
         <dataType>String</dataType>
-        <expression>&quot;SELECT Name, Id, leaseworks__Month_Ending__c, leaseworks__Airframe_Cycles_Landing_During_Month__c, leaseworks__Airframe_Flight_Hours_Month__c, leaseworks__Engineering_Modifications_or_Changes__c	 FROM leaseworks__Utilization_Report__c WHERE leaseworks__Aircraft__c = &#39;&quot; &amp; {!varTicketToCreate.pro_Asset__c} &amp; &quot;&#39; ORDER BY leaseworks__Month_Ending__c DESC&quot;</expression>
+        <expression>&quot;SELECT Name, Id, leaseworks__Month_Ending__c, leaseworks__Airframe_Cycles_Landing_During_Month__c, leaseworks__Airframe_Flight_Hours_Month__c, leaseworks__Engineering_Modifications_or_Changes__c	 FROM leaseworks__Utilization_Report__c WHERE leaseworks__Aircraft__c = &apos;&quot; &amp; {!varTicketToCreate.pro_Asset__c} &amp; &quot;&apos; ORDER BY leaseworks__Month_Ending__c DESC&quot;</expression>
     </formulas>
     <formulas>
         <description>If the Ticket type is Lease Management, this returns the value from the required Lease lookup field. For any other Ticket type, this returns the non required lease lookup field value.</description>
         <name>f_StandardLeaseOrRequiredLeaseField</name>
         <dataType>String</dataType>
-        <expression>IF({!Select_a_Ticket_type} = &#39;Lease Management&#39;, {!LeaseRequiredLookup.recordId}, {!LeaseLookup.recordId})</expression>
+        <expression>IF({!Select_a_Ticket_type} = &apos;Lease Management&apos;, {!LeaseRequiredLookup.recordId}, {!LeaseLookup.recordId})</expression>
     </formulas>
     <formulas>
         <name>f_TodayPlusSeven</name>
@@ -1256,6 +1256,7 @@ AND(
                     <dataType>String</dataType>
                     <fieldText>Select a Ticket type</fieldText>
                     <fieldType>RadioButtons</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                 </fields>
                 <inputParameters>
@@ -1884,11 +1885,13 @@ AND(
                 </fields>
                 <fields>
                     <fieldType>ObjectProvided</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                     <objectFieldReference>varTicketToCreate.pro_Type__c</objectFieldReference>
                 </fields>
                 <fields>
                     <fieldType>ObjectProvided</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                     <objectFieldReference>varTicketToCreate.pro_Title__c</objectFieldReference>
                 </fields>
@@ -1913,6 +1916,7 @@ AND(
                     <defaultSelectedChoiceReference>c_New_Choice</defaultSelectedChoiceReference>
                     <fieldText>Status</fieldText>
                     <fieldType>DropdownBox</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                 </fields>
                 <fields>
@@ -1924,6 +1928,7 @@ AND(
                     </defaultValue>
                     <fieldText>Priority</fieldText>
                     <fieldType>DropdownBox</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                 </fields>
                 <fields>
@@ -1934,6 +1939,7 @@ AND(
                     </defaultValue>
                     <fieldText>Expected Due Date</fieldText>
                     <fieldType>InputField</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                 </fields>
                 <inputParameters>
@@ -1955,6 +1961,7 @@ AND(
                 <fieldType>Region</fieldType>
                 <fields>
                     <fieldType>ObjectProvided</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                     <objectFieldReference>varTicketToCreate.pro_Comments__c</objectFieldReference>
                 </fields>
@@ -1982,6 +1989,7 @@ AND(
                 <fieldType>Region</fieldType>
                 <fields>
                     <fieldType>ObjectProvided</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                     <objectFieldReference>varTicketToCreate.pro_External_Party__c</objectFieldReference>
                 </fields>
@@ -2141,6 +2149,7 @@ AND(
                 </fields>
                 <fields>
                     <fieldType>ObjectProvided</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                     <objectFieldReference>varTicketToCreate.pro_Non_Carlyle_Asset_MSN__c</objectFieldReference>
                     <visibilityRule>
@@ -2162,7 +2171,8 @@ AND(
                     </defaultValue>
                     <fieldText>Non Carlyle Asset</fieldText>
                     <fieldType>InputField</fieldType>
-                    <helpText>&lt;p&gt;Click this if it&#39;s not a Carlyle asset or if it&#39;s a non-asset-specific request.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Once checked, a field called Non Carlyle Asset MSN will appear and must be filled in.&lt;/p&gt;</helpText>
+                    <helpText>&lt;p&gt;Click this if it&apos;s not a Carlyle asset or if it&apos;s a non-asset-specific request.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Once checked, a field called Non Carlyle Asset MSN will appear and must be filled in.&lt;/p&gt;</helpText>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                 </fields>
                 <fields>
@@ -2274,6 +2284,7 @@ AND(
                 <fieldType>Region</fieldType>
                 <fields>
                     <fieldType>ObjectProvided</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                     <objectFieldReference>varTicketToCreate.pro_Deal__c</objectFieldReference>
                 </fields>
@@ -2290,6 +2301,7 @@ AND(
                 <fieldType>Region</fieldType>
                 <fields>
                     <fieldType>ObjectProvided</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                     <objectFieldReference>varTicketToCreate.pro_Technical_Project__c</objectFieldReference>
                 </fields>

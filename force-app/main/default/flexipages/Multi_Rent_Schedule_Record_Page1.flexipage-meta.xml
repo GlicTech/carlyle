@@ -470,6 +470,10 @@
                     <value>Facet-505f855e-01a3-4ab9-88fe-6cb056ae18cf</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>@@@SFDCInformationSFDC@@@</value>
                 </componentInstanceProperties>
@@ -482,6 +486,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-547fb793-8bc3-43ab-83cb-fb207a06ad18</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>true</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -498,6 +506,10 @@
                     <value>Facet-8b67fd19-0900-4b20-a558-c569a5e0478d</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Rent Calculation</value>
                 </componentInstanceProperties>
@@ -510,6 +522,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-9f947df9-9a3f-4217-94d5-d504932735c4</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -567,16 +583,6 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.leaseworks__Cost_of_Funds__c</fieldItem>
                 <identifier>RecordCost_of_Funds_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Rental_Credit_Debit__c</fieldItem>
-                <identifier>RecordRental_Credit_Debit_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -651,6 +657,40 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.leaseworks__Assumed_Interest_Rate__c</fieldItem>
                 <identifier>RecordAssumed_Interest_Rate_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Rental_Credit_Debit_Number__c</fieldItem>
+                <identifier>Recordleaseworks_Rental_Credit_Debit_Number_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Multicurrency_Enabled__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Rental_Credit_Debit__c</fieldItem>
+                <identifier>RecordRental_Credit_Debit_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Multicurrency_Enabled__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>false</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <name>Facet-02bec351-b74b-410a-8af4-96586da99f4a</name>
@@ -1000,6 +1040,10 @@
                     <value>Facet-a7fbf718-f748-47b6-9c57-d855f77f19bb</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Floating Rent</value>
                 </componentInstanceProperties>
@@ -1019,6 +1063,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-08032398-5497-4127-92f3-d4012b9429a4</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -1042,6 +1090,10 @@
                     <value>Facet-ea7b0d3f-df98-4ced-a5f8-69da47016b8d</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>PBH</value>
                 </componentInstanceProperties>
@@ -1061,6 +1113,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-d78e49ee-2a68-4a4a-a393-28c67de27b19</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -1133,6 +1189,10 @@
                     <value>Facet-89e214de-43fd-467c-8b1c-baa097d2b7c6</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Escalation</value>
                 </componentInstanceProperties>
@@ -1201,6 +1261,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-34a25eeb-f4aa-4323-8091-603cba2cd58f</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>true</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -1301,6 +1365,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-9c01e841-105e-40f5-9542-56831f0dfcd4</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -1467,16 +1535,16 @@
                             <value>leaseworks__Period_Days__c</value>
                         </valueListItems>
                         <valueListItems>
-                            <value>leaseworks__Rent_Due_Amount__c</value>
+                            <value>leaseworks__Rent_Slip_Amount__c</value>
                         </valueListItems>
                         <valueListItems>
                             <value>leaseworks__Rent_Slip_Adjusted__c</value>
                         </valueListItems>
                         <valueListItems>
-                            <value>leaseworks__Rent_Slip_Adjustments__c</value>
+                            <value>leaseworks__New_Rent_Slip_Adjustments__c</value>
                         </valueListItems>
                         <valueListItems>
-                            <value>leaseworks__Total_Due__c</value>
+                            <value>leaseworks__Final_Rent_Slip_Amount__c</value>
                         </valueListItems>
                         <valueListItems>
                             <value>leaseworks__Link_to_Invoice__c</value>

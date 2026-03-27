@@ -336,10 +336,12 @@
             <dataType>String</dataType>
             <fieldText>Name</fieldText>
             <fieldType>InputField</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>false</isRequired>
         </fields>
         <fields>
             <fieldType>ObjectProvided</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>false</isRequired>
             <objectFieldReference>get_record_of_Technical_Project.Assembly_local__c</objectFieldReference>
         </fields>
@@ -441,6 +443,183 @@
         </connector>
     </start>
     <status>Active</status>
+    <transforms>
+        <name>Remap_CheckList_Items</name>
+        <label>Remap CheckList Items</label>
+        <locationX>182</locationX>
+        <locationY>1814</locationY>
+        <connector>
+            <targetReference>Create_Check_List_Items</targetReference>
+        </connector>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <objectType>leaseworks__Technical_Project_Check__c</objectType>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <outputFieldApiName>Assigned_To__c</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>get_related_checklist_items[$EachItem].Assigned_To__c</elementReference>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>Complete__c</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>get_related_checklist_items[$EachItem].Complete__c</elementReference>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>CreatedById</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>get_related_checklist_items[$EachItem].CreatedById</elementReference>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>CreatedDate</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>get_related_checklist_items[$EachItem].CreatedDate</elementReference>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>Day_Prior__c</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>get_related_checklist_items[$EachItem].Day_Prior__c</elementReference>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>Department__c</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>get_related_checklist_items[$EachItem].Department__c</elementReference>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>Duration_Days__c</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>get_related_checklist_items[$EachItem].Duration_Days__c</elementReference>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>Actual_Finish_Date__c</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>get_related_checklist_items[$EachItem].Actual_Finish_Date__c</elementReference>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>leaseworks__Technical_Project__c</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>get_record_of_Technical_Project.Id</elementReference>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>leaseworks__Assigned_Role__c</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>get_related_checklist_items[$EachItem].leaseworks__Assigned_Role__c</elementReference>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>leaseworks__Comments__c</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>get_related_checklist_items[$EachItem].leaseworks__Comments__c</elementReference>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>leaseworks__Date__c</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>get_related_checklist_items[$EachItem].leaseworks__Date__c</elementReference>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>leaseworks__External_Item_URL__c</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>get_related_checklist_items[$EachItem].leaseworks__External_Item_URL__c</elementReference>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>leaseworks__Lease_Section_Reference__c</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>get_related_checklist_items[$EachItem].leaseworks__Lease_Section_Reference__c</elementReference>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>leaseworks__Project_Phase__c</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>get_related_checklist_items[$EachItem].leaseworks__Project_Phase__c</elementReference>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>leaseworks__Responsible_Party__c</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>get_related_checklist_items[$EachItem].leaseworks__Responsible_Party__c</elementReference>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>leaseworks__Reviewed__c</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>get_related_checklist_items[$EachItem].leaseworks__Reviewed__c</elementReference>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>leaseworks__Status__c</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>get_related_checklist_items[$EachItem].leaseworks__Status__c</elementReference>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>Name</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>get_related_checklist_items[$EachItem].Name</elementReference>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>Predecessors__c</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>get_related_checklist_items[$EachItem].Predecessors__c</elementReference>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>Duration_Days_N__c</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>get_related_checklist_items[$EachItem].Duration_Days_N__c</elementReference>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>Category__c</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>get_related_checklist_items[$EachItem].Category__c</elementReference>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>RecordTypeId</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>Get_RT_of_FMP_Checklist.Id</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
     <variables>
         <name>Assembly_id</name>
         <dataType>String</dataType>

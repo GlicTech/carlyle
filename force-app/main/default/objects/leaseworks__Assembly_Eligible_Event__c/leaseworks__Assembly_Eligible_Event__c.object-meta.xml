@@ -132,7 +132,7 @@
         <actionName>View</actionName>
         <comment>Action override created by Lightning App Builder during activation.</comment>
         <content>Historical_Event_Record_Page</content>
-        <formFactor>Small</formFactor>
+        <formFactor>Large</formFactor>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Flexipage</type>
     </actionOverrides>
@@ -140,7 +140,7 @@
         <actionName>View</actionName>
         <comment>Action override created by Lightning App Builder during activation.</comment>
         <content>Historical_Event_Record_Page</content>
-        <formFactor>Large</formFactor>
+        <formFactor>Small</formFactor>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Flexipage</type>
     </actionOverrides>
@@ -152,7 +152,13 @@
     <compactLayoutAssignment>LW_Default</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <deprecated>false</deprecated>
-    <description>Historical shop visit details of all components.</description>
+    <description>Historical shop visit details of all components.
+The Maintenance Event history for each Assembly may align with Projected events or encompass historical events not specified in the current maintenance program. These recorded events determine the subsequent due date for Projected Events of the same type and also trigger Maintenance Reserve Claims (a recorded maintenance event is necessary for this process).
+[MODULE: Asset]
+[LOAD: Yes]
+[PREREQUISITES: Assemblies, Maintenance Program Events]
+[REPLACEMENT OBJECT API: NA]
+[COMMENTS: NA]</description>
     <enableActivities>true</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableEnhancedLookup>false</enableEnhancedLookup>
@@ -174,7 +180,7 @@
     <pluralLabel>Assembly Events</pluralLabel>
     <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
     <recordTypeTrackHistory>false</recordTypeTrackHistory>
-    <searchLayouts />
+    <searchLayouts></searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

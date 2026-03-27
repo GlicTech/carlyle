@@ -1,6 +1,160 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>New_Status_Lease_Management_Review_Or_After</name>
+        <label>New Status Lease Management Review Or After?</label>
+        <locationX>182</locationX>
+        <locationY>431</locationY>
+        <actionName>PicklistOrderComparator</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Has_Status_Been_Moved_Back_To_Technical_Head_CTO_Review_Or_Before</targetReference>
+        </connector>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <inputParameters>
+            <name>benchmarkValue</name>
+            <value>
+                <stringValue>Technical Head/CTO Review</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>currentValue</name>
+            <value>
+                <elementReference>$Record.leaseworks__Claim_Status__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>fieldApiName</name>
+            <value>
+                <stringValue>leaseworks__Claim_Status__c</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>objectApiName</name>
+            <value>
+                <stringValue>leaseworks__Claims__c</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>PicklistOrderComparator</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
+        <name>Previous_Status_After_Technical_Head_CTO_Review</name>
+        <label>Previous Status After Technical Head/CTO Review?</label>
+        <locationX>182</locationX>
+        <locationY>323</locationY>
+        <actionName>PicklistOrderComparator</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>New_Status_Lease_Management_Review_Or_After</targetReference>
+        </connector>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <inputParameters>
+            <name>benchmarkValue</name>
+            <value>
+                <stringValue>Technical Head/CTO Review</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>currentValue</name>
+            <value>
+                <elementReference>$Record__Prior.leaseworks__Claim_Status__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>fieldApiName</name>
+            <value>
+                <stringValue>leaseworks__Claim_Status__c</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>objectApiName</name>
+            <value>
+                <stringValue>leaseworks__Claims__c</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>PicklistOrderComparator</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
     <apiVersion>63.0</apiVersion>
+    <decisions>
+        <name>Has_Status_Been_Moved_Back_To_Technical_Head_CTO_Review_Or_Before</name>
+        <label>Has Status Been Moved Back To Technical Head / CTO Review Or Before?</label>
+        <locationX>182</locationX>
+        <locationY>539</locationY>
+        <defaultConnector>
+            <targetReference>Set_Status_To_Lease_Management_Review</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Clear_PFM_Review_Date</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Previous_Status_After_Technical_Head_CTO_Review.isAfter</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>New_Status_Lease_Management_Review_Or_After.isAfter</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Clear_PFM_Review_Date</targetReference>
+            </connector>
+            <label>Yes - Clear PFM Review Date</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Set_Status_To_Lease_Management_Review</name>
+        <label>Set Status To Lease Management Review?</label>
+        <locationX>182</locationX>
+        <locationY>839</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Set_Status_To_Lease_Management_Review</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.leaseworks__Finance_Accounting_Review_Date__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.leaseworks__Accounting_Comment__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.PFM_Reviewed_By__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.leaseworks__Claim_Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Technical Head/CTO Review</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_The_Claim_Status_To_Lease_Management_Review</targetReference>
+            </connector>
+            <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+            <label>Yes - Set Status To Lease Management Review</label>
+        </rules>
+    </decisions>
     <description>V1.0 Updates the claim status when the Finance Accouting Date Review Field is populated (Jonathan White)</description>
     <environments>Default</environments>
     <interviewLabel>[Claim] Update the Claim Status {!$Flow.CurrentDateTime}</interviewLabel>
@@ -25,19 +179,23 @@
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
     <recordUpdates>
-        <description>Updates the claim Stage to Lease Management Review when the Finance / Accouting Review Date is completed</description>
-        <name>Update_The_Claim_Stage</name>
-        <label>Update The Claim Stage</label>
-        <locationX>176</locationX>
-        <locationY>323</locationY>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>leaseworks__Claim_Status__c</field>
-            <operator>NotEqualTo</operator>
-            <value>
-                <stringValue>Finance/Accounting Review</stringValue>
-            </value>
-        </filters>
+        <name>Clear_PFM_Review_Date</name>
+        <label>Clear PFM Review Date</label>
+        <locationX>50</locationX>
+        <locationY>647</locationY>
+        <connector>
+            <targetReference>Set_Status_To_Lease_Management_Review</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>leaseworks__Finance_Accounting_Review_Date__c</field>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_The_Claim_Status_To_Lease_Management_Review</name>
+        <label>Update The Claim Status To Lease Management Review</label>
+        <locationX>50</locationX>
+        <locationY>947</locationY>
         <inputAssignments>
             <field>leaseworks__Claim_Status__c</field>
             <value>
@@ -47,15 +205,28 @@
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <start>
-        <locationX>50</locationX>
+        <locationX>56</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Update_The_Claim_Stage</targetReference>
+            <targetReference>Previous_Status_After_Technical_Head_CTO_Review</targetReference>
         </connector>
-        <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
-        <filterLogic>and</filterLogic>
+        <filterLogic>1 OR (2 AND 3 AND 4 AND 5)</filterLogic>
+        <filters>
+            <field>leaseworks__Claim_Status__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
         <filters>
             <field>leaseworks__Finance_Accounting_Review_Date__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>leaseworks__Accounting_Comment__c</field>
             <operator>IsNull</operator>
             <value>
                 <booleanValue>false</booleanValue>
@@ -69,15 +240,15 @@
             </value>
         </filters>
         <filters>
-            <field>leaseworks__Accounting_Comment__c</field>
-            <operator>IsNull</operator>
+            <field>leaseworks__Claim_Status__c</field>
+            <operator>EqualTo</operator>
             <value>
-                <booleanValue>false</booleanValue>
+                <stringValue>Technical Head/CTO Review</stringValue>
             </value>
         </filters>
         <object>leaseworks__Claims__c</object>
         <recordTriggerType>Update</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>
     </start>
-    <status>Active</status>
+    <status>Draft</status>
 </Flow>

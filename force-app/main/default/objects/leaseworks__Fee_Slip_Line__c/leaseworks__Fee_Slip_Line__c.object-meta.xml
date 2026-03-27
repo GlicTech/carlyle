@@ -144,7 +144,13 @@
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <deprecated>false</deprecated>
-    <description>Fee Slip lines, typically generated along with Fee Slips as breakdown of all the components of the Fee Slip (like Default Fees, Fee Adjustments, Other Charges, etc)</description>
+    <description>Fee Slip lines, typically generated along with Fee Slips as breakdown of all the components of the Fee Slip (like Default Fees, Fee Adjustments, Other Charges, etc)
+Fee Slip lines, typically generated along with Fee Slips as breakdown of all the components of the Fee Slip (like Default Fees, Fee Adjustments, Other Charges, etc). It will be auto generated for newly created records, Data load is required for the updating of existing records.
+[MODULE: Contract]
+[LOAD: Optional]
+[PREREQUISITES: Service Fee, Fee Slip]
+[REPLACEMENT OBJECT API: NA]
+[COMMENTS: NA]</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -162,7 +168,7 @@
         <type>Text</type>
     </nameField>
     <pluralLabel>Fee Slip Lines</pluralLabel>
-    <searchLayouts />
+    <searchLayouts></searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

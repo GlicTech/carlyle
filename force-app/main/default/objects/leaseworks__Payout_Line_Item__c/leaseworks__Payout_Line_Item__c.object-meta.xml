@@ -144,7 +144,14 @@
     <compactLayoutAssignment>leaseworks__Payout_Line_Item_Compact_Layout_03_2021</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <deprecated>false</deprecated>
-    <description>Line items for Payouts</description>
+    <description>Line items for Payouts
+Payout Line Items represent individual entries associated with a payout transaction. Each line item provides detailed information about the specific amount applied to each payable line on the applied payable
+Population Requirement Details: The system automatically creates payable line items upon the creation of the payable record. The system allocates the payout line amount based on the payout amount and the payable line balance amount if the triggers are ON. If the trigger is OFF, the data for the payout line items must be manually loaded. However, this is not a recommended method for loading payout line data.
+[MODULE: Finance]
+[LOAD: Optional]
+[PREREQUISITES: Payout (if loading with Triggers OFF)]
+[REPLACEMENT OBJECT API: NA]
+[COMMENTS: NA]</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -162,7 +169,7 @@
         <type>Text</type>
     </nameField>
     <pluralLabel>Payout Line Item</pluralLabel>
-    <searchLayouts />
+    <searchLayouts></searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

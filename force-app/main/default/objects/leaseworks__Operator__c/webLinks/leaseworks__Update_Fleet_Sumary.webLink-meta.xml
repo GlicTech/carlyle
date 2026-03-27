@@ -11,7 +11,7 @@
 {!REQUIRESCRIPT(&quot;/soap/ajax/57.0/apex.js&quot;)}
 
 try{
-if(&#39;{!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Package_Prefix__c}&#39;== &quot;&quot;){
+if(&apos;{!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Package_Prefix__c}&apos;== &quot;&quot;){
 var retVal =sforce.apex.execute(&quot;LWGlobalUtils&quot;,&quot;callGlobalMethod&quot;, {TypeOfmethod:&quot;updateFleetSummary&quot;,RecId:&quot;{! leaseworks__Operator__c.Id }&quot;});
 }
 else{
@@ -20,7 +20,7 @@ var retVal =sforce.apex.execute(&quot;leaseworks/LWGlobalUtils&quot;,&quot;callG
 
 
 }catch(err){
-retVal=&quot;Unable to call update fleet summary, probably because you don&#39;t have necessary permission.&quot; + err;
+retVal=&quot;Unable to call update fleet summary, probably because you don&apos;t have necessary permission.&quot; + err;
 }
 
 window.moveTo(0,0)

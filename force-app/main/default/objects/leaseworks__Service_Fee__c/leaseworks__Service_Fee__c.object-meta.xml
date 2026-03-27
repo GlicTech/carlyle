@@ -144,7 +144,13 @@
     <compactLayoutAssignment>leaseworks__Fee_Schedule_Compact_Layout</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <deprecated>false</deprecated>
-    <description>This lease-level configuration table houses Fee Schedule parameters, including Billing entity, Accounting Profile, start/end dates and base fee. Users can create multiple fee schedule types on the same lease that correspond to their own fee slips with overlapping dates. Users can also create fee schedules that relate to companies outside the organization and inside (intercompany) the organization. Users can create a fee schedule manually on the UI or loading fee slips as well.</description>
+    <description>This lease-level configuration table houses Fee Schedule parameters, including Billing entity, Accounting Profile, start/end dates and base fee. Users can create multiple fee schedule types on the same lease that correspond to their own fee slips with overlapping dates. Users can also create fee schedules that relate to companies outside the organization and inside (intercompany) the organization. Users can create a fee schedule manually on the UI or loading fee slips as well.
+Object to capture details about the Service Fee(s) or charge imposed for various tasks such as collecting , processing payments and maintaining records on a lease on behalf of the Lessor. Service fees can vary depending on the terms of the lease agreement and the services provided by the service provider
+[MODULE: Contract]
+[LOAD: Optional]
+[PREREQUISITES: Lease]
+[REPLACEMENT OBJECT API: NA]
+[COMMENTS: NA]</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -162,7 +168,7 @@
         <type>Text</type>
     </nameField>
     <pluralLabel>Fee Schedules</pluralLabel>
-    <searchLayouts />
+    <searchLayouts></searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

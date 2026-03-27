@@ -62,7 +62,7 @@
             <targetReference>Update_Line_Amount</targetReference>
         </connector>
         <filterFormula>	NOT(ISNULL({!$Record.leaseworks__Invoice__r.leaseworks__Exchange_Rate__c})) &amp;&amp; !{!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c} &amp;&amp; NOT(ISNULL({!$Record.leaseworks__Invoice__r.leaseworks__Rent__c}))  &amp;&amp; !{!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c} &amp;&amp;  (
-			( ISNEW() &amp;&amp; (ISPICKVAL({!$Record.leaseworks__Invoice__r.leaseworks__Status__c}, &#39;Pending&#39;) || ISPICKVAL({!$Record.leaseworks__Invoice__r.leaseworks__Status__c}, &#39;Approved&#39;) )) || (NOT(ISNEW()) &amp;&amp; ({!$Record.leaseworks__Amount_Due__c}!= {!$Record__Prior.leaseworks__Amount_Due__c}) &amp;&amp; (ISPICKVAL({!$Record.leaseworks__Invoice__r.leaseworks__Status__c}, &#39;Pending&#39;) || ISPICKVAL({!$Record.leaseworks__Invoice__r.leaseworks__Status__c}, &#39;Approved&#39;))  ))</filterFormula>
+			( ISNEW() &amp;&amp; (ISPICKVAL({!$Record.leaseworks__Invoice__r.leaseworks__Status__c}, &apos;Pending&apos;) || ISPICKVAL({!$Record.leaseworks__Invoice__r.leaseworks__Status__c}, &apos;Approved&apos;) )) || (NOT(ISNEW()) &amp;&amp; ({!$Record.leaseworks__Amount_Due__c}!= {!$Record__Prior.leaseworks__Amount_Due__c}) &amp;&amp; (ISPICKVAL({!$Record.leaseworks__Invoice__r.leaseworks__Status__c}, &apos;Pending&apos;) || ISPICKVAL({!$Record.leaseworks__Invoice__r.leaseworks__Status__c}, &apos;Approved&apos;))  ))</filterFormula>
         <object>leaseworks__Invoice_Line_Item__c</object>
         <recordTriggerType>CreateAndUpdate</recordTriggerType>
         <triggerType>RecordBeforeSave</triggerType>

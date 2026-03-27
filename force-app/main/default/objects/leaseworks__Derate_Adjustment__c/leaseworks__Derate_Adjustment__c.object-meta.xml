@@ -87,14 +87,14 @@
     <actionOverrides>
         <actionName>New</actionName>
         <content>leaseworks__GenericActionOverrideCmp</content>
-        <formFactor>Large</formFactor>
+        <formFactor>Small</formFactor>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>LightningComponent</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>New</actionName>
         <content>leaseworks__GenericActionOverrideCmp</content>
-        <formFactor>Small</formFactor>
+        <formFactor>Large</formFactor>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>LightningComponent</type>
     </actionOverrides>
@@ -154,7 +154,13 @@
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <deprecated>false</deprecated>
-    <description>The rates for FH, FC, and FH to FC ratio will be specified in this MR rate matrix table. These rates will play a significant role in the MR calculation.</description>
+    <description>The rates for FH, FC, and FH to FC ratio will be specified in this MR rate matrix table. These rates will play a significant role in the MR calculation.
+Nestled within the Ratio Table is a three-dimensional &quot;Interpolation Adjustment&quot; table. This table pinpoints the exact Maintenance Reserve Rate for any combination of engine usage (Hours/Cycles ratio) and adjustment factors (Derate).
+[MODULE: Contract]
+[LOAD: Yes]
+[PREREQUISITES: Ratio Table]
+[REPLACEMENT OBJECT API: NA]
+[COMMENTS: NA]</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>

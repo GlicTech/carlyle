@@ -246,6 +246,26 @@
                 <identifier>Recordleaseworks_Current_Rate_Details_Overview_cField</identifier>
             </fieldInstance>
         </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Parent_Fund__c</fieldItem>
+                <identifier>Recordleaseworks_Parent_Fund_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Is_SubFund__c</fieldItem>
+                <identifier>Recordleaseworks_Is_SubFund_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
         <name>Facet-afe87c53-b58e-49e3-8214-622de36a54bd</name>
         <type>Facet</type>
     </flexiPageRegions>
@@ -905,6 +925,10 @@
                     <value>Facet-21b04e69-a8ee-46e5-990f-6a7f967c5e3c</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Information</value>
                 </componentInstanceProperties>
@@ -917,6 +941,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-c9b7cafd-a6ec-4453-83a6-4cd33164ebc5</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -933,6 +961,10 @@
                     <value>Facet-9e381d7b-cb7c-4fb8-8eab-e2003ce9355e</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Thresholds and Caps</value>
                 </componentInstanceProperties>
@@ -947,6 +979,10 @@
                     <value>Facet-9cbae3d8-a7a9-4844-9f41-c49e7f4ade64</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Escalation</value>
                 </componentInstanceProperties>
@@ -959,6 +995,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-5f4ea199-6206-4785-a4ef-5283903746e3</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -981,6 +1021,10 @@
                     <value>Facet-a1afe098-a320-4bd9-9bc2-c6a0ee3653f1</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Claims &amp; Contribution</value>
                 </componentInstanceProperties>
@@ -995,6 +1039,10 @@
                     <value>Facet-703bfb92-8049-45bf-a2ba-e7feb0f52c91</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Balances and Invoices</value>
                 </componentInstanceProperties>
@@ -1007,6 +1055,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-6b9160f0-f31a-4808-8fb4-d3f01b10ee77</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -1079,6 +1131,63 @@
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>actionNames</name>
+                    <valueList>
+                        <valueListItems>
+                            <value>New</value>
+                        </valueListItems>
+                    </valueList>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>adminFilters</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>maxRecordsToDisplay</name>
+                    <value>10</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>parentFieldApiName</name>
+                    <value>leaseworks__Assembly_MR_Rate__c.Id</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListApiName</name>
+                    <value>leaseworks__Supplemental_Rent__r</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListDisplayType</name>
+                    <value>ADVGRID</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListFieldAliases</name>
+                    <valueList>
+                        <valueListItems>
+                            <value>NAME</value>
+                        </valueListItems>
+                    </valueList>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListLabel</name>
+                    <value>Sub Funds</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>showActionBar</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>sortFieldAlias</name>
+                    <value>__DEFAULT__</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>sortFieldOrder</name>
+                    <value>Default</value>
+                </componentInstanceProperties>
+                <componentName>lst:dynamicRelatedList</componentName>
+                <identifier>lst_dynamicRelatedList</identifier>
+            </componentInstance>
+        </itemInstances>
         <mode>Replace</mode>
         <name>sidebar</name>
         <type>Region</type>

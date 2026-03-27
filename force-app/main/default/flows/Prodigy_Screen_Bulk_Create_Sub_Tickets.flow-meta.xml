@@ -78,7 +78,7 @@
         </connector>
     </assignments>
     <assignments>
-        <description>Assign the record variable of the Ticket that triggered this flow to the varSubTicket to create variable and overwrite the comments with the user&#39;s input from SubTicketScreen</description>
+        <description>Assign the record variable of the Ticket that triggered this flow to the varSubTicket to create variable and overwrite the comments with the user&apos;s input from SubTicketScreen</description>
         <name>Clone_Triggering_Ticket</name>
         <label>Clone Triggering Ticket</label>
         <locationX>0</locationX>
@@ -256,8 +256,8 @@ This flow allows users to create and assign sub-tickets that are clones of the p
     <dynamicChoiceSets>
         <name>pcs_AssigneeRoles</name>
         <dataType>Multipicklist</dataType>
-        <displayField xsi:nil="true" />
-        <object xsi:nil="true" />
+        <displayField xsi:nil="true"/>
+        <object xsi:nil="true"/>
         <picklistField>pro_Assignee_Roles__c</picklistField>
         <picklistObject>pro_Ticket_Assignee__c</picklistObject>
     </dynamicChoiceSets>
@@ -750,6 +750,7 @@ This flow allows users to create and assign sub-tickets that are clones of the p
                     <extensionName>flowruntime:choiceLookup</extensionName>
                     <fieldText>Assignee Roles</fieldText>
                     <fieldType>ComponentMultiChoice</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                     <storeOutputAutomatically>true</storeOutputAutomatically>
                     <visibilityRule>
@@ -786,6 +787,7 @@ This flow allows users to create and assign sub-tickets that are clones of the p
                     <dataType>String</dataType>
                     <fieldText>Assignee Instruction</fieldText>
                     <fieldType>InputField</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                 </fields>
                 <inputParameters>
@@ -968,6 +970,111 @@ This flow allows users to create and assign sub-tickets that are clones of the p
             </value>
         </inputAssignments>
     </subflows>
+    <transforms>
+        <name>Create_Assembly_Id_Collection</name>
+        <label>Create Assembly Id Collection</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Create_Contract_Id_Collection</targetReference>
+        </connector>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>Get_Assemblies_On_Main_Ticket[$EachItem].pro_Assembly__c</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
+    <transforms>
+        <name>Create_Asset_Id_Collection</name>
+        <label>Create Asset Id Collection</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Create_Assembly_Id_Collection</targetReference>
+        </connector>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>Get_Assets_On_Main_Ticket[$EachItem].pro_Asset__c</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
+    <transforms>
+        <name>Create_Content_Document_Id_Collection</name>
+        <label>Create Content Document Id Collection</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Add_New_Ticket_To_Sub_Ticket_Collection</targetReference>
+        </connector>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>Get_Content_Document_Links_To_Main_Ticket[$EachItem].ContentDocumentId</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
+    <transforms>
+        <name>Create_Contract_Id_Collection</name>
+        <label>Create Contract Id Collection</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Assets_Linked_To_Main_Ticket</targetReference>
+        </connector>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>Get_Contracts_On_Main_Ticket[$EachItem].pro_Contract__c</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
+    <transforms>
+        <name>Create_Sub_Ticket_Id_List</name>
+        <label>Create Sub-Ticket Id List</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Delete_Sub_Ticket_Assignees</targetReference>
+        </connector>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>udt_DisplaySubTickets.outputSelectedRows[$EachItem].Id</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
     <variables>
         <description>Variable holding the Ticket from which this flow was launched.</description>
         <name>recordId</name>

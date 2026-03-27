@@ -4,10 +4,10 @@
     <deprecated>false</deprecated>
     <description>This field is updated so that the Applied to Invoice is populated when payment lookup is populated and when the unapplied POA cancellation is done</description>
     <externalId>false</externalId>
-    <formula>if(AND (leaseworks__Payment__c!=null,ISPICKVAL( leaseworks__Payment__r.leaseworks__Payment_Status__c , &#39;Cancelled&#39;),  leaseworks__Payment__r.leaseworks__Amount_Unapplied__c &gt; 0),
+    <formula>if(AND (leaseworks__Payment__c!=null,ISPICKVAL( leaseworks__Payment__r.leaseworks__Payment_Status__c , &apos;Cancelled&apos;),  leaseworks__Payment__r.leaseworks__Amount_Unapplied__c &gt; 0),
 null,
 if(leaseworks__Payment__c!=null,
- HYPERLINK( &#39;/&#39;+ leaseworks__Payment__r.leaseworks__Invoice__c ,  leaseworks__Payment__r.leaseworks__Invoice__r.Name,&quot;_blank&quot; ),null
+ HYPERLINK( &apos;/&apos;+ leaseworks__Payment__r.leaseworks__Invoice__c ,  leaseworks__Payment__r.leaseworks__Invoice__r.Name,&quot;_blank&quot; ),null
 ))</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Z_Unused_2409_Applied To Invoice</label>

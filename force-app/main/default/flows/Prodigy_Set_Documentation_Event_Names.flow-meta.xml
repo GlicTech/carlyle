@@ -6,7 +6,7 @@
     <formulas>
         <name>f_NameConcatenation</name>
         <dataType>String</dataType>
-        <expression>{!$Record.pro_Asset_in_Deal__r.Name} + &#39; - &#39; + RIGHT(TEXT({!$Record.pro_Documentation_Event_Type__c}), LEN(TEXT({!$Record.pro_Documentation_Event_Type__c})) - 2)</expression>
+        <expression>{!$Record.pro_Asset_in_Deal__r.Name} + &apos; - &apos; + RIGHT(TEXT({!$Record.pro_Documentation_Event_Type__c}), LEN(TEXT({!$Record.pro_Documentation_Event_Type__c})) - 2)</expression>
     </formulas>
     <interviewLabel>Prodigy - Set Documentation Event Names {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Prodigy - Set Documentation Event Names</label>

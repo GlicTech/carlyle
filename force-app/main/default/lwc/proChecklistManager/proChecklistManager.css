@@ -1,0 +1,833 @@
+/* --- Design Tokens --- */
+:host {
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(203, 213, 225, 0.5);
+    --glass-hover: rgba(241, 245, 249, 0.8);
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
+    --text-muted: #94a3b8;
+    --accent-blue: #3b82f6;
+    --accent-green: #22c55e;
+    --accent-red: #ef4444;
+    --surface: #f8fafc;
+    --border: #e2e8f0;
+    --completed-bg: rgba(240, 253, 244, 0.6);
+    --overdue-bg: rgba(254, 242, 242, 0.6);
+    --font: Calibri, 'Segoe UI', system-ui, -apple-system, sans-serif;
+
+    display: block;
+    font-family: var(--font);
+    font-size: 13px;
+    color: var(--text-primary);
+}
+
+/* --- Container --- */
+.checklist-container {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: #ffffff;
+    overflow: visible;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    position: relative;
+}
+
+/* --- Spinner --- */
+.spinner-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+}
+
+.processing-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    border-radius: 12px;
+}
+
+/* --- Info Panels --- */
+.info-panels {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--surface);
+}
+
+.info-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+    transition: box-shadow 0.2s;
+}
+
+.info-panel:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.info-panel-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.panel-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    color: #fff;
+}
+
+.panel-icon-overview {
+    background: var(--accent-blue);
+}
+
+.panel-icon-dates {
+    background: #f59e0b;
+}
+
+.panel-icon-approvals {
+    background: var(--accent-green);
+}
+
+.info-panel-title {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-secondary);
+}
+
+.info-panel-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+}
+
+.info-panel-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8125rem;
+}
+
+.info-panel-label {
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+}
+
+.info-panel-value {
+    color: var(--text-primary);
+    font-weight: 500;
+    font-size: 0.8125rem;
+}
+
+/* --- Phase Toolbar (merged tabs + actions) --- */
+.phase-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--surface);
+    border-bottom: 2px solid var(--border);
+    padding-right: 0.75rem;
+}
+
+.toolbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
+}
+
+.item-count {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    margin-right: 0.25rem;
+}
+
+/* --- Buttons --- */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    font-family: var(--font);
+    border: 1px solid var(--border);
+    background: #fff;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+}
+
+.btn:hover {
+    background: #f1f5f9;
+}
+
+.btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.btn:disabled:hover {
+    background: #fff;
+}
+
+.btn-brand {
+    background: var(--accent-blue);
+    color: #fff;
+    border-color: var(--accent-blue);
+}
+
+.btn-brand:hover {
+    background: #2563eb;
+}
+
+.btn-brand:disabled {
+    background: var(--accent-blue);
+}
+
+.btn-brand:disabled:hover {
+    background: var(--accent-blue);
+}
+
+.btn-magenta {
+    background: #D41C5A;
+    color: #fff;
+    border-color: #D41C5A;
+}
+
+.btn-magenta:hover {
+    background: #7B072D;
+}
+
+/* --- Add Item Form --- */
+.add-item-form {
+    padding: 1rem;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+}
+
+.form-row {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.form-field {
+    flex: 1;
+    min-width: 160px;
+}
+
+.form-field-title {
+    flex: 2;
+}
+
+.form-field label {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    margin-bottom: 4px;
+}
+
+.form-input {
+    width: 100%;
+}
+
+.form-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* --- Phase Tabs --- */
+.phase-tabs {
+    display: flex;
+    background: transparent;
+}
+
+.phase-tab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 0.5rem 1.25rem;
+    background: transparent;
+    border: none;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+    font-family: var(--font);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+}
+
+.phase-tab:hover {
+    color: var(--text-primary);
+    background: rgba(241, 245, 249, 0.5);
+}
+
+.phase-tab-active {
+    color: var(--accent-blue);
+    font-weight: 700;
+    border-bottom-color: var(--accent-blue);
+}
+
+.tab-label {
+    white-space: nowrap;
+}
+
+.tab-stats {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 400;
+    font-size: 0.6875rem;
+    text-transform: none;
+    color: var(--text-secondary);
+}
+
+.tab-progress-bar {
+    display: inline-block;
+    width: 60px;
+    height: 5px;
+    background: #e2e8f0;
+    border-radius: 3px;
+    overflow: hidden;
+    vertical-align: middle;
+}
+
+.tab-progress-fill {
+    display: block;
+    height: 100%;
+    border-radius: 3px;
+    transition: width 0.3s;
+    background: var(--accent-green);
+}
+
+/* --- Phase Body --- */
+.phase-body {
+    overflow: visible;
+}
+
+/* --- Checklist Table --- */
+.checklist-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    font-size: 13px;
+}
+
+.checklist-table thead th {
+    padding: 0.35rem 0.5rem;
+    background: rgba(248, 250, 252, 0.9);
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 11px;
+    text-align: left;
+    border-bottom: 2px solid var(--border);
+    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    line-height: 1.2;
+}
+
+.checklist-table tbody tr {
+    border-bottom: 1px solid var(--border);
+    transition: background 0.15s;
+    position: relative;
+    z-index: 0;
+}
+
+/* Elevate the entire row when a combobox is open so its dropdown overlays all other rows */
+.checklist-table tbody tr:focus-within {
+    z-index: 100;
+}
+
+.checklist-table tbody tr:hover {
+    background: var(--glass-hover);
+}
+
+/* Row states */
+.checklist-row {
+    /* Default row */
+}
+
+.completed-row {
+    background: var(--completed-bg);
+    opacity: 0.85;
+}
+
+.completed-row:hover {
+    background: rgba(220, 252, 231, 0.7);
+}
+
+.overdue-row {
+    background: var(--overdue-bg);
+    border-left: 3px solid var(--accent-red);
+}
+
+.overdue-row:hover {
+    background: rgba(254, 226, 226, 0.7);
+}
+
+/* Moved row -- muted gray, not green, not strikethrough */
+.moved-row {
+    background: rgba(241, 245, 249, 0.6);
+    opacity: 0.7;
+}
+
+.moved-row:hover {
+    background: rgba(226, 232, 240, 0.7);
+}
+
+.checklist-table tbody td {
+    padding: 0.125rem 0.4rem;
+    color: var(--text-primary);
+    vertical-align: middle;
+    line-height: 1.2;
+    overflow: visible;
+}
+
+/* Column widths — fixed layout, total = 100% */
+.col-actions {
+    width: 6%;
+}
+
+.col-number {
+    width: 3%;
+}
+
+.col-title {
+    width: 25%;
+}
+
+.col-answer {
+    width: 18%;
+}
+
+.col-comment {
+    width: 16%;
+}
+
+.col-necessary {
+    width: 8%;
+}
+
+.col-responsibility {
+    width: 12%;
+}
+
+.col-date {
+    width: 8%;
+}
+
+.col-done {
+    width: 4%;
+    text-align: center;
+}
+
+/* Inline combobox in table */
+.inline-combo {
+    --slds-c-input-text-font-size: 12px;
+}
+
+/* Native select for Necessary column — avoids SF container overflow clipping */
+.inline-select {
+    font-family: var(--font);
+    font-size: 12px;
+    padding: 3px 5px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: #fff;
+    color: var(--text-primary);
+    cursor: pointer;
+    width: 100%;
+    outline: none;
+}
+
+.inline-select:focus {
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 1px var(--accent-blue);
+}
+
+/* Ensure combobox columns and all ancestors never clip the dropdown */
+.col-necessary,
+.col-responsibility {
+    overflow: visible;
+}
+
+.add-item-form .form-input {
+    position: relative;
+    z-index: 5;
+}
+
+/* Answer column */
+.answer-text {
+    font-size: 12px;
+    color: var(--text-primary);
+    font-weight: 500;
+    word-break: break-word;
+}
+
+/* Comment column */
+.comment-text {
+    font-size: 12px;
+    color: var(--text-secondary);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    word-break: break-word;
+}
+
+/* Date display */
+.date-display {
+    font-size: 12px;
+    color: var(--text-secondary);
+    white-space: nowrap;
+}
+
+/* User pill */
+.user-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    padding: 1px 6px;
+    border-radius: 10px;
+    font-size: 11px;
+    background: rgba(59, 130, 246, 0.08);
+    color: var(--accent-blue);
+    border: 1px solid transparent;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+.user-pill:hover {
+    border-color: rgba(59, 130, 246, 0.3);
+}
+
+.text-muted {
+    color: var(--text-muted);
+    font-size: 11px;
+    font-style: italic;
+}
+
+/* Move badges */
+.moveable-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 0.625rem;
+    color: var(--accent-blue);
+    cursor: pointer;
+    padding: 1px 4px;
+    border-radius: 3px;
+    transition: background 0.15s;
+    border: none;
+    background: transparent;
+    font-family: var(--font);
+    white-space: nowrap;
+}
+
+.moveable-badge:hover {
+    background: rgba(59, 130, 246, 0.1);
+}
+
+
+/* Validation error */
+.validation-error {
+    color: var(--accent-red);
+    font-size: 0.625rem;
+    margin-top: 1px;
+}
+
+/* Empty state */
+.empty-message {
+    text-align: center;
+    padding: 1.5rem;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+/* Item title */
+.item-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+}
+
+.item-title-done {
+    text-decoration: line-through;
+    color: var(--text-muted);
+}
+
+.item-title-moved {
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+/* Moved badge indicator */
+.moved-indicator {
+    display: inline-block;
+    font-size: 0.625rem;
+    color: var(--text-muted);
+    background: rgba(148, 163, 184, 0.15);
+    padding: 1px 6px;
+    border-radius: 8px;
+    margin-left: 0.5rem;
+    font-style: normal;
+}
+
+/* Pencil edit button */
+.edit-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border: none;
+    background: transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 12px;
+    transition: all 0.15s;
+}
+
+.edit-btn:hover {
+    background: rgba(59, 130, 246, 0.1);
+    color: var(--accent-blue);
+}
+
+/* --- Done Checkbox (Change 8) --- */
+.done-checkbox {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+    width: 18px;
+    height: 18px;
+}
+
+.done-input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+}
+
+.done-circle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid var(--text-muted);
+    background: transparent;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+}
+
+.done-circle::after {
+    content: '';
+    display: none;
+    width: 5px;
+    height: 9px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    margin-top: -1px;
+}
+
+.done-input:checked ~ .done-circle {
+    background: var(--accent-green);
+    border-color: var(--accent-green);
+    animation: doneBounce 0.3s ease;
+}
+
+.done-input:checked ~ .done-circle::after {
+    display: block;
+}
+
+@keyframes doneBounce {
+    0% { transform: scale(1); }
+    40% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+/* Record links in overview panel */
+.record-link {
+    color: var(--accent-blue);
+    text-decoration: none;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.record-link:hover {
+    text-decoration: underline;
+    color: #2563eb;
+}
+
+
+/* --- Comment Modal (Change 3) --- */
+.comment-modal {
+    z-index: 9999;
+}
+
+.comment-modal .slds-modal__container {
+    max-width: 480px;
+    margin: 0 auto;
+    padding-top: 10vh;
+}
+
+.comment-modal-content {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+}
+
+.comment-modal-header {
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.comment-modal-header h2 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 0.25rem 0;
+}
+
+.comment-modal-header p {
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.comment-modal-body {
+    padding: 1rem 1.25rem;
+}
+
+.comment-textarea {
+    width: 100%;
+    min-height: 80px;
+    padding: 0.5rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-family: var(--font);
+    font-size: 0.8125rem;
+    color: var(--text-primary);
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+.comment-textarea:focus {
+    outline: none;
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 1px var(--accent-blue);
+}
+
+.comment-modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    border-top: 1px solid var(--border);
+    background: var(--surface);
+}
+
+/* SLDS modal/backdrop overrides for shadow DOM */
+.slds-modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.slds-backdrop_open {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 9998;
+}
+
+/* Completion dialog -- wider than comment modal */
+.completion-dialog .slds-modal__container {
+    max-width: 520px;
+}
+
+.dialog-field-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.dialog-field-full {
+    grid-column: 1 / -1;
+}
+
+/* Checkbox group for ad-hoc item completion fields */
+.checkbox-group {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    padding-top: 4px;
+}
+
+.checkbox-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    color: var(--text-primary);
+    cursor: pointer;
+}
+
+.checkbox-label input[type="checkbox"] {
+    cursor: pointer;
+}

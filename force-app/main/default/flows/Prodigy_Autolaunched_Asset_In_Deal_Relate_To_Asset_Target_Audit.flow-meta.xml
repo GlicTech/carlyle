@@ -54,6 +54,16 @@
     </decisions>
     <environments>Default</environments>
     <formulas>
+        <name>f_Asset</name>
+        <dataType>String</dataType>
+        <expression>IF({!varAID.leaseworks__Aircraft__c} != Null, {!varAID.leaseworks__Aircraft__c}, {!varAID.leaseworks__Engine__r.leaseworks__Attached_Aircraft__c})</expression>
+    </formulas>
+    <formulas>
+        <name>f_Contract</name>
+        <dataType>String</dataType>
+        <expression>IF({!varAID.leaseworks__Aircraft__c} != Null, {!varAID.leaseworks__Aircraft__r.leaseworks__Lease__c}, {!varAID.leaseworks__Engine__r.leaseworks__Attached_Aircraft__r.leaseworks__Lease__c})</expression>
+    </formulas>
+    <formulas>
         <name>f_LoiDatePlusAYear</name>
         <dataType>Date</dataType>
         <expression>ADDMONTHS({!varAID.LOI_Date__c}, 12)</expression>
@@ -87,7 +97,7 @@
         <inputAssignments>
             <field>pro_Asset__c</field>
             <value>
-                <elementReference>varAID.leaseworks__Aircraft__c</elementReference>
+                <elementReference>f_Asset</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -99,7 +109,7 @@
         <inputAssignments>
             <field>pro_Contract__c</field>
             <value>
-                <elementReference>varAID.leaseworks__Aircraft__r.leaseworks__Lease__c</elementReference>
+                <elementReference>f_Contract</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -128,7 +138,7 @@
         <inputAssignments>
             <field>pro_Asset__c</field>
             <value>
-                <elementReference>varAID.leaseworks__Aircraft__c</elementReference>
+                <elementReference>f_Asset</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -146,7 +156,7 @@
         <inputAssignments>
             <field>pro_Contract__c</field>
             <value>
-                <elementReference>varAID.leaseworks__Aircraft__r.leaseworks__Lease__c</elementReference>
+                <elementReference>f_Contract</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -207,14 +217,14 @@
             <field>pro_Asset__c</field>
             <operator>EqualTo</operator>
             <value>
-                <elementReference>varAID.leaseworks__Aircraft__c</elementReference>
+                <elementReference>f_Asset</elementReference>
             </value>
         </filters>
         <filters>
             <field>pro_Contract__c</field>
             <operator>EqualTo</operator>
             <value>
-                <elementReference>varAID.leaseworks__Aircraft__r.leaseworks__Lease__c</elementReference>
+                <elementReference>f_Contract</elementReference>
             </value>
         </filters>
         <filters>
@@ -243,7 +253,7 @@
             <field>pro_Asset__c</field>
             <operator>EqualTo</operator>
             <value>
-                <elementReference>varAID.leaseworks__Aircraft__c</elementReference>
+                <elementReference>f_Asset</elementReference>
             </value>
         </filters>
         <filters>
@@ -257,7 +267,7 @@
             <field>pro_Contract__c</field>
             <operator>EqualTo</operator>
             <value>
-                <elementReference>varAID.leaseworks__Aircraft__r.leaseworks__Lease__c</elementReference>
+                <elementReference>f_Contract</elementReference>
             </value>
         </filters>
         <filters>

@@ -130,7 +130,7 @@
         <actionName>View</actionName>
         <comment>Action override created by Lightning App Builder during activation.</comment>
         <content>Stepped_Rent_Record_Page_2024</content>
-        <formFactor>Small</formFactor>
+        <formFactor>Large</formFactor>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Flexipage</type>
     </actionOverrides>
@@ -138,7 +138,7 @@
         <actionName>View</actionName>
         <comment>Action override created by Lightning App Builder during activation.</comment>
         <content>Stepped_Rent_Record_Page_2024</content>
-        <formFactor>Large</formFactor>
+        <formFactor>Small</formFactor>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Flexipage</type>
     </actionOverrides>
@@ -150,6 +150,13 @@
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <deprecated>false</deprecated>
+    <description>If Applicable and the Rent Type is Stepped
+This lease-level configuration table houses Rent Schedule parameters, including start/end dates and base rent. While typically a single schedule exists per lease, exceptions involving rent type changes (fixed to PBH, etc.) necessitate additional schedules. Users leverage Rent Studio to manage these schedules, generating rent slips and subsequent invoices.
+[MODULE: Contract]
+[LOAD: Yes]
+[PREREQUISITES: Rent Schedule]
+[REPLACEMENT OBJECT API: NA]
+[COMMENTS: NA]</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -166,7 +173,7 @@
         <type>Text</type>
     </nameField>
     <pluralLabel>Stepped Rent</pluralLabel>
-    <searchLayouts />
+    <searchLayouts></searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

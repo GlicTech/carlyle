@@ -4,9 +4,9 @@
     <active>true</active>
     <description>Manual update to pending status is not permitted</description>
     <errorConditionFormula>AND(ISCHANGED(leaseworks__Status__c), 
-				OR(isPickVal(PRIORVALUE(leaseworks__Status__c),&#39;Active&#39;),
-							isPickVal(PRIORVALUE(leaseworks__Status__c),&#39;Inactive&#39;)),
-				isPickVal(leaseworks__Status__c,&#39;Pending&#39;)
+				OR(isPickVal(PRIORVALUE(leaseworks__Status__c),&apos;Active&apos;),
+							isPickVal(PRIORVALUE(leaseworks__Status__c),&apos;Inactive&apos;)),
+				isPickVal(leaseworks__Status__c,&apos;Pending&apos;)
 )</errorConditionFormula>
     <errorMessage>Letter of Credit status cannot be manually updated to Pending.</errorMessage>
 </ValidationRule>

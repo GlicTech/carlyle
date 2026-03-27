@@ -130,7 +130,7 @@
         <actionName>View</actionName>
         <comment>Action override created by Lightning App Builder during activation.</comment>
         <content>Fee_Slip_Record_Page1</content>
-        <formFactor>Small</formFactor>
+        <formFactor>Large</formFactor>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Flexipage</type>
     </actionOverrides>
@@ -138,7 +138,7 @@
         <actionName>View</actionName>
         <comment>Action override created by Lightning App Builder during activation.</comment>
         <content>Fee_Slip_Record_Page1</content>
-        <formFactor>Large</formFactor>
+        <formFactor>Small</formFactor>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Flexipage</type>
     </actionOverrides>
@@ -150,7 +150,12 @@
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <deprecated>false</deprecated>
-    <description>Fee Slips, typically generated monthly or on the basis of fee periodicity for each Fee Schedule, detail fee calculations like amounts and cost breakdowns. They trigger invoice generation per payment cycle. But for importing data from other systems or new leases, manual upload via a data loader is also possible.</description>
+    <description>Fee Slips, typically generated monthly or on the basis of fee periodicity for each Fee Schedule, detail fee calculations like amounts and cost breakdowns. They trigger invoice generation per payment cycle. But for importing data from other systems or new leases, manual upload via a data loader is also possible.
+[MODULE: Contract]
+[LOAD: Optional]
+[PREREQUISITES: Service Fee]
+[REPLACEMENT OBJECT API: NA]
+[COMMENTS: NA]</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -168,7 +173,7 @@
         <type>Text</type>
     </nameField>
     <pluralLabel>Fee Slips</pluralLabel>
-    <searchLayouts />
+    <searchLayouts></searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

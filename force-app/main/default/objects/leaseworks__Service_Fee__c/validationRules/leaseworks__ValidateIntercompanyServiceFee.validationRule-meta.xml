@@ -2,6 +2,6 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>leaseworks__ValidateIntercompanyServiceFee</fullName>
     <active>true</active>
-    <errorConditionFormula>IF( AND(!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c, ISPICKVAL( leaseworks__Fee_Type__c , &#39;Service Fee&#39;) , OR(ISPICKVAL(leaseworks__Intercompany_Service_Fee__c , &#39;--None--&#39;), ISPICKVAL(leaseworks__Intercompany_Service_Fee__c , &#39;&#39;) )), true, false)</errorConditionFormula>
+    <errorConditionFormula>IF( AND(!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c, ISPICKVAL( leaseworks__Fee_Type__c , &apos;Service Fee&apos;) , OR(ISPICKVAL(leaseworks__Intercompany_Service_Fee__c , &apos;--None--&apos;), ISPICKVAL(leaseworks__Intercompany_Service_Fee__c , &apos;&apos;) )), true, false)</errorConditionFormula>
     <errorMessage>Intercompany Service Fee? is required for Service Fee schedule.</errorMessage>
 </ValidationRule>

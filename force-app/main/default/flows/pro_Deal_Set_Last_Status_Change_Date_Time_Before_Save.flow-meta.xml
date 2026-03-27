@@ -14,6 +14,22 @@
             </value>
         </assignmentItems>
         <connector>
+            <targetReference>Was_Deal_Status_Changed</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Reset_Approval_Reminder_Count</name>
+        <label>Reset Approval Reminder Count</label>
+        <locationX>50</locationX>
+        <locationY>503</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.pro_Approval_Reminder_Count__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <numberValue>0.0</numberValue>
+            </value>
+        </assignmentItems>
+        <connector>
             <targetReference>Was_Deal_Moved_Off_Documentation</targetReference>
         </connector>
     </assignments>
@@ -21,7 +37,7 @@
         <name>Set_Sync_Documentation_To_False</name>
         <label>Set Sync Documentation To False</label>
         <locationX>50</locationX>
-        <locationY>503</locationY>
+        <locationY>803</locationY>
         <assignmentItems>
             <assignToReference>$Record.pro_Sync_Documentation__c</assignToReference>
             <operator>Assign</operator>
@@ -34,7 +50,7 @@
         <name>Was_Deal_Moved_Off_Documentation</name>
         <label>Was Deal Moved Off Documentation?</label>
         <locationX>182</locationX>
-        <locationY>395</locationY>
+        <locationY>695</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>Yes_Moved_Off_Documentation</name>
@@ -57,6 +73,31 @@
                 <targetReference>Set_Sync_Documentation_To_False</targetReference>
             </connector>
             <label>Yes - Moved Off Documentation</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Was_Deal_Status_Changed</name>
+        <label>Was Deal Status Changed?</label>
+        <locationX>182</locationX>
+        <locationY>395</locationY>
+        <defaultConnector>
+            <targetReference>Was_Deal_Moved_Off_Documentation</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Deal_Status_Changed</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.leaseworks__Deal_Status__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Reset_Approval_Reminder_Count</targetReference>
+            </connector>
+            <label>Yes - Deal Status Changed</label>
         </rules>
     </decisions>
     <environments>Default</environments>

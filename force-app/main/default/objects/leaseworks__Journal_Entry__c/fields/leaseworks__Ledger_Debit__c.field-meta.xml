@@ -4,11 +4,7 @@
     <deprecated>false</deprecated>
     <description>The debit amount recorded in the reporting currency.</description>
     <externalId>false</externalId>
-    <formula>if(
-    leaseworks__isFxGainLoss__c,
-    if(leaseworks__Ledger_Amount_Field__c &lt;= 0, -1 * leaseworks__Ledger_Amount_Field__c, 0.0),
-    if(leaseworks__Ledger_Amount_Field__c &gt;= 0, leaseworks__Ledger_Amount_Field__c, 0.0)
-)</formula>
+    <formula>if(leaseworks__Ledger_Amount_Field__c &gt;= 0, leaseworks__Ledger_Amount_Field__c, 0.0)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <inlineHelpText>The debit amount recorded in the reporting currency.</inlineHelpText>
     <label>Ledger Debit</label>

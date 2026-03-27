@@ -144,7 +144,12 @@
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <deprecated>false</deprecated>
-    <description>The system utilizes this temporary table as a staging area to consolidate and create utilization records for assets, their assemblies, linked invoices, and corresponding payments for all involved assemblies. This allows for efficient processing in one go. After successful data transfer, the temporary table is emptied.</description>
+    <description>The system utilizes this temporary table as a staging area to consolidate and create utilization records for assets, their assemblies, linked invoices, and corresponding payments for all involved assemblies. This allows for efficient processing in one go. After successful data transfer, the temporary table is emptied.
+[MODULE: Contract]
+[LOAD: Yes]
+[PREREQUISITES: Asset, Lease]
+[REPLACEMENT OBJECT API: NA]
+[COMMENTS: NA]</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>

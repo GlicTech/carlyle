@@ -3,10 +3,72 @@
     <fullName>leaseworks__AmtCC_PLI__c</fullName>
     <deprecated>false</deprecated>
     <description>The field is necessary to bypass the character limit issue in the formula fields mentioned above. Instead of using the full condition, we utilize this field solely to remain within the character limit</description>
-    <externalId>false</externalId>
-    <formula>IF(TEXT(leaseworks__Transaction_Type__c)==&#39;MR Cash Payment&#39;, IF(OR((leaseworks__Payment_Line_Item__r.leaseworks__Status__c=&#39;Approved&#39;),(leaseworks__Payment_Line_Item__r.leaseworks__Status__c=&#39;Cancelled-Pending&#39;)),leaseworks__Payment_Line_Item__r.leaseworks__Remaining_Payment_Line_Amount__c,null),
-IF(TEXT(leaseworks__Transaction_Type__c)==&#39;MR Payment Credit Applied&#39;,IF((leaseworks__Payment_Line_Item__r.leaseworks__Status__c=&#39;Cancelled&#39;),null,leaseworks__Payment_Line_Item__r.leaseworks__Remaining_Payment_Line_Amount__c),
-IF(TEXT(leaseworks__Transaction_Type__c)==&#39;MR Payment Offset&#39;,IF(OR((leaseworks__Payment_Line_Item__r.leaseworks__Status__c =&#39;Cancelled&#39;),(leaseworks__Payment_Line_Item__r.leaseworks__Status__c=&#39;Submitted&#39;),(leaseworks__Payment_Line_Item__r.leaseworks__Status__c=&#39;Pending&#39;)),null,leaseworks__Payment_Line_Item__r.leaseworks__Remaining_Payment_Line_Amount__c),null)))</formula>
+    <formula>IF(
+    TEXT(leaseworks__Transaction_Type__c) = &quot;MR Cash Payment&quot;,
+        IF(ISBLANK(leaseworks__Payment_Line_Item__c) ,
+            IF(
+                OR(
+                    leaseworks__Y_Hidden_Doc_Status__c  = &quot;Approved&quot;,
+                    leaseworks__Y_Hidden_Doc_Status__c  = &quot;Cancelled-Pending&quot;
+                ),
+                leaseworks__Y_Hidden_Payment_Amount__c,
+                NULL
+            ),
+            IF(
+                OR(
+                    leaseworks__Payment_Line_Item__r.leaseworks__Status__c = &quot;Approved&quot;,
+                    leaseworks__Payment_Line_Item__r.leaseworks__Status__c = &quot;Cancelled-Pending&quot;
+                ),
+                leaseworks__Payment_Line_Item__r.leaseworks__Remaining_Payment_Line_Amount__c,
+                NULL
+            )  
+        )
+    ,
+        IF(
+            TEXT(leaseworks__Transaction_Type__c) = &quot;MR Payment Credit Applied&quot;,
+
+                IF(ISBLANK(leaseworks__Payment_Line_Item__c) ,
+                    IF(
+                        leaseworks__Y_Hidden_Doc_Status__c = &quot;Cancelled&quot;,
+                        NULL,
+                        leaseworks__Y_Hidden_Payment_Amount__c
+                    ),
+                    IF(
+                        leaseworks__Payment_Line_Item__r.leaseworks__Status__c = &quot;Cancelled&quot;,
+                        NULL,
+                        leaseworks__Payment_Line_Item__r.leaseworks__Remaining_Payment_Line_Amount__c
+                    )  
+                )
+            ,
+            IF(
+                TEXT(leaseworks__Transaction_Type__c) = &quot;MR Payment Offset&quot;,
+
+                    IF(ISBLANK(leaseworks__Payment_Line_Item__c) ,
+                        IF(
+                            OR(
+                                leaseworks__Y_Hidden_Doc_Status__c = &quot;Cancelled&quot;,
+                                leaseworks__Y_Hidden_Doc_Status__c = &quot;Submitted&quot;,
+                                leaseworks__Y_Hidden_Doc_Status__c = &quot;Pending&quot;
+                            ),
+                            NULL,
+                            leaseworks__Y_Hidden_Payment_Amount__c
+                        ),
+                        IF(
+                            OR(
+                                leaseworks__Payment_Line_Item__r.leaseworks__Status__c = &quot;Cancelled&quot;,
+                                leaseworks__Payment_Line_Item__r.leaseworks__Status__c = &quot;Submitted&quot;,
+                                leaseworks__Payment_Line_Item__r.leaseworks__Status__c = &quot;Pending&quot;
+                            ),
+                            NULL,
+                            leaseworks__Payment_Line_Item__r.leaseworks__Remaining_Payment_Line_Amount__c
+                        )  
+                    )
+                ,
+                /* default else */
+                NULL
+            )
+        )
+)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>_Amount CC PLI</label>
     <precision>18</precision>

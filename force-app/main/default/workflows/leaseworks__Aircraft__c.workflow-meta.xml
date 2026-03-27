@@ -43,9 +43,9 @@
     <fieldUpdates>
         <fullName>leaseworks__AircraftSetDataVerifiedBy</fullName>
         <field>leaseworks__Data_Verified_By__c</field>
-        <formula>$User.FirstName + &#39; &#39; + $User.LastName +&#39;, &#39; +
+        <formula>$User.FirstName + &apos; &apos; + $User.LastName +&apos;, &apos; +
 
- Text(MONTH(TODAY())) + &#39;/&#39; +  Text(Day(TODAY()))  + &#39;/&#39; +  Text(year(TODAY()))</formula>
+ Text(MONTH(TODAY())) + &apos;/&apos; +  Text(Day(TODAY()))  + &apos;/&apos; +  Text(year(TODAY()))</formula>
         <name>AircraftSetDataVerifiedBy</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
@@ -56,7 +56,7 @@
         <fullName>leaseworks__AircraftSetId</fullName>
         <description>Set the external Id to Aircraft Type + MSN.</description>
         <field>leaseworks__Aircraft_ID__c</field>
-        <formula>BLANKVALUE(TEXT(leaseworks__Asset_Type_GP__c), &#39;NoType&#39;) &amp; &#39;-&#39;  &amp; leaseworks__MSN_Number__c</formula>
+        <formula>BLANKVALUE(TEXT(leaseworks__Asset_Type_GP__c), &apos;NoType&apos;) &amp; &apos;-&apos;  &amp; leaseworks__MSN_Number__c</formula>
         <name>AircraftSetId</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
@@ -220,7 +220,7 @@
         <fullName>leaseworks__Update_aircraft_ID</fullName>
         <description>Updates the Name of the aircraft as MSN number + Aircraft type</description>
         <field>Name</field>
-        <formula>leaseworks__MSN_Number__c &amp; &#39; (&#39; &amp; TEXT(leaseworks__Asset_Type_GP__c) &amp; &#39;)&#39;</formula>
+        <formula>leaseworks__MSN_Number__c &amp; &apos; (&apos; &amp; TEXT(leaseworks__Asset_Type_GP__c) &amp; &apos;)&apos;</formula>
         <name>Update aircraft ID</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
@@ -267,7 +267,7 @@
             <name>leaseworks__Update_aircraft_ID</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>Rule to kick off when aircraft has changed</description>
         <formula>TRUE</formula>
         <triggerType>onAllChanges</triggerType>
@@ -289,7 +289,7 @@
             <name>leaseworks__AircraftSetDataVerifiedBy</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <formula>OR ( AND (ISNEW(),  leaseworks__Data_Verified_For_Accuracy__c  ), ISCHANGED(leaseworks__Data_Verified_For_Accuracy__c))</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>

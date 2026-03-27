@@ -28,17 +28,195 @@
     </flexiPageRegions>
     <flexiPageRegions>
         <itemInstances>
-            <componentInstance>
-                <componentName>force:detailPanel</componentName>
-                <identifier>force_detailPanel</identifier>
-            </componentInstance>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>required</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Name</fieldItem>
+                <identifier>RecordNameField</identifier>
+            </fieldInstance>
         </itemInstances>
-        <name>detailTabContent</name>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>readonly</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.pro_Start_Date__c</fieldItem>
+                <identifier>Recordpro_Start_Date_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <name>Facet-57a836c0-bedf-46cf-98c7-23c94ce62326</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.pro_Target_Amount__c</fieldItem>
+                <identifier>Recordpro_Target_Amount_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>readonly</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.pro_End_Date__c</fieldItem>
+                <identifier>Recordpro_End_Date_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <name>Facet-7913f281-9856-42ef-b3de-52a590bccf81</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-57a836c0-bedf-46cf-98c7-23c94ce62326</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:column</componentName>
+                <identifier>flexipage_column</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-7913f281-9856-42ef-b3de-52a590bccf81</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:column</componentName>
+                <identifier>flexipage_column2</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>Facet-c3817a9f-25fd-4117-98fc-f630311126b7</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>readonly</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.CreatedById</fieldItem>
+                <identifier>RecordCreatedByIdField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <name>Facet-56f4a7d8-a0d7-4b07-90a1-fb60399e1f3a</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>readonly</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.LastModifiedById</fieldItem>
+                <identifier>RecordLastModifiedByIdField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <name>Facet-6d8b6286-dd6d-4750-82ce-f97450e9402d</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-56f4a7d8-a0d7-4b07-90a1-fb60399e1f3a</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:column</componentName>
+                <identifier>flexipage_column5</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-6d8b6286-dd6d-4750-82ce-f97450e9402d</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:column</componentName>
+                <identifier>flexipage_column6</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>Facet-ba83111a-9dea-4039-8332-d1179484bf19</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>columns</name>
+                    <value>Facet-c3817a9f-25fd-4117-98fc-f630311126b7</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>label</name>
+                    <value>@@@SFDCInformationSFDC@@@</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:fieldSection</componentName>
+                <identifier>flexipage_fieldSection</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>columns</name>
+                    <value>Facet-ba83111a-9dea-4039-8332-d1179484bf19</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>label</name>
+                    <value>@@@SFDCSystem_InformationSFDC@@@</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:fieldSection</componentName>
+                <identifier>flexipage_fieldSection3</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>force:recordDetailPanelMobile</componentName>
+                <identifier>force_recordDetailPanelMobile</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>Facet-2e48b3aa-e984-40e7-8630-c94415b7e79b</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>actionNames</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>adminFilters</name>
+                    <valueList>
+                        <valueListItems>
+                            <value>pro_Progress__c|NOT_EQUAL|Target Cancelled</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>pro_Progress__c|NOT_EQUAL|Moved To Trading</value>
+                        </valueListItems>
+                    </valueList>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>maxRecordsToDisplay</name>
+                    <value>30</value>
+                </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>parentFieldApiName</name>
                     <value>pro_Target__c.Id</value>
@@ -48,22 +226,218 @@
                     <value>Asset_Target_Audits__r</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
-                    <name>relatedListComponentOverride</name>
+                    <name>relatedListDisplayType</name>
                     <value>ADVGRID</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
-                    <name>rowsToDisplay</name>
-                    <value>10</value>
+                    <name>relatedListFieldAliases</name>
+                    <valueList>
+                        <valueListItems>
+                            <value>pro_Asset_Name__c</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>pro_Asset_in_Deal__c</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>pro_Contract__c</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>pro_Progress__c</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>pro_Target_Reached__c</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>pro_Marketing_Trading__c</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>pro_Likely_Outcome__c</value>
+                        </valueListItems>
+                    </valueList>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListLabel</name>
+                    <value>Roll Off Targets</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>showActionBar</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>sortFieldAlias</name>
+                    <value>__DEFAULT__</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>sortFieldOrder</name>
+                    <value>Default</value>
+                </componentInstanceProperties>
+                <componentName>lst:dynamicRelatedList</componentName>
+                <identifier>lst_dynamicRelatedList</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>actionNames</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>adminFilters</name>
+                    <valueList>
+                        <valueListItems>
+                            <value>pro_Progress__c|NOT_EQUAL|Target Cancelled</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>pro_Progress__c|NOT_EQUAL|Moved To Trading</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>pro_Marketing_Trading__c|EQUALS|Marketing</value>
+                        </valueListItems>
+                    </valueList>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>maxRecordsToDisplay</name>
+                    <value>30</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>parentFieldApiName</name>
+                    <value>pro_Target__c.Id</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListApiName</name>
+                    <value>Asset_Target_Audits1__r</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListDisplayType</name>
+                    <value>ADVGRID</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListFieldAliases</name>
+                    <valueList>
+                        <valueListItems>
+                            <value>pro_Asset_Name__c</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>pro_Asset_in_Deal__c</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>pro_Contract__c</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>pro_Progress__c</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>pro_Target_Forecast__c</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>pro_Marketing_Trading__c</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>pro_Likely_Outcome__c</value>
+                        </valueListItems>
+                    </valueList>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListLabel</name>
+                    <value>Achieved By Marketing</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>showActionBar</name>
                     <value>true</value>
                 </componentInstanceProperties>
-                <componentName>force:relatedListSingleContainer</componentName>
-                <identifier>force_relatedListSingleContainer3</identifier>
+                <componentInstanceProperties>
+                    <name>sortFieldAlias</name>
+                    <value>pro_Asset_Name__c</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>sortFieldOrder</name>
+                    <value>Ascending</value>
+                </componentInstanceProperties>
+                <componentName>lst:dynamicRelatedList</componentName>
+                <identifier>lst_dynamicRelatedList2</identifier>
             </componentInstance>
         </itemInstances>
-        <name>Facet-f8084a0c-8d52-400d-b3e3-1e759e316af6</name>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>actionNames</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>adminFilters</name>
+                    <valueList>
+                        <valueListItems>
+                            <value>pro_Progress__c|NOT_EQUAL|Target Cancelled</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>pro_Progress__c|NOT_EQUAL|Moved To Trading</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>pro_Marketing_Trading__c|CONTAINS|Trading</value>
+                        </valueListItems>
+                    </valueList>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>maxRecordsToDisplay</name>
+                    <value>30</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>parentFieldApiName</name>
+                    <value>pro_Target__c.Id</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListApiName</name>
+                    <value>Asset_Target_Audits1__r</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListDisplayType</name>
+                    <value>ADVGRID</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListFieldAliases</name>
+                    <valueList>
+                        <valueListItems>
+                            <value>pro_Asset_Name__c</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>pro_Asset_in_Deal__c</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>pro_Contract__c</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>pro_Progress__c</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>pro_Target_Forecast__c</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>pro_Marketing_Trading__c</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>pro_Likely_Outcome__c</value>
+                        </valueListItems>
+                    </valueList>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListLabel</name>
+                    <value>Achieved By Trading</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>showActionBar</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>sortFieldAlias</name>
+                    <value>pro_Asset_Name__c</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>sortFieldOrder</name>
+                    <value>Ascending</value>
+                </componentInstanceProperties>
+                <componentName>lst:dynamicRelatedList</componentName>
+                <identifier>lst_dynamicRelatedList4</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>Facet-5c710e99-58c0-4b7c-83fa-ddc44765a485</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -93,85 +467,7 @@
                 <identifier>force_relatedListSingleContainer4</identifier>
             </componentInstance>
         </itemInstances>
-        <name>Facet-0b007ed6-ae20-4c2e-96e4-f6a2ef890ca1</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>active</name>
-                    <value>false</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>body</name>
-                    <value>detailTabContent</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>title</name>
-                    <value>Standard.Tab.detail</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:tab</componentName>
-                <identifier>detailTab</identifier>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>body</name>
-                    <value>Facet-f8084a0c-8d52-400d-b3e3-1e759e316af6</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>title</name>
-                    <value>Target Audits</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:tab</componentName>
-                <identifier>flexipage_tab3</identifier>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>body</name>
-                    <value>Facet-0b007ed6-ae20-4c2e-96e4-f6a2ef890ca1</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>title</name>
-                    <value>History</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:tab</componentName>
-                <identifier>flexipage_tab4</identifier>
-            </componentInstance>
-        </itemInstances>
-        <name>maintabs</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>tabs</name>
-                    <value>maintabs</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:tabset</componentName>
-                <identifier>flexipage_tabset</identifier>
-            </componentInstance>
-        </itemInstances>
-        <name>main</name>
-        <type>Region</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>showLegacyActivityComposer</name>
-                    <value>false</value>
-                </componentInstanceProperties>
-                <componentName>runtime_sales_activities:activityPanel</componentName>
-                <identifier>runtime_sales_activities_activityPanel</identifier>
-            </componentInstance>
-        </itemInstances>
-        <name>Facet-d449581a-e962-4c2c-a78e-86c1dc481f64</name>
+        <name>Facet-08ee65f7-6d1d-42ea-bb45-76162bbed71e</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -183,17 +479,45 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>body</name>
-                    <value>Facet-d449581a-e962-4c2c-a78e-86c1dc481f64</value>
+                    <value>Facet-2e48b3aa-e984-40e7-8630-c94415b7e79b</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>title</name>
-                    <value>Standard.Tab.activity</value>
+                    <value>Standard.Tab.candidateDetails</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:tab</componentName>
+                <identifier>flexipage_tab</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-5c710e99-58c0-4b7c-83fa-ddc44765a485</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>title</name>
+                    <value>Roll Off &amp; Achieved Targets</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:tab</componentName>
+                <identifier>flexipage_tab3</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-08ee65f7-6d1d-42ea-bb45-76162bbed71e</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>title</name>
+                    <value>Target History</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:tab</componentName>
                 <identifier>flexipage_tab2</identifier>
             </componentInstance>
         </itemInstances>
-        <name>Facet-4a8e4640-5487-46db-b699-a3bd94858112</name>
+        <name>Facet-4938e8fc-be7c-4f51-8c85-3a17d8361df6</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -201,19 +525,19 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>tabs</name>
-                    <value>Facet-4a8e4640-5487-46db-b699-a3bd94858112</value>
+                    <value>Facet-4938e8fc-be7c-4f51-8c85-3a17d8361df6</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:tabset</componentName>
-                <identifier>flexipage_tabset2</identifier>
+                <identifier>flexipage_tabset</identifier>
             </componentInstance>
         </itemInstances>
-        <name>sidebar</name>
+        <name>main</name>
         <type>Region</type>
     </flexiPageRegions>
     <masterLabel>Target Record Page</masterLabel>
     <sobjectType>pro_Target__c</sobjectType>
     <template>
-        <name>flexipage:recordHomeTemplateDesktop</name>
+        <name>flexipage:recordHomeSingleColTemplateDesktop</name>
     </template>
     <type>RecordPage</type>
 </FlexiPage>

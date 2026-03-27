@@ -87,6 +87,10 @@
                 <behavior>Readonly</behavior>
                 <field>cap_Record_ID__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>cap_Total_Invoiced_Balance__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -291,14 +295,9 @@
             <sortOrder>2</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
-            <actionName>leaseworks__Lease__c.Create_Party</actionName>
-            <actionType>QuickAction</actionType>
-            <sortOrder>3</sortOrder>
-        </platformActionListItems>
-        <platformActionListItems>
             <actionName>PrintableView</actionName>
             <actionType>StandardButton</actionType>
-            <sortOrder>4</sortOrder>
+            <sortOrder>3</sortOrder>
         </platformActionListItems>
     </platformActionList>
     <relatedLists>
@@ -328,6 +327,12 @@
         <relatedList>leaseworks__Contract_Diary__c.leaseworks__Contract__c</relatedList>
         <sortField>leaseworks__Due_Date__c</sortField>
         <sortOrder>Asc</sortOrder>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>leaseworks__Role__c</fields>
+        <fields>leaseworks__Team_Member__c</fields>
+        <relatedList>leaseworks__Contract_Team__c.leaseworks__Contract__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>

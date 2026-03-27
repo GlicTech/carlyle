@@ -3,7 +3,6 @@
     <excludeButtons>AssignRecordLabel</excludeButtons>
     <excludeButtons>ChangeOwnerOne</excludeButtons>
     <excludeButtons>ChangeRecordType</excludeButtons>
-    <excludeButtons>OpenSlackRecordChannel</excludeButtons>
     <excludeButtons>PrintableView</excludeButtons>
     <excludeButtons>Submit</excludeButtons>
     <layoutSections>
@@ -31,6 +30,10 @@
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>Effective_Rate_Docgen_Local__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>leaseworks__Parent_SRUR__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns/>
@@ -212,6 +215,10 @@
     </relatedLists>
     <relatedLists>
         <relatedList>RelatedFileList</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>leaseworks__Supplemental_Rent_Utilization_Rate__c.leaseworks__Parent_SRUR__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>TASK.SUBJECT</fields>

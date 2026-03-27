@@ -41,6 +41,13 @@
                 <elementReference>Optional_Footer_Note</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Get_Related_Print_Options_Config_Record.pro_Include_USD_Euro_Conversion_Rate__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Include_USD_Euro_Conversion_Rate</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>Update_Print_Options_Config_Record</targetReference>
         </connector>
@@ -115,8 +122,8 @@
         <description>The values from the Mr Invoice Names picklist on the Print Options Config object</description>
         <name>pcs_MrInvoiceNames</name>
         <dataType>Picklist</dataType>
-        <displayField xsi:nil="true" />
-        <object xsi:nil="true" />
+        <displayField xsi:nil="true"/>
+        <object xsi:nil="true"/>
         <picklistField>pro_MR_Invoice_Name__c</picklistField>
         <picklistObject>pro_Print_Options_Config__c</picklistObject>
     </dynamicChoiceSets>
@@ -178,7 +185,7 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
-        <description>Get all Party records related to this account and with Role set to &#39;Invoiced Party&#39;</description>
+        <description>Get all Party records related to this account and with Role set to &apos;Invoiced Party&apos;</description>
         <name>Get_Contract_Parties</name>
         <label>Get Contract Parties</label>
         <locationX>0</locationX>
@@ -283,7 +290,7 @@
     <recordUpdates>
         <description>Update the Print Options Config record associated to each aactive contract under the account from which this flow was triggered.</description>
         <name>Update_Contract_s_Print_Options_Config_Records</name>
-        <label>Update Contract&#39;s Print Options Config Records</label>
+        <label>Update Contract&apos;s Print Options Config Records</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
@@ -344,6 +351,12 @@
             <field>pro_Include_PO_Number__c</field>
             <value>
                 <elementReference>Get_Related_Print_Options_Config_Record.pro_Include_PO_Number__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>pro_Include_USD_Euro_Conversion_Rate__c</field>
+            <value>
+                <elementReference>Include_USD_Euro_Conversion_Rate</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -456,6 +469,7 @@
                     </defaultValue>
                     <fieldText>Include Aircraft Registration Number?</fieldText>
                     <fieldType>InputField</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                 </fields>
                 <inputParameters>
@@ -477,6 +491,7 @@
                     </defaultValue>
                     <fieldText>Include Bank Account Address?</fieldText>
                     <fieldType>InputField</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                 </fields>
                 <inputParameters>
@@ -497,13 +512,14 @@
                 <name>Print_Options_Input_Screen_Section2_Column1</name>
                 <fieldType>Region</fieldType>
                 <fields>
-                    <name>Include_PO_Number</name>
+                    <name>Include_USD_Euro_Conversion_Rate</name>
                     <dataType>Boolean</dataType>
                     <defaultValue>
-                        <elementReference>Get_Related_Print_Options_Config_Record.pro_Include_PO_Number__c</elementReference>
+                        <elementReference>Get_Related_Print_Options_Config_Record.pro_Include_USD_Euro_Conversion_Rate__c</elementReference>
                     </defaultValue>
-                    <fieldText>Include PO Number?</fieldText>
+                    <fieldText>Include USD-Euro Conversion Rate</fieldText>
                     <fieldType>InputField</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                 </fields>
                 <inputParameters>
@@ -517,11 +533,6 @@
             <fields>
                 <name>Print_Options_Input_Screen_Section2_Column2</name>
                 <fieldType>Region</fieldType>
-                <fields>
-                    <fieldType>ObjectProvided</fieldType>
-                    <isRequired>false</isRequired>
-                    <objectFieldReference>Get_Related_Print_Options_Config_Record.pro_PO_Number__c</objectFieldReference>
-                </fields>
                 <inputParameters>
                     <name>width</name>
                     <value>
@@ -540,9 +551,15 @@
                 <name>Print_Options_Input_Screen_Section3_Column1</name>
                 <fieldType>Region</fieldType>
                 <fields>
-                    <fieldType>ObjectProvided</fieldType>
-                    <isRequired>false</isRequired>
-                    <objectFieldReference>Get_Related_Print_Options_Config_Record.pro_Include_Optional_Footer_Note__c</objectFieldReference>
+                    <name>Include_PO_Number</name>
+                    <dataType>Boolean</dataType>
+                    <defaultValue>
+                        <elementReference>Get_Related_Print_Options_Config_Record.pro_Include_PO_Number__c</elementReference>
+                    </defaultValue>
+                    <fieldText>Include PO Number?</fieldText>
+                    <fieldType>InputField</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>true</isRequired>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -556,14 +573,10 @@
                 <name>Print_Options_Input_Screen_Section3_Column2</name>
                 <fieldType>Region</fieldType>
                 <fields>
-                    <name>Optional_Footer_Note</name>
-                    <dataType>String</dataType>
-                    <defaultValue>
-                        <elementReference>Get_Related_Print_Options_Config_Record.pro_Optional_Footer_Note__c</elementReference>
-                    </defaultValue>
-                    <fieldText>Optional Footer Note</fieldText>
-                    <fieldType>InputField</fieldType>
+                    <fieldType>ObjectProvided</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
+                    <objectFieldReference>Get_Related_Print_Options_Config_Record.pro_PO_Number__c</objectFieldReference>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -584,8 +597,9 @@
                 <fieldType>Region</fieldType>
                 <fields>
                     <fieldType>ObjectProvided</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
-                    <objectFieldReference>Get_Related_Print_Options_Config_Record.pro_Include_Customer_VAT_Number__c</objectFieldReference>
+                    <objectFieldReference>Get_Related_Print_Options_Config_Record.pro_Include_Optional_Footer_Note__c</objectFieldReference>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -599,9 +613,15 @@
                 <name>Print_Options_Input_Screen_Section4_Column2</name>
                 <fieldType>Region</fieldType>
                 <fields>
-                    <fieldType>ObjectProvided</fieldType>
+                    <name>Optional_Footer_Note</name>
+                    <dataType>String</dataType>
+                    <defaultValue>
+                        <elementReference>Get_Related_Print_Options_Config_Record.pro_Optional_Footer_Note__c</elementReference>
+                    </defaultValue>
+                    <fieldText>Optional Footer Note</fieldText>
+                    <fieldType>InputField</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
-                    <objectFieldReference>varTriggeringAccount.Other_VAT_GST_Number__c</objectFieldReference>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -622,8 +642,9 @@
                 <fieldType>Region</fieldType>
                 <fields>
                     <fieldType>ObjectProvided</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
-                    <objectFieldReference>Get_Related_Print_Options_Config_Record.pro_Include_Attention_To__c</objectFieldReference>
+                    <objectFieldReference>Get_Related_Print_Options_Config_Record.pro_Include_Customer_VAT_Number__c</objectFieldReference>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -638,8 +659,9 @@
                 <fieldType>Region</fieldType>
                 <fields>
                     <fieldType>ObjectProvided</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
-                    <objectFieldReference>Get_Related_Print_Options_Config_Record.pro_Attention_To__c</objectFieldReference>
+                    <objectFieldReference>varTriggeringAccount.Other_VAT_GST_Number__c</objectFieldReference>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -660,8 +682,9 @@
                 <fieldType>Region</fieldType>
                 <fields>
                     <fieldType>ObjectProvided</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
-                    <objectFieldReference>Get_Related_Print_Options_Config_Record.pro_Include_Email_Address__c</objectFieldReference>
+                    <objectFieldReference>Get_Related_Print_Options_Config_Record.pro_Include_Attention_To__c</objectFieldReference>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -676,6 +699,47 @@
                 <fieldType>Region</fieldType>
                 <fields>
                     <fieldType>ObjectProvided</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>false</isRequired>
+                    <objectFieldReference>Get_Related_Print_Options_Config_Record.pro_Attention_To__c</objectFieldReference>
+                </fields>
+                <inputParameters>
+                    <name>width</name>
+                    <value>
+                        <stringValue>6</stringValue>
+                    </value>
+                </inputParameters>
+                <isRequired>false</isRequired>
+            </fields>
+            <isRequired>false</isRequired>
+            <regionContainerType>SectionWithoutHeader</regionContainerType>
+        </fields>
+        <fields>
+            <name>Print_Options_Input_Screen_Section7</name>
+            <fieldType>RegionContainer</fieldType>
+            <fields>
+                <name>Print_Options_Input_Screen_Section7_Column1</name>
+                <fieldType>Region</fieldType>
+                <fields>
+                    <fieldType>ObjectProvided</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>false</isRequired>
+                    <objectFieldReference>Get_Related_Print_Options_Config_Record.pro_Include_Email_Address__c</objectFieldReference>
+                </fields>
+                <inputParameters>
+                    <name>width</name>
+                    <value>
+                        <stringValue>6</stringValue>
+                    </value>
+                </inputParameters>
+                <isRequired>false</isRequired>
+            </fields>
+            <fields>
+                <name>Print_Options_Input_Screen_Section7_Column2</name>
+                <fieldType>Region</fieldType>
+                <fields>
+                    <fieldType>ObjectProvided</fieldType>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                     <objectFieldReference>varTriggeringAccount.leaseworks__Main_Email_Address__c</objectFieldReference>
                 </fields>
@@ -699,6 +763,7 @@
             </defaultValue>
             <fieldText>MR Invoice Name</fieldText>
             <fieldType>DropdownBox</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
         </fields>
         <fields>
@@ -751,6 +816,49 @@
         </connector>
     </start>
     <status>Active</status>
+    <transforms>
+        <name>Create_Active_Contract_Id_List</name>
+        <label>Create Active Contract Id List</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Update_Contract_s_Print_Options_Config_Records</targetReference>
+        </connector>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>Get_Active_Contracts[$EachItem].Id</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
+    <transforms>
+        <description>Create a list of contract Ids which can be used to filter for Print Options Config records that should be updated</description>
+        <name>Create_Contract_Id_List</name>
+        <label>Create Contract Id List</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Active_Contracts</targetReference>
+        </connector>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>Get_Contract_Parties[$EachItem].leaseworks__Contract__c</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
     <variables>
         <description>The account record on which this screen flow is being run</description>
         <name>varTriggeringAccount</name>

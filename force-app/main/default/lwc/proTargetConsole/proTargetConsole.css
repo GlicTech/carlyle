@@ -1,0 +1,374 @@
+/* ============================================================
+ * proTargetConsole.css
+ *
+ * Styling for the Target Management Console LWC.
+ * Design tokens and patterns replicated from proTimeLogEntry.css.
+ * ============================================================ */
+
+/* ---- PAGE CONTAINER ---- */
+.target-console-container {
+  background: var(--lwc-colorBackgroundAlt, #f3f2f2);
+  min-height: 400px;
+  position: relative;
+}
+
+.year-picker {
+  max-width: 140px;
+}
+
+/* ---- TOOLBAR ---- */
+.toolbar {
+  background: var(--lwc-colorBackground, #ffffff);
+  border-bottom: 1px solid var(--lwc-colorBorder, #dddbda);
+}
+
+/* ---- SEARCH INPUT ---- */
+.search-input {
+  max-width: 240px;
+}
+
+/* ---- PAGE SIZE PICKER ---- */
+.page-size-picker {
+  max-width: 100px;
+}
+
+/* ---- RECORD COUNT ---- */
+.record-count {
+  font-size: 0.875rem;
+  color: var(--lwc-colorTextWeak, #706e6b);
+  font-weight: 500;
+}
+
+/* ---- TABLE CONTAINER ---- */
+.table-container {
+  overflow-x: auto;
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+/* ---- TABLE ---- */
+.slds-table {
+  table-layout: auto;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.slds-table th,
+.slds-table td {
+  padding: 0.375rem 0.5rem !important;
+  border-color: var(--lwc-colorBorder, #dddbda);
+  background: var(--lwc-colorBackground, #ffffff);
+}
+
+.slds-table th {
+  font-weight: 600;
+  font-size: 0.8125rem;
+  color: var(--lwc-colorTextDefault, #181818);
+  white-space: nowrap;
+}
+
+.slds-table td {
+  font-size: 0.8125rem;
+}
+
+/* ---- SORTABLE COLUMN HEADERS ---- */
+.sortable-header {
+  cursor: pointer;
+  user-select: none;
+}
+
+.sortable-header:hover {
+  background: #f5f9ff;
+}
+
+.sort-icon {
+  flex-shrink: 0;
+}
+
+/* ---- STICKY FIRST COLUMN (Asset Name) ---- */
+.sticky-column {
+  position: sticky;
+  left: 0;
+  background: var(--lwc-colorBackground, #ffffff);
+  z-index: 2;
+  box-shadow: 2px 0 4px rgba(0, 0, 0, 0.04);
+  min-width: 180px;
+}
+
+/* ---- ASSET NAME LINK ---- */
+.asset-link {
+  color: #0176d3;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.asset-link:hover {
+  text-decoration: underline;
+}
+
+/* ---- EMPTY STATE ---- */
+.empty-message {
+  color: var(--lwc-colorTextWeak, #706e6b);
+  padding: 2rem 1rem !important;
+  font-style: italic;
+}
+
+/* ---- PAGINATION FOOTER ---- */
+.pagination-footer {
+  background: #f3f2f2;
+  border-top: 2px solid var(--lwc-colorBorder, #dddbda);
+}
+
+.page-indicator {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--lwc-colorTextDefault, #181818);
+  line-height: 32px;
+  padding: 0 0.75rem;
+}
+
+/* ---- ACTION BAR (Sprint 2+) ---- */
+.action-bar {
+  background: var(--lwc-colorBackground, #ffffff);
+  border-top: 1px solid var(--lwc-colorBorder, #dddbda);
+}
+
+/* ---- ACTION ROW (in-toolbar actions, visible when items selected) ---- */
+.action-row {
+  background: #eef6ff;
+  border-bottom: 1px solid var(--lwc-colorBorder, #dddbda);
+}
+
+/* ---- SPINNER OVERLAY ---- */
+.spinner-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.7);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---- PLACEHOLDER CONTENT (Sprint 2+ tabs) ---- */
+.placeholder-content {
+  padding: 3rem 1rem;
+}
+
+.placeholder-content p {
+  color: var(--lwc-colorTextWeak, #706e6b);
+}
+
+/* ---- CARD STYLING (for future summary cards) ---- */
+.console-card {
+  background: var(--lwc-colorBackground, #ffffff);
+  border: 1px solid var(--lwc-colorBorder, #dddbda);
+  border-radius: var(--lwc-borderRadiusMedium, 0.25rem);
+  padding: 0.75rem 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+  transition: box-shadow 0.15s ease-in-out;
+}
+
+.console-card:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+}
+
+/* ---- PICKER LABELS (above comboboxes) ---- */
+.picker-label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--lwc-colorTextLabel, #444444);
+  margin-bottom: 0.125rem;
+}
+
+/* ---- TARGET COUNT BADGE ---- */
+.target-count-badge {
+  display: inline-block;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #0176d3;
+  background: #e7f2ff;
+  border-radius: var(--lwc-borderRadiusMedium, 0.25rem);
+  padding: 0.25rem 0.625rem;
+  line-height: 1.4;
+}
+
+/* ---- CHECKBOX COLUMN ---- */
+.checkbox-column {
+  width: 2.5rem;
+  text-align: center;
+}
+
+/* ---- SELECTION COUNT ---- */
+.selection-count {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--lwc-colorTextDefault, #181818);
+  white-space: nowrap;
+}
+
+/* ---- TARGET PICKER (in action bar) ---- */
+.target-picker {
+  min-width: 160px;
+  max-width: 220px;
+}
+
+/* ---- OUTCOME PICKER (Targets tab filter) ---- */
+.outcome-picker {
+  min-width: 140px;
+  max-width: 200px;
+}
+
+/* ---- EDITABLE COMBOBOX (constrained width in table cells) ---- */
+.editable-combobox {
+  max-width: 150px;
+}
+
+/* ---- EDITABLE NUMBER INPUT (Target Performance tab) ---- */
+.editable-number {
+  max-width: 120px;
+  --slds-c-input-spacing-block-start: 0;
+  --slds-c-input-spacing-block-end: 0;
+}
+
+/* ---- SNAPSHOT CONTROLS ---- */
+.snapshot-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.snapshot-picker {
+  min-width: 200px;
+  max-width: 320px;
+}
+
+/* ---- INLINE EDIT CELL STYLING ---- */
+.editable-cell:hover {
+  background: #f5f9ff;
+  cursor: pointer;
+}
+
+.editable-cell.modified {
+  background: #fffde7;
+  border-left: 3px solid #f9a825;
+}
+
+/* ---- READ-ONLY ROW (Achieved targets — Sprint 2+) ---- */
+.readonly-row {
+  opacity: 0.85;
+}
+
+/* ---- FOOTER TOTALS (Sprint 2+ target plan tab) ---- */
+tfoot tr {
+  background: #f3f2f2;
+}
+
+tfoot td,
+tfoot th {
+  color: #181818 !important;
+  font-weight: 600;
+  border-top: 2px solid #dddbda;
+}
+
+tfoot tr td:first-child {
+  background: #f3f2f2;
+  font-weight: 700;
+  color: #000;
+}
+
+/* ---- SUCCESS ROW (Sprint 2+ totals) ---- */
+.slds-theme_success td,
+.slds-theme_success th {
+  background: #e6f4ea !important;
+  color: #145a32 !important;
+  font-weight: 700;
+}
+
+/* ---- CONFIRMATION MODAL (Sprint 2+) ---- */
+.modal-backdrop {
+  z-index: 9001;
+}
+
+.modal-container {
+  z-index: 9002;
+}
+
+/* ==================================================================
+ * SPRINT 3 CSS ADDITIONS
+ * ================================================================== */
+
+/* ---- US-012: CONSISTENT ROW HEIGHT ---- */
+/* Match the compact Targets-tab row height across all tabs */
+.slds-table tbody td {
+  vertical-align: middle;
+  line-height: 1.2;
+  padding-top: 0.25rem !important;
+  padding-bottom: 0.25rem !important;
+}
+
+/* Targets tab has no input components so rows are naturally shorter.
+   Set explicit height to match the Assets / Target Performance tables
+   whose lightning-combobox / lightning-input elements dictate row height. */
+.targets-table .slds-table tbody td {
+  height: 2.25rem;
+}
+
+/* Collapse internal padding on ALL inputs/comboboxes inside table cells */
+.slds-table td lightning-combobox,
+.slds-table td lightning-input {
+  --slds-c-input-spacing-block-start: 0;
+  --slds-c-input-spacing-block-end: 0;
+}
+
+.slds-table td lightning-combobox {
+  --slds-c-combobox-spacing-block-start: 0;
+  --slds-c-combobox-spacing-block-end: 0;
+}
+
+/* ---- US-013: STICKY COLUMN HEADERS ---- */
+.slds-table thead {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+}
+
+.slds-table thead th {
+  background: var(--lwc-colorBackground, #ffffff);
+}
+
+.slds-table thead .sticky-column {
+  z-index: 4;
+}
+
+.slds-table thead tr {
+  box-shadow: 0 1px 0 0 var(--lwc-colorBorder, #dddbda);
+}
+
+/* ---- US-014: MULTI-FORECAST LINKS ---- */
+.forecast-cell {
+  white-space: normal;
+}
+
+.forecast-row {
+  padding: 0.125rem 0;
+}
+
+.forecast-link {
+  white-space: nowrap;
+}
+
+/* ---- US-018: ALL TIME LABEL ---- */
+.all-time-label {
+  display: inline-block;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--lwc-colorTextDefault, #181818);
+  padding: 0.375rem 0.5rem;
+  line-height: 1.875rem;
+}

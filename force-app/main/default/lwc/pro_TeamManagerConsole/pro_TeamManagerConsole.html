@@ -1,0 +1,137 @@
+<template>
+    <lightning-card title="Update Teams Manually" icon-name="standard:people">
+        <div class="slds-p-around_medium tmc-container">
+            <template if:true={isConfigScreen}>
+                <section class="tmc-section">
+                    <h2 class="tmc-section-title">Step 1 — Choose mode and user</h2>
+                    <div class="slds-m-bottom_medium">
+                        <lightning-combobox name="mode" label="Mode" value={mode} options={modeOptions} onchange={handleModeChange}></lightning-combobox>
+                    </div>
+
+                    <template if:true={isAddMode}>
+                        <div class="slds-m-bottom_medium">
+                            <c-pro-user-lookup label="User to add" placeholder="Type to search users…" onvalueselected={handleUserAddSelected}></c-pro-user-lookup>
+                        </div>
+                        <div class="slds-m-bottom_medium">
+                            <lightning-checkbox-group name="roles" label="Role(s) to update" value={selectedRoles} options={roleOptions} onchange={handleRolesChange}></lightning-checkbox-group>
+                        </div>
+                        <p class="slds-text-body_small slds-text-color_weak slds-m-bottom_small">Select a user and one or more roles, then continue to pick which teams to update.</p>
+                        <lightning-button label="Continue — Select teams to update" variant="brand" onclick={handleGoToTeamSelection} disabled={disableSelectTeamsButton}></lightning-button>
+                    </template>
+
+                    <template if:false={isAddMode}>
+                        <div class="slds-m-bottom_medium">
+                            <c-pro-user-lookup label="Find (user to replace)" placeholder="Type to search users…" onvalueselected={handleReplaceeSelected}></c-pro-user-lookup>
+                        </div>
+                        <div class="slds-m-bottom_medium">
+                            <c-pro-user-lookup label="Replace with" placeholder="Type to search users…" onvalueselected={handleReplacerSelected}></c-pro-user-lookup>
+                        </div>
+                        <div class="slds-m-bottom_medium">
+                            <lightning-checkbox-group name="rolesReplace" label="Role(s) to update" value={selectedRoles} options={roleOptions} onchange={handleRolesChange}></lightning-checkbox-group>
+                        </div>
+                        <p class="slds-text-body_small slds-text-color_weak slds-m-bottom_small">We'll find all teams where the first user is assigned; you choose which to update with the second user.</p>
+                        <lightning-button label="Continue — Display teams to update" variant="brand" onclick={handleDisplayTeamsToUpdate} disabled={disableDisplayTeamsButton}></lightning-button>
+                    </template>
+                </section>
+            </template>
+
+            <template if:true={isTeamsScreen}>
+                <section class="tmc-section">
+                    <h2 class="tmc-section-title">Step 2 — Select teams and confirm</h2>
+                    <div class="tmc-search-row slds-m-bottom_medium">
+                        <div class="tmc-search-field">
+                            <lightning-combobox name="teamType" label="Team type" value={teamType} options={teamTypeOptions} onchange={handleTeamTypeChange}></lightning-combobox>
+                        </div>
+                        <div class="tmc-search-field">
+                            <lightning-input type="search" label="Search" placeholder="Leave blank for all, or type to filter…" value={searchTerm} onchange={handleSearchTermChange} oninput={handleSearchTermChange}></lightning-input>
+                        </div>
+                        <div class="tmc-search-actions">
+                            <lightning-button label="Search" variant="brand" onclick={handleSearch} title="Run search for the selected team type"></lightning-button>
+                        </div>
+                    </div>
+
+                    <template if:true={hasSearchResults}>
+                        <div class="tmc-results-row slds-grid slds-gutters slds-m-bottom_medium">
+                            <div class="slds-col slds-grow">
+                                <div class="tmc-results-header">
+                                    <h3 class="tmc-subtitle">Search results</h3>
+                                    <p class="slds-text-body_small slds-text-color_weak">Select a row, then click &quot;Add to update list&quot;. Optionally check current team on the right.</p>
+                                </div>
+                                <lightning-datatable key-field="Id" data={searchResultsForTable} columns={searchColumns} max-row-selection="1" onrowselection={handleSearchRowSelect} class="tmc-datatable"></lightning-datatable>
+                                <lightning-button label="Add to update list" variant="neutral" onclick={handleAddToUpdateList} class="slds-m-top_small" disabled={disableAddToList} title="Add the selected row to the list below"></lightning-button>
+                            </div>
+                            <template if:true={hasSelectedSearchRow}>
+                                <div class="slds-col slds-size_1-of-3 tmc-role-col">
+                                    <div class="role-panel">
+                                        <h4 class="role-panel-title">Current team (selected record)</h4>
+                                        <template if:true={selectedRecordRoleAssignments.length}>
+                                            <ul class="role-list" role="list">
+                                                <template for:each={selectedRecordRoleAssignments} for:item="ra">
+                                                    <li key={ra.key} class="role-list-item">{ra.roleName}: <span class="role-list-user">{ra.userName}</span></li>
+                                                </template>
+                                            </ul>
+                                        </template>
+                                        <template if:false={selectedRecordRoleAssignments.length}>
+                                            <p class="slds-text-body_small slds-text-color_weak">Select a row in the table to see who holds each role.</p>
+                                        </template>
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
+                    </template>
+                    <template if:true={showSearchEmptyState}>
+                        <div class="tmc-empty-state slds-m-bottom_medium" role="status">
+                            <p class="slds-text-body_regular">No results found.</p>
+                            <p class="slds-text-body_small slds-text-color_weak slds-m-top_xx-small">Try a different search term, or leave the search blank to see all records. If you expect data, check object access and sharing.</p>
+                        </div>
+                    </template>
+
+                    <div class="tmc-section-block slds-m-top_medium">
+                        <h3 class="tmc-subtitle">Teams to update</h3>
+                        <p class="slds-text-body_small slds-text-color_weak slds-m-bottom_small">Items you added from search results. Remove any you don’t want to change.</p>
+                        <template if:true={hasTeamsToUpdate}>
+                            <lightning-datatable key-field="Id" data={teamsToUpdateTable} columns={teamsToUpdateColumns} onrowaction={handleRemoveRow} class="tmc-datatable"></lightning-datatable>
+                        </template>
+                        <template if:false={hasTeamsToUpdate}>
+                            <p class="slds-text-body_small slds-text-color_weak tmc-empty-inline">No teams in list yet. Use search above and &quot;Add to update list&quot;.</p>
+                        </template>
+                    </div>
+
+                    <div class="update-config-summary slds-m-top_medium">
+                        <h3 class="tmc-subtitle">Update Configurations</h3>
+                        <dl class="summary-list">
+                            <dt class="summary-term">{summaryUserLabel}</dt>
+                            <dd class="summary-value">{summaryUserName}</dd>
+                            <dt class="summary-term">Roles</dt>
+                            <dd class="summary-value">{summaryRolesText}</dd>
+                            <template if:true={showSummaryTeamsIncludeLine}>
+                                <dt class="summary-term summary-teams-include-label">{summaryTeamsIncludeLabel}</dt>
+                                <dd class="summary-value summary-teams-include-spacer"></dd>
+                            </template>
+                            <dt class="summary-term">Countries</dt>
+                            <dd class="summary-value">{summaryCountryNamesText}</dd>
+                            <dt class="summary-term">Airlines</dt>
+                            <dd class="summary-value">{summaryAirlineNamesText}</dd>
+                            <dt class="summary-term">Deals</dt>
+                            <dd class="summary-value">{summaryDealNamesText}</dd>
+                        </dl>
+                    </div>
+
+                    <div class="tmc-actions slds-m-top_large">
+                        <lightning-button label="Back" variant="neutral" onclick={handleBackToConfig} class="slds-m-right_small"></lightning-button>
+                        <lightning-button label="Update teams" variant="brand" onclick={handleUpdateTeams} disabled={disableUpdateButton} title="Apply changes to all teams in the list"></lightning-button>
+                    </div>
+                </section>
+            </template>
+
+            <template if:true={messageText}>
+                <div class={messageClass} role="alert">{messageText}</div>
+            </template>
+            <template if:true={isLoading}>
+                <div class="tmc-loading" role="status" aria-live="polite">
+                    <lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>

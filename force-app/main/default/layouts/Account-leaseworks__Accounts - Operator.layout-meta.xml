@@ -6,10 +6,6 @@
     <excludeButtons>CreateCallList</excludeButtons>
     <excludeButtons>CreatePartnerChannelQuickAction</excludeButtons>
     <excludeButtons>CreateSurveyInvitation</excludeButtons>
-    <excludeButtons>DataDotComAccountInsights</excludeButtons>
-    <excludeButtons>DataDotComClean</excludeButtons>
-    <excludeButtons>DataDotComCompanyHierarchy</excludeButtons>
-    <excludeButtons>OpenSlackRecordChannel</excludeButtons>
     <excludeButtons>PartnerScorecard</excludeButtons>
     <excludeButtons>XClean</excludeButtons>
     <layoutSections>
@@ -130,6 +126,10 @@
                 <behavior>Edit</behavior>
                 <field>cap_Other_Lending_Target__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Active_Contracts_Total_Outstanding__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -186,6 +186,33 @@
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
+    </layoutSections>
+    <layoutSections>
+        <customLabel>true</customLabel>
+        <detailHeading>true</detailHeading>
+        <editHeading>true</editHeading>
+        <label>Payment on Account</label>
+        <layoutColumns>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>leaseworks__Payments_on_Account__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>leaseworks__Payment_On_Account_Balance__c</field>
+            </layoutItems>
+        </layoutColumns>
+        <layoutColumns>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>leaseworks__Amount_Applied__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>leaseworks__Amount_Refunded__c</field>
+            </layoutItems>
+        </layoutColumns>
+        <style>TwoColumnsLeftToRight</style>
     </layoutSections>
     <layoutSections>
         <customLabel>true</customLabel>
@@ -258,6 +285,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>GCC_Comments__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Watchlilst_Rating_Comments__c</field>
             </layoutItems>
         </layoutColumns>
         <style>OneColumn</style>
@@ -409,6 +440,9 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>leaseworks__Street__c</fields>
+        <fields>leaseworks__State_Province__c</fields>
+        <fields>leaseworks__Zip_Postal_Code__c</fields>
         <relatedList>leaseworks__Addresses__c.leaseworks__Account__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -482,9 +516,21 @@
         <fields>leaseworks__Remaining_Lease_Term_Mos__c</fields>
         <fields>leaseworks__Current_Rent_New__c</fields>
         <fields>leaseworks__Lease_Type_Status__c</fields>
+        <fields>leaseworks__Total_Outstanding_Balance_Num__c</fields>
         <relatedList>leaseworks__Lease__c.leaseworks__Lessee_New__c</relatedList>
         <sortField>leaseworks__Lease_End_Date_New__c</sortField>
         <sortOrder>Asc</sortOrder>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>leaseworks__Balance_Available__c</fields>
+        <fields>leaseworks__Bank_Account__c</fields>
+        <fields>leaseworks__Cash_Unapplied_From__c</fields>
+        <fields>leaseworks__Payment_on_Account_Amount__c</fields>
+        <fields>leaseworks__Payment_on_Account_Amount_Formula__c</fields>
+        <fields>leaseworks__Status__c</fields>
+        <fields>leaseworks__Lease__c</fields>
+        <relatedList>leaseworks__Payment_on_Account_Line__c.leaseworks__Operator_New__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>CONTACT.FULL_NAME</fields>
@@ -555,6 +601,14 @@
         <fields>leaseworks__TSN__c</fields>
         <fields>leaseworks__CSN__c</fields>
         <relatedList>leaseworks__Aircraft__c.pro_Sold_to_External__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>Status__c</fields>
+        <fields>Review_Date__c</fields>
+        <relatedList>CAP_Credit_Papers__c.Account__c</relatedList>
+        <sortField>Review_Date__c</sortField>
+        <sortOrder>Desc</sortOrder>
     </relatedLists>
     <relatedObjects>ParentId</relatedObjects>
     <showEmailCheckbox>false</showEmailCheckbox>

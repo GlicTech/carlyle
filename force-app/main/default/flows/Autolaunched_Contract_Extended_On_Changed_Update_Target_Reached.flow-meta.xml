@@ -26,7 +26,7 @@
             <label>Yes - Extended On Date Cleared</label>
         </rules>
     </decisions>
-    <description>When a Contract&#39;s Extended On date gets changed, this flow updates the &#39;Closed - Contract Extended&#39; Target record with a target based on the new Extended On date.</description>
+    <description>When a Contract&apos;s Extended On date gets changed, this flow updates the &apos;Closed - Contract Extended&apos; Target record with a target based on the new Extended On date.</description>
     <environments>Default</environments>
     <formulas>
         <name>f_ExtendedOnPlusAYear</name>
@@ -127,17 +127,27 @@
                 <stringValue>Achieved - Contract Extended</stringValue>
             </value>
         </filters>
+        <filters>
+            <field>pro_Contract__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>varTriggeringContract.Id</elementReference>
+            </value>
+        </filters>
         <inputAssignments>
             <field>pro_Contract_Extended__c</field>
             <value>
                 <booleanValue>false</booleanValue>
             </value>
         </inputAssignments>
+        <inputAssignments>
+            <field>pro_Target_Reached__c</field>
+        </inputAssignments>
         <object>pro_Asset_Target_Audit__c</object>
     </recordUpdates>
     <recordUpdates>
         <name>Update_Target_Audit_Record_s_Target_Reached_Forecast</name>
-        <label>Update Target Audit Record&#39;s Target Reached &amp; Forecast</label>
+        <label>Update Target Audit Record&apos;s Target Reached &amp; Forecast</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <filterLogic>and</filterLogic>

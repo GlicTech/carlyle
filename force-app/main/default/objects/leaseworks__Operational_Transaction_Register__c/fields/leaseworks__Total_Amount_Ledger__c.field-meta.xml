@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Total_Amount_Ledger__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Total transaction amount in USD, converted using the exchange rate. Same if already in USD.</description>
+    <externalId>false</externalId>
+    <formula>IF(
+    NOT(ISBLANK(leaseworks__Invoice__c)),
+    leaseworks__Invoice__r.leaseworks__Total_Invoiced_Amount_Ledger__c,
+    IF(
+        NOT(ISBLANK(leaseworks__Payments_Credits__c)),
+        leaseworks__Payments_Credits__r.leaseworks__Amount_Applied_to_Invoice_Ledger__c,
+        leaseworks__Total_Amount_New__c
+    )
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Total transaction amount in USD, converted using the exchange rate. Same if already in USD.</inlineHelpText>
+    <label>Total Amount (Ledger)</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

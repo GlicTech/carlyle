@@ -4,7 +4,7 @@
         <fullName>leaseworks__TxnProspectSetName</fullName>
         <description>Set name of Txn Prospect on save.</description>
         <field>Name</field>
-        <formula>leaseworks__Transaction__r.Name + &#39; - &#39; + IF(TEXT(leaseworks__Prospect_Type__c)==&#39;Lessor&#39;,  LEFT(leaseworks__Lessor__r.Name,65), LEFT(leaseworks__Other_Party__c,65))</formula>
+        <formula>leaseworks__Transaction__r.Name + &apos; - &apos; + IF(TEXT(leaseworks__Prospect_Type__c)==&apos;Lessor&apos;,  LEFT(leaseworks__Lessor__r.Name,65), LEFT(leaseworks__Other_Party__c,65))</formula>
         <name>TxnProspectSetName</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>

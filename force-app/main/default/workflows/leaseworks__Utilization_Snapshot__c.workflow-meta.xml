@@ -13,7 +13,7 @@
     <fieldUpdates>
         <fullName>leaseworks__Utilization_Snapshot_Name_Override</fullName>
         <field>Name</field>
-        <formula>leaseworks__Asset__r.Name +&#39;_&#39;+ Text(leaseworks__Snapshot_Date__c) +&#39;_&#39; + leaseworks__Snapshot_Status_F__c</formula>
+        <formula>leaseworks__Asset__r.Name +&apos;_&apos;+ Text(leaseworks__Snapshot_Date__c) +&apos;_&apos; + leaseworks__Snapshot_Status_F__c</formula>
         <name>Utilization Snapshot Name Override</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
@@ -26,7 +26,7 @@
             <name>leaseworks__Utilization_Snapshot_Name_Override</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>Asset _ SnapshotDate _ Status</description>
         <formula>!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c</formula>
         <triggerType>onAllChanges</triggerType>

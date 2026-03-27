@@ -3,7 +3,7 @@
     <fullName>leaseworks__Contractual_Redelivery_Date_Empty</fullName>
     <active>true</active>
     <description>The contractual re-delivery date cannot be empty</description>
-    <errorConditionFormula>IF( ISPICKVAL( leaseworks__Redelivery_Terms__c , &#39;Redelivery Date Driven&#39;)&amp;&amp; ( ISNULL( leaseworks__Contractual_Redelivery_Date__c)) ,True,False)</errorConditionFormula>
+    <errorConditionFormula>IF( ISPICKVAL( leaseworks__Redelivery_Terms__c , &apos;Redelivery Date Driven&apos;)&amp;&amp; ( ISNULL( leaseworks__Contractual_Redelivery_Date__c)) ,True,False)</errorConditionFormula>
     <errorDisplayField>leaseworks__Contractual_Redelivery_Date__c</errorDisplayField>
     <errorMessage>Contractual Re-delivery Date is required when Re-delivery Term is marked to Redelivery Date Driven</errorMessage>
 </ValidationRule>

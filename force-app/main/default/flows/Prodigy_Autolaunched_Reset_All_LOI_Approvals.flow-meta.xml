@@ -73,6 +73,27 @@
         </connector>
     </start>
     <status>Active</status>
+    <transforms>
+        <name>Create_Deal_Team_Id_Collection</name>
+        <label>Create Deal Team Id Collection</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Reset_LOI_Approval</targetReference>
+        </connector>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>Get_All_Deal_Teams[$EachItem].Id</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
     <variables>
         <name>dealId</name>
         <dataType>String</dataType>

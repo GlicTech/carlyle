@@ -44,6 +44,9 @@
                 <stringValue>&lt;p&gt;There was an error in processing your request:&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;{!$Flow.FaultMessage}&lt;/p&gt;</stringValue>
             </value>
         </inputParameters>
+        <nameSegment>emailSimple</nameSegment>
+        <offset>0</offset>
+        <versionString>1.0.1</versionString>
     </actionCalls>
     <apiVersion>64.0</apiVersion>
     <decisions>
@@ -69,13 +72,35 @@
             <label>Yes - Invalid</label>
         </rules>
     </decisions>
+    <decisions>
+        <name>Was_Existing_Config_Record_Found</name>
+        <label>Was Existing Config Record Found?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Config Record Exists - End Flow</defaultConnectorLabel>
+        <rules>
+            <name>No_Existing_Config_Record</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Existing_Print_Options_Config_Record.Id</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Invoice_Print_Option_Default_CMDT_Record</targetReference>
+            </connector>
+            <label>No Existing Config Record</label>
+        </rules>
+    </decisions>
     <description>When an Account is created, this flow retrieves print options defaults from CMDT, sets these values to a Print Options Config file, and links this file to the new Account.</description>
     <environments>Default</environments>
     <formulas>
-        <description>Created a Name that is a concatenation of &#39;Print Options - &#39; plus the Unique Lease Id</description>
+        <description>Created a Name that is a concatenation of &apos;Print Options - &apos; plus the Unique Lease Id</description>
         <name>f_ConcatenatedName</name>
         <dataType>String</dataType>
-        <expression>&#39;Print Options - &#39; + {!$Record.Name}</expression>
+        <expression>LEFT(&apos;Print Options - &apos; &amp; {!$Record.Name}, 80)</expression>
     </formulas>
     <interviewLabel>Prodigy - Account - Initialize Print Options Config On Create {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Prodigy - Account - Initialize Print Options Config On Create</label>
@@ -165,6 +190,27 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordCreates>
     <recordLookups>
+        <name>Get_Existing_Print_Options_Config_Record</name>
+        <label>Get Existing Print Options Config Record</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Was_Existing_Config_Record_Found</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>pro_Account__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>pro_Print_Options_Config__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
         <name>Get_Invoice_Print_Option_Default_CMDT_Record</name>
         <label>Get Invoice Print Option Default CMDT Record</label>
         <locationX>0</locationX>
@@ -181,7 +227,7 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Get_Invoice_Print_Option_Default_CMDT_Record</targetReference>
+            <targetReference>Get_Existing_Print_Options_Config_Record</targetReference>
         </connector>
         <object>Account</object>
         <recordTriggerType>Create</recordTriggerType>

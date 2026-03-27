@@ -50,7 +50,7 @@
     <formulas>
         <name>f_AssetNameStatusAndLineBreak</name>
         <dataType>String</dataType>
-        <expression>IF({!Loop_AiDs.leaseworks__Serial_Number__c} != Null, {!Loop_AiDs.leaseworks__Serial_Number__c} + &#39; - &#39; + TEXT({!Loop_AiDs.leaseworks__Status__c}) + &#39;, &#39; + BR(), Null)</expression>
+        <expression>IF({!Loop_AiDs.leaseworks__Serial_Number__c} != Null, {!Loop_AiDs.leaseworks__Serial_Number__c} + &apos; - &apos; + TEXT({!Loop_AiDs.leaseworks__Status__c}) + &apos;, &apos; + BR(), Null)</expression>
     </formulas>
     <interviewLabel>Prodigy - AiD Concatenate Names and Statuses In Report Field {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Prodigy - AiD Concatenate Names and Statuses In Report Field</label>

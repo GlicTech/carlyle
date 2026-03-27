@@ -31,14 +31,14 @@ IMAGE(
     ),
 
 if(
-AND(leaseworks__Projection_Status__c == &quot;&quot;, leaseworks__Event_Type__c ==&#39;LLP Replacement&#39;), 
-   &#39;LLP&#39;,
+AND(leaseworks__Projection_Status__c == &quot;&quot;, leaseworks__Event_Type__c ==&apos;LLP Replacement&apos;), 
+   &apos;LLP&apos;,
 if(
 leaseworks__Projection_Status__c == &quot;&quot;,
 &quot;&quot;,
 
 if(
- OR(ISBLANK(leaseworks__Maintenance_Program_Event__c) , ISNULL(leaseworks__Maintenance_Program_Event__c)) , &#39;&#39; , &#39;LLP&#39;
+ OR(ISBLANK(leaseworks__Maintenance_Program_Event__c) , ISNULL(leaseworks__Maintenance_Program_Event__c)) , &apos;&apos; , &apos;LLP&apos;
 ))))))</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Status</label>

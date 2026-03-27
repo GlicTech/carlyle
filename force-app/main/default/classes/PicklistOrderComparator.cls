@@ -32,7 +32,7 @@ public with sharing class PicklistOrderComparator {
     }
 
     // Invocable method allows this Apex code to be called from Flows or Process Builder
-    @InvocableMethod(label='Compare Picklist Order')
+    @InvocableMethod(label='Check if Picklist Value Comes After Benchmark')
     public static List<Response> compareOrder(List<Request> requests) {
 
         List<Response> results = new List<Response>(); // Prepare list of responses

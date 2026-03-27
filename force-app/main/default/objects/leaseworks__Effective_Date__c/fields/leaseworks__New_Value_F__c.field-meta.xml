@@ -4,14 +4,14 @@
     <deprecated>false</deprecated>
     <description>This formula field helps in displayig the data for different fields in the desired format</description>
     <externalId>false</externalId>
-    <formula>if(leaseworks__Field_Type__c == &quot;reference&quot;, HYPERLINK(&#39;/&#39; &amp; leaseworks__Y_Hidden_New_Record_Id__c, leaseworks__Y_Hidden_New_Value__c,&#39;_blank&#39;),
-if(leaseworks__Field_Type__c == &quot;url&quot;, HYPERLINK(leaseworks__Y_Hidden_New_Value__c, &quot;Click Here&quot;,&#39;_blank&#39;),
-if(leaseworks__Field_Type__c == &quot;email&quot;, HYPERLINK(&#39;mailto:&#39; &amp; leaseworks__Y_Hidden_New_Value__c, leaseworks__Y_Hidden_New_Value__c,&#39;_blank&#39;),
-if(leaseworks__Field_Type__c == &quot;phone&quot;, HYPERLINK(&#39;tel:&#39; &amp; leaseworks__Y_Hidden_New_Value__c, leaseworks__Y_Hidden_New_Value__c,&#39;_blank&#39;),
+    <formula>if(leaseworks__Field_Type__c == &quot;reference&quot;, HYPERLINK(&apos;/&apos; &amp; leaseworks__Y_Hidden_New_Record_Id__c, leaseworks__Y_Hidden_New_Value__c,&apos;_blank&apos;),
+if(leaseworks__Field_Type__c == &quot;url&quot;, HYPERLINK(leaseworks__Y_Hidden_New_Value__c, &quot;Click Here&quot;,&apos;_blank&apos;),
+if(leaseworks__Field_Type__c == &quot;email&quot;, HYPERLINK(&apos;mailto:&apos; &amp; leaseworks__Y_Hidden_New_Value__c, leaseworks__Y_Hidden_New_Value__c,&apos;_blank&apos;),
+if(leaseworks__Field_Type__c == &quot;phone&quot;, HYPERLINK(&apos;tel:&apos; &amp; leaseworks__Y_Hidden_New_Value__c, leaseworks__Y_Hidden_New_Value__c,&apos;_blank&apos;),
 if(leaseworks__Field_Type__c == &quot;date&quot;, TEXT(DATEVALUE(LEFT(leaseworks__Y_Hidden_New_Value__c, 10))),
 if(leaseworks__Field_Type__c == &quot;datetime&quot;, TEXT(DATETIMEVALUE(leaseworks__Y_Hidden_New_Value__c)),
 if(leaseworks__Field_Type__c == &quot;currency&quot;,
-	IF(ISNULL(leaseworks__Y_Hidden_New_Value__c ), &#39;&#39;, &#39;$&#39; + 
+	IF(ISNULL(leaseworks__Y_Hidden_New_Value__c ), &apos;&apos;, &apos;$&apos; + 
 		IF(VALUE(leaseworks__Y_Hidden_New_Value__c) &gt;= 1000000, 
 			TEXT(FLOOR(VALUE(leaseworks__Y_Hidden_New_Value__c) / 1000000)) &amp; &quot;,&quot;, &quot;&quot;
 		) 

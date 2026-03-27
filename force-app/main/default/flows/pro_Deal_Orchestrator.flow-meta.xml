@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>62.0</apiVersion>
+    <description>Orchestrator for Deal record triggers. When Deal Status changes to Closed - Won, delegates Post-Closing checklist generation to the pro_Auto_Generate_PostClosing subflow.</description>
+    <label>Deal Orchestrator</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>176</locationX>
+        <locationY>0</locationY>
+        <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>leaseworks__Deal_Status__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Closed - Won</stringValue>
+            </value>
+        </filters>
+        <object>leaseworks__Marketing_Activity__c</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <scheduledPaths>
+            <connector>
+                <targetReference>Call_Auto_Generate_PostClosing</targetReference>
+            </connector>
+            <pathType>AsyncAfterCommit</pathType>
+        </scheduledPaths>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <subflows>
+        <name>Call_Auto_Generate_PostClosing</name>
+        <label>Call Auto Generate Post-Closing</label>
+        <locationX>176</locationX>
+        <locationY>134</locationY>
+        <flowName>pro_Auto_Generate_PostClosing</flowName>
+        <inputAssignments>
+            <name>varDealId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
+</Flow>

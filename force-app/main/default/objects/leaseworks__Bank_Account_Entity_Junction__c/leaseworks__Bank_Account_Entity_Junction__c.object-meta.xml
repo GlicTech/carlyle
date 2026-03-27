@@ -144,7 +144,14 @@
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <deprecated>false</deprecated>
-    <description>Junction Object for Bank Account and Entity Codes</description>
+    <description>Junction Object for Bank Account and Entity Codes
+This is a junction object to define the bank accounts relation to the entities. Once records are created within this object, the &apos;Entities&apos; field on bank accounts will automatically populate with the associated entities
+Population Requirement Details: Conditionally Required if accounting is turned ON
+[MODULE: Finance]
+[LOAD: Optional]
+[PREREQUISITES: Bank Account, Entity]
+[REPLACEMENT OBJECT API: NA]
+[COMMENTS: NA]</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -162,7 +169,7 @@
         <type>Text</type>
     </nameField>
     <pluralLabel>Entity Bank Relations</pluralLabel>
-    <searchLayouts />
+    <searchLayouts></searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

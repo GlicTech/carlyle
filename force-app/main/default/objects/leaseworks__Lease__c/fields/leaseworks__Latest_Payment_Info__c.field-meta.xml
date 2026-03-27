@@ -3,8 +3,8 @@
     <fullName>leaseworks__Latest_Payment_Info__c</fullName>
     <deprecated>false</deprecated>
     <externalId>false</externalId>
-    <formula>IF( ISBLANK(leaseworks__Latest_Payment_Date__c), &#39;&#39;,
-    &#39;$&#39; +  TEXT(ROUND((leaseworks__Latest_Payment__c/1000), 2)) + &#39;K  paid on &#39; + 
+    <formula>IF( ISBLANK(leaseworks__Latest_Payment_Date__c), &apos;&apos;,
+    &apos;$&apos; +  TEXT(ROUND((leaseworks__Latest_Payment__c/1000), 2)) + &apos;K  paid on &apos; + 
 TEXT(MONTH(leaseworks__Latest_Payment_Date__c))+&quot;/&quot; +TEXT(DAY(leaseworks__Latest_Payment_Date__c))+&quot;/&quot; +TEXT(YEAR(leaseworks__Latest_Payment_Date__c))
   )</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>

@@ -3,10 +3,10 @@
     <fullName>leaseworks__Reference__c</fullName>
     <deprecated>false</deprecated>
     <externalId>false</externalId>
-    <formula>IF(leaseworks__Type__c == &#39;MI&#39;,  HYPERLINK(&#39;/&#39; &amp; leaseworks__Market_Intelligence__c,  leaseworks__Market_Intelligence__r.Name + &#39; - Remarket&#39; , &#39;_blank&#39;),
-IF(leaseworks__Type__c == &#39;AIT&#39;, HYPERLINK(&#39;/&#39; &amp; leaseworks__Aircraft_In_Transaction__c, leaseworks__Aircraft_In_Transaction__r.Name + &#39; - Acquisition&#39;, &#39;_blank&#39;), 
+    <formula>IF(leaseworks__Type__c == &apos;MI&apos;,  HYPERLINK(&apos;/&apos; &amp; leaseworks__Market_Intelligence__c,  leaseworks__Market_Intelligence__r.Name + &apos; - Remarket&apos; , &apos;_blank&apos;),
+IF(leaseworks__Type__c == &apos;AIT&apos;, HYPERLINK(&apos;/&apos; &amp; leaseworks__Aircraft_In_Transaction__c, leaseworks__Aircraft_In_Transaction__r.Name + &apos; - Acquisition&apos;, &apos;_blank&apos;), 
 
-IF(leaseworks__Type__c == &#39;IL&#39;, HYPERLINK(&quot;/&quot; &amp;  leaseworks__Interaction_Log__r.Id  ,  leaseworks__Interaction_Log__r.Name ), null))
+IF(leaseworks__Type__c == &apos;IL&apos;, HYPERLINK(&quot;/&quot; &amp;  leaseworks__Interaction_Log__r.Id  ,  leaseworks__Interaction_Log__r.Name ), null))
 )</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <inlineHelpText>Reference to the matching Market Intel or Aircraft in Transaction.</inlineHelpText>

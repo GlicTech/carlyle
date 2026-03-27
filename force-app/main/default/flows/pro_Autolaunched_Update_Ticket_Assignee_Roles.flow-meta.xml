@@ -204,10 +204,10 @@
     <description>Whenever a Ticket Assignee record is created or deleted with an Assignee Role populated, this flow runs to update roles on other Assignees and populate lookups to Assignees on the Ticket record.</description>
     <environments>Default</environments>
     <formulas>
-        <description>If the triggering Ticket Assignee&#39;s role is Contract Manager, this returnes the id of the related user. Otherwise, returns the existing value in the Ticket&#39;s Contract Manager field.</description>
+        <description>If the triggering Ticket Assignee&apos;s role is Contract Manager, this returnes the id of the related user. Otherwise, returns the existing value in the Ticket&apos;s Contract Manager field.</description>
         <name>f_ContractManagerNewAssigneeOrExistingTicketAssignee</name>
         <dataType>String</dataType>
-        <expression>IF(INCLUDES({!varTicketAssigneeToCreate.pro_Assignee_Roles__c},  &#39;Contract Manager&#39;) , {!varTicketAssigneeToCreate.pro_Assigned_To__c}, {!varTicketAssigneeToCreate.pro_Ticket__r.pro_Contract_Manager__c})</expression>
+        <expression>IF(INCLUDES({!varTicketAssigneeToCreate.pro_Assignee_Roles__c},  &apos;Contract Manager&apos;) , {!varTicketAssigneeToCreate.pro_Assigned_To__c}, {!varTicketAssigneeToCreate.pro_Ticket__r.pro_Contract_Manager__c})</expression>
     </formulas>
     <formulas>
         <name>f_CurrentContractManagerOrNull</name>
@@ -220,10 +220,10 @@
         <expression>IF({!varClearRA} = True, null, {!varTriggeringTicket.pro_RA__c})</expression>
     </formulas>
     <formulas>
-        <description>If the triggering Ticket Assignee&#39;s role is RA, this returned the id of the related user. Otherwise, returns the existing value in the Ticket&#39;s RA field.</description>
+        <description>If the triggering Ticket Assignee&apos;s role is RA, this returned the id of the related user. Otherwise, returns the existing value in the Ticket&apos;s RA field.</description>
         <name>f_RaNewAssigneeOrExistingTicketAssignee</name>
         <dataType>String</dataType>
-        <expression>IF(INCLUDES({!varTicketAssigneeToCreate.pro_Assignee_Roles__c}, &#39;RA&#39;), {!varTicketAssigneeToCreate.pro_Assigned_To__c}, {!varTicketAssigneeToCreate.pro_Ticket__r.pro_RA__c})</expression>
+        <expression>IF(INCLUDES({!varTicketAssigneeToCreate.pro_Assignee_Roles__c}, &apos;RA&apos;), {!varTicketAssigneeToCreate.pro_Assigned_To__c}, {!varTicketAssigneeToCreate.pro_Ticket__r.pro_RA__c})</expression>
     </formulas>
     <interviewLabel>Autolaunched - Update Ticket Assignee Roles {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Autolaunched - Update Ticket Assignee Roles</label>

@@ -10,7 +10,7 @@
                             <value>leaseworks__Credit_Memo__c.leaseworks__Apply_To_Invoice</value>
                         </valueListItems>
                         <valueListItems>
-                            <value>CustomButton.leaseworks__Credit_Memo__c.Generate_Credit_Note</value>
+                            <value>leaseworks__Credit_Memo__c.Generate_Credit_Note1</value>
                         </valueListItems>
                         <valueListItems>
                             <value>leaseworks__Credit_Memo__c.leaseworks__Cancel_Credit_Memo</value>
@@ -21,10 +21,26 @@
                         <valueListItems>
                             <value>leaseworks__Credit_Memo__c.leaseworks__Convert_to_Payable</value>
                             <visibilityRule>
+                                <booleanFilter>(1 OR 2) AND 3 AND 4</booleanFilter>
                                 <criteria>
                                     <leftValue>{!Record.leaseworks__Status__c}</leftValue>
                                     <operator>EQUAL</operator>
                                     <rightValue>Pending</rightValue>
+                                </criteria>
+                                <criteria>
+                                    <leftValue>{!Record.leaseworks__Status__c}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>Approved</rightValue>
+                                </criteria>
+                                <criteria>
+                                    <leftValue>{!Record.leaseworks__Billing_Currency__c}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>USD</rightValue>
+                                </criteria>
+                                <criteria>
+                                    <leftValue>{!Record.leaseworks__Balance_Available_New__c}</leftValue>
+                                    <operator>GT</operator>
+                                    <rightValue>0</rightValue>
                                 </criteria>
                             </visibilityRule>
                         </valueListItems>
@@ -68,10 +84,10 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
-                    <value>required</value>
+                    <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Amount__c</fieldItem>
-                <identifier>RecordAmount__cField</identifier>
+                <fieldItem>Record.leaseworks__Credit_Memo_Amount_New__c</fieldItem>
+                <identifier>Recordleaseworks_Credit_Memo_Amount_New_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -154,6 +170,16 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Linked_Payable__c</fieldItem>
+                <identifier>Recordleaseworks_Linked_Payable_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.Credit_Memo_Amount_Reported__c</fieldItem>
                 <identifier>RecordCredit_Memo_Amount_Reported__cField</identifier>
             </fieldInstance>
@@ -196,10 +222,10 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
-                    <value>readonly</value>
+                    <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Available_Credit_Memo_Amount_F__c</fieldItem>
-                <identifier>RecordAvailable_Credit_Memo_Amount_F__cField</identifier>
+                <fieldItem>Record.leaseworks__Balance_Available_New__c</fieldItem>
+                <identifier>Recordleaseworks_Balance_Available_New_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -220,6 +246,53 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.leaseworks__Converted_to_Payable__c</fieldItem>
                 <identifier>Recordleaseworks_Converted_to_Payable_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Ledger_Amount__c</fieldItem>
+                <identifier>Recordleaseworks_Ledger_Amount_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Exchange_Rate__c</fieldItem>
+                <identifier>Recordleaseworks_Exchange_Rate_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Billing_Currency__c}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>USD</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Related_Payable_Amount__c</fieldItem>
+                <identifier>Recordleaseworks_Related_Payable_Amount_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>required</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Billing_Currency__c</fieldItem>
+                <identifier>Recordleaseworks_Billing_Currency_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-4c9df5c5-5a54-4b2a-93a4-92b2242ceb4c</name>
@@ -308,16 +381,6 @@
                 <identifier>RecordLease__cField</identifier>
             </fieldInstance>
         </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.OwnerId</fieldItem>
-                <identifier>RecordOwnerIdField</identifier>
-            </fieldInstance>
-        </itemInstances>
         <name>Facet-9c7db41e-3a50-4421-95e9-f944c670673d</name>
         <type>Facet</type>
     </flexiPageRegions>
@@ -336,10 +399,10 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
-                    <value>required</value>
+                    <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Currency__c</fieldItem>
-                <identifier>RecordCurrency__cField</identifier>
+                <fieldItem>Record.OwnerId</fieldItem>
+                <identifier>RecordOwnerIdField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-29b7dbf2-a69c-4205-a476-9f08729ca50d</name>
@@ -377,6 +440,10 @@
                     <value>Facet-f1fb3210-32ce-43ef-9472-f0d641731a0d</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Information</value>
                 </componentInstanceProperties>
@@ -391,6 +458,10 @@
                     <value>Facet-d7d45777-9497-4b62-acdf-9b2adb663166</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Comments</value>
                 </componentInstanceProperties>
@@ -403,6 +474,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-fb8f3475-6c4e-4147-8d6e-aaa00547b7e8</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>true</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -473,6 +548,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-686de277-f1dc-4abe-8bb6-d50b400777b2</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -629,13 +708,22 @@
                             <value>NAME</value>
                         </valueListItems>
                         <valueListItems>
-                            <value>leaseworks__Amount__c</value>
+                            <value>leaseworks__Invoice__c</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>leaseworks__Amount_number__c</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>leaseworks__Payment_Date__c</value>
                         </valueListItems>
                         <valueListItems>
                             <value>leaseworks__Balance_Available__c</value>
                         </valueListItems>
                         <valueListItems>
                             <value>leaseworks__Payment_Status__c</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>leaseworks__Transaction_Currency__c</value>
                         </valueListItems>
                     </valueList>
                 </componentInstanceProperties>
@@ -698,7 +786,7 @@
                             <value>leaseworks__Supplemental_Rent__c</value>
                         </valueListItems>
                         <valueListItems>
-                            <value>leaseworks__Amount__c</value>
+                            <value>leaseworks__Amount_Number__c</value>
                         </valueListItems>
                         <valueListItems>
                             <value>leaseworks__Credit_Memo_P__c</value>

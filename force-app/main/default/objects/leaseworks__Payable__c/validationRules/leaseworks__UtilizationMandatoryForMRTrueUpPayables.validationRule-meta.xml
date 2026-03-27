@@ -2,9 +2,9 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>leaseworks__UtilizationMandatoryForMRTrueUpPayables</fullName>
     <active>true</active>
-    <errorConditionFormula>AND(isPickVal(leaseworks__Payable_Type__c,&#39;MR TrueUp&#39;),
+    <errorConditionFormula>AND(isPickVal(leaseworks__Payable_Type__c,&apos;MR TrueUp&apos;),
 OR(ISNULL(leaseworks__Utilization_Report__c),ISBLANK(leaseworks__Utilization_Report__c)),
-NOT(ISPICKVAL(leaseworks__Status__c ,&#39;Cancelled&#39;)),
-NOT(ISPICKVAL(leaseworks__Status__c , &#39;Declined&#39;)))</errorConditionFormula>
+NOT(ISPICKVAL(leaseworks__Status__c ,&apos;Cancelled&apos;)),
+NOT(ISPICKVAL(leaseworks__Status__c , &apos;Declined&apos;)))</errorConditionFormula>
     <errorMessage>Please select a Utilization to be able to create a refund for the MR TrueUp amount</errorMessage>
 </ValidationRule>

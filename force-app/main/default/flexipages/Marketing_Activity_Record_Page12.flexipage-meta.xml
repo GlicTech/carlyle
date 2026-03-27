@@ -116,16 +116,114 @@
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
+                    <name>actionNames</name>
+                    <valueList>
+                        <valueListItems>
+                            <value>leaseworks__Marketing_Activity__c.pro_Status_Update</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>leaseworks__Marketing_Activity__c.leaseworks__Create_Lease_Asset_Term</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>leaseworks__Marketing_Activity__c.leaseworks__Asset_In_Deal</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>leaseworks__Marketing_Activity__c.pro_Add_Deal_Team_Member</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>leaseworks__Marketing_Activity__c.pro_Approval_Console</value>
+                            <visibilityRule>
+                                <booleanFilter>1 OR 2</booleanFilter>
+                                <criteria>
+                                    <leftValue>{!Record.leaseworks__Deal_Status__c}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>LOI Signed</rightValue>
+                                </criteria>
+                                <criteria>
+                                    <leftValue>{!Record.leaseworks__Deal_Status__c}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>Documentation</rightValue>
+                                </criteria>
+                            </visibilityRule>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>leaseworks__Marketing_Activity__c.pro_Submit_To_Approvers</value>
+                            <visibilityRule>
+                                <booleanFilter>(1 OR 2) AND 3</booleanFilter>
+                                <criteria>
+                                    <leftValue>{!Record.leaseworks__Deal_Status__c}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>LOI Signed</rightValue>
+                                </criteria>
+                                <criteria>
+                                    <leftValue>{!Record.leaseworks__Deal_Status__c}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>Documentation</rightValue>
+                                </criteria>
+                                <criteria>
+                                    <leftValue>{!Record.pro_Approval_Reminder_Count__c}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>0</rightValue>
+                                </criteria>
+                            </visibilityRule>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>leaseworks__Marketing_Activity__c.pro_Remind_Approvers</value>
+                            <visibilityRule>
+                                <booleanFilter>(1 OR 2) AND 3</booleanFilter>
+                                <criteria>
+                                    <leftValue>{!Record.leaseworks__Deal_Status__c}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>LOI Signed</rightValue>
+                                </criteria>
+                                <criteria>
+                                    <leftValue>{!Record.leaseworks__Deal_Status__c}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>Documentation</rightValue>
+                                </criteria>
+                                <criteria>
+                                    <leftValue>{!Record.pro_Approval_Reminder_Count__c}</leftValue>
+                                    <operator>GT</operator>
+                                    <rightValue>0</rightValue>
+                                </criteria>
+                            </visibilityRule>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>leaseworks__Marketing_Activity__c.pro_Create_Tasks</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>leaseworks__Marketing_Activity__c.leaseworks__Update_Portfolio</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>Clone</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>Edit</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>Delete</value>
+                        </valueListItems>
+                    </valueList>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>collapsed</name>
                     <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>enableActionsConfiguration</name>
-                    <value>false</value>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>enableActionsInNative</name>
+                    <value>true</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>hideChatterActions</name>
                     <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>numVisibleActions</name>
+                    <value>6</value>
                 </componentInstanceProperties>
                 <componentName>force:highlightsPanel</componentName>
                 <identifier>force_highlightsPanel</identifier>

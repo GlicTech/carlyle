@@ -27,7 +27,7 @@
         <field>leaseworks__Rent_Due_Amount__c</field>
         <formula>leaseworks__Rent_Rate__c * 
 leaseworks__Escalation_Factor__c *
-IF( TEXT(leaseworks__Stepped_Rent__r.leaseworks__Rent_Period__c)  == &#39;Daily&#39;,  leaseworks__Period_Days__c , 1) * IF(TEXT(leaseworks__Stepped_Rent__r.leaseworks__Rent_Period__c)  == &#39;Daily&#39;, 1, BLANKVALUE(leaseworks__Prorate__c , 1 )) 
+IF( TEXT(leaseworks__Stepped_Rent__r.leaseworks__Rent_Period__c)  == &apos;Daily&apos;,  leaseworks__Period_Days__c , 1) * IF(TEXT(leaseworks__Stepped_Rent__r.leaseworks__Rent_Period__c)  == &apos;Daily&apos;, 1, BLANKVALUE(leaseworks__Prorate__c , 1 )) 
 + BLANKVALUE(leaseworks__Rental_Adjustment_Amount__c, 0)
 + BLANKVALUE(leaseworks__Rental_Credit_Debit__c, 0)</formula>
         <name>SetRentAmountFromLease</name>
@@ -52,7 +52,7 @@ IF( TEXT(leaseworks__Stepped_Rent__r.leaseworks__Rent_Period__c)  == &#39;Daily&
         <fullName>leaseworks__UpdateRentPaidDate</fullName>
         <description>@deprecated-Update Rent Paid Date</description>
         <field>leaseworks__Rent_Paid_Date__c</field>
-        <formula>/*This Field is no more in used. Since datatype is date so returning default value Today&#39;s date*/
+        <formula>/*This Field is no more in used. Since datatype is date so returning default value Today&apos;s date*/
 TODAY()</formula>
         <name>UpdateRentPaidDate</name>
         <notifyAssignee>false</notifyAssignee>
@@ -76,12 +76,12 @@ TODAY()</formula>
         <description>Updates the Rent name using specific format: RENT_MONTH_YEAR</description>
         <field>Name</field>
         <formula>TEXT(YEAR(leaseworks__For_Month_Ending__c )) 
-&amp; &#39;-&#39; &amp; 
-RIGHT(&#39;0&#39; &amp; TEXT(Month(leaseworks__For_Month_Ending__c )), 2) 
-&amp; &#39;-&#39; &amp;
-if( NOT(ISNULL(leaseworks__Sequence__c)) , RIGHT(&#39;00&#39; &amp; TEXT(leaseworks__Sequence__c),3) + if(leaseworks__Y_Hidden_Utilization__c!=null,if(ISPICKVAL(leaseworks__Y_Hidden_Utilization__r.leaseworks__Type__c,&#39;Actual&#39;),&#39;&#39;,&#39;(&#39; + MID(leaseworks__Y_Hidden_Utilization__r.Name,13,3)+&#39;)&#39;),&#39;&#39;) , 
-RIGHT(&#39;00&#39; &amp; TEXT(leaseworks__Period_Since_Lease_Start__c), 3) 
-+ if(leaseworks__Y_Hidden_Utilization__c!=null,if(ISPICKVAL(leaseworks__Y_Hidden_Utilization__r.leaseworks__Type__c,&#39;Actual&#39;),&#39;&#39;,&#39;(&#39; + MID(leaseworks__Y_Hidden_Utilization__r.Name,13,3)+&#39;)&#39;),&#39;&#39;) )</formula>
+&amp; &apos;-&apos; &amp; 
+RIGHT(&apos;0&apos; &amp; TEXT(Month(leaseworks__For_Month_Ending__c )), 2) 
+&amp; &apos;-&apos; &amp;
+if( NOT(ISNULL(leaseworks__Sequence__c)) , RIGHT(&apos;00&apos; &amp; TEXT(leaseworks__Sequence__c),3) + if(leaseworks__Y_Hidden_Utilization__c!=null,if(ISPICKVAL(leaseworks__Y_Hidden_Utilization__r.leaseworks__Type__c,&apos;Actual&apos;),&apos;&apos;,&apos;(&apos; + MID(leaseworks__Y_Hidden_Utilization__r.Name,13,3)+&apos;)&apos;),&apos;&apos;) , 
+RIGHT(&apos;00&apos; &amp; TEXT(leaseworks__Period_Since_Lease_Start__c), 3) 
++ if(leaseworks__Y_Hidden_Utilization__c!=null,if(ISPICKVAL(leaseworks__Y_Hidden_Utilization__r.leaseworks__Type__c,&apos;Actual&apos;),&apos;&apos;,&apos;(&apos; + MID(leaseworks__Y_Hidden_Utilization__r.Name,13,3)+&apos;)&apos;),&apos;&apos;) )</formula>
         <name>Update Rent Name</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>

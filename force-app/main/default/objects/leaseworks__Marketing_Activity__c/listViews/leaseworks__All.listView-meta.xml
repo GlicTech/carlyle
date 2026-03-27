@@ -15,5 +15,10 @@
     <columns>CREATED_DATE</columns>
     <columns>UPDATEDBY_USER</columns>
     <filterScope>Everything</filterScope>
+    <filters>
+        <field>leaseworks__Deal_Status__c</field>
+        <operation>notEqual</operation>
+        <value>Closed - Lost,Closed - Won</value>
+    </filters>
     <label>All</label>
 </ListView>

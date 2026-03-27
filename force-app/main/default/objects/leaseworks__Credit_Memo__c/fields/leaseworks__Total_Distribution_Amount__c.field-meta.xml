@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Total_Distribution_Amount__c</fullName>
+    <deprecated>false</deprecated>
+    <description>It shows the total of all related MR overpayment distributions amount on the credit memo.
+[LOAD:No]
+[JUSTIFICATION:No need to load as this is a rollup summary field]
+[REPLACEMENT OBJECT API:NA]
+[REPLACEMENT FIELD API:NA]
+[COMMENTS:NA]</description>
+    <inlineHelpText>It shows the total of all related MR overpayment distributions amount on the credit memo.</inlineHelpText>
+    <label>Total Distribution Amount</label>
+    <summarizedField>leaseworks__Credit_Memo_Issuance__c.leaseworks__Amount_Number__c</summarizedField>
+    <summaryForeignKey>leaseworks__Credit_Memo_Issuance__c.leaseworks__Credit_Memo__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

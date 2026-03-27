@@ -357,9 +357,9 @@
     <fieldUpdates>
         <fullName>leaseworks__ClaimSetDataVerifiedBy</fullName>
         <field>leaseworks__Data_Verified_By__c</field>
-        <formula>$User.FirstName + &#39; &#39; + $User.LastName +&#39;, &#39; +
+        <formula>$User.FirstName + &apos; &apos; + $User.LastName +&apos;, &apos; +
 
-Text(MONTH(TODAY())) + &#39;/&#39; + Text(Day(TODAY())) + &#39;/&#39; + Text(year(TODAY()))</formula>
+Text(MONTH(TODAY())) + &apos;/&apos; + Text(Day(TODAY())) + &apos;/&apos; + Text(year(TODAY()))</formula>
         <name>ClaimSetDataVerifiedBy</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
@@ -382,7 +382,7 @@ Text(MONTH(TODAY())) + &#39;/&#39; + Text(Day(TODAY())) + &#39;/&#39; + Text(yea
             <name>leaseworks__ClaimSetDataVerifiedBy</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <formula>AND(!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c,OR ( AND (ISNEW(),  leaseworks__Data_Verified_for_Accuracy__c  ), ISCHANGED( leaseworks__Data_Verified_for_Accuracy__c )))</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>

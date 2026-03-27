@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>leaseworks__LinkedIn_Profile__c</fullName>
     <deprecated>false</deprecated>
-    <description>This formula automatically searches on LinkedIn for this Contact&#39;s name &amp; company. The URL has to be properly encoded, hence all the substitutions of blanks by &quot;%20&quot; and removal of other possible chars in company names that aren&#39;t relevant for searching (e.g. &amp;, -, etc). The formula searches on the Name of the company, unless the more specific LinkedIn Name is filled (in case of issues with missing URL encodings, this alternative field can also be used removing any character causing the issue).</description>
+    <description>This formula automatically searches on LinkedIn for this Contact&apos;s name &amp; company. The URL has to be properly encoded, hence all the substitutions of blanks by &quot;%20&quot; and removal of other possible chars in company names that aren&apos;t relevant for searching (e.g. &amp;, -, etc). The formula searches on the Name of the company, unless the more specific LinkedIn Name is filled (in case of issues with missing URL encodings, this alternative field can also be used removing any character causing the issue).</description>
     <externalId>false</externalId>
     <formula>HYPERLINK(&quot;https://www.linkedin.com/search/results/people/?keywords=&quot; &amp;
 SUBSTITUTE(FirstName, &quot; &quot;, &quot;%20&quot;) &amp; &quot;%20&quot; &amp;
@@ -12,7 +12,7 @@ SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(Account.Name, &quot; &quot;, &quot;%20&quot;), 
 SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(Account.leaseworks__LinkedIn_Name__c, &quot; &quot;, &quot;%20&quot;), &quot;&amp;&quot;, &quot;&quot;), &quot;-&quot;, &quot;&quot;)),
 &quot;Search for this contact on LinkedIn&quot;)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-    <inlineHelpText>This formula automatically searches on LinkedIn for this Contact&#39;s name &amp; company. Note: you need a login on LinkedIn to view the results.</inlineHelpText>
+    <inlineHelpText>This formula automatically searches on LinkedIn for this Contact&apos;s name &amp; company. Note: you need a login on LinkedIn to view the results.</inlineHelpText>
     <label>LinkedIn Profile</label>
     <required>false</required>
     <type>Text</type>

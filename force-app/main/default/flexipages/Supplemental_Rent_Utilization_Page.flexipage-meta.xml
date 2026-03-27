@@ -92,6 +92,16 @@
                 <identifier>Recordleaseworks_Report_Type_F_cField</identifier>
             </fieldInstance>
         </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>readonly</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Parent_SRU__c</fieldItem>
+                <identifier>Recordleaseworks_Parent_SRU_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
         <name>Facet-310a9946-4fc1-4fe0-a2c4-abc97a234c2e</name>
         <type>Facet</type>
     </flexiPageRegions>
@@ -626,6 +636,10 @@
                     <value>Facet-e517e689-6849-4adf-bdd4-a1377717f2a1</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Information</value>
                 </componentInstanceProperties>
@@ -638,6 +652,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-d95680ec-70c7-401e-9155-698ea331c4c2</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -654,6 +672,10 @@
                     <value>Facet-5bf13d5b-d68e-49b4-a038-ac3f4825135c</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Override</value>
                 </componentInstanceProperties>
@@ -666,6 +688,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-231494a1-a505-4695-9ed4-7d25b82f95f2</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>true</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -689,6 +715,10 @@
                     <value>Facet-0ea77b4a-e620-4030-abea-c56473b134b6</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>MR Charge</value>
                 </componentInstanceProperties>
@@ -703,6 +733,10 @@
                     <value>Facet-c8210a64-3838-4cf0-a8b7-83d5eeb76295</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>MR Calculation</value>
                 </componentInstanceProperties>
@@ -715,6 +749,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-8fad9154-71c9-4c0e-a40c-e2484966f22f</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -961,6 +999,10 @@
                     <value>Facet-f1250713-4e3f-4417-8c90-c9abe1c45315</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Interpolation</value>
                 </componentInstanceProperties>
@@ -975,6 +1017,10 @@
                     <value>Facet-5d6e1fe3-e9a5-4f3f-9c4c-bea7fe8e6ad7</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Thresholds</value>
                 </componentInstanceProperties>
@@ -987,6 +1033,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-dc5d9d84-f5e8-4c42-a273-fb1277c9c1b7</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>true</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -1062,6 +1112,63 @@
                 </componentInstanceProperties>
                 <componentName>force:relatedListQuickLinksContainer</componentName>
                 <identifier>force_relatedListQuickLinksContainer</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>actionNames</name>
+                    <valueList>
+                        <valueListItems>
+                            <value>New</value>
+                        </valueListItems>
+                    </valueList>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>adminFilters</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>maxRecordsToDisplay</name>
+                    <value>10</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>parentFieldApiName</name>
+                    <value>leaseworks__Utilization_Report_List_Item__c.Id</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListApiName</name>
+                    <value>leaseworks__Supplemental_Rent_Utilization__r</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListDisplayType</name>
+                    <value>ADVGRID</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListFieldAliases</name>
+                    <valueList>
+                        <valueListItems>
+                            <value>NAME</value>
+                        </valueListItems>
+                    </valueList>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListLabel</name>
+                    <value>Sub Fund SRUs</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>showActionBar</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>sortFieldAlias</name>
+                    <value>__DEFAULT__</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>sortFieldOrder</name>
+                    <value>Default</value>
+                </componentInstanceProperties>
+                <componentName>lst:dynamicRelatedList</componentName>
+                <identifier>lst_dynamicRelatedList2</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>

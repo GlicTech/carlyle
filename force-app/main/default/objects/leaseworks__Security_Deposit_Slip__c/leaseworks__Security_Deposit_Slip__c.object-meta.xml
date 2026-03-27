@@ -130,7 +130,7 @@
         <actionName>View</actionName>
         <comment>Action override created by Lightning App Builder during activation.</comment>
         <content>leaseworks__Security_Deposit_Slip_Record_Page1</content>
-        <formFactor>Large</formFactor>
+        <formFactor>Small</formFactor>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Flexipage</type>
     </actionOverrides>
@@ -138,7 +138,7 @@
         <actionName>View</actionName>
         <comment>Action override created by Lightning App Builder during activation.</comment>
         <content>leaseworks__Security_Deposit_Slip_Record_Page1</content>
-        <formFactor>Small</formFactor>
+        <formFactor>Large</formFactor>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Flexipage</type>
     </actionOverrides>
@@ -150,7 +150,12 @@
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <deprecated>false</deprecated>
-    <description>Security deposit slips are typically generated at the time of contract setup based on the contractual billing terms for Security deposit collection.  The deposit slip includes details such as amount, invoice date, and due date to automate the generation of security deposit invoices. Security deposit slips can also be uploaded via data loader to support system migration efforts and new contract creation.</description>
+    <description>Security deposit slips are typically generated at the time of contract setup based on the contractual billing terms for Security deposit collection.  The deposit slip includes details such as amount, invoice date, and due date to automate the generation of security deposit invoices. Security deposit slips can also be uploaded via data loader to support system migration efforts and new contract creation. We can create the SD invoices with or without SD slips, this is derived based on the custom setting (Require_Slips_For_SD_Invoices)
+[MODULE: Contract]
+[LOAD: Yes]
+[PREREQUISITES: Cash Security Deposit]
+[REPLACEMENT OBJECT API: NA]
+[COMMENTS: NA]</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -168,7 +173,7 @@
         <type>Text</type>
     </nameField>
     <pluralLabel>Security Deposit Slips</pluralLabel>
-    <searchLayouts />
+    <searchLayouts></searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

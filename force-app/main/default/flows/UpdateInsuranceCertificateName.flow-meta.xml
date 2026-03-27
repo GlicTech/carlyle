@@ -41,25 +41,25 @@
     <formulas>
         <name>InsuranceCertificateName</name>
         <dataType>String</dataType>
-        <expression>IF(LEN({!Policy_Expiry_Date}+{!MSN_Number}+IF(ISBLANK({!Selected_Coverages}), &#39;&#39;, LEFT({!Selected_Coverages}, LEN({!Selected_Coverages}) - 1))+{!OperatorName}) &gt;80 , 
- LEFT({!Policy_Expiry_Date}+{!MSN_Number}+IF(ISBLANK({!Selected_Coverages}), &#39;&#39;,  LEFT({!Selected_Coverages}, LEN({!Selected_Coverages}) - 1))+{!OperatorName} ,77)+&#39;...&#39;,
-{!Policy_Expiry_Date}+{!MSN_Number}+IF(ISBLANK({!Selected_Coverages}), &#39;&#39;,  LEFT({!Selected_Coverages}, LEN({!Selected_Coverages}) - 1))+{!OperatorName}
+        <expression>IF(LEN({!Policy_Expiry_Date}+{!MSN_Number}+IF(ISBLANK({!Selected_Coverages}), &apos;&apos;, LEFT({!Selected_Coverages}, LEN({!Selected_Coverages}) - 1))+{!OperatorName}) &gt;80 , 
+ LEFT({!Policy_Expiry_Date}+{!MSN_Number}+IF(ISBLANK({!Selected_Coverages}), &apos;&apos;,  LEFT({!Selected_Coverages}, LEN({!Selected_Coverages}) - 1))+{!OperatorName} ,77)+&apos;...&apos;,
+{!Policy_Expiry_Date}+{!MSN_Number}+IF(ISBLANK({!Selected_Coverages}), &apos;&apos;,  LEFT({!Selected_Coverages}, LEN({!Selected_Coverages}) - 1))+{!OperatorName}
 )</expression>
     </formulas>
     <formulas>
         <name>MSN_Number</name>
         <dataType>String</dataType>
-        <expression>IF(ISBLANK({!$Record.leaseworks__Aircraft__r.leaseworks__MSN_Number__c}), &#39;&#39; , IF(ISBLANK({!Selected_Coverages}), {!$Record.leaseworks__Aircraft__r.leaseworks__MSN_Number__c}, {!$Record.leaseworks__Aircraft__r.leaseworks__MSN_Number__c} + &#39; - &#39;))</expression>
+        <expression>IF(ISBLANK({!$Record.leaseworks__Aircraft__r.leaseworks__MSN_Number__c}), &apos;&apos; , IF(ISBLANK({!Selected_Coverages}), {!$Record.leaseworks__Aircraft__r.leaseworks__MSN_Number__c}, {!$Record.leaseworks__Aircraft__r.leaseworks__MSN_Number__c} + &apos; - &apos;))</expression>
     </formulas>
     <formulas>
         <name>OperatorName</name>
         <dataType>String</dataType>
-        <expression>IF( NOT( ISBLANK({!$Record.leaseworks__Lease__c})) &amp;&amp; NOT( ISBLANK({!$Record.leaseworks__Lease__r.leaseworks__Operator_New__c}))  &amp;&amp;  NOT( ISBLANK({!$Record.leaseworks__Lease__r.leaseworks__Operator_New__r.Name}))  , &#39; - &#39; + {!$Record.leaseworks__Lease__r.leaseworks__Operator_New__r.Name}, &#39;&#39; )</expression>
+        <expression>IF( NOT( ISBLANK({!$Record.leaseworks__Lease__c})) &amp;&amp; NOT( ISBLANK({!$Record.leaseworks__Lease__r.leaseworks__Operator_New__c}))  &amp;&amp;  NOT( ISBLANK({!$Record.leaseworks__Lease__r.leaseworks__Operator_New__r.Name}))  , &apos; - &apos; + {!$Record.leaseworks__Lease__r.leaseworks__Operator_New__r.Name}, &apos;&apos; )</expression>
     </formulas>
     <formulas>
         <name>Policy_Expiry_Date</name>
         <dataType>String</dataType>
-        <expression>IF(ISNULL({!$Record.leaseworks__Policy_Expiry_Date__c}), &#39;&#39; , &#39;Exp &#39;+TEXT({!$Record.leaseworks__Policy_Expiry_Date__c})+&#39; - &#39;)</expression>
+        <expression>IF(ISNULL({!$Record.leaseworks__Policy_Expiry_Date__c}), &apos;&apos; , &apos;Exp &apos;+TEXT({!$Record.leaseworks__Policy_Expiry_Date__c})+&apos; - &apos;)</expression>
     </formulas>
     <interviewLabel>Update {!$Flow.CurrentDateTime}</interviewLabel>
     <label>UpdateInsuranceCertificateName_Local</label>

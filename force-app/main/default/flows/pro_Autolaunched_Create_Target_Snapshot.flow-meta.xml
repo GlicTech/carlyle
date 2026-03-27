@@ -203,7 +203,7 @@
     <formulas>
         <name>f_TargetSnapshotName</name>
         <dataType>String</dataType>
-        <expression>{!varTargetYear} &amp; &#39; &#39; &amp; IF({!varFilterName} = Null, &#39;All&#39;, {!varFilterName}) &amp;
+        <expression>{!varTargetYear} &amp; &apos; &apos; &amp; IF({!varFilterName} = Null, &apos;All&apos;, {!varFilterName}) &amp;
 &quot; Target Snapshot: &quot; &amp;
 LPAD(TEXT(DAY({!$Flow.CurrentDate})), 2, &quot;0&quot;) &amp; &quot;-&quot; &amp;
 LPAD(TEXT(MONTH({!$Flow.CurrentDate})), 2, &quot;0&quot;) &amp; &quot;-&quot; &amp;

@@ -130,7 +130,7 @@
         <actionName>View</actionName>
         <comment>Action override updated by Lightning App Builder during activation.</comment>
         <content>BankAccountWithApprovalTabs</content>
-        <formFactor>Small</formFactor>
+        <formFactor>Large</formFactor>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Flexipage</type>
     </actionOverrides>
@@ -138,7 +138,7 @@
         <actionName>View</actionName>
         <comment>Action override updated by Lightning App Builder during activation.</comment>
         <content>BankAccountWithApprovalTabs</content>
-        <formFactor>Large</formFactor>
+        <formFactor>Small</formFactor>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Flexipage</type>
     </actionOverrides>
@@ -150,7 +150,14 @@
     <compactLayoutAssignment>leaseworks__Bank_Account</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <deprecated>false</deprecated>
-    <description>This object is to capture banking information</description>
+    <description>This object is to capture banking information
+Manage designated bank accounts for every lease, linked to different transactions types like rent, maintenance reserve and security deposits. Importantly, the account details from this table will automatically populate on invoices sent to customers, ensuring accurate payment instructions.
+Bank account setup can vary by country due to the various bank identifier codes that are required by country that are used to send and receive payments.
+[MODULE: Finance]
+[LOAD: Yes]
+[PREREQUISITES: Bank Branch]
+[REPLACEMENT OBJECT API: NA]
+[COMMENTS: NA]</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>

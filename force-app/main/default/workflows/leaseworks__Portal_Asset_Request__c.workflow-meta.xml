@@ -6,7 +6,7 @@
         <formula>IF( LEN(leaseworks__Y_Hidden_Asset_Type__c + &quot;-&quot; +  leaseworks__Y_Hidden_Asset_Variant__c ) &gt; 70, 
 LEFT(leaseworks__Y_Hidden_Asset_Type__c + &quot;-&quot; +  leaseworks__Y_Hidden_Asset_Variant__c,70) + &quot;...&quot; + &quot;-&quot; , 
 leaseworks__Y_Hidden_Asset_Type__c + &quot;-&quot; +  leaseworks__Y_Hidden_Asset_Variant__c + &quot;-&quot;) +   
-CASE(MONTH( leaseworks__Date_Start__c ),1, &quot;JAN&quot;, 2, &quot;FEB&quot;, 3, &quot;MAR&quot;, 4, &quot;APR&quot;, 5,&quot;MAY&quot;, 6, &quot;JUN&quot;, 7, &quot;JUL&quot;, 8, &quot;AUG&quot;, 9, &quot;SEP&quot;, 10, &quot;OCT&quot;, 11, &quot;NOV&quot;,12, &quot;DEC&quot;,&quot;NONE&quot; ) + &quot;&#39;&quot; + RIGHT(TEXT(YEAR(leaseworks__Date_Start__c)),2)</formula>
+CASE(MONTH( leaseworks__Date_Start__c ),1, &quot;JAN&quot;, 2, &quot;FEB&quot;, 3, &quot;MAR&quot;, 4, &quot;APR&quot;, 5,&quot;MAY&quot;, 6, &quot;JUN&quot;, 7, &quot;JUL&quot;, 8, &quot;AUG&quot;, 9, &quot;SEP&quot;, 10, &quot;OCT&quot;, 11, &quot;NOV&quot;,12, &quot;DEC&quot;,&quot;NONE&quot; ) + &quot;&apos;&quot; + RIGHT(TEXT(YEAR(leaseworks__Date_Start__c)),2)</formula>
         <name>AssetReqNameUpdate</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
@@ -17,22 +17,22 @@ CASE(MONTH( leaseworks__Date_Start__c ),1, &quot;JAN&quot;, 2, &quot;FEB&quot;, 
         <fullName>leaseworks__Set_Request_Name</fullName>
         <description>Sets the name for the asset request</description>
         <field>Name</field>
-        <formula>TEXT(leaseworks__Asset_Type__c)+&#39;_&#39;+  
+        <formula>TEXT(leaseworks__Asset_Type__c)+&apos;_&apos;+  
 CASE(MONTH(leaseworks__Date_Start__c),
-1, &#39;JAN&#39;,
-2, &#39;FEB&#39;,
-3, &#39;MAR&#39;,
-4, &#39;APR&#39;,
-5, &#39;MAY&#39;,
-6, &#39;JUN&#39;,
-7, &#39;JUL&#39;,
-8, &#39;AUG&#39;,
-9, &#39;SEP&#39;,
-10, &#39;OCT&#39;,
-11, &#39;NOV&#39;,
-12, &#39;DEC&#39;,
-&#39;NONE&#39;)
-+ &quot;&#39;&quot; + RIGHT(TEXT(YEAR(leaseworks__Date_Start__c)), 2)</formula>
+1, &apos;JAN&apos;,
+2, &apos;FEB&apos;,
+3, &apos;MAR&apos;,
+4, &apos;APR&apos;,
+5, &apos;MAY&apos;,
+6, &apos;JUN&apos;,
+7, &apos;JUL&apos;,
+8, &apos;AUG&apos;,
+9, &apos;SEP&apos;,
+10, &apos;OCT&apos;,
+11, &apos;NOV&apos;,
+12, &apos;DEC&apos;,
+&apos;NONE&apos;)
++ &quot;&apos;&quot; + RIGHT(TEXT(YEAR(leaseworks__Date_Start__c)), 2)</formula>
         <name>Set Request Name</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>

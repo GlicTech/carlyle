@@ -3,7 +3,6 @@
     <excludeButtons>AssignRecordLabel</excludeButtons>
     <excludeButtons>ChangeOwnerOne</excludeButtons>
     <excludeButtons>ChangeRecordType</excludeButtons>
-    <excludeButtons>OpenSlackRecordChannel</excludeButtons>
     <excludeButtons>PrintableView</excludeButtons>
     <excludeButtons>Submit</excludeButtons>
     <layoutSections>
@@ -31,6 +30,10 @@
             <layoutItems>
                 <behavior>Required</behavior>
                 <field>leaseworks__Supplemental_Rent__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>leaseworks__Parent_SRR__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -100,6 +103,10 @@
     </layoutSections>
     <relatedLists>
         <relatedList>RelatedFileList</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>leaseworks__Supplemental_Rent_Rate__c.leaseworks__Y_hidden_Base_Supplemental_Rent_Rate__c</relatedList>
     </relatedLists>
     <relatedLists>
         <relatedList>RelatedEntityHistoryList</relatedList>

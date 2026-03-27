@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
     <excludeButtons>ChangeOwnerOne</excludeButtons>
-    <excludeButtons>OpenSlackRecordChannel</excludeButtons>
     <excludeButtons>Submit</excludeButtons>
     <layoutSections>
         <customLabel>false</customLabel>
@@ -52,6 +51,30 @@
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>Type_local__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>pro_Pre_Closing_Items_Total__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>pro_Pre_Closing_Items_Completed__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>pro_Post_Closing_Items_Total__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>pro_Post_Closing_Items_Completed__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>pro_Pre_Closing_Complete__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>pro_Post_Closing_Complete__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -290,6 +313,9 @@
         <relatedList>RelatedFileList</relatedList>
     </relatedLists>
     <relatedLists>
+        <customButtons>pro_NewPopulateDealType</customButtons>
+        <excludeButtons>MassChangeOwner</excludeButtons>
+        <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
         <fields>Account.NAME</fields>
         <fields>pro_KYC_Approved__c</fields>

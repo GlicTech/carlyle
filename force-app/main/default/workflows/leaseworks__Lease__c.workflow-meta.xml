@@ -43,9 +43,9 @@
     <fieldUpdates>
         <fullName>leaseworks__LeaseSetDataVerifiedBy</fullName>
         <field>leaseworks__Data_Verified_By__c</field>
-        <formula>$User.FirstName + &#39; &#39; + $User.LastName +&#39;, &#39; +
+        <formula>$User.FirstName + &apos; &apos; + $User.LastName +&apos;, &apos; +
 
-Text(MONTH(TODAY())) + &#39;/&#39; + Text(Day(TODAY())) + &#39;/&#39; + Text(year(TODAY()))</formula>
+Text(MONTH(TODAY())) + &apos;/&apos; + Text(Day(TODAY())) + &apos;/&apos; + Text(year(TODAY()))</formula>
         <name>LeaseSetDataVerifiedBy</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
@@ -64,7 +64,7 @@ Text(MONTH(TODAY())) + &#39;/&#39; + Text(Day(TODAY())) + &#39;/&#39; + Text(yea
     </fieldUpdates>
     <fieldUpdates>
         <fullName>leaseworks__Lease_Set_CurrentRent</fullName>
-        <description>going forward we&#39;ll not use this.</description>
+        <description>going forward we&apos;ll not use this.</description>
         <field>leaseworks__Rent__c</field>
         <formula>NULLVALUE( leaseworks__Rent__c  , leaseworks__Base_Rent__c)</formula>
         <name>Lease_Set_CurrentRent</name>
@@ -78,9 +78,9 @@ Text(MONTH(TODAY())) + &#39;/&#39; + Text(Day(TODAY())) + &#39;/&#39; + Text(yea
         <description>Lease name :
 msn/esn | lessee/operator name | aircraft/engine type</description>
         <field>Name</field>
-        <formula>IF(TEXT(leaseworks__Type__c) == &#39;Loan&#39; , Name , left(leaseworks__Aircraft__r.leaseworks__MSN_Number__c  &amp; &#39; | &#39; &amp; IF(ISBLANK(leaseworks__Lessee_New__r.Name), leaseworks__Operator_New__r.Name , leaseworks__Lessee_New__r.Name) &amp; &#39; | &#39;&amp;   
+        <formula>IF(TEXT(leaseworks__Type__c) == &apos;Loan&apos; , Name , left(leaseworks__Aircraft__r.leaseworks__MSN_Number__c  &amp; &apos; | &apos; &amp; IF(ISBLANK(leaseworks__Lessee_New__r.Name), leaseworks__Operator_New__r.Name , leaseworks__Lessee_New__r.Name) &amp; &apos; | &apos;&amp;   
 
-            IF( leaseworks__Aircraft__r.leaseworks__RecordTypeDevName__c == &#39;Aircraft&#39;, TEXT(leaseworks__Aircraft__r.leaseworks__Asset_Type_GP__c),  
+            IF( leaseworks__Aircraft__r.leaseworks__RecordTypeDevName__c == &apos;Aircraft&apos;, TEXT(leaseworks__Aircraft__r.leaseworks__Asset_Type_GP__c),  
            if( isblank(TEXT(leaseworks__Aircraft__r.leaseworks__Engine_Type_GP__c)),TEXT(leaseworks__Aircraft__r.leaseworks__Asset_Type_GP__c) ,TEXT(leaseworks__Aircraft__r.leaseworks__Engine_Type_GP__c))
             )
            ,79))</formula>
@@ -147,7 +147,7 @@ leaseworks__Placement_By_Date__c)</formula>
     </fieldUpdates>
     <fieldUpdates>
         <fullName>leaseworks__Update_Lease_Status</fullName>
-        <description>Updates the status to &#39;Pending Approval&#39;</description>
+        <description>Updates the status to &apos;Pending Approval&apos;</description>
         <field>leaseworks__Status__c</field>
         <literalValue>Pending Approval</literalValue>
         <name>Update Lease Status</name>
@@ -223,7 +223,7 @@ leaseworks__Placement_By_Date__c)</formula>
             <name>leaseworks__Update_Contractual_Redelivery_date</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>leaseworks__Lease__c.leaseworks__Redelivery_Terms__c</field>
             <operation>equals</operation>
@@ -248,7 +248,7 @@ leaseworks__Placement_By_Date__c)</formula>
             <name>leaseworks__LeaseSetDataVerifiedBy</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <formula>OR ( AND (ISNEW(), leaseworks__Data_Verified_For_Accuracy__c ), ISCHANGED(leaseworks__Data_Verified_For_Accuracy__c))</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
@@ -288,7 +288,7 @@ leaseworks__Placement_By_Date__c)</formula>
             <name>leaseworks__Lease_Set_Name</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>leaseworks__Lease__c.RecordTypeId</field>
             <operation>notEqual</operation>
@@ -303,7 +303,7 @@ leaseworks__Placement_By_Date__c)</formula>
             <type>FieldUpdate</type>
         </actions>
         <active>false</active>
-        <description>going forward we&#39;ll not use this.</description>
+        <description>going forward we&apos;ll not use this.</description>
         <formula>false</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>

@@ -1,0 +1,669 @@
+/* ═══════════════════════════════════════════
+   proChecklistItemWizard — Styles
+   Custom table with inline editing
+   ═══════════════════════════════════════════ */
+
+:host {
+    display: block;
+    --card-radius: 8px;
+    --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    --green-accent: #4bca81;
+    --blue-accent: #1b96ff;
+    --red-accent: #ea001e;
+    --border-color: #e5e5e5;
+    --row-hover: #f8fafc;
+    --completed-bg: #f9fafb;
+    --completed-text: #9ca3af;
+}
+
+/* ── Full-screen container ── */
+.wizard-container {
+    background: #f4f6f9;
+    min-height: 100vh;
+    padding: 1.25rem 1.5rem;
+}
+
+/* ── Header cards ── */
+.header-card {
+    background: #ffffff;
+    border-radius: var(--card-radius);
+    box-shadow: var(--card-shadow);
+    padding: 1rem 1.25rem;
+    height: 100%;
+}
+
+.card-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #181818;
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.card-field {
+    display: flex;
+    align-items: center;
+    font-size: 0.8125rem;
+    line-height: 1.4;
+    margin: 0;
+}
+
+.field-icon {
+    margin-right: 0.35rem;
+    flex-shrink: 0;
+}
+
+.field-label {
+    color: #6b7280;
+    margin-right: 0.35rem;
+    white-space: nowrap;
+}
+
+.field-value {
+    color: #181818;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* ── Latest project update (read-only) ── */
+.update-section {
+    background: #ffffff;
+    border-radius: var(--card-radius);
+    box-shadow: var(--card-shadow);
+    border: none;
+    padding: 1rem 1.25rem;
+}
+
+.section-heading {
+    font-weight: 700;
+    color: #181818;
+    display: flex;
+    align-items: center;
+}
+
+.update-text {
+    font-size: 0.8125rem;
+    color: #444;
+    white-space: pre-wrap;
+    margin: 0;
+    min-height: 2rem;
+}
+
+/* ── Add Item Form ── */
+.add-item-form {
+    background: #ffffff;
+    border-radius: var(--card-radius);
+    box-shadow: var(--card-shadow);
+    padding: 1rem 1.25rem;
+    border-left: 4px solid var(--green-accent);
+}
+
+.form-row {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-end;
+    flex-wrap: wrap;
+}
+
+.form-field {
+    flex: 1;
+    min-width: 150px;
+}
+
+.form-field-title {
+    flex: 2;
+    min-width: 250px;
+}
+
+.form-label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #6b7280;
+    margin-bottom: 0.25rem;
+}
+
+.form-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+}
+
+/* ── Processing overlay ── */
+.processing-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    border-radius: var(--card-radius);
+}
+
+/* ── Phase Toolbar (filter tabs + actions) ── */
+.phase-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.phase-tabs {
+    display: flex;
+    gap: 0;
+}
+
+.phase-tab {
+    padding: 0.5rem 1.25rem;
+    border: 1px solid var(--border-color);
+    background: #fff;
+    color: #374151;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    border-right: none;
+}
+
+.phase-tab:first-child {
+    border-radius: 6px 0 0 6px;
+}
+
+.phase-tab:last-child {
+    border-radius: 0 6px 6px 0;
+    border-right: 1px solid var(--border-color);
+}
+
+.phase-tab:hover {
+    background: #f3f4f6;
+}
+
+.phase-tab-active {
+    background: var(--blue-accent);
+    color: #fff;
+    border-color: var(--blue-accent);
+}
+
+.phase-tab-active:hover {
+    background: #0b78d0;
+}
+
+.toolbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.item-count {
+    font-size: 0.8125rem;
+    color: #6b7280;
+    margin-right: 0.5rem;
+}
+
+/* Buttons (matching proChecklistManager) */
+.btn {
+    padding: 0.4rem 0.9rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background: #fff;
+    color: #374151;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    white-space: nowrap;
+}
+
+.btn:hover:not(:disabled) {
+    background: #f3f4f6;
+    border-color: #d1d5db;
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn-brand {
+    background: var(--blue-accent);
+    color: #fff;
+    border-color: var(--blue-accent);
+}
+
+.btn-brand:hover:not(:disabled) {
+    background: #0b78d0;
+    border-color: #0b78d0;
+}
+
+.btn-sm {
+    padding: 0.3rem 0.7rem;
+    font-size: 0.75rem;
+}
+
+/* ── Bulk Update Section (toggleable card) ── */
+.bulk-update-section {
+    background: #f0f4ff;
+    border: 1px solid #d0d8e8;
+    border-bottom: none;
+    border-radius: var(--card-radius) var(--card-radius) 0 0;
+    padding: 1rem 1.25rem;
+}
+
+.bulk-update-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #d0d8e8;
+}
+
+.bulk-update-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #374151;
+}
+
+.bulk-update-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 0.75rem;
+}
+
+.bulk-field-item {
+    min-width: 0;
+}
+
+.bulk-field-input {
+    --slds-c-input-text-font-size: 0.8rem;
+}
+
+.bulk-update-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid #d0d8e8;
+}
+
+/* ── Table Wrapper ── */
+.table-wrapper {
+    background: #ffffff;
+    box-shadow: var(--card-shadow);
+    overflow-x: auto;
+    border: 1px solid var(--border-color);
+}
+
+.table-wrapper-full-radius {
+    border-radius: var(--card-radius);
+}
+
+.table-wrapper-no-top-radius {
+    border-radius: 0 0 var(--card-radius) var(--card-radius);
+    border-top: none;
+}
+
+/* ── Checklist Table ── */
+.checklist-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8rem;
+}
+
+.checklist-table thead {
+    background: #f8fafc;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.checklist-table th {
+    padding: 0.5rem 0.4rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #374151;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+    text-align: left;
+    border-right: 1px solid #f0f0f0;
+}
+
+.checklist-table th:last-child {
+    border-right: none;
+}
+
+.checklist-table td {
+    padding: 0.2rem 0.3rem;
+    border-bottom: 1px solid #f0f0f0;
+    vertical-align: middle;
+}
+
+.checklist-row:hover {
+    background: var(--row-hover);
+}
+
+/* Completed row styling */
+.completed-row {
+    background: var(--completed-bg);
+}
+
+.completed-row:hover {
+    background: #f3f4f6;
+}
+
+/* Column widths */
+.col-actions {
+    width: 40px;
+    text-align: center;
+}
+
+.col-select {
+    width: 36px;
+    text-align: center;
+}
+
+.col-done {
+    width: 40px;
+    text-align: center;
+}
+
+.col-number {
+    width: 40px;
+    text-align: center;
+    color: #9ca3af;
+    font-size: 0.75rem;
+}
+
+.col-name {
+    min-width: 180px;
+}
+
+.col-department {
+    min-width: 120px;
+}
+
+.col-comments {
+    min-width: 140px;
+}
+
+.col-assigned {
+    min-width: 120px;
+}
+
+.col-reviewed {
+    min-width: 100px;
+}
+
+.col-lease-ref {
+    min-width: 110px;
+}
+
+.col-url {
+    min-width: 120px;
+}
+
+.col-responsible {
+    min-width: 120px;
+}
+
+.col-date {
+    min-width: 120px;
+}
+
+.col-status {
+    min-width: 120px;
+}
+
+.col-number-sm {
+    min-width: 70px;
+}
+
+/* Item title link */
+.item-title {
+    color: var(--blue-accent);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+
+.item-title:hover {
+    text-decoration: underline;
+}
+
+.item-title-done {
+    text-decoration: line-through;
+    color: var(--completed-text);
+}
+
+.item-title-done:hover {
+    color: var(--completed-text);
+}
+
+/* Text display (read-only cells) */
+.text-display {
+    font-size: 0.8rem;
+    color: #374151;
+    padding: 0 0.25rem;
+}
+
+/* Empty message */
+.empty-message {
+    text-align: center;
+    padding: 2rem;
+    color: #9ca3af;
+    font-style: italic;
+}
+
+/* ── Done Checkbox (circle style from proChecklistManager) ── */
+.done-checkbox {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+    width: 22px;
+    height: 22px;
+}
+
+.done-input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.done-circle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #d1d5db;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s ease;
+}
+
+.done-input:checked + .done-circle {
+    background: var(--green-accent);
+    border-color: var(--green-accent);
+}
+
+.done-input:checked + .done-circle::after {
+    content: '\2713';
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 700;
+}
+
+/* Select checkbox (square style) */
+.select-circle {
+    width: 18px;
+    height: 18px;
+    border-radius: 3px;
+    border: 2px solid #d1d5db;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s ease;
+}
+
+.done-input:checked + .select-circle {
+    background: var(--blue-accent);
+    border-color: var(--blue-accent);
+}
+
+.done-input:checked + .select-circle::after {
+    content: '\2713';
+    color: #fff;
+    font-size: 0.65rem;
+    font-weight: 700;
+}
+
+.bulk-select-all {
+    margin-left: 0.25rem;
+}
+
+/* ── Inline Combobox (compact) ── */
+.inline-combo {
+    --slds-c-input-text-font-size: 0.75rem;
+}
+
+.inline-combo lightning-base-combobox {
+    min-width: 80px;
+}
+
+/* ── Inline Input (compact) ── */
+.inline-input {
+    --slds-c-input-text-font-size: 0.75rem;
+}
+
+.inline-input-sm {
+    max-width: 70px;
+}
+
+/* Override lightning-input/combobox padding for compact table rows */
+.checklist-table lightning-combobox,
+.checklist-table lightning-input,
+.bulk-update-section lightning-combobox,
+.bulk-update-section lightning-input {
+    --slds-c-input-spacing-block-start: 0.15rem;
+    --slds-c-input-spacing-block-end: 0.15rem;
+    --slds-c-input-spacing-inline-start: 0.35rem;
+    --slds-c-input-spacing-inline-end: 0.35rem;
+}
+
+/* ── Pagination ── */
+.pagination-bar {
+    padding: 0.5rem 0;
+}
+
+.page-info {
+    color: #6b7280;
+    min-width: 8rem;
+    text-align: center;
+}
+
+/* ── Footer ── */
+.footer-bar {
+    padding-top: 0.5rem;
+}
+
+/* ── Edit Modal ── */
+.slds-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.edit-modal-container {
+    max-width: 720px;
+    width: 90%;
+    background: #fff;
+    border-radius: var(--card-radius);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+    display: flex;
+    flex-direction: column;
+    max-height: 85vh;
+}
+
+.edit-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--border-color);
+    position: relative;
+}
+
+.edit-modal-header .slds-modal__title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #181818;
+    margin: 0;
+    padding-right: 2rem;
+}
+
+.edit-modal-header .slds-modal__close {
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.edit-modal-body {
+    overflow-y: auto;
+    flex: 1;
+}
+
+.edit-modal-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem 1.25rem;
+}
+
+.edit-modal-field {
+    min-width: 0;
+}
+
+.edit-modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    border-top: 1px solid var(--border-color);
+}
+
+/* Modal backdrop */
+.slds-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9000;
+}

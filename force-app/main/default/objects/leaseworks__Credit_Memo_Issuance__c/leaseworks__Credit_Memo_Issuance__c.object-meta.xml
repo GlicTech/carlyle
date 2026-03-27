@@ -147,6 +147,13 @@
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <deprecated>false</deprecated>
+    <description>If the Credit memo amount is sourced from an MR fund, then Credit Memo issuances are required.
+Population Requirement Details: Conditionally Required if legacy data loading is required and if the credit memo amount is sourced from the MR funds.
+[MODULE: Finance]
+[LOAD: Optional]
+[PREREQUISITES: NA]
+[REPLACEMENT OBJECT API: NA]
+[COMMENTS: NA]</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -164,7 +171,7 @@
         <type>Text</type>
     </nameField>
     <pluralLabel>MR Overpayment Distributions</pluralLabel>
-    <searchLayouts />
+    <searchLayouts></searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

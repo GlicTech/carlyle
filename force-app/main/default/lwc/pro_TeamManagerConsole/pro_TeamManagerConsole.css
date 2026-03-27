@@ -1,0 +1,203 @@
+/* Lookup dropdown: show below input, above other content */
+.lookup-wrap {
+    position: relative;
+}
+.lookup-wrap .lookup-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    min-width: 100%;
+    max-height: 280px;
+    overflow-y: auto;
+    z-index: 7000;
+    background: var(--slds-g-color-neutral-base-100, #fff);
+    border: 1px solid var(--slds-g-color-border-base-1, #c9c9c9);
+    border-radius: 0.25rem;
+    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.16);
+    margin-top: 0.125rem;
+}
+.lookup-wrap .cursor-pointer {
+    cursor: pointer;
+}
+.lookup-wrap .cursor-pointer:hover {
+    background: var(--slds-g-color-neutral-base-95, #f3f3f3);
+}
+
+.slds-m-top_small lightning-datatable {
+    margin-top: 0.5rem;
+}
+
+/* Team Manager Console: layout and readability */
+.tmc-container {
+    max-width: 56rem;
+}
+
+.tmc-section {
+    margin-bottom: 1.5rem;
+}
+
+.tmc-section-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--slds-g-color-neutral-100, #080707);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--slds-g-color-border-base-1, #c9c9c9);
+}
+
+.tmc-subtitle {
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.tmc-search-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 1rem;
+}
+
+.tmc-search-field {
+    flex: 0 1 auto;
+    min-width: 10rem;
+}
+
+.tmc-search-actions {
+    flex: 0 0 auto;
+    padding-bottom: 0.25rem;
+}
+
+.tmc-results-row {
+    align-items: flex-start;
+}
+
+.tmc-results-header {
+    margin-bottom: 0.5rem;
+}
+
+.tmc-results-header .tmc-subtitle {
+    margin-bottom: 0.125rem;
+}
+
+.tmc-role-col {
+    min-width: 0;
+}
+
+.tmc-datatable {
+    margin-top: 0.25rem;
+}
+
+.tmc-section-block {
+    padding-top: 1rem;
+}
+
+.tmc-empty-state {
+    padding: 1rem;
+    background: var(--slds-g-color-neutral-base-95, #f3f3f3);
+    border-radius: 0.25rem;
+}
+
+.tmc-empty-inline {
+    font-style: italic;
+    padding: 0.5rem 0;
+}
+
+.tmc-actions {
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--slds-g-color-border-base-1, #c9c9c9);
+}
+
+.tmc-loading {
+    margin-top: 1rem;
+}
+
+/* Role panel: current team list (right of search results) */
+.role-panel {
+    padding: 1rem;
+    background: var(--slds-g-color-neutral-base-95, #f3f3f3);
+    border-radius: 0.25rem;
+    border: 1px solid var(--slds-g-color-border-base-1, #c9c9c9);
+    min-height: 8rem;
+    max-height: 22rem;
+    overflow-y: auto;
+}
+
+.role-panel-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: var(--slds-g-color-neutral-100, #080707);
+}
+
+.role-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.8125rem;
+    line-height: 1.5;
+}
+
+.role-list-item {
+    padding: 0.25rem 0;
+    border-bottom: 1px solid var(--slds-g-color-border-base-2, #e5e5e5);
+}
+
+.role-list-item:last-child {
+    border-bottom: none;
+}
+
+.role-list-user {
+    font-weight: 500;
+    color: var(--slds-g-color-neutral-50, #181818);
+}
+
+/* Update config summary: definition list for quick scan */
+.update-config-summary {
+    padding: 1rem 1.25rem;
+    background: var(--slds-g-color-neutral-base-95, #f3f3f3);
+    border-radius: 0.25rem;
+    border: 1px solid var(--slds-g-color-border-base-1, #c9c9c9);
+}
+
+.update-config-summary .tmc-subtitle {
+    margin-bottom: 0.75rem;
+}
+
+.summary-list {
+    margin: 0;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.25rem 1.5rem;
+    font-size: 0.8125rem;
+    line-height: 1.5;
+}
+
+.summary-term {
+    font-weight: 600;
+    color: var(--slds-g-color-neutral-50, #181818);
+}
+
+.summary-value {
+    margin: 0;
+    word-break: break-word;
+}
+
+.summary-teams-include-label {
+    margin-top: 0.5rem;
+    font-weight: 600;
+    color: var(--slds-g-color-neutral-30, #444);
+}
+
+.summary-teams-include-spacer {
+    min-height: 0;
+    margin: 0;
+}
+
+/* Success/error message area */
+.tmc-message {
+    padding: 0.75rem 1rem;
+    border-radius: 0.25rem;
+    line-height: 1.4;
+}

@@ -377,6 +377,27 @@ Users who are active and on the profile Back Office External, Lease Management, 
         </connector>
     </start>
     <status>Active</status>
+    <transforms>
+        <name>Create_Collection_Of_User_Ids_Assigned_To_Permission_Set</name>
+        <label>Create Collection Of User Ids Assigned To Permission Set</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Add_or_Remove_User_From_Permission_Set</targetReference>
+        </connector>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>Get_Permission_Set_Assignments[$EachItem].AssigneeId</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
     <variables>
         <description>The user whose permission assignements need to be assessed.</description>
         <name>varTriggeringUser</name>

@@ -3,11 +3,10 @@
     <fullName>leaseworks__Tax_Amount__c</fullName>
     <deprecated>false</deprecated>
     <description>Amount of tax to be collected from the invoice. Tax Amount is based on the Tax percentage of the country of the lessor, if tax is applicable as set on the lease.</description>
-    <externalId>false</externalId>
-    <formula>IF(leaseworks__Tax_Type__c=&#39;JCT&#39;,
-        IF(AND(ISPICKVAL(leaseworks__Invoice_Type__c , &#39;Rent&#39;),  NOT(ISPICKVAL(leaseworks__Invoice_Category__c, &#39;Power By The Hour&#39;))),
+    <formula>IF(leaseworks__Tax_Type__c=&apos;JCT&apos;,
+        IF(AND(ISPICKVAL(leaseworks__Invoice_Type__c , &apos;Rent&apos;),  NOT(ISPICKVAL(leaseworks__Invoice_Category__c, &apos;Power By The Hour&apos;))),
         ((leaseworks__Rent_Due_Amount__c + leaseworks__Gross_Up_Amount__c) * leaseworks__Tax_Rate__c),
-            IF(ISPICKVAL(leaseworks__Invoice_Type__c , &#39;Aircraft MR&#39;),
+            IF(ISPICKVAL(leaseworks__Invoice_Type__c , &apos;Aircraft MR&apos;),
 ((leaseworks__Utilization_Report__r.leaseworks__Total_Maintenance_Reserve__c  + leaseworks__Gross_Up_Amount__c) * leaseworks__Tax_Rate__c), ((leaseworks__Invoiced_Amount_Formula__c+leaseworks__Gross_Up_Amount__c) * leaseworks__Tax_Rate__c))) , 
     (leaseworks__Invoiced_Amount_Formula__c * leaseworks__Tax_Rate__c))</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>

@@ -26,6 +26,8 @@
                 <elementReference>tt_NotificationBody</elementReference>
             </value>
         </inputParameters>
+        <nameSegment>emailSimple</nameSegment>
+        <offset>0</offset>
     </actionCalls>
     <apiVersion>63.0</apiVersion>
     <assignments>
@@ -97,8 +99,8 @@
         <dataType>String</dataType>
         <expression>IF(
     NOT(ISBLANK({!Get_Related_Deal.Id})),
-    &#39;Deal: &#39; &amp; {!Get_Related_Deal.Name} &amp; BR(),
-    &#39;&#39;
+    &apos;Deal: &apos; &amp; {!Get_Related_Deal.Name} &amp; BR(),
+    &apos;&apos;
 )</expression>
     </formulas>
     <formulas>
@@ -109,7 +111,7 @@
     <formulas>
         <name>f_RelatedToRecordNameOrPlaceholderText</name>
         <dataType>String</dataType>
-        <expression>IF({!$Record.leaseworks__Related_Record_Name__c} != Null, {!$Record.leaseworks__Related_Record_Name__c} , &#39;No Related Record&#39;)</expression>
+        <expression>IF({!$Record.leaseworks__Related_Record_Name__c} != Null, {!$Record.leaseworks__Related_Record_Name__c} , &apos;No Related Record&apos;)</expression>
     </formulas>
     <formulas>
         <name>f_TruncatedTaskCreatorId</name>

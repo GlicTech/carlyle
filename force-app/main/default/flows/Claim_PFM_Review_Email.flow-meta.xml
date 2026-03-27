@@ -3,12 +3,12 @@
     <actionCalls>
         <name>Check_If_Status_Moved_Backwards</name>
         <label>Check If Status Moved Backwards</label>
-        <locationX>314</locationX>
+        <locationX>176</locationX>
         <locationY>323</locationY>
         <actionName>PicklistOrderComparator</actionName>
         <actionType>apex</actionType>
         <connector>
-            <targetReference>Was_Status_Moved_Back_To_PFM_Review</targetReference>
+            <targetReference>Get_Claim_Approval_Settings_CMDT</targetReference>
         </connector>
         <flowTransactionModel>Automatic</flowTransactionModel>
         <inputParameters>
@@ -35,13 +35,15 @@
                 <stringValue>leaseworks__Claims__c</stringValue>
             </value>
         </inputParameters>
+        <nameSegment>PicklistOrderComparator</nameSegment>
+        <offset>0</offset>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <actionCalls>
         <name>Send_Calculation_Review_Email</name>
         <label>Send Calculation Review Email</label>
-        <locationX>50</locationX>
-        <locationY>647</locationY>
+        <locationX>176</locationX>
+        <locationY>539</locationY>
         <actionName>emailSimple</actionName>
         <actionType>emailSimple</actionType>
         <faultConnector>
@@ -50,7 +52,7 @@
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
             <name>recipientAddresses</name>
-            <value />
+            <value/>
         </inputParameters>
         <inputParameters>
             <name>senderType</name>
@@ -88,12 +90,15 @@
                 <booleanValue>true</booleanValue>
             </value>
         </inputParameters>
+        <nameSegment>emailSimple</nameSegment>
+        <offset>0</offset>
+        <versionString>2.0.1</versionString>
     </actionCalls>
     <actionCalls>
         <name>Send_Custom_Notification_Action_1</name>
         <label>Send Custom Notification Action 1</label>
-        <locationX>314</locationX>
-        <locationY>971</locationY>
+        <locationX>440</locationX>
+        <locationY>863</locationY>
         <actionName>customNotificationAction</actionName>
         <actionType>customNotificationAction</actionType>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
@@ -127,13 +132,15 @@
                 <elementReference>$Record.Id</elementReference>
             </value>
         </inputParameters>
+        <nameSegment>customNotificationAction</nameSegment>
+        <offset>0</offset>
     </actionCalls>
     <apiVersion>63.0</apiVersion>
     <assignments>
         <name>Assign_Running_User_Id_To_Collection</name>
         <label>Assign Running User Id To Collection</label>
-        <locationX>314</locationX>
-        <locationY>863</locationY>
+        <locationX>440</locationX>
+        <locationY>755</locationY>
         <assignmentItems>
             <assignToReference>varNotificationRecipientIds</assignToReference>
             <operator>Add</operator>
@@ -145,34 +152,12 @@
             <targetReference>Send_Custom_Notification_Action_1</targetReference>
         </connector>
     </assignments>
-    <decisions>
-        <name>Was_Status_Moved_Back_To_PFM_Review</name>
-        <label>Was Status Moved Back To PFM Review?</label>
-        <locationX>314</locationX>
-        <locationY>431</locationY>
-        <defaultConnectorLabel>Status Moved Backwards</defaultConnectorLabel>
-        <rules>
-            <name>Status_Moved_Forward</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>Check_If_Status_Moved_Backwards.isAfter</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Get_Claim_Approval_Settings_CMDT</targetReference>
-            </connector>
-            <label>Status Moved Forward</label>
-        </rules>
-    </decisions>
     <description>Sends the PFM Review Email</description>
     <environments>Default</environments>
     <formulas>
         <name>f_EmailSubject</name>
         <dataType>String</dataType>
-        <expression>&#39;Calculation Review Required on Claim [&#39; + {!$Record.Name} + &#39;]&#39;</expression>
+        <expression>&apos;Calculation Review Required on Claim [&apos; + {!$Record.Name} + &apos;]&apos;</expression>
     </formulas>
     <interviewLabel>[Claim] - PFM Review Email {!$Flow.CurrentDateTime}</interviewLabel>
     <label>[Claim] - PFM Review Email</label>
@@ -198,8 +183,8 @@
     <recordLookups>
         <name>Get_Claim_Approval_Settings_CMDT</name>
         <label>Get Claim Approval Settings CMDT</label>
-        <locationX>50</locationX>
-        <locationY>539</locationY>
+        <locationX>176</locationX>
+        <locationY>431</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Send_Calculation_Review_Email</targetReference>
@@ -233,8 +218,8 @@
     <recordLookups>
         <name>Get_Custom_Notification</name>
         <label>Get Custom Notification</label>
-        <locationX>314</locationX>
-        <locationY>755</locationY>
+        <locationX>440</locationX>
+        <locationY>647</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Assign_Running_User_Id_To_Collection</targetReference>
@@ -252,7 +237,7 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <start>
-        <locationX>188</locationX>
+        <locationX>50</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Check_If_Status_Moved_Backwards</targetReference>

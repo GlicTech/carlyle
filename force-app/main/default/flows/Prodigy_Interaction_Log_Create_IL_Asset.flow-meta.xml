@@ -118,4 +118,25 @@
         <triggerType>RecordAfterSave</triggerType>
     </start>
     <status>Active</status>
+    <transforms>
+        <name>Create_Asset_Id_Collection</name>
+        <label>Create Asset Id Collection</label>
+        <locationX>176</locationX>
+        <locationY>431</locationY>
+        <connector>
+            <targetReference>Triggering_Asset_Already_An_IL_Asset</targetReference>
+        </connector>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>Get_Il_Assets[$EachItem].Asset__c</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
 </Flow>

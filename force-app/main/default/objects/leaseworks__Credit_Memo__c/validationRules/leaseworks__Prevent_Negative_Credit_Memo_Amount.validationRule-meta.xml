@@ -5,8 +5,8 @@
     <description>This Validation is to inform the user that we can not  create a Credit Memo with a negative amount.</description>
     <errorConditionFormula>AND(
     NOT($Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c),
-    leaseworks__Amount__c &lt; 0
+    leaseworks__Credit_Memo_Amount_New__c&lt; 0
 )</errorConditionFormula>
-    <errorDisplayField>leaseworks__Amount__c</errorDisplayField>
+    <errorDisplayField>leaseworks__Credit_Memo_Amount_New__c</errorDisplayField>
     <errorMessage>Credit Memo Amount should not be negative.</errorMessage>
 </ValidationRule>

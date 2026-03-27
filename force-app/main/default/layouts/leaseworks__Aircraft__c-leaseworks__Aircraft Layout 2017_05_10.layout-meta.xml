@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
     <customButtons>leaseworks__Generate_Spec_Sheet</customButtons>
-    <excludeButtons>OpenSlackRecordChannel</excludeButtons>
     <layoutSections>
         <customLabel>false</customLabel>
         <detailHeading>false</detailHeading>
@@ -167,6 +166,14 @@
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>cap_Record_ID__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>CAP_Prior_Year_Flight_Hours__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>CAP_Prior_Year_Flight_Cycles__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -629,6 +636,10 @@
             </layoutItem>
         </relatedContentItems>
     </relatedContent>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>pro_Asset_Target_Audit__c.pro_Asset__c</relatedList>
+    </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
         <fields>RECORDTYPE</fields>

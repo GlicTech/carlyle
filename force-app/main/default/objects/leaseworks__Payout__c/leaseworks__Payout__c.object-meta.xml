@@ -130,7 +130,7 @@
         <actionName>View</actionName>
         <comment>Action override updated by Lightning App Builder during activation.</comment>
         <content>Payouts_Record_Page13</content>
-        <formFactor>Small</formFactor>
+        <formFactor>Large</formFactor>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Flexipage</type>
     </actionOverrides>
@@ -138,7 +138,7 @@
         <actionName>View</actionName>
         <comment>Action override updated by Lightning App Builder during activation.</comment>
         <content>Payouts_Record_Page13</content>
-        <formFactor>Large</formFactor>
+        <formFactor>Small</formFactor>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Flexipage</type>
     </actionOverrides>
@@ -150,6 +150,13 @@
     <compactLayoutAssignment>leaseworks__Payout_Compact_Layout</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <deprecated>false</deprecated>
+    <description>Record the amount paid out to the lessee ,suppliers or service providers.
+Population Requirement Details: Conditionally Required if legacy data loading is required
+[MODULE: Finance]
+[LOAD: Yes]
+[PREREQUISITES: Payable]
+[REPLACEMENT OBJECT API: NA]
+[COMMENTS: NA]</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -168,7 +175,7 @@
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Payouts</pluralLabel>
-    <searchLayouts />
+    <searchLayouts></searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

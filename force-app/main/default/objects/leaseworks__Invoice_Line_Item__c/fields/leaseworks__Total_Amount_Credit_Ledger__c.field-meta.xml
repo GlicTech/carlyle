@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Total_Amount_Credit_Ledger__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Mirrors the “Line Amount Credited($)” field from Invoice Line Items, converted into the company reporting (Ledger) currency for financial reporting.</description>
+    <externalId>false</externalId>
+    <formula>IF(
+    NOT(leaseworks__Multicurrency_Enabled__c),
+    leaseworks__Total_Amount_Credit_Num__c,
+    IF(
+        ISBLANK(leaseworks__Exchange_Rate__c),
+        NULL,
+        IF(
+            leaseworks__Exchange_Rate__c = 0,
+            0,
+            leaseworks__Total_Amount_Credit_Num__c* leaseworks__Exchange_Rate__c
+        )
+    )
+    )</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Displays the sum of all credits applied to this line item, expressed in the company reporting (Ledger) currency.</inlineHelpText>
+    <label>Line Amount Credited (Ledger)</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

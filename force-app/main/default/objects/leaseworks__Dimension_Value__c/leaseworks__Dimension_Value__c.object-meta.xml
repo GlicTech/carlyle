@@ -144,7 +144,15 @@
     <compactLayoutAssignment>leaseworks__Default</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <deprecated>false</deprecated>
-    <description>List of Values for Dimensions</description>
+    <description>List of Values for Dimensions
+If custom dimensions are loaded, it is expected that corresponding dimension values are also loaded.
+For example,if a dimension is &quot;Location,&quot; the dimension values could be &quot;New York,&quot; &quot;London,&quot; etc. Dimension values provide the granularity needed to analyze and categorize financial data effectively.
+Population Requirement Details: Conditionally required when additional dimensions beyond the standard system-supported dimensions are necessary for the journals.
+[MODULE: Accounting]
+[LOAD: Optional]
+[PREREQUISITES: Dimensions]
+[REPLACEMENT OBJECT API: NA]
+[COMMENTS: NA]</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>

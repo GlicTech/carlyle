@@ -146,7 +146,14 @@
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <deprecated>false</deprecated>
-    <description>To keep track of VAT (TVA in France, JCT in Japan etc.) charged on invoicing of Rent and Utilisation.</description>
+    <description>To keep track of VAT (TVA in France, JCT in Japan etc.) charged on invoicing of Rent and Utilisation.
+Object to capture the differnt type tax (GST,VAT,JCT) with rates in the system
+Population Requirement Details: Conditionally Required if Tax Rates are applicable for leases and transactions
+[MODULE: Finance]
+[LOAD: Optional]
+[PREREQUISITES: Country]
+[REPLACEMENT OBJECT API: NA]
+[COMMENTS: NA]</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -164,7 +171,7 @@
         <type>Text</type>
     </nameField>
     <pluralLabel>Tax</pluralLabel>
-    <searchLayouts />
+    <searchLayouts></searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

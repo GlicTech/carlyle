@@ -172,21 +172,10 @@
                 <fieldItem>Record.leaseworks__Converted_Currency_Line_Amount__c</fieldItem>
                 <identifier>RecordConverted_Currency_Line_Amount_cField</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 OR (2 AND 3)</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.leaseworks__Invoice__r.leaseworks__Multicurrency_Enabled__c}</leftValue>
                         <operator>EQUAL</operator>
-                        <rightValue>false</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.leaseworks__Invoice_Type__c}</leftValue>
-                        <operator>NE</operator>
-                        <rightValue>Rent</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.leaseworks__Invoice_Type__c}</leftValue>
-                        <operator>NE</operator>
-                        <rightValue>Fee</rightValue>
+                        <rightValue>true</rightValue>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -228,21 +217,10 @@
                 <fieldItem>Record.leaseworks__Amount_Due__c</fieldItem>
                 <identifier>RecordAmount_Due_cField</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 OR (2 AND 3)</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.leaseworks__Invoice__r.leaseworks__Multicurrency_Enabled__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>false</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.leaseworks__Invoice_Type__c}</leftValue>
-                        <operator>NE</operator>
-                        <rightValue>Rent</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.leaseworks__Invoice_Type__c}</leftValue>
-                        <operator>NE</operator>
-                        <rightValue>Fee</rightValue>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -256,21 +234,10 @@
                 <fieldItem>Record.leaseworks__Invoice_Line_Amount_Number__c</fieldItem>
                 <identifier>RecordInvoice_Line_Amount_Number_cField2</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 AND ( 2 OR 3)</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.leaseworks__Invoice__r.leaseworks__Multicurrency_Enabled__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.leaseworks__Invoice_Type__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>Rent</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.leaseworks__Invoice_Type__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>Fee</rightValue>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -284,21 +251,10 @@
                 <fieldItem>Record.leaseworks__Total_Adjustment_Amount__c</fieldItem>
                 <identifier>RecordTotal_Adjustment_Amount_cField</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 OR (2 AND 3)</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.leaseworks__Invoice__r.leaseworks__Multicurrency_Enabled__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>false</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.leaseworks__Invoice_Type__c}</leftValue>
-                        <operator>NE</operator>
-                        <rightValue>Rent</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.leaseworks__Invoice_Type__c}</leftValue>
-                        <operator>NE</operator>
-                        <rightValue>Fee</rightValue>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -312,21 +268,10 @@
                 <fieldItem>Record.leaseworks__Total_Line_Amount__c</fieldItem>
                 <identifier>RecordTotal_Line_Amount_cField</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 OR (2 AND 3)</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.leaseworks__Invoice__r.leaseworks__Multicurrency_Enabled__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>false</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.leaseworks__Invoice_Type__c}</leftValue>
-                        <operator>NE</operator>
-                        <rightValue>Rent</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.leaseworks__Invoice_Type__c}</leftValue>
-                        <operator>NE</operator>
-                        <rightValue>Fee</rightValue>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -340,21 +285,10 @@
                 <fieldItem>Record.leaseworks__Total_Line_Amount_Number__c</fieldItem>
                 <identifier>RecordTotal_Line_Amount_Number_cField2</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 AND (2 OR 3)</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.leaseworks__Invoice__r.leaseworks__Multicurrency_Enabled__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.leaseworks__Invoice_Type__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>Rent</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.leaseworks__Invoice_Type__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>Fee</rightValue>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -368,21 +302,27 @@
                 <fieldItem>Record.leaseworks__Total_Adjustment_Amount_Number__c</fieldItem>
                 <identifier>RecordTotal_Adjustment_Amount_Number_cField2</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 AND (2 OR 3)</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.leaseworks__Invoice__r.leaseworks__Multicurrency_Enabled__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
                     </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Total_Amount_Credit_Num__c</fieldItem>
+                <identifier>Recordleaseworks_Total_Amount_Credit_Num_cField</identifier>
+                <visibilityRule>
                     <criteria>
-                        <leftValue>{!Record.leaseworks__Invoice_Type__c}</leftValue>
+                        <leftValue>{!Record.leaseworks__Multicurrency_Enabled__c}</leftValue>
                         <operator>EQUAL</operator>
-                        <rightValue>Rent</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.leaseworks__Invoice_Type__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>Fee</rightValue>
+                        <rightValue>true</rightValue>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -400,21 +340,10 @@
                 <fieldItem>Record.leaseworks__Total_Amount_Paid__c</fieldItem>
                 <identifier>RecordTotal_Amount_Paid_cField</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 OR (2 AND 3)</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.leaseworks__Invoice__r.leaseworks__Multicurrency_Enabled__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>false</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.leaseworks__Invoice_Type__c}</leftValue>
-                        <operator>NE</operator>
-                        <rightValue>Rent</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.leaseworks__Invoice_Type__c}</leftValue>
-                        <operator>NE</operator>
-                        <rightValue>Fee</rightValue>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -428,21 +357,10 @@
                 <fieldItem>Record.leaseworks__Line_Amount_Paid_Number__c</fieldItem>
                 <identifier>RecordLine_Amount_Paid_Number_cField2</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 AND (2 OR 3)</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.leaseworks__Invoice__r.leaseworks__Multicurrency_Enabled__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.leaseworks__Invoice_Type__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>Rent</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.leaseworks__Invoice_Type__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>Fee</rightValue>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -456,21 +374,10 @@
                 <fieldItem>Record.leaseworks__Balance_Due__c</fieldItem>
                 <identifier>RecordBalance_Due_cField</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 OR (2 AND 3)</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.leaseworks__Invoice__r.leaseworks__Multicurrency_Enabled__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>false</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.leaseworks__Invoice_Type__c}</leftValue>
-                        <operator>NE</operator>
-                        <rightValue>Rent</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.leaseworks__Invoice_Type__c}</leftValue>
-                        <operator>NE</operator>
-                        <rightValue>Fee</rightValue>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -484,21 +391,10 @@
                 <fieldItem>Record.leaseworks__Total_Amount_Credited__c</fieldItem>
                 <identifier>RecordTotal_Amount_Credited_cField</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 OR (2 AND 3)</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.leaseworks__Invoice__r.leaseworks__Multicurrency_Enabled__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>false</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.leaseworks__Invoice_Type__c}</leftValue>
-                        <operator>NE</operator>
-                        <rightValue>Rent</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.leaseworks__Invoice_Type__c}</leftValue>
-                        <operator>NE</operator>
-                        <rightValue>Fee</rightValue>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -512,21 +408,10 @@
                 <fieldItem>Record.leaseworks__Line_Amount_Balance_Due_Number__c</fieldItem>
                 <identifier>RecordLine_Amount_Balance_Due_Number_cField2</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 AND (2 OR 3)</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.leaseworks__Invoice__r.leaseworks__Multicurrency_Enabled__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>true</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.leaseworks__Invoice_Type__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>Rent</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.leaseworks__Invoice_Type__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>Fee</rightValue>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -539,6 +424,23 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.leaseworks__Total_Line_Amount_Ledger__c</fieldItem>
                 <identifier>RecordTotal_Line_Amount_Ledger_cField2</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Total_Amount_Credit_Ledger__c</fieldItem>
+                <identifier>Recordleaseworks_Total_Amount_Credit_Ledger_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Multicurrency_Enabled__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>true</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <name>Facet-98f77d78-f000-45b1-b6e7-320e28f1e8f5</name>
@@ -576,6 +478,10 @@
                     <value>Facet-03c1f95b-cba8-4d28-84f7-7ec4e27edc13</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>@@@SFDCInformationSFDC@@@</value>
                 </componentInstanceProperties>
@@ -588,6 +494,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-b5d7fc35-c151-41b0-8249-ced4e02429d8</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -742,6 +652,10 @@
                     <value>Facet-ba19e08d-3d13-4606-b4b5-c1b6e963c738</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Utilization Information</value>
                 </componentInstanceProperties>
@@ -884,6 +798,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-37655c3d-e115-441a-a694-f7ad11c6cd4f</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>

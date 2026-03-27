@@ -78,6 +78,46 @@
                 <identifier>RecordLink_cField</identifier>
             </fieldInstance>
         </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Event_Urgency__c</fieldItem>
+                <identifier>Recordleaseworks_Event_Urgency_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Assigned_User__c</fieldItem>
+                <identifier>Recordleaseworks_Assigned_User_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Asset_Status__c</fieldItem>
+                <identifier>Recordleaseworks_Asset_Status_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Priority__c</fieldItem>
+                <identifier>Recordleaseworks_Priority_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
         <name>Facet-dbd17201-f10c-44a5-ab91-a1609f78072a</name>
         <type>Facet</type>
     </flexiPageRegions>
@@ -100,6 +140,46 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.leaseworks__Event_Status__c</fieldItem>
                 <identifier>RecordEvent_Status_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Event_Scope__c</fieldItem>
+                <identifier>Recordleaseworks_Event_Scope_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Assigned_Team__c</fieldItem>
+                <identifier>Recordleaseworks_Assigned_Team_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Portfolio__c</fieldItem>
+                <identifier>Recordleaseworks_Portfolio_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Contract_Status__c</fieldItem>
+                <identifier>Recordleaseworks_Contract_Status_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-e60a6ef4-b4f6-4c73-b8dc-ca8fbd896b54</name>
@@ -134,16 +214,26 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
-                    <value>readonly</value>
+                    <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Period__c</fieldItem>
-                <identifier>RecordPeriod_cField</identifier>
+                <fieldItem>Record.leaseworks__Completed_By__c</fieldItem>
+                <identifier>Recordleaseworks_Completed_By_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-13b49324-649b-4d5f-b391-177c27af70f9</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Completion_Date__c</fieldItem>
+                <identifier>Recordleaseworks_Completion_Date_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
         <itemInstances>
             <fieldInstance>
                 <fieldInstanceProperties>
@@ -248,6 +338,81 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Amount__c</fieldItem>
+                <identifier>Recordleaseworks_Amount_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Currency__c</fieldItem>
+                <identifier>Recordleaseworks_Currency_cField</identifier>
+                <visibilityRule>
+                    <booleanFilter>1 OR 2</booleanFilter>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Type__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Rent Invoice Generation Date</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Type__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Rent Receipts Due Date</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <name>Facet-657bb8ae-9e76-467a-a669-1d0b014fdf0f</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Outstanding__c</fieldItem>
+                <identifier>Recordleaseworks_Outstanding_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <name>Facet-4dcf092b-dcf9-44f5-9b36-b37c401ea374</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-657bb8ae-9e76-467a-a669-1d0b014fdf0f</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:column</componentName>
+                <identifier>flexipage_column10</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-4dcf092b-dcf9-44f5-9b36-b37c401ea374</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:column</componentName>
+                <identifier>flexipage_column11</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>Facet-28fc7682-830d-4e24-a67a-92f545e5f94c</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
                     <value>readonly</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.CreatedById</fieldItem>
@@ -313,6 +478,10 @@
                     <value>Facet-94660f3e-65a5-4ad6-ae44-4fcb0459f735</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>@@@SFDCEngagementSignalDistinctDetailsSFDC@@@</value>
                 </componentInstanceProperties>
@@ -325,6 +494,10 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-1fa06113-b640-42f1-aeb4-467bd92c91d7</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -341,6 +514,10 @@
                     <value>Facet-39a1f995-8c15-428c-b21d-5b936a44cce8</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
                     <value>Links</value>
                 </componentInstanceProperties>
@@ -352,7 +529,29 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>columns</name>
+                    <value>Facet-28fc7682-830d-4e24-a67a-92f545e5f94c</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>label</name>
+                    <value>Finance Details</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:fieldSection</componentName>
+                <identifier>flexipage_fieldSection6</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>columns</name>
                     <value>Facet-e2eb88d5-792b-4ece-9326-70710c4a7885</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -417,8 +616,12 @@
                     <value>Facet-ad9d0f32-97c8-40f7-98a8-807b2117252c</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>label</name>
-                    <value>Section</value>
+                    <value>Comments</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:fieldSection</componentName>
                 <identifier>flexipage_fieldSection5</identifier>

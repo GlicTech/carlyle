@@ -88,15 +88,15 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>New</actionName>
-        <content>leaseworks__GenericDesktopOnlyMessage</content>
-        <formFactor>Small</formFactor>
+        <content>leaseworks__RentStudioContainer</content>
+        <formFactor>Large</formFactor>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>LightningComponent</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>New</actionName>
-        <content>leaseworks__RentStudioContainer</content>
-        <formFactor>Large</formFactor>
+        <content>leaseworks__GenericDesktopOnlyMessage</content>
+        <formFactor>Small</formFactor>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>LightningComponent</type>
     </actionOverrides>
@@ -153,7 +153,14 @@
     <compactLayoutAssignment>X2023_Compact_Layout</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <deprecated>false</deprecated>
-    <description>This lease-level configuration table houses Rent Schedule parameters, including start/end dates and base rent. While typically a single schedule exists per lease, exceptions involving rent type changes (fixed to PBH, etc.) necessitate additional schedules. Users leverage Rent Studio to manage these schedules, generating rent slips and subsequent invoices.</description>
+    <description>This lease-level configuration table houses Rent Schedule parameters, including start/end dates and base rent. While typically a single schedule exists per lease, exceptions involving rent type changes (fixed to PBH, etc.) necessitate additional schedules. Users leverage Rent Studio to manage these schedules, generating rent slips and subsequent invoices.
+If Applicable and the Rent Type can be Fixed, Floating, Seasonal, PBH.
+This lease-level configuration table houses Rent Schedule parameters, including start/end dates and base rent. While typically a single schedule exists per lease, exceptions involving rent type changes (fixed to PBH, etc.) necessitate additional schedules. Users leverage Rent Studio to manage these schedules, generating rent slips and subsequent invoices.
+[MODULE: Contract]
+[LOAD: Yes]
+[PREREQUISITES: Lease]
+[REPLACEMENT OBJECT API: NA]
+[COMMENTS: NA]</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -171,7 +178,7 @@
         <type>Text</type>
     </nameField>
     <pluralLabel>Rent Schedule</pluralLabel>
-    <searchLayouts />
+    <searchLayouts></searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

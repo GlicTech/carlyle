@@ -150,7 +150,13 @@
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <deprecated>false</deprecated>
-    <description>This will maintain Life Limit , utilization and remaining life for each Thrust of the LLPs.</description>
+    <description>This will maintain Life Limit , utilization and remaining life for each Thrust of the LLPs.
+Thrust Usage data is usually generated during the process of loading Life Limited Parts (LLPs). This specific table should only be populated in cases where there is a history of multi-thrust usage, enabling the loading of historical flight cycles of the LLPs at different engine thrust levels than the current one.
+[MODULE: Asset]
+[LOAD: Optional]
+[PREREQUISITES: Life Limited Parts (LLPs)]
+[REPLACEMENT OBJECT API: NA]
+[COMMENTS: NA]</description>
     <enableActivities>true</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -167,7 +173,7 @@
         <type>Text</type>
     </nameField>
     <pluralLabel>Thrust Usages</pluralLabel>
-    <searchLayouts />
+    <searchLayouts></searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

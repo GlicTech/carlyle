@@ -1,7 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>62.0</apiVersion>
+    <decisions>
+        <name>Target_Record_Found</name>
+        <label>Target Record Found?</label>
+        <locationX>182</locationX>
+        <locationY>350</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Create_ATA_Record</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Target_Record.Id</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Create_Asset_Target_Audit</targetReference>
+            </connector>
+            <label>Yes - Create ATA Record</label>
+        </rules>
+    </decisions>
     <environments>Default</environments>
+    <formulas>
+        <name>f_TargetEndDate</name>
+        <dataType>Date</dataType>
+        <expression>IF(
+  TEXT({!varContract.leaseworks__Aircraft__r.leaseworks__Wide_body_Narrow_body__c}) = &quot;Wide-body&quot;,
+  ADDMONTHS({!varContract.leaseworks__Lease_End_Date_New__c}, -12),
+  {!varContract.leaseworks__Lease_End_Date_New__c}
+)</expression>
+    </formulas>
     <interviewLabel>Prodigy - Autolaunched - Create Asset Target Audit When Contract Signed {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Prodigy - Autolaunched - Create Asset Target Audit When Contract Signed</label>
     <processMetadataValues>
@@ -26,8 +57,8 @@
     <recordCreates>
         <name>Create_Asset_Target_Audit</name>
         <label>Create Asset Target Audit</label>
-        <locationX>176</locationX>
-        <locationY>350</locationY>
+        <locationX>50</locationX>
+        <locationY>458</locationY>
         <inputAssignments>
             <field>pro_Asset__c</field>
             <value>
@@ -52,25 +83,25 @@
     <recordLookups>
         <name>Get_Target_Record</name>
         <label>Get Target Record</label>
-        <locationX>176</locationX>
+        <locationX>182</locationX>
         <locationY>242</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Create_Asset_Target_Audit</targetReference>
+            <targetReference>Target_Record_Found</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>pro_Start_Date__c</field>
             <operator>LessThanOrEqualTo</operator>
             <value>
-                <elementReference>varContract.leaseworks__Lease_End_Date_New__c</elementReference>
+                <elementReference>f_TargetEndDate</elementReference>
             </value>
         </filters>
         <filters>
             <field>pro_End_Date__c</field>
             <operator>GreaterThanOrEqualTo</operator>
             <value>
-                <elementReference>varContract.leaseworks__Lease_End_Date_New__c</elementReference>
+                <elementReference>f_TargetEndDate</elementReference>
             </value>
         </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
@@ -80,7 +111,7 @@
     <recordUpdates>
         <name>Close_Any_Open_Audit_Records_For_Same_Asset</name>
         <label>Close Any Open Audit Records For Same Asset</label>
-        <locationX>176</locationX>
+        <locationX>182</locationX>
         <locationY>134</locationY>
         <connector>
             <targetReference>Get_Target_Record</targetReference>
@@ -110,7 +141,7 @@
     </recordUpdates>
     <runInMode>SystemModeWithoutSharing</runInMode>
     <start>
-        <locationX>50</locationX>
+        <locationX>56</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Close_Any_Open_Audit_Records_For_Same_Asset</targetReference>

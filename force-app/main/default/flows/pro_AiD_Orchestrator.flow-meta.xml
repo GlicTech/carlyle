@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>62.0</apiVersion>
+    <description>Orchestrator for Asset in Deal record triggers. When LOI Date is populated, delegates Pre-Closing checklist generation to the pro_Auto_Generate_PreClosing subflow.</description>
+    <label>AiD Orchestrator</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>176</locationX>
+        <locationY>0</locationY>
+        <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>LOI_Date__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <object>leaseworks__Aircraft_Proposal__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <scheduledPaths>
+            <connector>
+                <targetReference>Call_Auto_Generate_PreClosing</targetReference>
+            </connector>
+            <pathType>AsyncAfterCommit</pathType>
+        </scheduledPaths>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <subflows>
+        <name>Call_Auto_Generate_PreClosing</name>
+        <label>Call Auto Generate Pre-Closing</label>
+        <locationX>176</locationX>
+        <locationY>134</locationY>
+        <flowName>pro_Auto_Generate_PreClosing</flowName>
+        <inputAssignments>
+            <name>varDealId</name>
+            <value>
+                <elementReference>$Record.leaseworks__Marketing_Activity__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>varAidId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
+</Flow>

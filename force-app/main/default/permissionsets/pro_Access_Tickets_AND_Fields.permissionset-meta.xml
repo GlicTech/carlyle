@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
-    <description>Access to read, create, edit, delete Tickets. Access to key fields on Tickets.Flow picklist values cmdt along with junction objects for Assets and Assemblies.</description>
-    <hasActivationRequired>false</hasActivationRequired>
-    <label>Access Tickets AND Fields</label>
     <customMetadataTypeAccesses>
         <enabled>true</enabled>
         <name>Flow_Picklist_Value__mdt</name>
@@ -11,6 +8,7 @@
         <enabled>true</enabled>
         <name>pro_Global_Value_Set__mdt</name>
     </customMetadataTypeAccesses>
+    <description>Access to read, create, edit, delete Tickets. Access to key fields on Tickets.Flow picklist values cmdt along with junction objects for Assets and Assemblies.</description>
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Constituent_Assembly__c.pro_Assembly_Name_And_Type__c</field>
@@ -301,6 +299,8 @@
         <field>pro_Ticket__c.pro_Utilization__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Access Tickets AND Fields</label>
     <objectPermissions>
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>

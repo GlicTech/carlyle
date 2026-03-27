@@ -130,7 +130,7 @@
         <actionName>View</actionName>
         <comment>Action override created by Lightning App Builder during activation.</comment>
         <content>Letter_Of_Credit_Record_Page1</content>
-        <formFactor>Small</formFactor>
+        <formFactor>Large</formFactor>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Flexipage</type>
     </actionOverrides>
@@ -138,7 +138,7 @@
         <actionName>View</actionName>
         <comment>Action override created by Lightning App Builder during activation.</comment>
         <content>Letter_Of_Credit_Record_Page1</content>
-        <formFactor>Large</formFactor>
+        <formFactor>Small</formFactor>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Flexipage</type>
     </actionOverrides>
@@ -150,7 +150,12 @@
     <compactLayoutAssignment>leaseworks__Letter_of_Credit</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <deprecated>false</deprecated>
-    <description>This table serves as a repository for all Lease Letter of Credit data, including key dates, issuing bank, amounts, and drawdowns.</description>
+    <description>This table serves as a repository for all Lease Letter of Credit data, including key dates, issuing bank, amounts, and drawdowns.
+[MODULE: Contract]
+[LOAD: Yes]
+[PREREQUISITES: Lease]
+[REPLACEMENT OBJECT API: NA]
+[COMMENTS: NA]</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -168,7 +173,7 @@
         <type>Text</type>
     </nameField>
     <pluralLabel>Letter Of Credit</pluralLabel>
-    <searchLayouts />
+    <searchLayouts></searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

@@ -1012,13 +1012,13 @@
             <label>Update</label>
         </rules>
     </decisions>
-    <description>Flow can be embedded on the record page of any object where the External Document Link field appears. Surfaces the link through a screen flow allowing for long links that don&#39;t break.</description>
+    <description>Flow can be embedded on the record page of any object where the External Document Link field appears. Surfaces the link through a screen flow allowing for long links that don&apos;t break.</description>
     <environments>Default</environments>
     <formulas>
         <description>Shows up to the first 150 characters of the document link variable</description>
         <name>f_DocumentLinkTruncated</name>
         <dataType>String</dataType>
-        <expression>LEFT({!varRetrievedDocumentLink}, 150) &amp; &#39;...&#39;</expression>
+        <expression>LEFT({!varRetrievedDocumentLink}, 150) &amp; &apos;...&apos;</expression>
     </formulas>
     <formulas>
         <description>Isolates the first 3 characters of recordId to be used for getting the Entity Definition of record from which the screen flow was launched.</description>
@@ -2027,6 +2027,7 @@
             </defaultValue>
             <fieldText>New Document Link</fieldText>
             <fieldType>LargeTextArea</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>false</isRequired>
             <visibilityRule>
                 <conditionLogic>(1 OR 2) AND 3</conditionLogic>
@@ -2205,7 +2206,7 @@
     </start>
     <status>Active</status>
     <textTemplates>
-        <description>Text template that surfaces the document link variable with an inbuilt link to the document link&#39;s url.</description>
+        <description>Text template that surfaces the document link variable with an inbuilt link to the document link&apos;s url.</description>
         <name>tt_DocumentLink</name>
         <isViewedAsPlainText>false</isViewedAsPlainText>
         <text>&lt;p&gt;&lt;a href=&quot;{!varRetrievedDocumentLink}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;{!f_DocumentLinkTruncated}&lt;/a&gt;&lt;/p&gt;</text>
@@ -2234,7 +2235,7 @@
         <isOutput>false</isOutput>
     </variables>
     <variables>
-        <description>Variable to hold the document link from whichever Get Query is triggered in the flow&#39;s path.</description>
+        <description>Variable to hold the document link from whichever Get Query is triggered in the flow&apos;s path.</description>
         <name>varRetrievedDocumentLink</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>

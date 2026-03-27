@@ -15,7 +15,7 @@
         <fullName>leaseworks__Loc Expiry</fullName>
         <active>false</active>
         <description>Set Loc to Inactive if Today &gt; Loc Expiry Date</description>
-        <formula>AND(isPickVal(leaseworks__Status__c,&#39;Active&#39;), isPickVal( leaseworks__LC_Coverage_Type__c ,&#39;Security Deposit&#39;), NOT( OR(ISBLANK(leaseworks__Expiry_Date__c),ISNULL(leaseworks__Expiry_Date__c) )))</formula>
+        <formula>AND(isPickVal(leaseworks__Status__c,&apos;Active&apos;), isPickVal( leaseworks__LC_Coverage_Type__c ,&apos;Security Deposit&apos;), NOT( OR(ISBLANK(leaseworks__Expiry_Date__c),ISNULL(leaseworks__Expiry_Date__c) )))</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
 </Workflow>

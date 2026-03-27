@@ -8,28 +8,28 @@
 	AND
 		(
 		   leaseworks__Fx_General_Input__r.leaseworks__EOLA__c == TRUE,	
-		   NOT(ISPICKVAL(leaseworks__Fx_General_Input__r.leaseworks__Ext_Reserve_Type__c ,&#39;Monthly MR&#39;))
+		   NOT(ISPICKVAL(leaseworks__Fx_General_Input__r.leaseworks__Ext_Reserve_Type__c ,&apos;Monthly MR&apos;))
 		),
-	&#39;EOLA&#39;,
+	&apos;EOLA&apos;,
 	IF(
 		AND
 			(
 			   leaseworks__Fx_General_Input__r.leaseworks__EOLA__c == TRUE,	
-			   ISPICKVAL(leaseworks__Fx_General_Input__r.leaseworks__Ext_Reserve_Type__c ,&#39;Monthly MR&#39;)	
+			   ISPICKVAL(leaseworks__Fx_General_Input__r.leaseworks__Ext_Reserve_Type__c ,&apos;Monthly MR&apos;)	
 			),
-		&#39;BOTH&#39;,
+		&apos;BOTH&apos;,
 		IF(
 			AND(
 				leaseworks__Fx_General_Input__r.leaseworks__EOLA__c == FALSE,	
-				NOT(ISPICKVAL(leaseworks__Fx_General_Input__r.leaseworks__Ext_Reserve_Type__c ,&#39;EOLA&#39;)	
+				NOT(ISPICKVAL(leaseworks__Fx_General_Input__r.leaseworks__Ext_Reserve_Type__c ,&apos;EOLA&apos;)	
 				)),
-				&#39;MR&#39;,
+				&apos;MR&apos;,
 				IF(
 					AND(
 						leaseworks__Fx_General_Input__r.leaseworks__EOLA__c == FALSE,	
-						(ISPICKVAL(leaseworks__Fx_General_Input__r.leaseworks__Ext_Reserve_Type__c ,&#39;EOLA&#39;)	
+						(ISPICKVAL(leaseworks__Fx_General_Input__r.leaseworks__Ext_Reserve_Type__c ,&apos;EOLA&apos;)	
 						)),
-					&#39;BOTH&#39;,NULL)
+					&apos;BOTH&apos;,NULL)
 		)
 	)
 )</formula>

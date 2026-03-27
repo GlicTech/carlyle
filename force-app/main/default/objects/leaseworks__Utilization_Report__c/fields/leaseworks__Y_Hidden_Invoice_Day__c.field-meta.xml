@@ -3,7 +3,7 @@
     <fullName>leaseworks__Y_Hidden_Invoice_Day__c</fullName>
     <deprecated>false</deprecated>
     <description>Used for calculating Invoice date of Assumed Utilization Invoice.
-If this invoice day is blank, then the field &#39;invoice generation day_prospective __c(invoice day field this is a picklist and the default value is 1)&#39; from the lease considered and set the value accordingly and flows to the invoice.</description>
+If this invoice day is blank, then the field &apos;invoice generation day_prospective __c(invoice day field this is a picklist and the default value is 1)&apos; from the lease considered and set the value accordingly and flows to the invoice.</description>
     <externalId>false</externalId>
     <formula>IF(ISBLANK(leaseworks__Invoice_Day__c), Value(Text(leaseworks__Y_hidden_Lease__r.leaseworks__Inv_Gen_Day_Prospective_Rate__c)), leaseworks__Invoice_Day__c)</formula>
     <label>_Invoice Generation Day</label>

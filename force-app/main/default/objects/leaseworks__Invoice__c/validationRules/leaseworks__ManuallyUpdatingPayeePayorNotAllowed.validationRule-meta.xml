@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__ManuallyUpdatingPayeePayorNotAllowed</fullName>
+    <active>false</active>
+    <description>The Payee on the Invoice should be the Lessor on the Lease, and the Payor should be the Lessee</description>
+    <errorConditionFormula>AND(
+    NOT($Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c),
+    leaseworks__Lease__r.RecordType.DeveloperName != &apos;Non_Lease_Agreement&apos;,  
+    NOT(ISNEW()),                                         
+
+    OR(
+        AND(
+            ISBLANK(PRIORVALUE(leaseworks__Rent_Payable_Frm__c)),     
+            NOT(ISBLANK(leaseworks__Rent_Payable_Frm__c)),            
+            leaseworks__Rent_Payable_Frm__c != leaseworks__Lease__r.leaseworks__Lessee_New__c 
+        ),
+        AND(
+            ISBLANK(PRIORVALUE(leaseworks__Rent_Pyable_To__c)),
+            NOT(ISBLANK(leaseworks__Rent_Pyable_To__c)),        
+            leaseworks__Rent_Pyable_To__c != leaseworks__Lease__r.leaseworks__Lesor__c      
+        )
+    )
+)</errorConditionFormula>
+    <errorMessage>Manually updating the payor/payee field to values that are different to those on the related contract is not allowed. Please ensure that the lessee/lessor information in the contract is correct and select the corresponding payor/payee.</errorMessage>
+</ValidationRule>

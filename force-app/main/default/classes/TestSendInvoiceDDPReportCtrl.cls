@@ -537,13 +537,13 @@ public class TestSendInvoiceDDPReportCtrl {
         leaseworks.LWGlobalUtils.setTriggersAndWFsOn();
 
         leaseworks__credit_memo__c creditMemo = new leaseworks__credit_memo__c(
-            leaseworks__amount__c = 200000.00,
+            leaseworks__Credit_Memo_Amount_New__c = 200000.00,
             leaseworks__Credit_Memo_Date__c = Date.valueOf(system.today()), //system.today(),
             leaseworks__lessee_New__c = lease.leaseworks__Lessee_New__c,
             leaseworks__lease__c = lease.id,
             leaseworks__Credit_Memo_Reason__c = 'Other',
             leaseworks__Asset__c = testAircraft.Id,
-            leaseworks__Currency__c = 'USD',
+            leaseworks__Billing_Currency__c = 'USD',
             leaseworks__Entity__c = entity2.Id
         );
         insert creditMemo;

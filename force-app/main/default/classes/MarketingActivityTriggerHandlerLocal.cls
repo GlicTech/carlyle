@@ -72,7 +72,7 @@
         leaseworks__Marketing_Activity__c oldDeal = (leaseworks__Marketing_Activity__c) Trigger.oldMap.get(tempDeal.Id);
 
         // Skip validation if Deal Type = 'Approval'
-        if (tempDeal.leaseworks__Deal_Type__c == 'Approval') {
+        if (tempDeal.leaseworks__Deal_Type__c == 'Approval'  || tempDeal.leaseworks__Deal_Type__c == 'Lending') {
             continue;
         }
             /*For High probability deals, user has to get 'ADM Approval' to set any status post 'ADM Approval'.

@@ -44,6 +44,8 @@
                 <booleanValue>true</booleanValue>
             </value>
         </inputParameters>
+        <nameSegment>emailSimple</nameSegment>
+        <offset>0</offset>
     </actionCalls>
     <actionCalls>
         <name>Notify_Queue_Members</name>
@@ -86,6 +88,8 @@
                 <elementReference>$Record.Id</elementReference>
             </value>
         </inputParameters>
+        <nameSegment>customNotificationAction</nameSegment>
+        <offset>0</offset>
     </actionCalls>
     <actionCalls>
         <name>Notify_User_Owner</name>
@@ -125,6 +129,8 @@
                 <elementReference>$Record.Id</elementReference>
             </value>
         </inputParameters>
+        <nameSegment>customNotificationAction</nameSegment>
+        <offset>0</offset>
     </actionCalls>
     <apiVersion>63.0</apiVersion>
     <assignments>
@@ -346,6 +352,69 @@ Click this notification to view the Ticket</text>
         <isViewedAsPlainText>true</isViewedAsPlainText>
         <text>🎫New {!$Record.RecordType.Name} Ticket Created – [Ticket Number: {!$Record.Name}]</text>
     </textTemplates>
+    <transforms>
+        <name>Create_Recipient_Address_Collection</name>
+        <label>Create Recipient Address Collection</label>
+        <locationX>50</locationX>
+        <locationY>1079</locationY>
+        <connector>
+            <targetReference>Notify_Queue_Members</targetReference>
+        </connector>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>Get_Users[$EachItem].Email</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
+    <transforms>
+        <name>Create_User_Id_List</name>
+        <label>Create User Id List</label>
+        <locationX>50</locationX>
+        <locationY>755</locationY>
+        <connector>
+            <targetReference>User_Ids_Only</targetReference>
+        </connector>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>Get_Queue_Members[$EachItem].UserOrGroupId</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
+    <transforms>
+        <name>Create_User_Id_Variable</name>
+        <label>Create User Id Variable</label>
+        <locationX>578</locationX>
+        <locationY>539</locationY>
+        <connector>
+            <targetReference>Assign_User_Id_To_List</targetReference>
+        </connector>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>$Record.OwnerId</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
     <variables>
         <name>currentItem_User_Ids_Only</name>
         <dataType>String</dataType>

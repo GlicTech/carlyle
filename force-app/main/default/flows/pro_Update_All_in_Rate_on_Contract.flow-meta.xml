@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>66.0</apiVersion>
+    <environments>Default</environments>
+    <formulas>
+        <name>Sum</name>
+        <dataType>Number</dataType>
+        <expression>{!$Record.Margin__c} + {!$Record.Fixed_Interest__c}</expression>
+        <scale>6</scale>
+    </formulas>
+    <interviewLabel>pro_Update All-in Rate on Contract {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>pro_Update All-in Rate on Contract</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Update_Interest_Rate</name>
+        <label>Update Interest Rate</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <inputAssignments>
+            <field>leaseworks__Interest_Rate__c</field>
+            <value>
+                <elementReference>Sum</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Update_Interest_Rate</targetReference>
+        </connector>
+        <object>leaseworks__Lease__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

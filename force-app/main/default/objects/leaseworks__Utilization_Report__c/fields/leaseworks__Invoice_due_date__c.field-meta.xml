@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>leaseworks__Invoice_due_date__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Populated only for Actual and True Up utilizations; stores the calculated invoice due date and is used by bulk invoicing processes to fetch eligible records.
+        [LOAD: No]
+[JUSTIFICATION: Field is populated for Actual and True up Utilizations from trigger. It is used to store the calculated invoice due date and is used by bulk invoicing processes to fetch records.]
+[REPLACEMENT OBJECT API:NA]
+[REPLACEMENT FIELD API:NA]
+[COMMENTS:NA]</description>
+    <inlineHelpText>The due date for Actual and True Up Utilizations is auto-calculated during Utilization creation as per the parameters on the Contract and may be adjusted to the nearest working day per lease calendars and holidays. Any changes to parameters on the contract will not update this value for an existing utilization.</inlineHelpText>
+    <label>_Invoice due date</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>
