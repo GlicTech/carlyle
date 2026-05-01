@@ -4,9 +4,6 @@
         <field>pro_Ticket__c.Contracts_On_Tickets__r$Name</field>
     </columns>
     <columns>
-        <field>pro_Ticket__c$Owner</field>
-    </columns>
-    <columns>
         <field>pro_Ticket__c$CreatedDate</field>
     </columns>
     <columns>
@@ -14,6 +11,9 @@
     </columns>
     <columns>
         <field>pro_Ticket__c$pro_Resolution_Date__c</field>
+    </columns>
+    <columns>
+        <field>pro_Ticket__c$pro_Requested_By_Formula__c</field>
     </columns>
     <filter>
         <criteriaItems>
@@ -23,18 +23,15 @@
             <operator>equals</operator>
             <value>Audit Confirmation</value>
         </criteriaItems>
+        <criteriaItems>
+            <column>pro_Ticket__c$CreatedDate</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>greaterOrEqual</operator>
+            <value>1/1/2026 12:00 AM</value>
+        </criteriaItems>
     </filter>
-    <format>Summary</format>
-    <groupingsDown>
-        <dateGranularity>Day</dateGranularity>
-        <field>pro_Ticket__c$pro_Status__c</field>
-        <sortOrder>Asc</sortOrder>
-    </groupingsDown>
-    <groupingsDown>
-        <dateGranularity>Day</dateGranularity>
-        <field>pro_Ticket__c$Name</field>
-        <sortOrder>Asc</sortOrder>
-    </groupingsDown>
+    <format>Tabular</format>
     <name>Audit Confirmation Tracker</name>
     <params>
         <name>co</name>

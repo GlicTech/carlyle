@@ -2,7 +2,7 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>leaseworks__staging_status_check</fullName>
     <active>false</active>
-    <description>Staging status must  not be allowed to changed to any other status once it is &apos;Complete&apos;</description>
+    <description>Staging status must  not be allowed to changed to any other status once it is &#39;Complete&#39;</description>
     <errorConditionFormula>false /*ISPICKVAL(PRIORVALUE(Staging_Status__c),&quot;Complete&quot;) &amp;&amp; ISCHANGED(Staging_Status__c)*/</errorConditionFormula>
     <errorDisplayField>leaseworks__Staging_Status__c</errorDisplayField>
     <errorMessage>Staging status cannot be changed once the record processing is complete.</errorMessage>

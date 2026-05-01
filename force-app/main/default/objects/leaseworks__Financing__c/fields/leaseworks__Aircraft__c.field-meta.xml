@@ -3,6 +3,7 @@
     <fullName>leaseworks__Aircraft__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
     <deprecated>false</deprecated>
+    <externalId>false</externalId>
     <label>Aircraft</label>
     <lookupFilter>
         <active>true</active>
@@ -10,12 +11,12 @@
         <filterItems>
             <field>$Source.Id</field>
             <operation>notEqual</operation>
-            <value></value>
+            <value />
         </filterItems>
         <filterItems>
             <field>$Source.leaseworks__Lease__c</field>
             <operation>equals</operation>
-            <value></value>
+            <value />
         </filterItems>
         <isOptional>false</isOptional>
     </lookupFilter>

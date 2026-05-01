@@ -2,8 +2,9 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>leaseworks__Availability_Date_N__c</fullName>
     <deprecated>false</deprecated>
+    <externalId>false</externalId>
     <formula>if( IsBlank(leaseworks__Engine__c) 
-,if(!isBlank(leaseworks__Aircraft__c)&amp;&amp; (text(leaseworks__New_Used__c) == &apos;Used&apos;) 
+,if(!isBlank(leaseworks__Aircraft__c)&amp;&amp; (text(leaseworks__New_Used__c) == &#39;Used&#39;) 
 ,leaseworks__Aircraft__r.leaseworks__Availability_Date__c, 
 leaseworks__Aircraft__r.leaseworks__Date_of_Manufacture__c) 
 ,leaseworks__Engine__r.leaseworks__Availability_Date_N__c )</formula>

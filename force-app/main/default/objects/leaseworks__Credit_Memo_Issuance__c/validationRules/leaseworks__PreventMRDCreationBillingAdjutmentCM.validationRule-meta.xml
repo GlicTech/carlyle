@@ -3,6 +3,6 @@
     <fullName>leaseworks__PreventMRDCreationBillingAdjutmentCM</fullName>
     <active>true</active>
     <description>Distribution cannot be created because this Credit Memo is a Billing Adjustment.</description>
-    <errorConditionFormula>And(!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c,ISNEW() ,ISPICKVAL(leaseworks__Credit_Memo__r.leaseworks__Credit_Memo_Type__c, &apos;Correction&apos;))</errorConditionFormula>
+    <errorConditionFormula>And(!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c,ISNEW() ,ISPICKVAL(leaseworks__Credit_Memo__r.leaseworks__Credit_Memo_Type__c, &#39;Correction&#39;))</errorConditionFormula>
     <errorMessage>MR Overpayment Distribution records cannot be created for Billing Adjustment credit memos. Billing Adjustments correct invoicing errors and should not source the credit amounts from MR.</errorMessage>
 </ValidationRule>

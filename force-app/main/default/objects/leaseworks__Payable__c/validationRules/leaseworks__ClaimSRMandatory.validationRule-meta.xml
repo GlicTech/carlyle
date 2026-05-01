@@ -3,7 +3,7 @@
     <fullName>leaseworks__ClaimSRMandatory</fullName>
     <active>true</active>
     <description>Claims, Assembly Event and Supplemental Rent are mandatory for an event payable</description>
-    <errorConditionFormula>AND(isPickVal(leaseworks__Payable_Type__c,&apos;MR Claim Event&apos;),
+    <errorConditionFormula>AND(isPickVal(leaseworks__Payable_Type__c,&#39;MR Claim Event&#39;),
 OR(ISNULL(leaseworks__Claim__c),ISBLANK(leaseworks__Claim__c),
 ISNULL(leaseworks__Historical_Event__c),ISBLANK(leaseworks__Historical_Event__c),
 ISNULL(leaseworks__Supplemental_Rent__c),ISBLANK(leaseworks__Supplemental_Rent__c )))</errorConditionFormula>

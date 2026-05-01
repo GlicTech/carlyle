@@ -13,11 +13,11 @@
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
             <name>recipientAddresses</name>
-            <value/>
+            <value />
         </inputParameters>
         <inputParameters>
             <name>ccAddresses</name>
-            <value/>
+            <value />
         </inputParameters>
         <inputParameters>
             <name>senderType</name>
@@ -55,9 +55,6 @@
                 <booleanValue>true</booleanValue>
             </value>
         </inputParameters>
-        <nameSegment>emailSimple</nameSegment>
-        <offset>0</offset>
-        <versionString>2.0.1</versionString>
     </actionCalls>
     <actionCalls>
         <name>Send_Backup_Notification</name>
@@ -97,8 +94,6 @@
                 <elementReference>varTriggeringDeal.Id</elementReference>
             </value>
         </inputParameters>
-        <nameSegment>customNotificationAction</nameSegment>
-        <offset>0</offset>
     </actionCalls>
     <apiVersion>65.0</apiVersion>
     <assignments>
@@ -317,12 +312,12 @@
     <formulas>
         <name>f_LoiOrDocumentation</name>
         <dataType>String</dataType>
-        <expression>IF(TEXT({!varTriggeringDeal.leaseworks__Deal_Status__c} ) = &apos;LOI Signed&apos;, &apos;LOI&apos;, &apos;Documentation&apos;)</expression>
+        <expression>IF(TEXT({!varTriggeringDeal.leaseworks__Deal_Status__c} ) = &#39;LOI Signed&#39;, &#39;LOI&#39;, &#39;Documentation&#39;)</expression>
     </formulas>
     <formulas>
         <name>f_NotificationTitle</name>
         <dataType>String</dataType>
-        <expression>IF(TEXT({!varTriggeringDeal.leaseworks__Deal_Status__c}) = &apos;LOI Signed&apos;, &apos;[&apos; + {!varTriggeringDeal.Name} + &apos;] LOI Approval Completed&apos; , &apos;[&apos; + {!varTriggeringDeal.Name} + &apos;] Documentation Approval Completed&apos; )</expression>
+        <expression>IF(TEXT({!varTriggeringDeal.leaseworks__Deal_Status__c}) = &#39;LOI Signed&#39;, &#39;[&#39; + {!varTriggeringDeal.Name} + &#39;] LOI Approval Completed&#39; , &#39;[&#39; + {!varTriggeringDeal.Name} + &#39;] Documentation Approval Completed&#39; )</expression>
     </formulas>
     <interviewLabel>Autolaunched - Send Approval Sign Off Notifications {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Autolaunched - Send Approval Sign Off Notifications</label>
@@ -484,153 +479,6 @@
 
 Click this notification to view the Deal record.</text>
     </textTemplates>
-    <transforms>
-        <name>Create_A_List_Of_LOI_Sign_Off_User_Emails</name>
-        <label>Create A List Of LOI Sign Off User Emails</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Assign_Loi_Sign_Off_Emails_To_Variable</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>Get_LOI_Signoff_Users[$EachItem].Email</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
-    <transforms>
-        <name>Create_Collection_Of_Ids_For_Users_To_BE_Notified</name>
-        <label>Create Collection Of Ids For Users To BE Notified</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Send_Backup_Notification</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>varUsersToNotify[$EachItem].Id</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
-    <transforms>
-        <name>Create_Doc_Signoff_CC_Email_Collection</name>
-        <label>Create Doc Signoff CC Email Collection</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Get_Documentation_Sign_Off_Users</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>Filter_For_Doc_Approval_Email[$EachItem].pro_Email__c</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
-    <transforms>
-        <name>Create_Documentation_Sign_Off_Username_Collection</name>
-        <label>Create Documentation Sign Off Username Collection</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Filter_For_Doc_Approval_Email</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>Get_Custom_Metadata_Documentation_Sign_Off[$EachItem].pro_Assigned_To_Username__c</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
-    <transforms>
-        <name>Create_List_Of_Documentation_Sign_Off_User_Emails</name>
-        <label>Create List Of Documentation Sign Off User Emails</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Assign_Documentation_Sign_Off_Emails_To_Variable</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>Get_Documentation_Sign_Off_Users[$EachItem].Email</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
-    <transforms>
-        <name>Create_LOI_Signoff_CC_Email_Collection</name>
-        <label>Create LOI Signoff CC Email Collection</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Get_LOI_Signoff_Users</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>Filter_For_LOI_Approval_Email[$EachItem].pro_Email__c</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
-    <transforms>
-        <name>Create_LOI_Signoff_Username_Collection</name>
-        <label>Create LOI Signoff Username Collection</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Filter_For_LOI_Approval_Email</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>Get_Custom_Metadata_LOI_SignOff[$EachItem].pro_Assigned_To_Username__c</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
     <variables>
         <name>currentItem_Filter_For_Doc_Approval_Email</name>
         <dataType>SObject</dataType>

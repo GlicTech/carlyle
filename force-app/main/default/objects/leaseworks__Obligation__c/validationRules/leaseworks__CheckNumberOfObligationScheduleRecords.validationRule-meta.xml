@@ -2,6 +2,6 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>leaseworks__CheckNumberOfObligationScheduleRecords</fullName>
     <active>false</active>
-    <errorConditionFormula>CASE(VALUE(TEXT(leaseworks__Periodicity_Value__c)),0,1,(leaseworks__Obligation_End_Date__c -  leaseworks__Obligation_Start_Date__c))/( CASE(VALUE(TEXT(leaseworks__Periodicity_Value__c)),0,1,VALUE(TEXT(leaseworks__Periodicity_Value__c)))*CASE(TEXT(leaseworks__Periodicity_Type__c), &apos;Day(s)&apos;, 1, &apos;Month(s)&apos;, 30.43561644, &apos;Year(s)&apos;, 365.2410959,1))&gt;365</errorConditionFormula>
+    <errorConditionFormula>CASE(VALUE(TEXT(leaseworks__Periodicity_Value__c)),0,1,(leaseworks__Obligation_End_Date__c -  leaseworks__Obligation_Start_Date__c))/( CASE(VALUE(TEXT(leaseworks__Periodicity_Value__c)),0,1,VALUE(TEXT(leaseworks__Periodicity_Value__c)))*CASE(TEXT(leaseworks__Periodicity_Type__c), &#39;Day(s)&#39;, 1, &#39;Month(s)&#39;, 30.43561644, &#39;Year(s)&#39;, 365.2410959,1))&gt;365</errorConditionFormula>
     <errorMessage>Too many Obligation Schedule records - more than 366. Please increase the period or change Start/End Date to generate less events.</errorMessage>
 </ValidationRule>

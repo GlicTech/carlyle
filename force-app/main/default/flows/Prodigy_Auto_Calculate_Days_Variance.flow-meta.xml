@@ -372,48 +372,6 @@
         </connector>
     </start>
     <status>Active</status>
-    <transforms>
-        <name>Create_Holiday_Date_Collection</name>
-        <label>Create Holiday Date Collection</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Is_Actual_Date_Early_Delayed_Or_Same_As_Projected</targetReference>
-        </connector>
-        <dataType>Date</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>Get_Event_Calendar[$EachItem].leaseworks__Event_Date__c</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
-    <transforms>
-        <name>Create_Holiday_Schedule_Id_Collection</name>
-        <label>Create Holiday Schedule Id Collection</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Get_Event_Calendar</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>Get_Holiday_Schedules[$EachItem].Id</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
     <variables>
         <name>varActualDate</name>
         <dataType>Date</dataType>

@@ -27,6 +27,13 @@
                 <elementReference>Get_Selected_Contact.pro_Currency__c</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varDaysBudgeted</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>recordId.pro_Project_Manager_Days_Budgeted__c</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>Create_Project_Consulant</targetReference>
         </connector>
@@ -173,16 +180,16 @@ This flow is used on the Fleet Project Management record page for the display, c
     <dynamicChoiceSets>
         <name>pcs_Currency</name>
         <dataType>Picklist</dataType>
-        <displayField xsi:nil="true"/>
-        <object xsi:nil="true"/>
+        <displayField xsi:nil="true" />
+        <object xsi:nil="true" />
         <picklistField>pro_Currency__c</picklistField>
         <picklistObject>Contact</picklistObject>
     </dynamicChoiceSets>
     <dynamicChoiceSets>
         <name>pcs_ProjectRoles</name>
         <dataType>Picklist</dataType>
-        <displayField xsi:nil="true"/>
-        <object xsi:nil="true"/>
+        <displayField xsi:nil="true" />
+        <object xsi:nil="true" />
         <picklistField>pro_Project_Role__c</picklistField>
         <picklistObject>pro_Project_Consultant__c</picklistObject>
     </dynamicChoiceSets>
@@ -200,7 +207,7 @@ This flow is used on the Fleet Project Management record page for the display, c
     <formulas>
         <name>f_ConcatenatedName</name>
         <dataType>String</dataType>
-        <expression>{!ContactLookup.recordName} + &apos; - &apos; + {!pl_Project_Role}</expression>
+        <expression>{!ContactLookup.recordName} + &#39; - &#39; + {!pl_Project_Role}</expression>
     </formulas>
     <formulas>
         <name>f_DaysBudgetedByRole</name>
@@ -556,7 +563,6 @@ IF({!pl_Project_Role}= &quot;Other&quot;, {!recordId.pro_Other_Days_Budgeted__c}
                     <dataType>String</dataType>
                     <fieldText>First Name</fieldText>
                     <fieldType>InputField</fieldType>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                 </fields>
                 <fields>
@@ -564,7 +570,6 @@ IF({!pl_Project_Role}= &quot;Other&quot;, {!recordId.pro_Other_Days_Budgeted__c}
                     <dataType>String</dataType>
                     <fieldText>Last Name</fieldText>
                     <fieldType>InputField</fieldType>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                 </fields>
                 <fields>
@@ -642,7 +647,6 @@ IF({!pl_Project_Role}= &quot;Other&quot;, {!recordId.pro_Other_Days_Budgeted__c}
                     <dataType>String</dataType>
                     <fieldText>Project Role</fieldText>
                     <fieldType>DropdownBox</fieldType>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                 </fields>
                 <fields>
@@ -651,7 +655,6 @@ IF({!pl_Project_Role}= &quot;Other&quot;, {!recordId.pro_Other_Days_Budgeted__c}
                     <dataType>String</dataType>
                     <fieldText>Currency</fieldText>
                     <fieldType>DropdownBox</fieldType>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                 </fields>
                 <fields>
@@ -659,7 +662,6 @@ IF({!pl_Project_Role}= &quot;Other&quot;, {!recordId.pro_Other_Days_Budgeted__c}
                     <dataType>Number</dataType>
                     <fieldText>On-Site Day Rate</fieldText>
                     <fieldType>InputField</fieldType>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <scale>2</scale>
                 </fields>
@@ -668,7 +670,6 @@ IF({!pl_Project_Role}= &quot;Other&quot;, {!recordId.pro_Other_Days_Budgeted__c}
                     <dataType>Number</dataType>
                     <fieldText>Off-Site Day Rate</fieldText>
                     <fieldType>InputField</fieldType>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <scale>2</scale>
                 </fields>
@@ -824,7 +825,6 @@ IF({!pl_Project_Role}= &quot;Other&quot;, {!recordId.pro_Other_Days_Budgeted__c}
                     <dataType>String</dataType>
                     <fieldText>Project Role</fieldText>
                     <fieldType>DropdownBox</fieldType>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                 </fields>
                 <inputParameters>
@@ -995,7 +995,7 @@ IF({!pl_Project_Role}= &quot;Other&quot;, {!recordId.pro_Other_Days_Budgeted__c}
     </screens>
     <screens>
         <name>Set_Contact_s_Day_Rates</name>
-        <label>Set Contact&apos;s Day Rates</label>
+        <label>Set Contact&#39;s Day Rates</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <allowBack>true</allowBack>
@@ -1035,7 +1035,6 @@ IF({!pl_Project_Role}= &quot;Other&quot;, {!recordId.pro_Other_Days_Budgeted__c}
                     <dataType>String</dataType>
                     <fieldText>Currency</fieldText>
                     <fieldType>DropdownBox</fieldType>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                 </fields>
                 <inputParameters>
@@ -1071,7 +1070,6 @@ IF({!pl_Project_Role}= &quot;Other&quot;, {!recordId.pro_Other_Days_Budgeted__c}
                     <dataType>Number</dataType>
                     <fieldText>On-Site Day Rate</fieldText>
                     <fieldType>InputField</fieldType>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <scale>2</scale>
                 </fields>
@@ -1091,7 +1089,6 @@ IF({!pl_Project_Role}= &quot;Other&quot;, {!recordId.pro_Other_Days_Budgeted__c}
                     <dataType>Number</dataType>
                     <fieldText>Off-Site Day Rate</fieldText>
                     <fieldType>InputField</fieldType>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <scale>2</scale>
                 </fields>
@@ -1132,6 +1129,14 @@ IF({!pl_Project_Role}= &quot;Other&quot;, {!recordId.pro_Other_Days_Budgeted__c}
         <isCollection>false</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>varDaysBudgeted</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>2</scale>
     </variables>
     <variables>
         <name>varOffSiteDayRate</name>

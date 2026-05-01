@@ -1,17 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>64.0</apiVersion>
-    <customErrors>
-        <description>When the Parent Status is Approved, Submitted for Approval &amp; Cancelled-Pending then Child records should not get deleted</description>
-        <name>Restrict_User_to_delete_MR_Overpayment_Distribution</name>
-        <label>Restrict User to delete MR Overpayment Distribution</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <customErrorMessages>
-            <errorMessage>You cannot delete MR Overpayment Distribution records on a Submitted for Approval/ Approved/ Cancelled-Pending Credit Memo.</errorMessage>
-            <isFieldError>false</isFieldError>
-        </customErrorMessages>
-    </customErrors>
     <decisions>
         <description>This decision is used to check Parent Credit Memo record Status is Submitted for Approval / Approved / Cancelled-Pending then Child should not be delete.</description>
         <name>Check_Parent_Credit_Memo_Status</name>

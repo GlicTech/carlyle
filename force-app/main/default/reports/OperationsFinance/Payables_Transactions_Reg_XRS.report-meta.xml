@@ -7,15 +7,15 @@
         <chartSummaries>
             <aggregate>Sum</aggregate>
             <axisBinding>y</axisBinding>
-            <column>leaseworks__Operational_Transaction_Register__c.leaseworks__Total_Amount__c</column>
+            <column>leaseworks__Operational_Transaction_Register__c.leaseworks__Total_Amount_New__c</column>
         </chartSummaries>
         <chartType>HorizontalBarStacked</chartType>
         <enableHoverLabels>false</enableHoverLabels>
         <expandOthers>true</expandOthers>
-        <groupingColumn>leaseworks__Operational_Transaction_Register__c.leaseworks__Lessee__c</groupingColumn>
+        <groupingColumn>leaseworks__Operational_Transaction_Register__c.leaseworks__Transaction_Type__c</groupingColumn>
         <legendPosition>Right</legendPosition>
         <location>CHART_BOTTOM</location>
-        <secondaryGroupingColumn>leaseworks__Operational_Transaction_Register__c.leaseworks__Transaction_Type__c</secondaryGroupingColumn>
+        <secondaryGroupingColumn>leaseworks__Operational_Transaction_Register__c.leaseworks__Transaction_Source__c</secondaryGroupingColumn>
         <showAxisLabels>false</showAxisLabels>
         <showPercentage>false</showPercentage>
         <showTotal>false</showTotal>
@@ -38,7 +38,7 @@
     </columns>
     <columns>
         <aggregateTypes>Sum</aggregateTypes>
-        <field>leaseworks__Operational_Transaction_Register__c.leaseworks__Total_Amount__c</field>
+        <field>leaseworks__Operational_Transaction_Register__c.leaseworks__Total_Amount_New__c</field>
     </columns>
     <columns>
         <field>leaseworks__Operational_Transaction_Register__c.leaseworks__Transaction_Date__c</field>
@@ -48,7 +48,7 @@
     </columns>
     <columns>
         <aggregateTypes>Sum</aggregateTypes>
-        <field>leaseworks__Operational_Transaction_Register__c.leaseworks__Balance_Due__c</field>
+        <field>leaseworks__Operational_Transaction_Register__c.leaseworks__Balance_Due_New__c</field>
     </columns>
     <columns>
         <field>leaseworks__Operational_Transaction_Register__c.leaseworks__Due_Date__c</field>
@@ -67,11 +67,6 @@
         </criteriaItems>
     </filter>
     <format>Summary</format>
-    <groupingsDown>
-        <dateGranularity>Day</dateGranularity>
-        <field>leaseworks__Operational_Transaction_Register__c.leaseworks__Lessee__c</field>
-        <sortOrder>Asc</sortOrder>
-    </groupingsDown>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
         <field>leaseworks__Operational_Transaction_Register__c.leaseworks__Transaction_Type__c</field>

@@ -3,6 +3,7 @@
     <fullName>leaseworks__InComplete__c</fullName>
     <deprecated>false</deprecated>
     <description>The system will mark an Assembly Event as incomplete if the following details are missing: Associated Event, TSN/CSN at Event, and Release Date. Once the Associated Event is populated, either the TSN/CSN or the Release Date (depending on the intervals set in the associated event) will be used to determine whether the event is considered complete.</description>
+    <externalId>false</externalId>
     <formula>IF( AND(NOT(ISNULL(leaseworks__Projected_Event__c)) , OR(ISBLANK(leaseworks__Projected_Event__r.leaseworks__Maintenance_Program_Event__c), ISNULL(leaseworks__Projected_Event__r.leaseworks__Maintenance_Program_Event__c))) ,
 IF( (NOT(ISNULL(leaseworks__Projected_Event__r.leaseworks__Custom_Interval_Cycles__c)) &amp;&amp; ISNULL(leaseworks__CSN__c)),true,
 IF( (NOT(ISNULL(leaseworks__Projected_Event__r.leaseworks__Custom_Interval_Hours__c)) &amp;&amp; ISNULL(leaseworks__TSN__c)),true,

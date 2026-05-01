@@ -41,10 +41,10 @@
         <field>leaseworks__Lease__c$leaseworks__Aircraft__c.leaseworks__Asset_Owner_new__c.Financing_Local__c</field>
     </columns>
     <customDetailFormulas>
-        <calculatedFormula>-leaseworks__Credit_Memo__c.leaseworks__Available_Credit_Memo_Amount_F__c</calculatedFormula>
+        <calculatedFormula>-leaseworks__Credit_Memo__c.leaseworks__Balance_Available_New__c</calculatedFormula>
         <dataType>Double</dataType>
         <developerName>CDF1</developerName>
-        <label>Balance Available Reported</label>
+        <label>Balance Due</label>
         <scale>2</scale>
     </customDetailFormulas>
     <filter>
@@ -70,17 +70,17 @@
             <value>BLANK</value>
         </criteriaItems>
         <criteriaItems>
-            <column>leaseworks__Lease__c.leaseworks__Credit_Memo__r$leaseworks__Available_Credit_Memo_Amount_F__c</column>
-            <columnToColumn>false</columnToColumn>
-            <isUnlocked>false</isUnlocked>
-            <operator>greaterThan</operator>
-            <value>0</value>
-        </criteriaItems>
-        <criteriaItems>
             <column>leaseworks__Lease__c.leaseworks__Credit_Memo__r$Exclude_from_Receivables_Reporting__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
+            <value>0</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>CDF1</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
             <value>0</value>
         </criteriaItems>
     </filter>

@@ -9,6 +9,8 @@ import saveChecklistItems from '@salesforce/apex/pro_ChecklistManagerController.
 import movePhase from '@salesforce/apex/pro_ChecklistManagerController.movePhase';
 import addAdHocItem from '@salesforce/apex/pro_ChecklistManagerController.addAdHocItem';
 import getContractsProfileUsers from '@salesforce/apex/pro_ChecklistManagerController.getContractsProfileUsers';
+import bulkUpdateItems from '@salesforce/apex/pro_ChecklistManagerController.bulkUpdateItems';
+import getTemplateHierarchy from '@salesforce/apex/pro_ChecklistManagerController.getTemplateHierarchy';
 import {
     PHASE_PRE_CLOSING,
     PHASE_POST_CLOSING,
@@ -45,6 +47,11 @@ export default class ProChecklistManager extends NavigationMixin(LightningElemen
     categoryOptions = [];
     contractsUsers = [];
 
+    // CMDT parent-child template map (child DevName → parent DevName) used by
+    // the render sort to place conditional children immediately below their
+    // parent item (GT-27 / US-034).
+    templateHierarchy = {};
+
     // UI state
     isLoading = true;
     activePhase = PHASE_PRE_CLOSING;
@@ -52,6 +59,24 @@ export default class ProChecklistManager extends NavigationMixin(LightningElemen
     dirtyIds = new Set();
     validationErrors = {};
     isProcessing = false;
+
+    // Bulk update state
+    selectedIds = new Set();
+    showBulkUpdate = false;
+    bulkNecessary = '';
+    bulkResponsibility = '';
+    bulkStatus = '';
+    _bulkNecessaryPending = false;
+    _bulkCompletionPending = false;
+
+    // Bulk completion modal state
+    showBulkCompletionModal = false;
+    @track _bulkCompletionUnion = new Set();
+    bulkCompletionYesNo = '';
+    bulkCompletionKeyDate = '';
+    bulkCompletionProvidedBy = '';
+    bulkCompletionLoCActionRequired = '';
+    bulkCompletionCommentNotes = '';
 
     // Comment modal state
     showCommentModal = false;
@@ -69,6 +94,11 @@ export default class ProChecklistManager extends NavigationMixin(LightningElemen
     _completionItemId = null;
     @track _completionFields = [];
     @track _completionValues = {};
+    // When the completion dialog was triggered by flipping Necessary No→Yes on a
+    // Completed item, store the previous Necessary value here. If the user
+    // cancels the dialog we revert Necessary so the record doesn't end up in an
+    // invalid Completed + missing-required-field state (TC-017).
+    _completionRevertNecessaryTo = null;
 
     // Edit modal state
     showEditModal = false;
@@ -137,6 +167,17 @@ export default class ProChecklistManager extends NavigationMixin(LightningElemen
         }
         if (error) {
             this.showToast('Error', reduceErrors(error).join(', '), 'error');
+        }
+    }
+
+    @wire(getTemplateHierarchy)
+    wiredHierarchy({ data, error }) {
+        if (data) {
+            this.templateHierarchy = data || {};
+        }
+        if (error) {
+            // Non-fatal — fall back to flat sort if the hierarchy can't be loaded.
+            this.templateHierarchy = {};
         }
     }
 
@@ -216,15 +257,78 @@ export default class ProChecklistManager extends NavigationMixin(LightningElemen
     }
 
     get preClosingItems() {
-        return this._allItems
-            .filter((item) => item.pro_Phase__c === PHASE_PRE_CLOSING)
-            .map((item) => this._enrichItem(item));
+        const filtered = this._allItems.filter((item) => item.pro_Phase__c === PHASE_PRE_CLOSING);
+        const ordered = this._orderWithChildrenBelowParents(filtered);
+        return ordered.map((item, index) => this._enrichItem(item, index + 1));
     }
 
     get postClosingItems() {
-        return this._allItems
-            .filter((item) => item.pro_Phase__c === PHASE_POST_CLOSING)
-            .map((item) => this._enrichItem(item));
+        const filtered = this._allItems.filter((item) => item.pro_Phase__c === PHASE_POST_CLOSING);
+        const ordered = this._orderWithChildrenBelowParents(filtered);
+        return ordered.map((item, index) => this._enrichItem(item, index + 1));
+    }
+
+    /**
+     * GT-27: Reorder items so conditional children appear directly below
+     * their parent, preserving the underlying pro_Sort_Order__c for siblings.
+     *
+     * Uses pro_Source_Template__c on the item combined with the CMDT parent
+     * map (templateHierarchy) to identify children.
+     *
+     * Items without a source template (ad-hoc), or whose parent isn't
+     * present in the current list, keep their natural sort position.
+     */
+    _orderWithChildrenBelowParents(items) {
+        if (!items || items.length === 0) {
+            return [];
+        }
+        const hierarchy = this.templateHierarchy || {};
+
+        // Parent DevName → sibling ID(s) (by parent item Id, not template —
+        // a phase can contain multiple deals' worth in theory, but in
+        // practice each parent template produces one item per AiD).
+        // Map child items by their parent template DevName.
+        const childrenByParentTemplate = new Map();
+        for (const item of items) {
+            const srcTmpl = item.pro_Source_Template__c;
+            if (!srcTmpl) continue;
+            const parentTmpl = hierarchy[srcTmpl];
+            if (!parentTmpl) continue;
+            if (!childrenByParentTemplate.has(parentTmpl)) {
+                childrenByParentTemplate.set(parentTmpl, []);
+            }
+            childrenByParentTemplate.get(parentTmpl).push(item);
+        }
+
+        const childIds = new Set();
+        for (const list of childrenByParentTemplate.values()) {
+            for (const c of list) childIds.add(c.Id);
+        }
+
+        // Walk the natural-order list. For each non-child item, emit it;
+        // if it's a parent, emit its children (preserving their sort order).
+        const result = [];
+        for (const item of items) {
+            if (childIds.has(item.Id)) continue;
+            result.push(item);
+            if (item.pro_Source_Template__c && childrenByParentTemplate.has(item.pro_Source_Template__c)) {
+                const kids = childrenByParentTemplate.get(item.pro_Source_Template__c);
+                kids.sort((a, b) =>
+                    (a.pro_Sort_Order__c || 0) - (b.pro_Sort_Order__c || 0)
+                );
+                for (const k of kids) {
+                    result.push(k);
+                }
+            }
+        }
+        // Any orphan children (parent not in this phase) go at the end in sort order.
+        for (const id of childIds) {
+            if (!result.find(r => r.Id === id)) {
+                const orphan = items.find(i => i.Id === id);
+                if (orphan) result.push(orphan);
+            }
+        }
+        return result;
     }
 
     get preClosingStats() {
@@ -326,26 +430,55 @@ export default class ProChecklistManager extends NavigationMixin(LightningElemen
         return this.postClosingItems.length > 0;
     }
 
+    get isAllActiveSelected() {
+        const activeItems = this._getActivePhaseItems();
+        const selectableItems = activeItems.filter(i => i.pro_Status__c !== STATUS_MOVED);
+        if (selectableItems.length === 0) return false;
+        return selectableItems.every(i => this.selectedIds.has(i.Id));
+    }
+
+    get bulkUpdateButtonClass() {
+        return 'btn' + (this.showBulkUpdate ? ' btn-brand' : '');
+    }
+
+    get necessaryOptionsForBulk() {
+        return [{ label: '-- No Change --', value: '' }, ...this.necessaryOptions];
+    }
+
+    get userOptionsForBulk() {
+        return [{ label: '-- No Change --', value: '' }, ...this.contractsUsers];
+    }
+
+    get statusOptionsForBulk() {
+        return [
+            { label: '-- No Change --', value: '' },
+            { label: 'Completed', value: STATUS_COMPLETED }
+        ];
+    }
+
+    get tableWrapperClass() {
+        return this.showBulkUpdate ? 'table-wrapper-no-top-radius' : 'table-wrapper-full-radius';
+    }
+
     get newCompletionFieldsValue() {
         const fields = [];
         if (this.newCompletionYesNo) fields.push('pro_Yes_No__c');
         if (this.newCompletionDate) fields.push('pro_Key_Date__c');
-        if (this.newCompletionText) fields.push('pro_Text_Input__c');
         if (this.newCompletionComment) fields.push('pro_Comment_Notes__c');
         return fields.length > 0 ? fields.join(',') : null;
     }
 
     // --- Item Enrichment ---
 
-    _enrichItem(item) {
+    _enrichItem(item, rowNumber) {
         const isDone = isItemDone(item);
         const isStatusCompleted = item.pro_Status__c === STATUS_COMPLETED;
         const isMoved = item.pro_Status__c === STATUS_MOVED;
         const isNotNecessary = item.pro_Necessary__c === NECESSARY_NO;
         const overdueFlag = isOverdue(item);
         const validationError = this.validationErrors[item.Id] || '';
-        const responsibilityName = item.pro_Repsonsibility__r
-            ? item.pro_Repsonsibility__r.Name
+        const responsibilityName = item.pro_Responsibility__r
+            ? item.pro_Responsibility__r.Name
             : '';
 
         let rowClass = 'checklist-row';
@@ -385,12 +518,13 @@ export default class ProChecklistManager extends NavigationMixin(LightningElemen
             }
         }
 
-        const sortOrderValue = item.pro_Sort_Order__c != null
-            ? String(Math.floor(item.pro_Sort_Order__c))
-            : '';
+        const sortOrderValue = rowNumber != null ? String(rowNumber) : '';
 
         // Build answer display from completion field values (exclude comment)
         const answerDisplay = this._buildAnswerDisplay(item);
+
+        const isSelectable = !isMoved;
+        const isSelected = this.selectedIds.has(item.Id);
 
         return {
             ...item,
@@ -402,7 +536,7 @@ export default class ProChecklistManager extends NavigationMixin(LightningElemen
             isNotNecessary,
             isOverdue: overdueFlag,
             responsibilityName,
-            responsibilityId: item.pro_Repsonsibility__c || '',
+            responsibilityId: item.pro_Responsibility__c || '',
             showMoveToPost,
             hasCompletionFields,
             showEditButton: hasCompletionFields && isStatusCompleted,
@@ -413,6 +547,8 @@ export default class ProChecklistManager extends NavigationMixin(LightningElemen
             dateDisplay,
             answerDisplay,
             sortOrderValue,
+            isSelectable,
+            isSelected,
             necessaryValue: item.pro_Necessary__c || 'Yes',
             necessarySelectOptions: this.necessaryOptions.map(o => ({
                 label: o.label,
@@ -423,6 +559,11 @@ export default class ProChecklistManager extends NavigationMixin(LightningElemen
     }
 
     _buildAnswerDisplay(item) {
+        // Only show completion answers on Completed items (GT-22 / US-023).
+        // Open items may have partial values that would mislead the reader.
+        if (item.pro_Status__c !== STATUS_COMPLETED) {
+            return '';
+        }
         const fieldsStr = item.pro_Completion_Fields__c;
         if (!fieldsStr || !fieldsStr.trim()) {
             return '';
@@ -507,6 +648,11 @@ export default class ProChecklistManager extends NavigationMixin(LightningElemen
         } else {
             item.pro_Status__c = STATUS_OPEN;
             item.pro_Completed_Date__c = null;
+            // Clear completion field values when reopening
+            item.pro_Yes_No__c = null;
+            item.pro_Key_Date__c = null;
+            item.pro_Provided_By__c = null;
+            item.pro_LoC_Action_Required__c = null;
         }
         this._markDirty(itemId);
         this._validateItem(item);
@@ -523,12 +669,19 @@ export default class ProChecklistManager extends NavigationMixin(LightningElemen
             this._commentModalPreviousValue = item.pro_Necessary__c;
             this._commentModalText = item.pro_Comment_Notes__c || '';
             this.showCommentModal = true;
-            item.pro_Necessary__c = value;
-            this._markDirty(itemId);
         } else {
+            const previousNecessary = item.pro_Necessary__c;
             item.pro_Necessary__c = value;
             this._markDirty(itemId);
             this._validateItem(item);
+            // If flipping back to Yes on a Complete item with completion fields,
+            // re-open the completion dialog so the user can fill in required
+            // fields. If they cancel out, revert Necessary to the previous
+            // value so the record doesn't fail server-side validation (TC-017).
+            if (item.pro_Status__c === STATUS_COMPLETED && item.pro_Completion_Fields__c) {
+                this._completionRevertNecessaryTo = previousNecessary;
+                this._openCompletionDialog(item);
+            }
         }
     }
 
@@ -537,7 +690,7 @@ export default class ProChecklistManager extends NavigationMixin(LightningElemen
         const value = event.detail.value || null;
         const item = this._allItems.find((i) => i.Id === itemId);
         if (!item) return;
-        item.pro_Repsonsibility__c = value;
+        item.pro_Responsibility__c = value;
         this._markDirty(itemId);
     }
 
@@ -550,11 +703,41 @@ export default class ProChecklistManager extends NavigationMixin(LightningElemen
             this.showToast('Warning', 'A comment is required when marking an item as not necessary.', 'warning');
             return;
         }
+        const comment = this._commentModalText.trim();
+
+        // Bulk update: apply Necessary=No + comment to all selected items.
+        // Necessary + Comment Notes are applied client-side (same as before so they
+        // flow through the existing dirty-save pipeline). Any other bulk fields
+        // (Status, Responsibility, completion fields) are then committed via Apex.
+        if (this._bulkNecessaryPending) {
+            for (const itemId of this.selectedIds) {
+                const item = this._allItems.find(i => i.Id === itemId);
+                if (item) {
+                    item.pro_Necessary__c = NECESSARY_NO;
+                    item.pro_Comment_Notes__c = comment;
+                    this._markDirty(itemId);
+                    this._validateItem(item);
+                }
+            }
+            this._bulkNecessaryPending = false;
+            this.showCommentModal = false;
+            this._commentModalItemId = null;
+            this._commentModalPreviousValue = null;
+            this._commentModalText = '';
+            this.bulkNecessary = '';
+            // If Status=Completed is also set, show the completion modal next.
+            this._maybeOpenBulkCompletionModalOrCommit();
+            return;
+        }
+        // Single item update
         const item = this._allItems.find((i) => i.Id === this._commentModalItemId);
         if (item) {
-            item.pro_Comment_Notes__c = this._commentModalText.trim();
+            item.pro_Necessary__c = NECESSARY_NO;
+            item.pro_Comment_Notes__c = comment;
+            this._markDirty(item.Id);
             this._validateItem(item);
         }
+
         this.showCommentModal = false;
         this._commentModalItemId = null;
         this._commentModalPreviousValue = null;
@@ -562,15 +745,26 @@ export default class ProChecklistManager extends NavigationMixin(LightningElemen
     }
 
     handleCommentModalCancel() {
-        const item = this._allItems.find((i) => i.Id === this._commentModalItemId);
-        if (item && this._commentModalPreviousValue != null) {
-            item.pro_Necessary__c = this._commentModalPreviousValue;
-            this._validateItem(item);
-        }
+        const itemId = this._commentModalItemId;
+        // If the underlying record had no Necessary value yet, fall back to 'Yes'
+        // so the dropdown visibly resets rather than being left on 'No'.
+        const prevValue = this._commentModalPreviousValue || 'Yes';
+        this._allItems = [...this._allItems];
+        this._bulkNecessaryPending = false;
         this.showCommentModal = false;
         this._commentModalItemId = null;
         this._commentModalPreviousValue = null;
         this._commentModalText = '';
+        // The select is now bound via `value={item.necessaryValue}` so LWC will
+        // reset the DOM value reactively. The imperative restore is kept as a
+        // belt-and-braces safety net for timing edge cases (TC-009).
+        if (itemId) {
+            // eslint-disable-next-line @lwc/lwc/no-async-operation
+            setTimeout(() => {
+                const sel = this.template.querySelector(`select[data-id="${itemId}"][data-field="necessary"]`);
+                if (sel) sel.value = prevValue;
+            }, 0);
+        }
     }
 
     _markDirty(itemId) {
@@ -661,11 +855,32 @@ export default class ProChecklistManager extends NavigationMixin(LightningElemen
         item.pro_Status__c = STATUS_COMPLETED;
         item.pro_Completed_Date__c = new Date().toISOString().split('T')[0];
 
+        // User confirmed the dialog — whatever Necessary revert was pending is
+        // no longer needed (the item is now valid).
+        this._completionRevertNecessaryTo = null;
+
+        // Force reactive re-render so the row immediately shows the
+        // pending "completed" visual state (green row + strikethrough).
+        // The change is NOT persisted — user must click Save to commit.
+        this._allItems = [...this._allItems];
         this._markDirty(this._completionItemId);
         this._closeCompletionDialog();
     }
 
     handleCompletionCancel() {
+        // If the dialog was opened because the user flipped Necessary No→Yes on
+        // a Completed item, revert Necessary to its previous value so the item
+        // stays in a valid state (TC-017).
+        if (this._completionRevertNecessaryTo !== null) {
+            const item = this._allItems.find(i => i.Id === this._completionItemId);
+            if (item) {
+                item.pro_Necessary__c = this._completionRevertNecessaryTo;
+                // If the revert leaves no outstanding changes vs original, clear dirty flag.
+                this._validateItem(item);
+                this._allItems = [...this._allItems];
+            }
+        }
+        this._completionRevertNecessaryTo = null;
         this._closeCompletionDialog();
     }
 
@@ -791,11 +1006,10 @@ export default class ProChecklistManager extends NavigationMixin(LightningElemen
             pro_Key_Date__c: item.pro_Key_Date__c,
             pro_Comment_Notes__c: item.pro_Comment_Notes__c,
             pro_Completed_Date__c: item.pro_Completed_Date__c,
-            pro_Repsonsibility__c: item.pro_Repsonsibility__c,
+            pro_Responsibility__c: item.pro_Responsibility__c,
             pro_Yes_No__c: item.pro_Yes_No__c || null,
-            pro_Text_Input__c: item.pro_Text_Input__c || null,
-            pro_LoC_Requirement__c: item.pro_LoC_Requirement__c || null,
             pro_Provided_By__c: item.pro_Provided_By__c || null,
+            pro_LoC_Action_Required__c: item.pro_LoC_Action_Required__c || null,
             pro_Completion_Fields__c: item.pro_Completion_Fields__c || null
         }));
 
@@ -949,6 +1163,288 @@ export default class ProChecklistManager extends NavigationMixin(LightningElemen
 
     handleCancelAddForm() {
         this.showAddForm = false;
+    }
+
+    // --- Event Handlers: Bulk Selection & Update ---
+
+    handleSelectItem(event) {
+        const itemId = event.target.dataset.id;
+        const checked = event.target.checked;
+        const updated = new Set(this.selectedIds);
+        if (checked) {
+            updated.add(itemId);
+        } else {
+            updated.delete(itemId);
+        }
+        this.selectedIds = updated;
+    }
+
+    handleSelectAll(event) {
+        const checked = event.target.checked;
+        const updated = new Set(this.selectedIds);
+        const activeItems = this._getActivePhaseItems();
+        for (const item of activeItems) {
+            if (item.pro_Status__c === STATUS_MOVED) continue;
+            if (checked) {
+                updated.add(item.Id);
+            } else {
+                updated.delete(item.Id);
+            }
+        }
+        this.selectedIds = updated;
+    }
+
+    _getActivePhaseItems() {
+        return this._allItems.filter(i => i.pro_Phase__c === this.activePhase);
+    }
+
+    handleToggleBulkUpdate() {
+        this.showBulkUpdate = !this.showBulkUpdate;
+        if (!this.showBulkUpdate) {
+            this._resetBulkState();
+        }
+    }
+
+    handleCloseBulkUpdate() {
+        this.showBulkUpdate = false;
+        this._resetBulkState();
+    }
+
+    _resetBulkState() {
+        this.selectedIds = new Set();
+        this.bulkNecessary = '';
+        this.bulkResponsibility = '';
+        this.bulkStatus = '';
+        this._resetBulkCompletionState();
+    }
+
+    _resetBulkCompletionState() {
+        this.showBulkCompletionModal = false;
+        this._bulkCompletionPending = false;
+        this._bulkCompletionUnion = new Set();
+        this.bulkCompletionYesNo = '';
+        this.bulkCompletionKeyDate = '';
+        this.bulkCompletionProvidedBy = '';
+        this.bulkCompletionLoCActionRequired = '';
+        this.bulkCompletionCommentNotes = '';
+    }
+
+    handleBulkFieldChange(event) {
+        const field = event.target.dataset.field;
+        const value = event.detail.value != null ? event.detail.value : (event.target.value || '');
+        switch (field) {
+            case 'pro_Necessary__c': this.bulkNecessary = value; break;
+            case 'pro_Responsibility__c': this.bulkResponsibility = value; break;
+            case 'pro_Status__c': this.bulkStatus = value; break;
+            default: break;
+        }
+    }
+
+    // Build map of fields the user has actually filled in, merged with completion
+    // field values captured from the bulk completion modal (when triggered).
+    _collectBulkUpdates() {
+        const updates = {};
+        if (this.bulkResponsibility) updates.pro_Responsibility__c = this.bulkResponsibility;
+        if (this.bulkStatus) updates.pro_Status__c = this.bulkStatus;
+        return updates;
+    }
+
+    _hasAnyBulkValue() {
+        return !!(this.bulkNecessary || this.bulkResponsibility || this.bulkStatus);
+    }
+
+    // Inspect SELECTED items currently Open (not Completed, not Moved, Necessary != No),
+    // parse pro_Completion_Fields__c for each, union excluding pro_Comment_Notes__c.
+    _buildBulkCompletionUnion() {
+        const union = new Set();
+        for (const itemId of this.selectedIds) {
+            const item = this._allItems.find(i => i.Id === itemId);
+            if (!item) continue;
+            if (item.pro_Status__c === STATUS_COMPLETED) continue;
+            if (item.pro_Status__c === STATUS_MOVED) continue;
+            if (item.pro_Necessary__c === NECESSARY_NO) continue;
+            if (!item.pro_Completion_Fields__c) continue;
+            const fields = item.pro_Completion_Fields__c.split(',').map(f => f.trim()).filter(f => f);
+            for (const f of fields) {
+                if (f !== 'pro_Comment_Notes__c') union.add(f);
+            }
+        }
+        return union;
+    }
+
+    handleCopyToSelected() {
+        if (this.selectedIds.size === 0) {
+            this.showToast('Warning', 'No items selected.', 'warning');
+            return;
+        }
+        if (!this._hasAnyBulkValue()) {
+            this.showToast('Warning', 'Please fill in at least one field to update.', 'warning');
+            return;
+        }
+
+        // Necessary=No still goes through the comment modal flow.
+        // After its confirm, we fall through to completion modal (if needed) then commit.
+        if (this.bulkNecessary === NECESSARY_NO) {
+            this._bulkNecessaryPending = true;
+            this._commentModalItemId = null;
+            this._commentModalPreviousValue = null;
+            this._commentModalText = '';
+            this.showCommentModal = true;
+            return;
+        }
+
+        // Necessary=Yes is applied client-side (same as before) so the existing
+        // re-open-completion-dialog flow still works.
+        if (this.bulkNecessary) {
+            for (const itemId of this.selectedIds) {
+                const item = this._allItems.find(i => i.Id === itemId);
+                if (!item) continue;
+                item.pro_Necessary__c = this.bulkNecessary;
+                this._markDirty(itemId);
+                this._validateItem(item);
+                if (item.pro_Status__c === STATUS_COMPLETED && item.pro_Completion_Fields__c) {
+                    this._openCompletionDialog(item);
+                }
+            }
+        }
+
+        this._maybeOpenBulkCompletionModalOrCommit();
+    }
+
+    // Decide whether Status=Completed needs the Completion modal first.
+    _maybeOpenBulkCompletionModalOrCommit() {
+        if (this.bulkStatus === STATUS_COMPLETED) {
+            const union = this._buildBulkCompletionUnion();
+            if (union.size > 0) {
+                this._bulkCompletionUnion = union;
+                this._bulkCompletionPending = true;
+                this.showBulkCompletionModal = true;
+                return;
+            }
+        }
+        this._commitBulkUpdates();
+    }
+
+    // --- Bulk Completion Modal handlers ---
+
+    get bulkCompletionShowYesNo() { return this._bulkCompletionUnion.has('pro_Yes_No__c'); }
+    get bulkCompletionShowKeyDate() { return this._bulkCompletionUnion.has('pro_Key_Date__c'); }
+    get bulkCompletionShowProvidedBy() { return this._bulkCompletionUnion.has('pro_Provided_By__c'); }
+    get bulkCompletionShowLoCActionRequired() { return this._bulkCompletionUnion.has('pro_LoC_Action_Required__c'); }
+
+    get yesNoOptionsRequired() {
+        return [{ label: 'Yes', value: 'Yes' }, { label: 'No', value: 'No' }];
+    }
+    get providedByOptionsRequired() {
+        return [{ label: 'Carlyle', value: 'Carlyle' }, { label: 'Operator', value: 'Operator' }];
+    }
+    get locActionRequiredOptionsRequired() {
+        return [{ label: 'Transfer', value: 'Transfer' }, { label: 'New', value: 'New' }];
+    }
+
+    get bulkCompletionConfirmDisabled() {
+        if (this.bulkCompletionShowYesNo && !this.bulkCompletionYesNo) return true;
+        if (this.bulkCompletionShowKeyDate && !this.bulkCompletionKeyDate) return true;
+        if (this.bulkCompletionShowProvidedBy && !this.bulkCompletionProvidedBy) return true;
+        if (this.bulkCompletionShowLoCActionRequired && !this.bulkCompletionLoCActionRequired) return true;
+        return false;
+    }
+
+    handleBulkCompletionFieldChange(event) {
+        const field = event.target.dataset.field;
+        const value = event.detail.value != null ? event.detail.value : (event.target.value || '');
+        switch (field) {
+            case 'pro_Yes_No__c': this.bulkCompletionYesNo = value; break;
+            case 'pro_Key_Date__c': this.bulkCompletionKeyDate = value; break;
+            case 'pro_Provided_By__c': this.bulkCompletionProvidedBy = value; break;
+            case 'pro_LoC_Action_Required__c': this.bulkCompletionLoCActionRequired = value; break;
+            case 'pro_Comment_Notes__c': this.bulkCompletionCommentNotes = value; break;
+            default: break;
+        }
+    }
+
+    handleBulkCompletionCancel() {
+        // Bail out entirely — no changes applied.
+        this._resetBulkState();
+    }
+
+    handleBulkCompletionConfirm() {
+        this.showBulkCompletionModal = false;
+        this._commitBulkUpdates();
+    }
+
+    // Stage bulk changes as PENDING edits in-memory. The main Save button will
+    // commit them via the existing dirty-save pipeline. Discard reverts them.
+    _commitBulkUpdates() {
+        // Capture completion modal values (if captured). Per-item filtering
+        // against each record's pro_Completion_Fields__c happens below.
+        const completionValues = {};
+        if (this._bulkCompletionPending) {
+            if (this.bulkCompletionYesNo) completionValues.pro_Yes_No__c = this.bulkCompletionYesNo;
+            if (this.bulkCompletionKeyDate) completionValues.pro_Key_Date__c = this.bulkCompletionKeyDate;
+            if (this.bulkCompletionProvidedBy) completionValues.pro_Provided_By__c = this.bulkCompletionProvidedBy;
+            if (this.bulkCompletionLoCActionRequired) completionValues.pro_LoC_Action_Required__c = this.bulkCompletionLoCActionRequired;
+            if (this.bulkCompletionCommentNotes && this.bulkCompletionCommentNotes.trim()) {
+                completionValues.pro_Comment_Notes__c = this.bulkCompletionCommentNotes.trim();
+            }
+        }
+
+        const newStatus = this.bulkStatus;
+        const newResponsibility = this.bulkResponsibility;
+        let mutatedCount = 0;
+
+        for (const itemId of this.selectedIds) {
+            const item = this._allItems.find(i => i.Id === itemId);
+            if (!item) continue;
+            // Skip Moved items entirely.
+            if (item.pro_Status__c === STATUS_MOVED) continue;
+
+            let mutated = false;
+
+            if (newResponsibility) {
+                item.pro_Responsibility__c = newResponsibility;
+                mutated = true;
+            }
+
+            // Status=Completed only applies to items currently Open.
+            if (newStatus === STATUS_COMPLETED) {
+                if (item.pro_Status__c === 'Open') {
+                    item.pro_Status__c = STATUS_COMPLETED;
+                    mutated = true;
+                    // Apply completion field values, filtered to this item's config.
+                    if (item.pro_Completion_Fields__c) {
+                        const allowed = new Set(
+                            item.pro_Completion_Fields__c.split(',').map(f => f.trim()).filter(f => f)
+                        );
+                        for (const key of Object.keys(completionValues)) {
+                            if (allowed.has(key)) {
+                                item[key] = completionValues[key];
+                            }
+                        }
+                    }
+                }
+            } else if (newStatus) {
+                // Other status values: apply to non-Completed items.
+                if (item.pro_Status__c !== STATUS_COMPLETED) {
+                    item.pro_Status__c = newStatus;
+                    mutated = true;
+                }
+            }
+
+            if (mutated) {
+                mutatedCount++;
+                this._markDirty(itemId);
+                this._validateItem(item);
+            }
+        }
+
+        // Force reactive refresh.
+        this._allItems = [...this._allItems];
+
+        if (mutatedCount > 0) {
+            this.showToast('Pending', mutatedCount + ' item(s) staged. Click Save to persist.', 'info');
+        }
+        this._resetBulkState();
     }
 
     // --- Helpers ---

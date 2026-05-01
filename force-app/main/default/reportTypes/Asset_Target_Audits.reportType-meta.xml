@@ -185,7 +185,17 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>pro_Aircraft_Engine__c</field>
+            <field>Reporting_Year__c</field>
+            <table>pro_Asset_Target_Audit__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Run_Rate_Target__c</field>
+            <table>pro_Asset_Target_Audit__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>pro_Target_Re_Opened__c</field>
             <table>pro_Asset_Target_Audit__c</table>
         </columns>
         <masterLabel>Asset Target Audits</masterLabel>
@@ -263,6 +273,26 @@
             <field>pro_Target_Forecast__c.pro_Actual_Target_Start_Date__c</field>
             <table>pro_Asset_Target_Audit__c</table>
         </columns>
-        <masterLabel>Targets</masterLabel>
+        <masterLabel>Forecast Targets</masterLabel>
+    </sections>
+    <sections>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Target Date</displayNameOverride>
+            <field>pro_Target_Reached__c.pro_Actual_Target_Start_Date__c</field>
+            <table>pro_Asset_Target_Audit__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>pro_Target_Reached__c.pro_Achieved_Year__c</field>
+            <table>pro_Asset_Target_Audit__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Date Achieved</displayNameOverride>
+            <field>pro_Target_Reached__c.pro_Start_Date__c</field>
+            <table>pro_Asset_Target_Audit__c</table>
+        </columns>
+        <masterLabel>Reached Target</masterLabel>
     </sections>
 </ReportType>

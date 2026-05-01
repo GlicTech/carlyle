@@ -3,6 +3,7 @@
     <customButtons>leaseworks__Create_Rent_Schedule</customButtons>
     <customButtons>leaseworks__Mid_Term_Lease_Updates</customButtons>
     <customButtons>leaseworks__Create_Interest_Schedule</customButtons>
+    <excludeButtons>OpenSlackRecordChannel</excludeButtons>
     <layoutSections>
         <customLabel>false</customLabel>
         <detailHeading>false</detailHeading>
@@ -168,10 +169,6 @@
                 <field>leaseworks__Bill_To_Party__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>leaseworks__Current_Rent_New__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>leaseworks__Billing_Currency__c</field>
             </layoutItems>
@@ -214,6 +211,26 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>leaseworks__Invoice_Types__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>leaseworks__Base_Rent__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>leaseworks__Base_Rent_Number__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>leaseworks__Current_Rent_New__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>leaseworks__Current_Rent_Number__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>leaseworks__Primary_Rent_Currency__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -802,9 +819,9 @@
         <detailHeading>false</detailHeading>
         <editHeading>true</editHeading>
         <label>Custom Links</label>
-        <layoutColumns/>
-        <layoutColumns/>
-        <layoutColumns/>
+        <layoutColumns />
+        <layoutColumns />
+        <layoutColumns />
         <style>CustomLinks</style>
     </layoutSections>
     <layoutSections>
@@ -933,6 +950,9 @@
         <fields>leaseworks__Security_Deposit_Cash__c</fields>
         <fields>leaseworks__Deposit_Paid__c</fields>
         <fields>leaseworks__Security_Depo_Cash__c</fields>
+        <fields>leaseworks__Deposit_Payments_Received__c</fields>
+        <fields>leaseworks__Deposit_Returned__c</fields>
+        <fields>leaseworks__Paid_by_Offset__c</fields>
         <relatedList>leaseworks__Cash_Security_Deposit__c.leaseworks__Lease__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -1015,8 +1035,8 @@
         <fields>NAME</fields>
         <fields>leaseworks__Date_of_MR_Payment_Due__c</fields>
         <fields>leaseworks__Invoice_Date__c</fields>
-        <fields>leaseworks__Invoice_Category__c</fields>
         <fields>leaseworks__Status__c</fields>
+        <fields>leaseworks__Invoice_Category__c</fields>
         <fields>leaseworks__Payment_Status__c</fields>
         <fields>leaseworks__Total_Amount_Due__c</fields>
         <fields>leaseworks__Amount_Paid_Remaining__c</fields>
@@ -1095,11 +1115,11 @@
     <relatedLists>
         <fields>NAME</fields>
         <fields>leaseworks__LC_Coverage_Type__c</fields>
+        <fields>leaseworks__Status__c</fields>
         <fields>leaseworks__LC_Amount_LC_Currency__c</fields>
         <fields>leaseworks__Draw_Down_Amount__c</fields>
         <fields>leaseworks__Expiry_Date__c</fields>
         <fields>leaseworks__Auto_Renewal__c</fields>
-        <fields>leaseworks__Status__c</fields>
         <relatedList>leaseworks__Letter_Of_Credit__c.leaseworks__Lease__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -1119,6 +1139,9 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>CREATEDBY_USER</fields>
+        <fields>UPDATEDBY_USER</fields>
+        <fields>LAST_UPDATE</fields>
         <relatedList>leaseworks__N_Factor_Schedule__c.leaseworks__Lease__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -1141,11 +1164,10 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>leaseworks__Payable_Type__c</fields>
-        <fields>leaseworks__Payable_Date__c</fields>
-        <fields>leaseworks__Payable_Due_Date__c</fields>
         <fields>leaseworks__Payable_Amount__c</fields>
         <fields>leaseworks__Payable_Balance__c</fields>
+        <fields>leaseworks__Payable_Date__c</fields>
+        <fields>leaseworks__Payable_Short_Comment__c</fields>
         <fields>leaseworks__Status__c</fields>
         <relatedList>leaseworks__Payable__c.leaseworks__Lease__c</relatedList>
     </relatedLists>
@@ -1166,6 +1188,7 @@
         <fields>leaseworks__Rent_End_Date__c</fields>
         <fields>leaseworks__Billing_Currency__c</fields>
         <fields>leaseworks__Base_Rent_New__c</fields>
+        <fields>leaseworks__Primary_Rent_Schedule__c</fields>
         <fields>leaseworks__Status__c</fields>
         <relatedList>leaseworks__Stepped_Rent__c.leaseworks__Lease__c</relatedList>
     </relatedLists>

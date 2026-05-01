@@ -3,9 +3,9 @@
     <fullName>leaseworks__Applied_To_Payable__c</fullName>
     <deprecated>false</deprecated>
     <externalId>false</externalId>
-    <formula>if(leaseworks__Payment__c!=null &amp;&amp; ISPICKVAL(leaseworks__Payment__r.leaseworks__Payment_Type__c,&apos;Paid via Payable Offset&apos;),
-HYPERLINK( &apos;/&apos;+ leaseworks__Payment__r.leaseworks__Event_claim_payable__c, leaseworks__Payment__r.leaseworks__Event_claim_payable__r.Name ,&quot;_blank&quot;),if(leaseworks__Payment__c!=null &amp;&amp; ISPICKVAL(leaseworks__Payment__r.leaseworks__Payment_Type__c,&apos;Paid via SD Offset&apos;),
-HYPERLINK( &apos;/&apos;+ leaseworks__Payment__r.leaseworks__Cash_Security_Deposit__c, leaseworks__Payment__r.leaseworks__Cash_Security_Deposit__r.Name ,&quot;_blank&quot;),
+    <formula>if(leaseworks__Payment__c!=null &amp;&amp; ISPICKVAL(leaseworks__Payment__r.leaseworks__Payment_Type__c,&#39;Paid via Payable Offset&#39;),
+HYPERLINK( &#39;/&#39;+ leaseworks__Payment__r.leaseworks__Event_claim_payable__c, leaseworks__Payment__r.leaseworks__Event_claim_payable__r.Name ,&quot;_blank&quot;),if(leaseworks__Payment__c!=null &amp;&amp; ISPICKVAL(leaseworks__Payment__r.leaseworks__Payment_Type__c,&#39;Paid via SD Offset&#39;),
+HYPERLINK( &#39;/&#39;+ leaseworks__Payment__r.leaseworks__Cash_Security_Deposit__c, leaseworks__Payment__r.leaseworks__Cash_Security_Deposit__r.Name ,&quot;_blank&quot;),
 null ))</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Applied To Payable</label>

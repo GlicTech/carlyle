@@ -14,11 +14,11 @@
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
             <name>recipientAddresses</name>
-            <value/>
+            <value />
         </inputParameters>
         <inputParameters>
             <name>ccAddresses</name>
-            <value/>
+            <value />
         </inputParameters>
         <inputParameters>
             <name>senderType</name>
@@ -62,9 +62,6 @@
                 <stringValue></stringValue>
             </value>
         </inputParameters>
-        <nameSegment>emailSimple</nameSegment>
-        <offset>0</offset>
-        <versionString>2.0.1</versionString>
     </actionCalls>
     <actionCalls>
         <name>Email_Bank_Account_Approvers_Updated_Branch</name>
@@ -79,11 +76,11 @@
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
             <name>recipientAddresses</name>
-            <value/>
+            <value />
         </inputParameters>
         <inputParameters>
             <name>ccAddresses</name>
-            <value/>
+            <value />
         </inputParameters>
         <inputParameters>
             <name>senderType</name>
@@ -127,9 +124,6 @@
                 <stringValue></stringValue>
             </value>
         </inputParameters>
-        <nameSegment>emailSimple</nameSegment>
-        <offset>0</offset>
-        <versionString>2.0.1</versionString>
     </actionCalls>
     <actionCalls>
         <name>Notify_Approvers</name>
@@ -169,8 +163,6 @@
                 <elementReference>varTriggeringBankAccount.Id</elementReference>
             </value>
         </inputParameters>
-        <nameSegment>customNotificationAction</nameSegment>
-        <offset>0</offset>
     </actionCalls>
     <actionCalls>
         <name>Remove_Duplicates_From_Email_Collection</name>
@@ -189,8 +181,6 @@
                 <elementReference>Create_Collection_of_User_Emails</elementReference>
             </value>
         </inputParameters>
-        <nameSegment>RemoveDuplicatesFromCollection</nameSegment>
-        <offset>0</offset>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <apiVersion>65.0</apiVersion>
@@ -324,22 +314,22 @@
     <formulas>
         <name>f_IbanOrRouting</name>
         <dataType>String</dataType>
-        <expression>IF({!varTriggeringBankAccount.leaseworks__Country__r.Name} = &apos;United States of America&apos;, &apos;Routing/ABA&apos;, &apos;IBAN&apos;)</expression>
+        <expression>IF({!varTriggeringBankAccount.leaseworks__Country__r.Name} = &#39;United States of America&#39;, &#39;Routing/ABA&#39;, &#39;IBAN&#39;)</expression>
     </formulas>
     <formulas>
         <name>f_IbanOrRoutingUpdate</name>
         <dataType>String</dataType>
-        <expression>IF({!varTriggeringBankAccount.pro_Country_Name_Pending__c} = &apos;United States of America&apos;, &apos;Routing/ABA&apos;, &apos;IBAN&apos;)</expression>
+        <expression>IF({!varTriggeringBankAccount.pro_Country_Name_Pending__c} = &#39;United States of America&#39;, &#39;Routing/ABA&#39;, &#39;IBAN&#39;)</expression>
     </formulas>
     <formulas>
         <name>f_IbanOrRoutingUpdateValue</name>
         <dataType>String</dataType>
-        <expression>IF({!varTriggeringBankAccount.pro_Country_Name_Pending__c} = &apos;United States of America&apos;, {!varTriggeringBankAccount.pro_Routing_ABA_Pending__c}, {!varTriggeringBankAccount.pro_IBAN_Code_Pending__c})</expression>
+        <expression>IF({!varTriggeringBankAccount.pro_Country_Name_Pending__c} = &#39;United States of America&#39;, {!varTriggeringBankAccount.pro_Routing_ABA_Pending__c}, {!varTriggeringBankAccount.pro_IBAN_Code_Pending__c})</expression>
     </formulas>
     <formulas>
         <name>f_RoutingOrIbanValue</name>
         <dataType>String</dataType>
-        <expression>IF({!varTriggeringBankAccount.leaseworks__Country__r.Name} = &apos;United States of America&apos;, {!varTriggeringBankAccount.leaseworks__Routing_ABA__c}, {!varTriggeringBankAccount.leaseworks__IBAN_Code__c})</expression>
+        <expression>IF({!varTriggeringBankAccount.leaseworks__Country__r.Name} = &#39;United States of America&#39;, {!varTriggeringBankAccount.leaseworks__Routing_ABA__c}, {!varTriggeringBankAccount.leaseworks__IBAN_Code__c})</expression>
     </formulas>
     <interviewLabel>Autolaunched - Email Bank Account Approvers {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Autolaunched - Email Bank Account Approvers</label>
@@ -506,90 +496,6 @@ Currency: {!varTriggeringBankAccount.leaseworks__Account_Currency__c}
 
 Click this notification to view the Bank Account record and take action.</text>
     </textTemplates>
-    <transforms>
-        <name>Create_Collection_of_Group_Member_User_ids</name>
-        <label>Create Collection of Group Member User ids</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Get_User_Records</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>varUserGroupMembers[$EachItem].UserOrGroupId</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
-    <transforms>
-        <name>Create_Collection_Of_Ids_for_Sub_Groups</name>
-        <label>Create Collection Of Ids for Sub Groups</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Get_Members_Of_Subgroups</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>Filter_For_Groups[$EachItem].UserOrGroupId</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
-    <transforms>
-        <name>Create_Collection_of_User_Emails</name>
-        <label>Create Collection of User Emails</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Remove_Duplicates_From_Email_Collection</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>Get_User_Records[$EachItem].Email</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
-    <transforms>
-        <name>Create_User_Id_Collection_For_Notification</name>
-        <label>Create User Id Collection For Notification</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Get_Custom_Notification</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>Get_User_Records[$EachItem].Id</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
     <variables>
         <name>currentItem_Filter_For_Group_Records</name>
         <dataType>SObject</dataType>

@@ -37,17 +37,17 @@
     <formulas>
         <name>f_ATSLink</name>
         <dataType>String</dataType>
-        <expression>LEFT({!varTicketId.pro_ATS_Link_Long__c}, 150) &amp; &apos;...&apos;</expression>
+        <expression>LEFT({!varTicketId.pro_ATS_Link_Long__c}, 150) &amp; &#39;...&#39;</expression>
     </formulas>
     <formulas>
         <name>f_InternalSharepointLink</name>
         <dataType>String</dataType>
-        <expression>LEFT({!varTicketId.pro_Internal_Sharepoint_Link_Long__c}, 150) &amp; &apos;...&apos;</expression>
+        <expression>LEFT({!varTicketId.pro_Internal_Sharepoint_Link_Long__c}, 150) &amp; &#39;...&#39;</expression>
     </formulas>
     <formulas>
         <name>f_SharefileLink</name>
         <dataType>String</dataType>
-        <expression>LEFT({!varTicketId.pro_Sharefile_Link_Long__c}, 150) &amp; &apos;...&apos;</expression>
+        <expression>LEFT({!varTicketId.pro_Sharefile_Link_Long__c}, 150) &amp; &#39;...&#39;</expression>
     </formulas>
     <interviewLabel>Prodigy - Dynamic Display Of Document Link {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Prodigy - Dynamic Display Of Document Link</label>
@@ -173,7 +173,6 @@
             </defaultValue>
             <fieldText>New Internal Shrepoint Link</fieldText>
             <fieldType>LargeTextArea</fieldType>
-            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>false</isRequired>
         </fields>
         <fields>
@@ -183,7 +182,6 @@
             </defaultValue>
             <fieldText>New Sharefile Link</fieldText>
             <fieldType>LargeTextArea</fieldType>
-            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>false</isRequired>
         </fields>
         <fields>
@@ -193,7 +191,6 @@
             </defaultValue>
             <fieldText>New ATS Link</fieldText>
             <fieldType>LargeTextArea</fieldType>
-            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>false</isRequired>
         </fields>
         <nextOrFinishButtonLabel>Save Links</nextOrFinishButtonLabel>

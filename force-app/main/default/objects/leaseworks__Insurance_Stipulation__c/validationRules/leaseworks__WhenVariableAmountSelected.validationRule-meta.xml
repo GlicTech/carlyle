@@ -2,8 +2,8 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>leaseworks__WhenVariableAmountSelected</fullName>
     <active>true</active>
-    <description>Percentage is not allowed because &apos;Variability&apos; is selected as Variable Amount</description>
+    <description>Percentage is not allowed because &#39;Variability&#39; is selected as Variable Amount</description>
     <errorConditionFormula>AND(ISPICKVAL(leaseworks__Variability__c, &quot;Variable Amount&quot;), !ISBLANK( leaseworks__Variability_Percent__c))</errorConditionFormula>
     <errorDisplayField>leaseworks__Variability_Percent__c</errorDisplayField>
-    <errorMessage>Percentage is not allowed because &apos;Variability&apos; is selected as Variable Amount</errorMessage>
+    <errorMessage>Percentage is not allowed because &#39;Variability&#39; is selected as Variable Amount</errorMessage>
 </ValidationRule>

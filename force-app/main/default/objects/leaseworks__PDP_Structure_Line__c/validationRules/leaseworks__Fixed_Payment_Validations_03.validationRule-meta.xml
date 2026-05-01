@@ -4,7 +4,7 @@
     <active>true</active>
     <description>Checks that a Date is especified if it is a Fixed Payment and is not on Signature.</description>
     <errorConditionFormula>AND(
- RecordType.DeveloperName = &apos;Fixed&apos;,
+ RecordType.DeveloperName = &#39;Fixed&#39;,
  ISNULL(leaseworks__Fixed_Date__c),
  NOT(leaseworks__Signature__c)
 )</errorConditionFormula>

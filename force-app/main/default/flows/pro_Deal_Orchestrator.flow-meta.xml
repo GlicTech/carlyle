@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>62.0</apiVersion>
-    <description>Orchestrator for Deal record triggers. When Deal Status changes to Closed - Won, delegates Post-Closing checklist generation to the pro_Auto_Generate_PostClosing subflow.</description>
+    <description>DEPRECATED as of GT-23 / US-029 (April 2026). Post-Closing checklist generation has been moved to the AiD Orchestrator at LOI Signed. Kept on disk as a record of previous behaviour but deactivated. Retire completely at next major release.</description>
     <label>Deal Orchestrator</label>
     <processMetadataValues>
         <name>BuilderType</name>
@@ -32,7 +32,7 @@
         </scheduledPaths>
         <triggerType>RecordAfterSave</triggerType>
     </start>
-    <status>Active</status>
+    <status>Draft</status>
     <subflows>
         <name>Call_Auto_Generate_PostClosing</name>
         <label>Call Auto Generate Post-Closing</label>

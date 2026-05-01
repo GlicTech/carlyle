@@ -78,17 +78,10 @@
     <description>Dashboard Report</description>
     <filter>
         <criteriaItems>
-            <column>pro_Asset_Target_Audit__c$pro_Progress_Picklist__c</column>
+            <column>pro_Asset_Target_Audit__c$pro_Progress__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
-            <operator>notEqual</operator>
-            <value>Moved To Trading,Target Cancelled</value>
-        </criteriaItems>
-        <criteriaItems>
-            <column>BucketField_30741979</column>
-            <columnToColumn>false</columnToColumn>
-            <isUnlocked>true</isUnlocked>
-            <operator>equals</operator>
+            <operator>contains</operator>
             <value>Open</value>
         </criteriaItems>
     </filter>
@@ -100,7 +93,7 @@
     </groupingsDown>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
-        <field>pro_Asset_Target_Audit__c$pro_Progress_Picklist__c</field>
+        <field>pro_Asset_Target_Audit__c$pro_Progress__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
     <name>Target Report by Target Month - Open</name>

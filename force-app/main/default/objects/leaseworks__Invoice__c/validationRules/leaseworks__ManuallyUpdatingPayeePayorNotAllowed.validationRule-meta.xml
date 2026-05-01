@@ -5,7 +5,7 @@
     <description>The Payee on the Invoice should be the Lessor on the Lease, and the Payor should be the Lessee</description>
     <errorConditionFormula>AND(
     NOT($Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c),
-    leaseworks__Lease__r.RecordType.DeveloperName != &apos;Non_Lease_Agreement&apos;,  
+    leaseworks__Lease__r.RecordType.DeveloperName != &#39;Non_Lease_Agreement&#39;,  
     NOT(ISNEW()),                                         
 
     OR(

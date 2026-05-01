@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>64.0</apiVersion>
+    <assignments>
+        <name>GovCompsSetName</name>
+        <label>GovCompsSetName</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Name</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>NameFormula</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <environments>Default</environments>
+    <formulas>
+        <name>NameFormula</name>
+        <dataType>String</dataType>
+        <expression>Text({!$Record.leaseworks__Benchmark__c}) + &#39; &#39; + Text({!$Record.leaseworks__Benchmark_Yield__c}*100) + &#39;% &#39; + Text(day({!$Record.leaseworks__Maturity__c})) + &#39; &#39; +
+case(month({!$Record.leaseworks__Maturity__c})
+,1,&#39;Jan&#39;
+,2,&#39;Feb&#39;
+,3,&#39;Mar&#39;
+,4,&#39;Apr&#39;
+,5,&#39;May&#39;
+,6,&#39;Jun&#39;
+,7,&#39;Jul&#39;
+,8,&#39;Aug&#39;
+,9,&#39;Sep&#39;
+,10,&#39;Oct&#39;
+,11,&#39;Nov&#39;
+,&#39;Dec&#39;)
++ &#39; &#39; + Text(Year({!$Record.leaseworks__Maturity__c}))</expression>
+    </formulas>
+    <interviewLabel>New Issue Indication Before Create or Update Flow {!$Flow.CurrentDateTime}</interviewLabel>
+    <isTemplate>true</isTemplate>
+    <label>New Issue Indication Before Create or Update Flow</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>GovCompsSetName</targetReference>
+        </connector>
+        <filterFormula>AND(NOT({!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c}),NOT({!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c}))</filterFormula>
+        <object>leaseworks__Comps__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

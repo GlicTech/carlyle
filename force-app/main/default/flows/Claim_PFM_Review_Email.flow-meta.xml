@@ -35,8 +35,6 @@
                 <stringValue>leaseworks__Claims__c</stringValue>
             </value>
         </inputParameters>
-        <nameSegment>PicklistOrderComparator</nameSegment>
-        <offset>0</offset>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <actionCalls>
@@ -52,7 +50,7 @@
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
             <name>recipientAddresses</name>
-            <value/>
+            <value />
         </inputParameters>
         <inputParameters>
             <name>senderType</name>
@@ -90,9 +88,6 @@
                 <booleanValue>true</booleanValue>
             </value>
         </inputParameters>
-        <nameSegment>emailSimple</nameSegment>
-        <offset>0</offset>
-        <versionString>2.0.1</versionString>
     </actionCalls>
     <actionCalls>
         <name>Send_Custom_Notification_Action_1</name>
@@ -132,8 +127,6 @@
                 <elementReference>$Record.Id</elementReference>
             </value>
         </inputParameters>
-        <nameSegment>customNotificationAction</nameSegment>
-        <offset>0</offset>
     </actionCalls>
     <apiVersion>63.0</apiVersion>
     <assignments>
@@ -157,7 +150,7 @@
     <formulas>
         <name>f_EmailSubject</name>
         <dataType>String</dataType>
-        <expression>&apos;Calculation Review Required on Claim [&apos; + {!$Record.Name} + &apos;]&apos;</expression>
+        <expression>&#39;Calculation Review Required on Claim [&#39; + {!$Record.Name} + &#39;]&#39;</expression>
     </formulas>
     <interviewLabel>[Claim] - PFM Review Email {!$Flow.CurrentDateTime}</interviewLabel>
     <label>[Claim] - PFM Review Email</label>

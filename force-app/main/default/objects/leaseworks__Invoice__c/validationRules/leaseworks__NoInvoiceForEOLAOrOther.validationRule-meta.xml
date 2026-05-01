@@ -4,7 +4,7 @@
     <active>false</active>
     <description>Do not allow to create UR based Invoice if there is no lease or EOLA lease.</description>
     <errorConditionFormula>false /*and( !IsBlank(Utilization_Report__c) , ISNEW() ,
-      ISPICKVAL( Lease__r.Reserve_Type__c , &apos;End of Lease Adjustment&apos;) 
+      ISPICKVAL( Lease__r.Reserve_Type__c , &#39;End of Lease Adjustment&#39;) 
    )*/</errorConditionFormula>
     <errorDisplayField>leaseworks__Utilization_Report__c</errorDisplayField>
     <errorMessage>You can not create an Invoice for this Utilization. Either the asset is not in lease or it is Eola Lease.</errorMessage>

@@ -2,8 +2,14 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>leaseworks__Total_Invoiced_Amount__c</fullName>
     <deprecated>false</deprecated>
-    <description>Total amount invoiced across the invoices raised</description>
-    <inlineHelpText>Total amount invoiced across the invoices raised</inlineHelpText>
+    <description>This field is calculated by summing all approved invoice amounts generated from Security Deposit Slip records linked to the deposit. Once the slips are created and invoices are approved, the system collects the values of all auto-created Security Deposit invoice lines and updates this field. Manually created SD invoice lines are excluded to ensure accurate tracking of system-generated invoicing for the deposit.
+    [LOAD: No]
+    [JUSTIFICATION: No needs to do load, because this field automatically populates after Invoice approval.]
+    [REPLACEMENT OBJECT API: NA]
+    [REPLACEMENT FIELD API: NA]
+    [COMMENTS: NA]</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Total amount invoiced across the invoices raised excluding tax and any adjustments made. System calculated.</inlineHelpText>
     <label>Total Invoiced Amount</label>
     <precision>18</precision>
     <required>false</required>

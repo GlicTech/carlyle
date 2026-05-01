@@ -12,7 +12,7 @@
 {!REQUIRESCRIPT(&quot;/soap/ajax/57.0/apex.js&quot;)}
 
 try{
-if(&apos;{!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Package_Prefix__c}&apos;== &quot;&quot;){
+if(&#39;{!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Package_Prefix__c}&#39;== &quot;&quot;){
 var retVal =sforce.apex.execute(&quot;LWGlobalUtils&quot;,&quot;UpdateStackCostPerCycle&quot;, {LLPMRRateID:&quot;{! leaseworks__Assembly_MR_Rate__c.Id }&quot;});
 }
 else{
@@ -21,7 +21,7 @@ var retVal =sforce.apex.execute(&quot;leaseworks/LWGlobalUtils&quot;,&quot;Updat
 
 window.location.reload();
 }catch(err){
-retVal=&quot;Unable to set the MR Rate, probably because you don&apos;t have permission. &quot; + err;
+retVal=&quot;Unable to set the MR Rate, probably because you don&#39;t have permission. &quot; + err;
 }
 
 window.alert(retVal);</url>

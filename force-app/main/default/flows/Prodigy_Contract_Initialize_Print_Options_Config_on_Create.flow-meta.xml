@@ -44,9 +44,6 @@
                 <stringValue>&lt;p&gt;There was an error in processing your request:&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;{!$Flow.FaultMessage}&lt;/p&gt;</stringValue>
             </value>
         </inputParameters>
-        <nameSegment>emailSimple</nameSegment>
-        <offset>0</offset>
-        <versionString>1.0.1</versionString>
     </actionCalls>
     <apiVersion>64.0</apiVersion>
     <decisions>
@@ -116,13 +113,13 @@
             <label>Existing Config Record - End Flow</label>
         </rules>
     </decisions>
-    <description>Whenever a Contract is created, this flow creates a corresponding Print Options Config record with it&apos;s values set based on the Print Options Config record related to the parent account</description>
+    <description>Whenever a Contract is created, this flow creates a corresponding Print Options Config record with it&#39;s values set based on the Print Options Config record related to the parent account</description>
     <environments>Default</environments>
     <formulas>
-        <description>Created a Name that is a concatenation of &apos;Print Options - &apos; plus the Unique Lease Id</description>
+        <description>Created a Name that is a concatenation of &#39;Print Options - &#39; plus the Unique Lease Id</description>
         <name>f_ConcatenatedName</name>
         <dataType>String</dataType>
-        <expression>&apos;Print Options - &apos; + {!$Record.Name}</expression>
+        <expression>&#39;Print Options - &#39; + {!$Record.Name}</expression>
     </formulas>
     <interviewLabel>Prodigy - Contract - Initialize Print Options Config on Create {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Prodigy - Contract - Initialize Print Options Config on Create</label>
@@ -291,7 +288,7 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
-        <description>Get the config record related to the Contract&apos;s parent Account</description>
+        <description>Get the config record related to the Contract&#39;s parent Account</description>
         <name>Get_Print_Options_Config_From_Account</name>
         <label>Get Print Options Config From Account</label>
         <locationX>0</locationX>

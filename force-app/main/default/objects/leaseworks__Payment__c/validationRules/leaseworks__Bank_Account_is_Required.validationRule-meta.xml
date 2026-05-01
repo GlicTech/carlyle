@@ -3,7 +3,7 @@
     <fullName>leaseworks__Bank_Account_is_Required</fullName>
     <active>true</active>
     <description>Bank Account is a required field.</description>
-    <errorConditionFormula>!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c &amp;&amp; ISBLANK( leaseworks__Lessor_Bank__c )&amp;&amp;  (ISPICKVAL(leaseworks__Payment_Status__c, &apos;Pending&apos;)  || ISPICKVAL(leaseworks__Payment_Status__c, &apos;Submitted&apos;))</errorConditionFormula>
+    <errorConditionFormula>!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c &amp;&amp; ISBLANK( leaseworks__Lessor_Bank__c )&amp;&amp;  (ISPICKVAL(leaseworks__Payment_Status__c, &#39;Pending&#39;)  || ISPICKVAL(leaseworks__Payment_Status__c, &#39;Submitted&#39;))</errorConditionFormula>
     <errorDisplayField>leaseworks__Lessor_Bank__c</errorDisplayField>
     <errorMessage>Bank Account is a required field.</errorMessage>
 </ValidationRule>

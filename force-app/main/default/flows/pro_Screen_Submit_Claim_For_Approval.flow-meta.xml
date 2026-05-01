@@ -32,8 +32,6 @@
                 <booleanValue>true</booleanValue>
             </value>
         </inputParameters>
-        <nameSegment>submit</nameSegment>
-        <offset>0</offset>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <apiVersion>65.0</apiVersion>
@@ -198,7 +196,7 @@
             <label>Yes - Mapping Records Found</label>
         </rules>
     </decisions>
-    <description>Screen surfaced on the Claim record page through the &apos;Submit For Approval&apos; button. Allows submitter to change the default approver in case the default approver is out of office or otherwise unavailable.</description>
+    <description>Screen surfaced on the Claim record page through the &#39;Submit For Approval&#39; button. Allows submitter to change the default approver in case the default approver is out of office or otherwise unavailable.</description>
     <dynamicChoiceSets>
         <name>rcs_FinanceApprovers</name>
         <dataType>String</dataType>
@@ -245,7 +243,7 @@
     <formulas>
         <name>f_GreaterThanOrLessThan400kApprovalProcess</name>
         <dataType>String</dataType>
-        <expression>IF({!recordId.leaseworks__Approved_Claim_Amount__c} &lt;= 400000, 	&apos;Claim_Approval_Less_Than_400K&apos;, &apos;	Claim_Approval_Greater_Than_400K&apos;)</expression>
+        <expression>IF({!recordId.leaseworks__Approved_Claim_Amount__c} &lt;= 400000, 	&#39;Claim_Approval_Less_Than_400K&#39;, &#39;	Claim_Approval_Greater_Than_400K&#39;)</expression>
     </formulas>
     <interviewLabel>Screen - Submit Claim for Approval {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Screen - Submit Claim For Approval</label>
@@ -457,7 +455,6 @@
                     <extensionName>flowruntime:choiceLookup</extensionName>
                     <fieldText>Finance Approver</fieldText>
                     <fieldType>ComponentChoice</fieldType>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <storeOutputAutomatically>true</storeOutputAutomatically>
                 </fields>
@@ -481,7 +478,6 @@
                     <extensionName>flowruntime:choiceLookup</extensionName>
                     <fieldText>Technical Approver</fieldText>
                     <fieldType>ComponentChoice</fieldType>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <storeOutputAutomatically>true</storeOutputAutomatically>
                 </fields>
@@ -500,7 +496,6 @@
             <name>SubmissionNote</name>
             <fieldText>Submission Note</fieldText>
             <fieldType>LargeTextArea</fieldType>
-            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
         </fields>
         <nextOrFinishButtonLabel>Submit</nextOrFinishButtonLabel>
@@ -515,27 +510,6 @@
         </connector>
     </start>
     <status>Active</status>
-    <transforms>
-        <name>Create_Username_Collection</name>
-        <label>Create Username Collection</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Get_Default_Approvers</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>varClaimApprovalSettings[$EachItem].pro_Username__c</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
     <variables>
         <name>recordId</name>
         <dataType>SObject</dataType>

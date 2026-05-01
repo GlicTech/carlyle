@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>65.0</apiVersion>
+    <description>This flow updates name field when there is a change on Delivery LLP Status record.</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>LLPStatusSetNameFormula</name>
+        <dataType>String</dataType>
+        <expression>left($Record.leaseworks__Life_Limited_Part_LLP__r.Name + &#39; - &#39; + $Record.leaseworks__Serial_Number__c,79)</expression>
+    </formulas>
+    <interviewLabel>LLPStatusSetInsUpd {!$Flow.CurrentDateTime}</interviewLabel>
+    <isTemplate>true</isTemplate>
+    <label>LLPStatusSetInsUpd</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>LLPStatusSetName</name>
+        <label>LLPStatusSetName</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <inputAssignments>
+            <field>Name</field>
+            <value>
+                <elementReference>LLPStatusSetNameFormula</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>LLPStatusSetName</targetReference>
+        </connector>
+        <filterFormula>!{!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c}</filterFormula>
+        <object>leaseworks__LLP_Status__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

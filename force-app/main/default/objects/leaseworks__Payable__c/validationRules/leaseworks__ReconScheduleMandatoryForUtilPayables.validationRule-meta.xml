@@ -2,7 +2,7 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>leaseworks__ReconScheduleMandatoryForUtilPayables</fullName>
     <active>true</active>
-    <errorConditionFormula>false/*AND(isPickVal(Payable_Type__c,&apos;MR Reconciliation Refund&apos;),
+    <errorConditionFormula>false/*AND(isPickVal(Payable_Type__c,&#39;MR Reconciliation Refund&#39;),
 OR(ISNULL(Reconciliation_Schedule__c),ISBLANK(Reconciliation_Schedule__c)))*/</errorConditionFormula>
     <errorMessage>Please select a Reconciliation Schedule to be able to create a refund for the MR reconciliation amount</errorMessage>
 </ValidationRule>

@@ -77,20 +77,6 @@
             <targetReference>All_collected_Lease_records</targetReference>
         </connector>
     </assignments>
-    <customErrors>
-        <name>Error_in_updating_lease_record</name>
-        <label>Error in updating lease record</label>
-        <locationX>440</locationX>
-        <locationY>1139</locationY>
-        <connector>
-            <isGoTo>true</isGoTo>
-            <targetReference>Enable_Triggers</targetReference>
-        </connector>
-        <customErrorMessages>
-            <errorMessage>{!$Flow.FaultMessage}</errorMessage>
-            <isFieldError>false</isFieldError>
-        </customErrorMessages>
-    </customErrors>
     <decisions>
         <name>Select_fields_to_update</name>
         <label>Select fields to update</label>

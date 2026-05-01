@@ -27,8 +27,6 @@
                 <stringValue>Lock</stringValue>
             </value>
         </inputParameters>
-        <nameSegment>lockRecord</nameSegment>
-        <offset>0</offset>
     </actionCalls>
     <actionCalls>
         <name>Unlock_Claim</name>
@@ -56,8 +54,6 @@
                 <stringValue>Unlock</stringValue>
             </value>
         </inputParameters>
-        <nameSegment>lockRecord</nameSegment>
-        <offset>0</offset>
     </actionCalls>
     <apiVersion>65.0</apiVersion>
     <decisions>
@@ -101,8 +97,8 @@
     <dynamicChoiceSets>
         <name>pcs_ClaimCancellationReason</name>
         <dataType>Picklist</dataType>
-        <displayField xsi:nil="true"/>
-        <object xsi:nil="true"/>
+        <displayField xsi:nil="true" />
+        <object xsi:nil="true" />
         <picklistField>pro_Claim_Cancellation_Reason__c</picklistField>
         <picklistObject>leaseworks__Claims__c</picklistObject>
     </dynamicChoiceSets>
@@ -366,7 +362,6 @@
                     <dataType>String</dataType>
                     <fieldText>Claim Cancellation Reason</fieldText>
                     <fieldType>DropdownBox</fieldType>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                 </fields>
                 <inputParameters>
@@ -395,7 +390,6 @@
             <name>Cancellation_Comments</name>
             <fieldText>Cancellation Comments</fieldText>
             <fieldType>LargeTextArea</fieldType>
-            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
         </fields>
         <nextOrFinishButtonLabel>Cancel Claim</nextOrFinishButtonLabel>
@@ -433,7 +427,6 @@
             <name>Re_Open_Comment</name>
             <fieldText>Re-Open Comment</fieldText>
             <fieldType>LargeTextArea</fieldType>
-            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
         </fields>
         <nextOrFinishButtonLabel>Re-Open Claim</nextOrFinishButtonLabel>

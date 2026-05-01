@@ -602,10 +602,6 @@
                     <value>Facet-d7a6719b-58ff-496e-9c09-9c14e28d1cf3</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
-                    <name>horizontalAlignment</name>
-                    <value>true</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
                     <name>label</name>
                     <value>General</value>
                 </componentInstanceProperties>
@@ -618,10 +614,6 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-9ab0a8e7-024b-4a83-b834-78f25389b5da</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>horizontalAlignment</name>
-                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -638,10 +630,6 @@
                     <value>Facet-6d33b805-47e4-4be7-ae41-a125536fe760</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
-                    <name>horizontalAlignment</name>
-                    <value>true</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
                     <name>label</name>
                     <value>Asset &amp; Operator</value>
                 </componentInstanceProperties>
@@ -656,10 +644,6 @@
                     <value>Facet-9120c2ed-4229-4277-9f60-9217c63d7756</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
-                    <name>horizontalAlignment</name>
-                    <value>true</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
                     <name>label</name>
                     <value>Term and Dates</value>
                 </componentInstanceProperties>
@@ -672,10 +656,6 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-6b1a3c2b-2ba2-4796-b489-12111056a6e9</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>horizontalAlignment</name>
-                    <value>true</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -840,10 +820,6 @@
                     <value>Facet-91876bd8-65fb-458a-b97a-c42cd7acd202</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
-                    <name>horizontalAlignment</name>
-                    <value>true</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
                     <name>label</name>
                     <value>Security Deposit Requirements</value>
                 </componentInstanceProperties>
@@ -856,10 +832,6 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-6b734706-528e-480f-a149-2b5ac981b43e</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>horizontalAlignment</name>
-                    <value>true</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -995,6 +967,40 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.leaseworks__Base_Rent__c</fieldItem>
                 <identifier>Recordleaseworks_Base_Rent_cField1</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Primary_Rent_Currency__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>USD</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Base_Rent_Number__c</fieldItem>
+                <identifier>Recordleaseworks_Base_Rent_Number_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Primary_Rent_Currency__c}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>USD</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Primary_Rent_Currency__c</fieldItem>
+                <identifier>Recordleaseworks_Primary_Rent_Currency_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -1021,6 +1027,40 @@
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Current_Rent_New__c</fieldItem>
+                <identifier>Recordleaseworks_Current_Rent_New_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Primary_Rent_Currency__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>USD</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Current_Rent_Number__c</fieldItem>
+                <identifier>Recordleaseworks_Current_Rent_Number_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Primary_Rent_Currency__c}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>USD</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
         <itemInstances>
             <fieldInstance>
                 <fieldInstanceProperties>
@@ -1084,10 +1124,6 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-7c766a93-f90b-402a-b2cc-44f428a89311</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>horizontalAlignment</name>
-                    <value>true</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -1235,10 +1271,6 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-dfcd1687-d82a-4721-a7cd-3c4e8c13db68</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>horizontalAlignment</name>
-                    <value>true</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -1656,10 +1688,6 @@
                     <value>Facet-c47e25ab-2216-448c-aaaa-27177c158d1c</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
-                    <name>horizontalAlignment</name>
-                    <value>true</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
                     <name>label</name>
                     <value>Legal &amp; Other</value>
                 </componentInstanceProperties>
@@ -1674,10 +1702,6 @@
                     <value>Facet-5c00c04f-1c2e-46fe-bf3a-851864bdf8be</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
-                    <name>horizontalAlignment</name>
-                    <value>true</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
                     <name>label</name>
                     <value>Repossession Related</value>
                 </componentInstanceProperties>
@@ -1690,10 +1714,6 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-ee98a13e-e078-47e8-b948-d284e1a4e41c</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>horizontalAlignment</name>
-                    <value>true</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -2060,10 +2080,6 @@
                     <value>Facet-e6a4ad0f-6a2f-412c-bf10-0ef1a1c66e5d</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
-                    <name>horizontalAlignment</name>
-                    <value>true</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
                     <name>label</name>
                     <value>Accounting Details</value>
                 </componentInstanceProperties>
@@ -2076,10 +2092,6 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-cb19e56a-7792-4dcf-b6d6-11fbff656b3f</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>horizontalAlignment</name>
-                    <value>true</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -2096,10 +2108,6 @@
                     <value>Facet-77a19c59-be71-4b98-94ba-92f276cccd66</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
-                    <name>horizontalAlignment</name>
-                    <value>true</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
                     <name>label</name>
                     <value>Banking Information</value>
                 </componentInstanceProperties>
@@ -2114,10 +2122,6 @@
                     <value>Facet-9cfdfbff-a171-4bb3-b95f-43f51e2b13a4</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
-                    <name>horizontalAlignment</name>
-                    <value>true</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
                     <name>label</name>
                     <value>Tax Details</value>
                 </componentInstanceProperties>
@@ -2130,10 +2134,6 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-5b3a732b-076b-401d-9fa1-07828e89871f</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>horizontalAlignment</name>
-                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -2456,10 +2456,6 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-0a02cf3a-09fb-4f86-9859-7cd2e0c82daa</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>horizontalAlignment</name>
-                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>

@@ -1381,69 +1381,6 @@
         </connector>
     </start>
     <status>Active</status>
-    <transforms>
-        <name>Create_AiD_Id_Collection</name>
-        <label>Create AiD Id Collection</label>
-        <locationX>50</locationX>
-        <locationY>3788</locationY>
-        <connector>
-            <targetReference>Get_Synced_Documentation_Events</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>Get_Related_AiDs[$EachItem].Id</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
-    <transforms>
-        <name>Create_Updated_Event_Id_Collection</name>
-        <label>Create Updated Event Id Collection</label>
-        <locationX>50</locationX>
-        <locationY>2972</locationY>
-        <connector>
-            <targetReference>Get_Related_AiDs</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>varUpdatedDocumentationEvents[$EachItem].Id</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
-    <transforms>
-        <name>Created_Documentation_Event_Id_Collection</name>
-        <label>Created Documentation Event Id Collection</label>
-        <locationX>50</locationX>
-        <locationY>4004</locationY>
-        <connector>
-            <targetReference>Update_Engage_Law_Firm_Events</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>Get_Synced_Documentation_Events[$EachItem].Id</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
     <variables>
         <name>recordId</name>
         <dataType>SObject</dataType>

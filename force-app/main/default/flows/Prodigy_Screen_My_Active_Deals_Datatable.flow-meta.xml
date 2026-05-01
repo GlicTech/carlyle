@@ -54,8 +54,8 @@
         <dataType>String</dataType>
         <expression>IF(
   ISBLANK({!varDealIdsInString}),
-  &quot;&apos;&quot; &amp; {!Loop_Deal_Ids} &amp; &quot;&apos;&quot;,
-  {!varDealIdsInString} &amp; &quot;,&quot; &amp; &quot;&apos;&quot; &amp; {!Loop_Deal_Ids} &amp; &quot;&apos;&quot;
+  &quot;&#39;&quot; &amp; {!Loop_Deal_Ids} &amp; &quot;&#39;&quot;,
+  {!varDealIdsInString} &amp; &quot;,&quot; &amp; &quot;&#39;&quot; &amp; {!Loop_Deal_Ids} &amp; &quot;&#39;&quot;
 )</expression>
     </formulas>
     <formulas>
@@ -63,7 +63,7 @@
         <dataType>String</dataType>
         <expression>IF(
   ISBLANK({!varDealIdsInString}),
-  &quot;SELECT Id, Name, leaseworks__Deal_Status__c, leaseworks__Aircraft_Type_Qty_List__c, leaseworks__Date_Of_Last_Interaction__c, leaseworks__Deal_Type__c, CreatedDate FROM leaseworks__Marketing_Activity__c WHERE Id = &apos;&apos;&quot;,
+  &quot;SELECT Id, Name, leaseworks__Deal_Status__c, leaseworks__Aircraft_Type_Qty_List__c, leaseworks__Date_Of_Last_Interaction__c, leaseworks__Deal_Type__c, CreatedDate FROM leaseworks__Marketing_Activity__c WHERE Id = &#39;&#39;&quot;,
   &quot;SELECT Id, Name, leaseworks__Deal_Status__c, leaseworks__Aircraft_Type_Qty_List__c, leaseworks__Date_Of_Last_Interaction__c, leaseworks__Deal_Type__c, CreatedDate FROM leaseworks__Marketing_Activity__c WHERE leaseworks__Inactive_MA__c = False AND Id IN (&quot; &amp; {!varDealIdsInString} &amp; &quot;)&quot;
 )</expression>
     </formulas>
@@ -318,27 +318,6 @@
         </connector>
     </start>
     <status>Active</status>
-    <transforms>
-        <name>Create_Deal_Id_Collection</name>
-        <label>Create Deal Id Collection</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Loop_Deal_Ids</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>Get_All_Deals_Teams[$EachItem].leaseworks__Marketing_Activity__c</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
     <variables>
         <name>varActiveDealsFound</name>
         <dataType>Boolean</dataType>

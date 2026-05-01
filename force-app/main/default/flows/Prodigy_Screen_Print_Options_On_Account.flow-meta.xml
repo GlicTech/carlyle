@@ -122,8 +122,8 @@
         <description>The values from the Mr Invoice Names picklist on the Print Options Config object</description>
         <name>pcs_MrInvoiceNames</name>
         <dataType>Picklist</dataType>
-        <displayField xsi:nil="true"/>
-        <object xsi:nil="true"/>
+        <displayField xsi:nil="true" />
+        <object xsi:nil="true" />
         <picklistField>pro_MR_Invoice_Name__c</picklistField>
         <picklistObject>pro_Print_Options_Config__c</picklistObject>
     </dynamicChoiceSets>
@@ -185,7 +185,7 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
-        <description>Get all Party records related to this account and with Role set to &apos;Invoiced Party&apos;</description>
+        <description>Get all Party records related to this account and with Role set to &#39;Invoiced Party&#39;</description>
         <name>Get_Contract_Parties</name>
         <label>Get Contract Parties</label>
         <locationX>0</locationX>
@@ -290,7 +290,7 @@
     <recordUpdates>
         <description>Update the Print Options Config record associated to each aactive contract under the account from which this flow was triggered.</description>
         <name>Update_Contract_s_Print_Options_Config_Records</name>
-        <label>Update Contract&apos;s Print Options Config Records</label>
+        <label>Update Contract&#39;s Print Options Config Records</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
@@ -469,7 +469,6 @@
                     </defaultValue>
                     <fieldText>Include Aircraft Registration Number?</fieldText>
                     <fieldType>InputField</fieldType>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                 </fields>
                 <inputParameters>
@@ -491,7 +490,6 @@
                     </defaultValue>
                     <fieldText>Include Bank Account Address?</fieldText>
                     <fieldType>InputField</fieldType>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                 </fields>
                 <inputParameters>
@@ -519,7 +517,6 @@
                     </defaultValue>
                     <fieldText>Include USD-Euro Conversion Rate</fieldText>
                     <fieldType>InputField</fieldType>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                 </fields>
                 <inputParameters>
@@ -558,7 +555,6 @@
                     </defaultValue>
                     <fieldText>Include PO Number?</fieldText>
                     <fieldType>InputField</fieldType>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                 </fields>
                 <inputParameters>
@@ -574,7 +570,6 @@
                 <fieldType>Region</fieldType>
                 <fields>
                     <fieldType>ObjectProvided</fieldType>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                     <objectFieldReference>Get_Related_Print_Options_Config_Record.pro_PO_Number__c</objectFieldReference>
                 </fields>
@@ -597,7 +592,6 @@
                 <fieldType>Region</fieldType>
                 <fields>
                     <fieldType>ObjectProvided</fieldType>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                     <objectFieldReference>Get_Related_Print_Options_Config_Record.pro_Include_Optional_Footer_Note__c</objectFieldReference>
                 </fields>
@@ -620,7 +614,6 @@
                     </defaultValue>
                     <fieldText>Optional Footer Note</fieldText>
                     <fieldType>InputField</fieldType>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                 </fields>
                 <inputParameters>
@@ -642,7 +635,6 @@
                 <fieldType>Region</fieldType>
                 <fields>
                     <fieldType>ObjectProvided</fieldType>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                     <objectFieldReference>Get_Related_Print_Options_Config_Record.pro_Include_Customer_VAT_Number__c</objectFieldReference>
                 </fields>
@@ -659,7 +651,6 @@
                 <fieldType>Region</fieldType>
                 <fields>
                     <fieldType>ObjectProvided</fieldType>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                     <objectFieldReference>varTriggeringAccount.Other_VAT_GST_Number__c</objectFieldReference>
                 </fields>
@@ -682,7 +673,6 @@
                 <fieldType>Region</fieldType>
                 <fields>
                     <fieldType>ObjectProvided</fieldType>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                     <objectFieldReference>Get_Related_Print_Options_Config_Record.pro_Include_Attention_To__c</objectFieldReference>
                 </fields>
@@ -699,7 +689,6 @@
                 <fieldType>Region</fieldType>
                 <fields>
                     <fieldType>ObjectProvided</fieldType>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                     <objectFieldReference>Get_Related_Print_Options_Config_Record.pro_Attention_To__c</objectFieldReference>
                 </fields>
@@ -722,7 +711,6 @@
                 <fieldType>Region</fieldType>
                 <fields>
                     <fieldType>ObjectProvided</fieldType>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                     <objectFieldReference>Get_Related_Print_Options_Config_Record.pro_Include_Email_Address__c</objectFieldReference>
                 </fields>
@@ -739,7 +727,6 @@
                 <fieldType>Region</fieldType>
                 <fields>
                     <fieldType>ObjectProvided</fieldType>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                     <objectFieldReference>varTriggeringAccount.leaseworks__Main_Email_Address__c</objectFieldReference>
                 </fields>
@@ -763,7 +750,6 @@
             </defaultValue>
             <fieldText>MR Invoice Name</fieldText>
             <fieldType>DropdownBox</fieldType>
-            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
         </fields>
         <fields>
@@ -816,49 +802,6 @@
         </connector>
     </start>
     <status>Active</status>
-    <transforms>
-        <name>Create_Active_Contract_Id_List</name>
-        <label>Create Active Contract Id List</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Update_Contract_s_Print_Options_Config_Records</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>Get_Active_Contracts[$EachItem].Id</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
-    <transforms>
-        <description>Create a list of contract Ids which can be used to filter for Print Options Config records that should be updated</description>
-        <name>Create_Contract_Id_List</name>
-        <label>Create Contract Id List</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Get_Active_Contracts</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>Get_Contract_Parties[$EachItem].leaseworks__Contract__c</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
     <variables>
         <description>The account record on which this screen flow is being run</description>
         <name>varTriggeringAccount</name>

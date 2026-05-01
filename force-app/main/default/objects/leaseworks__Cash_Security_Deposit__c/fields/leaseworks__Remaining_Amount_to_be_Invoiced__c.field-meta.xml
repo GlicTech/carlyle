@@ -2,8 +2,16 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>leaseworks__Remaining_Amount_to_be_Invoiced__c</fullName>
     <deprecated>false</deprecated>
+    <description>This field shows how much of the Security Deposit amount still needs to be invoiced to reach the stipulated deposit value. It is system-calculated using the formula: Stipulated Security Deposit (Cash) – Total Invoiced Amount + Paid Out Via Cash + Paid Out by Offset. The value updates automatically whenever invoicing or payout amounts change.
+    [LOAD: No]
+    [JUSTIFICATION: No needs to do load, because this is formula field automatically populates based on other system calculated fields.]
+    [REPLACEMENT OBJECT API: NA]
+    [REPLACEMENT FIELD API: NA]
+    [COMMENTS: NA]</description>
+    <externalId>false</externalId>
     <formula>leaseworks__Paid_by_Offset__c + leaseworks__Security_Deposit_Cash__c + leaseworks__Deposit_Returned__c -  leaseworks__Total_Invoiced_Amount__c</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Displays the remaining amount yet to be invoiced to reach the stipulated deposit amount. Calculated as Stipulated Security Deposit (Cash)-Total Invoiced Amount+Paid Out Via Cash+Paid Out by Offset.</inlineHelpText>
     <label>Remaining Amount to be Invoiced</label>
     <precision>18</precision>
     <required>false</required>

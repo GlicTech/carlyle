@@ -3,7 +3,7 @@
     <fullName>leaseworks__CreditMemoApprovedOnCreate</fullName>
     <active>true</active>
     <description>Create Memos should not be created in Approved status, except when creating a non-standalone Credit Memo of type Correction.</description>
-    <errorConditionFormula>AND(!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c,ISNEW(), leaseworks__Y_Hidden_IsStandalone__c, OR(isPickVal(leaseworks__Status__c,&apos;Submitted&apos; ),isPickVal(leaseworks__Status__c,&apos;Approved&apos; ),isPickVal(leaseworks__Status__c,&apos;Cancelled-Pending&apos; ),isPickVal(leaseworks__Status__c,&apos;Cancelled&apos; )))</errorConditionFormula>
+    <errorConditionFormula>AND(!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c,ISNEW(), leaseworks__Y_Hidden_IsStandalone__c, OR(isPickVal(leaseworks__Status__c,&#39;Submitted&#39; ),isPickVal(leaseworks__Status__c,&#39;Approved&#39; ),isPickVal(leaseworks__Status__c,&#39;Cancelled-Pending&#39; ),isPickVal(leaseworks__Status__c,&#39;Cancelled&#39; )))</errorConditionFormula>
     <errorDisplayField>leaseworks__Status__c</errorDisplayField>
     <errorMessage>Credit Memos should only be created in Pending status. Approval must be done post creation.</errorMessage>
 </ValidationRule>

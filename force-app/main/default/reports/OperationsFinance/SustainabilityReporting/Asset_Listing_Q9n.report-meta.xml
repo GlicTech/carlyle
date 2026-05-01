@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>leaseworks__Aircraft__c$leaseworks__MSN_Number__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Aircraft__c$RecordType</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Aircraft__c$Asset_Manufacturer__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Aircraft__c$leaseworks__Asset_Type_GP__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Aircraft__c$leaseworks__Asset_Variant_GP__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Aircraft__c$leaseworks__Engine_Type_GP__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Aircraft__c$leaseworks__Engine_Variant_GP__c</field>
+    </columns>
+    <description>List of all Airframe Assets within the fleet</description>
+    <filter>
+        <criteriaItems>
+            <column>leaseworks__Aircraft__c$RecordType</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>leaseworks__Aircraft__c.leaseworks__Aircraft,leaseworks__Aircraft__c.leaseworks__Engine</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>leaseworks__Aircraft__c$pro_Operational_Status__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Active,AOG,Pending Sale,Pending Purchase</value>
+        </criteriaItems>
+    </filter>
+    <format>Tabular</format>
+    <name>Asset Listing</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Assets_LeaseWorks__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>leaseworks__Aircraft__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

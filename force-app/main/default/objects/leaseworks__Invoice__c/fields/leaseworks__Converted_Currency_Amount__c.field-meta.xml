@@ -4,7 +4,7 @@
     <deprecated>false</deprecated>
     <description>This field will be calculated and displayed only when the exchange rate information is available.</description>
     <externalId>false</externalId>
-    <formula>IF(AND(leaseworks__Exchange_Rate__c != 0, NOT(ISPICKVAL(leaseworks__Transaction_Currency__c, &apos;&apos;))),leaseworks__Total_Amount_Due__c * leaseworks__Exchange_Rate__c,null)</formula>
+    <formula>IF(AND(leaseworks__Exchange_Rate__c != 0, NOT(ISPICKVAL(leaseworks__Transaction_Currency__c, &#39;&#39;))),leaseworks__Total_Amount_Due__c * leaseworks__Exchange_Rate__c,null)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <inlineHelpText>This field displays the invoice amount in foreign currency based on the exchange rate entered. Total Invoice amount * Exchange Rate</inlineHelpText>
     <label>Converted Currency Amount</label>

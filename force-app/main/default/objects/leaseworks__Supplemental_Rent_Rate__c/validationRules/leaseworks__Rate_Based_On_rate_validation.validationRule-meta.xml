@@ -2,8 +2,8 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>leaseworks__Rate_Based_On_rate_validation</fullName>
     <active>false</active>
-    <description>If the Rate Based On field has value is changed to &apos;Rate&apos; and has Ratio Table value then throw the error.</description>
-    <errorConditionFormula>AND( ISPICKVAL( leaseworks__Rate_Based_On__c , &apos;Rate&apos;) ,  NOT(ISBLANK( leaseworks__Ratio_Table__c )))</errorConditionFormula>
+    <description>If the Rate Based On field has value is changed to &#39;Rate&#39; and has Ratio Table value then throw the error.</description>
+    <errorConditionFormula>AND( ISPICKVAL( leaseworks__Rate_Based_On__c , &#39;Rate&#39;) ,  NOT(ISBLANK( leaseworks__Ratio_Table__c )))</errorConditionFormula>
     <errorDisplayField>leaseworks__Rate_Based_On__c</errorDisplayField>
-    <errorMessage>Since &apos;Rate Based On&apos; is set to Rate, please remove the Ratio Table to ensure the correct MR calculation</errorMessage>
+    <errorMessage>Since &#39;Rate Based On&#39; is set to Rate, please remove the Ratio Table to ensure the correct MR calculation</errorMessage>
 </ValidationRule>

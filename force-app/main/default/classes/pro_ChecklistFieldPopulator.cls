@@ -47,7 +47,6 @@ public with sharing class pro_ChecklistFieldPopulator {
             WHERE Id IN :itemIds
             AND pro_Documentation_Tab_Field__c != null
             AND pro_Status__c = 'Completed'
-            WITH SECURITY_ENFORCED
         ];
 
         if (items.isEmpty()) {

@@ -6,9 +6,6 @@
         <label>Create Status Updates For Commercial / Legal &amp; Contracts</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
-        <defaultConnector>
-            <targetReference>Is_New</targetReference>
-        </defaultConnector>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>Yes_Create_Status_Updates</name>
@@ -38,28 +35,6 @@
                 <targetReference>Create_Status_Updates_On_Deal</targetReference>
             </connector>
             <label>Yes - Create Status Updates</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <name>Is_New</name>
-        <label>Is New?</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
-        <rules>
-            <name>Yes_Create_Deal_Teams</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>f_IsNew</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Create_Deal_Team_Based_On_CMDT</targetReference>
-            </connector>
-            <label>Yes - Create Deal Teams</label>
         </rules>
     </decisions>
     <decisions>
@@ -207,26 +182,10 @@
     </start>
     <status>Active</status>
     <subflows>
-        <name>Create_Deal_Team_Based_On_CMDT</name>
-        <label>Create Deal Team Based On CMDT</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <flowName>pro_Autolaunched_Set_Deal_Teams_From_CMDT</flowName>
-        <inputAssignments>
-            <name>varTriggeringDeal</name>
-            <value>
-                <elementReference>$Record</elementReference>
-            </value>
-        </inputAssignments>
-    </subflows>
-    <subflows>
         <name>Create_Status_Updates_On_Deal</name>
         <label>Create Status Updates On Deal</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
-        <connector>
-            <targetReference>Is_New</targetReference>
-        </connector>
         <flowName>pro_Autolaunched_Create_Status_Updates_On_Deal</flowName>
         <inputAssignments>
             <name>varTriggeringDeal</name>

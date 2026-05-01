@@ -11,8 +11,11 @@
     --accent-red: #ef4444;
     --surface: #f8fafc;
     --border: #e2e8f0;
-    --completed-bg: rgba(240, 253, 244, 0.6);
-    --overdue-bg: rgba(254, 242, 242, 0.6);
+    /* Solid row backgrounds — rgba alphas caused ancestor stacking contexts
+       to make some combobox dropdowns appear translucent on complete/moved
+       rows. Keeping these fully opaque. */
+    --completed-bg: #F0FDF4;
+    --overdue-bg: #FEF2F2;
     --font: Calibri, 'Segoe UI', system-ui, -apple-system, sans-serif;
 
     display: block;
@@ -21,7 +24,7 @@
     color: var(--text-primary);
 }
 
-/* --- Container --- */
+/* --- Container (flex column for sticky header + scrollable table) --- */
 .checklist-container {
     border: 1px solid var(--border);
     border-radius: 12px;
@@ -29,6 +32,32 @@
     overflow: visible;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
     position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 85vh;
+}
+
+/* When bulk update panel is open, grow further to keep table rows visible */
+.checklist-container.bulk-open {
+    min-height: 92vh;
+}
+
+/* --- Sticky Header (non-scrolling) --- */
+.sticky-header {
+    flex-shrink: 0;
+    background: var(--surface);
+    padding-bottom: 0.5rem;
+    overflow: visible;
+    position: relative;
+    z-index: 10;
+}
+
+/* --- Scrollable Table Container --- */
+.table-scroll-container {
+    flex: 1;
+    overflow-y: auto;
+    position: relative;
+    z-index: 1;
 }
 
 /* --- Spinner --- */
@@ -53,91 +82,84 @@
     border-radius: 12px;
 }
 
-/* --- Info Panels --- */
-.info-panels {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 1rem;
+/* --- Header Cards (matching proChecklistItemWizard) --- */
+.header-row {
     padding: 1rem;
     background: var(--surface);
 }
 
-.info-panel {
+.header-card {
     background: var(--glass-bg);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid var(--glass-border);
     border-radius: 12px;
     padding: 1rem 1.25rem;
+    height: 100%;
     transition: box-shadow 0.2s;
 }
 
-.info-panel:hover {
+.header-card:hover {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
 }
 
-.info-panel-header {
+.card-title {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    color: var(--text-secondary);
     display: flex;
     align-items: center;
-    gap: 0.5rem;
     margin-bottom: 0.75rem;
     padding-bottom: 0.5rem;
     border-bottom: 1px solid var(--border);
-}
-
-.panel-icon {
-    width: 24px;
-    height: 24px;
-    border-radius: 6px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 13px;
-    color: #fff;
-}
-
-.panel-icon-overview {
-    background: var(--accent-blue);
-}
-
-.panel-icon-dates {
-    background: #f59e0b;
-}
-
-.panel-icon-approvals {
-    background: var(--accent-green);
-}
-
-.info-panel-title {
-    font-size: 0.6875rem;
-    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    color: var(--text-secondary);
 }
 
-.info-panel-body {
+.card-body {
     display: flex;
     flex-direction: column;
     gap: 0.375rem;
 }
 
-.info-panel-row {
+.card-field {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     font-size: 0.8125rem;
+    line-height: 1.4;
+    margin: 0;
 }
 
-.info-panel-label {
+.field-icon {
+    margin-right: 0.35rem;
+    flex-shrink: 0;
+}
+
+.field-label {
     color: var(--text-secondary);
     font-size: 0.75rem;
+    margin-right: 0.35rem;
+    white-space: nowrap;
 }
 
-.info-panel-value {
+.field-value {
     color: var(--text-primary);
     font-weight: 500;
     font-size: 0.8125rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.field-link {
+    color: var(--accent-blue);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.field-link:hover {
+    text-decoration: underline;
+    color: #2563eb;
 }
 
 /* --- Phase Toolbar (merged tabs + actions) --- */
@@ -228,6 +250,9 @@
     padding: 1rem;
     background: var(--surface);
     border-bottom: 1px solid var(--border);
+    overflow: visible;
+    position: relative;
+    z-index: 200;
 }
 
 .form-row {
@@ -235,11 +260,14 @@
     gap: 1rem;
     margin-bottom: 0.75rem;
     flex-wrap: wrap;
+    overflow: visible;
 }
 
 .form-field {
     flex: 1;
     min-width: 160px;
+    overflow: visible;
+    position: relative;
 }
 
 .form-field-title {
@@ -347,6 +375,13 @@
     font-size: 13px;
 }
 
+.checklist-table thead {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(248, 250, 252, 0.9);
+}
+
 .checklist-table thead th {
     padding: 0.35rem 0.5rem;
     background: rgba(248, 250, 252, 0.9);
@@ -384,11 +419,10 @@
 
 .completed-row {
     background: var(--completed-bg);
-    opacity: 0.85;
 }
 
 .completed-row:hover {
-    background: rgba(220, 252, 231, 0.7);
+    background: #DCFCE7;
 }
 
 .overdue-row {
@@ -397,17 +431,17 @@
 }
 
 .overdue-row:hover {
-    background: rgba(254, 226, 226, 0.7);
+    background: #FEE2E2;
 }
 
 /* Moved row -- muted gray, not green, not strikethrough */
 .moved-row {
-    background: rgba(241, 245, 249, 0.6);
-    opacity: 0.7;
+    background: #F1F5F9;
+    color: var(--text-muted);
 }
 
 .moved-row:hover {
-    background: rgba(226, 232, 240, 0.7);
+    background: #E2E8F0;
 }
 
 .checklist-table tbody td {
@@ -418,25 +452,37 @@
     overflow: visible;
 }
 
-/* Column widths — fixed layout, total = 100% */
+/* Column widths — fixed layout, total = 100%.
+   Done moved between # and Title (GT-25). Actions and Answer narrowed,
+   Comment widened per end-user feedback. */
+.col-select {
+    width: 36px;
+    text-align: center;
+}
+
 .col-actions {
-    width: 6%;
+    width: 4%;
 }
 
 .col-number {
     width: 3%;
 }
 
+.col-done {
+    width: 4%;
+    text-align: center;
+}
+
 .col-title {
-    width: 25%;
+    width: 22%;
 }
 
 .col-answer {
-    width: 18%;
+    width: 13%;
 }
 
 .col-comment {
-    width: 16%;
+    width: 22%;
 }
 
 .col-necessary {
@@ -451,28 +497,31 @@
     width: 8%;
 }
 
-.col-done {
-    width: 4%;
-    text-align: center;
-}
-
 /* Inline combobox in table */
 .inline-combo {
     --slds-c-input-text-font-size: 12px;
 }
 
-/* Native select for Necessary column — avoids SF container overflow clipping */
+/* Native select for Necessary column — avoids SF container overflow clipping.
+   Background forced opaque so completed/moved-row backgrounds don't bleed
+   through the control. */
 .inline-select {
     font-family: var(--font);
     font-size: 12px;
     padding: 3px 5px;
     border: 1px solid var(--border);
     border-radius: 4px;
-    background: #fff;
+    background: #ffffff !important;
     color: var(--text-primary);
     cursor: pointer;
     width: 100%;
     outline: none;
+}
+
+.completed-row .inline-select,
+.moved-row .inline-select,
+.overdue-row .inline-select {
+    background: #ffffff !important;
 }
 
 .inline-select:focus {
@@ -488,7 +537,8 @@
 
 .add-item-form .form-input {
     position: relative;
-    z-index: 5;
+    z-index: 200;
+    overflow: visible;
 }
 
 /* Answer column */
@@ -691,18 +741,6 @@
     100% { transform: scale(1); }
 }
 
-/* Record links in overview panel */
-.record-link {
-    color: var(--accent-blue);
-    text-decoration: none;
-    font-weight: 500;
-    cursor: pointer;
-}
-
-.record-link:hover {
-    text-decoration: underline;
-    color: #2563eb;
-}
 
 
 /* --- Comment Modal (Change 3) --- */
@@ -830,4 +868,125 @@
 
 .checkbox-label input[type="checkbox"] {
     cursor: pointer;
+}
+
+/* Select checkbox (square style for bulk selection) */
+.select-circle {
+    width: 18px;
+    height: 18px;
+    border-radius: 3px;
+    border: 2px solid var(--text-muted);
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s ease;
+    box-sizing: border-box;
+}
+
+.done-input:checked + .select-circle {
+    background: var(--accent-blue);
+    border-color: var(--accent-blue);
+}
+
+.done-input:checked + .select-circle::after {
+    content: '';
+    display: block;
+    width: 5px;
+    height: 9px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    margin-top: -1px;
+}
+
+/* --- Bulk Update Section (compact single-row layout) --- */
+.bulk-update-section {
+    background: #f0f4ff;
+    border: 1px solid #d0d8e8;
+    border-bottom: none;
+    border-radius: 8px 8px 0 0;
+    padding: 0.4rem 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-wrap: nowrap;
+}
+
+.bulk-update-header {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    padding-right: 0.5rem;
+    border-right: 1px solid #d0d8e8;
+    margin-right: 0.25rem;
+}
+
+.bulk-update-title {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--text-secondary);
+    white-space: nowrap;
+}
+
+.bulk-update-grid {
+    display: flex;
+    gap: 0.5rem;
+    flex: 1;
+    min-width: 0;
+}
+
+.bulk-update-subheader {
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--text-muted, #64748B);
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.25rem;
+    border-bottom: 1px solid #d0d8e8;
+}
+
+.bulk-field-wide {
+    grid-column: span 3;
+}
+
+.bulk-field-item {
+    flex: 1;
+    min-width: 0;
+}
+
+.bulk-field-input {
+    --slds-c-input-text-font-size: 0.75rem;
+    --slds-c-combobox-sizing-min-height: 1.75rem;
+}
+
+.bulk-update-actions {
+    display: flex;
+    gap: 0.4rem;
+    flex-shrink: 0;
+    align-items: flex-end;
+    padding-left: 0.5rem;
+    border-left: 1px solid #d0d8e8;
+}
+
+/* Table wrapper classes */
+.table-wrapper-full-radius {
+    border-radius: 12px;
+    background: #ffffff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    overflow-x: auto;
+    border: 1px solid var(--border);
+}
+
+.table-wrapper-no-top-radius {
+    border-radius: 0 0 12px 12px;
+    background: #ffffff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-top: none;
 }

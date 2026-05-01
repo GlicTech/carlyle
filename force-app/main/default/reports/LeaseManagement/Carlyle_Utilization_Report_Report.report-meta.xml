@@ -35,6 +35,12 @@
         <aggregateTypes>Sum</aggregateTypes>
         <field>leaseworks__Aircraft__c.leaseworks__Utilization_Reports1__r$leaseworks__Airframe_Cycles_Landing_During_Month__c</field>
     </columns>
+    <columns>
+        <field>leaseworks__Aircraft__c.leaseworks__Utilization_Reports1__r$CreatedBy</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Aircraft__c$MR_Type_on_Lease__c</field>
+    </columns>
     <description>Carlyle Utilization Report Report</description>
     <filter>
         <criteriaItems>
@@ -42,7 +48,7 @@
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>greaterOrEqual</operator>
-            <value>5/1/2024</value>
+            <value>1/1/2026</value>
         </criteriaItems>
         <criteriaItems>
             <column>leaseworks__Aircraft__c.leaseworks__Utilization_Reports1__r$leaseworks__Status__c</column>
@@ -62,7 +68,7 @@
     <format>Summary</format>
     <groupingsDown>
         <field>leaseworks__Aircraft__c.leaseworks__Utilization_Reports1__r$leaseworks__Month_Ending__c</field>
-        <sortOrder>Asc</sortOrder>
+        <sortOrder>Desc</sortOrder>
     </groupingsDown>
     <name>Carlyle Utilization Report</name>
     <params>

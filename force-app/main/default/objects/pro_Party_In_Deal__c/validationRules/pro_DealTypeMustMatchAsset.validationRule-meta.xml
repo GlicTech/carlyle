@@ -2,7 +2,10 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>pro_DealTypeMustMatchAsset</fullName>
     <active>true</active>
-    <description>Requires that the selection for the Deal Type picklist must match the Deal Type field from the Asset in Deal</description>
-    <errorConditionFormula>TEXT(pro_Deal_Type__c) !=  pro_Asset_in_Deal__r.leaseworks__Deal_Type__c</errorConditionFormula>
-    <errorMessage>The Deal Type on this Party in Deal must match the Deal Type on the related Asset in Deal. Please update the Deal Type to match before saving.</errorMessage>
+    <errorConditionFormula>AND(
+  NOT(ISBLANK(TEXT(pro_Deal_Type__c))),
+  NOT(ISBLANK(TEXT(pro_Asset_in_Deal__r.leaseworks__Marketing_Activity__r.leaseworks__Deal_Type__c))),
+  TEXT(pro_Deal_Type__c) &lt;&gt; TEXT(pro_Asset_in_Deal__r.leaseworks__Marketing_Activity__r.leaseworks__Deal_Type__c)
+)</errorConditionFormula>
+    <errorMessage>Deal Type must match the Deal Type on the parent Asset in Deal.</errorMessage>
 </ValidationRule>

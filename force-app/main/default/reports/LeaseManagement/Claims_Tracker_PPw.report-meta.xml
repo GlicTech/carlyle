@@ -51,14 +51,14 @@
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
-            <value>,Technical Review,Operator Engagement,Technical Head/CTO Review,Finance/Accounting Review,CTO Sign-off,Approved</value>
+            <value>,Open,Future Claim,Technical Review,Operator Engagement,Technical Head/CTO Review,Finance/Accounting Review,CTO Sign-off,Approved,Finalised</value>
         </criteriaItems>
         <criteriaItems>
             <column>leaseworks__Claims__c.leaseworks__Payables__r$leaseworks__Status__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
-            <value>Pending,Approved</value>
+            <value>,Pending,Approved,Declined,Cancelled-Pending,Cancelled</value>
         </criteriaItems>
         <criteriaItems>
             <column>leaseworks__Claims__c$Associated_Contract__c</column>
@@ -71,8 +71,15 @@
             <column>leaseworks__Claims__c$Assigned_To__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
-            <operator>contains</operator>
-            <value></value>
+            <operator>notEqual</operator>
+            <value>blank</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>leaseworks__Claims__c$leaseworks__Claim_Status__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>Technical Head/CTO Review</value>
         </criteriaItems>
     </filter>
     <format>Tabular</format>
@@ -89,7 +96,7 @@
     <sortColumn>leaseworks__Claims__c$leaseworks__Date_Receipt_Notification_From_Lessee__c</sortColumn>
     <sortOrder>Desc</sortOrder>
     <timeFrameFilter>
-        <dateColumn>leaseworks__Claims__c$leaseworks__Claim_Reference_Date__c</dateColumn>
+        <dateColumn>leaseworks__Claims__c$CreatedDate</dateColumn>
         <interval>INTERVAL_CUSTOM</interval>
     </timeFrameFilter>
 </Report>

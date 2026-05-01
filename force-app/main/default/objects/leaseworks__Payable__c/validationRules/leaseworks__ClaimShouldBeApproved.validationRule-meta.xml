@@ -5,8 +5,8 @@
     <description>To create an event payable, the related claim status should be approved</description>
     <errorConditionFormula>AND(
 ISNEW(),
-ISPICKVAL(leaseworks__Payable_Type__c, &apos;MR Claim Event&apos;),
-!(ISPICKVAL( leaseworks__Claim__r.leaseworks__Claim_Status__c, &apos;Approved&apos;))
+ISPICKVAL(leaseworks__Payable_Type__c, &#39;MR Claim Event&#39;),
+!(ISPICKVAL( leaseworks__Claim__r.leaseworks__Claim_Status__c, &#39;Approved&#39;))
 )</errorConditionFormula>
     <errorMessage>The Claim must be Approved to create Payable Invoice/s</errorMessage>
 </ValidationRule>

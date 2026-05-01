@@ -4,7 +4,7 @@
     <active>true</active>
     <description>RBH Rate (FH) value is required if rate basis is set to Hourly</description>
     <errorConditionFormula>AND(
-        OR(leaseworks__Rate_Basis_F__c == &apos;Hourly&apos;, leaseworks__Rate_Basis_F__c == &apos;FH Matrix&apos;),
+        OR(leaseworks__Rate_Basis_F__c == &#39;Hourly&#39;, leaseworks__Rate_Basis_F__c == &#39;FH Matrix&#39;),
         ISNULL(leaseworks__PBH_Rate__c )
         )</errorConditionFormula>
     <errorDisplayField>leaseworks__PBH_Rate__c</errorDisplayField>

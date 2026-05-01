@@ -4,39 +4,39 @@
     <deprecated>false</deprecated>
     <description>Formula field showing the date of the document</description>
     <externalId>false</externalId>
-    <formula>CASE(TEXT(leaseworks__Transaction_Type__c)
-,&apos;Opening Balance&apos;, IF(!ISBLANK(leaseworks__Supplemental_Rent__r.leaseworks__Opening_Balance_Date_Override__c),TEXT(leaseworks__Supplemental_Rent__r.leaseworks__Opening_Balance_Date_Override__c),IF(
+    <formula>if(BEGINS(TEXT(leaseworks__Transaction_Type__c),&#39;Adjustment - &#39;), TEXT(leaseworks__Supplemental_Rent_Adjustment_Date__c), 
+CASE(TEXT(leaseworks__Transaction_Type__c)
+,&#39;Opening Balance&#39;, IF(!ISBLANK(leaseworks__Supplemental_Rent__r.leaseworks__Opening_Balance_Date_Override__c),TEXT(leaseworks__Supplemental_Rent__r.leaseworks__Opening_Balance_Date_Override__c),IF(
 OR((leaseworks__Lease_Start_Date__c &lt; leaseworks__Supplemental_Rent__r.leaseworks__Min_Transaction_Date__c),ISBlank(leaseworks__Supplemental_Rent__r.leaseworks__Min_Transaction_Date__c)),TEXT(leaseworks__Lease_Start_Date__c),TEXT(leaseworks__Supplemental_Rent__r.leaseworks__Min_Transaction_Date__c)))
-,&apos;MR Invoice&apos;, IF(ISBLANK(leaseworks__Invoice_Line_Item__c ) ,  leaseworks__Y_Hidden_Doc_Date__c , TEXT(leaseworks__Invoice_Line_Item__r.leaseworks__Invoice__r.leaseworks__Invoice_Date__c)) 
-,&apos;MR Invoice Reconciliation&apos;, TEXT(leaseworks__Invoice_Line_Item__r.leaseworks__Invoice__r.leaseworks__Invoice_Date__c)
-,&apos;MR Invoice Overpayment Credit&apos;, TEXT(leaseworks__Credit_Memo_Date__c)
-,&apos;MR Cash Payment&apos;,IF(ISBLANK(leaseworks__Payment_Line_Item__c) ,  leaseworks__Y_Hidden_Doc_Date__c , 
+,&#39;MR Invoice&#39;, IF(ISBLANK(leaseworks__Invoice_Line_Item__c ) ,  leaseworks__Y_Hidden_Doc_Date__c , TEXT(leaseworks__Invoice_Line_Item__r.leaseworks__Invoice__r.leaseworks__Invoice_Date__c)) 
+,&#39;MR Invoice Reconciliation&#39;, TEXT(leaseworks__Invoice_Line_Item__r.leaseworks__Invoice__r.leaseworks__Invoice_Date__c)
+,&#39;MR Invoice Overpayment Credit&#39;, TEXT(leaseworks__Credit_Memo_Date__c)
+,&#39;MR Cash Payment&#39;,IF(ISBLANK(leaseworks__Payment_Line_Item__c) ,  leaseworks__Y_Hidden_Doc_Date__c , 
 TEXT(leaseworks__Payment_Line_Item__r.leaseworks__Payment_Date__c))
-,&apos;MR Payment Credit Applied&apos;,IF(ISBLANK(leaseworks__Payment_Line_Item__c) ,  leaseworks__Y_Hidden_Doc_Date__c , 
+,&#39;MR Payment Credit Applied&#39;,IF(ISBLANK(leaseworks__Payment_Line_Item__c) ,  leaseworks__Y_Hidden_Doc_Date__c , 
 TEXT(leaseworks__Payment_Line_Item__r.leaseworks__Payment_Date__c))
-,&apos;MR Invoice Credit (Adjustment)&apos;,IF(ISBLANK(leaseworks__Payment_Line_Item__c) ,  leaseworks__Y_Hidden_Doc_Date__c , 
+,&#39;MR Invoice Credit (Adjustment)&#39;,IF(ISBLANK(leaseworks__Payment_Line_Item__c) ,  leaseworks__Y_Hidden_Doc_Date__c , 
 TEXT(leaseworks__Payment_Line_Item__r.leaseworks__Payment_Date__c))
-,&apos;MR Payment Offset&apos;,IF(ISBLANK(leaseworks__Payment_Line_Item__c) ,  leaseworks__Y_Hidden_Doc_Date__c , 
+,&#39;MR Payment Offset&#39;,IF(ISBLANK(leaseworks__Payment_Line_Item__c) ,  leaseworks__Y_Hidden_Doc_Date__c , 
 TEXT(leaseworks__Payment_Line_Item__r.leaseworks__Payment_Date__c))
-,&apos;MR Contribution Applied&apos;,TEXT(leaseworks__Event_Payable__r.leaseworks__Payable_Date__c)
-,&apos;MR Contribution Used&apos;,TEXT(leaseworks__Event_Payout__r.leaseworks__Payout_Date__c)
-,&apos;MR Claim&apos;,TEXT(leaseworks__Event_Payable__r.leaseworks__Payable_Date__c)
-,&apos;MR Claim Refund&apos;,TEXT(leaseworks__Event_Payout__r.leaseworks__Payout_Date__c)
-,&apos;MR Claim Offset&apos;,TEXT(leaseworks__Event_Payout__r.leaseworks__Payout_Date__c)
-,&apos;MR Rebate&apos;,TEXT(leaseworks__Event_Payable__r.leaseworks__Payable_Date__c)
-,&apos;MR Rebate Payout&apos;,TEXT(leaseworks__Event_Payout__r.leaseworks__Payout_Date__c)
-,&apos;MR Manual Payable&apos;,TEXT(leaseworks__Event_Payable__r.leaseworks__Payable_Date__c)
-,&apos;MR Manual Payout&apos;,TEXT(leaseworks__Event_Payout__r.leaseworks__Payout_Date__c)
-,&apos;Payable - MR Reconciliation&apos;,TEXT(leaseworks__Event_Payable__r.leaseworks__Payable_Date__c)
-,&apos;Payout - MR Reconciliation&apos;,TEXT(leaseworks__Event_Payout__r.leaseworks__Payout_Date__c)
-,&apos;Adjustment&apos;,TEXT(leaseworks__Supplemental_Rent_Adjustment_Date__c)
-,&apos;MR Transfer&apos;,TEXT(leaseworks__MR_Fund_Transfer_Date__c)
-,&apos;MR Accrued&apos;,TEXT(leaseworks__Utilization_Date__c)
-,&apos;MR Claim Accrued&apos;,TEXT(leaseworks__Claim_Date__c)
-,&apos;MR Invoice Adjustment&apos;,TEXT(leaseworks__Invoice_Adjustment_Line_Item__r.leaseworks__Invoice_Adjustment__r.leaseworks__Adjustment_Date__c)
-,&apos;MR Lessor Commitment Amount Applied&apos;,TEXT(leaseworks__Event_Payable__r.leaseworks__Payable_Date__c)
-,&apos;MR Lessor Commitment Amount Used&apos;,TEXT(leaseworks__Event_Payout__r.leaseworks__Payout_Date__c)
-,&apos;&apos;)</formula>
+,&#39;MR Contribution Applied&#39;,TEXT(leaseworks__Event_Payable__r.leaseworks__Payable_Date__c)
+,&#39;MR Contribution Used&#39;,TEXT(leaseworks__Event_Payout__r.leaseworks__Payout_Date__c)
+,&#39;MR Claim&#39;,TEXT(leaseworks__Event_Payable__r.leaseworks__Payable_Date__c)
+,&#39;MR Claim Refund&#39;,TEXT(leaseworks__Event_Payout__r.leaseworks__Payout_Date__c)
+,&#39;MR Claim Offset&#39;,TEXT(leaseworks__Event_Payout__r.leaseworks__Payout_Date__c)
+,&#39;MR Rebate&#39;,TEXT(leaseworks__Event_Payable__r.leaseworks__Payable_Date__c)
+,&#39;MR Rebate Payout&#39;,TEXT(leaseworks__Event_Payout__r.leaseworks__Payout_Date__c)
+,&#39;MR Manual Payable&#39;,TEXT(leaseworks__Event_Payable__r.leaseworks__Payable_Date__c)
+,&#39;MR Manual Payout&#39;,TEXT(leaseworks__Event_Payout__r.leaseworks__Payout_Date__c)
+,&#39;Payable - MR Reconciliation&#39;,TEXT(leaseworks__Event_Payable__r.leaseworks__Payable_Date__c)
+,&#39;Payout - MR Reconciliation&#39;,TEXT(leaseworks__Event_Payout__r.leaseworks__Payout_Date__c)
+,&#39;MR Transfer&#39;,TEXT(leaseworks__MR_Fund_Transfer_Date__c)
+,&#39;MR Accrued&#39;,TEXT(leaseworks__Utilization_Date__c)
+,&#39;MR Claim Accrued&#39;,TEXT(leaseworks__Claim_Date__c)
+,&#39;MR Invoice Adjustment&#39;,TEXT(leaseworks__Invoice_Adjustment_Line_Item__r.leaseworks__Invoice_Adjustment__r.leaseworks__Adjustment_Date__c)
+,&#39;MR Lessor Commitment Amount Applied&#39;,TEXT(leaseworks__Event_Payable__r.leaseworks__Payable_Date__c)
+,&#39;MR Lessor Commitment Amount Used&#39;,TEXT(leaseworks__Event_Payout__r.leaseworks__Payout_Date__c)
+,&#39;&#39;))</formula>
     <inlineHelpText>Auto-calculated field, showing the source document date</inlineHelpText>
     <label>Transaction Date</label>
     <required>false</required>

@@ -47,9 +47,6 @@
                 <stringValue>&lt;p&gt;The flow Prodigy - Add User To Ticket Permissions on Create/Update ran into an error. See the details:&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;{!$Flow.FaultMessage}&lt;/p&gt;</stringValue>
             </value>
         </inputParameters>
-        <nameSegment>emailSimple</nameSegment>
-        <offset>0</offset>
-        <versionString>1.0.1</versionString>
     </actionCalls>
     <apiVersion>64.0</apiVersion>
     <assignments>
@@ -505,28 +502,6 @@ Profiles:
         <triggerType>RecordAfterSave</triggerType>
     </start>
     <status>Obsolete</status>
-    <transforms>
-        <description>A collection of all the User Ids from the Permission Set Assignments</description>
-        <name>Create_User_Ids_Assigned_To_Permission_Set_Collection</name>
-        <label>Create User Ids Assigned To Permission Set Collection</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Add_or_Remove_User_From_Permission_Set</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>Get_Permission_Set_Assignments[$EachItem].AssigneeId</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
     <variables>
         <name>varUserEmailInCollection</name>
         <dataType>String</dataType>

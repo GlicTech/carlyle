@@ -3,7 +3,8 @@
     <fullName>leaseworks__Payable_Balance__c</fullName>
     <deprecated>false</deprecated>
     <description>This is the amount of the Payable remaining to be paid out</description>
-    <formula>IF( OR(ISPICKVAL(leaseworks__Status__c,&apos;Declined&apos;),ISPICKVAL(leaseworks__Status__c,&apos;Cancelled&apos;)),0, leaseworks__Payable_Amount__c - ( leaseworks__Payable_Amount_Paid_Cash__c + leaseworks__Amount_Paid_via_Offset__c ))</formula>
+    <externalId>false</externalId>
+    <formula>IF( OR(ISPICKVAL(leaseworks__Status__c,&#39;Declined&#39;),ISPICKVAL(leaseworks__Status__c,&#39;Cancelled&#39;)),0, leaseworks__Payable_Amount__c - ( leaseworks__Payable_Amount_Paid_Cash__c + leaseworks__Amount_Paid_via_Offset__c ))</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <inlineHelpText>This is the amount of the Payable remaining to be paid out</inlineHelpText>
     <label>Payable Balance</label>

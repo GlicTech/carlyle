@@ -265,7 +265,7 @@
     <fieldUpdates>
         <fullName>Set_Finance_Sign_Off_Date</fullName>
         <field>leaseworks__CFO_Sign_off_Date__c</field>
-        <formula>TODAY()</formula>
+        <formula>IF(CONTAINS( Finance_Sign_Off_User__c ,  $User.Id ),TODAY(), leaseworks__CFO_Sign_off_Date__c)</formula>
         <name>Set Finance Sign Off Date</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
@@ -295,7 +295,7 @@
     <fieldUpdates>
         <fullName>Set_Technical_Sign_Off_Date</fullName>
         <field>leaseworks__CTO_Sign_off_Date__c</field>
-        <formula>TODAY()</formula>
+        <formula>IF(CONTAINS( Technical_Sign_Off_User__c,  $User.Id), TODAY(),  leaseworks__CTO_Sign_off_Date__c )</formula>
         <name>Set Technical Sign Off Date</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
@@ -357,9 +357,9 @@
     <fieldUpdates>
         <fullName>leaseworks__ClaimSetDataVerifiedBy</fullName>
         <field>leaseworks__Data_Verified_By__c</field>
-        <formula>$User.FirstName + &apos; &apos; + $User.LastName +&apos;, &apos; +
+        <formula>$User.FirstName + &#39; &#39; + $User.LastName +&#39;, &#39; +
 
-Text(MONTH(TODAY())) + &apos;/&apos; + Text(Day(TODAY())) + &apos;/&apos; + Text(year(TODAY()))</formula>
+Text(MONTH(TODAY())) + &#39;/&#39; + Text(Day(TODAY())) + &#39;/&#39; + Text(year(TODAY()))</formula>
         <name>ClaimSetDataVerifiedBy</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>

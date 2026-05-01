@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>leaseworks__Marketing_Activity__c.leaseworks__Aircraft_Proposals__r$Name</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Marketing_Activity__c$leaseworks__Deal_Type__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Marketing_Activity__c.leaseworks__Aircraft_Proposals__r$pro_ADM_Approval_Date__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Marketing_Activity__c.leaseworks__Aircraft_Proposals__r$LOI_Date__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Marketing_Activity__c.leaseworks__Aircraft_Proposals__r$BAC_Approval_Date__c</field>
+    </columns>
+    <filter>
+        <criteriaItems>
+            <column>leaseworks__Marketing_Activity__c$leaseworks__Deal_Status__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>,Termsheet Sent,Mandated,ADM Approval,LOI Signed,BAC Approval,IC Approval,Novation - SPA,Documentation,Agreement Executed,SPA,Closed - Won</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>leaseworks__Marketing_Activity__c$leaseworks__Deal_Type__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>,Engine Exchange,Lease,Lease Amendment,Lease Extension,Lending,Purchase,Sale_Novation,Sale_Off_Lease,SLB,Approval</value>
+        </criteriaItems>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>leaseworks__Marketing_Activity__c$Name</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>leaseworks__Marketing_Activity__c$leaseworks__Deal_Status__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Deals - Key Dates</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Deals_with_Asset_in_Deals__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>false</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>leaseworks__Marketing_Activity__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

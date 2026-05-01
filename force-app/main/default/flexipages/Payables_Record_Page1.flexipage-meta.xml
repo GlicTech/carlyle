@@ -132,7 +132,7 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
-                    <value>readonly</value>
+                    <value>none</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.leaseworks__Payable_Type__c</fieldItem>
                 <identifier>RecordPayable_Type__cField</identifier>
@@ -677,23 +677,6 @@
                 </visibilityRule>
             </fieldInstance>
         </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Related_Invoice__c</fieldItem>
-                <identifier>Recordleaseworks_Related_Invoice_cField</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.leaseworks__Payable_Type__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>HL/SL-Rent Payable</rightValue>
-                    </criteria>
-                </visibilityRule>
-            </fieldInstance>
-        </itemInstances>
         <name>Facet-b8cfd4ce-dd67-4487-81ea-489acb3bff58</name>
         <type>Facet</type>
     </flexiPageRegions>
@@ -928,10 +911,6 @@
                     <value>Facet-3adff5d1-6f1b-4275-9c0e-40ce67861785</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
-                    <name>horizontalAlignment</name>
-                    <value>false</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
                     <name>label</name>
                     <value>Information</value>
                 </componentInstanceProperties>
@@ -944,10 +923,6 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-4382578d-9cdf-40fb-ba4f-a340e289f51a</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>horizontalAlignment</name>
-                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -964,10 +939,6 @@
                     <value>Facet-7ddfbb5e-52ff-4a76-8dc8-b7ba27018b41</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
-                    <name>horizontalAlignment</name>
-                    <value>false</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
                     <name>label</name>
                     <value>Amounts</value>
                 </componentInstanceProperties>
@@ -982,10 +953,6 @@
                     <value>Facet-fde12d6b-5374-4e0e-9045-67badfa3b057</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
-                    <name>horizontalAlignment</name>
-                    <value>false</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
                     <name>label</name>
                     <value>Accounting Details</value>
                 </componentInstanceProperties>
@@ -998,10 +965,6 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-c7d86964-00b9-4b46-a7ff-83eb59cfa095</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>horizontalAlignment</name>
-                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -1126,7 +1089,7 @@
         <name>rightcol</name>
         <type>Region</type>
     </flexiPageRegions>
-    <masterLabel>Payables Record Page (superseded)</masterLabel>
+    <masterLabel>Payables Record Page (superseded)(for ref only)</masterLabel>
     <sobjectType>leaseworks__Payable__c</sobjectType>
     <template>
         <name>flexipage:recordHomeTwoColEqualHeaderTemplateDesktop</name>

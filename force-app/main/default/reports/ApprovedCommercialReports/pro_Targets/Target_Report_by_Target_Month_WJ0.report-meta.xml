@@ -1,42 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Report xmlns="http://soap.sforce.com/2006/04/metadata">
-    <chart>
-        <backgroundColor1>#FFFFFF</backgroundColor1>
-        <backgroundColor2>#FFFFFF</backgroundColor2>
-        <backgroundFadeDir>Diagonal</backgroundFadeDir>
-        <chartSummaries>
-            <axisBinding>y</axisBinding>
-            <column>RowCount</column>
-        </chartSummaries>
-        <chartSummaries>
-            <aggregate>Maximum</aggregate>
-            <axisBinding>y</axisBinding>
-            <column>pro_Asset_Target_Audit__c$pro_Target_Forecast__c.pro_Target_Amount__c</column>
-        </chartSummaries>
-        <chartType>LineCumulative</chartType>
-        <enableHoverLabels>false</enableHoverLabels>
-        <expandOthers>true</expandOthers>
-        <groupingColumn>pro_Asset_Target_Audit__c$pro_Reporting_Date__c</groupingColumn>
-        <legendPosition>Right</legendPosition>
-        <location>CHART_BOTTOM</location>
-        <showAxisLabels>true</showAxisLabels>
-        <showPercentage>false</showPercentage>
-        <showTotal>false</showTotal>
-        <showValues>false</showValues>
-        <size>Medium</size>
-        <summaryAxisRange>Auto</summaryAxisRange>
-        <textColor>#000000</textColor>
-        <textSize>12</textSize>
-        <titleColor>#000000</titleColor>
-        <titleSize>18</titleSize>
-    </chart>
-    <columns>
-        <field>pro_Asset_Target_Audit__c$pro_Target_Forecast__c</field>
-    </columns>
-    <columns>
-        <aggregateTypes>Maximum</aggregateTypes>
-        <field>pro_Asset_Target_Audit__c$pro_Target_Forecast__c.pro_Target_Amount__c</field>
-    </columns>
+    <aggregates>
+        <calculatedFormula>RowCount</calculatedFormula>
+        <datatype>number</datatype>
+        <description>Achieved</description>
+        <developerName>FORMULA1</developerName>
+        <isActive>false</isActive>
+        <isCrossBlock>false</isCrossBlock>
+        <masterLabel>Achieved</masterLabel>
+        <scale>0</scale>
+    </aggregates>
+    <aggregates>
+        <calculatedFormula>pro_Asset_Target_Audit__c.pro_Target_Forecast__c.pro_Target_Amount__c:AVG</calculatedFormula>
+        <datatype>number</datatype>
+        <description>Run Rate Target</description>
+        <developerName>FORMULA2</developerName>
+        <isActive>false</isActive>
+        <isCrossBlock>false</isCrossBlock>
+        <masterLabel>Run Rate Target</masterLabel>
+        <scale>0</scale>
+    </aggregates>
+    <aggregates>
+        <calculatedFormula>pro_Asset_Target_Audit__c.Run_Rate_Target__c:AVG</calculatedFormula>
+        <datatype>number</datatype>
+        <description>Run Rate</description>
+        <developerName>FORMULA3</developerName>
+        <isActive>false</isActive>
+        <isCrossBlock>false</isCrossBlock>
+        <masterLabel>Run Rate</masterLabel>
+        <scale>0</scale>
+    </aggregates>
+    <aggregates>
+        <calculatedFormula>pro_Asset_Target_Audit__c.Run_Rate_Target__c:AVG</calculatedFormula>
+        <datatype>number</datatype>
+        <description>Run Rate (Manual)</description>
+        <developerName>FORMULA4</developerName>
+        <isActive>true</isActive>
+        <isCrossBlock>false</isCrossBlock>
+        <masterLabel>Run Rate (Manual)</masterLabel>
+        <scale>0</scale>
+    </aggregates>
     <columns>
         <field>pro_Asset_Target_Audit__c$pro_Asset__c</field>
     </columns>
@@ -44,23 +47,37 @@
         <field>pro_Asset_Target_Audit__c$pro_Asset_in_Deal__c.LOI_Date__c</field>
     </columns>
     <columns>
-        <field>pro_Asset_Target_Audit__c$pro_Target_End_Date_1__c</field>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>CDF1</field>
     </columns>
+    <customDetailFormulas>
+        <calculatedFormula>IF(
+    CONTAINS(pro_Asset_Target_Audit__c.pro_Progress__c, &quot;Achieved&quot;),
+    1,
+    0
+)</calculatedFormula>
+        <dataType>Double</dataType>
+        <description>Achieved</description>
+        <developerName>CDF1</developerName>
+        <label>Achieved</label>
+        <scale>0</scale>
+    </customDetailFormulas>
     <description>Dashboard Report</description>
     <filter>
+        <booleanFilter>1 OR 2</booleanFilter>
         <criteriaItems>
-            <column>pro_Asset_Target_Audit__c$pro_Progress_Picklist__c</column>
+            <column>pro_Asset_Target_Audit__c$pro_Progress__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
-            <operator>equals</operator>
-            <value>Achieved - LOI Other,Achieved - LOI,Achieved - Contract Extended,Achieved - No LOI</value>
+            <operator>contains</operator>
+            <value>Achieved</value>
         </criteriaItems>
         <criteriaItems>
-            <column>pro_Asset_Target_Audit__c$pro_Target_Year__c</column>
+            <column>pro_Asset_Target_Audit__c$pro_Progress__c</column>
             <columnToColumn>false</columnToColumn>
-            <isUnlocked>false</isUnlocked>
-            <operator>equals</operator>
-            <value>2025</value>
+            <isUnlocked>true</isUnlocked>
+            <operator>contains</operator>
+            <value>Open</value>
         </criteriaItems>
     </filter>
     <format>Summary</format>

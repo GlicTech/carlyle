@@ -13,19 +13,37 @@
                             <value>Submit</value>
                         </valueListItems>
                         <valueListItems>
-                            <value>leaseworks__Invoice__c.Generate_Invoice1</value>
+                            <value>leaseworks__Invoice__c.Generate_Invoice</value>
                         </valueListItems>
                         <valueListItems>
-                            <value>leaseworks__Invoice__c.leaseworks__Apply_Credit_Memo</value>
+                            <value>leaseworks__Invoice__c.leaseworks__Create_Payment_new</value>
                         </valueListItems>
                         <valueListItems>
                             <value>leaseworks__Invoice__c.leaseworks__Cancel_Invoice</value>
                         </valueListItems>
                         <valueListItems>
-                            <value>Delete</value>
+                            <value>leaseworks__Invoice__c.leaseworks__Undo_Cancellation</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>leaseworks__Invoice__c.leaseworks__Apply_Credit_Memo</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>leaseworks__Invoice__c.leaseworks__Apply_Payment_On_Account</value>
                         </valueListItems>
                         <valueListItems>
                             <value>leaseworks__Invoice__c.leaseworks__Adjust_Invoice</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>leaseworks__Invoice__c.leaseworks__Calculate_Late_Payment_Interest_Custom</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>leaseworks__Invoice__c.leaseworks__Create_Deferred_Payment_Plan</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>leaseworks__Invoice__c.leaseworks__Create_Rebate</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>Delete</value>
                         </valueListItems>
                         <valueListItems>
                             <value>leaseworks__Invoice__c.leaseworks__Credit_This_Invoice_Correction</value>
@@ -1318,10 +1336,6 @@
                     <value>Facet-9dbd7c05-4097-4535-a978-0aabd2c9a364</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
-                    <name>horizontalAlignment</name>
-                    <value>false</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
                     <name>label</name>
                     <value>@@@SFDCInformationSFDC@@@</value>
                 </componentInstanceProperties>
@@ -1336,15 +1350,24 @@
                     <value>Facet-80ad9172-8714-4302-b41d-80454d2613de</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
-                    <name>horizontalAlignment</name>
-                    <value>false</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
                     <name>label</name>
                     <value>Rent Information</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:fieldSection</componentName>
                 <identifier>flexipage_fieldSection2</identifier>
+                <visibilityRule>
+                    <booleanFilter>1 OR 2</booleanFilter>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Invoice_Type__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Rent</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Invoice_Type__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Deferred - Rent</rightValue>
+                    </criteria>
+                </visibilityRule>
             </componentInstance>
         </itemInstances>
         <itemInstances>
@@ -1352,10 +1375,6 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-cd6c3268-0d13-47da-9343-8079e9f61801</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>horizontalAlignment</name>
-                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -1372,10 +1391,6 @@
                     <value>Facet-f5cb067b-6f7f-4f11-b4b7-dd480604b75b</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
-                    <name>horizontalAlignment</name>
-                    <value>false</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
                     <name>label</name>
                     <value>Currency Conversion</value>
                 </componentInstanceProperties>
@@ -1388,10 +1403,6 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-bf1e1829-fdd7-41ba-a478-f38f5e70d320</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>horizontalAlignment</name>
-                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -1408,10 +1419,6 @@
                     <value>Facet-03481c06-4c3c-4118-88f4-d8cf2b6cfe63</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
-                    <name>horizontalAlignment</name>
-                    <value>false</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
                     <name>label</name>
                     <value>Adjustments</value>
                 </componentInstanceProperties>
@@ -1424,10 +1431,6 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-1e39f977-8440-454a-b37b-1127868b3339</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>horizontalAlignment</name>
-                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -1444,10 +1447,6 @@
                     <value>Facet-874b0358-313a-4ec6-aaf0-26c151fe3d0f</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
-                    <name>horizontalAlignment</name>
-                    <value>false</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
                     <name>label</name>
                     <value>Tax Details</value>
                 </componentInstanceProperties>
@@ -1460,10 +1459,6 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-6364bd31-c0f7-4335-8279-b1409b2eabfc</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>horizontalAlignment</name>
-                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -1480,10 +1475,6 @@
                     <value>Facet-cf5bf533-21f2-4f19-a922-31875c7d780d</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
-                    <name>horizontalAlignment</name>
-                    <value>false</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
                     <name>label</name>
                     <value>@@@SFDCOther_InformationSFDC@@@</value>
                 </componentInstanceProperties>
@@ -1496,10 +1487,6 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-cf97e9a3-9d13-44cb-9b80-db3ea9d5bee4</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>horizontalAlignment</name>
-                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>

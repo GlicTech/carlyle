@@ -14,7 +14,7 @@ try{
 var retVal =sforce.apex.execute(&quot;leaseworks/CustomEvents&quot;,&quot;deductCMR&quot;, {id:&quot;{! leaseworks__Aircraft_Eligible_Event_Invoice__c.Id }&quot;});
 }
 catch(e){
-var retVal = &apos;Insufficient Privileges To Deduct From MR!&apos; + e;
+var retVal = &#39;Insufficient Privileges To Deduct From MR!&#39; + e;
 }
 window.alert(retVal);
 window.location.reload();</url>

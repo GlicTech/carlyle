@@ -77,12 +77,20 @@
     </columns>
     <description>Dashboard Report</description>
     <filter>
+        <booleanFilter>1 OR 2</booleanFilter>
         <criteriaItems>
-            <column>pro_Asset_Target_Audit__c$pro_Progress_Picklist__c</column>
+            <column>pro_Asset_Target_Audit__c$pro_Progress__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
-            <operator>notEqual</operator>
-            <value>Moved To Trading,Target Cancelled</value>
+            <operator>contains</operator>
+            <value>Achieved</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>pro_Asset_Target_Audit__c$pro_Progress__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>contains</operator>
+            <value>Open</value>
         </criteriaItems>
     </filter>
     <format>Summary</format>
@@ -93,7 +101,7 @@
     </groupingsDown>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
-        <field>pro_Asset_Target_Audit__c$pro_Progress_Picklist__c</field>
+        <field>pro_Asset_Target_Audit__c$pro_Progress__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
     <name>Target Report by Target Month and Status</name>

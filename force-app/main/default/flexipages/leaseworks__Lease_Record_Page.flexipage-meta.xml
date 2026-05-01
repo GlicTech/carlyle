@@ -868,6 +868,64 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.leaseworks__Base_Rent__c</fieldItem>
                 <identifier>RecordBase_Rent_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Primary_Rent_Currency__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>USD</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Base_Rent_Number__c</fieldItem>
+                <identifier>RecordBase_Rent_Number_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Primary_Rent_Currency__c}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>USD</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Current_Rent_New__c</fieldItem>
+                <identifier>RecordCurrent_Rent_New_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Primary_Rent_Currency__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>USD</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Current_Rent_Number__c</fieldItem>
+                <identifier>RecordCurrent_Rent_Number_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Primary_Rent_Currency__c}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>USD</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <name>Facet-9b72013e-5e80-4bed-a0ef-7c37a14ae983</name>
@@ -2267,6 +2325,12 @@
                         </valueListItems>
                         <valueListItems>
                             <value>leaseworks__Event_Status__c</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>leaseworks__Event_Scope__c</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>leaseworks__Event_Urgency__c</value>
                         </valueListItems>
                     </valueList>
                 </componentInstanceProperties>

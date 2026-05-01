@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Power BI Embed</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { width: 100%; height: 100%; overflow: hidden; background: #fff; }
+        #embedContainer { width: 100%; height: 100%; }
+        .loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: #666;
+        }
+        .error {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: #c23934;
+            padding: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="embedContainer">
+        <div class="loading">Loading report...</div>
+    </div>
+
+    <script>
+        (function() {
+            'use strict';
+
+            var container = document.getElementById('embedContainer');
+            var report = null;
+            var sdkLoaded = false;
+            var trustedOrigin = null;
+            var trustedSdkUrl = null;
+            var instanceId = null;
+
+            // Extract instanceId from URL query params
+            function getInstanceId() {
+                var params = new URLSearchParams(window.location.search);
+                return params.get('instanceId') || null;
+            }
+
+            // Validate that the origin is a trusted Salesforce domain
+            function isTrustedSalesforceOrigin(origin) {
+                if (!origin || typeof origin !== 'string') {
+                    return false;
+                }
+                // Salesforce domain patterns - production, sandbox, and developer orgs
+                // lightning.force.com - LEX apps
+                // my.salesforce.com - new domain format
+                // visualforce.com - VF pages
+                // force.com - classic and communities
+                // salesforce.com - setup and admin
+                return /^https:\/\/[a-z0-9-]+(\.[a-z0-9-]+)*\.(lightning\.force|my\.salesforce|sandbox\.my\.salesforce|salesforce|force|visualforce|vf\.force|develop\.my\.salesforce|scratch\.my\.salesforce)\.com$/i.test(origin);
+            }
+
+            // Validate that a URL is a Salesforce static resource URL
+            function isValidSalesforceResourceUrl(url) {
+                if (!url || typeof url !== 'string') {
+                    return false;
+                }
+                try {
+                    var parsed = new URL(url, window.location.origin);
+                    // Must be HTTPS (or same-origin for relative URLs)
+                    if (parsed.protocol !== 'https:' && parsed.origin !== window.location.origin) {
+                        return false;
+                    }
+                    // Salesforce static resource URLs have /resource/ in the path
+                    var pathname = parsed.pathname;
+                    var hostname = parsed.hostname;
+                    var isResourcePath = /^\/resource\//.test(pathname);
+                    // If it's a relative URL (no hostname), it's same-origin
+                    if (!hostname) {
+                        return isResourcePath;
+                    }
+                    // Otherwise validate the hostname is a Salesforce domain
+                    var isSalesforceHost = /\.(force|salesforce|visualforce|documentforce|vf\.force)\.com$/i.test(hostname);
+                    return isResourcePath && isSalesforceHost;
+                } catch (e) {
+                    return false;
+                }
+            }
+
+            // Send message to parent with origin validation
+            function sendToParent(message) {
+                if (!trustedOrigin) {
+                    // Cannot send until we have established trust
+                    return;
+                }
+                // Include instanceId in all messages so parent can verify
+                message.instanceId = instanceId;
+                window.parent.postMessage(message, trustedOrigin);
+            }
+
+            // Show error message
+            function showError(message) {
+                container.innerHTML = '<div class="error">' + escapeHtml(message) + '</div>';
+                sendToParent({ type: 'pbi-error', detail: message });
+            }
+
+            // Escape HTML to prevent XSS
+            function escapeHtml(text) {
+                var div = document.createElement('div');
+                div.textContent = text;
+                return div.innerHTML;
+            }
+
+            // Load the Power BI SDK dynamically
+            function loadSdk(sdkUrl, callback) {
+                // Security: Only load SDK once, from validated URL
+                if (sdkLoaded) {
+                    callback();
+                    return;
+                }
+                var script = document.createElement('script');
+                script.src = sdkUrl;
+                script.onload = function() {
+                    sdkLoaded = true;
+                    callback();
+                };
+                script.onerror = function() {
+                    showError('Failed to load Power BI SDK');
+                };
+                document.head.appendChild(script);
+            }
+
+            // Embed the report
+            function embedReport(config) {
+                if (!sdkLoaded) {
+                    return;
+                }
+
+                try {
+                    container.innerHTML = '';
+
+                    // Create embed div
+                    var embedDiv = document.createElement('div');
+                    embedDiv.id = 'reportEmbed';
+                    embedDiv.style.width = '100%';
+                    embedDiv.style.height = '100%';
+                    container.appendChild(embedDiv);
+
+                    // Embed the report
+                    report = powerbi.embed(embedDiv, config);
+
+                    report.on('loaded', function() {
+                        sendToParent({ type: 'pbi-loaded' });
+                    });
+
+                    report.on('rendered', function() {
+                        sendToParent({ type: 'pbi-rendered' });
+                    });
+
+                    report.on('error', function(event) {
+                        var detail = event.detail ? JSON.stringify(event.detail) : 'Unknown error';
+                        sendToParent({ type: 'pbi-error', detail: detail });
+                    });
+
+                } catch (err) {
+                    showError('Failed to embed report: ' + err.message);
+                }
+            }
+
+            // Handle messages from parent
+            window.addEventListener('message', function(event) {
+                var data = event.data;
+                if (!data || typeof data.type !== 'string') {
+                    return;
+                }
+
+                // Security: Validate origin is a trusted Salesforce domain
+                if (!isTrustedSalesforceOrigin(event.origin)) {
+                    return;
+                }
+
+                // On first valid message, establish trusted origin
+                if (!trustedOrigin) {
+                    trustedOrigin = event.origin;
+                } else if (event.origin !== trustedOrigin) {
+                    // Reject messages from different origins after trust is established
+                    return;
+                }
+
+                switch (data.type) {
+                    case 'pbi-init':
+                        // Security: Validate SDK URL is a legitimate Salesforce static resource
+                        if (data.sdkUrl && data.config) {
+                            if (!isValidSalesforceResourceUrl(data.sdkUrl)) {
+                                showError('Invalid SDK URL');
+                                return;
+                            }
+                            // Security: Only allow SDK to be set once
+                            if (trustedSdkUrl && trustedSdkUrl !== data.sdkUrl) {
+                                showError('SDK URL cannot be changed');
+                                return;
+                            }
+                            trustedSdkUrl = data.sdkUrl;
+                            loadSdk(data.sdkUrl, function() {
+                                embedReport(data.config);
+                            });
+                        }
+                        break;
+
+                    case 'pbi-refresh-token':
+                        // Refresh the access token
+                        if (report && data.token) {
+                            report.setAccessToken(data.token)
+                                .then(function() {
+                                    sendToParent({ type: 'pbi-token-refreshed' });
+                                })
+                                .catch(function(err) {
+                                    sendToParent({
+                                        type: 'pbi-error',
+                                        detail: 'Token refresh failed: ' + err.message
+                                    });
+                                });
+                        }
+                        break;
+
+                    case 'pbi-fullscreen':
+                        // Enter fullscreen mode on the report
+                        if (report) {
+                            report.fullscreen();
+                        }
+                        break;
+
+                    default:
+                        break;
+                }
+            });
+
+            // Initialize: Get instanceId and notify parent we're ready
+            instanceId = getInstanceId();
+            if (instanceId) {
+                // Send ready message - but we don't know trusted origin yet,
+                // so use '*' for initial handshake only. All subsequent messages
+                // will use the validated trustedOrigin.
+                window.parent.postMessage({ type: 'pbi-frame-ready', instanceId: instanceId }, '*');
+            }
+        })();
+    </script>
+</body>
+</html>

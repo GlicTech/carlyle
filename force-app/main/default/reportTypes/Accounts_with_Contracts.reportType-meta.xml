@@ -5,7 +5,11 @@
     <deployed>true</deployed>
     <description>Accounts with Contract Details</description>
     <join>
-        <outerJoin>false</outerJoin>
+        <join>
+            <outerJoin>true</outerJoin>
+            <relationship>leaseworks__Aircrafts__r</relationship>
+        </join>
+        <outerJoin>true</outerJoin>
         <relationship>Contracts__r</relationship>
     </join>
     <label>Accounts with Contracts</label>
@@ -27,12 +31,28 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>CAP_Funds_Impacted__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>RecordType</field>
             <table>Account</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Total Receivables (excluding Credits)</displayNameOverride>
+            <field>Active_Contracts_Total_Outstanding__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>Parent</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Pro_Party_to_an_active_deal__c</field>
             <table>Account</table>
         </columns>
         <columns>
@@ -1052,12 +1072,27 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Watchlilst_Rating_Comments__c</field>
+            <field>pro_Insurance__c</field>
             <table>Account</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Active_Contracts_Total_Outstanding__c</field>
+            <field>Watchlist_Credit_Rating_Comments__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>CAP_Credit_Counterparty__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Macro_Impact__c</field>
+            <table>Account</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Logo__c</field>
             <table>Account</table>
         </columns>
         <masterLabel>Accounts</masterLabel>
@@ -1163,17 +1198,7 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Fixed_Interest__c</field>
-            <table>Account.Contracts__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Margin__c</field>
-            <table>Account.Contracts__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>SSD_Cash_LoC_RSD_Cash_LoC__c</field>
+            <field>pro_Operational_Status__c</field>
             <table>Account.Contracts__r</table>
         </columns>
         <masterLabel>Contracts</masterLabel>

@@ -38,8 +38,6 @@
                 <elementReference>$Record.Id</elementReference>
             </value>
         </inputParameters>
-        <nameSegment>customNotificationAction</nameSegment>
-        <offset>0</offset>
     </actionCalls>
     <actionCalls>
         <name>Send_Email</name>
@@ -94,8 +92,6 @@
                 <booleanValue>true</booleanValue>
             </value>
         </inputParameters>
-        <nameSegment>emailSimple</nameSegment>
-        <offset>0</offset>
     </actionCalls>
     <apiVersion>63.0</apiVersion>
     <assignments>
@@ -218,7 +214,7 @@
         <label>Has Credit Score Changed?</label>
         <locationX>468</locationX>
         <locationY>323</locationY>
-        <defaultConnectorLabel>Credit Score Hasn&apos;t Changed</defaultConnectorLabel>
+        <defaultConnectorLabel>Credit Score Hasn&#39;t Changed</defaultConnectorLabel>
         <rules>
             <name>Credit_Score_Has_Changed</name>
             <conditionLogic>or</conditionLogic>
@@ -256,7 +252,7 @@
     <formulas>
         <name>f_NotificationTitle</name>
         <dataType>String</dataType>
-        <expression>&apos;🔔 Credit Score Updated for &apos; +  {!$Record.leaseworks__Account__r.Name}</expression>
+        <expression>&#39;🔔 Credit Score Updated for &#39; +  {!$Record.leaseworks__Account__r.Name}</expression>
     </formulas>
     <formulas>
         <name>f_PriorCreditScoreORCreditScoreFromPreviousRecord</name>
@@ -397,48 +393,6 @@ Previous: {!f_PriorCreditScoreORCreditScoreFromPreviousRecord}
 
 Click this notification to view Credit Score record</text>
     </textTemplates>
-    <transforms>
-        <name>Create_Id_Collection_For_Credit_Group_Members</name>
-        <label>Create Id Collection For Credit Group Members</label>
-        <locationX>50</locationX>
-        <locationY>863</locationY>
-        <connector>
-            <targetReference>Get_Users</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>Filter_For_User_Records[$EachItem].UserOrGroupId</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
-    <transforms>
-        <name>Create_User_Email_Collection</name>
-        <label>Create User Email Collection</label>
-        <locationX>50</locationX>
-        <locationY>1079</locationY>
-        <connector>
-            <targetReference>Add_Group_Members_To_Email_Collection</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>Get_Users[$EachItem].Email</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
     <variables>
         <name>currentItem_Filter_For_User_Records</name>
         <dataType>SObject</dataType>

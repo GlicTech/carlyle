@@ -4,7 +4,7 @@
     <active>true</active>
     <description>if Accrual Method  is Actual 365 and Accrual Days Basis is not null, then throw the validation</description>
     <errorConditionFormula>AND(
-ISPICKVAL( leaseworks__Accrual_Method__c , &apos;Actual(365)&apos;),
+ISPICKVAL( leaseworks__Accrual_Method__c , &#39;Actual(365)&#39;),
 !ISBLANK( leaseworks__Accrual_Days_Basis__c )
 )</errorConditionFormula>
     <errorMessage>Deferred Basis is applicable only for Fixed Number of Days method</errorMessage>

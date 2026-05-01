@@ -92,34 +92,4 @@
         <triggerType>RecordAfterSave</triggerType>
     </start>
     <status>Active</status>
-    <transforms>
-        <name>Assign_Rent_Schedule_Currency_Rate_Records</name>
-        <label>Assign Rent Schedule Currency Rate Records</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Update_Rent_Schedules</targetReference>
-        </connector>
-        <dataType>SObject</dataType>
-        <isCollection>true</isCollection>
-        <objectType>leaseworks__Stepped_Rent__c</objectType>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <outputFieldApiName>Id</outputFieldApiName>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>Get_Related_Rent_Schedules[$EachItem].Id</elementReference>
-                </value>
-            </transformValueActions>
-            <transformValueActions>
-                <outputFieldApiName>pro_Currency_Rates__c</outputFieldApiName>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>$Record.Id</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
 </Flow>

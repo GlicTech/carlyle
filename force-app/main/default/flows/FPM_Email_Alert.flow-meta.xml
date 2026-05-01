@@ -35,8 +35,6 @@
                 <booleanValue>true</booleanValue>
             </value>
         </inputParameters>
-        <nameSegment>emailSimple</nameSegment>
-        <offset>0</offset>
     </actionCalls>
     <actionCalls>
         <name>Send_Notification</name>
@@ -79,8 +77,6 @@
                 <elementReference>$Record.leaseworks__Technical_Project__r.Id</elementReference>
             </value>
         </inputParameters>
-        <nameSegment>customNotificationAction</nameSegment>
-        <offset>0</offset>
     </actionCalls>
     <actionCalls>
         <name>Send_Notification_To_Project_Owner</name>
@@ -120,8 +116,6 @@
                 <elementReference>$Record.leaseworks__Technical_Project__c</elementReference>
             </value>
         </inputParameters>
-        <nameSegment>customNotificationAction</nameSegment>
-        <offset>0</offset>
     </actionCalls>
     <apiVersion>62.0</apiVersion>
     <assignments>
@@ -229,7 +223,7 @@
     <formulas>
         <name>f_NotificationToProjectOwnerTitle</name>
         <dataType>String</dataType>
-        <expression>IF(ISNEW(), &apos;Project Contact Created [&apos; + {!$Record.leaseworks__Technical_Project__r.Name} + &apos;]&apos;, &apos;Project Contact Updated [&apos; + {!$Record.leaseworks__Technical_Project__r.Name} + &apos;]&apos;)</expression>
+        <expression>IF(ISNEW(), &#39;Project Contact Created [&#39; + {!$Record.leaseworks__Technical_Project__r.Name} + &#39;]&#39;, &#39;Project Contact Updated [&#39; + {!$Record.leaseworks__Technical_Project__r.Name} + &#39;]&#39;)</expression>
     </formulas>
     <interviewLabel>FPM Email Alert {!$Flow.CurrentDateTime}</interviewLabel>
     <label>FPM Email Alert</label>
@@ -307,7 +301,7 @@
     <textTemplates>
         <name>NotificationText</name>
         <isViewedAsPlainText>true</isViewedAsPlainText>
-        <text>You have been added as a Project Consultant and an email has been sent. In case you didn&apos;t receive an email, please confirm the details below and contact the Project owner ({!$Record.leaseworks__Technical_Project__r.Owner:User.Name}) to make changes to these details
+        <text>You have been added as a Project Consultant and an email has been sent. In case you didn&#39;t receive an email, please confirm the details below and contact the Project owner ({!$Record.leaseworks__Technical_Project__r.Owner:User.Name}) to make changes to these details
 
 Name: {!$Record.Name}
 Email: {!$Record.Email_ID__c}

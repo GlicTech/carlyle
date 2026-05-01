@@ -53,6 +53,52 @@
         </connector>
     </assignments>
     <decisions>
+        <name>Skip_AiD_Approver</name>
+        <label>Skip AiD Approver?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Build_Up_AiD_Approver_To_Create</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No - Create AiD Approver</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Skip</name>
+            <conditionLogic>(1 AND 2) OR (3 AND 4)</conditionLogic>
+            <conditions>
+                <leftValueReference>f_FundContainsCapfvii</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>varTriggeringDealTeam.pro_Member_Role__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Portfolio Management</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>f_FundContainsCapfvii</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>varTriggeringDealTeam.pro_Member_Role__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Investment &amp; Strategy</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Loop_Assets_In_Deal_Create</targetReference>
+            </connector>
+            <label>Yes  - Skip</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Trigger_Context</name>
         <label>Trigger Context</label>
         <locationX>0</locationX>
@@ -89,8 +135,13 @@
             <label>Update</label>
         </rules>
     </decisions>
-    <description>Whenever a Deal Team is manually created, this flow sets up corresponding AiD Approver records under the Assets in Deal. Whenever a Deal Team&apos;s Role or Assigned To is edited, this flow updates the corresponding AiD Approver&apos;s Role and Assigned To values.</description>
+    <description>Whenever a Deal Team is manually created, this flow sets up corresponding AiD Approver records under the Assets in Deal. Whenever a Deal Team&#39;s Role or Assigned To is edited, this flow updates the corresponding AiD Approver&#39;s Role and Assigned To values.</description>
     <environments>Default</environments>
+    <formulas>
+        <name>f_FundContainsCapfvii</name>
+        <dataType>Boolean</dataType>
+        <expression>CONTAINS({!Loop_Assets_In_Deal_Create.pro_Fund__c}, &#39;CAPF VII&#39;)</expression>
+    </formulas>
     <interviewLabel>Autolaunched - Sync Deal Teams To AiD Approvers {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Autolaunched - Sync Deal Teams To AiD Approvers</label>
     <loops>
@@ -101,7 +152,7 @@
         <collectionReference>Get_Assets_In_Deal</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
-            <targetReference>Build_Up_AiD_Approver_To_Create</targetReference>
+            <targetReference>Skip_AiD_Approver</targetReference>
         </nextValueConnector>
         <noMoreValuesConnector>
             <targetReference>Create_Asset_In_Deal_Approver</targetReference>

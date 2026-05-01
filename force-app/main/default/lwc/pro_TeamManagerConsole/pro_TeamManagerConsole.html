@@ -1,135 +1,524 @@
 <template>
-    <lightning-card title="Update Teams Manually" icon-name="standard:people">
-        <div class="slds-p-around_medium tmc-container">
-            <template if:true={isConfigScreen}>
-                <section class="tmc-section">
-                    <h2 class="tmc-section-title">Step 1 — Choose mode and user</h2>
-                    <div class="slds-m-bottom_medium">
-                        <lightning-combobox name="mode" label="Mode" value={mode} options={modeOptions} onchange={handleModeChange}></lightning-combobox>
-                    </div>
+    <lightning-card title="Team manager" icon-name="standard:people">
+        <div class="tmc-body-wrap tmc-surface">
+            <div class="slds-p-around_small tmc-container">
+                <template if:true={messageText}>
+                    <div class={messageClass} role="alert">{messageText}</div>
+                </template>
 
-                    <template if:true={isAddMode}>
-                        <div class="slds-m-bottom_medium">
-                            <c-pro-user-lookup label="User to add" placeholder="Type to search users…" onvalueselected={handleUserAddSelected}></c-pro-user-lookup>
-                        </div>
-                        <div class="slds-m-bottom_medium">
-                            <lightning-checkbox-group name="roles" label="Role(s) to update" value={selectedRoles} options={roleOptions} onchange={handleRolesChange}></lightning-checkbox-group>
-                        </div>
-                        <p class="slds-text-body_small slds-text-color_weak slds-m-bottom_small">Select a user and one or more roles, then continue to pick which teams to update.</p>
-                        <lightning-button label="Continue — Select teams to update" variant="brand" onclick={handleGoToTeamSelection} disabled={disableSelectTeamsButton}></lightning-button>
-                    </template>
+                <div class="tmc-main-grid">
+                    <!-- Configuration -->
+                    <section class="tmc-panel tmc-config" aria-labelledby="tmc-cfg-title">
+                        <h2 id="tmc-cfg-title" class="tmc-panel-heading">Configuration</h2>
 
-                    <template if:false={isAddMode}>
-                        <div class="slds-m-bottom_medium">
-                            <c-pro-user-lookup label="Find (user to replace)" placeholder="Type to search users…" onvalueselected={handleReplaceeSelected}></c-pro-user-lookup>
-                        </div>
-                        <div class="slds-m-bottom_medium">
-                            <c-pro-user-lookup label="Replace with" placeholder="Type to search users…" onvalueselected={handleReplacerSelected}></c-pro-user-lookup>
-                        </div>
-                        <div class="slds-m-bottom_medium">
-                            <lightning-checkbox-group name="rolesReplace" label="Role(s) to update" value={selectedRoles} options={roleOptions} onchange={handleRolesChange}></lightning-checkbox-group>
-                        </div>
-                        <p class="slds-text-body_small slds-text-color_weak slds-m-bottom_small">We'll find all teams where the first user is assigned; you choose which to update with the second user.</p>
-                        <lightning-button label="Continue — Display teams to update" variant="brand" onclick={handleDisplayTeamsToUpdate} disabled={disableDisplayTeamsButton}></lightning-button>
-                    </template>
-                </section>
-            </template>
-
-            <template if:true={isTeamsScreen}>
-                <section class="tmc-section">
-                    <h2 class="tmc-section-title">Step 2 — Select teams and confirm</h2>
-                    <div class="tmc-search-row slds-m-bottom_medium">
-                        <div class="tmc-search-field">
-                            <lightning-combobox name="teamType" label="Team type" value={teamType} options={teamTypeOptions} onchange={handleTeamTypeChange}></lightning-combobox>
-                        </div>
-                        <div class="tmc-search-field">
-                            <lightning-input type="search" label="Search" placeholder="Leave blank for all, or type to filter…" value={searchTerm} onchange={handleSearchTermChange} oninput={handleSearchTermChange}></lightning-input>
-                        </div>
-                        <div class="tmc-search-actions">
-                            <lightning-button label="Search" variant="brand" onclick={handleSearch} title="Run search for the selected team type"></lightning-button>
-                        </div>
-                    </div>
-
-                    <template if:true={hasSearchResults}>
-                        <div class="tmc-results-row slds-grid slds-gutters slds-m-bottom_medium">
-                            <div class="slds-col slds-grow">
-                                <div class="tmc-results-header">
-                                    <h3 class="tmc-subtitle">Search results</h3>
-                                    <p class="slds-text-body_small slds-text-color_weak">Select a row, then click &quot;Add to update list&quot;. Optionally check current team on the right.</p>
-                                </div>
-                                <lightning-datatable key-field="Id" data={searchResultsForTable} columns={searchColumns} max-row-selection="1" onrowselection={handleSearchRowSelect} class="tmc-datatable"></lightning-datatable>
-                                <lightning-button label="Add to update list" variant="neutral" onclick={handleAddToUpdateList} class="slds-m-top_small" disabled={disableAddToList} title="Add the selected row to the list below"></lightning-button>
+                        <div class="tmc-block">
+                            <p class="tmc-kicker">Mode</p>
+                            <div class="tmc-segmented" role="group" aria-label="Add or replace">
+                                <button
+                                    type="button"
+                                    class={segmentAddClass}
+                                    onclick={handleModeAdd}
+                                    data-mode="add"
+                                >Add to Role</button>
+                                <button
+                                    type="button"
+                                    class={segmentReplaceClass}
+                                    onclick={handleModeReplace}
+                                    data-mode="replace"
+                                >Replace User</button>
                             </div>
-                            <template if:true={hasSelectedSearchRow}>
-                                <div class="slds-col slds-size_1-of-3 tmc-role-col">
-                                    <div class="role-panel">
-                                        <h4 class="role-panel-title">Current team (selected record)</h4>
-                                        <template if:true={selectedRecordRoleAssignments.length}>
-                                            <ul class="role-list" role="list">
-                                                <template for:each={selectedRecordRoleAssignments} for:item="ra">
-                                                    <li key={ra.key} class="role-list-item">{ra.roleName}: <span class="role-list-user">{ra.userName}</span></li>
-                                                </template>
-                                            </ul>
-                                        </template>
-                                        <template if:false={selectedRecordRoleAssignments.length}>
-                                            <p class="slds-text-body_small slds-text-color_weak">Select a row in the table to see who holds each role.</p>
+                        </div>
+
+                        <div class="tmc-block tmc-block-users">
+                            <p class="tmc-kicker">Users</p>
+                            <template if:true={isAddMode}>
+                                <div class="tmc-field tmc-field-full">
+                                    <c-pro-user-lookup key={lookupKeyAdd} label="User to add" placeholder="Type to search users…" onvalueselected={handleUserAddSelected}></c-pro-user-lookup>
+                                </div>
+                            </template>
+                            <template if:false={isAddMode}>
+                                <div class="tmc-field tmc-field-full tmc-user-field">
+                                    <c-pro-user-lookup key={lookupKeyReplacee} label="Find" placeholder="Type to search users…" onvalueselected={handleReplaceeSelected}></c-pro-user-lookup>
+                                </div>
+                                <div class="tmc-field tmc-field-full tmc-user-field">
+                                    <c-pro-user-lookup key={lookupKeyReplacer} label="Replace with" placeholder="Type to search users…" onvalueselected={handleReplacerSelected}></c-pro-user-lookup>
+                                </div>
+                            </template>
+                        </div>
+
+                        <div class="tmc-block">
+                            <p class="tmc-kicker">Roles</p>
+                            <ul class="tmc-pill-list" role="list">
+                                <li class="tmc-pill-item">
+                                    <button
+                                        type="button"
+                                        class="tmc-pill tmc-pill-all"
+                                        title="If any roles are unselected, selects all. If every role is selected, clears all."
+                                        onclick={handleSelectAllRoles}
+                                    >{allRolesButtonLabel}</button>
+                                </li>
+                                <template for:each={rolePills} for:item="pill">
+                                    <li key={pill.value} class="tmc-pill-item">
+                                        <button
+                                            type="button"
+                                            class={pill.className}
+                                            data-value={pill.value}
+                                            onclick={handleRolePillClick}
+                                        >{pill.label}</button>
+                                    </li>
+                                </template>
+                            </ul>
+                            <p class="tmc-roles-hint">Toggle each role, or use <strong>All</strong> to select every role or clear all. In <strong>Replace</strong> mode, which roles you pick controls which org teams appear in the browser, then you choose which of those to queue for the run.</p>
+                        </div>
+
+                        <template if:false={isAddMode}>
+                            <div class="tmc-block">
+                                <p class="tmc-kicker">Load replacee teams</p>
+                                <lightning-button
+                                    class="slds-m-bottom_x-small"
+                                    label="Load teams for replacee"
+                                    variant="neutral"
+                                    onclick={handleDisplayTeamsToUpdate}
+                                    disabled={disableDisplayTeamsButton}
+                                ></lightning-button>
+                                <p class="tmc-load-teams-hint slds-m-bottom_x-small">
+                                    Choose <strong>Replace with</strong> and <strong>Find</strong> (replacee), then load (roles above apply). This fills the <strong>team browser</strong> with countries, airlines, and deals for those roles — nothing is queued until you <strong>add</strong> teams. Use <strong>Queue all teams</strong> in the browser if you want every team on the update at once.
+                                </p>
+                            </div>
+                        </template>
+                        <template if:true={teamsWorkspaceDisabled}>
+                            <p class="tmc-gate-hint">Select a user to add and at least one role to work with the team browser.</p>
+                        </template>
+                    </section>
+
+                    <!-- Team browser: find (add) + one queue list -->
+                    <section class="tmc-panel tmc-browser" aria-labelledby="tmc-browser-title" data-workspace>
+                        <h2 id="tmc-browser-title" class="tmc-panel-heading">Team browser</h2>
+
+                        <template if:true={isAddMode}>
+                            <div class={teamsWorkspaceClass}>
+                                <div class="tmc-workspace-one">
+                                    <p class="tmc-subsection-kicker">Find teams</p>
+                                    <p class="tmc-type-hint">Use the <strong>type</strong> selector, then <strong>search</strong>. Searching as: {teamTypeKicker}.</p>
+                                    <div class="tmc-search-row-inner slds-m-bottom_x-small">
+                                        <div class="tmc-search-compact">
+                                            <lightning-combobox name="teamType" label="Type" value={teamType} options={teamTypeOptions} onchange={handleTeamTypeChange}></lightning-combobox>
+                                        </div>
+                                        <div class="tmc-search-grow">
+                                            <lightning-input
+                                                type="search"
+                                                label="Search"
+                                                placeholder="Type to filter…"
+                                                value={searchTerm}
+                                                onchange={handleSearchTermChange}
+                                                oninput={handleSearchTermChange}
+                                            ></lightning-input>
+                                        </div>
+                                        <lightning-button label="Search" variant="brand" onclick={handleSearchClick} disabled={teamsWorkspaceDisabled}></lightning-button>
+                                    </div>
+                                    <template if:true={hasSearchResults}>
+                                        <p class="tmc-result-legend slds-m-bottom_x-small">Use <strong>Add</strong> to add a row to the update list below, or <strong>View team</strong> to open the current team. You can change type and add more before updating.</p>
+                                        <div class="tmc-result-list-scroll" tabindex="0" role="region" aria-label="Search results">
+                                        <ul class="tmc-result-list" role="list">
+                                            <li class="tmc-result-list-head" role="presentation">
+                                                <span class="tmc-result-name-h">Name</span>
+                                                <span class="tmc-result-actions-h">Actions</span>
+                                            </li>
+                                            <template for:each={searchResultViewRows} for:item="row">
+                                                <li key={row.key} class="tmc-result-row">
+                                                    <div class="tmc-result-name">{row.name}</div>
+                                                    <div class="tmc-result-actions">
+                                                        <lightning-button
+                                                            class="slds-m-right_xx-small"
+                                                            label="Add"
+                                                            variant="brand"
+                                                            data-rid={row.id}
+                                                            data-rname={row.name}
+                                                            onclick={handleSearchResultRowAdd}
+                                                            disabled={row.inQueue}
+                                                        ></lightning-button>
+                                                        <lightning-button
+                                                            label="View team"
+                                                            variant="neutral"
+                                                            data-rid={row.id}
+                                                            data-rname={row.name}
+                                                            onclick={handleViewTeamFromSearch}
+                                                        ></lightning-button>
+                                                    </div>
+                                                </li>
+                                            </template>
+                                        </ul>
+                                        </div>
+                                    </template>
+                                    <template if:true={showSearchEmptyState}>
+                                        <div class="tmc-empty-slim" role="status">No search results. Adjust type or search term.</div>
+                                    </template>
+                                </div>
+                            </div>
+                        </template>
+
+                        <template if:false={isAddMode}>
+                            <template if:false={showBrowserPanel}>
+                                <div class="tmc-browser-empty slds-m-bottom_small">
+                                    <p>Load the replacee’s teams using the button in Configuration, or add items in <strong>Add to Role</strong> mode.</p>
+                                </div>
+                            </template>
+                        </template>
+
+                        <div class="tmc-queue-block">
+                            <p class="tmc-subsection-kicker">Team browser &amp; update queue</p>
+                            <p class="tmc-queue-hint slds-m-bottom_x-small">
+                                The browser lists teams for your selected roles (by country, airline, deal, or a flat list if there is no hierarchy). Pick teams with <strong>add</strong> to put them on the <strong>update queue</strong>; <strong>remove</strong> takes them off. <strong>Queue all teams</strong> adds every browser row at once.
+                            </p>
+                            <template if:true={showBrowserPanel}>
+                                <div class="tmc-browser-tools slds-grid slds-gutters_x-small slds-m-bottom_x-small slds-wrap">
+                                    <div class="tmc-filter tmc-filter-queue-only slds-col slds-size_1-of-1 slds-large-size_1-of-2">
+                                        <lightning-input
+                                            type="search"
+                                            variant="label-hidden"
+                                            label="Filter browser"
+                                            placeholder="Filter by name or type…"
+                                            value={teamBrowserFilter}
+                                            onchange={handleBrowserFilterChange}
+                                        ></lightning-input>
+                                    </div>
+                                    <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-2 slds-align-middle">
+                                        <template if:true={showQueueAllButton}>
+                                            <lightning-button
+                                                label="Queue all teams"
+                                                title="Add every team from the replacee browser to the update queue"
+                                                variant="neutral"
+                                                class="slds-m-top_xx-small slds-m-top_none-large"
+                                                onclick={handleQueueAllReplaceeTeams}
+                                            ></lightning-button>
                                         </template>
                                     </div>
                                 </div>
                             </template>
-                        </div>
-                    </template>
-                    <template if:true={showSearchEmptyState}>
-                        <div class="tmc-empty-state slds-m-bottom_medium" role="status">
-                            <p class="slds-text-body_regular">No results found.</p>
-                            <p class="slds-text-body_small slds-text-color_weak slds-m-top_xx-small">Try a different search term, or leave the search blank to see all records. If you expect data, check object access and sharing.</p>
-                        </div>
-                    </template>
-
-                    <div class="tmc-section-block slds-m-top_medium">
-                        <h3 class="tmc-subtitle">Teams to update</h3>
-                        <p class="slds-text-body_small slds-text-color_weak slds-m-bottom_small">Items you added from search results. Remove any you don’t want to change.</p>
-                        <template if:true={hasTeamsToUpdate}>
-                            <lightning-datatable key-field="Id" data={teamsToUpdateTable} columns={teamsToUpdateColumns} onrowaction={handleRemoveRow} class="tmc-datatable"></lightning-datatable>
+                            <template if:true={showBrowserPanel}>
+                            <div class="tmc-tree-scroll">
+                                <template if:true={useReplaceTree}>
+                                    <template for:each={nestedBrowserView} for:item="block">
+                                        <div key={block.key} class="tmc-nested-block">
+                                            <button type="button" class="tmc-tree-header" data-cid={block.countryId} onclick={handleToggleTreeCountry}>
+                                                <span class="tmc-tree-caret">{block.expandedLabel}</span>
+                                                <span class="tmc-tree-title">{block.countryName}</span>
+                                            </button>
+                                            <template if:true={block.expanded}>
+                                                <ul class="tmc-tree-list" role="list">
+                                                    <template if:true={block.countryRow}>
+                                                        <li class="tmc-tree-row tmc-tree-l1">
+                                                            <div class="tmc-tree-row-body">
+                                                                <div class="tmc-tree-line1 tmc-type-tag tmc-type-country">Country</div>
+                                                                <div class="tmc-tree-line1">{block.countryRow.name}</div>
+                                                                <template if:true={block.countryRow.rolesLine}>
+                                                                    <p class="tmc-tree-line2 tmc-queue-roles">Roles: {block.countryRow.rolesLine}</p>
+                                                                </template>
+                                                                <template if:true={block.countryRow.detailLine}>
+                                                                    <p class="tmc-tree-line2">{block.countryRow.detailLine}</p>
+                                                                </template>
+                                                            </div>
+                                                            <template if:true={block.countryRow.inQueue}>
+                                                                <lightning-button-icon
+                                                                    icon-name="utility:close"
+                                                                    variant="border-filled"
+                                                                    name={block.countryRow.teamKey}
+                                                                    data-teamkey={block.countryRow.teamKey}
+                                                                    alternative-text="Remove from update queue"
+                                                                    class="slds-m-left_x-small"
+                                                                    onclick={handleRemoveTeamClick}
+                                                                ></lightning-button-icon>
+                                                            </template>
+                                                            <template if:false={block.countryRow.inQueue}>
+                                                                <lightning-button-icon
+                                                                    icon-name="utility:add"
+                                                                    variant="border-filled"
+                                                                    name={block.countryRow.teamKey}
+                                                                    data-teamkey={block.countryRow.teamKey}
+                                                                    alternative-text="Add to update queue"
+                                                                    class="slds-m-left_x-small"
+                                                                    onclick={handleAddTeamToQueue}
+                                                                ></lightning-button-icon>
+                                                            </template>
+                                                        </li>
+                                                    </template>
+                                                    <template for:each={block.airlineRows} for:item="ar">
+                                                        <li key={ar.key} class="tmc-nested-group">
+                                                            <div class="tmc-tree-row tmc-tree-l2">
+                                                                <div class="tmc-tree-row-body">
+                                                                    <div class="tmc-tree-line1 tmc-type-tag tmc-type-airline">Airline</div>
+                                                                    <div class="tmc-tree-line1">{ar.name}</div>
+                                                                    <template if:true={ar.rolesLine}>
+                                                                        <p class="tmc-tree-line2 tmc-queue-roles">Roles: {ar.rolesLine}</p>
+                                                                    </template>
+                                                                    <template if:true={ar.detailLine}>
+                                                                        <p class="tmc-tree-line2">{ar.detailLine}</p>
+                                                                    </template>
+                                                                </div>
+                                                                <template if:true={ar.inQueue}>
+                                                                    <lightning-button-icon
+                                                                        icon-name="utility:close"
+                                                                        variant="border-filled"
+                                                                        name={ar.teamKey}
+                                                                        data-teamkey={ar.teamKey}
+                                                                        alternative-text="Remove from update queue"
+                                                                        class="slds-m-left_x-small"
+                                                                        onclick={handleRemoveTeamClick}
+                                                                    ></lightning-button-icon>
+                                                                </template>
+                                                                <template if:false={ar.inQueue}>
+                                                                    <lightning-button-icon
+                                                                        icon-name="utility:add"
+                                                                        variant="border-filled"
+                                                                        name={ar.teamKey}
+                                                                        data-teamkey={ar.teamKey}
+                                                                        alternative-text="Add to update queue"
+                                                                        class="slds-m-left_x-small"
+                                                                        onclick={handleAddTeamToQueue}
+                                                                    ></lightning-button-icon>
+                                                                </template>
+                                                            </div>
+                                                            <ul class="tmc-tree-list tmc-deal-nest" role="list">
+                                                                <template for:each={ar.dealRows} for:item="dr">
+                                                                    <li key={dr.key} class="tmc-tree-row tmc-tree-l3">
+                                                                        <div class="tmc-tree-row-body">
+                                                                            <div class="tmc-tree-line1 tmc-type-tag tmc-type-deal">Deal</div>
+                                                                            <div class="tmc-tree-line1">{dr.name}</div>
+                                                                            <template if:true={dr.rolesLine}>
+                                                                                <p class="tmc-tree-line2 tmc-queue-roles">Roles: {dr.rolesLine}</p>
+                                                                            </template>
+                                                                            <template if:true={dr.detailLine}>
+                                                                                <p class="tmc-tree-line2">{dr.detailLine}</p>
+                                                                            </template>
+                                                                        </div>
+                                                                        <template if:true={dr.inQueue}>
+                                                                            <lightning-button-icon
+                                                                                icon-name="utility:close"
+                                                                                variant="border-filled"
+                                                                                name={dr.teamKey}
+                                                                                data-teamkey={dr.teamKey}
+                                                                                alternative-text="Remove from update queue"
+                                                                                class="slds-m-left_x-small"
+                                                                                onclick={handleRemoveTeamClick}
+                                                                            ></lightning-button-icon>
+                                                                        </template>
+                                                                        <template if:false={dr.inQueue}>
+                                                                            <lightning-button-icon
+                                                                                icon-name="utility:add"
+                                                                                variant="border-filled"
+                                                                                name={dr.teamKey}
+                                                                                data-teamkey={dr.teamKey}
+                                                                                alternative-text="Add to update queue"
+                                                                                class="slds-m-left_x-small"
+                                                                                onclick={handleAddTeamToQueue}
+                                                                            ></lightning-button-icon>
+                                                                        </template>
+                                                                    </li>
+                                                                </template>
+                                                            </ul>
+                                                        </li>
+                                                    </template>
+                                                    <template if:true={block.hasUnassigned}>
+                                                        <li class="tmc-tree-subkicker tmc-tree-l1">Deals (no linked airline in tree)</li>
+                                                    </template>
+                                                    <template for:each={block.unRows} for:item="ur">
+                                                        <li key={ur.key} class="tmc-tree-row tmc-tree-l2">
+                                                            <div class="tmc-tree-row-body">
+                                                                <div class="tmc-tree-line1 tmc-type-tag tmc-type-deal">Deal</div>
+                                                                <div class="tmc-tree-line1">{ur.name}</div>
+                                                                <template if:true={ur.rolesLine}>
+                                                                    <p class="tmc-tree-line2 tmc-queue-roles">Roles: {ur.rolesLine}</p>
+                                                                </template>
+                                                                <template if:true={ur.detailLine}>
+                                                                    <p class="tmc-tree-line2">{ur.detailLine}</p>
+                                                                </template>
+                                                            </div>
+                                                            <template if:true={ur.inQueue}>
+                                                                <lightning-button-icon
+                                                                    icon-name="utility:close"
+                                                                    variant="border-filled"
+                                                                    name={ur.teamKey}
+                                                                    data-teamkey={ur.teamKey}
+                                                                    alternative-text="Remove from update queue"
+                                                                    class="slds-m-left_x-small"
+                                                                    onclick={handleRemoveTeamClick}
+                                                                ></lightning-button-icon>
+                                                            </template>
+                                                            <template if:false={ur.inQueue}>
+                                                                <lightning-button-icon
+                                                                    icon-name="utility:add"
+                                                                    variant="border-filled"
+                                                                    name={ur.teamKey}
+                                                                    data-teamkey={ur.teamKey}
+                                                                    alternative-text="Add to update queue"
+                                                                    class="slds-m-left_x-small"
+                                                                    onclick={handleAddTeamToQueue}
+                                                                ></lightning-button-icon>
+                                                            </template>
+                                                        </li>
+                                                    </template>
+                                                </ul>
+                                            </template>
+                                        </div>
+                                    </template>
+                                </template>
+                                <template if:true={showReplaceeFlatPicker}>
+                                    <p class="tmc-subkicker slds-m-bottom_x-small">
+                                        Teams (no country hierarchy in this response; pick with add, same as the tree)
+                                    </p>
+                                    <ul class="tmc-tree-list" role="list">
+                                        <template for:each={replaceeFlatBrowserRows} for:item="fr">
+                                            <li key={fr.key} class="tmc-tree-row tmc-tree-l1">
+                                                <div class="tmc-tree-row-body">
+                                                    <div class="tmc-tree-line1">
+                                                        <span class={fr.typeClass}>{fr.type}</span>
+                                                    </div>
+                                                    <div class="tmc-tree-line1">{fr.name}</div>
+                                                    <template if:true={fr.rolesLine}>
+                                                        <p class="tmc-tree-line2 tmc-queue-roles">Roles: {fr.rolesLine}</p>
+                                                    </template>
+                                                    <template if:true={fr.detailLine}>
+                                                        <p class="tmc-tree-line2">{fr.detailLine}</p>
+                                                    </template>
+                                                </div>
+                                                <template if:true={fr.inQueue}>
+                                                    <lightning-button-icon
+                                                        icon-name="utility:close"
+                                                        variant="border-filled"
+                                                        name={fr.teamKey}
+                                                        data-teamkey={fr.teamKey}
+                                                        alternative-text="Remove from update queue"
+                                                        class="slds-m-left_x-small"
+                                                        onclick={handleRemoveTeamClick}
+                                                    ></lightning-button-icon>
+                                                </template>
+                                                <template if:false={fr.inQueue}>
+                                                    <lightning-button-icon
+                                                        icon-name="utility:add"
+                                                        variant="border-filled"
+                                                        name={fr.teamKey}
+                                                        data-teamkey={fr.teamKey}
+                                                        alternative-text="Add to update queue"
+                                                        class="slds-m-left_x-small"
+                                                        onclick={handleAddTeamToQueue}
+                                                    ></lightning-button-icon>
+                                                </template>
+                                            </li>
+                                        </template>
+                                    </ul>
+                                </template>
+                                <template if:false={useReplaceTree}>
+                                <template if:false={showReplaceeFlatPicker}>
+                                    <template for:each={browserSections} for:item="section">
+                                        <div key={section.id} class="tmc-tree-section">
+                                            <button type="button" class="tmc-tree-header" data-id={section.id} onclick={handleToggleSection}>
+                                                <span class="tmc-tree-caret">{section.expandedLabel}</span>
+                                                <span class="tmc-tree-title">{section.title}</span>
+                                                <span class="tmc-tree-count">{section.countLabel}</span>
+                                            </button>
+                                            <template if:true={section.expanded}>
+                                                <ul class="tmc-tree-list" role="list">
+                                                    <template for:each={section.rows} for:item="row">
+                                                        <li key={row.key} class="tmc-tree-row">
+                                                            <div class="tmc-tree-row-body">
+                                                                <div class="tmc-tree-line1">{row.name}</div>
+                                                                <template if:true={row.rolesLine}>
+                                                                    <p class="tmc-tree-line2 tmc-queue-roles">Roles: {row.rolesLine}</p>
+                                                                </template>
+                                                                <template if:true={row.detailLine}>
+                                                                    <p class="tmc-tree-line2">{row.detailLine}</p>
+                                                                </template>
+                                                            </div>
+                                                            <lightning-button-icon
+                                                                icon-name="utility:close"
+                                                                variant="border-filled"
+                                                                name={row.key}
+                                                                data-teamkey={row.key}
+                                                                alternative-text="Remove from list"
+                                                                class="slds-m-left_x-small"
+                                                                onclick={handleRemoveTeamClick}
+                                                            ></lightning-button-icon>
+                                                        </li>
+                                                    </template>
+                                                </ul>
+                                            </template>
+                                        </div>
+                                    </template>
+                                </template>
+                                </template>
+                            </div>
                         </template>
-                        <template if:false={hasTeamsToUpdate}>
-                            <p class="slds-text-body_small slds-text-color_weak tmc-empty-inline">No teams in list yet. Use search above and &quot;Add to update list&quot;.</p>
-                        </template>
-                    </div>
-
-                    <div class="update-config-summary slds-m-top_medium">
-                        <h3 class="tmc-subtitle">Update Configurations</h3>
-                        <dl class="summary-list">
-                            <dt class="summary-term">{summaryUserLabel}</dt>
-                            <dd class="summary-value">{summaryUserName}</dd>
-                            <dt class="summary-term">Roles</dt>
-                            <dd class="summary-value">{summaryRolesText}</dd>
-                            <template if:true={showSummaryTeamsIncludeLine}>
-                                <dt class="summary-term summary-teams-include-label">{summaryTeamsIncludeLabel}</dt>
-                                <dd class="summary-value summary-teams-include-spacer"></dd>
+                            <template if:false={hasTeamsToUpdate}>
+                                <template if:true={isAddMode}>
+                                    <p class="tmc-queue-empty" role="status">No teams in the update list yet. Add from <strong>Find teams</strong> above.</p>
+                                </template>
+                                <template if:false={isAddMode}>
+                                    <template if:true={hasReplaceeBrowserData}>
+                                        <p class="tmc-queue-empty" role="status">
+                                            No teams in the update queue yet. Use <strong>add</strong> on a row, or
+                                            <strong>Queue all teams</strong> above, then run <strong>Update</strong>.
+                                        </p>
+                                    </template>
+                                </template>
                             </template>
-                            <dt class="summary-term">Countries</dt>
-                            <dd class="summary-value">{summaryCountryNamesText}</dd>
-                            <dt class="summary-term">Airlines</dt>
-                            <dd class="summary-value">{summaryAirlineNamesText}</dd>
-                            <dt class="summary-term">Deals</dt>
-                            <dd class="summary-value">{summaryDealNamesText}</dd>
-                        </dl>
-                    </div>
+                        </div>
+                    </section>
+                </div>
 
-                    <div class="tmc-actions slds-m-top_large">
-                        <lightning-button label="Back" variant="neutral" onclick={handleBackToConfig} class="slds-m-right_small"></lightning-button>
-                        <lightning-button label="Update teams" variant="brand" onclick={handleUpdateTeams} disabled={disableUpdateButton} title="Apply changes to all teams in the list"></lightning-button>
+                <footer class="tmc-bottom-bar">
+                    <p class="tmc-bottom-summary">{bottomBarSummary}</p>
+                    <div class="tmc-bottom-actions">
+                        <lightning-button label="Clear" variant="neutral" onclick={handleClearList} disabled={disableClearList}></lightning-button>
+                        <lightning-button label={primaryCtaLabel} variant="brand" onclick={handleUpdateTeams} disabled={disableUpdateButton}></lightning-button>
                     </div>
-                </section>
-            </template>
+                </footer>
+            </div>
 
-            <template if:true={messageText}>
-                <div class={messageClass} role="alert">{messageText}</div>
-            </template>
             <template if:true={isLoading}>
-                <div class="tmc-loading" role="status" aria-live="polite">
-                    <lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
+                <div class="tmc-loading-overlay" role="status" aria-live="polite" aria-busy="true">
+                    <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+                </div>
+            </template>
+
+            <template if:true={viewTeamModalOpen}>
+                <div class="tmc-modal-backdrop" onclick={handleViewTeamDialogBackdrop} role="presentation" tabindex="-1">
+                    <div
+                        class="tmc-modal"
+                        role="dialog"
+                        aria-modal="true"
+                        aria-labelledby="tmc-viewteam-title"
+                        onclick={handleViewTeamContentClick}
+                    >
+                        <div class="tmc-modal-header">
+                            <h3 id="tmc-viewteam-title" class="tmc-modal-title">Team — {viewTeamRecordName}</h3>
+                            <lightning-button
+                                label="Close"
+                                variant="neutral"
+                                class="slds-m-left_auto"
+                                onclick={handleViewTeamDialogClose}
+                            ></lightning-button>
+                        </div>
+                        <div class="tmc-modal-body">
+                            <template if:true={viewTeamLoading}>
+                                <div class="tmc-modal-load" role="status">Loading team… <lightning-spinner size="small" alternative-text="Loading" class="slds-m-left_x-small"></lightning-spinner></div>
+                            </template>
+                            <template if:false={viewTeamLoading}>
+                                <template if:true={viewTeamHasRows}>
+                                    <ul class="tmc-modal-role-list" role="list">
+                                        <template for:each={viewTeamAssignments} for:item="v">
+                                            <li key={v.key} class="tmc-modal-role-line">
+                                                <span class="tmc-modal-rn">{v.roleName}</span>
+                                                <span class="tmc-modal-un">{v.userName}</span>
+                                            </li>
+                                        </template>
+                                    </ul>
+                                </template>
+                                <template if:false={viewTeamHasRows}>
+                                    <p class="tmc-modal-empty">No team data for this record.</p>
+                                </template>
+                            </template>
+                        </div>
+                    </div>
                 </div>
             </template>
         </div>

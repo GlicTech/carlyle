@@ -5,8 +5,8 @@
     <description>Rebate Payables can only be applied to Approved Invoices</description>
     <errorConditionFormula>AND(
 ISNEW(),
-ISPICKVAL(leaseworks__Payable_Type__c, &apos;Rebate&apos;),
-!(ISPICKVAL(leaseworks__Related_Invoice__r.leaseworks__Status__c , &apos;Approved&apos;))
+ISPICKVAL(leaseworks__Payable_Type__c, &#39;Rebate&#39;),
+!(ISPICKVAL(leaseworks__Related_Invoice__r.leaseworks__Status__c , &#39;Approved&#39;))
 )</errorConditionFormula>
     <errorMessage>Rebates can only be applied to Approved Invoices</errorMessage>
 </ValidationRule>

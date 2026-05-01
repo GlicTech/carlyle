@@ -2,6 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>leaseworks__For_Period_Ending_F__c</fullName>
     <deprecated>false</deprecated>
+    <externalId>false</externalId>
     <formula>IF(
    ISNULL(leaseworks__Month_Ending__c) ,  DATE( YEAR(ADDMONTHS(leaseworks__Invoice_Date__c,1) ) ,MONTH(ADDMONTHS(leaseworks__Invoice_Date__c,1)),1) - 1, leaseworks__Month_Ending__c
 

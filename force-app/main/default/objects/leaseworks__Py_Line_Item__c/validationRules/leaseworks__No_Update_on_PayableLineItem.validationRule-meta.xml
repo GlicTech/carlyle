@@ -5,5 +5,5 @@
     <description>No field except comments should be editable on the payable line item.</description>
     <errorConditionFormula>/*AND(!$Setup.LeaseWorksSettings__c.Disable_All_Triggers__c,
   				OR( ISCHANGED(Payable_Line_Amount__c),ISCHANGED(Line_Payout_Amount__c),ISCHANGED(Company__c),ISCHANGED( Payable_Line_Type__c )))*/false</errorConditionFormula>
-    <errorMessage>&apos;Payable Line Item&apos; record cannot be manually modified</errorMessage>
+    <errorMessage>&#39;Payable Line Item&#39; record cannot be manually modified</errorMessage>
 </ValidationRule>

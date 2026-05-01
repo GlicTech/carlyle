@@ -2,7 +2,8 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>leaseworks__Available_From_F__c</fullName>
     <deprecated>false</deprecated>
-    <description>Fortress :This field is set to the &apos;2200,01,02&apos; date, if the value received through integration is not a valid date</description>
+    <description>Fortress :This field is set to the &#39;2200,01,02&#39; date, if the value received through integration is not a valid date</description>
+    <externalId>false</externalId>
     <formula>if( OR(ISNULL(leaseworks__Available_From__c), leaseworks__Available_From__c ==DATE(2200,01,02)),TODAY(),leaseworks__Available_From__c)</formula>
     <label>Available From</label>
     <required>false</required>

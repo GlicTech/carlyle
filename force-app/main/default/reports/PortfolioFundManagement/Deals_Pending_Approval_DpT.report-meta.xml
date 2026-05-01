@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>leaseworks__Marketing_Activity__c$Name</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Marketing_Activity__c$leaseworks__Deal_Type__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Marketing_Activity__c$leaseworks__Deal_Status__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Marketing_Activity__c.leaseworks__Deal_Teams__r$leaseworks__Assigned_To__c</field>
+    </columns>
+    <filter>
+        <criteriaItems>
+            <column>leaseworks__Marketing_Activity__c.leaseworks__Deal_Teams__r$Name</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Portfolio Management</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>leaseworks__Marketing_Activity__c$leaseworks__Deal_Status__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Termsheet Signature,LOI Signed,Documentation</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>leaseworks__Marketing_Activity__c.leaseworks__Deal_Teams__r$pro_Include_In_LOI_Approvals__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>1</value>
+        </criteriaItems>
+    </filter>
+    <format>Tabular</format>
+    <name>Deals Pending Approval</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Deals_with_Deal_Teams_Accounts__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <sortColumn>leaseworks__Marketing_Activity__c$Name</sortColumn>
+    <sortOrder>Asc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>leaseworks__Marketing_Activity__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

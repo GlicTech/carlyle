@@ -3,11 +3,17 @@
     <fullName>leaseworks__Security_Depo_Cash__c</fullName>
     <businessStatus>Active</businessStatus>
     <deprecated>false</deprecated>
-    <description>Net amount of receipts minus refunds/offsets</description>
+    <description>This field shows the net cash balance remaining from the Security Deposit after all payouts and offsets have been applied. It is system-calculated by subtracting cash payouts and offset payouts from the total deposit payments received. The value represents the amount of deposit still available after all deductions.
+    [LOAD: No]
+    [JUSTIFICATION: No needs to do load, because this is formula field automatically populates based on other system calculated fields.]
+    [REPLACEMENT OBJECT API: NA]
+    [REPLACEMENT FIELD API: NA]
+    [COMMENTS: NA]</description>
+    <externalId>false</externalId>
     <formula>BLANKVALUE(leaseworks__Deposit_Payments_Received__c, 0)   -  BLANKVALUE( leaseworks__Deposit_Returned__c ,0) -
 BLANKVALUE( leaseworks__Paid_by_Offset__c ,0)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-    <inlineHelpText>Net amount of receipts minus refunds/offsets</inlineHelpText>
+    <inlineHelpText>Net cash deposit balance available on hand after accounting for payments and refunds. Calculated as Total Deposit Payments Received – Paid Out via Cash – Paid Out by Offset.</inlineHelpText>
     <label>Remaining Security Deposit Cash</label>
     <precision>18</precision>
     <required>false</required>

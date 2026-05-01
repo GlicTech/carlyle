@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>leaseworks__Aircraft__c.leaseworks__Asset_Variant_GP__c</field>
+    </columns>
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Aircraft__c.leaseworks__Current_Lessee__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Aircraft__c.leaseworks__Y_Hidden_Lease_End_Date__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Aircraft__c.leaseworks__Weight_Variant__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>leaseworks__Aircraft__c.leaseworks__MTOW_Leased__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>leaseworks__Aircraft__c.leaseworks__Maximum_Operational_Take_Lbs__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Aircraft__c.leaseworks__Engine_Variant_GP__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Aircraft__c.pro_Operational_Status__c</field>
+    </columns>
+    <format>Tabular</format>
+    <name>Copy of Assets with Equipment Report_CL</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntityCustomEntity$leaseworks__Aircraft__c$leaseworks__Equipment__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>leaseworks__Aircraft__c.leaseworks__Last_CR_Utilization_Approved_Date__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

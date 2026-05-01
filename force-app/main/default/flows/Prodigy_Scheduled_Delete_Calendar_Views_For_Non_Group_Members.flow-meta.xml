@@ -25,7 +25,7 @@
     </decisions>
     <decisions>
         <name>Is_User_In_Aimee_s_Group</name>
-        <label>Is User In Aimee&apos;s Group?</label>
+        <label>Is User In Aimee&#39;s Group?</label>
         <locationX>50</locationX>
         <locationY>792</locationY>
         <defaultConnector>
@@ -174,25 +174,4 @@
         <triggerType>Scheduled</triggerType>
     </start>
     <status>Active</status>
-    <transforms>
-        <name>Create_Reference_Calendar_View_Collection</name>
-        <label>Create Reference Calendar View Collection</label>
-        <locationX>248</locationX>
-        <locationY>360</locationY>
-        <connector>
-            <targetReference>Get_Calendar_Views</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>Get_Reference_Calendar_Views[$EachItem].Name</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
 </Flow>

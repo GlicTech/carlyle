@@ -23,20 +23,22 @@ Step: 5 If system finds 'NullPointerException', the system will trim out the mes
 
 */
 
-window._jsLibrary = (function() {
-return {
-handleErrors: function(errormsg,type) {
-	handleErrorMessage(errormsg,type);
-	},
-};
-}());
+(function (global) {
+	if (!global) { return; }
+	global._jsLibrary = (function () {
+		return {
+			handleErrors: function (errormsg, type, duration) {
+				handleErrorMessage(errormsg, type, duration);
+			},
+		};
+	}());
 
-window.handleErrorMessage = function(errormsg,type){
-let toastParams = {
+	global.handleErrorMessage = function (errormsg, type, duration) {
+	let toastParams = {
 		title: type == undefined ? "Error" : type,
 		message: "Unknown error", // Default error message
 		type: type == undefined ? "error" : type,
-		duration: '7000'
+		duration: duration == undefined ? "7000" : duration
 	};
 	if (typeof errormsg === 'object') {
 		errormsg.forEach(function (error) {
@@ -78,96 +80,99 @@ let toastParams = {
 		toastEvent.setParams(toastParams);
 		toastEvent.fire();
 	}
-}
-window.parseErrorMessage = function(errormsg) {
-var errormessage;
-var finalErrorMsg;
-var msgList;
-// Error handler if error is coming from trigger
-if(errormsg.includes("FIELD_CUSTOM_VALIDATION_EXCEPTION")){
-	var message = errormsg;
-	msgList = message.split('FIELD_CUSTOM_VALIDATION_EXCEPTION');
-	/*
-	Output: msgList[length-1] = , You cannot modify MR Rates once the Lease is Approved.: [Lease__c]
+	};
 
-									Class.URLITriggerHandler.updateMRInfos: line 355, column 1
-									Class.URLITriggerHandler.afterInsert: line 286, column 1
-									Class.TriggerFactory.execute: line 73, column 1
-									Class.TriggerFactory.createHandler: line 27, column 1
-									Trigger.URLITrigger: line 3, column 1: []: []
-	*/
+	global.parseErrorMessage = function (errormsg) {
+	var errormessage;
+	var finalErrorMsg;
+	var msgList;
+	// Error handler if error is coming from trigger
+	if (errormsg.includes("FIELD_CUSTOM_VALIDATION_EXCEPTION")) {
+		var message = errormsg;
+		msgList = message.split('FIELD_CUSTOM_VALIDATION_EXCEPTION');
+		/*
+		Output: msgList[length-1] = , You cannot modify MR Rates once the Lease is Approved.: [Lease__c]
+	
+										Class.URLITriggerHandler.updateMRInfos: line 355, column 1
+										Class.URLITriggerHandler.afterInsert: line 286, column 1
+										Class.TriggerFactory.execute: line 73, column 1
+										Class.TriggerFactory.createHandler: line 27, column 1
+										Trigger.URLITrigger: line 3, column 1: []: []
+		*/
 
-	errormsg = getErrorType(msgList[msgList.length - 1], finalErrorMsg, errormessage, true); 
-	console.log('Error: ',finalErrorMsg);
-}
-else{
-	errormsg = getErrorType(errormsg, finalErrorMsg, errormessage, false);;
-}
-return errormsg;
-},
-window.getErrorType = function(errorMsg, finalErrorMsg, errormessage, hasFieldCustom){ 
-if(errorMsg.includes('LeaseWareException')){
-	finalErrorMsg = getErrors(errorMsg, 'LeaseWareException',errormessage);
-}
-else{
-	if(errorMsg.includes('QueryException')){
-		finalErrorMsg = getErrors(errorMsg, 'QueryException',errormessage);
+		errormsg = getErrorType(msgList[msgList.length - 1], finalErrorMsg, errormessage, true);
+		console.log('Error: ', finalErrorMsg);
 	}
-	else{
-		if(errorMsg.includes("NullPointerException")){
-			finalErrorMsg = getErrors(errorMsg, 'NullPointerException',errormessage);
+	else {
+		errormsg = getErrorType(errormsg, finalErrorMsg, errormessage, false);;
+	}
+	return errormsg;
+	};
+
+	global.getErrorType = function (errorMsg, finalErrorMsg, errormessage, hasFieldCustom) {
+		if (errorMsg.includes('LeaseWareException')) {
+			finalErrorMsg = getErrors(errorMsg, 'LeaseWareException', errormessage);
 		}
-		else{
-			if(errorMsg.includes("StringException")){
-				finalErrorMsg = getErrors(errorMsg, 'StringException',errormessage);
+		else {
+			if (errorMsg.includes('QueryException')) {
+				finalErrorMsg = getErrors(errorMsg, 'QueryException', errormessage);
 			}
-			else{
-				if(errorMsg.includes("MathException")){
-					finalErrorMsg = getErrors(errorMsg, 'MathException',errormessage);
+			else {
+				if (errorMsg.includes("NullPointerException")) {
+					finalErrorMsg = getErrors(errorMsg, 'NullPointerException', errormessage);
 				}
-				else{
-					if(errorMsg.includes("ListException")){
-						finalErrorMsg = getErrors(errorMsg, 'ListException',errormessage);
+				else {
+					if (errorMsg.includes("StringException")) {
+						finalErrorMsg = getErrors(errorMsg, 'StringException', errormessage);
 					}
-					else{
-						if(hasFieldCustom){
-							if(errorMsg.includes('Class.')){
-								errormessage = errorMsg.substr(0, errorMsg.indexOf('Class.')); // Output: , You cannot modify MR Rates once the Lease is Approved. [Lease__c]
-							}
-							else{
-								errormessage= errorMsg; 
-							}
-							finalErrorMsg = errormessage.substr(0,errormessage.indexOf(']')+1).substr(1); // Output: You cannot modify MR Rates once the Lease is Approved.: [Lease__c]
+					else {
+						if (errorMsg.includes("MathException")) {
+							finalErrorMsg = getErrors(errorMsg, 'MathException', errormessage);
 						}
-						else{
-							finalErrorMsg = errorMsg;
+						else {
+							if (errorMsg.includes("ListException")) {
+								finalErrorMsg = getErrors(errorMsg, 'ListException', errormessage);
+							}
+							else {
+								if (hasFieldCustom) {
+									if (errorMsg.includes('Class.')) {
+										errormessage = errorMsg.substr(0, errorMsg.indexOf('Class.')); // Output: , You cannot modify MR Rates once the Lease is Approved. [Lease__c]
+									}
+									else {
+										errormessage = errorMsg;
+									}
+									finalErrorMsg = errormessage.substr(0, errormessage.indexOf(']') + 1).substr(1); // Output: You cannot modify MR Rates once the Lease is Approved.: [Lease__c]
+								}
+								else {
+									finalErrorMsg = errorMsg;
+								}
+							}
 						}
 					}
 				}
 			}
 		}
-	}
-}
-return finalErrorMsg;
-},
-window.getErrors = function(message, exceptionType, errormessage){
-var messagesList;
-var classNameWithMsg;
-if(message.includes('Class.')){
-	messagesList = message.split('Class.');
-	classNameWithMsg = messagesList[1];
-	errormessage = message.substr(0, message.indexOf('Class.'));
-	if(exceptionType == 'NullPointerException'){
-		errormessage = errormessage.substr(errormessage.indexOf(exceptionType)) + classNameWithMsg + '. Please contact LeaseWorks Support.';
-	}
-	else{
-		errormessage = errormessage.substr(errormessage.indexOf(exceptionType)); 
-	}
-}
-else{
-	errormessage= message.substr(message.indexOf(exceptionType));
-}
-return errormessage;
-}
+		return finalErrorMsg;
+	};
 
+	global.getErrors = function (message, exceptionType, errormessage) {
+		var messagesList;
+		var classNameWithMsg;
+		if (message.includes('Class.')) {
+			messagesList = message.split('Class.');
+			classNameWithMsg = messagesList[1];
+			errormessage = message.substr(0, message.indexOf('Class.'));
+			if (exceptionType == 'NullPointerException') {
+				errormessage = errormessage.substr(errormessage.indexOf(exceptionType)) + classNameWithMsg + '. Please contact LeaseWorks Support.';
+			}
+			else {
+				errormessage = errormessage.substr(errormessage.indexOf(exceptionType));
+			}
+		}
+		else {
+			errormessage = message.substr(message.indexOf(exceptionType));
+		}
+		return errormessage;
+	};
 
+})(typeof globalThis !== "undefined" ? globalThis : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : this);

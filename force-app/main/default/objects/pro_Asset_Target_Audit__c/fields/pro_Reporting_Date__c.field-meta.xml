@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>pro_Reporting_Date__c</fullName>
+    <externalId>false</externalId>
     <formula>IF(
-    NOT(ISBLANK(pro_LOI_Date__c)), 
-    pro_LOI_Date__c, 
-    DATE(YEAR( pro_Target_End_Date_1__c ) - 1, MONTH(pro_Target_End_Date_1__c ), DAY(pro_Target_End_Date_1__c ))
+    NOT(ISBLANK(pro_Target_Reached__c)), 
+    pro_Target_Reached__r.pro_Actual_Target_Start_Date__c, 
+    pro_Target_Forecast__r.pro_Actual_Target_Start_Date__c
 )</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Reporting Date</label>

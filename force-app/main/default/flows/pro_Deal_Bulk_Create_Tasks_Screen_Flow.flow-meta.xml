@@ -270,16 +270,16 @@
     <dynamicChoiceSets>
         <name>pcs_Priority</name>
         <dataType>Picklist</dataType>
-        <displayField xsi:nil="true"/>
-        <object xsi:nil="true"/>
+        <displayField xsi:nil="true" />
+        <object xsi:nil="true" />
         <picklistField>Priority</picklistField>
         <picklistObject>Task</picklistObject>
     </dynamicChoiceSets>
     <dynamicChoiceSets>
         <name>pcs_Task_Status</name>
         <dataType>Picklist</dataType>
-        <displayField xsi:nil="true"/>
-        <object xsi:nil="true"/>
+        <displayField xsi:nil="true" />
+        <object xsi:nil="true" />
         <picklistField>Status</picklistField>
         <picklistObject>Task</picklistObject>
     </dynamicChoiceSets>
@@ -347,7 +347,7 @@
     <formulas>
         <name>f_DisableAssignedTo</name>
         <dataType>Boolean</dataType>
-        <expression>IF({!bb_ChooseCreationMode.value} = &apos;Individually&apos;, False, True)</expression>
+        <expression>IF({!bb_ChooseCreationMode.value} = &#39;Individually&#39;, False, True)</expression>
     </formulas>
     <formulas>
         <name>f_Due_Date</name>
@@ -357,7 +357,7 @@
     <formulas>
         <name>f_FormattedIdsForColonSeparatedListCreation</name>
         <dataType>String</dataType>
-        <expression>IF({!varAssigneeSelectionDefaults}= Null, {!Loop_Deal_Teams_To_Build_Choice_Lookup_Default.leaseworks__Assigned_To__c}, &apos;;&apos; + {!Loop_Deal_Teams_To_Build_Choice_Lookup_Default.leaseworks__Assigned_To__c})</expression>
+        <expression>IF({!varAssigneeSelectionDefaults}= Null, {!Loop_Deal_Teams_To_Build_Choice_Lookup_Default.leaseworks__Assigned_To__c}, &#39;;&#39; + {!Loop_Deal_Teams_To_Build_Choice_Lookup_Default.leaseworks__Assigned_To__c})</expression>
     </formulas>
     <interviewLabel>Deal - Bulk Create Tasks Screen Flow {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Deal - Bulk Create Tasks Screen Flow</label>
@@ -613,7 +613,6 @@
                     <extensionName>flowruntime:choiceLookup</extensionName>
                     <fieldText>Task Assignees</fieldText>
                     <fieldType>ComponentMultiChoice</fieldType>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <storeOutputAutomatically>true</storeOutputAutomatically>
                 </fields>
@@ -647,7 +646,6 @@
                 <dataType>String</dataType>
                 <fieldText>Assigned To</fieldText>
                 <fieldType>DropdownBox</fieldType>
-                <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                 <isDisabled>
                     <elementReference>f_DisableAssignedTo</elementReference>
                 </isDisabled>
@@ -662,7 +660,6 @@
                 </defaultValue>
                 <fieldText>Status</fieldText>
                 <fieldType>DropdownBox</fieldType>
-                <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                 <isRequired>true</isRequired>
             </fields>
             <fields>
@@ -674,7 +671,6 @@
                 </defaultValue>
                 <fieldText>Priority</fieldText>
                 <fieldType>DropdownBox</fieldType>
-                <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                 <isRequired>true</isRequired>
             </fields>
             <fields>
@@ -685,7 +681,6 @@
                 </defaultValue>
                 <fieldText>Due Date</fieldText>
                 <fieldType>InputField</fieldType>
-                <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                 <isRequired>true</isRequired>
             </fields>
             <fields>
@@ -693,14 +688,12 @@
                 <dataType>String</dataType>
                 <fieldText>Subject</fieldText>
                 <fieldType>InputField</fieldType>
-                <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                 <isRequired>true</isRequired>
             </fields>
             <fields>
                 <name>pro_Description</name>
                 <fieldText>Description</fieldText>
                 <fieldType>LargeTextArea</fieldType>
-                <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                 <isRequired>false</isRequired>
             </fields>
             <isRequired>false</isRequired>

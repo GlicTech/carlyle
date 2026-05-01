@@ -4,22 +4,22 @@
     <deprecated>false</deprecated>
     <description>Color shows how soon the event is due and updates automatically. Strategic: Green &gt; 360 days, Yellow 31–360 days, Red ≤ 30 days. Operational: Green &gt; 90 days, Yellow 31–90 days, Red ≤ 30 days.</description>
     <externalId>false</externalId>
-    <formula>IF(OR(ISBLANK(leaseworks__Due_Date__c),ISPICKVAL(leaseworks__Event_Status__c,&apos;Closed&apos;)),
-&apos;&apos;,
-IF(ISPICKVAL(leaseworks__Event_Scope__c,&apos;Strategic&apos;),
+    <formula>IF(OR(ISBLANK(leaseworks__Due_Date__c),ISPICKVAL(leaseworks__Event_Status__c,&#39;Closed&#39;)),
+&#39;&#39;,
+IF(ISPICKVAL(leaseworks__Event_Scope__c,&#39;Strategic&#39;),
 IF(leaseworks__Due_Date__c - TODAY() &gt; 360,
-&apos;🟢&apos;
+&#39;🟢&#39;
 ,
 IF(AND(leaseworks__Due_Date__c - TODAY() &lt;= 360, leaseworks__Due_Date__c - TODAY() &gt; 30),
-&apos;🟡&apos;,
-&apos;🔴&apos;)),
-IF(ISPICKVAL(leaseworks__Event_Scope__c,&apos;Operational&apos;),
+&#39;🟡&#39;,
+&#39;🔴&#39;)),
+IF(ISPICKVAL(leaseworks__Event_Scope__c,&#39;Operational&#39;),
 IF(leaseworks__Due_Date__c - TODAY() &gt; 90,
-&apos;🟢&apos;,
+&#39;🟢&#39;,
 IF(AND(leaseworks__Due_Date__c - TODAY() &lt;= 90,leaseworks__Due_Date__c - TODAY() &gt; 30),
-&apos;🟡&apos;,
-&apos;🔴&apos;)),
-&apos;&apos;)))</formula>
+&#39;🟡&#39;,
+&#39;🔴&#39;)),
+&#39;&#39;)))</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <inlineHelpText>Color shows how soon the event is due and updates automatically. Strategic: Green &gt; 360 days, Yellow 31–360 days, Red ≤ 30 days. Operational: Green &gt; 90 days, Yellow 31–90 days, Red ≤ 30 days.</inlineHelpText>
     <label>Event Urgency</label>

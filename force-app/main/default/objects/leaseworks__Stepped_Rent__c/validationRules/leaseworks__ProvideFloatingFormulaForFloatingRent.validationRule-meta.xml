@@ -2,7 +2,7 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>leaseworks__ProvideFloatingFormulaForFloatingRent</fullName>
     <active>true</active>
-    <description>The Floating formula is mandatory when the Rent Type is &apos;Floating Rent&apos;</description>
-    <errorConditionFormula>AND(ISPICKVAL(leaseworks__Rent_Type__c, &apos;Floating Rent&apos;) , ISBLANK(TEXT(leaseworks__Floating_Formula__c)))</errorConditionFormula>
+    <description>The Floating formula is mandatory when the Rent Type is &#39;Floating Rent&#39;</description>
+    <errorConditionFormula>AND(ISPICKVAL(leaseworks__Rent_Type__c, &#39;Floating Rent&#39;) , ISBLANK(TEXT(leaseworks__Floating_Formula__c)))</errorConditionFormula>
     <errorMessage>Please provide Floating Formula for Floating Rent Type</errorMessage>
 </ValidationRule>

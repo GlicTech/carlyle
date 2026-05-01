@@ -26,19 +26,20 @@
     </columns>
     <description>New Targets Report looking at new design of Target Audits.</description>
     <filter>
+        <booleanFilter>1 OR 2</booleanFilter>
         <criteriaItems>
-            <column>pro_Asset_Target_Audit__c$pro_Progress_Picklist__c</column>
+            <column>pro_Asset_Target_Audit__c$pro_Progress__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
-            <operator>notEqual</operator>
-            <value>Moved To Trading,Target Cancelled</value>
+            <operator>contains</operator>
+            <value>Achieved</value>
         </criteriaItems>
         <criteriaItems>
-            <column>pro_Asset_Target_Audit__c$pro_Target_Year__c</column>
+            <column>pro_Asset_Target_Audit__c$pro_Progress__c</column>
             <columnToColumn>false</columnToColumn>
-            <isUnlocked>false</isUnlocked>
-            <operator>equals</operator>
-            <value>2026</value>
+            <isUnlocked>true</isUnlocked>
+            <operator>contains</operator>
+            <value>Open</value>
         </criteriaItems>
     </filter>
     <format>Tabular</format>

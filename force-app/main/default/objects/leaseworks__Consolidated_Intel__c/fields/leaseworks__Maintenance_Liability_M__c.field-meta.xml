@@ -2,9 +2,10 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>leaseworks__Maintenance_Liability_M__c</fullName>
     <deprecated>false</deprecated>
-    <formula>IF(leaseworks__Type__c == &apos;MI&apos;, leaseworks__Market_Intelligence__r.leaseworks__Mx_Liabilities_During_Lease_K__c, 
-IF(leaseworks__Type__c == &apos;AIT&apos;, leaseworks__Aircraft_In_Transaction__r.leaseworks__Maintenance_Liability_mm__c, 
-IF(leaseworks__Type__c == &apos;IL&apos;,  leaseworks__Interaction_Log__r.leaseworks__Mx_Liabilities_During_Lease_K__c , null) ) 
+    <externalId>false</externalId>
+    <formula>IF(leaseworks__Type__c == &#39;MI&#39;, leaseworks__Market_Intelligence__r.leaseworks__Mx_Liabilities_During_Lease_K__c, 
+IF(leaseworks__Type__c == &#39;AIT&#39;, leaseworks__Aircraft_In_Transaction__r.leaseworks__Maintenance_Liability_mm__c, 
+IF(leaseworks__Type__c == &#39;IL&#39;,  leaseworks__Interaction_Log__r.leaseworks__Mx_Liabilities_During_Lease_K__c , null) ) 
 )</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Maintenance Liability ($M)</label>

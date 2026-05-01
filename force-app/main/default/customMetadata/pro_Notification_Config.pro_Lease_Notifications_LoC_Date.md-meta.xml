@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Lease Notifications - LoC Date</label>
+    <protected>false</protected>
+    <values>
+        <field>pro_Active__c</field>
+        <value xsi:type="xsd:boolean">true</value>
+    </values>
+    <values>
+        <field>pro_Bell_Body__c</field>
+        <value xsi:type="xsd:string">The LoC Expiry for this lease is due on {leaseworks__Letter_of_Credit_Expiry__c}.
+
+Click to view the Lease record.</value>
+    </values>
+    <values>
+        <field>pro_Bell_Enabled__c</field>
+        <value xsi:type="xsd:boolean">true</value>
+    </values>
+    <values>
+        <field>pro_Bell_Title__c</field>
+        <value xsi:type="xsd:string">LoC Expiry Approaching: {Name}</value>
+    </values>
+    <values>
+        <field>pro_Email_Body__c</field>
+        <value xsi:type="xsd:string">Dear User,
+
+The LoC Expiry for this lease is due on {leaseworks__Letter_of_Credit_Expiry__c}.
+
+You can view the record here: {RecordLink}
+
+Regards,
+Carlyle Notification System</value>
+    </values>
+    <values>
+        <field>pro_Email_Enabled__c</field>
+        <value xsi:type="xsd:boolean">true</value>
+    </values>
+    <values>
+        <field>pro_Email_Subject__c</field>
+        <value xsi:type="xsd:string">LoC Expiry Approaching: {Name}</value>
+    </values>
+    <values>
+        <field>pro_Key_Fields__c</field>
+        <value xsi:type="xsd:string">Option Type:leaseworks__Option_Type__c,Status:leaseworks__Status__c,Exercised Date:leaseworks__Exercised_Date__c,Lease:leaseworks__Lease__r.Name</value>
+    </values>
+    <values>
+        <field>pro_Link_Target__c</field>
+        <value xsi:type="xsd:string">RecordId</value>
+    </values>
+    <values>
+        <field>pro_Notification_Enabled__c</field>
+        <value xsi:type="xsd:boolean">true</value>
+    </values>
+    <values>
+        <field>pro_Notification_Type__c</field>
+        <value xsi:type="xsd:string">pro_Lease_Notifications</value>
+    </values>
+    <values>
+        <field>pro_Recipients__c</field>
+        <value xsi:type="xsd:string">field:OwnerId, user:michaelc.lw@carlyle.aero.full</value>
+    </values>
+</CustomMetadata>

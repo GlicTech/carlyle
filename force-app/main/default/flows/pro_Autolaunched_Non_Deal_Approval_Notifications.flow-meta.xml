@@ -38,8 +38,6 @@
                 <elementReference>varTriggeringDeal.Id</elementReference>
             </value>
         </inputParameters>
-        <nameSegment>customNotificationAction</nameSegment>
-        <offset>0</offset>
     </actionCalls>
     <actionCalls>
         <name>Send_Non_Deal_Approval_Email</name>
@@ -54,11 +52,11 @@
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
             <name>recipientAddresses</name>
-            <value/>
+            <value />
         </inputParameters>
         <inputParameters>
             <name>ccAddresses</name>
-            <value/>
+            <value />
         </inputParameters>
         <inputParameters>
             <name>senderType</name>
@@ -96,9 +94,6 @@
                 <booleanValue>true</booleanValue>
             </value>
         </inputParameters>
-        <nameSegment>emailSimple</nameSegment>
-        <offset>0</offset>
-        <versionString>2.0.1</versionString>
     </actionCalls>
     <apiVersion>65.0</apiVersion>
     <assignments>
@@ -243,20 +238,20 @@
     <formulas>
         <name>f_EmailBodyBasedOnStatus</name>
         <dataType>String</dataType>
-        <expression>IF(TEXT({!varTriggeringDeal.leaseworks__Deal_Status__c}) = &apos;Submitted&apos;, {!tt_ApprovalSubmittedEmailBody},
-       IF(TEXT({!varTriggeringDeal.leaseworks__Deal_Status__c}) = &apos;Approved&apos;, {!tt_ApprovalGrantedEmailBody}, {!tt_ApprovalRejectedEmailBody}))</expression>
+        <expression>IF(TEXT({!varTriggeringDeal.leaseworks__Deal_Status__c}) = &#39;Submitted&#39;, {!tt_ApprovalSubmittedEmailBody},
+       IF(TEXT({!varTriggeringDeal.leaseworks__Deal_Status__c}) = &#39;Approved&#39;, {!tt_ApprovalGrantedEmailBody}, {!tt_ApprovalRejectedEmailBody}))</expression>
     </formulas>
     <formulas>
         <name>f_EmailSubject</name>
         <dataType>String</dataType>
-        <expression>IF(TEXT({!varTriggeringDeal.leaseworks__Deal_Status__c}) = &apos;Submitted&apos;, &apos;[&apos; + {!varTriggeringDeal.Name} + &apos;] Submitted For Approval&apos;,
-        IF(TEXT({!varTriggeringDeal.leaseworks__Deal_Status__c}) = &apos;Approved&apos;, &apos;[&apos; + {!varTriggeringDeal.Name} + &apos;] Approved&apos;, 
-               &apos;[&apos; + {!varTriggeringDeal.Name} + &apos;] Approval Rejected&apos;))</expression>
+        <expression>IF(TEXT({!varTriggeringDeal.leaseworks__Deal_Status__c}) = &#39;Submitted&#39;, &#39;[&#39; + {!varTriggeringDeal.Name} + &#39;] Submitted For Approval&#39;,
+        IF(TEXT({!varTriggeringDeal.leaseworks__Deal_Status__c}) = &#39;Approved&#39;, &#39;[&#39; + {!varTriggeringDeal.Name} + &#39;] Approved&#39;, 
+               &#39;[&#39; + {!varTriggeringDeal.Name} + &#39;] Approval Rejected&#39;))</expression>
     </formulas>
     <formulas>
         <name>f_NotificationTitle</name>
         <dataType>String</dataType>
-        <expression>&apos;❗ [&apos; + {!varTriggeringDeal.Name} + &apos;] Notification Failed&apos;</expression>
+        <expression>&#39;❗ [&#39; + {!varTriggeringDeal.Name} + &#39;] Notification Failed&#39;</expression>
     </formulas>
     <interviewLabel>Autolaunched - Non Deal Approval Notifications {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Autolaunched - Non Deal Approval Notifications</label>
@@ -504,7 +499,7 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
-        <description>Get users from the Deal Team and Jonathan Hayden&apos;s user to be added in as CC recipients on emails.</description>
+        <description>Get users from the Deal Team and Jonathan Hayden&#39;s user to be added in as CC recipients on emails.</description>
         <name>Get_Other_Deal_Team_Members_Besides_Non_Deal_Approvers</name>
         <label>Get Other Deal Team Members (Besides Non Deal Approvers)</label>
         <locationX>0</locationX>
@@ -543,17 +538,17 @@
     <textTemplates>
         <name>tt_ApprovalGrantedEmailBody</name>
         <isViewedAsPlainText>false</isViewedAsPlainText>
-        <text>&lt;p&gt;Dear User,&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;A Non Deal Approval record has been granted approval.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Description: &lt;/strong&gt;{!varTriggeringDeal.leaseworks__Description__c}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Summary Of Approval Request: &lt;/strong&gt;{!varTriggeringDeal.pro_Summary_Of_Approval_Request__c}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Financial Comments: &lt;/strong&gt;{!varTriggeringDeal.pro_Financial_Comments__c}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;You can view the full details and take action by clicking the link: &lt;a href=&quot;https://leaseworks-carlyle.lightning.force.com/{!varTriggeringDeal.Id}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;View Non Deal Approval in Salesforce&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Kind regards,&lt;/p&gt;&lt;p&gt;Salesforce System Notification&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;em&gt;This message was generated automatically. For assistance, please contact your Salesforce administrator.&lt;/em&gt;&lt;/p&gt;</text>
+        <text>&lt;p&gt;Dear Deal Team,&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;A Non Deal Approval record has been granted approval.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Description: &lt;/strong&gt;{!varTriggeringDeal.leaseworks__Description__c}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Summary Of Approval Request: &lt;/strong&gt;{!varTriggeringDeal.pro_Summary_Of_Approval_Request__c}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Financial Comments: &lt;/strong&gt;{!varTriggeringDeal.pro_Financial_Comments__c}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;You can view the full details and take action by clicking the link: &lt;a href=&quot;https://leaseworks-carlyle.lightning.force.com/{!varTriggeringDeal.Id}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;View Non Deal Approval in Salesforce&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Kind regards,&lt;/p&gt;&lt;p&gt;Salesforce System Notification&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;em&gt;This message was generated automatically. For assistance, please contact your Salesforce administrator.&lt;/em&gt;&lt;/p&gt;</text>
     </textTemplates>
     <textTemplates>
         <name>tt_ApprovalRejectedEmailBody</name>
         <isViewedAsPlainText>false</isViewedAsPlainText>
-        <text>&lt;p&gt;Dear User,&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;A Non Deal Approval record has been rejected for approval.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Description: &lt;/strong&gt;{!varTriggeringDeal.leaseworks__Description__c}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Summary Of Approval Request: &lt;/strong&gt;{!varTriggeringDeal.pro_Summary_Of_Approval_Request__c}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Financial Comments: &lt;/strong&gt;{!varTriggeringDeal.pro_Financial_Comments__c}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;You can view the full details and take action by clicking the link: &lt;a href=&quot;https://leaseworks-carlyle.lightning.force.com/{!varTriggeringDeal.Id}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;View Non Deal Approval in Salesforce&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Kind regards,&lt;/p&gt;&lt;p&gt;Salesforce System Notification&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;em&gt;This message was generated automatically. For assistance, please contact your Salesforce administrator.&lt;/em&gt;&lt;/p&gt;</text>
+        <text>&lt;p&gt;Dear Deal Team,&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;A Non Deal Approval record has been rejected for approval.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Description: &lt;/strong&gt;{!varTriggeringDeal.leaseworks__Description__c}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Summary Of Approval Request: &lt;/strong&gt;{!varTriggeringDeal.pro_Summary_Of_Approval_Request__c}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Financial Comments: &lt;/strong&gt;{!varTriggeringDeal.pro_Financial_Comments__c}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;You can view the full details and take action by clicking the link: &lt;a href=&quot;https://leaseworks-carlyle.lightning.force.com/{!varTriggeringDeal.Id}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;View Non Deal Approval in Salesforce&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Kind regards,&lt;/p&gt;&lt;p&gt;Salesforce System Notification&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;em&gt;This message was generated automatically. For assistance, please contact your Salesforce administrator.&lt;/em&gt;&lt;/p&gt;</text>
     </textTemplates>
     <textTemplates>
         <name>tt_ApprovalSubmittedEmailBody</name>
         <isViewedAsPlainText>false</isViewedAsPlainText>
-        <text>&lt;p&gt;Dear User,&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;A Non Deal Approval record has been submitted for your approval.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Description: &lt;/strong&gt;{!varTriggeringDeal.leaseworks__Description__c}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Summary Of Approval Request: &lt;/strong&gt;{!varTriggeringDeal.pro_Summary_Of_Approval_Request__c}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Financial Comments: &lt;/strong&gt;{!varTriggeringDeal.pro_Financial_Comments__c}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;You can view the full details and take action by clicking the link: &lt;a href=&quot;https://leaseworks-carlyle.lightning.force.com/{!varTriggeringDeal.Id}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;View Non Deal Approval in Salesforce&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Kind regards,&lt;/p&gt;&lt;p&gt;Salesforce System Notification&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;em&gt;This message was generated automatically. For assistance, please contact your Salesforce administrator.&lt;/em&gt;&lt;/p&gt;</text>
+        <text>&lt;p&gt;Dear Approvers,&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;A Non Deal Approval record has been submitted for your approval.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Description: &lt;/strong&gt;{!varTriggeringDeal.leaseworks__Description__c}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Summary Of Approval Request: &lt;/strong&gt;{!varTriggeringDeal.pro_Summary_Of_Approval_Request__c}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Financial Comments: &lt;/strong&gt;{!varTriggeringDeal.pro_Financial_Comments__c}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;You can view the full details and take action by clicking the link: &lt;a href=&quot;https://leaseworks-carlyle.lightning.force.com/{!varTriggeringDeal.Id}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;View Non Deal Approval in Salesforce&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Kind regards,&lt;/p&gt;&lt;p&gt;Salesforce System Notification&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;em&gt;This message was generated automatically. For assistance, please contact your Salesforce administrator.&lt;/em&gt;&lt;/p&gt;</text>
     </textTemplates>
     <textTemplates>
         <name>tt_NotificationBody</name>
@@ -564,153 +559,6 @@ Please ensure that all relevant parties are informed of this status change.
 
 Click this notification to view the Non-Deal Approval record.</text>
     </textTemplates>
-    <transforms>
-        <name>Create_CC_Recipient_Email_Collection_Approved</name>
-        <label>Create CC Recipient Email Collection - Approved</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Assign_Recipient_Emails_To_Variables_Approved</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>Get_CC_Recipient_Users_Approved[$EachItem].Email</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
-    <transforms>
-        <name>Create_CC_Recipient_Email_Collection_Rejected</name>
-        <label>Create CC Recipient Email Collection - Rejected</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Assign_Recipient_Emails_To_Variables_Rejected</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>Get_Cc_Recipient_Users_Rejected[$EachItem].Email</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
-    <transforms>
-        <name>Create_CC_Recipient_Email_Collection_Submitted</name>
-        <label>Create CC Recipient Email Collection - Submitted</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Assign_Recipient_Emails_To_Variables_Submitted</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>Get_CC_Recipient_Users_Submitted[$EachItem].Email</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
-    <transforms>
-        <name>Create_Id_Collection_For_Non_Deal_Approvers</name>
-        <label>Create Id Collection For Non Deal Approvers</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Get_Other_Deal_Team_Members_Besides_Non_Deal_Approvers</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>Get_Non_Deal_Approvers[$EachItem].leaseworks__Assigned_To__c</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
-    <transforms>
-        <name>Create_Id_Collection_For_Other_Deal_Team_Members</name>
-        <label>Create Id Collection For Other Deal Team Members</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Non_Deal_Approval_Submitted_Approved_Or_Rejected</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>Get_Other_Deal_Team_Members_Besides_Non_Deal_Approvers[$EachItem].leaseworks__Assigned_To__c</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
-    <transforms>
-        <name>Create_Main_Recipient_Email_Collection_Submitted</name>
-        <label>Create Main Recipient Email Collection - Submitted</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Get_CC_Recipient_Users_Submitted</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>Get_Main_Recipient_Users_Submitted[$EachItem].Email</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
-    <transforms>
-        <name>Create_Notification_Recipient_Id_Collection</name>
-        <label>Create Notification Recipient Id Collection</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Get_Deal_Custom_Notification_Type</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>Get_Notification_Recipient_Users[$EachItem].Id</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
     <variables>
         <name>currentItem_Filter_Main_Email_Recipients</name>
         <dataType>SObject</dataType>

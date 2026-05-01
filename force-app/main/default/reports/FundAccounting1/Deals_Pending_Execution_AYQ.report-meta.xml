@@ -1,53 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Report xmlns="http://soap.sforce.com/2006/04/metadata">
-    <buckets>
-        <bucketType>picklist</bucketType>
-        <developerName>BucketField_89854782</developerName>
-        <masterLabel>Current Stage</masterLabel>
-        <nullTreatment>n</nullTreatment>
-        <otherBucketLabel>Other</otherBucketLabel>
-        <sourceColumnName>leaseworks__Marketing_Activity__c$leaseworks__Deal_Status__c</sourceColumnName>
-        <useOther>true</useOther>
-        <values>
-            <sourceValues>
-                <sourceValue>Termsheet Sent</sourceValue>
-            </sourceValues>
-            <sourceValues>
-                <sourceValue>Termsheet Signed</sourceValue>
-            </sourceValues>
-            <sourceValues>
-                <sourceValue>LOI</sourceValue>
-            </sourceValues>
-            <sourceValues>
-                <sourceValue>ADM Approval</sourceValue>
-            </sourceValues>
-            <sourceValues>
-                <sourceValue>LOI Signed</sourceValue>
-            </sourceValues>
-            <value>LOI / Termsheet Execution Phase</value>
-        </values>
-        <values>
-            <sourceValues>
-                <sourceValue>IC Approval</sourceValue>
-            </sourceValues>
-            <sourceValues>
-                <sourceValue>BAC Approval</sourceValue>
-            </sourceValues>
-            <sourceValues>
-                <sourceValue>Novation - SPA</sourceValue>
-            </sourceValues>
-            <sourceValues>
-                <sourceValue>Documentation</sourceValue>
-            </sourceValues>
-            <sourceValues>
-                <sourceValue>Agreement Executed</sourceValue>
-            </sourceValues>
-            <sourceValues>
-                <sourceValue>SPA</sourceValue>
-            </sourceValues>
-            <value>Final Documentation Phase</value>
-        </values>
-    </buckets>
     <columns>
         <field>leaseworks__Marketing_Activity__c.leaseworks__Aircraft_Proposals__r$leaseworks__Aircraft__c</field>
     </columns>
@@ -63,7 +15,7 @@
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
-            <value>Termsheet Signed,LOI Signed,BAC Approval,Novation - SPA,Documentation</value>
+            <value>LOI Signed,BAC Approval,Novation - SPA,Documentation</value>
         </criteriaItems>
         <criteriaItems>
             <column>leaseworks__Marketing_Activity__c$leaseworks__Inactive_MA__c</column>
@@ -81,11 +33,6 @@
         </criteriaItems>
     </filter>
     <format>Summary</format>
-    <groupingsDown>
-        <dateGranularity>Day</dateGranularity>
-        <field>BucketField_89854782</field>
-        <sortOrder>Asc</sortOrder>
-    </groupingsDown>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
         <field>leaseworks__Marketing_Activity__c$Name</field>

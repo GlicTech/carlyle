@@ -2,7 +2,7 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>leaseworks__Inactive_field_should_not_be_uncheck</fullName>
     <active>true</active>
-    <description>#DimensionStory - Dimension value &quot;inactive &quot; field should not be allowed to be unchecked if it&apos;s a standard dimension and none of the standard dimension look up were filled.</description>
+    <description>#DimensionStory - Dimension value &quot;inactive &quot; field should not be allowed to be unchecked if it&#39;s a standard dimension and none of the standard dimension look up were filled.</description>
     <errorConditionFormula>ISCHANGED(leaseworks__Inactive__c) &amp;&amp; !leaseworks__Inactive__c &amp;&amp;  leaseworks__Dimension__r.leaseworks__Is_Standard__c &amp;&amp; ISBLANK(leaseworks__Asset__c) &amp;&amp;  ISBLANK(leaseworks__Entity__c) &amp;&amp;  ISBLANK(leaseworks__Lease__c) &amp;&amp;  ISBLANK(leaseworks__Operator_New__c) &amp;&amp;  ISBLANK(leaseworks__Bank_Account__c)</errorConditionFormula>
     <errorDisplayField>leaseworks__Inactive__c</errorDisplayField>
     <errorMessage>The underlying record for this dimension value no longer exists. Please recreate the record to activate the dimension value.</errorMessage>

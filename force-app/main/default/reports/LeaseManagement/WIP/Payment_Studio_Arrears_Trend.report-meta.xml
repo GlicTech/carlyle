@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Report xmlns="http://soap.sforce.com/2006/04/metadata">
     <columns>
-        <field>leaseworks__Payment_Receipt__c.leaseworks__Payment_Receipt__r$leaseworks__Invoice__c.leaseworks__Lease__c.pro_Lease_Name__c</field>
-    </columns>
-    <columns>
         <field>leaseworks__Payment_Receipt__c.leaseworks__Payment_Receipt__r$leaseworks__Invoice__c.leaseworks__Date_of_MR_Payment_Due__c</field>
     </columns>
     <columns>
         <field>leaseworks__Payment_Receipt__c.leaseworks__Payment_Receipt__r.leaseworks__Payments_Credits__r$leaseworks__Payment_Date__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Payment_Receipt__c.leaseworks__Payment_Receipt__r$leaseworks__Invoice__c.leaseworks__Lease__c.pro_Lease_Name__c</field>
     </columns>
     <columns>
         <field>leaseworks__Payment_Receipt__c$Name</field>
@@ -22,10 +22,14 @@
         <field>leaseworks__Payment_Receipt__c.leaseworks__Payment_Receipt__r.leaseworks__Payments_Credits__r$leaseworks__Invoice_Type_F__c</field>
     </columns>
     <columns>
-        <field>leaseworks__Payment_Receipt__c$CreatedDate</field>
+        <field>leaseworks__Payment_Receipt__c$leaseworks__Payment_Date__c</field>
     </columns>
     <columns>
-        <field>leaseworks__Payment_Receipt__c$leaseworks__Payment_Date__c</field>
+        <field>leaseworks__Payment_Receipt__c$Owner</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>leaseworks__Payment_Receipt__c.leaseworks__Payment_Receipt__r$leaseworks__Amount_Paid__c</field>
     </columns>
     <filter>
         <criteriaItems>
@@ -34,6 +38,13 @@
             <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
             <value>,Cash,Letter of Credit,Security Deposit,Payable,Payment On Account,Credit Memo,Invoice</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>leaseworks__Payment_Receipt__c.leaseworks__Payment_Receipt__r$leaseworks__Invoice__c.leaseworks__Lease__c.pro_Lease_Name__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notContain</operator>
+            <value>test</value>
         </criteriaItems>
     </filter>
     <format>Tabular</format>
@@ -51,6 +62,6 @@
     <sortOrder>Asc</sortOrder>
     <timeFrameFilter>
         <dateColumn>leaseworks__Payment_Receipt__c$leaseworks__Payment_Date__c</dateColumn>
-        <interval>INTERVAL_PREV2FY</interval>
+        <interval>INTERVAL_PREVCUR2FY</interval>
     </timeFrameFilter>
 </Report>

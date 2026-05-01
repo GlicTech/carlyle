@@ -4,7 +4,7 @@
     <assignments>
         <name>Assign_Values_To_Close_Existing_Asset_Target_Audit</name>
         <label>Assign Values To Close Existing Asset Target Audit</label>
-        <locationX>248</locationX>
+        <locationX>182</locationX>
         <locationY>974</locationY>
         <assignmentItems>
             <assignToReference>Get_Asset_Target_Audit_To_Be_Updated.pro_Contract_Extended__c</assignToReference>
@@ -27,7 +27,7 @@
     <assignments>
         <name>Associate_Asset_In_Deal_To_Associated_Record</name>
         <label>Associate Asset In Deal To Associated Record</label>
-        <locationX>116</locationX>
+        <locationX>50</locationX>
         <locationY>782</locationY>
         <assignmentItems>
             <assignToReference>Get_Asset_Target_Audit_To_Be_Updated.pro_Asset_in_Deal__c</assignToReference>
@@ -43,7 +43,7 @@
     <decisions>
         <name>Asset_In_Deal_Found_To_Associate</name>
         <label>Asset In Deal Found To Associate?</label>
-        <locationX>248</locationX>
+        <locationX>182</locationX>
         <locationY>674</locationY>
         <defaultConnector>
             <targetReference>Assign_Values_To_Close_Existing_Asset_Target_Audit</targetReference>
@@ -66,32 +66,9 @@
         </rules>
     </decisions>
     <decisions>
-        <description>If an open ATA already exists for this asset on any contract, skip creating a new one — the asset is already tracked.</description>
-        <name>Does_Open_ATA_Already_Exist_On_Asset</name>
-        <label>Does Open ATA Already Exist On Asset?</label>
-        <locationX>50</locationX>
-        <locationY>1514</locationY>
-        <defaultConnector>
-            <targetReference>Create_Asset_Target_Audit</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>No Open ATA Exists</defaultConnectorLabel>
-        <rules>
-            <name>Yes_Open_ATA_Exists</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>Check_For_Existing_Open_ATA_On_Asset.Id</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <label>Yes - Open ATA Exists</label>
-        </rules>
-    </decisions>
-    <decisions>
         <name>Target_Record_Found</name>
         <label>Target Record Found?</label>
-        <locationX>248</locationX>
+        <locationX>182</locationX>
         <locationY>1298</locationY>
         <defaultConnectorLabel>Target Not Found</defaultConnectorLabel>
         <rules>
@@ -105,7 +82,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Check_For_Existing_Open_ATA_On_Asset</targetReference>
+                <targetReference>Create_Asset_Target_Audit</targetReference>
             </connector>
             <label>Target Found</label>
         </rules>
@@ -149,8 +126,8 @@
     <recordCreates>
         <name>Create_Asset_Target_Audit</name>
         <label>Create Asset Target Audit</label>
-        <locationX>182</locationX>
-        <locationY>1622</locationY>
+        <locationX>50</locationX>
+        <locationY>1406</locationY>
         <inputAssignments>
             <field>pro_Asset__c</field>
             <value>
@@ -173,38 +150,9 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordCreates>
     <recordLookups>
-        <description>Check if this asset already has an open ATA on any contract. If so, skip creating a duplicate.</description>
-        <name>Check_For_Existing_Open_ATA_On_Asset</name>
-        <label>Check For Existing Open ATA On Asset</label>
-        <locationX>50</locationX>
-        <locationY>1406</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Does_Open_ATA_Already_Exist_On_Asset</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>pro_Asset__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>varContract.leaseworks__Aircraft__c</elementReference>
-            </value>
-        </filters>
-        <filters>
-            <field>pro_Progress__c</field>
-            <operator>Contains</operator>
-            <value>
-                <stringValue>Open</stringValue>
-            </value>
-        </filters>
-        <getFirstRecordOnly>true</getFirstRecordOnly>
-        <object>pro_Asset_Target_Audit__c</object>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </recordLookups>
-    <recordLookups>
         <name>Get_All_Deals_Related_To_Contract_s_Lessee</name>
-        <label>Get All Deals Related To Contract&apos;s Lessee</label>
-        <locationX>248</locationX>
+        <label>Get All Deals Related To Contract&#39;s Lessee</label>
+        <locationX>182</locationX>
         <locationY>350</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -225,7 +173,7 @@
     <recordLookups>
         <name>Get_Asset_Target_Audit_To_Be_Updated</name>
         <label>Get Asset Target Audit To Be Updated</label>
-        <locationX>248</locationX>
+        <locationX>182</locationX>
         <locationY>134</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -233,17 +181,17 @@
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
-            <field>pro_Asset__c</field>
+            <field>pro_Contract__c</field>
             <operator>EqualTo</operator>
             <value>
-                <elementReference>varContract.leaseworks__Aircraft__c</elementReference>
+                <elementReference>varContract.Id</elementReference>
             </value>
         </filters>
         <filters>
-            <field>pro_Progress__c</field>
-            <operator>Contains</operator>
+            <field>pro_Contract_Extended__c</field>
+            <operator>EqualTo</operator>
             <value>
-                <stringValue>Open</stringValue>
+                <booleanValue>false</booleanValue>
             </value>
         </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
@@ -255,7 +203,7 @@
     <recordLookups>
         <name>Get_Associated_Asset_In_Deal</name>
         <label>Get Associated Asset In Deal</label>
-        <locationX>248</locationX>
+        <locationX>182</locationX>
         <locationY>566</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -281,10 +229,10 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
-        <description>Get the target record that corresponds to the date the target got closed out (The Contract&apos;s Extended On date)</description>
+        <description>Get the target record that corresponds to the date the target got closed out (The Contract&#39;s Extended On date)</description>
         <name>Get_Closed_Target_Record</name>
         <label>Get Closed Target Record</label>
-        <locationX>248</locationX>
+        <locationX>182</locationX>
         <locationY>242</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -312,7 +260,7 @@
     <recordLookups>
         <name>Get_Forecast_Target_Record</name>
         <label>Get Forecast Target Record</label>
-        <locationX>248</locationX>
+        <locationX>182</locationX>
         <locationY>1190</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -340,7 +288,7 @@
     <recordUpdates>
         <name>Close_out_the_exisitng_Audit_record</name>
         <label>Close out the exisitng Audit record</label>
-        <locationX>248</locationX>
+        <locationX>182</locationX>
         <locationY>1082</locationY>
         <connector>
             <targetReference>Get_Forecast_Target_Record</targetReference>
@@ -349,35 +297,13 @@
     </recordUpdates>
     <runInMode>SystemModeWithoutSharing</runInMode>
     <start>
-        <locationX>122</locationX>
+        <locationX>56</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Get_Asset_Target_Audit_To_Be_Updated</targetReference>
         </connector>
     </start>
     <status>Active</status>
-    <transforms>
-        <description>Create a collection of Deal Ids related to the Lessee on the triggering Contract (contract that got extended) to help in finding an AiD to relate to the closed Audit Record</description>
-        <name>Create_Deal_Id_Collection</name>
-        <label>Create Deal Id Collection</label>
-        <locationX>248</locationX>
-        <locationY>458</locationY>
-        <connector>
-            <targetReference>Get_Associated_Asset_In_Deal</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>Get_All_Deals_Related_To_Contract_s_Lessee[$EachItem].Id</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
     <variables>
         <name>varContract</name>
         <dataType>SObject</dataType>

@@ -2,18 +2,19 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>leaseworks__Transaction_Date__c</fullName>
     <deprecated>false</deprecated>
+    <externalId>false</externalId>
     <formula>CASE(Text(leaseworks__Transaction_Type_PL__c)
-,&apos;Invoice&apos;, IF(ISBLANK(leaseworks__Invoice__c),null, leaseworks__Invoice__r.leaseworks__Invoice_Date__c)
-,&apos;Payable&apos;, IF(ISBLANK(leaseworks__Payable__c),null, leaseworks__Payable__r.leaseworks__Payable_Date__c)
-,&apos;Letter Of Credit&apos;, IF(ISBLANK(leaseworks__Letter_Of_Credit__c),null, 
-IF(leaseworks__Status_F__c == &apos;Active&apos;,leaseworks__Letter_Of_Credit__r.leaseworks__Start_Date__c,
-IF(leaseworks__Status_F__c == &apos;Pending&apos;,leaseworks__Letter_Of_Credit__r.leaseworks__Start_Date__c,
-IF(leaseworks__Status_F__c == &apos;Inactive&apos;,leaseworks__Letter_Of_Credit__r.leaseworks__Expiry_Date__c,TODAY()))))
-,&apos;Payment&apos;, IF(ISBLANK( leaseworks__Payments_Credits__c ),null, leaseworks__Payments_Credits__r.leaseworks__Payment_Date__c)
-,&apos;Offset&apos;, IF(ISBLANK( leaseworks__Payments_Credits__c ),null, leaseworks__Payments_Credits__r.leaseworks__Payment_Date__c)
-,&apos;Payout&apos;, IF(ISBLANK( leaseworks__Payouts__c ), null, leaseworks__Payouts__r.leaseworks__Payout_Date__c)
-,&apos;LoC DrawDown&apos;, IF(ISBLANK( leaseworks__LOC_Drawdown_rec__c ),null,leaseworks__LOC_Drawdown_rec__r.leaseworks__Approved_On__c)
-,&apos;Manual Fund Transfer&apos;, IF(ISBLANK(leaseworks__Related_to_Manual_SD__c), null, leaseworks__Related_to_Manual_SD__r.leaseworks__Manual_SD_transfer_Date__c)
+,&#39;Invoice&#39;, IF(ISBLANK(leaseworks__Invoice__c),null, leaseworks__Invoice__r.leaseworks__Invoice_Date__c)
+,&#39;Payable&#39;, IF(ISBLANK(leaseworks__Payable__c),null, leaseworks__Payable__r.leaseworks__Payable_Date__c)
+,&#39;Letter Of Credit&#39;, IF(ISBLANK(leaseworks__Letter_Of_Credit__c),null, 
+IF(leaseworks__Status_F__c == &#39;Active&#39;,leaseworks__Letter_Of_Credit__r.leaseworks__Start_Date__c,
+IF(leaseworks__Status_F__c == &#39;Pending&#39;,leaseworks__Letter_Of_Credit__r.leaseworks__Start_Date__c,
+IF(leaseworks__Status_F__c == &#39;Inactive&#39;,leaseworks__Letter_Of_Credit__r.leaseworks__Expiry_Date__c,TODAY()))))
+,&#39;Payment&#39;, IF(ISBLANK( leaseworks__Payments_Credits__c ),null, leaseworks__Payments_Credits__r.leaseworks__Payment_Date__c)
+,&#39;Offset&#39;, IF(ISBLANK( leaseworks__Payments_Credits__c ),null, leaseworks__Payments_Credits__r.leaseworks__Payment_Date__c)
+,&#39;Payout&#39;, IF(ISBLANK( leaseworks__Payouts__c ), null, leaseworks__Payouts__r.leaseworks__Payout_Date__c)
+,&#39;LoC DrawDown&#39;, IF(ISBLANK( leaseworks__LOC_Drawdown_rec__c ),null,leaseworks__LOC_Drawdown_rec__r.leaseworks__Approved_On__c)
+,&#39;Manual Fund Transfer&#39;, IF(ISBLANK(leaseworks__Related_to_Manual_SD__c), null, leaseworks__Related_to_Manual_SD__r.leaseworks__Manual_SD_transfer_Date__c)
 ,null)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Transaction Date</label>

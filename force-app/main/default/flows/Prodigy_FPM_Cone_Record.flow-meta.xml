@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <apiVersion>61.0</apiVersion>
+    <apiVersion>65.0</apiVersion>
     <assignments>
         <name>assign_id</name>
         <label>assign id</label>
-        <locationX>270</locationX>
-        <locationY>890</locationY>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
         <assignmentItems>
             <assignToReference>IDDuplicate</assignToReference>
             <operator>Assign</operator>
@@ -20,8 +20,8 @@
     <assignments>
         <name>Assign_record_id</name>
         <label>Assign record id</label>
-        <locationX>182</locationX>
-        <locationY>458</locationY>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
         <assignmentItems>
             <assignToReference>recordId</assignToReference>
             <operator>Assign</operator>
@@ -36,77 +36,117 @@
     <assignments>
         <name>Assign_Record_Type</name>
         <label>Assign Record Type</label>
-        <locationX>182</locationX>
-        <locationY>566</locationY>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
         <assignmentItems>
-            <assignToReference>get_record_of_Technical_Project.RecordTypeId</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <stringValue>012aA000001Ev97QAC</stringValue>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>get_record_of_Technical_Project.leaseworks__Asset__c</assignToReference>
+            <assignToReference>varFPMToCreate.leaseworks__Asset__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>Assigned_Asset.recordId</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>get_record_of_Technical_Project.Project_Template__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>recordId</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>get_record_of_Technical_Project.Assembly_local__c</assignToReference>
+            <assignToReference>varFPMToCreate.Assembly_local__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>Assembly.recordId</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>get_record_of_Technical_Project.OwnerId</assignToReference>
+            <assignToReference>varFPMToCreate.OwnerId</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>$User.Id</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>get_record_of_Technical_Project.CreatedDate</assignToReference>
+            <assignToReference>varFPMToCreate.CreatedDate</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>$Flow.CurrentDateTime</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>get_record_of_Technical_Project.CreatedById</assignToReference>
+            <assignToReference>varFPMToCreate.CreatedById</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>$User.Id</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>get_record_of_Technical_Project.LastModifiedDate</assignToReference>
+            <assignToReference>varFPMToCreate.LastModifiedDate</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>$Flow.CurrentDateTime</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>get_record_of_Technical_Project.leaseworks__Lease_Name__c</assignToReference>
+            <assignToReference>varFPMToCreate.leaseworks__Lease_Name__c</assignToReference>
             <operator>Assign</operator>
+            <value>
+                <elementReference>Lease.recordId</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varFPMToCreate.leaseworks__Project_Start_Date__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Start_Date</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varFPMToCreate.leaseworks__End_Date__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>End_Date</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varFPMToCreate.Name</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>f_Nameupdate</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varFPMToCreate.Project_Template__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varFPMToCreate.pro_Project_Manager_Days_Budgeted__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <numberValue>0.0</numberValue>
+            </value>
         </assignmentItems>
         <connector>
             <targetReference>get_duplicates</targetReference>
         </connector>
     </assignments>
+    <assignments>
+        <name>Assign_Record_Type_ID</name>
+        <label>Assign Record Type ID</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>varFPMToCreate.RecordTypeId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Records_7.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Clone_Record</targetReference>
+        </connector>
+    </assignments>
     <decisions>
         <name>Check_duplicate_Record</name>
         <label>Check duplicate Record</label>
-        <locationX>182</locationX>
-        <locationY>1082</locationY>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
         <defaultConnector>
             <targetReference>Create_Technical_project</targetReference>
         </defaultConnector>
@@ -127,7 +167,31 @@
             <label>Duplicate Found</label>
         </rules>
     </decisions>
-    <description>New fields added to the screen.</description>
+    <decisions>
+        <name>Check_Record_Type</name>
+        <label>Check Record Type</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Final_Screen</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Others</defaultConnectorLabel>
+        <rules>
+            <name>Redelivery_Project</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_FPM_Template.RecordType.DeveloperName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Technical_Project</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Project_Consultants</targetReference>
+            </connector>
+            <label>Redelivery Project</label>
+        </rules>
+    </decisions>
     <dynamicChoiceSets>
         <name>FPMtemplets</name>
         <dataType>String</dataType>
@@ -177,57 +241,65 @@
     <dynamicChoiceSets>
         <name>ProjectStatus</name>
         <dataType>Picklist</dataType>
-        <displayField xsi:nil="true"/>
-        <object xsi:nil="true"/>
+        <displayField xsi:nil="true" />
+        <object xsi:nil="true" />
         <picklistField>leaseworks__Project_Status__c</picklistField>
         <picklistObject>leaseworks__Technical_Project__c</picklistObject>
     </dynamicChoiceSets>
     <dynamicChoiceSets>
         <name>ProjectType</name>
         <dataType>Picklist</dataType>
-        <displayField xsi:nil="true"/>
-        <object xsi:nil="true"/>
+        <displayField xsi:nil="true" />
+        <object xsi:nil="true" />
         <picklistField>leaseworks__Project_Type__c</picklistField>
+        <picklistObject>leaseworks__Technical_Project__c</picklistObject>
+    </dynamicChoiceSets>
+    <dynamicChoiceSets>
+        <name>Stage</name>
+        <dataType>Picklist</dataType>
+        <displayField xsi:nil="true" />
+        <object xsi:nil="true" />
+        <picklistField>Project_Stage__c</picklistField>
         <picklistObject>leaseworks__Technical_Project__c</picklistObject>
     </dynamicChoiceSets>
     <environments>Default</environments>
     <formulas>
-        <name>Nameupdate</name>
+        <name>f_FpmRecordTypeID</name>
         <dataType>String</dataType>
         <expression>IF(
-    AND(
-        NOT(ISBLANK({!get_record_of_Technical_Project.leaseworks__Asset__r.leaseworks__MSN_Number__c})),
-        NOT(ISBLANK({!get_record_of_Technical_Project.Assembly_local__r.leaseworks__Serial_Number__c}))
-    ),
-    {!get_record_of_Technical_Project.leaseworks__Asset__r.leaseworks__MSN_Number__c}
-  
-    &amp; &quot; - &quot; &amp;
-    TEXT({!get_record_of_Technical_Project.leaseworks__Project_Type__c}),
-
-    IF(
-        NOT(ISBLANK({!get_record_of_Technical_Project.leaseworks__Asset__r.leaseworks__MSN_Number__c})),
-        {!get_record_of_Technical_Project.leaseworks__Asset__r.leaseworks__MSN_Number__c}
-        &amp; &quot; - &quot; &amp;
-        TEXT({!get_record_of_Technical_Project.leaseworks__Project_Type__c}),
-
-        IF(
-            NOT(ISBLANK({!get_record_of_Technical_Project.Assembly_local__r.leaseworks__Serial_Number__c})),
-            {!get_record_of_Technical_Project.Assembly_local__r.leaseworks__Serial_Number__c}
-            &amp; &quot; - &quot; &amp;
-            TEXT({!get_record_of_Technical_Project.leaseworks__Project_Type__c}),
-
-            TEXT({!get_record_of_Technical_Project.leaseworks__Project_Type__c})
-        )
-    )
+        {!Get_FPM_Template.RecordType.DeveloperName} = &quot;Fleet_Maintenance_Power_Plant&quot;,
+      
+    &quot;Fleet_Maintenance_Power_Plant_Project&quot;,
+    &quot;Technical_Project&quot;
 )</expression>
+    </formulas>
+    <formulas>
+        <name>f_Nameupdate</name>
+        <dataType>String</dataType>
+        <expression>IF(
+    NOT(ISBLANK({!varFPMToCreate.leaseworks__Asset__r.leaseworks__MSN_Number__c})),
+    {!varFPMToCreate.leaseworks__Asset__r.leaseworks__MSN_Number__c},
+    {!varFPMToCreate.Assembly_local__r.leaseworks__Serial_Number__c}
+)
+&amp;
+IF(
+    OR(
+        NOT(ISBLANK({!varFPMToCreate.leaseworks__Asset__r.leaseworks__MSN_Number__c})),
+        NOT(ISBLANK({!varFPMToCreate.Assembly_local__r.leaseworks__Serial_Number__c}))
+    ),
+    &quot; - &quot;,
+    &quot;&quot;
+)
+&amp;
+TEXT({!varFPMToCreate.leaseworks__Project_Type__c})</expression>
     </formulas>
     <interviewLabel>Prodigy FPM Cone Record {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Prodigy FPM Clone Record</label>
     <loops>
         <name>assign_duplicate_id</name>
         <label>assign duplicate id</label>
-        <locationX>182</locationX>
-        <locationY>782</locationY>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
         <collectionReference>get_duplicates</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
@@ -259,8 +331,8 @@
     <recordCreates>
         <name>Create_Check_List_Items</name>
         <label>Create Check List Items</label>
-        <locationX>182</locationX>
-        <locationY>1814</locationY>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
         <connector>
             <targetReference>get_related_mods</targetReference>
         </connector>
@@ -269,18 +341,18 @@
     <recordCreates>
         <name>Create_Legal_Items</name>
         <label>Create Legal Items</label>
-        <locationX>182</locationX>
-        <locationY>2462</locationY>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
         <connector>
-            <targetReference>Update_Name</targetReference>
+            <targetReference>Check_Record_Type</targetReference>
         </connector>
         <inputReference>Remap_Legal_Items</inputReference>
     </recordCreates>
     <recordCreates>
         <name>Create_Mods_Items</name>
         <label>Create Mods Items</label>
-        <locationX>182</locationX>
-        <locationY>2138</locationY>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
         <connector>
             <targetReference>get_related_Legal</targetReference>
         </connector>
@@ -289,18 +361,18 @@
     <recordCreates>
         <name>Create_Technical_project</name>
         <label>Create Technical project</label>
-        <locationX>182</locationX>
-        <locationY>1382</locationY>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
         <connector>
             <targetReference>get_related_checklist_items</targetReference>
         </connector>
-        <inputReference>get_record_of_Technical_Project</inputReference>
+        <inputReference>varFPMToCreate</inputReference>
     </recordCreates>
     <recordLookups>
         <name>get_duplicates</name>
         <label>get duplicates</label>
-        <locationX>182</locationX>
-        <locationY>674</locationY>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>assign_duplicate_id</targetReference>
@@ -310,21 +382,21 @@
             <field>RecordTypeId</field>
             <operator>EqualTo</operator>
             <value>
-                <elementReference>get_record_of_Technical_Project.RecordTypeId</elementReference>
+                <elementReference>Get_FPM_Template.RecordTypeId</elementReference>
             </value>
         </filters>
         <filters>
             <field>leaseworks__Asset__c</field>
             <operator>EqualTo</operator>
             <value>
-                <elementReference>get_record_of_Technical_Project.leaseworks__Asset__c</elementReference>
+                <elementReference>Get_FPM_Template.leaseworks__Asset__c</elementReference>
             </value>
         </filters>
         <filters>
             <field>leaseworks__Lease_Name__c</field>
             <operator>EqualTo</operator>
             <value>
-                <elementReference>get_record_of_Technical_Project.leaseworks__Lease_Name__c</elementReference>
+                <elementReference>Get_FPM_Template.leaseworks__Lease_Name__c</elementReference>
             </value>
         </filters>
         <filters>
@@ -339,13 +411,13 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
-        <name>get_record_of_Technical_Project</name>
-        <label>get_record_of_Technical_Project</label>
-        <locationX>182</locationX>
-        <locationY>350</locationY>
+        <name>Get_FPM_Template</name>
+        <label>Get FPM Template</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Assign_record_id</targetReference>
+            <targetReference>Get_Records_7</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -360,13 +432,34 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
-        <name>get_related_checklist_items</name>
-        <label>get related checklist items</label>
-        <locationX>182</locationX>
-        <locationY>1490</locationY>
+        <name>Get_Records_7</name>
+        <label>Get Record Type for new FPM</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Get_RT_of_RP_Checklist_Item</targetReference>
+            <targetReference>Assign_Record_Type_ID</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>DeveloperName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>f_FpmRecordTypeID</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>RecordType</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>get_related_checklist_items</name>
+        <label>get related checklist items</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Remap_CheckList_Items</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -383,8 +476,8 @@
     <recordLookups>
         <name>get_related_Legal</name>
         <label>get related Legal</label>
-        <locationX>182</locationX>
-        <locationY>2246</locationY>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Remap_Legal_Items</targetReference>
@@ -404,8 +497,8 @@
     <recordLookups>
         <name>get_related_mods</name>
         <label>get related mods</label>
-        <locationX>182</locationX>
-        <locationY>1922</locationY>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Remap_Mods_Items</targetReference>
@@ -422,70 +515,18 @@
         <object>leaseworks__Mods__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
-    <recordLookups>
-        <name>Get_RT_of_RP_Checklist_Item</name>
-        <label>Get RT of RP Checklist Item</label>
-        <locationX>182</locationX>
-        <locationY>1598</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Remap_CheckList_Items</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>SobjectType</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>leaseworks__Technical_Project_Check__c</stringValue>
-            </value>
-        </filters>
-        <filters>
-            <field>Name</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>RP Checklist Item</stringValue>
-            </value>
-        </filters>
-        <getFirstRecordOnly>true</getFirstRecordOnly>
-        <object>RecordType</object>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </recordLookups>
-    <recordUpdates>
-        <name>Update_Name</name>
-        <label>Update Name</label>
-        <locationX>182</locationX>
-        <locationY>2570</locationY>
-        <connector>
-            <targetReference>Final_Screen</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>Id</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>get_record_of_Technical_Project.Id</elementReference>
-            </value>
-        </filters>
-        <inputAssignments>
-            <field>Name</field>
-            <value>
-                <elementReference>Nameupdate</elementReference>
-            </value>
-        </inputAssignments>
-        <object>leaseworks__Technical_Project__c</object>
-    </recordUpdates>
     <runInMode>SystemModeWithoutSharing</runInMode>
     <screens>
         <name>Clone_Record</name>
         <label>Clone Record</label>
-        <locationX>182</locationX>
-        <locationY>242</locationY>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <backButtonLabel>Back</backButtonLabel>
         <connector>
-            <targetReference>get_record_of_Technical_Project</targetReference>
+            <targetReference>Assign_record_id</targetReference>
         </connector>
         <fields>
             <name>Clone_Record_Section1</name>
@@ -496,7 +537,7 @@
                 <inputParameters>
                     <name>width</name>
                     <value>
-                        <stringValue>4</stringValue>
+                        <stringValue>2</stringValue>
                     </value>
                 </inputParameters>
                 <isRequired>false</isRequired>
@@ -537,79 +578,20 @@
                     <storeOutputAutomatically>true</storeOutputAutomatically>
                 </fields>
                 <fields>
-                    <name>Assembly</name>
-                    <extensionName>flowruntime:lookup</extensionName>
-                    <fieldType>ComponentInstance</fieldType>
-                    <inputParameters>
-                        <name>fieldApiName</name>
-                        <value>
-                            <stringValue>Assembly_local__c</stringValue>
-                        </value>
-                    </inputParameters>
-                    <inputParameters>
-                        <name>label</name>
-                        <value>
-                            <stringValue>Assembly</stringValue>
-                        </value>
-                    </inputParameters>
-                    <inputParameters>
-                        <name>objectApiName</name>
-                        <value>
-                            <stringValue>leaseworks__Technical_Project__c</stringValue>
-                        </value>
-                    </inputParameters>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-                    <isRequired>true</isRequired>
-                    <storeOutputAutomatically>true</storeOutputAutomatically>
+                    <fieldType>ObjectProvided</fieldType>
+                    <isRequired>false</isRequired>
+                    <objectFieldReference>varFPMToCreate.leaseworks__Project_Type__c</objectFieldReference>
                 </fields>
                 <fields>
-                    <name>Project_Type</name>
-                    <choiceReferences>ProjectType</choiceReferences>
-                    <dataType>String</dataType>
-                    <fieldText>Project Type</fieldText>
-                    <fieldType>DropdownBox</fieldType>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-                    <isRequired>true</isRequired>
+                    <fieldType>ObjectProvided</fieldType>
+                    <isRequired>false</isRequired>
+                    <objectFieldReference>varFPMToCreate.Project_Stage__c</objectFieldReference>
                 </fields>
                 <fields>
-                    <name>Location</name>
-                    <extensionName>flowruntime:lookup</extensionName>
-                    <fieldType>ComponentInstance</fieldType>
-                    <inputParameters>
-                        <name>fieldApiName</name>
-                        <value>
-                            <stringValue>leaseworks__Project_Country__c</stringValue>
-                        </value>
-                    </inputParameters>
-                    <inputParameters>
-                        <name>label</name>
-                        <value>
-                            <stringValue>Project Location</stringValue>
-                        </value>
-                    </inputParameters>
-                    <inputParameters>
-                        <name>objectApiName</name>
-                        <value>
-                            <stringValue>leaseworks__Technical_Project__c</stringValue>
-                        </value>
-                    </inputParameters>
-                    <inputParameters>
-                        <name>maxValues</name>
-                        <value>
-                            <numberValue>1.0</numberValue>
-                        </value>
-                    </inputParameters>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-                    <isRequired>true</isRequired>
-                    <storeOutputAutomatically>true</storeOutputAutomatically>
-                </fields>
-                <fields>
-                    <name>Project_Status</name>
-                    <choiceReferences>ProjectStatus</choiceReferences>
-                    <dataType>String</dataType>
-                    <fieldText>Project Status</fieldText>
-                    <fieldType>DropdownBox</fieldType>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <name>Start_Date</name>
+                    <dataType>Date</dataType>
+                    <fieldText>Start Date</fieldText>
+                    <fieldType>InputField</fieldType>
                     <isRequired>false</isRequired>
                 </fields>
                 <fields>
@@ -638,22 +620,6 @@
                     <isRequired>true</isRequired>
                     <storeOutputAutomatically>true</storeOutputAutomatically>
                 </fields>
-                <fields>
-                    <name>Start_Date</name>
-                    <dataType>Date</dataType>
-                    <fieldText>Start Date</fieldText>
-                    <fieldType>InputField</fieldType>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-                    <isRequired>false</isRequired>
-                </fields>
-                <fields>
-                    <name>End_Date</name>
-                    <dataType>Date</dataType>
-                    <fieldText>End Date</fieldText>
-                    <fieldType>InputField</fieldType>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
-                    <isRequired>false</isRequired>
-                </fields>
                 <inputParameters>
                     <name>width</name>
                     <value>
@@ -665,10 +631,88 @@
             <fields>
                 <name>Clone_Record_Section1_Column3</name>
                 <fieldType>Region</fieldType>
+                <fields>
+                    <name>Assembly</name>
+                    <extensionName>flowruntime:lookup</extensionName>
+                    <fieldType>ComponentInstance</fieldType>
+                    <inputParameters>
+                        <name>fieldApiName</name>
+                        <value>
+                            <stringValue>Assembly_local__c</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>label</name>
+                        <value>
+                            <stringValue>Assembly</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>objectApiName</name>
+                        <value>
+                            <stringValue>leaseworks__Technical_Project__c</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>true</isRequired>
+                    <storeOutputAutomatically>true</storeOutputAutomatically>
+                </fields>
+                <fields>
+                    <name>Location</name>
+                    <extensionName>flowruntime:lookup</extensionName>
+                    <fieldType>ComponentInstance</fieldType>
+                    <inputParameters>
+                        <name>label</name>
+                        <value>
+                            <stringValue>Project Location</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>fieldApiName</name>
+                        <value>
+                            <stringValue>leaseworks__Project_Country__c</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>objectApiName</name>
+                        <value>
+                            <stringValue>leaseworks__Technical_Project__c</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>true</isRequired>
+                    <storeOutputAutomatically>true</storeOutputAutomatically>
+                </fields>
+                <fields>
+                    <name>Project_Status</name>
+                    <choiceReferences>ProjectStatus</choiceReferences>
+                    <dataType>String</dataType>
+                    <fieldText>Project Status</fieldText>
+                    <fieldType>DropdownBox</fieldType>
+                    <isRequired>false</isRequired>
+                </fields>
+                <fields>
+                    <name>End_Date</name>
+                    <dataType>Date</dataType>
+                    <fieldText>End Date</fieldText>
+                    <fieldType>InputField</fieldType>
+                    <isRequired>false</isRequired>
+                </fields>
                 <inputParameters>
                     <name>width</name>
                     <value>
                         <stringValue>4</stringValue>
+                    </value>
+                </inputParameters>
+                <isRequired>false</isRequired>
+            </fields>
+            <fields>
+                <name>Clone_Record_Section1_Column4</name>
+                <fieldType>Region</fieldType>
+                <inputParameters>
+                    <name>width</name>
+                    <value>
+                        <stringValue>2</stringValue>
                     </value>
                 </inputParameters>
                 <isRequired>false</isRequired>
@@ -683,14 +727,14 @@
     <screens>
         <name>Final_Screen</name>
         <label>Final Screen</label>
-        <locationX>182</locationX>
-        <locationY>2678</locationY>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <fields>
             <name>Text_03</name>
-            <fieldText>&lt;p&gt;Technical Project &lt;a href=&quot;/{!get_record_of_Technical_Project.Id}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;Project Name&lt;/a&gt; successfully created.&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;Technical Project &lt;a href=&quot;/{!Get_FPM_Template.Id}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;Project Name&lt;/a&gt; successfully created.&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
@@ -706,7 +750,7 @@
             <inputParameters>
                 <name>recordId</name>
                 <value>
-                    <elementReference>get_record_of_Technical_Project.Id</elementReference>
+                    <elementReference>varFPMToCreate.Id</elementReference>
                 </value>
             </inputParameters>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
@@ -720,8 +764,8 @@
     <screens>
         <name>Screen03</name>
         <label>Screen03</label>
-        <locationX>50</locationX>
-        <locationY>1190</locationY>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -789,13 +833,13 @@
     <screens>
         <name>SelectTemplate</name>
         <label>Select Template</label>
-        <locationX>182</locationX>
-        <locationY>134</locationY>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <connector>
-            <targetReference>Clone_Record</targetReference>
+            <targetReference>Get_FPM_Template</targetReference>
         </connector>
         <fields>
             <name>SelectTemplate_Section1</name>
@@ -820,7 +864,6 @@
                     <dataType>String</dataType>
                     <fieldText>Select template</fieldText>
                     <fieldType>RadioButtons</fieldType>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                 </fields>
                 <inputParameters>
@@ -873,376 +916,29 @@
         <stageOrder>1</stageOrder>
     </stages>
     <start>
-        <locationX>56</locationX>
+        <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>SelectTemplate</targetReference>
         </connector>
     </start>
-    <status>Draft</status>
-    <transforms>
-        <name>Remap_CheckList_Items</name>
-        <label>Remap CheckList Items</label>
-        <locationX>182</locationX>
-        <locationY>1706</locationY>
+    <status>Active</status>
+    <subflows>
+        <name>Project_Consultants</name>
+        <label>Project Consultants</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
         <connector>
-            <targetReference>Create_Check_List_Items</targetReference>
+            <targetReference>Final_Screen</targetReference>
         </connector>
-        <dataType>SObject</dataType>
-        <isCollection>true</isCollection>
-        <objectType>leaseworks__Technical_Project_Check__c</objectType>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <outputFieldApiName>Assigned_To__c</outputFieldApiName>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>get_related_checklist_items[$EachItem].Assigned_To__c</elementReference>
-                </value>
-            </transformValueActions>
-            <transformValueActions>
-                <outputFieldApiName>Complete__c</outputFieldApiName>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>get_related_checklist_items[$EachItem].Complete__c</elementReference>
-                </value>
-            </transformValueActions>
-            <transformValueActions>
-                <outputFieldApiName>CreatedById</outputFieldApiName>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>get_related_checklist_items[$EachItem].CreatedById</elementReference>
-                </value>
-            </transformValueActions>
-            <transformValueActions>
-                <outputFieldApiName>CreatedDate</outputFieldApiName>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>get_related_checklist_items[$EachItem].CreatedDate</elementReference>
-                </value>
-            </transformValueActions>
-            <transformValueActions>
-                <outputFieldApiName>Day_Prior__c</outputFieldApiName>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>get_related_checklist_items[$EachItem].Day_Prior__c</elementReference>
-                </value>
-            </transformValueActions>
-            <transformValueActions>
-                <outputFieldApiName>Department__c</outputFieldApiName>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>get_related_checklist_items[$EachItem].Department__c</elementReference>
-                </value>
-            </transformValueActions>
-            <transformValueActions>
-                <outputFieldApiName>Duration_Days__c</outputFieldApiName>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>get_related_checklist_items[$EachItem].Duration_Days__c</elementReference>
-                </value>
-            </transformValueActions>
-            <transformValueActions>
-                <outputFieldApiName>Actual_Finish_Date__c</outputFieldApiName>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>get_related_checklist_items[$EachItem].Actual_Finish_Date__c</elementReference>
-                </value>
-            </transformValueActions>
-            <transformValueActions>
-                <outputFieldApiName>leaseworks__Technical_Project__c</outputFieldApiName>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>get_record_of_Technical_Project.Id</elementReference>
-                </value>
-            </transformValueActions>
-            <transformValueActions>
-                <outputFieldApiName>leaseworks__Assigned_Role__c</outputFieldApiName>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>get_related_checklist_items[$EachItem].leaseworks__Assigned_Role__c</elementReference>
-                </value>
-            </transformValueActions>
-            <transformValueActions>
-                <outputFieldApiName>leaseworks__Comments__c</outputFieldApiName>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>get_related_checklist_items[$EachItem].leaseworks__Comments__c</elementReference>
-                </value>
-            </transformValueActions>
-            <transformValueActions>
-                <outputFieldApiName>leaseworks__Date__c</outputFieldApiName>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>get_related_checklist_items[$EachItem].leaseworks__Date__c</elementReference>
-                </value>
-            </transformValueActions>
-            <transformValueActions>
-                <outputFieldApiName>leaseworks__External_Item_URL__c</outputFieldApiName>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>get_related_checklist_items[$EachItem].leaseworks__External_Item_URL__c</elementReference>
-                </value>
-            </transformValueActions>
-            <transformValueActions>
-                <outputFieldApiName>leaseworks__Lease_Section_Reference__c</outputFieldApiName>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>get_related_checklist_items[$EachItem].leaseworks__Lease_Section_Reference__c</elementReference>
-                </value>
-            </transformValueActions>
-            <transformValueActions>
-                <outputFieldApiName>leaseworks__Project_Phase__c</outputFieldApiName>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>get_related_checklist_items[$EachItem].leaseworks__Project_Phase__c</elementReference>
-                </value>
-            </transformValueActions>
-            <transformValueActions>
-                <outputFieldApiName>leaseworks__Responsible_Party__c</outputFieldApiName>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>get_related_checklist_items[$EachItem].leaseworks__Responsible_Party__c</elementReference>
-                </value>
-            </transformValueActions>
-            <transformValueActions>
-                <outputFieldApiName>leaseworks__Reviewed__c</outputFieldApiName>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>get_related_checklist_items[$EachItem].leaseworks__Reviewed__c</elementReference>
-                </value>
-            </transformValueActions>
-            <transformValueActions>
-                <outputFieldApiName>leaseworks__Status__c</outputFieldApiName>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>get_related_checklist_items[$EachItem].leaseworks__Status__c</elementReference>
-                </value>
-            </transformValueActions>
-            <transformValueActions>
-                <outputFieldApiName>Name</outputFieldApiName>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>get_related_checklist_items[$EachItem].Name</elementReference>
-                </value>
-            </transformValueActions>
-            <transformValueActions>
-                <outputFieldApiName>Predecessors__c</outputFieldApiName>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>get_related_checklist_items[$EachItem].Predecessors__c</elementReference>
-                </value>
-            </transformValueActions>
-            <transformValueActions>
-                <outputFieldApiName>Duration_Days_N__c</outputFieldApiName>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>get_related_checklist_items[$EachItem].Duration_Days_N__c</elementReference>
-                </value>
-            </transformValueActions>
-            <transformValueActions>
-                <outputFieldApiName>RecordTypeId</outputFieldApiName>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>Get_RT_of_RP_Checklist_Item.Id</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
-    <transforms>
-        <name>Remap_Legal_Items</name>
-        <label>Remap Legal Items</label>
-        <locationX>182</locationX>
-        <locationY>2354</locationY>
-        <connector>
-            <targetReference>Create_Legal_Items</targetReference>
-        </connector>
-        <dataType>SObject</dataType>
-        <isCollection>true</isCollection>
-        <objectType>Legal__c</objectType>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <outputFieldApiName>Comments__c</outputFieldApiName>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>get_related_Legal[$EachItem].Comments__c</elementReference>
-                </value>
-            </transformValueActions>
-            <transformValueActions>
-                <outputFieldApiName>Name</outputFieldApiName>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>get_related_Legal[$EachItem].Name</elementReference>
-                </value>
-            </transformValueActions>
-            <transformValueActions>
-                <outputFieldApiName>Status__c</outputFieldApiName>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>get_related_Legal[$EachItem].Status__c</elementReference>
-                </value>
-            </transformValueActions>
-            <transformValueActions>
-                <outputFieldApiName>Technical_Project__c</outputFieldApiName>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>get_record_of_Technical_Project.Id</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
-    <transforms>
-        <name>Remap_Mods_Items</name>
-        <label>Remap Mods Items</label>
-        <locationX>182</locationX>
-        <locationY>2030</locationY>
-        <connector>
-            <targetReference>Create_Mods_Items</targetReference>
-        </connector>
-        <dataType>SObject</dataType>
-        <isCollection>true</isCollection>
-        <objectType>leaseworks__Mods__c</objectType>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <outputFieldApiName>Category_Local__c</outputFieldApiName>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>get_related_mods[$EachItem].Category_Local__c</elementReference>
-                </value>
-            </transformValueActions>
-            <transformValueActions>
-                <outputFieldApiName>Comments__c</outputFieldApiName>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>get_related_mods[$EachItem].Comments__c</elementReference>
-                </value>
-            </transformValueActions>
-            <transformValueActions>
-                <outputFieldApiName>Est_Engineering_Local__c</outputFieldApiName>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>get_related_mods[$EachItem].Est_Engineering_Local__c</elementReference>
-                </value>
-            </transformValueActions>
-            <transformValueActions>
-                <outputFieldApiName>Estimated_Delivery_Date__c</outputFieldApiName>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>get_related_mods[$EachItem].Estimated_Delivery_Date__c</elementReference>
-                </value>
-            </transformValueActions>
-            <transformValueActions>
-                <outputFieldApiName>LastActivityDate</outputFieldApiName>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>get_related_mods[$EachItem].LastActivityDate</elementReference>
-                </value>
-            </transformValueActions>
-            <transformValueActions>
-                <outputFieldApiName>Leadtime_Number_of_Months__c</outputFieldApiName>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>get_related_mods[$EachItem].Leadtime_Number_of_Months__c</elementReference>
-                </value>
-            </transformValueActions>
-            <transformValueActions>
-                <outputFieldApiName>leaseworks__Cost_Act__c</outputFieldApiName>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>get_related_mods[$EachItem].leaseworks__Cost_Act__c</elementReference>
-                </value>
-            </transformValueActions>
-            <transformValueActions>
-                <outputFieldApiName>leaseworks__Cost_Estimate__c</outputFieldApiName>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>get_related_mods[$EachItem].leaseworks__Cost_Estimate__c</elementReference>
-                </value>
-            </transformValueActions>
-            <transformValueActions>
-                <outputFieldApiName>leaseworks__Description__c</outputFieldApiName>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>get_related_mods[$EachItem].leaseworks__Description__c</elementReference>
-                </value>
-            </transformValueActions>
-            <transformValueActions>
-                <outputFieldApiName>leaseworks__Kit_Delivery_Date__c</outputFieldApiName>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>get_related_mods[$EachItem].leaseworks__Kit_Delivery_Date__c</elementReference>
-                </value>
-            </transformValueActions>
-            <transformValueActions>
-                <outputFieldApiName>leaseworks__Problem__c</outputFieldApiName>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>get_related_mods[$EachItem].leaseworks__Problem__c</elementReference>
-                </value>
-            </transformValueActions>
-            <transformValueActions>
-                <outputFieldApiName>leaseworks__Status__c</outputFieldApiName>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>get_related_mods[$EachItem].leaseworks__Status__c</elementReference>
-                </value>
-            </transformValueActions>
-            <transformValueActions>
-                <outputFieldApiName>leaseworks__Workscope_Category__c</outputFieldApiName>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>get_related_mods[$EachItem].leaseworks__Workscope_Category__c</elementReference>
-                </value>
-            </transformValueActions>
-            <transformValueActions>
-                <outputFieldApiName>Name</outputFieldApiName>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>get_related_mods[$EachItem].Name</elementReference>
-                </value>
-            </transformValueActions>
-            <transformValueActions>
-                <outputFieldApiName>PO_Status__c</outputFieldApiName>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>get_related_mods[$EachItem].PO_Status__c</elementReference>
-                </value>
-            </transformValueActions>
-            <transformValueActions>
-                <outputFieldApiName>Pre_or_Post_Delivery_Local__c</outputFieldApiName>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>get_related_mods[$EachItem].Pre_or_Post_Delivery_Local__c</elementReference>
-                </value>
-            </transformValueActions>
-            <transformValueActions>
-                <outputFieldApiName>Purchase_Order__c</outputFieldApiName>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>get_related_mods[$EachItem].Purchase_Order__c</elementReference>
-                </value>
-            </transformValueActions>
-            <transformValueActions>
-                <outputFieldApiName>ROM_Price_Local__c</outputFieldApiName>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>get_related_mods[$EachItem].ROM_Price_Local__c</elementReference>
-                </value>
-            </transformValueActions>
-            <transformValueActions>
-                <outputFieldApiName>leaseworks__Technical_Project__c</outputFieldApiName>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>get_record_of_Technical_Project.Id</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
+        <flowName>Prodigy_Create_Project_Consultant</flowName>
+        <inputAssignments>
+            <name>recordId</name>
+            <value>
+                <elementReference>varFPMToCreate</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
     <variables>
         <name>IDDuplicate</name>
         <dataType>String</dataType>
@@ -1256,5 +952,13 @@
         <isCollection>false</isCollection>
         <isInput>true</isInput>
         <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>varFPMToCreate</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>leaseworks__Technical_Project__c</objectType>
     </variables>
 </Flow>

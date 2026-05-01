@@ -44,9 +44,6 @@
                 <stringValue>&lt;p&gt;The flow Prodigy - Auto - Manage Bank Account Permission Assignments&amp;nbsp;ran into an error. See the details:&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;{!$Flow.FaultMessage}&lt;/p&gt;</stringValue>
             </value>
         </inputParameters>
-        <nameSegment>emailSimple</nameSegment>
-        <offset>0</offset>
-        <versionString>1.0.1</versionString>
     </actionCalls>
     <apiVersion>64.0</apiVersion>
     <assignments>
@@ -214,7 +211,7 @@
 
 This flow makes sure that active users on the profiles Back Office External, Lease Management, System Administrator get assigned to the Bank Account Full Access permission set. 
 
-User&apos;s who are updated to fall outside of the above parameters get removed from the permission set assignments.</description>
+User&#39;s who are updated to fall outside of the above parameters get removed from the permission set assignments.</description>
     <environments>Default</environments>
     <interviewLabel>Prodigy - Auto - Manage Bank Account Permission Assignments {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Prodigy - Auto - Manage Bank Account Permission Assignments</label>
@@ -336,27 +333,6 @@ User&apos;s who are updated to fall outside of the above parameters get removed 
         </connector>
     </start>
     <status>Active</status>
-    <transforms>
-        <name>Create_Collection_Of_User_Ids_Assigned_To_Permission_Set</name>
-        <label>Create Collection Of User Ids Assigned To Permission Set</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Add_or_Remove_User_From_Permission_Set</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>Get_Permission_Set_Assignees[$EachItem].AssigneeId</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
     <variables>
         <description>The User whose permissions need to be evaluated</description>
         <name>varTriggeringUser</name>

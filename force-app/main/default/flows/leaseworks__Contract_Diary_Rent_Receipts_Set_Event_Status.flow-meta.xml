@@ -1,28 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>64.0</apiVersion>
-    <customErrors>
-        <description>An error occurred while updating the Contract Diary. Please contact your system administrator for assistance.</description>
-        <name>Copy_1_of_Default_Contract_Diary_Error_Message</name>
-        <label>Default Contract Diary Error Message</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <customErrorMessages>
-            <errorMessage>An error occurred while updating the Contract Diary. Please contact your system administrator for assistance.</errorMessage>
-            <isFieldError>false</isFieldError>
-        </customErrorMessages>
-    </customErrors>
-    <customErrors>
-        <description>An error occurred while updating the Contract Diary. Please contact your system administrator for assistance.</description>
-        <name>Default_Contract_Diary_Error_Message</name>
-        <label>Default Contract Diary Error Message</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <customErrorMessages>
-            <errorMessage>An error occurred while updating the Contract Diary. Please contact your system administrator for assistance.</errorMessage>
-            <isFieldError>false</isFieldError>
-        </customErrorMessages>
-    </customErrors>
     <decisions>
         <name>Is_Payment_Status_updated_to_Paid</name>
         <label>Is Payment Status updated to Paid/Credited?</label>
@@ -210,7 +188,7 @@
         </connector>
         <filterFormula>AND(
 AND(ISCHANGED({!$Record.leaseworks__Payment_Status__c}),AND({!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c} = FALSE, {!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c} = FALSE)),
-ISPICKVAL({!$Record.leaseworks__Invoice_Type__c},&apos;Rent&apos;)
+ISPICKVAL({!$Record.leaseworks__Invoice_Type__c},&#39;Rent&#39;)
 )</filterFormula>
         <object>leaseworks__Invoice__c</object>
         <recordTriggerType>Update</recordTriggerType>

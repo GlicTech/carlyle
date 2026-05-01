@@ -505,27 +505,6 @@
             </value>
         </inputAssignments>
     </subflows>
-    <transforms>
-        <name>Create_Deal_Team_Username_Collection</name>
-        <label>Create Deal Team Username Collection</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Get_Deal_Team_Assigned_To_Users</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>varDealTeamMappings[$EachItem].pro_Assigned_To_Username__c</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
     <triggerOrder>1000</triggerOrder>
     <variables>
         <name>varDealTeamMappings</name>

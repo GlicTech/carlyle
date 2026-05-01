@@ -25,20 +25,22 @@
         <field>leaseworks__Operational_Transaction_Register__c$leaseworks__Due_Date__c</field>
     </columns>
     <columns>
-        <field>leaseworks__Operational_Transaction_Register__c$leaseworks__Total_Amount__c</field>
-    </columns>
-    <columns>
         <field>leaseworks__Operational_Transaction_Register__c$leaseworks__Invoice__c.leaseworks__Total_Adjustment_Amount__c</field>
     </columns>
     <columns>
-        <field>leaseworks__Operational_Transaction_Register__c$leaseworks__Paid_Amount__c</field>
-    </columns>
-    <columns>
-        <field>leaseworks__Operational_Transaction_Register__c$leaseworks__Payment_Status__c</field>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>leaseworks__Operational_Transaction_Register__c$leaseworks__Total_Amount_New__c</field>
     </columns>
     <columns>
         <aggregateTypes>Sum</aggregateTypes>
-        <field>CDF1</field>
+        <field>leaseworks__Operational_Transaction_Register__c$leaseworks__Paid_Amount_New__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>leaseworks__Operational_Transaction_Register__c$leaseworks__Balance_Due_New__c</field>
+    </columns>
+    <columns>
+        <field>leaseworks__Operational_Transaction_Register__c$leaseworks__Payment_Status__c</field>
     </columns>
     <columns>
         <field>leaseworks__Operational_Transaction_Register__c$leaseworks__Invoice__c.leaseworks__Internal_Comments__c</field>
@@ -46,13 +48,6 @@
     <columns>
         <field>leaseworks__Operational_Transaction_Register__c$leaseworks__Transaction_Record__c</field>
     </columns>
-    <customDetailFormulas>
-        <calculatedFormula>IF(OR(leaseworks__Operational_Transaction_Register__c.leaseworks__Transaction_Type__c = &quot;Payable&quot;, leaseworks__Operational_Transaction_Register__c.leaseworks__Transaction_Type__c = &quot;Credit Memo&quot;),0 - leaseworks__Operational_Transaction_Register__c.leaseworks__Balance_Due__c, leaseworks__Operational_Transaction_Register__c.leaseworks__Balance_Due__c)</calculatedFormula>
-        <dataType>Double</dataType>
-        <developerName>CDF1</developerName>
-        <label>Balance</label>
-        <scale>2</scale>
-    </customDetailFormulas>
     <description>This report outlines all the financial transactions and balances between the two parties until the current time.</description>
     <filter>
         <criteriaItems>
@@ -74,8 +69,8 @@
     <showDetails>true</showDetails>
     <showGrandTotal>false</showGrandTotal>
     <showSubTotals>true</showSubTotals>
-    <sortColumn>leaseworks__Operational_Transaction_Register__c$leaseworks__Transaction_Type__c</sortColumn>
-    <sortOrder>Asc</sortOrder>
+    <sortColumn>leaseworks__Operational_Transaction_Register__c$leaseworks__Balance_Due_New__c</sortColumn>
+    <sortOrder>Desc</sortOrder>
     <timeFrameFilter>
         <dateColumn>leaseworks__Operational_Transaction_Register__c$leaseworks__Due_Date__c</dateColumn>
         <interval>INTERVAL_CUSTOM</interval>

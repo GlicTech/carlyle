@@ -4,6 +4,7 @@
     <deprecated>false</deprecated>
     <description>Asana: Break out the transactions into individual aircraft details, if they are available
 On the transaction page, we will need roll up of # of units, total cost, and maybe average price.</description>
+    <externalId>false</externalId>
     <formula>If(leaseworks__Total_Number_of_Units__c=0,null,leaseworks__Total_Cost_Of_Aircraft__c  /  leaseworks__Total_Number_of_Units__c)</formula>
     <inlineHelpText>Average price of all &quot;Won&quot; aircraft in the transaction (Amount in millions).</inlineHelpText>
     <label>Average Price ($M)</label>

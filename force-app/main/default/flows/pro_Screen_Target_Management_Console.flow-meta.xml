@@ -303,32 +303,32 @@
     <dynamicChoiceSets>
         <name>c_AssetStatusPicklist</name>
         <dataType>Picklist</dataType>
-        <displayField xsi:nil="true"/>
-        <object xsi:nil="true"/>
+        <displayField xsi:nil="true" />
+        <object xsi:nil="true" />
         <picklistField>leaseworks__Status__c</picklistField>
         <picklistObject>leaseworks__Aircraft__c</picklistObject>
     </dynamicChoiceSets>
     <dynamicChoiceSets>
         <name>c_AssetType</name>
         <dataType>Picklist</dataType>
-        <displayField xsi:nil="true"/>
-        <object xsi:nil="true"/>
+        <displayField xsi:nil="true" />
+        <object xsi:nil="true" />
         <picklistField>leaseworks__Asset_Type_GP__c</picklistField>
         <picklistObject>leaseworks__Aircraft__c</picklistObject>
     </dynamicChoiceSets>
     <dynamicChoiceSets>
         <name>c_Target_Outcomes</name>
         <dataType>Picklist</dataType>
-        <displayField xsi:nil="true"/>
-        <object xsi:nil="true"/>
+        <displayField xsi:nil="true" />
+        <object xsi:nil="true" />
         <picklistField>pro_Target_Outcomes__c</picklistField>
         <picklistObject>pro_Global_Value_Set__mdt</picklistObject>
     </dynamicChoiceSets>
     <dynamicChoiceSets>
         <name>c_Year_Choices</name>
         <dataType>Picklist</dataType>
-        <displayField xsi:nil="true"/>
-        <object xsi:nil="true"/>
+        <displayField xsi:nil="true" />
+        <object xsi:nil="true" />
         <picklistField>pro_Years__c</picklistField>
         <picklistObject>Flow_Picklist_Value__mdt</picklistObject>
     </dynamicChoiceSets>
@@ -343,8 +343,8 @@
     <dynamicChoiceSets>
         <name>pcs_targetOutcomes</name>
         <dataType>Picklist</dataType>
-        <displayField xsi:nil="true"/>
-        <object xsi:nil="true"/>
+        <displayField xsi:nil="true" />
+        <object xsi:nil="true" />
         <picklistField>pro_Progress_Picklist__c</picklistField>
         <picklistObject>pro_Asset_Target_Audit__c</picklistObject>
     </dynamicChoiceSets>
@@ -360,8 +360,8 @@
     <dynamicChoiceSets>
         <name>Years</name>
         <dataType>Picklist</dataType>
-        <displayField xsi:nil="true"/>
-        <object xsi:nil="true"/>
+        <displayField xsi:nil="true" />
+        <object xsi:nil="true" />
         <picklistField>Years__c</picklistField>
         <picklistObject>pro_Global_Value_Set__mdt</picklistObject>
     </dynamicChoiceSets>
@@ -371,16 +371,16 @@
         <dataType>String</dataType>
         <expression>&quot;SELECT SUM(pro_Achieved_Target_Count__c) &quot; &amp;
 &quot;FROM pro_Target__c &quot; &amp;
-&quot;WHERE pro_Target_Year__c = &apos;&quot; &amp;
+&quot;WHERE pro_Target_Year__c = &#39;&quot; &amp;
 TEXT(VALUE({!Select_A_Year}) + 1) &amp;
-&quot;&apos;&quot;</expression>
+&quot;&#39;&quot;</expression>
     </formulas>
     <formulas>
         <name>f_AssetTableFormulaHeader</name>
         <dataType>String</dataType>
-        <expression>IF({!View_Assets_Without_Any_Target} = True, &apos;Assets Without Target&apos;,
-    IF({!Select_A_Year} = Null, &apos;All Assets&apos;,
-                       &apos;Assets With Target In &apos; + {!Select_A_Year}
+        <expression>IF({!View_Assets_Without_Any_Target} = True, &#39;Assets Without Target&#39;,
+    IF({!Select_A_Year} = Null, &#39;All Assets&#39;,
+                       &#39;Assets With Target In &#39; + {!Select_A_Year}
 ))</expression>
     </formulas>
     <formulas>
@@ -388,14 +388,14 @@ TEXT(VALUE({!Select_A_Year}) + 1) &amp;
         <dataType>String</dataType>
         <expression>CASE(
     {!Select_An_Outcome},
-    &apos;Achieved - LOI Other&apos;, &apos;Target closed by an Asset in Deal being LOId outside of the target year&apos;,
-    &apos;Achieved - LOI&apos;, &apos;Target closed by an Asset in Deal being LOId within the target year&apos;,
-    &apos;Achieved - No LOI&apos;, &apos;Target closed by a new Contract getting signed for the Asset. There is no related Deal in the system&apos;,
-    &apos;Achieved - Contract Extended&apos;, &apos;Target closed by a Contract being extended&apos;,
-    &apos;Target Cancelled&apos;, &apos;Either the target was manually readjusted, the Contract is Cancelled, the Contract is Expired / Terminated&apos;,
-    &apos;Open&apos;, &apos;The Asset needs to be placed and has a Target Forecast date in the future&apos;,
-    &apos;Open - Target Date Exceeded&apos;, &apos;The Asset needs to be placed and has a Target Forecast date in the past&apos;,
-    &apos;&apos;
+    &#39;Achieved - LOI Other&#39;, &#39;Target closed by an Asset in Deal being LOId outside of the target year&#39;,
+    &#39;Achieved - LOI&#39;, &#39;Target closed by an Asset in Deal being LOId within the target year&#39;,
+    &#39;Achieved - No LOI&#39;, &#39;Target closed by a new Contract getting signed for the Asset. There is no related Deal in the system&#39;,
+    &#39;Achieved - Contract Extended&#39;, &#39;Target closed by a Contract being extended&#39;,
+    &#39;Target Cancelled&#39;, &#39;Either the target was manually readjusted, the Contract is Cancelled, the Contract is Expired / Terminated&#39;,
+    &#39;Open&#39;, &#39;The Asset needs to be placed and has a Target Forecast date in the future&#39;,
+    &#39;Open - Target Date Exceeded&#39;, &#39;The Asset needs to be placed and has a Target Forecast date in the past&#39;,
+    &#39;&#39;
 )</expression>
     </formulas>
     <formulas>
@@ -413,7 +413,7 @@ TEXT(VALUE({!Select_A_Year}) + 1) &amp;
     &quot;pro_Marketing_Trading__c, pro_Progress__c, pro_Target_End_Date__c, pro_Target_Forecast__c, pro_Target_Forecast_Id__c, pro_Target_Forecast_Name__c, &quot; &amp;
     &quot;pro_Target_Reached__c, pro_Target_Reached_Id__c, pro_Target_Reached_Name__c &quot; &amp;
     &quot;FROM pro_Asset_Target_Snapshot_Item__c &quot; &amp;
-    &quot;WHERE pro_Asset_Target_Snapshot__r.Name = &apos;&quot; &amp; {!Choose_Snapshot} &amp; &quot;&apos;&quot;
+    &quot;WHERE pro_Asset_Target_Snapshot__r.Name = &#39;&quot; &amp; {!Choose_Snapshot} &amp; &quot;&#39;&quot;
 )</expression>
     </formulas>
     <formulas>
@@ -442,7 +442,7 @@ TEXT(YEAR({!$Flow.CurrentDate}))</expression>
         <expression>IF(
     {!View_Assets_Without_Any_Target},
 
-    &quot;SELECT Id, Name, leaseworks__Status__c, leaseworks__Assigned_To__c, leaseworks__Availability_Date__c, Likely_Outcome__c, pro_Marketing_Trading__c, pro_Impact_Type__c, leaseworks__RecordTypeDevName__c, pro_Target_Year__c, pro_Lease_Status__c, leaseworks__Y_Hidden_Lease_End_Date__c, pro_Target_Moved_To_Trading__c &quot; &amp;
+    &quot;SELECT Id, Name, leaseworks__Status__c, leaseworks__Assigned_To__c, leaseworks__Availability_Date__c, Likely_Outcome__c, pro_Marketing_Trading__c, pro_Impact_Type__c, leaseworks__RecordTypeDevName__c, pro_Target_Year__c, pro_Lease_Status__c, leaseworks__Y_Hidden_Lease_End_Date__c, pro_Target_Moved_To_Trading__c, pro_Target_Forecast_Date__c &quot; &amp;
     &quot;FROM leaseworks__Aircraft__c &quot; &amp;
     &quot;WHERE Id IN (&quot; &amp; TRIM({!varListOfIdsForAssetsWithoutTargetsQuery}) &amp; &quot;) &quot; &amp;
     &quot;ORDER BY leaseworks__Y_Hidden_Lease_End_Date__c ASC&quot;,
@@ -450,14 +450,14 @@ TEXT(YEAR({!$Flow.CurrentDate}))</expression>
     IF(
         ISBLANK({!Select_A_Year}),
 
-        &quot;SELECT Id, Name, leaseworks__Status__c, leaseworks__Assigned_To__c, leaseworks__Availability_Date__c, Likely_Outcome__c, pro_Marketing_Trading__c, pro_Impact_Type__c, leaseworks__RecordTypeDevName__c, pro_Target_Year__c, pro_Lease_Status__c, leaseworks__Y_Hidden_Lease_End_Date__c, pro_Target_Moved_To_Trading__c &quot; &amp;
+        &quot;SELECT Id, Name, leaseworks__Status__c, leaseworks__Assigned_To__c, leaseworks__Availability_Date__c, Likely_Outcome__c, pro_Marketing_Trading__c, pro_Impact_Type__c, leaseworks__RecordTypeDevName__c, pro_Target_Year__c, pro_Lease_Status__c, leaseworks__Y_Hidden_Lease_End_Date__c, pro_Target_Moved_To_Trading__c, pro_Target_Forecast_Date__c &quot; &amp;
         &quot;FROM leaseworks__Aircraft__c &quot; &amp;
         &quot;ORDER BY leaseworks__Y_Hidden_Lease_End_Date__c ASC&quot;,
 
-        &quot;SELECT Id, Name, leaseworks__Status__c, leaseworks__Assigned_To__c, leaseworks__Availability_Date__c, Likely_Outcome__c, pro_Marketing_Trading__c, pro_Impact_Type__c, leaseworks__RecordTypeDevName__c, pro_Target_Year__c, pro_Lease_Status__c, leaseworks__Y_Hidden_Lease_End_Date__c, pro_Target_Moved_To_Trading__c &quot; &amp;
+        &quot;SELECT Id, Name, leaseworks__Status__c, leaseworks__Assigned_To__c, leaseworks__Availability_Date__c, Likely_Outcome__c, pro_Marketing_Trading__c, pro_Impact_Type__c, leaseworks__RecordTypeDevName__c, pro_Target_Year__c, pro_Lease_Status__c, leaseworks__Y_Hidden_Lease_End_Date__c, pro_Target_Moved_To_Trading__c, pro_Target_Forecast_Date__c &quot; &amp;
         &quot;FROM leaseworks__Aircraft__c &quot; &amp;
-        &quot;WHERE (pro_Target_Year__c = &apos;&quot; &amp; {!Select_A_Year} &amp; &quot;&apos; &quot; &amp;
-        &quot;OR pro_Most_Recent_Achieved_Target_Year__c = &apos;&quot; &amp; {!Select_A_Year} &amp; &quot;&apos;) &quot; &amp;
+        &quot;WHERE (pro_Target_Year__c = &#39;&quot; &amp; {!Select_A_Year} &amp; &quot;&#39; &quot; &amp;
+        &quot;OR pro_Most_Recent_Achieved_Target_Year__c = &#39;&quot; &amp; {!Select_A_Year} &amp; &quot;&#39;) &quot; &amp;
         &quot;ORDER BY leaseworks__Y_Hidden_Lease_End_Date__c ASC&quot;
     )
 )</expression>
@@ -475,8 +475,8 @@ TEXT(YEAR({!$Flow.CurrentDate}))</expression>
         /* All outcomes except Target Cancelled and Moved To Trading */
         {!varTargetQueryFields} &amp;
         &quot; FROM pro_Asset_Target_Audit__c&quot; &amp;
-        &quot; WHERE pro_Target_Year__c = &apos;&quot; &amp; TEXT(VALUE({!Select_A_Year})) &amp; &quot;&apos;&quot; &amp;
-        &quot; AND pro_Progress__c NOT IN (&apos;Target Cancelled&apos;,&apos;Moved To Trading&apos;)&quot; &amp;
+        &quot; WHERE pro_Target_Year__c = &#39;&quot; &amp; TEXT(VALUE({!Select_A_Year})) &amp; &quot;&#39;&quot; &amp;
+        &quot; AND pro_Progress__c NOT IN (&#39;Target Cancelled&#39;,&#39;Moved To Trading&#39;)&quot; &amp;
         &quot; ORDER BY pro_Target_End_Date__c ASC&quot;,
         
         /* Specific outcomes */
@@ -484,26 +484,26 @@ TEXT(YEAR({!$Flow.CurrentDate}))</expression>
             {!Select_An_Outcome} = &quot;Open&quot;,
             {!varTargetQueryFields} &amp;
             &quot; FROM pro_Asset_Target_Audit__c&quot; &amp;
-            &quot; WHERE pro_Target_Year__c = &apos;&quot; &amp; TEXT(VALUE({!Select_A_Year})) &amp; &quot;&apos;&quot; &amp;
-            &quot; AND pro_Progress__c IN (&apos;Open&apos;,&apos;Open - Target Date Exceeded&apos;)&quot; &amp;
+            &quot; WHERE pro_Target_Year__c = &#39;&quot; &amp; TEXT(VALUE({!Select_A_Year})) &amp; &quot;&#39;&quot; &amp;
+            &quot; AND pro_Progress__c IN (&#39;Open&#39;,&#39;Open - Target Date Exceeded&#39;)&quot; &amp;
             &quot; ORDER BY pro_Target_End_Date__c ASC&quot;,
             
             IF(
                 {!Select_An_Outcome} = &quot;Achieved&quot;,
-                /* Achieved — filter where Progress contains &apos;Achieved&apos;, and apply Achieved_By logic */
+                /* Achieved — filter where Progress contains &#39;Achieved&#39;, and apply Achieved_By logic */
                 {!varTargetQueryFields} &amp;
                 &quot; FROM pro_Asset_Target_Audit__c&quot; &amp;
-                &quot; WHERE pro_Target_Year__c = &apos;&quot; &amp; TEXT(VALUE({!Select_A_Year})) &amp; &quot;&apos;&quot; &amp;
-                &quot; AND pro_Progress__c LIKE &apos;%Achieved%&apos;&quot; &amp;
+                &quot; WHERE pro_Target_Year__c = &#39;&quot; &amp; TEXT(VALUE({!Select_A_Year})) &amp; &quot;&#39;&quot; &amp;
+                &quot; AND pro_Progress__c LIKE &#39;%Achieved%&#39;&quot; &amp;
                 IF(
                     ISBLANK({!Achieved_By}),
                     &quot;&quot;,
                     IF(
                         {!Achieved_By} = &quot;Marketing&quot;,
-                        &quot; AND pro_Marketing_Trading__c LIKE &apos;%Marketing%&apos;&quot;,
+                        &quot; AND pro_Marketing_Trading__c LIKE &#39;%Marketing%&#39;&quot;,
                         IF(
                             {!Achieved_By} = &quot;Trading&quot;,
-                            &quot; AND pro_Marketing_Trading__c LIKE &apos;%Trading%&apos;&quot;,
+                            &quot; AND pro_Marketing_Trading__c LIKE &#39;%Trading%&#39;&quot;,
                             &quot;&quot;
                         )
                     )
@@ -513,7 +513,7 @@ TEXT(YEAR({!$Flow.CurrentDate}))</expression>
                 /* Moved To Trading */
                 {!varTargetQueryFields} &amp;
                 &quot; FROM pro_Asset_Target_Audit__c&quot; &amp;
-                &quot; WHERE pro_Target_Year__c = &apos;&quot; &amp; TEXT(VALUE({!Select_A_Year})) &amp; &quot;&apos;&quot; &amp;
+                &quot; WHERE pro_Target_Year__c = &#39;&quot; &amp; TEXT(VALUE({!Select_A_Year})) &amp; &quot;&#39;&quot; &amp;
                 &quot; AND pro_Moved_To_Trading__c = True&quot; &amp;
                 &quot; ORDER BY pro_Target_End_Date__c ASC&quot;
             )
@@ -551,7 +551,7 @@ TEXT(YEAR({!$Flow.CurrentDate}))</expression>
                     {!Select_A_Year} &amp; &quot; Targets Moved To Trading &quot; ,
                     
                     /* Fallback — just show total for year */
-                    {!Select_A_Year} &amp; &apos; Targets&apos;
+                    {!Select_A_Year} &amp; &#39; Targets&#39;
                 )
             )
         )
@@ -570,7 +570,7 @@ TEXT(YEAR({!$Flow.CurrentDate}))</expression>
         <name>f_IdListFormattedForSOQL</name>
         <dataType>String</dataType>
         <expression>IF({!varListOfIdsForAssetsWithoutTargetsQuery} = Null, 
-           &quot;&apos;&quot; + {!Assets_Without_Open_Targets.Id} + &quot;&apos;&quot; , &quot;,&apos;&quot; + {!Assets_Without_Open_Targets.Id}  +  &quot;&apos;&quot; )</expression>
+           &quot;&#39;&quot; + {!Assets_Without_Open_Targets.Id} + &quot;&#39;&quot; , &quot;,&#39;&quot; + {!Assets_Without_Open_Targets.Id}  +  &quot;&#39;&quot; )</expression>
     </formulas>
     <formulas>
         <name>f_Report_URL</name>
@@ -583,18 +583,18 @@ TEXT(YEAR({!$Flow.CurrentDate}))</expression>
         <expression>&quot;SELECT &quot; &amp;
 &quot;SUM(pro_Forecast_Target_Count2__c)  &quot; &amp;
 &quot;FROM pro_Target__c &quot; &amp;
-&quot;WHERE pro_Target_Year__c = &apos;&quot; &amp;
+&quot;WHERE pro_Target_Year__c = &#39;&quot; &amp;
 TEXT(VALUE({!Select_A_Year}) + 1) &amp;
-&quot;&apos;&quot;</expression>
+&quot;&#39;&quot;</expression>
     </formulas>
     <formulas>
         <name>f_RunRateTargetAggregateQuery</name>
         <dataType>String</dataType>
         <expression>&quot;SELECT SUM(pro_Target_Amount__c) &quot; &amp;
 &quot;FROM pro_Target__c &quot; &amp;
-&quot;WHERE pro_Target_Year__c = &apos;&quot; &amp;
+&quot;WHERE pro_Target_Year__c = &#39;&quot; &amp;
 TEXT(VALUE({!Select_A_Year}) + 1) &amp;
-&quot;&apos;&quot;</expression>
+&quot;&#39;&quot;</expression>
     </formulas>
     <formulas>
         <name>f_TargetNameDateFormatting</name>
@@ -621,14 +621,14 @@ TEXT(VALUE({!Select_A_Year}) + 1) &amp;
     <formulas>
         <name>f_TargetRecordsFilteredBySelectedYear</name>
         <dataType>String</dataType>
-        <expression>&quot;SELECT Id, Name, pro_Target_Amount__c, pro_Forecast_Target_Count2__c, pro_Achieved_Target_Count__c FROM pro_Target__c WHERE pro_Target_Year__c = &apos;&quot; 
+        <expression>&quot;SELECT Id, Name, pro_Target_Amount__c, pro_Forecast_Target_Count2__c, pro_Achieved_Target_Count__c FROM pro_Target__c WHERE pro_Target_Year__c = &#39;&quot; 
 &amp; TEXT(VALUE({!Select_A_Year}) + 1) 
-&amp; &quot;&apos; ORDER BY pro_End_Date__c ASC&quot;</expression>
+&amp; &quot;&#39; ORDER BY pro_End_Date__c ASC&quot;</expression>
     </formulas>
     <formulas>
         <name>f_TargetsAchievedQueryFilteredByYear</name>
         <dataType>String</dataType>
-        <expression>&quot;SELECT COUNT(Id) FROM pro_Asset_Target_Audit__c WHERE pro_Progress__c IN (&apos;Achieved - LOI&apos;,&apos;Achieved - LOI Other&apos;,&apos;Achieved - Contract Extended&apos;,&apos;Achieved - No LOI&apos;) AND pro_Target_Year__c = &apos;&quot; &amp; {!Select_A_Year} &amp; &quot;&apos;&quot;</expression>
+        <expression>&quot;SELECT COUNT(Id) FROM pro_Asset_Target_Audit__c WHERE pro_Progress__c IN (&#39;Achieved - LOI&#39;,&#39;Achieved - LOI Other&#39;,&#39;Achieved - Contract Extended&#39;,&#39;Achieved - No LOI&#39;) AND pro_Target_Year__c = &#39;&quot; &amp; {!Select_A_Year} &amp; &quot;&#39;&quot;</expression>
     </formulas>
     <formulas>
         <name>f_TargetSnapshotQuery</name>
@@ -1213,7 +1213,6 @@ TEXT(VALUE({!Select_A_Year}) + 1) &amp;
                     <dataType>String</dataType>
                     <fieldText>Filter by Year</fieldText>
                     <fieldType>DropdownBox</fieldType>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                     <visibilityRule>
                         <conditionLogic>(1 AND 3) OR 2 OR (4 AND 5)</conditionLogic>
@@ -1259,7 +1258,6 @@ TEXT(VALUE({!Select_A_Year}) + 1) &amp;
                     <dataType>Boolean</dataType>
                     <fieldText>View Assets Without Target</fieldText>
                     <fieldType>InputField</fieldType>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
@@ -1277,7 +1275,6 @@ TEXT(VALUE({!Select_A_Year}) + 1) &amp;
                     <dataType>Boolean</dataType>
                     <fieldText>View Target Snapshot</fieldText>
                     <fieldType>InputField</fieldType>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
@@ -1309,7 +1306,6 @@ TEXT(VALUE({!Select_A_Year}) + 1) &amp;
                     <dataType>String</dataType>
                     <fieldText>Filter by Status</fieldText>
                     <fieldType>DropdownBox</fieldType>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
@@ -1335,7 +1331,6 @@ TEXT(VALUE({!Select_A_Year}) + 1) &amp;
                     <dataType>String</dataType>
                     <fieldText>Choose Snapshot</fieldText>
                     <fieldType>DropdownBox</fieldType>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
@@ -1454,7 +1449,6 @@ TEXT(VALUE({!Select_A_Year}) + 1) &amp;
                     <dataType>String</dataType>
                     <fieldText>Achieved By</fieldText>
                     <fieldType>DropdownBox</fieldType>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
@@ -2008,7 +2002,6 @@ TEXT(VALUE({!Select_A_Year}) + 1) &amp;
                     <extensionName>flowruntime:choiceLookup</extensionName>
                     <fieldText>New Target</fieldText>
                     <fieldType>ComponentChoice</fieldType>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <storeOutputAutomatically>true</storeOutputAutomatically>
                     <visibilityRule>
@@ -2250,7 +2243,7 @@ TEXT(VALUE({!Select_A_Year}) + 1) &amp;
             <inputParameters>
                 <name>columnFields</name>
                 <value>
-                    <stringValue>Name,leaseworks__RecordTypeDevName__c,leaseworks__Status__c,leaseworks__Assigned_To__c,Likely_Outcome__c,pro_Target_Moved_To_Trading__c,pro_Marketing_Trading__c,leaseworks__Y_Hidden_Lease_End_Date__c</stringValue>
+                    <stringValue>Name,leaseworks__RecordTypeDevName__c,leaseworks__Status__c,leaseworks__Assigned_To__c,Likely_Outcome__c,pro_Target_Moved_To_Trading__c,pro_Marketing_Trading__c,pro_Target_Forecast_Date__c,leaseworks__Y_Hidden_Lease_End_Date__c</stringValue>
                 </value>
             </inputParameters>
             <inputParameters>
@@ -2262,7 +2255,7 @@ TEXT(VALUE({!Select_A_Year}) + 1) &amp;
             <inputParameters>
                 <name>columnWidths</name>
                 <value>
-                    <stringValue>Name:321, leaseworks__RecordTypeDevName__c:173, leaseworks__Status__c:252, leaseworks__Assigned_To__c:190, Likely_Outcome__c:173, pro_Target_Moved_To_Trading__c:189, pro_Marketing_Trading__c:314, leaseworks__Y_Hidden_Lease_End_Date__c:435</stringValue>
+                    <stringValue>Name:321, leaseworks__RecordTypeDevName__c:173, leaseworks__Status__c:252, leaseworks__Assigned_To__c:190, Likely_Outcome__c:173, pro_Target_Moved_To_Trading__c:189, pro_Marketing_Trading__c:169, pro_Target_Forecast_Date__c:172, leaseworks__Y_Hidden_Lease_End_Date__c:435</stringValue>
                 </value>
             </inputParameters>
             <inputParameters>
@@ -2322,7 +2315,7 @@ TEXT(VALUE({!Select_A_Year}) + 1) &amp;
             <inputParameters>
                 <name>columnLabels</name>
                 <value>
-                    <stringValue>leaseworks__RecordTypeDevName__c:Aircraft / Engine, pro_Target_Moved_To_Trading__c:Moved To Trading</stringValue>
+                    <stringValue>leaseworks__RecordTypeDevName__c:Aircraft / Engine, pro_Target_Moved_To_Trading__c:Moved To Trading, pro_Target_Forecast_Date__c:Target Forecast</stringValue>
                 </value>
             </inputParameters>
             <inputParameters>
@@ -2490,7 +2483,6 @@ TEXT(VALUE({!Select_A_Year}) + 1) &amp;
                             <stringValue>Select A Target To Set</stringValue>
                         </value>
                     </inputParameters>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <storeOutputAutomatically>true</storeOutputAutomatically>
                     <visibilityRule>
@@ -3105,132 +3097,6 @@ TEXT(VALUE({!Select_A_Year}) + 1) &amp;
         <isViewedAsPlainText>true</isViewedAsPlainText>
         <text>SELECT Name, Id, pro_Asset__c, pro_Contract__c, pro_Outcome__c, pro_Target__c FROM pro_Asset_Target_Audit__c</text>
     </textTemplates>
-    <transforms>
-        <name>Assets_Without_Open_Targets_Collection</name>
-        <label>Assets Without Open Targets Collection</label>
-        <locationX>1040</locationX>
-        <locationY>890</locationY>
-        <connector>
-            <targetReference>Get_Asset_Target_Audit_Records_For_LOI_Lease_Extension</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>Get_Assets_Without_Open_Targets[$EachItem].Id</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
-    <transforms>
-        <name>Create_Asset_With_Open_Target_Id_Collection</name>
-        <label>Create Asset With Open Target Id Collection</label>
-        <locationX>1040</locationX>
-        <locationY>674</locationY>
-        <connector>
-            <targetReference>Get_Assets_Without_Open_Targets</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>Get_Open_Asset_Target_Audits[$EachItem].pro_Asset__c</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
-    <transforms>
-        <name>Create_Collection_Of_Assets_Ids_LOI_Extended</name>
-        <label>Create Collection Of Assets Ids LOI Extended</label>
-        <locationX>1040</locationX>
-        <locationY>1322</locationY>
-        <connector>
-            <targetReference>Assets_Without_Open_Targets</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>Get_Asset_Target_Audit_Records_For_LOI_Lease_Extension[$EachItem].pro_Asset__c</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
-    <transforms>
-        <name>Create_Collection_Of_User_Ids_Assigned_To_Permission_Set</name>
-        <label>Create Collection Of User Ids Assigned To Permission Set</label>
-        <locationX>1040</locationX>
-        <locationY>458</locationY>
-        <connector>
-            <targetReference>Get_Open_Asset_Target_Audits</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>Get_Permission_Set_Assignees[$EachItem].AssigneeId</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
-    <transforms>
-        <name>Create_Progress_Status_Collection_For_Selected_Targets</name>
-        <label>Create Progress Status Collection For Selected Targets</label>
-        <locationX>50</locationX>
-        <locationY>2354</locationY>
-        <connector>
-            <targetReference>Loop_Selected_Target_Progress_Statuses</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>dt_DisplayAuditRecords.outputSelectedRows[$EachItem].pro_Progress__c</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
-    <transforms>
-        <name>Create_Removed_Target_Asset_NameCollection</name>
-        <label>Create Removed Target Asset Name Collection</label>
-        <locationX>578</locationX>
-        <locationY>2246</locationY>
-        <connector>
-            <targetReference>DeleteWarningScreen</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>dt_DisplayAuditRecords.outputRemovedRows[$EachItem].pro_Asset_Name__c</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
     <variables>
         <name>currentItem_Filter_Out_Assets_With_Open_Targets</name>
         <dataType>SObject</dataType>
@@ -3254,7 +3120,7 @@ TEXT(VALUE({!Select_A_Year}) + 1) &amp;
         <isInput>false</isInput>
         <isOutput>false</isOutput>
         <value>
-            <stringValue>&apos;Open&apos;,&apos;Open - Target Date Exceeded&apos;,&apos;Achieved - LOI&apos;,&apos;Achieved - LOI Other&apos;,&apos;Achieved - Contract Extended&apos;,&apos;Achieved - No LOI&apos;</stringValue>
+            <stringValue>&#39;Open&#39;,&#39;Open - Target Date Exceeded&#39;,&#39;Achieved - LOI&#39;,&#39;Achieved - LOI Other&#39;,&#39;Achieved - Contract Extended&#39;,&#39;Achieved - No LOI&#39;</stringValue>
         </value>
     </variables>
     <variables>

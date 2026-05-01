@@ -3,7 +3,8 @@
     <fullName>leaseworks__AmtCC_CM__c</fullName>
     <deprecated>false</deprecated>
     <description>The field is necessary to bypass the character limit issue in the formula fields mentioned above. Instead of using the full condition, we utilize this field solely to remain within the character limit</description>
-    <formula>IF(TEXT(leaseworks__Transaction_Type__c)==&apos;MR Invoice Overpayment Credit&apos;,IF( OR(leaseworks__Credit_Memo_Status__c==&apos;Pending&apos;,leaseworks__Credit_Memo_Status__c==&apos;Declined&apos;,leaseworks__Credit_Memo_Status__c==&apos;Cancelled&apos;),null,leaseworks__Credit_Memo_Issuance_Amount__c *(-1)),null)</formula>
+    <externalId>false</externalId>
+    <formula>IF(TEXT(leaseworks__Transaction_Type__c)==&#39;MR Invoice Overpayment Credit&#39;,IF( OR(leaseworks__Credit_Memo_Status__c==&#39;Pending&#39;,leaseworks__Credit_Memo_Status__c==&#39;Declined&#39;,leaseworks__Credit_Memo_Status__c==&#39;Cancelled&#39;),null,leaseworks__Credit_Memo_Issuance_Amount__c *(-1)),null)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>_Amount CC CM</label>
     <precision>18</precision>

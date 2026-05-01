@@ -2,8 +2,8 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>leaseworks__Rent_Required_if_Type_is_Rent</fullName>
     <active>true</active>
-    <errorConditionFormula>IF(OR($Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c, $Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c), FALSE, (RecordType.DeveloperName == &apos;Rent&apos; &amp;&amp; ISBLANK( leaseworks__Rent__c ) &amp;&amp;  TEXT(leaseworks__Invoice_Category__c) != &apos;Predelivery Rent&apos; &amp;&amp; 
-        ( text(leaseworks__Status__c)==&apos;Pending&apos; || (text(leaseworks__Status__c)==&apos;Approved&apos; &amp;&amp;(  text(leaseworks__Payment_Status__c)==&apos;Partially Paid&apos; ||text(leaseworks__Payment_Status__c)==&apos;Partially Credited&apos; ||  text(leaseworks__Payment_Status__c)==&apos;Paid&apos; || text(leaseworks__Payment_Status__c)==&apos;Deferred&apos; || text(leaseworks__Payment_Status__c)==&apos;Open&apos;))||  text(leaseworks__Status__c)==&apos;Cancelled-Pending&apos;)) )</errorConditionFormula>
+    <errorConditionFormula>IF(OR($Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c, $Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c), FALSE, (RecordType.DeveloperName == &#39;Rent&#39; &amp;&amp; ISBLANK( leaseworks__Rent__c ) &amp;&amp;  TEXT(leaseworks__Invoice_Category__c) != &#39;Predelivery Rent&#39; &amp;&amp; 
+        ( text(leaseworks__Status__c)==&#39;Pending&#39; || (text(leaseworks__Status__c)==&#39;Approved&#39; &amp;&amp;(  text(leaseworks__Payment_Status__c)==&#39;Partially Paid&#39; ||text(leaseworks__Payment_Status__c)==&#39;Partially Credited&#39; ||  text(leaseworks__Payment_Status__c)==&#39;Paid&#39; || text(leaseworks__Payment_Status__c)==&#39;Deferred&#39; || text(leaseworks__Payment_Status__c)==&#39;Open&#39;))||  text(leaseworks__Status__c)==&#39;Cancelled-Pending&#39;)) )</errorConditionFormula>
     <errorDisplayField>leaseworks__Rent__c</errorDisplayField>
     <errorMessage>Please select a Rent.</errorMessage>
 </ValidationRule>

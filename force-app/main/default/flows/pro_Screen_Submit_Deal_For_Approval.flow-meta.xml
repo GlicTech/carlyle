@@ -17,8 +17,6 @@
                 <elementReference>varNotificationRecipientNames</elementReference>
             </value>
         </inputParameters>
-        <nameSegment>RemoveDuplicatesFromCollection</nameSegment>
-        <offset>0</offset>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <apiVersion>65.0</apiVersion>
@@ -293,7 +291,6 @@
             <name>Submission_Notes</name>
             <fieldText>Submission Notes</fieldText>
             <fieldType>LargeTextArea</fieldType>
-            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>false</isRequired>
         </fields>
         <nextOrFinishButtonLabel>Submit To Approvers</nextOrFinishButtonLabel>
@@ -327,69 +324,6 @@
             </value>
         </inputAssignments>
     </subflows>
-    <transforms>
-        <name>Create_AiD_Approver_Assignee_Name_Collection</name>
-        <label>Create AiD Approver Assignee Name Collection</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Remove_Null_values_AiD_Approver</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>Get_AiD_Approvers[$EachItem].pro_Assigned_Approver__c</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
-    <transforms>
-        <name>Create_AiD_Id_Collection</name>
-        <label>Create AiD Id Collection</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Get_AiD_Approvers</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>Get_AiD_Records[$EachItem].Id</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
-    <transforms>
-        <name>Create_Deal_Team_Assignee_Collection</name>
-        <label>Create Deal Team Assignee Collection</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Remove_Null_values</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>Get_Deal_Team[$EachItem].pro_Assigned_To_Name__c</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
     <variables>
         <name>currentItem_Remove_Null_values</name>
         <dataType>String</dataType>

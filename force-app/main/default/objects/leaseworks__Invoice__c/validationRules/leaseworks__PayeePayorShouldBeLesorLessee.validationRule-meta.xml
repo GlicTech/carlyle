@@ -6,9 +6,9 @@
     <errorConditionFormula>AND(
 
     NOT($Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c),
-    leaseworks__Lease__r.RecordType.DeveloperName != &apos;Non_Lease_Agreement&apos;,
+    leaseworks__Lease__r.RecordType.DeveloperName != &#39;Non_Lease_Agreement&#39;,
     NOT(ISBLANK(TEXT(leaseworks__Invoice_Type__c))),
-    NOT(CONTAINS(TEXT(leaseworks__Invoice_Type__c), &apos;HL/SL-&apos;)),
+    NOT(CONTAINS(TEXT(leaseworks__Invoice_Type__c), &#39;HL/SL-&#39;)),
 
     OR(
         AND(
@@ -21,5 +21,5 @@
         )
     )
 )</errorConditionFormula>
-    <errorMessage>The field you are attempting to modify is logic driven. This field&apos;s value cannot be changed manually.</errorMessage>
+    <errorMessage>The field you are attempting to modify is logic driven. This field&#39;s value cannot be changed manually.</errorMessage>
 </ValidationRule>

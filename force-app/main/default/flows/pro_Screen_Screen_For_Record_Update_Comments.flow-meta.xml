@@ -321,42 +321,42 @@
     <formulas>
         <name>f_CurrentStatusOrCompleted</name>
         <dataType>String</dataType>
-        <expression>IF({!Final_Resolution} = True, &apos;Closed&apos;, TEXT({!Get_Triggering_Ticket.pro_Status__c}))</expression>
+        <expression>IF({!Final_Resolution} = True, &#39;Closed&#39;, TEXT({!Get_Triggering_Ticket.pro_Status__c}))</expression>
     </formulas>
     <formulas>
         <name>f_DefaultComment</name>
         <dataType>String</dataType>
         <expression>IF(
-    {!Get_Entity_Definition_For_Triggering_Record.QualifiedApiName} = &apos;leaseworks__Technical_Project__c&apos;,
+    {!Get_Entity_Definition_For_Triggering_Record.QualifiedApiName} = &#39;leaseworks__Technical_Project__c&#39;,
         {!Get_Triggering_Fleet_Project_Management.pro_Latest_Project_Comment__c},
 
 IF(
-    {!Get_Entity_Definition_For_Triggering_Record.QualifiedApiName} = &apos;Account&apos;,
+    {!Get_Entity_Definition_For_Triggering_Record.QualifiedApiName} = &#39;Account&#39;,
         {!Get_Triggering_Account.GCC_Comments__c},
 
 IF(
-    {!Get_Entity_Definition_For_Triggering_Record.QualifiedApiName} = &apos;leaseworks__Claims__c&apos;,
+    {!Get_Entity_Definition_For_Triggering_Record.QualifiedApiName} = &#39;leaseworks__Claims__c&#39;,
         {!Get_Triggering_Claim.pro_Latest_Update__c},
 
 IF(
-    {!Get_Entity_Definition_For_Triggering_Record.QualifiedApiName} = &apos;Litigation__c&apos;,
+    {!Get_Entity_Definition_For_Triggering_Record.QualifiedApiName} = &#39;Litigation__c&#39;,
         {!Get_Triggering_Litigation.pro_Latest_Update__c},
 
 IF(
-    {!Get_Entity_Definition_For_Triggering_Record.QualifiedApiName} = &apos;pro_Ticket__c&apos;,
+    {!Get_Entity_Definition_For_Triggering_Record.QualifiedApiName} = &#39;pro_Ticket__c&#39;,
         {!Get_Triggering_Ticket.pro_Latest_Ticket_Update__c},
 
 IF(
     AND(
-        {!Get_Entity_Definition_For_Triggering_Record.QualifiedApiName} = &apos;leaseworks__Marketing_Activity__c&apos;,
-        {!Update_Type} = &apos;Weekly Commercial Summary&apos;
+        {!Get_Entity_Definition_For_Triggering_Record.QualifiedApiName} = &#39;leaseworks__Marketing_Activity__c&#39;,
+        {!Update_Type} = &#39;Weekly Commercial Summary&#39;
     ),
     {!Get_Triggering_Deal.pro_Commercial_Weekly_Summary_Notes_2__c},
 
 IF(
     AND(
-        {!Get_Entity_Definition_For_Triggering_Record.QualifiedApiName} = &apos;leaseworks__Marketing_Activity__c&apos;,
-        {!Update_Type} = &apos;Weekly Legal &amp; Contracts Summary&apos;
+        {!Get_Entity_Definition_For_Triggering_Record.QualifiedApiName} = &#39;leaseworks__Marketing_Activity__c&#39;,
+        {!Update_Type} = &#39;Weekly Legal &amp; Contracts Summary&#39;
     ),
    {!Get_Triggering_Deal.pro_Contracts_Legal_Weekly_Summary_Notes__c},
 
@@ -372,12 +372,12 @@ IF(
     <formulas>
         <name>f_StatusUpdateOrExistingCommercialSummary</name>
         <dataType>String</dataType>
-        <expression>IF({!Update_Type} = &apos;Weekly Commercial Summary&apos;, LEFT({!pro_Status_Update}, 255), {!Get_Latest_Commercial_Status_Update_For_Triggering_Deal.pro_Status_Update__c})</expression>
+        <expression>IF({!Update_Type} = &#39;Weekly Commercial Summary&#39;, LEFT({!pro_Status_Update}, 255), {!Get_Latest_Commercial_Status_Update_For_Triggering_Deal.pro_Status_Update__c})</expression>
     </formulas>
     <formulas>
         <name>f_StatusUpdateOrExistingLegalContractsSummary</name>
         <dataType>String</dataType>
-        <expression>IF({!Update_Type} = &apos;Weekly Legal &amp; Contracts Summary&apos;, LEFT({!pro_Status_Update}, 255), {!Get_Latest_LEgal_Contracts_Status_Update_For_Triggering_Deal.pro_Status_Update__c})</expression>
+        <expression>IF({!Update_Type} = &#39;Weekly Legal &amp; Contracts Summary&#39;, LEFT({!pro_Status_Update}, 255), {!Get_Latest_LEgal_Contracts_Status_Update_For_Triggering_Deal.pro_Status_Update__c})</expression>
     </formulas>
     <interviewLabel>Screen - Screen For Record Update Comments {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Screen - Status Updates</label>
@@ -408,6 +408,10 @@ IF(
         <connector>
             <targetReference>Update_Triggering_Account</targetReference>
         </connector>
+        <faultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Error_Screen</targetReference>
+        </faultConnector>
         <inputAssignments>
             <field>pro_Account__c</field>
             <value>
@@ -455,6 +459,10 @@ IF(
         <connector>
             <targetReference>Update_Triggering_Claim</targetReference>
         </connector>
+        <faultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Error_Screen</targetReference>
+        </faultConnector>
         <inputAssignments>
             <field>pro_Claim__c</field>
             <value>
@@ -502,6 +510,10 @@ IF(
         <connector>
             <targetReference>Turn_Off_Status_Notifications</targetReference>
         </connector>
+        <faultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Error_Screen</targetReference>
+        </faultConnector>
         <inputAssignments>
             <field>pro_Date__c</field>
             <value>
@@ -549,6 +561,10 @@ IF(
         <connector>
             <targetReference>Update_Triggering_Litigation</targetReference>
         </connector>
+        <faultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Error_Screen</targetReference>
+        </faultConnector>
         <inputAssignments>
             <field>pro_Date__c</field>
             <value>
@@ -602,6 +618,10 @@ IF(
         <connector>
             <targetReference>Update_Triggering_Project</targetReference>
         </connector>
+        <faultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Error_Screen</targetReference>
+        </faultConnector>
         <inputAssignments>
             <field>pro_Date__c</field>
             <value>
@@ -649,6 +669,10 @@ IF(
         <connector>
             <targetReference>Update_Triggering_Ticket</targetReference>
         </connector>
+        <faultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Error_Screen</targetReference>
+        </faultConnector>
         <inputAssignments>
             <field>pro_Date__c</field>
             <value>
@@ -718,6 +742,10 @@ IF(
         <connector>
             <targetReference>Get_Latest_LEgal_Contracts_Status_Update_For_Triggering_Deal</targetReference>
         </connector>
+        <faultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Error_Screen</targetReference>
+        </faultConnector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>pro_Deal__c</field>
@@ -748,6 +776,10 @@ IF(
         <connector>
             <targetReference>Assign_Latest_Deal_Update_To_Variable</targetReference>
         </connector>
+        <faultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Error_Screen</targetReference>
+        </faultConnector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>pro_Deal__c</field>
@@ -778,6 +810,10 @@ IF(
         <connector>
             <targetReference>Assign_Latest_GCC_Comment_To_Text_Variable</targetReference>
         </connector>
+        <faultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Error_Screen</targetReference>
+        </faultConnector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
@@ -799,6 +835,10 @@ IF(
         <connector>
             <targetReference>Assign_Latest_Claim_Update_Comment_To_Variable</targetReference>
         </connector>
+        <faultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Error_Screen</targetReference>
+        </faultConnector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
@@ -820,6 +860,10 @@ IF(
         <connector>
             <targetReference>Get_Latest_Commercial_Status_Update_For_Triggering_Deal</targetReference>
         </connector>
+        <faultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Error_Screen</targetReference>
+        </faultConnector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
@@ -841,6 +885,9 @@ IF(
         <connector>
             <targetReference>Assign_Latest_Project_Comment_To_Text_Variable</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Error_Screen</targetReference>
+        </faultConnector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
@@ -862,6 +909,10 @@ IF(
         <connector>
             <targetReference>Assign_Latest_Litigation_Update_Comment_To_Variable</targetReference>
         </connector>
+        <faultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Error_Screen</targetReference>
+        </faultConnector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
@@ -883,6 +934,10 @@ IF(
         <connector>
             <targetReference>Assign_Latest_Ticket_Update_To_Variable</targetReference>
         </connector>
+        <faultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Error_Screen</targetReference>
+        </faultConnector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
@@ -903,6 +958,10 @@ IF(
         <connector>
             <targetReference>Update_Triggering_Deal</targetReference>
         </connector>
+        <faultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Error_Screen</targetReference>
+        </faultConnector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
@@ -924,6 +983,10 @@ IF(
         <label>Turn On Status Notifications</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
+        <faultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Error_Screen</targetReference>
+        </faultConnector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
@@ -945,6 +1008,10 @@ IF(
         <label>Update Triggering Account</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
+        <faultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Error_Screen</targetReference>
+        </faultConnector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
@@ -972,6 +1039,10 @@ IF(
         <label>Update Triggering Claim</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
+        <faultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Error_Screen</targetReference>
+        </faultConnector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
@@ -1002,6 +1073,10 @@ IF(
         <connector>
             <targetReference>Turn_On_Status_Notifications</targetReference>
         </connector>
+        <faultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Error_Screen</targetReference>
+        </faultConnector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
@@ -1035,6 +1110,10 @@ IF(
         <label>Update Triggering Litigation</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
+        <faultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Error_Screen</targetReference>
+        </faultConnector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
@@ -1068,6 +1147,10 @@ IF(
         <label>Update Triggering Project</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
+        <faultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Error_Screen</targetReference>
+        </faultConnector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
@@ -1095,6 +1178,10 @@ IF(
         <label>Update Triggering Ticket</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
+        <faultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Error_Screen</targetReference>
+        </faultConnector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
@@ -1136,6 +1223,22 @@ IF(
         <object>pro_Ticket__c</object>
     </recordUpdates>
     <screens>
+        <name>Error_Screen</name>
+        <label>Error Screen</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>false</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>ErrorMessage</name>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgb(255, 0, 0);&quot;&gt;Something went wrong while processing your request:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(255, 0, 0);&quot;&gt;{!$Flow.FaultMessage}&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
         <name>Update_Screen</name>
         <label>Update Screen</label>
         <locationX>0</locationX>
@@ -1159,7 +1262,6 @@ IF(
                     <dataType>String</dataType>
                     <fieldText>Update Type</fieldText>
                     <fieldType>DropdownBox</fieldType>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
@@ -1201,7 +1303,6 @@ IF(
             </defaultValue>
             <fieldText>Status Update</fieldText>
             <fieldType>LargeTextArea</fieldType>
-            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
             <visibilityRule>
                 <conditionLogic>or</conditionLogic>
@@ -1246,7 +1347,6 @@ IF(
                     </defaultValue>
                     <fieldText>Include On CPC?</fieldText>
                     <fieldType>InputField</fieldType>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
@@ -1264,7 +1364,6 @@ IF(
                     <dataType>Boolean</dataType>
                     <fieldText>Final Resolution?</fieldText>
                     <fieldType>InputField</fieldType>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <visibilityRule>
                         <conditionLogic>and</conditionLogic>
@@ -1296,7 +1395,6 @@ IF(
                     </defaultValue>
                     <fieldText>Date Of Update</fieldText>
                     <fieldType>InputField</fieldType>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                 </fields>
                 <inputParameters>

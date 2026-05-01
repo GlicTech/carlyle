@@ -7,10 +7,10 @@
         <field>leaseworks__Rent__c$Name</field>
     </columns>
     <columns>
-        <field>leaseworks__Rent__c$leaseworks__Rent_Due_Amount__c</field>
+        <field>leaseworks__Rent__c$leaseworks__Rent_Slip_Adjusted__c</field>
     </columns>
     <columns>
-        <field>leaseworks__Rent__c$leaseworks__Rent_Slip_Adjusted__c</field>
+        <field>leaseworks__Rent__c$leaseworks__Rent_Due_Amount__c</field>
     </columns>
     <columns>
         <field>leaseworks__Rent__c$leaseworks__Rent_Slip_Adjustments__c</field>
@@ -21,6 +21,18 @@
     <columns>
         <field>leaseworks__Rent__c$leaseworks__Invoiced_Amount__c</field>
     </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>CDF1</field>
+    </columns>
+    <customDetailFormulas>
+        <calculatedFormula>leaseworks__Rent__c.leaseworks__Invoiced_Amount__c - leaseworks__Rent__c.leaseworks__Total_Due__c</calculatedFormula>
+        <dataType>Double</dataType>
+        <description>Invoiced Amt - Final Rent Slip Amt</description>
+        <developerName>CDF1</developerName>
+        <label>Delta</label>
+        <scale>2</scale>
+    </customDetailFormulas>
     <filter>
         <criteriaItems>
             <column>leaseworks__Rent__c$leaseworks__Rent_Slip_Adjusted__c</column>
@@ -34,7 +46,14 @@
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>greaterThan</operator>
-            <value>1/1/2025</value>
+            <value>1/1/2026</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>leaseworks__Rent__c$leaseworks__Rent_Type__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>contains</operator>
+            <value>Manual</value>
         </criteriaItems>
     </filter>
     <format>Summary</format>

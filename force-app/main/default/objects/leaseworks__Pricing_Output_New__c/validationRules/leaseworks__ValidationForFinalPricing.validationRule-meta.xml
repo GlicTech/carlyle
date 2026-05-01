@@ -2,7 +2,7 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>leaseworks__ValidationForFinalPricing</fullName>
     <active>true</active>
-    <errorConditionFormula>AND(!ISPICKVAL(leaseworks__Pricing_Run__r.leaseworks__Status__c, &apos;Approved&apos;), leaseworks__Final_Pricing__c )</errorConditionFormula>
+    <errorConditionFormula>AND(!ISPICKVAL(leaseworks__Pricing_Run__r.leaseworks__Status__c, &#39;Approved&#39;), leaseworks__Final_Pricing__c )</errorConditionFormula>
     <errorDisplayField>leaseworks__Final_Pricing__c</errorDisplayField>
     <errorMessage>The Economic Analysis cannot be marked final, as the Economic Analysis Request is not complete</errorMessage>
 </ValidationRule>

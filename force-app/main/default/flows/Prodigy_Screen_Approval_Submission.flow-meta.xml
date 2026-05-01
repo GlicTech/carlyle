@@ -169,7 +169,7 @@ Screen flow presents users with key information, takes required inputs and moves
     <formulas>
         <name>f_RunningUserFullName</name>
         <dataType>String</dataType>
-        <expression>{!$User.FirstName} + &apos; &apos; + {!$User.LastName}</expression>
+        <expression>{!$User.FirstName} + &#39; &#39; + {!$User.LastName}</expression>
     </formulas>
     <interviewLabel>Prodigy - Screen - Approval Submission {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Prodigy - Screen - Approval Submission</label>
@@ -375,7 +375,6 @@ Screen flow presents users with key information, takes required inputs and moves
                     </defaultValue>
                     <fieldText>Subject</fieldText>
                     <fieldType>InputField</fieldType>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isDisabled>
                         <booleanValue>true</booleanValue>
                     </isDisabled>
@@ -469,7 +468,6 @@ Screen flow presents users with key information, takes required inputs and moves
                     </defaultValue>
                     <fieldText>Summary Of Approval Request</fieldText>
                     <fieldType>LargeTextArea</fieldType>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                 </fields>
                 <fields>
@@ -558,90 +556,6 @@ Screen flow presents users with key information, takes required inputs and moves
         <isViewedAsPlainText>false</isViewedAsPlainText>
         <text>&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</text>
     </textTemplates>
-    <transforms>
-        <name>Create_Asset_Id_Text_Collection</name>
-        <label>Create Asset Id Text Collection</label>
-        <locationX>182</locationX>
-        <locationY>866</locationY>
-        <connector>
-            <targetReference>Get_Assets</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>Get_Active_AiDs[$EachItem].leaseworks__Aircraft__c</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
-    <transforms>
-        <name>Create_Assigned_To_Name_Collection</name>
-        <label>Create Assigned To Name Collection</label>
-        <locationX>182</locationX>
-        <locationY>542</locationY>
-        <connector>
-            <targetReference>Assign_Text_Collections_To_Variables</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>Get_Deal_Teams[$EachItem].pro_Assigned_To_Name__c</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
-    <transforms>
-        <name>Create_Content_Document_Id_Collection</name>
-        <label>Create Content Document Id Collection</label>
-        <locationX>182</locationX>
-        <locationY>1190</locationY>
-        <connector>
-            <targetReference>Get_ContentDocument_Records</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>Get_Attached_Files[$EachItem].ContentDocumentId</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
-    <transforms>
-        <name>Create_Document_Name_Collection</name>
-        <label>Create Document Name Collection</label>
-        <locationX>182</locationX>
-        <locationY>1406</locationY>
-        <connector>
-            <targetReference>SubmissionFormScreen</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>Get_ContentDocument_Records[$EachItem].Title</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
     <variables>
         <name>recordId</name>
         <dataType>SObject</dataType>

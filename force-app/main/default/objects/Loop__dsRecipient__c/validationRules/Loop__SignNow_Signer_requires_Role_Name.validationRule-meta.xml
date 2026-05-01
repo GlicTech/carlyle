@@ -2,7 +2,7 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Loop__SignNow_Signer_requires_Role_Name</fullName>
     <active>true</active>
-    <errorConditionFormula>AND( Loop__IntegrationOption__r.RecordType.DeveloperName = &apos;SignNow&apos;,  ISPICKVAL( Loop__dsType__c , &apos;Signer&apos;), ISBLANK( Loop__dsRoleName__c ) )</errorConditionFormula>
+    <errorConditionFormula>AND( Loop__IntegrationOption__r.RecordType.DeveloperName = &#39;SignNow&#39;,  ISPICKVAL( Loop__dsType__c , &#39;Signer&#39;), ISBLANK( Loop__dsRoleName__c ) )</errorConditionFormula>
     <errorDisplayField>Loop__dsRoleName__c</errorDisplayField>
     <errorMessage>A SignNow Recipient with Type of Signer requires a Role Name.</errorMessage>
 </ValidationRule>

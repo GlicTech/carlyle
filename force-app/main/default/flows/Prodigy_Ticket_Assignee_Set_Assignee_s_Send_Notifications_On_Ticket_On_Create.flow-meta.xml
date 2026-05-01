@@ -59,9 +59,6 @@
                 <booleanValue>true</booleanValue>
             </value>
         </inputParameters>
-        <nameSegment>emailSimple</nameSegment>
-        <offset>0</offset>
-        <versionString>1.0.1</versionString>
     </actionCalls>
     <actionCalls>
         <name>Notify_Assignee</name>
@@ -104,8 +101,6 @@
                 <elementReference>$Record.pro_Ticket__c</elementReference>
             </value>
         </inputParameters>
-        <nameSegment>customNotificationAction</nameSegment>
-        <offset>0</offset>
     </actionCalls>
     <actionCalls>
         <description>Send bell notification to the user in the Requestor field of the Ticket</description>
@@ -149,8 +144,6 @@
                 <elementReference>$Record.pro_Ticket__c</elementReference>
             </value>
         </inputParameters>
-        <nameSegment>customNotificationAction</nameSegment>
-        <offset>0</offset>
     </actionCalls>
     <apiVersion>64.0</apiVersion>
     <assignments>
@@ -281,7 +274,7 @@ Sends bell notifications to the Requestor and Assignee. Sends a notification ema
         <name>f_AssigneeName</name>
         <dataType>String</dataType>
         <expression>IF(
-       {!varAssigneeNames} = Null, {!Loop_Assignees.pro_Assigned_To__r.FirstName} + &apos; &apos; + {!Loop_Assignees.pro_Assigned_To__r.LastName}    , &apos;, &apos; + {!Loop_Assignees.pro_Assigned_To__r.FirstName} + &apos; &apos; + {!Loop_Assignees.pro_Assigned_To__r.LastName} )</expression>
+       {!varAssigneeNames} = Null, {!Loop_Assignees.pro_Assigned_To__r.FirstName} + &#39; &#39; + {!Loop_Assignees.pro_Assigned_To__r.LastName}    , &#39;, &#39; + {!Loop_Assignees.pro_Assigned_To__r.FirstName} + &#39; &#39; + {!Loop_Assignees.pro_Assigned_To__r.LastName} )</expression>
     </formulas>
     <interviewLabel>Prodigy - Ticket Assignee - Set Assignee(s) &amp; Send Notifications On Ticket On Create {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Prodigy - Ticket Assignee - Set Assignee(s) &amp; Send Notifications On Ticket On Create</label>

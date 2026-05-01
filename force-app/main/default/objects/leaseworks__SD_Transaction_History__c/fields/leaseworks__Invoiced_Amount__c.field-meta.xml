@@ -2,12 +2,13 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>leaseworks__Invoiced_Amount__c</fullName>
     <deprecated>false</deprecated>
+    <externalId>false</externalId>
     <formula>CASE(Text(leaseworks__Transaction_Type_PL__c)
-,&apos;Invoice&apos;, IF(ISBLANK(leaseworks__Invoice__c),0,IF( OR(ISPICKVAL( leaseworks__Invoice__r.leaseworks__Status__c,&apos;Pending&apos;),ISPICKVAL(leaseworks__Invoice__r.leaseworks__Status__c,&apos;Declined&apos;)
-,ISPICKVAL(leaseworks__Invoice__r.leaseworks__Status__c,&apos;Cancelled&apos;),ISPICKVAL(leaseworks__Invoice__r.leaseworks__Status__c,&apos;Submitted&apos;)),null,leaseworks__Invoice__r.leaseworks__Invoiced_Amount_Formula__c))
-,&apos;Payable&apos;, IF(ISBLANK(leaseworks__Payable__c),0,IF( OR(ISPICKVAL( leaseworks__Payable__r.leaseworks__Status__c,&apos;Pending&apos;),ISPICKVAL(leaseworks__Payable__r.leaseworks__Status__c,&apos;Submitted&apos;),ISPICKVAL(leaseworks__Payable__r.leaseworks__Status__c,&apos;Declined&apos;),ISPICKVAL(leaseworks__Payable__r.leaseworks__Status__c,&apos;Cancelled&apos;)),null,leaseworks__Payable__r.leaseworks__Payable_Amount__c * (-1)))
-,&apos;Letter Of Credit&apos;, IF(ISBLANK(leaseworks__Letter_Of_Credit__c),0,IF(leaseworks__Status__c==&apos;Pending&apos;,null,IF(leaseworks__Status__c==&apos;Active&apos;,leaseworks__Letter_Of_Credit__r.leaseworks__LC_Amount_LC_Currency__c,leaseworks__Letter_Of_Credit__r.leaseworks__LC_Amount_LC_Currency__c* (-1))))
-,&apos;Manual Fund Transfer&apos;,IF(ISBLANK(leaseworks__Related_to_Manual_SD__c),0,leaseworks__Related_to_Manual_SD__r.leaseworks__Manual_SD_Transfer_Amount__c)
+,&#39;Invoice&#39;, IF(ISBLANK(leaseworks__Invoice__c),0,IF( OR(ISPICKVAL( leaseworks__Invoice__r.leaseworks__Status__c,&#39;Pending&#39;),ISPICKVAL(leaseworks__Invoice__r.leaseworks__Status__c,&#39;Declined&#39;)
+,ISPICKVAL(leaseworks__Invoice__r.leaseworks__Status__c,&#39;Cancelled&#39;),ISPICKVAL(leaseworks__Invoice__r.leaseworks__Status__c,&#39;Submitted&#39;)),null,leaseworks__Invoice__r.leaseworks__Invoiced_Amount_Formula__c))
+,&#39;Payable&#39;, IF(ISBLANK(leaseworks__Payable__c),0,IF( OR(ISPICKVAL( leaseworks__Payable__r.leaseworks__Status__c,&#39;Pending&#39;),ISPICKVAL(leaseworks__Payable__r.leaseworks__Status__c,&#39;Submitted&#39;),ISPICKVAL(leaseworks__Payable__r.leaseworks__Status__c,&#39;Declined&#39;),ISPICKVAL(leaseworks__Payable__r.leaseworks__Status__c,&#39;Cancelled&#39;)),null,leaseworks__Payable__r.leaseworks__Payable_Amount__c * (-1)))
+,&#39;Letter Of Credit&#39;, IF(ISBLANK(leaseworks__Letter_Of_Credit__c),0,IF(leaseworks__Status__c==&#39;Pending&#39;,null,IF(leaseworks__Status__c==&#39;Active&#39;,leaseworks__Letter_Of_Credit__r.leaseworks__LC_Amount_LC_Currency__c,leaseworks__Letter_Of_Credit__r.leaseworks__LC_Amount_LC_Currency__c* (-1))))
+,&#39;Manual Fund Transfer&#39;,IF(ISBLANK(leaseworks__Related_to_Manual_SD__c),0,leaseworks__Related_to_Manual_SD__r.leaseworks__Manual_SD_Transfer_Amount__c)
 ,null)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Invoiced Amount</label>

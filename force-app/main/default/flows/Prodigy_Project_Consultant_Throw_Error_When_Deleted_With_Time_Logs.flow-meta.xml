@@ -1,16 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>64.0</apiVersion>
-    <customErrors>
-        <name>Can_t_Delete_Consultant_With_Time_Logs_Error</name>
-        <label>Can&apos;t Delete Consultant With Time Logs Error</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <customErrorMessages>
-            <errorMessage>Project Consultant records with related Time Log Entries cannot be deleted. Move these Time Log Entries to a different Project Consultant to allow for deletion of this record.</errorMessage>
-            <isFieldError>false</isFieldError>
-        </customErrorMessages>
-    </customErrors>
     <description>Prevents users from being able to delete Project Consultant records with related Time Log Entries</description>
     <environments>Default</environments>
     <interviewLabel>Prodigy - Project Consultant - Throw Error When Deleted With Time Logs {!$Flow.CurrentDateTime}</interviewLabel>

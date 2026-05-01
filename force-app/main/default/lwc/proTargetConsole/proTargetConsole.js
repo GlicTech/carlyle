@@ -27,6 +27,7 @@ import hasEditPermission from "@salesforce/customPermission/pro_Manage_Targets_E
 import getAssetsForYear from "@salesforce/apex/pro_TargetConsoleController.getAssetsForYear";
 import getYearPicklistValues from "@salesforce/apex/pro_TargetConsoleController.getYearPicklistValues";
 import getEditPicklistValues from "@salesforce/apex/pro_TargetConsoleController.getEditPicklistValues";
+import getProgressFilterOptions from "@salesforce/apex/pro_TargetConsoleController.getProgressFilterOptions";
 
 // Apex Methods — Sprint 1.5 (Assets tab enhancements)
 import saveAssetOutcomeEdits from "@salesforce/apex/pro_TargetConsoleController.saveAssetOutcomeEdits";
@@ -55,7 +56,7 @@ import SNAPSHOT_REPORT_ID from "@salesforce/label/c.pro_Target_Snapshot_Report_I
 const TAB_ASSETS = "assets";
 const TAB_TARGETS = "targets";
 const TAB_TARGET_PLAN = "targetPlan";
-const DEFAULT_PAGE_SIZE = 100;
+const DEFAULT_PAGE_SIZE = 25;
 const PAGE_SIZE_OPTIONS = [
   { label: "10", value: 10 },
   { label: "25", value: 25 },
@@ -63,16 +64,22 @@ const PAGE_SIZE_OPTIONS = [
   { label: "100", value: 100 }
 ];
 
-const ASSET_TYPE_FILTER_OPTIONS = [
-  { label: "Aircraft", value: "Aircraft" },
-  { label: "Engines", value: "Engine" },
-  { label: "All", value: "All" }
+const ASSET_SHOW_FILTER_OPTIONS = [
+  { label: "All", value: "All" },
+  { label: "Without Target", value: "NeedsTarget" }
 ];
 
-const ASSET_SHOW_FILTER_OPTIONS = [
-  { label: "Assets With Targets", value: "WithTargets" },
-  { label: "Assets Without Targets", value: "NeedsTarget" },
-  { label: "All Assets", value: "AllAssets" }
+const ASSET_STATUS_FILTER_OPTIONS = [
+  { label: "All", value: "All" },
+  { label: "In Fleet - Lease Attached", value: "In Fleet - Lease Attached" },
+  { label: "In Fleet - Available", value: "In Fleet - Available" },
+  { label: "Sold", value: "Sold" },
+  { label: "Consigned", value: "Consigned" },
+  {
+    label: "Asset created but purchase did not close",
+    value: "Asset created but purchase did not close"
+  },
+  { label: "Restricted", value: "Restricted" }
 ];
 
 // Assets tab column definitions for sort/search
@@ -80,11 +87,11 @@ const ASSET_COLUMNS = [
   { fieldName: "name", label: "Asset Name", sortable: true, type: "text" },
   {
     fieldName: "aircraftType",
-    label: "Asset Type",
+    label: "Aircraft/Engine",
     sortable: true,
     type: "text"
   },
-  { fieldName: "statusLabel", label: "Status", sortable: true, type: "text" },
+  { fieldName: "status", label: "Status", sortable: true, type: "text" },
   {
     fieldName: "operatorName",
     label: "Assigned Operator",
@@ -99,9 +106,15 @@ const ASSET_COLUMNS = [
   },
   {
     fieldName: "movedToTrading",
-    label: "Moved To Trading",
+    label: "Included in Trading RFP",
     sortable: true,
     type: "boolean"
+  },
+  {
+    fieldName: "tradingRfpProbability",
+    label: "Trading RFP Probability",
+    sortable: true,
+    type: "text"
   },
   {
     fieldName: "marketingTrading",
@@ -165,12 +178,11 @@ const TARGET_AUDIT_COLUMNS = [
   }
 ];
 
-const OUTCOME_FILTER_OPTIONS = [
-  { label: "All", value: "All" },
-  { label: "Open", value: "Open" },
-  { label: "Achieved", value: "Achieved" },
-  { label: "Moved To Trading", value: "MovedToTrading" }
-];
+// Fallback used only if the getProgressFilterOptions Apex call fails. Under
+// normal operation the combobox is populated from the server response, which
+// is derived from the active values on pro_Progress_Picklist__c — adding a
+// new picklist value automatically adds a filter chip with no code change.
+const OUTCOME_FILTER_FALLBACK = [{ label: "All", value: "All" }];
 
 const MARKETING_TRADING_FILTER_OPTIONS = [
   { label: "All", value: "All" },
@@ -191,7 +203,6 @@ export default class ProTargetConsole extends NavigationMixin(
   _previousYear = new Date().getFullYear().toString();
   yearOptions = [];
   isLoading = false;
-  assetTypeFilter = "Aircraft";
 
   /** Computed permission getter — resolved at component instantiation (TD-02) */
   get canEdit() {
@@ -206,35 +217,19 @@ export default class ProTargetConsole extends NavigationMixin(
     return this.isWithoutTargetMode;
   }
 
-  get assetTypeFilterOptions() {
-    return ASSET_TYPE_FILTER_OPTIONS;
-  }
-
-  handleAssetTypeFilterChange(event) {
-    if (!this._confirmDiscardChanges()) return;
-    this.assetTypeFilter = event.detail.value;
-    this.assetCurrentPage = 1;
-    this.targetCurrentPage = 1;
-    this._resetAssetEditState();
-    this.targetPlanEditedFields = {};
-    this.loadDataForActiveTab();
-  }
-
   get showForecastColumn() {
     return !this.isWithoutTargetMode;
   }
 
   get assetStatusFilterOptions() {
-    return this.assetStatusPicklistValues.length > 0
-      ? this.assetStatusPicklistValues
-      : [{ label: "All", value: "All" }];
+    return ASSET_STATUS_FILTER_OPTIONS;
   }
 
   // ============================================================
   // ASSETS TAB STATE
   // ============================================================
   assetsData = [];
-  assetShowFilter = "WithTargets";
+  assetShowFilter = "All";
   assetStatusFilter = "All";
   assetRedeployTypeFilter = "All";
   assetSearchTerm = "";
@@ -276,8 +271,6 @@ export default class ProTargetConsole extends NavigationMixin(
   selectedSnapshotId = "";
   snapshotList = [];
   showDeleteSnapshotModal = false;
-  showReassignConfirmModal = false;
-  reassignOpenTargetCount = 0;
 
   // ============================================================
   // TARGET PERFORMANCE TAB STATE
@@ -294,12 +287,25 @@ export default class ProTargetConsole extends NavigationMixin(
   // Dynamic picklist options (loaded from org metadata)
   _likelyOutcomeOptions = [];
   _marketingTradingOptions = [];
-  assetStatusPicklistValues = [];
-  _statusValueToLabelMap = {};
+  _tradingRfpProbabilityOptions = [];
+  _outcomeFilterOptions = OUTCOME_FILTER_FALLBACK;
 
   connectedCallback() {
     this.loadYearOptions();
     this.loadEditPicklistValues();
+    this.loadProgressFilterOptions();
+  }
+
+  async loadProgressFilterOptions() {
+    try {
+      const result = await getProgressFilterOptions();
+      if (Array.isArray(result) && result.length > 0) {
+        this._outcomeFilterOptions = result;
+      }
+    } catch (error) {
+      // Keep the fallback list; the combobox will still offer "All".
+      this._outcomeFilterOptions = OUTCOME_FILTER_FALLBACK;
+    }
   }
 
   async loadEditPicklistValues() {
@@ -314,23 +320,14 @@ export default class ProTargetConsole extends NavigationMixin(
         noneOption,
         ...result.marketingTrading
       ];
-      // US-028: Dynamic asset status filter from org picklist
-      if (result.statusValues) {
-        this.assetStatusPicklistValues = [
-          { label: "All", value: "All" },
-          ...result.statusValues.map((v) => ({ label: v.label, value: v.value }))
-        ];
-        const labelMap = {};
-        result.statusValues.forEach((v) => {
-          labelMap[v.value] = v.label;
-        });
-        this._statusValueToLabelMap = labelMap;
-      }
+      this._tradingRfpProbabilityOptions = [
+        noneOption,
+        ...(result.tradingRfpProbability || [])
+      ];
     } catch (error) {
       this._likelyOutcomeOptions = [];
       this._marketingTradingOptions = [];
-      this.assetStatusPicklistValues = [];
-      this.showToast("Error", this.reduceError(error), "error");
+      this._tradingRfpProbabilityOptions = [];
     }
   }
 
@@ -430,8 +427,7 @@ export default class ProTargetConsole extends NavigationMixin(
     try {
       this.assetsData = await getAssetsForYear({
         targetYear: this.selectedYear,
-        showFilter: this.assetShowFilter,
-        recordTypeFilter: this.assetTypeFilter
+        withoutTargetOnly: this.assetShowFilter === "NeedsTarget"
       });
     } catch (error) {
       this.assetsData = [];
@@ -490,11 +486,9 @@ export default class ProTargetConsole extends NavigationMixin(
 
   get assetsWithEdits() {
     const edits = this.assetEditedFields;
-    const labelMap = this._statusValueToLabelMap;
     return this.assetsData.map((row) => {
       const merged = edits[row.id] ? { ...row, ...edits[row.id] } : { ...row };
       merged.leaseEndDateFormatted = this._formatDateDDMMYYYY(row.leaseEndDate);
-      merged.statusLabel = labelMap[row.status] || row.status || "";
       return merged;
     });
   }
@@ -681,6 +675,10 @@ export default class ProTargetConsole extends NavigationMixin(
     return this._marketingTradingOptions;
   }
 
+  get tradingRfpProbabilityOptions() {
+    return this._tradingRfpProbabilityOptions;
+  }
+
   _trackAssetEdit(assetId, field, value) {
     const edits = { ...this.assetEditedFields };
     if (!edits[assetId]) {
@@ -703,6 +701,11 @@ export default class ProTargetConsole extends NavigationMixin(
   handleMarketingTradingChange(event) {
     const assetId = event.currentTarget.dataset.id;
     this._trackAssetEdit(assetId, "marketingTrading", event.detail.value);
+  }
+
+  handleTradingRfpProbabilityChange(event) {
+    const assetId = event.currentTarget.dataset.id;
+    this._trackAssetEdit(assetId, "tradingRfpProbability", event.detail.value);
   }
 
   get hasAssetEdits() {
@@ -780,10 +783,6 @@ export default class ProTargetConsole extends NavigationMixin(
     return this.selectedAssetIds.size;
   }
 
-  get showAssetActionRow() {
-    return this.hasSelectedAssets || this.hasAssetEdits;
-  }
-
   get showTargetSelector() {
     return this.hasSelectedAssets;
   }
@@ -796,50 +795,12 @@ export default class ProTargetConsole extends NavigationMixin(
     this.selectedTargetId = event.detail.value;
   }
 
-  handleSetTargets() {
-    // Check if any selected assets already have an open target
-    const selectedRows = this.assetsData.filter((row) =>
-      this.selectedAssetIds.has(row.id)
-    );
-    const assetsWithOpenTargets = selectedRows.filter(
-      (row) => row.openTargetCount > 0
-    );
-
-    if (assetsWithOpenTargets.length > 0) {
-      this.reassignOpenTargetCount = assetsWithOpenTargets.length;
-      this.showReassignConfirmModal = true;
-      return;
-    }
-
-    this._executeSetTargets();
-  }
-
-  get reassignConfirmMessage() {
-    return (
-      this.reassignOpenTargetCount +
-      " of the selected assets already have an open target. " +
-      "The existing targets will be cancelled and replaced. Do you want to continue?"
-    );
-  }
-
-  handleCancelReassign() {
-    this.showReassignConfirmModal = false;
-    this.reassignOpenTargetCount = 0;
-  }
-
-  handleConfirmReassign() {
-    this.showReassignConfirmModal = false;
-    this.reassignOpenTargetCount = 0;
-    this._executeSetTargets();
-  }
-
-  async _executeSetTargets() {
+  async handleSetTargets() {
     this.isLoading = true;
     try {
       const result = await setTargetForAssets({
         assetIds: [...this.selectedAssetIds],
-        targetId: this.selectedTargetId,
-        recordTypeFilter: this.assetTypeFilter
+        targetId: this.selectedTargetId
       });
       this.showToast("Success", result, "success");
       this._resetAssetEditState();
@@ -855,44 +816,10 @@ export default class ProTargetConsole extends NavigationMixin(
   async loadTargetOptions() {
     try {
       const targets = await getTargetsForYear();
-      const now = new Date();
-      const eighteenMonthsAgo = new Date(
-        now.getFullYear(),
-        now.getMonth() - 18,
-        1
-      );
-
-      // US-026: Only apply backward limit (18 months). No forward cap.
-      const filtered = targets.filter((t) => {
-        if (!t.pro_End_Date__c) {
-          return false;
-        }
-        const endDate = new Date(t.pro_End_Date__c + "T00:00:00");
-        return endDate >= eighteenMonthsAgo;
-      });
-
-      this.targetOptions = filtered.map((t) => ({
+      this.targetOptions = targets.map((t) => ({
         label: t.Name,
         value: t.Id
       }));
-
-      // US-022/US-025: Default to the target whose date range spans today
-      const currentTarget = filtered.find((t) => {
-        if (!t.pro_Start_Date__c || !t.pro_End_Date__c) {
-          return false;
-        }
-        const start = new Date(t.pro_Start_Date__c + "T00:00:00");
-        const end = new Date(t.pro_End_Date__c + "T00:00:00");
-        return now >= start && now <= end;
-      });
-      if (currentTarget) {
-        if (!this.selectedTargetId) {
-          this.selectedTargetId = currentTarget.Id;
-        }
-        if (!this.selectedTargetIdForAudits) {
-          this.selectedTargetIdForAudits = currentTarget.Id;
-        }
-      }
     } catch (error) {
       this.targetOptions = [];
       this.showToast("Error", this.reduceError(error), "error");
@@ -906,8 +833,7 @@ export default class ProTargetConsole extends NavigationMixin(
   async loadActiveTargetCount() {
     try {
       this.activeTargetCount = await getActiveTargetCount({
-        targetYear: this.selectedYear,
-        recordTypeFilter: this.assetTypeFilter
+        targetYear: this.selectedYear
       });
     } catch (error) {
       this.activeTargetCount = 0;
@@ -976,10 +902,9 @@ export default class ProTargetConsole extends NavigationMixin(
   // ============================================================
 
   get assetColumnCount() {
+    const checkboxCol = this.isWithoutTargetMode ? 1 : 0;
     const forecastCol = this.isWithoutTargetMode ? 0 : 1;
-    const checkboxCol = this.canEdit ? 1 : 0;
-    // +1 Lease End Date column (standalone <th> outside for:each)
-    return ASSET_COLUMNS.length + checkboxCol + 1 + forecastCol;
+    return ASSET_COLUMNS.length + checkboxCol + forecastCol;
   }
 
   _resetAssetEditState() {
@@ -1010,8 +935,7 @@ export default class ProTargetConsole extends NavigationMixin(
     try {
       this.targetsData = await getTargetAudits({
         targetYear: this.selectedYear,
-        outcomeFilter: this.targetOutcomeFilter,
-        recordTypeFilter: this.assetTypeFilter
+        outcomeFilter: this.targetOutcomeFilter
       });
     } catch (error) {
       this.targetsData = [];
@@ -1026,7 +950,7 @@ export default class ProTargetConsole extends NavigationMixin(
   // ============================================================
 
   get outcomeFilterOptions() {
-    return OUTCOME_FILTER_OPTIONS;
+    return this._outcomeFilterOptions;
   }
 
   get marketingTradingFilterOptions() {
@@ -1245,8 +1169,7 @@ export default class ProTargetConsole extends NavigationMixin(
     try {
       const result = await setTargetForAssets({
         assetIds: uniqueAssetIds,
-        targetId: this.selectedTargetIdForAudits,
-        recordTypeFilter: this.assetTypeFilter
+        targetId: this.selectedTargetIdForAudits
       });
       this.showToast("Success", result, "success");
       this.selectedAuditIds = new Set();
@@ -1361,8 +1284,7 @@ export default class ProTargetConsole extends NavigationMixin(
     try {
       await takeSnapshot({
         targetYear: this.selectedYear,
-        outcomeFilter: this.targetOutcomeFilter,
-        recordTypeFilter: this.assetTypeFilter
+        outcomeFilter: this.targetOutcomeFilter
       });
       this.showToast("Success", "Snapshot created successfully.", "success");
       this.loadSnapshots();
@@ -1431,8 +1353,7 @@ export default class ProTargetConsole extends NavigationMixin(
     this.targetPlanEditedFields = {};
     try {
       this.targetPlanData = await getTargetPlan({
-        targetYear: this.selectedYear,
-        recordTypeFilter: this.assetTypeFilter
+        targetYear: this.selectedYear
       });
     } catch (error) {
       this.targetPlanData = [];

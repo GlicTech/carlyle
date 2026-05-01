@@ -4,7 +4,7 @@
     <active>false</active>
     <description>Payment cannot Exceed total invoiced amount : This has been moved to trigger hence marking false and inactive</description>
     <errorConditionFormula>/*AND(!$Setup.LeaseWorksSettings__c.Disable_All_Triggers__c,
-				!ispickVal(Invoice_Type__c,&apos;Interest&apos;),
+				!ispickVal(Invoice_Type__c,&#39;Interest&#39;),
 				Total_Amount_Due__c &gt; 0,
 				(Amount_Paid__c+Availed_Credit_Amount_Cm__c+
 				if(ISBLANK(Deferred_Amount__c),0,Deferred_Amount__c))

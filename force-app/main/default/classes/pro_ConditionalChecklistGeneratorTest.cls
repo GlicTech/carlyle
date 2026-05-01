@@ -67,7 +67,7 @@ private class pro_ConditionalChecklistGeneratorTest {
             pro_Necessary__c       = 'Yes',
             pro_Status__c          = 'Open',
             pro_Source_Template__c  = sourceTemplate,
-            pro_Repsonsibility__c  = UserInfo.getUserId()
+            pro_Responsibility__c  = UserInfo.getUserId()
         );
         insert item;
         return item;
@@ -208,7 +208,7 @@ private class pro_ConditionalChecklistGeneratorTest {
                 pro_Status__c          = 'Open',
                 pro_Source_Template__c  = 'pro_Bulk_Template_' + i,
                 pro_Yes_No__c          = 'Yes',
-                pro_Repsonsibility__c  = UserInfo.getUserId()
+                pro_Responsibility__c  = UserInfo.getUserId()
             ));
         }
         insert parents;

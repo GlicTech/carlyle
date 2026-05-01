@@ -3,6 +3,7 @@
     <fullName>leaseworks__Lease_Anniversary_Date__c</fullName>
     <deprecated>false</deprecated>
     <description>Specifies anniversary of lease expiration</description>
+    <externalId>false</externalId>
     <formula>if(TODAY()&lt; DATE( YEAR( TODAY()), MONTH(leaseworks__Lease_Start_Date_New__c), DAY(leaseworks__Lease_Start_Date_New__c)),DATE( YEAR( TODAY()), MONTH(leaseworks__Lease_Start_Date_New__c), DAY(leaseworks__Lease_Start_Date_New__c)),
 DATE( YEAR(TODAY())+1, MONTH(leaseworks__Lease_Start_Date_New__c), DAY(leaseworks__Lease_Start_Date_New__c)))</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>

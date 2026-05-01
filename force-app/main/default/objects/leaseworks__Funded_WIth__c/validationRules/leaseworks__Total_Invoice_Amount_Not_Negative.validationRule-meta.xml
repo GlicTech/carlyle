@@ -2,7 +2,7 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>leaseworks__Total_Invoice_Amount_Not_Negative</fullName>
     <active>true</active>
-    <errorConditionFormula>OR (leaseworks__Applied_Amount__c &lt;=0, and (   leaseworks__Type_F__c = &apos;Credit Note Rent&apos;  , isBlank(leaseworks__Applied_Amount__c ) )
+    <errorConditionFormula>OR (leaseworks__Applied_Amount__c &lt;=0, and (   leaseworks__Type_F__c = &#39;Credit Note Rent&#39;  , isBlank(leaseworks__Applied_Amount__c ) )
  )</errorConditionFormula>
     <errorDisplayField>leaseworks__Applied_Amount__c</errorDisplayField>
     <errorMessage>Amount must be greater than zero.</errorMessage>

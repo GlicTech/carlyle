@@ -241,35 +241,35 @@
     {!Get_Entity_Definition_For_Triggering_Record.QualifiedApiName} = &quot;leaseworks__Technical_Project__c&quot;,
     &quot;SELECT pro_Status_Update__c, pro_Created_By_Name__c, pro_Date__c, pro_Update_Type__c &quot; &amp;
     &quot;FROM pro_Status_Update__c &quot; &amp;
-    &quot;WHERE pro_Technical_Project__c = &apos;&quot; &amp; {!recordId} &amp; &quot;&apos; &quot; &amp;
+    &quot;WHERE pro_Technical_Project__c = &#39;&quot; &amp; {!recordId} &amp; &quot;&#39; &quot; &amp;
     &quot;ORDER BY CreatedDate DESC&quot;,
 
 IF(
     {!Get_Entity_Definition_For_Triggering_Record.QualifiedApiName} = &quot;Account&quot;,
     &quot;SELECT pro_Status_Update__c, pro_Created_By_Name__c, pro_Date__c, pro_Update_Type__c  &quot; &amp;
     &quot;FROM pro_Status_Update__c &quot; &amp;
-    &quot;WHERE pro_Account__c = &apos;&quot; &amp; {!recordId} &amp; &quot;&apos; &quot; &amp;
+    &quot;WHERE pro_Account__c = &#39;&quot; &amp; {!recordId} &amp; &quot;&#39; &quot; &amp;
     &quot;ORDER BY CreatedDate DESC&quot;,
 
 IF(
     {!Get_Entity_Definition_For_Triggering_Record.QualifiedApiName} = &quot;leaseworks__Claims__c&quot;,
     &quot;SELECT pro_Status_Update__c, pro_Created_By_Name__c, pro_Date__c, pro_Update_Type__c &quot; &amp;
     &quot;FROM pro_Status_Update__c &quot; &amp;
-    &quot;WHERE pro_Claim__c = &apos;&quot; &amp; {!recordId} &amp; &quot;&apos; &quot; &amp;
+    &quot;WHERE pro_Claim__c = &#39;&quot; &amp; {!recordId} &amp; &quot;&#39; &quot; &amp;
     &quot;ORDER BY CreatedDate DESC&quot;,
 
 IF(
     {!Get_Entity_Definition_For_Triggering_Record.QualifiedApiName} = &quot;Litigation__c&quot;,
     &quot;SELECT pro_Status_Update__c, pro_Created_By_Name__c, pro_Date__c, pro_Update_Type__c &quot; &amp;
     &quot;FROM pro_Status_Update__c &quot; &amp;
-    &quot;WHERE pro_Litigation__c = &apos;&quot; &amp; {!recordId} &amp; &quot;&apos; &quot; &amp;
+    &quot;WHERE pro_Litigation__c = &#39;&quot; &amp; {!recordId} &amp; &quot;&#39; &quot; &amp;
     &quot;ORDER BY CreatedDate DESC&quot;,
 
 IF(
     {!Get_Entity_Definition_For_Triggering_Record.QualifiedApiName} = &quot;pro_Ticket__c&quot;,
     &quot;SELECT pro_Status_Update__c, pro_Created_By_Name__c, pro_Date__c, pro_Update_Type__c &quot; &amp;
     &quot;FROM pro_Status_Update__c &quot; &amp;
-    &quot;WHERE pro_Ticket__c = &apos;&quot; &amp; {!recordId} &amp; &quot;&apos; &quot; &amp;
+    &quot;WHERE pro_Ticket__c = &#39;&quot; &amp; {!recordId} &amp; &quot;&#39; &quot; &amp;
     &quot;ORDER BY CreatedDate DESC&quot;,
 
 IF(
@@ -279,8 +279,8 @@ IF(
     ),
     &quot;SELECT pro_Status_Update__c, pro_Created_By_Name__c, pro_Date__c, pro_Update_Type__c &quot; &amp;
     &quot;FROM pro_Status_Update__c &quot; &amp;
-    &quot;WHERE pro_Deal__c = &apos;&quot; &amp; {!recordId} &amp; &quot;&apos; &quot; &amp;
-    &quot;AND pro_Update_Type__c = &apos;Weekly Commercial Summary&apos; &quot; &amp;
+    &quot;WHERE pro_Deal__c = &#39;&quot; &amp; {!recordId} &amp; &quot;&#39; &quot; &amp;
+    &quot;AND pro_Update_Type__c = &#39;Weekly Commercial Summary&#39; &quot; &amp;
     &quot;ORDER BY CreatedDate DESC&quot;,
 
 IF(
@@ -290,8 +290,8 @@ IF(
     ),
     &quot;SELECT pro_Status_Update__c, pro_Created_By_Name__c, pro_Date__c, pro_Update_Type__c &quot; &amp;
     &quot;FROM pro_Status_Update__c &quot; &amp;
-    &quot;WHERE pro_Deal__c = &apos;&quot; &amp; {!recordId} &amp; &quot;&apos; &quot; &amp;
-    &quot;AND pro_Update_Type__c = &apos;Weekly Legal &amp; Contracts Summary&apos; &quot; &amp;
+    &quot;WHERE pro_Deal__c = &#39;&quot; &amp; {!recordId} &amp; &quot;&#39; &quot; &amp;
+    &quot;AND pro_Update_Type__c = &#39;Weekly Legal &amp; Contracts Summary&#39; &quot; &amp;
     &quot;ORDER BY CreatedDate DESC&quot;,
 
 IF(
@@ -301,8 +301,8 @@ IF(
     ),
     &quot;SELECT pro_Status_Update__c, pro_Created_By_Name__c, pro_Date__c, pro_Update_Type__c &quot; &amp;
     &quot;FROM pro_Status_Update__c &quot; &amp;
-    &quot;WHERE pro_Deal__c = &apos;&quot; &amp; {!recordId} &amp; &quot;&apos; &quot; &amp;
-    &quot;AND pro_Update_Type__c IN (&apos;Weekly Commercial Summary&apos;,&apos;Weekly Legal &amp; Contracts Summary&apos;) &quot; &amp;
+    &quot;WHERE pro_Deal__c = &#39;&quot; &amp; {!recordId} &amp; &quot;&#39; &quot; &amp;
+    &quot;AND pro_Update_Type__c IN (&#39;Weekly Commercial Summary&#39;,&#39;Weekly Legal &amp; Contracts Summary&#39;) &quot; &amp;
     &quot;ORDER BY CreatedDate DESC&quot;,
 
 &quot;&quot;
@@ -503,7 +503,6 @@ IF(
             <defaultSelectedChoiceReference>c_All</defaultSelectedChoiceReference>
             <fieldText>Update Type</fieldText>
             <fieldType>DropdownBox</fieldType>
-            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
             <visibilityRule>
                 <conditionLogic>and</conditionLogic>

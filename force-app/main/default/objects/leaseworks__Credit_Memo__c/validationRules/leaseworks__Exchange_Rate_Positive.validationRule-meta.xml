@@ -3,7 +3,7 @@
     <fullName>leaseworks__Exchange_Rate_Positive</fullName>
     <active>true</active>
     <description>Exchange Rate Should be Positive</description>
-    <errorConditionFormula>IF(AND(!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c,NOT(ISPICKVAL( leaseworks__Billing_Currency__c ,&apos;USD&apos;))),OR(leaseworks__Exchange_Rate__c &lt;= 0,ISBLANK(leaseworks__Exchange_Rate__c), ISNULL(leaseworks__Exchange_Rate__c) ),false)</errorConditionFormula>
+    <errorConditionFormula>IF(AND(!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c,NOT(ISPICKVAL( leaseworks__Billing_Currency__c ,&#39;USD&#39;))),OR(leaseworks__Exchange_Rate__c &lt;= 0,ISBLANK(leaseworks__Exchange_Rate__c), ISNULL(leaseworks__Exchange_Rate__c) ),false)</errorConditionFormula>
     <errorDisplayField>leaseworks__Exchange_Rate__c</errorDisplayField>
     <errorMessage>Exchange Rate should be greater than zero.</errorMessage>
 </ValidationRule>

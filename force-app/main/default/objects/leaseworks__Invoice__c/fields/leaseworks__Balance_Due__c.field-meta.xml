@@ -3,7 +3,8 @@
     <fullName>leaseworks__Balance_Due__c</fullName>
     <deprecated>false</deprecated>
     <description>Indicates the Balance Due on the associated invoice.</description>
-    <formula>IF( OR(ISPICKVAL(leaseworks__Status__c,&apos;Declined&apos;),ISPICKVAL(leaseworks__Status__c,&apos;Cancelled&apos;)),0,  leaseworks__Total_Amount_Due__c  - (leaseworks__Amount_Paid_Remaining__c + leaseworks__Availed_Credit_Amount_Cm__c))</formula>
+    <externalId>false</externalId>
+    <formula>IF( OR(ISPICKVAL(leaseworks__Status__c,&#39;Declined&#39;),ISPICKVAL(leaseworks__Status__c,&#39;Cancelled&#39;)),0,  leaseworks__Total_Amount_Due__c  - (leaseworks__Amount_Paid_Remaining__c + leaseworks__Availed_Credit_Amount_Cm__c))</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <inlineHelpText>Indicates the Balance Due on the associated invoice</inlineHelpText>
     <label>Balance Due($)</label>

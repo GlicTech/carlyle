@@ -1,34 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>61.0</apiVersion>
-    <customErrors>
-        <name>Error_on_setting_CP_convention_value</name>
-        <label>Error on setting CP convention value</label>
-        <locationX>842</locationX>
-        <locationY>647</locationY>
-        <connector>
-            <isGoTo>true</isGoTo>
-            <targetReference>Enable_the_Triggers</targetReference>
-        </connector>
-        <customErrorMessages>
-            <errorMessage>{!$Flow.FaultMessage}</errorMessage>
-            <isFieldError>false</isFieldError>
-        </customErrorMessages>
-    </customErrors>
-    <customErrors>
-        <name>Error_on_updating_CP_convention_cbk_to_default</name>
-        <label>Error on updating CP convention cbk to default</label>
-        <locationX>314</locationX>
-        <locationY>647</locationY>
-        <connector>
-            <isGoTo>true</isGoTo>
-            <targetReference>Enable_the_Triggers</targetReference>
-        </connector>
-        <customErrorMessages>
-            <errorMessage>{!$Flow.FaultMessage}</errorMessage>
-            <isFieldError>false</isFieldError>
-        </customErrorMessages>
-    </customErrors>
     <decisions>
         <name>Checking_if_the_Country_of_registry_is_null</name>
         <label>Checking if the Country of registry is null</label>

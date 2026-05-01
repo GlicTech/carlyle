@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>66.0</apiVersion>
+    <description>Flow gets called whenever an asset in deal gets marked as inactive/active and updates the Re-Opened Target checkbox.</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>f_TargetReopened</name>
+        <dataType>Boolean</dataType>
+        <expression>IF({!varTriggeringAid.leaseworks__Inactive_AT__c} = True, True, False)</expression>
+    </formulas>
+    <interviewLabel>Autolaunched - Flag Re-Opened Targets {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Autolaunched - Flag Re-Opened Targets</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Update_Target_Re_Opened</name>
+        <label>Update Target Re-Opened</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>pro_Asset_in_Deal__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>varTriggeringAid.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>pro_Target_Re_Opened__c</field>
+            <value>
+                <elementReference>f_TargetReopened</elementReference>
+            </value>
+        </inputAssignments>
+        <object>pro_Asset_Target_Audit__c</object>
+    </recordUpdates>
+    <runInMode>SystemModeWithoutSharing</runInMode>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Update_Target_Re_Opened</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>varTriggeringAid</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>leaseworks__Aircraft_Proposal__c</objectType>
+    </variables>
+</Flow>

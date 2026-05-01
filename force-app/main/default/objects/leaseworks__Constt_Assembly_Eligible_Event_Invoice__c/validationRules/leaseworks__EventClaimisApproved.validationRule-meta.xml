@@ -5,7 +5,7 @@
     <description>Only when the status of the Claim is approved, users should be able to generate Invoice</description>
     <errorConditionFormula>false /*AND(
 ISNEW(),
-  !(ISPICKVAL( Claim__r.Claim_Status__c, &apos;Approved&apos;)) 
+  !(ISPICKVAL( Claim__r.Claim_Status__c, &#39;Approved&#39;)) 
 )*/</errorConditionFormula>
     <errorMessage>The event claim has to be approved before generating an invoice</errorMessage>
 </ValidationRule>

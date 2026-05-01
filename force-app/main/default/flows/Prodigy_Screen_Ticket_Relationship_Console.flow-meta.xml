@@ -316,7 +316,7 @@ Screen flow gets launched from Ticket lightning page and gives user options to a
         <expression>IF(
   ISBLANK({!Serial_Number}),
   &quot;SELECT Id, Name, leaseworks__Type__c, pro_Asset_Name_Assembly_Type__c FROM leaseworks__Constituent_Assembly__c&quot;,
-  &quot;SELECT Id, Name, leaseworks__Type__c, pro_Asset_Name_Assembly_Type__c FROM leaseworks__Constituent_Assembly__c WHERE leaseworks__Asset__r.leaseworks__MSN_Number__c = &apos;&quot; &amp; {!Serial_Number} &amp; &quot;&apos;&quot;
+  &quot;SELECT Id, Name, leaseworks__Type__c, pro_Asset_Name_Assembly_Type__c FROM leaseworks__Constituent_Assembly__c WHERE leaseworks__Asset__r.leaseworks__MSN_Number__c = &#39;&quot; &amp; {!Serial_Number} &amp; &quot;&#39;&quot;
 )</expression>
     </formulas>
     <formulas>
@@ -325,7 +325,7 @@ Screen flow gets launched from Ticket lightning page and gives user options to a
         <expression>IF(
   ISBLANK({!Serial_Number}),
   &quot;SELECT Id, Name, leaseworks__Asset_Type_GP__c FROM leaseworks__Aircraft__c&quot;,
-  &quot;SELECT Id, Name, leaseworks__Asset_Type_GP__c FROM leaseworks__Aircraft__c WHERE leaseworks__MSN_Number__c LIKE &apos;&quot; &amp; {!Serial_Number} &amp; &quot;%&apos;&quot;
+  &quot;SELECT Id, Name, leaseworks__Asset_Type_GP__c FROM leaseworks__Aircraft__c WHERE leaseworks__MSN_Number__c LIKE &#39;&quot; &amp; {!Serial_Number} &amp; &quot;%&#39;&quot;
 )</expression>
     </formulas>
     <interviewLabel>Prodigy - Screen - Ticket Relationship Console {!$Flow.CurrentDateTime}</interviewLabel>
@@ -552,7 +552,6 @@ Screen flow gets launched from Ticket lightning page and gives user options to a
                     </defaultValue>
                     <fieldText>Serial Number</fieldText>
                     <fieldType>InputField</fieldType>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                 </fields>
                 <inputParameters>
@@ -1160,48 +1159,6 @@ Screen flow gets launched from Ticket lightning page and gives user options to a
             </value>
         </inputAssignments>
     </subflows>
-    <transforms>
-        <name>Create_Assembly_Name_Collection</name>
-        <label>Create Assembly Name Collection</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Loop_Selected_Assets</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>varAssembliesToLink[$EachItem].pro_Asset_Name_Assembly_Type__c</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
-    <transforms>
-        <name>Create_Asset_Name_Collection</name>
-        <label>Create Asset Name Collection</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Was_At_Least_1_Assembly_Selected</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>varAssetsToLink[$EachItem].Name</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
     <variables>
         <name>varAssembliesOnTicketToCreateCollection</name>
         <dataType>SObject</dataType>

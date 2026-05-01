@@ -4,7 +4,7 @@
     <deprecated>false</deprecated>
     <externalId>false</externalId>
     <formula>IF(
-  ISPICKVAL(leaseworks__Re_Delivery_Condition_Status__c, &apos;Red&apos;),
+  ISPICKVAL(leaseworks__Re_Delivery_Condition_Status__c, &#39;Red&#39;),
   IMAGE(
     &quot;/resource/&quot; + $Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Package_Prefix__c + &quot;RedeliveryStatusImages/Red.png&quot;,
     &quot;Red&quot;,
@@ -12,7 +12,7 @@
     18
   ),
   IF(
-    ISPICKVAL(leaseworks__Re_Delivery_Condition_Status__c, &apos;Green&apos;),
+    ISPICKVAL(leaseworks__Re_Delivery_Condition_Status__c, &#39;Green&#39;),
     IMAGE(
       &quot;/resource/&quot; + $Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Package_Prefix__c + &quot;RedeliveryStatusImages/Green.png&quot;,
       &quot;Green&quot;,
@@ -20,14 +20,14 @@
       18
     ),
     IF(
-      ISPICKVAL(leaseworks__Re_Delivery_Condition_Status__c, &apos;Orange&apos;),
+      ISPICKVAL(leaseworks__Re_Delivery_Condition_Status__c, &#39;Orange&#39;),
       IMAGE(
         &quot;/resource/&quot; + $Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Package_Prefix__c + &quot;RedeliveryStatusImages/Orange.png&quot;,
         &quot;Orange&quot;,
         18,
         18
       ),
-      &apos;&apos;
+      &#39;&#39;
     )
   )
 )</formula>

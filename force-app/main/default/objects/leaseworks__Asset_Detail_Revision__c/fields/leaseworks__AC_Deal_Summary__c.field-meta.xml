@@ -6,16 +6,16 @@
     <formula>if(  isBlank(leaseworks__MSN_E__c) , 
 /* Other */
 if(isBlank(leaseworks__ESN__c),
- if(isBlank(text(leaseworks__Asset_Type_GP__c) ),&apos;NA&apos;,Text( leaseworks__Asset_Type_GP__c ))
-,/* engine*/&apos;ESN &apos; &amp;  leaseworks__ESN__c  )
+ if(isBlank(text(leaseworks__Asset_Type_GP__c) ),&#39;NA&#39;,Text( leaseworks__Asset_Type_GP__c ))
+,/* engine*/&#39;ESN &#39; &amp;  leaseworks__ESN__c  )
 ,
 /* MSN present*/
-&apos;MSN &apos; &amp; leaseworks__MSN_E__c
-&amp; &apos;, &apos; &amp; if(isBlank(leaseworks__YoM__c) ,&apos;NA&apos;,leaseworks__YoM__c)  
-&amp; &apos;, &apos; &amp; text(leaseworks__Asset_Type_GP__c )
+&#39;MSN &#39; &amp; leaseworks__MSN_E__c
+&amp; &#39;, &#39; &amp; if(isBlank(leaseworks__YoM__c) ,&#39;NA&#39;,leaseworks__YoM__c)  
+&amp; &#39;, &#39; &amp; text(leaseworks__Asset_Type_GP__c )
 )
 
-&amp; &apos;, &apos; &amp;  leaseworks__Deal_Summary_c__c</formula>
+&amp; &#39;, &#39; &amp;  leaseworks__Deal_Summary_c__c</formula>
     <label>Z_Unused AC &amp; Deal Summary</label>
     <required>false</required>
     <trackHistory>false</trackHistory>

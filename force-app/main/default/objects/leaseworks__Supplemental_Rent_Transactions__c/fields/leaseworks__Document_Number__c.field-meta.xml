@@ -4,42 +4,42 @@
     <deprecated>false</deprecated>
     <description>Hyperlink to the associated document (ref to the table above)</description>
     <externalId>false</externalId>
-    <formula>CASE(TEXT(leaseworks__Transaction_Type__c)
-,&apos;MR Invoice&apos;,  IF(ISBLANK(leaseworks__Invoice_Line_Item__c ),  HYPERLINK(&apos;/&apos;+leaseworks__Supplemental_Rent_Utilization__c,leaseworks__Supplemental_Rent_Utilization__r.Name),
-HYPERLINK(&apos;/&apos;+leaseworks__Invoice_Line_Item__c,leaseworks__Invoice_Line_Item__r.leaseworks__Invoice__r.Name))
-,&apos;MR Invoice Reconciliation&apos;,HYPERLINK(&apos;/&apos;+leaseworks__Invoice_Line_Item__c,leaseworks__Invoice_Line_Item__r.leaseworks__Invoice__r.Name)					
-,&apos;MR Invoice Overpayment Credit&apos;,HYPERLINK(&apos;/&apos;+leaseworks__Credit_Memo_Issuance__c,leaseworks__Credit_Memo_Name__c)
-,&apos;MR Cash Payment&apos;,IF(ISBLANK(leaseworks__Payment_Line_Item__c),
-HYPERLINK(&apos;/&apos;+leaseworks__Supplemental_Rent_Utilization__c,leaseworks__Supplemental_Rent_Utilization__r.Name),
-HYPERLINK(&apos;/&apos;+leaseworks__Payment_Line_Item__c,leaseworks__Payment_Line_Item__r.leaseworks__Payment__r.Name))
-,&apos;MR Payment Credit Applied&apos;,IF(ISBLANK(leaseworks__Payment_Line_Item__c),
-HYPERLINK(&apos;/&apos;+leaseworks__Supplemental_Rent_Utilization__c,leaseworks__Supplemental_Rent_Utilization__r.Name),
-HYPERLINK(&apos;/&apos;+leaseworks__Payment_Line_Item__c,leaseworks__Payment_Line_Item__r.leaseworks__Payment__r.Name))
-,&apos;MR Invoice Credit (Adjustment)&apos;,IF(ISBLANK(leaseworks__Payment_Line_Item__c),
-HYPERLINK(&apos;/&apos;+leaseworks__Supplemental_Rent_Utilization__c,leaseworks__Supplemental_Rent_Utilization__r.Name),
-HYPERLINK(&apos;/&apos;+leaseworks__Payment_Line_Item__c,leaseworks__Payment_Line_Item__r.leaseworks__Payment__r.Name))
-,&apos;MR Payment Offset&apos;,IF(ISBLANK(leaseworks__Payment_Line_Item__c),
-HYPERLINK(&apos;/&apos;+leaseworks__Supplemental_Rent_Utilization__c,leaseworks__Supplemental_Rent_Utilization__r.Name),
-HYPERLINK(&apos;/&apos;+leaseworks__Payment_Line_Item__c,leaseworks__Payment_Line_Item__r.leaseworks__Payment__r.Name))
-,&apos;Adjustment&apos;, HYPERLINK(&apos;/&apos;+leaseworks__Supplemental_Rent_Adjustment__c,leaseworks__Supplemental_Rent_Adjustment_Name__c)
-,&apos;MR Transfer&apos;, HYPERLINK(&apos;/&apos;+leaseworks__MR_Fund_Transfer__c,leaseworks__MR_Fund_Transfer_Name__c)
-,&apos;MR Accrued&apos;, HYPERLINK(&apos;/&apos;+leaseworks__Supplemental_Rent_Utilization__c,leaseworks__Supplemental_Rent_Utilization__r.Name)
-,&apos;MR Claim Accrued&apos;, HYPERLINK(&apos;/&apos;+leaseworks__Claim__c,leaseworks__Claim__r.Name)
-,&apos;MR Invoice Adjustment&apos;,HYPERLINK(&apos;/&apos;+leaseworks__Invoice_Adjustment_Line_Item__c,leaseworks__Invoice_Adjustment_Line_Item__r.leaseworks__Invoice_Adjustment__r.Name)
-,IF(!ISBLANK(leaseworks__Payable_Line_Item__c),HYPERLINK(&apos;/&apos;+leaseworks__Payable_Line_Item__c,leaseworks__Event_Payable__r.Name),IF(!ISBLANK(leaseworks__Payout_Line_Item__c),HYPERLINK(&apos;/&apos;+leaseworks__Payout_Line_Item__c,leaseworks__Event_Payout__r.Name),&apos;&apos;)))
+    <formula>if(BEGINS(TEXT(leaseworks__Transaction_Type__c),&#39;Adjustment - &#39;), HYPERLINK(&#39;/&#39;+leaseworks__Supplemental_Rent_Adjustment__c,leaseworks__Supplemental_Rent_Adjustment_Name__c),
+CASE(TEXT(leaseworks__Transaction_Type__c)
+,&#39;MR Invoice&#39;,  IF(ISBLANK(leaseworks__Invoice_Line_Item__c ),  HYPERLINK(&#39;/&#39;+leaseworks__Supplemental_Rent_Utilization__c,leaseworks__Supplemental_Rent_Utilization__r.Name),
+HYPERLINK(&#39;/&#39;+leaseworks__Invoice_Line_Item__c,leaseworks__Invoice_Line_Item__r.leaseworks__Invoice__r.Name))
+,&#39;MR Invoice Reconciliation&#39;,HYPERLINK(&#39;/&#39;+leaseworks__Invoice_Line_Item__c,leaseworks__Invoice_Line_Item__r.leaseworks__Invoice__r.Name)					
+,&#39;MR Invoice Overpayment Credit&#39;,HYPERLINK(&#39;/&#39;+leaseworks__Credit_Memo_Issuance__c,leaseworks__Credit_Memo_Name__c)
+,&#39;MR Cash Payment&#39;,IF(ISBLANK(leaseworks__Payment_Line_Item__c),
+HYPERLINK(&#39;/&#39;+leaseworks__Supplemental_Rent_Utilization__c,leaseworks__Supplemental_Rent_Utilization__r.Name),
+HYPERLINK(&#39;/&#39;+leaseworks__Payment_Line_Item__c,leaseworks__Payment_Line_Item__r.leaseworks__Payment__r.Name))
+,&#39;MR Payment Credit Applied&#39;,IF(ISBLANK(leaseworks__Payment_Line_Item__c),
+HYPERLINK(&#39;/&#39;+leaseworks__Supplemental_Rent_Utilization__c,leaseworks__Supplemental_Rent_Utilization__r.Name),
+HYPERLINK(&#39;/&#39;+leaseworks__Payment_Line_Item__c,leaseworks__Payment_Line_Item__r.leaseworks__Payment__r.Name))
+,&#39;MR Invoice Credit (Adjustment)&#39;,IF(ISBLANK(leaseworks__Payment_Line_Item__c),
+HYPERLINK(&#39;/&#39;+leaseworks__Supplemental_Rent_Utilization__c,leaseworks__Supplemental_Rent_Utilization__r.Name),
+HYPERLINK(&#39;/&#39;+leaseworks__Payment_Line_Item__c,leaseworks__Payment_Line_Item__r.leaseworks__Payment__r.Name))
+,&#39;MR Payment Offset&#39;,IF(ISBLANK(leaseworks__Payment_Line_Item__c),
+HYPERLINK(&#39;/&#39;+leaseworks__Supplemental_Rent_Utilization__c,leaseworks__Supplemental_Rent_Utilization__r.Name),
+HYPERLINK(&#39;/&#39;+leaseworks__Payment_Line_Item__c,leaseworks__Payment_Line_Item__r.leaseworks__Payment__r.Name))
+,&#39;MR Transfer&#39;, HYPERLINK(&#39;/&#39;+leaseworks__MR_Fund_Transfer__c,leaseworks__MR_Fund_Transfer_Name__c)
+,&#39;MR Accrued&#39;, HYPERLINK(&#39;/&#39;+leaseworks__Supplemental_Rent_Utilization__c,leaseworks__Supplemental_Rent_Utilization__r.Name)
+,&#39;MR Claim Accrued&#39;, HYPERLINK(&#39;/&#39;+leaseworks__Claim__c,leaseworks__Claim__r.Name)
+,&#39;MR Invoice Adjustment&#39;,HYPERLINK(&#39;/&#39;+leaseworks__Invoice_Adjustment_Line_Item__c,leaseworks__Invoice_Adjustment_Line_Item__r.leaseworks__Invoice_Adjustment__r.Name)
+,IF(!ISBLANK(leaseworks__Payable_Line_Item__c),HYPERLINK(&#39;/&#39;+leaseworks__Payable_Line_Item__c,leaseworks__Event_Payable__r.Name),IF(!ISBLANK(leaseworks__Payout_Line_Item__c),HYPERLINK(&#39;/&#39;+leaseworks__Payout_Line_Item__c,leaseworks__Event_Payout__r.Name),&#39;&#39;))))
 
 /** The below transaction types are handled in the else of the case statement
-&apos;MR Contribution Applied&apos;,HYPERLINK(&apos;/&apos;+Payable_Line_Item__c,Event_Payable__r.Name)
-&apos;MR Contribution Used&apos;,HYPERLINK(&apos;/&apos;+Payable_Line_Item__c,Event_Payable__r.Name)
-&apos;MR Claim&apos;,HYPERLINK(&apos;/&apos;+Payable_Line_Item__c,Event_Payable__r.Name)
-&apos;MR Claim Refund&apos;,HYPERLINK(&apos;/&apos;+Payout_Line_Item__c,Event_Payout__r.Name)
-&apos;MR Claim Offset&apos;,HYPERLINK(&apos;/&apos;+Payout_Line_Item__c,Event_Payout__r.Name)
-&apos;MR Rebate&apos;,HYPERLINK(&apos;/&apos;+Payable_Line_Item__c,Event_Payable__r.Name)
-&apos;MR Rebate Payout&apos;,HYPERLINK(&apos;/&apos;+Payout_Line_Item__c,Event_Payout__r.Name)
-&apos;MR Manual Payable&apos;,HYPERLINK(&apos;/&apos;+Payable_Line_Item__c,Event_Payable__r.Name)
-&apos;MR Manual Payout&apos;,HYPERLINK(&apos;/&apos;+Payout_Line_Item__c,Event_Payout__r.Name)
-&apos;Payable - MR Reconciliation&apos;,HYPERLINK(&apos;/&apos;+Payable_Line_Item__c,Event_Payable__r.Name)
-&apos;Payout - MR Reconciliation&apos;,HYPERLINK(&apos;/&apos;+Payout_Line_Item__c,Event_Payout__r.Name)
+&#39;MR Contribution Applied&#39;,HYPERLINK(&#39;/&#39;+Payable_Line_Item__c,Event_Payable__r.Name)
+&#39;MR Contribution Used&#39;,HYPERLINK(&#39;/&#39;+Payable_Line_Item__c,Event_Payable__r.Name)
+&#39;MR Claim&#39;,HYPERLINK(&#39;/&#39;+Payable_Line_Item__c,Event_Payable__r.Name)
+&#39;MR Claim Refund&#39;,HYPERLINK(&#39;/&#39;+Payout_Line_Item__c,Event_Payout__r.Name)
+&#39;MR Claim Offset&#39;,HYPERLINK(&#39;/&#39;+Payout_Line_Item__c,Event_Payout__r.Name)
+&#39;MR Rebate&#39;,HYPERLINK(&#39;/&#39;+Payable_Line_Item__c,Event_Payable__r.Name)
+&#39;MR Rebate Payout&#39;,HYPERLINK(&#39;/&#39;+Payout_Line_Item__c,Event_Payout__r.Name)
+&#39;MR Manual Payable&#39;,HYPERLINK(&#39;/&#39;+Payable_Line_Item__c,Event_Payable__r.Name)
+&#39;MR Manual Payout&#39;,HYPERLINK(&#39;/&#39;+Payout_Line_Item__c,Event_Payout__r.Name)
+&#39;Payable - MR Reconciliation&#39;,HYPERLINK(&#39;/&#39;+Payable_Line_Item__c,Event_Payable__r.Name)
+&#39;Payout - MR Reconciliation&#39;,HYPERLINK(&#39;/&#39;+Payout_Line_Item__c,Event_Payout__r.Name)
 **/</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <inlineHelpText>Auto-calculated field, showing the source document number and hyperlink to the document</inlineHelpText>

@@ -5,7 +5,7 @@
     <description>Do not allow the user to change CSN Unknown checkbox to false when the utilization status shows missing FC utilization
 Do not allow the user to change CSN Unknown checkbox to true when the utilization status does not show missing FC utilization</description>
     <errorConditionFormula>OR((!ISBLANK(leaseworks__Y_Hidden_Utilization_Status__c) &amp;&amp;
-contains(leaseworks__Y_Hidden_Utilization_Status__c,&apos;FC&apos;) &amp;&amp; ! leaseworks__CSN_Unknown__c),(!ISBLANK(leaseworks__Y_Hidden_Utilization_Status__c) &amp;&amp;
-!contains(leaseworks__Y_Hidden_Utilization_Status__c,&apos;FC&apos;) &amp;&amp;  leaseworks__CSN_Unknown__c))</errorConditionFormula>
+contains(leaseworks__Y_Hidden_Utilization_Status__c,&#39;FC&#39;) &amp;&amp; ! leaseworks__CSN_Unknown__c),(!ISBLANK(leaseworks__Y_Hidden_Utilization_Status__c) &amp;&amp;
+!contains(leaseworks__Y_Hidden_Utilization_Status__c,&#39;FC&#39;) &amp;&amp;  leaseworks__CSN_Unknown__c))</errorConditionFormula>
     <errorMessage>Cannot change CSN Unknown. Please refer to missing utilization from Utilization Status.</errorMessage>
 </ValidationRule>

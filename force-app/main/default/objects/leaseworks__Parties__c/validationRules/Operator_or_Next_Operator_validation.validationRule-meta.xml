@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Operator_or_Next_Operator_validation</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+    OR(
+        ISPICKVAL(leaseworks__Role__c, &quot;Operator&quot;),
+        ISPICKVAL(leaseworks__Role__c, &quot;Next Operator&quot;)
+    ),
+    NOT(
+        ISPICKVAL(leaseworks__Account__r.Type, &quot;Airline&quot;)
+    )
+)</errorConditionFormula>
+    <errorMessage>If the Role selected is either Operator or Next Operator, please choose an Airline Account.</errorMessage>
+</ValidationRule>

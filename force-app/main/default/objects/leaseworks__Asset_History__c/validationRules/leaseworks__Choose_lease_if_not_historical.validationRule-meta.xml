@@ -3,7 +3,7 @@
     <fullName>leaseworks__Choose_lease_if_not_historical</fullName>
     <active>true</active>
     <description>Please choose the lease when On Lease</description>
-    <errorConditionFormula>AND(!leaseworks__Historical_Lease__c, OR(TEXT( leaseworks__Status__c )=&apos;On Lease&apos;, TEXT( leaseworks__Status__c )=&apos;Lease Extension&apos;, TEXT( leaseworks__Status__c )=&apos;Lease Termination&apos;), ISBLANK(leaseworks__Lease__c))</errorConditionFormula>
+    <errorConditionFormula>AND(!leaseworks__Historical_Lease__c, OR(TEXT( leaseworks__Status__c )=&#39;On Lease&#39;, TEXT( leaseworks__Status__c )=&#39;Lease Extension&#39;, TEXT( leaseworks__Status__c )=&#39;Lease Termination&#39;), ISBLANK(leaseworks__Lease__c))</errorConditionFormula>
     <errorDisplayField>leaseworks__Lease__c</errorDisplayField>
     <errorMessage>Please choose the lease if this is not a historical lease or check the Historical Lease checkbox.</errorMessage>
 </ValidationRule>

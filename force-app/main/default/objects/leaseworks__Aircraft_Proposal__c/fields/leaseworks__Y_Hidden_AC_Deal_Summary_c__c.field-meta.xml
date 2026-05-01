@@ -7,16 +7,16 @@
     <formula>if( isBlank(leaseworks__MSN_E__c) ,
 /* Other */
 if(isBlank(leaseworks__ESN__c),
- if(isBlank(text(leaseworks__Asset_Type__c) ),&apos;NA&apos;,Text( leaseworks__Asset_Type__c ))
-,/* engine*/&apos;ESN &apos; &amp;  leaseworks__ESN__c )
+ if(isBlank(text(leaseworks__Asset_Type__c) ),&#39;NA&#39;,Text( leaseworks__Asset_Type__c ))
+,/* engine*/&#39;ESN &#39; &amp;  leaseworks__ESN__c )
 ,
 /* MSN present*/
-if(leaseworks__Y_Hidden_Aircraft_Engine__c==&apos;Aircraft&apos;,&apos;MSN &apos; &amp; leaseworks__MSN_E__c,if(leaseworks__Y_Hidden_Aircraft_Engine__c==&apos;Engine&apos;,&apos;ESN &apos; &amp; leaseworks__MSN_E__c,&apos;SN &apos; &amp; leaseworks__MSN_E__c))
-&amp; &apos;, &apos; &amp; if(isBlank(leaseworks__YoM__c) ,&apos;NA&apos;,leaseworks__YoM__c)
-&amp; &apos;, &apos; &amp;  leaseworks__Type_Variant__c 
+if(leaseworks__Y_Hidden_Aircraft_Engine__c==&#39;Aircraft&#39;,&#39;MSN &#39; &amp; leaseworks__MSN_E__c,if(leaseworks__Y_Hidden_Aircraft_Engine__c==&#39;Engine&#39;,&#39;ESN &#39; &amp; leaseworks__MSN_E__c,&#39;SN &#39; &amp; leaseworks__MSN_E__c))
+&amp; &#39;, &#39; &amp; if(isBlank(leaseworks__YoM__c) ,&#39;NA&#39;,leaseworks__YoM__c)
+&amp; &#39;, &#39; &amp;  leaseworks__Type_Variant__c 
 )
 
-&amp; &apos;, &apos; &amp; leaseworks__Deal_Summary_c__c</formula>
+&amp; &#39;, &#39; &amp; leaseworks__Deal_Summary_c__c</formula>
     <label>_AC_Deal_Summary__c</label>
     <required>false</required>
     <trackHistory>false</trackHistory>

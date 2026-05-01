@@ -5,9 +5,9 @@
     <description>This the formula for gross up amount</description>
     <externalId>false</externalId>
     <formula>if( NOT(OR(ISNULL(leaseworks__Gross_Up_Amount__c),(leaseworks__Gross_Up_Amount__c == 0.0))),
-if(ISPICKVAL(leaseworks__Invoice_Type__c , &apos;Rent&apos;),&apos;[Base Rent/(1-Withholding Tax Rate)]- Base Rent&apos;,
-IF(ISPICKVAL(leaseworks__Invoice_Type__c , &apos;Aircraft MR&apos;),&apos;[Total Maintenance Reserve/(1-Withholding Tax Rate)]- Total Maintenance Reserve&apos;, 
-&apos;[Adjusted Invoiced Amount/(1-Withholding Tax Rate)]- Adjusted Invoiced Amount&apos;) ),&apos;&apos;)</formula>
+if(ISPICKVAL(leaseworks__Invoice_Type__c , &#39;Rent&#39;),&#39;[Base Rent/(1-Withholding Tax Rate)]- Base Rent&#39;,
+IF(ISPICKVAL(leaseworks__Invoice_Type__c , &#39;Aircraft MR&#39;),&#39;[Total Maintenance Reserve/(1-Withholding Tax Rate)]- Total Maintenance Reserve&#39;, 
+&#39;[Adjusted Invoiced Amount/(1-Withholding Tax Rate)]- Adjusted Invoiced Amount&#39;) ),&#39;&#39;)</formula>
     <label>Gross Up Amount - Formula Help</label>
     <required>false</required>
     <trackHistory>false</trackHistory>

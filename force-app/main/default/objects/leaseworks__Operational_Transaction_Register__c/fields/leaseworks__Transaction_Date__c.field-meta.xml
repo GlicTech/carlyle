@@ -3,6 +3,7 @@
     <fullName>leaseworks__Transaction_Date__c</fullName>
     <deprecated>false</deprecated>
     <description>Indicates the Transaction Date.Prepayment functionality is already deprecated. Keeping the lookup to track historical prepayments</description>
+    <externalId>false</externalId>
     <formula>IF(!ISBLANK(leaseworks__Invoice__c),leaseworks__Invoice__r.leaseworks__Invoice_Date__c,
 IF(!ISBLANK(leaseworks__Payments_Credits__c),leaseworks__Payments_Credits__r.leaseworks__Payment_Date__c,
 IF(!ISBLANK(leaseworks__Prepayment__c),leaseworks__Prepayment__r.leaseworks__Payment_Date__c,

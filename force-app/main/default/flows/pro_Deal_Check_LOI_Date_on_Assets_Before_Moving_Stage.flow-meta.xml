@@ -35,8 +35,6 @@
                 <stringValue>leaseworks__Marketing_Activity__c</stringValue>
             </value>
         </inputParameters>
-        <nameSegment>PicklistOrderComparator</nameSegment>
-        <offset>0</offset>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <actionCalls>
@@ -74,37 +72,9 @@
                 <stringValue>leaseworks__Marketing_Activity__c</stringValue>
             </value>
         </inputParameters>
-        <nameSegment>PicklistOrderComparator</nameSegment>
-        <offset>0</offset>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <apiVersion>62.0</apiVersion>
-    <customErrors>
-        <name>ADM_Approval_Date_Missing_Error</name>
-        <label>ADM Approval Date Missing Error</label>
-        <locationX>338</locationX>
-        <locationY>863</locationY>
-        <connector>
-            <targetReference>Loop_Assets_For_ADM_Approval</targetReference>
-        </connector>
-        <customErrorMessages>
-            <errorMessage>All Assets in Deal must have values in the ADM Approval Date field before the Deal Status can progress past ADM Approval.</errorMessage>
-            <isFieldError>false</isFieldError>
-        </customErrorMessages>
-    </customErrors>
-    <customErrors>
-        <name>LOI_Date_Missing_Error</name>
-        <label>LOI Date Missing Error</label>
-        <locationX>314</locationX>
-        <locationY>1655</locationY>
-        <connector>
-            <targetReference>Loop_Through_Assets</targetReference>
-        </connector>
-        <customErrorMessages>
-            <errorMessage>All Assets in Deal must have values in the LOI Date field before the Deal Status can progress past LOI Signature.</errorMessage>
-            <isFieldError>false</isFieldError>
-        </customErrorMessages>
-    </customErrors>
     <decisions>
         <name>Check_For_ADM_Approval_Date</name>
         <label>Check For ADM Approval Date?</label>

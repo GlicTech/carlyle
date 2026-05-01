@@ -3,6 +3,7 @@
     <fullName>leaseworks__Is_Deferred_Rent__c</fullName>
     <deprecated>false</deprecated>
     <description>This field helps to identify whether the invoice adjustment JLs need to be deferred. If accounting is on and the parent invoice is deferred, the parent invoice will have the same accounting period as the rent start date accounting period. The accounting period on deferred parent invoice is non editable</description>
+    <externalId>false</externalId>
     <formula>IF(AND( leaseworks__Linked_Invoice__r.leaseworks__Is_Deferred_Rent__c , leaseworks__Accounting_Period__c =  leaseworks__Linked_Invoice__r.leaseworks__Accounting_Period__c ),true,false)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>_Is Deferred Rent</label>

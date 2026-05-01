@@ -1,5 +1,5 @@
 /**
- * GT-06 / US-007 / GT-16 — Synchronises the pro_Repsonsibility__c field on
+ * GT-06 / US-007 / GT-16 — Synchronises the pro_Responsibility__c field on
  * all open pro_Checklist_Item__c records when the 'Contracts' Deal Team
  * member changes for a Deal.
  *
@@ -92,13 +92,12 @@ public with sharing class pro_ChecklistAssigneeSync {
         List<pro_Checklist_Item__c> items = [
             SELECT Id,
                    pro_Asset_in_Deal__c,
-                   pro_Repsonsibility__c
+                   pro_Responsibility__c
               FROM pro_Checklist_Item__c
              WHERE pro_Asset_in_Deal__c IN :aidIds
                AND pro_Status__c != 'Completed'
                AND pro_Status__c != 'Moved'
                AND pro_Necessary__c != 'No'
-               WITH SECURITY_ENFORCED
              LIMIT 50000
         ];
 
@@ -114,8 +113,8 @@ public with sharing class pro_ChecklistAssigneeSync {
                 continue;
             }
             Id newAssignee = dealToContractsUser.get(parentDealId);
-            if (newAssignee != null && item.pro_Repsonsibility__c != newAssignee) {
-                item.pro_Repsonsibility__c = newAssignee;
+            if (newAssignee != null && item.pro_Responsibility__c != newAssignee) {
+                item.pro_Responsibility__c = newAssignee;
                 itemsToUpdate.add(item);
             }
         }

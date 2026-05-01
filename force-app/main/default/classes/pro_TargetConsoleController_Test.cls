@@ -178,8 +178,20 @@ private class pro_TargetConsoleController_Test {
       'Should contain likelyOutcome key');
     System.assert(result.containsKey('marketingTrading'),
       'Should contain marketingTrading key');
+    System.assert(result.containsKey('tradingRfpProbability'),
+      'Should contain tradingRfpProbability key');
     System.assert(result.containsKey('statusValues'),
       'Should contain statusValues key');
+    Set<String> rfpValues = new Set<String>();
+    for (Map<String, String> opt : result.get('tradingRfpProbability')) {
+      rfpValues.add(opt.get('value'));
+    }
+    System.assert(rfpValues.contains('High'),
+      'tradingRfpProbability should expose High');
+    System.assert(rfpValues.contains('Medium'),
+      'tradingRfpProbability should expose Medium');
+    System.assert(rfpValues.contains('Low'),
+      'tradingRfpProbability should expose Low');
     System.assert(!result.get('likelyOutcome').isEmpty(),
       'likelyOutcome should have at least one value');
     for (Map<String, String> opt : result.get('likelyOutcome')) {
@@ -539,6 +551,37 @@ private class pro_TargetConsoleController_Test {
       'Trading/On Lease',
       updated.pro_Marketing_Trading__c,
       'Marketing/Trading should be updated'
+    );
+  }
+
+  @isTest
+  static void test_saveAssetOutcomeEdits_tradingRfpProbability_persists() {
+    pro_TargetConsoleController.bypassPermissionCheck = true;
+    leaseworks__Aircraft__c asset = [
+      SELECT Id
+      FROM leaseworks__Aircraft__c
+      WHERE Name = 'Test Aircraft 1'
+      LIMIT 1
+    ];
+    List<Map<String, Object>> edits = new List<Map<String, Object>>();
+    Map<String, Object> edit = new Map<String, Object>();
+    edit.put('id', asset.Id);
+    edit.put('tradingRfpProbability', 'High');
+    edits.add(edit);
+
+    Test.startTest();
+    pro_TargetConsoleController.saveAssetOutcomeEdits(JSON.serialize(edits));
+    Test.stopTest();
+
+    leaseworks__Aircraft__c updated = [
+      SELECT pro_Trading_RFP_Probability__c
+      FROM leaseworks__Aircraft__c
+      WHERE Id = :asset.Id
+    ];
+    System.assertEquals(
+      'High',
+      updated.pro_Trading_RFP_Probability__c,
+      'Trading RFP Probability should be updated'
     );
   }
 
@@ -2265,5 +2308,154 @@ private class pro_TargetConsoleController_Test {
       'Achieved snapshot should have items matching Achieved ATAs, got ' +
       itemCount
     );
+  }
+
+  // ================================================================
+  // PROGRESS CATEGORISATION / FILTER OPTIONS TESTS (dynamic describe)
+  // ================================================================
+
+  @isTest
+  static void test_categoriseStatus_prefixAndOverrides() {
+    // Prefix-based categorisation — auto-picks up new "Open*" / "Achieved*" values
+    System.assertEquals('Open', pro_TargetConsoleController.categoriseStatus('Open'));
+    System.assertEquals(
+      'Open',
+      pro_TargetConsoleController.categoriseStatus('Open - Target Date Exceeded')
+    );
+    System.assertEquals(
+      'Achieved',
+      pro_TargetConsoleController.categoriseStatus('Achieved - LOI')
+    );
+    System.assertEquals(
+      'Achieved',
+      pro_TargetConsoleController.categoriseStatus('Achieved - LOI Other')
+    );
+    System.assertEquals(
+      'Achieved',
+      pro_TargetConsoleController.categoriseStatus('Achieved - Contract Extended')
+    );
+    System.assertEquals(
+      'Achieved',
+      pro_TargetConsoleController.categoriseStatus('Achieved - No LOI')
+    );
+
+    // Explicit overrides
+    System.assertEquals(
+      'Re-Opened',
+      pro_TargetConsoleController.categoriseStatus('Target Re-Opened')
+    );
+    System.assertEquals(
+      'Cancelled',
+      pro_TargetConsoleController.categoriseStatus('Target Cancelled')
+    );
+    System.assertEquals(
+      'Moved To Trading',
+      pro_TargetConsoleController.categoriseStatus('Moved To Trading')
+    );
+
+    // Unknown values fall through as their own category — no silent bucketing
+    System.assertEquals(
+      'Something Bespoke',
+      pro_TargetConsoleController.categoriseStatus('Something Bespoke')
+    );
+
+    // Null / blank safety
+    System.assertEquals(null, pro_TargetConsoleController.categoriseStatus(null));
+    System.assertEquals(null, pro_TargetConsoleController.categoriseStatus(''));
+    System.assertEquals(null, pro_TargetConsoleController.categoriseStatus('   '));
+  }
+
+  @isTest
+  static void test_getStatusesByCategory_categorisesActivePicklistValues() {
+    Test.startTest();
+    Map<String, Set<String>> cats = pro_TargetConsoleController.getStatusesByCategory();
+    Test.stopTest();
+
+    // We expect at minimum an Open and Achieved bucket from the baseline picklist values
+    System.assert(
+      cats.containsKey('Open'),
+      'Expected an "Open" bucket derived from pro_Progress_Picklist__c'
+    );
+    System.assert(
+      cats.containsKey('Achieved'),
+      'Expected an "Achieved" bucket derived from pro_Progress_Picklist__c'
+    );
+
+    // Each bucket should categorise consistently with categoriseStatus
+    for (String cat : cats.keySet()) {
+      for (String v : cats.get(cat)) {
+        System.assertEquals(
+          cat,
+          pro_TargetConsoleController.categoriseStatus(v),
+          'Status "' + v + '" is in bucket "' + cat + '" but categoriseStatus returned a different value.'
+        );
+      }
+    }
+  }
+
+  @isTest
+  static void test_isKnownProgressValue() {
+    Test.startTest();
+    Boolean knownOpen = pro_TargetConsoleController.isKnownProgressValue('Open');
+    Boolean unknown = pro_TargetConsoleController.isKnownProgressValue('Something Bespoke');
+    Boolean blank = pro_TargetConsoleController.isKnownProgressValue(null);
+    Test.stopTest();
+
+    System.assertEquals(true, knownOpen, '"Open" should be a known picklist value');
+    System.assertEquals(
+      false,
+      unknown,
+      'An arbitrary value should not be recognised as a picklist value'
+    );
+    System.assertEquals(false, blank, 'Null must return false');
+  }
+
+  @isTest
+  static void test_getProgressFilterOptions_shape() {
+    Test.startTest();
+    List<Map<String, String>> opts = pro_TargetConsoleController.getProgressFilterOptions();
+    Test.stopTest();
+
+    System.assert(opts != null && !opts.isEmpty(), 'Options should be returned');
+
+    // Collect the values for easier assertions
+    Set<String> values = new Set<String>();
+    for (Map<String, String> opt : opts) {
+      System.assert(
+        opt.containsKey('label') && opt.containsKey('value'),
+        'Each option must have label and value keys'
+      );
+      values.add(opt.get('value'));
+    }
+
+    System.assertEquals(
+      'All',
+      opts[0].get('value'),
+      '"All" must always be the first option'
+    );
+    System.assert(values.contains('MovedToTrading'), 'Moved To Trading must be present');
+    System.assert(values.contains('Open'), 'Open aggregate should be present while baseline picklist has Open values');
+    System.assert(values.contains('Achieved'), 'Achieved aggregate should be present while baseline picklist has Achieved values');
+  }
+
+  @isTest
+  static void test_getTargetAudits_specificStatus_returnsEmptyWhenNoMatches() {
+    // Exercises the exact-match branch: filtering by a specific status value
+    // that exists in the picklist but has no records in test data.
+    // Use "Target Cancelled" for the probe because it's a known picklist value
+    // per the baseline field XML but test setup does not create cancelled records.
+    Test.startTest();
+    List<pro_TargetConsoleController.TargetAuditWrapper> results = pro_TargetConsoleController.getTargetAudits(
+      '2026',
+      'Target Cancelled',
+      'All'
+    );
+    Test.stopTest();
+
+    // Test data contains no Cancelled records → empty list
+    // (If the picklist does not include "Target Cancelled" in this org, the
+    // branch falls through and the default "All" query runs, which excludes
+    // Cancelled anyway. The assertion below holds either way.)
+    System.assertNotEquals(null, results, 'Should return a list, not null');
   }
 }

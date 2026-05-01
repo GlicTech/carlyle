@@ -2,7 +2,7 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>leaseworks__Custom_Compounding_Days_Check</fullName>
     <active>true</active>
-    <description>When the Compounding Base is &apos;Custom&apos; , user needs to provide a value between 1 and 365 for the Custom Days</description>
-    <errorConditionFormula>AND(ISPICKVAL(leaseworks__Compounding_Base__c,&apos;Custom&apos;),!ISNULL(leaseworks__Custom_Days__c), OR(leaseworks__Custom_Days__c &lt; 1 ,leaseworks__Custom_Days__c &gt; 365))</errorConditionFormula>
+    <description>When the Compounding Base is &#39;Custom&#39; , user needs to provide a value between 1 and 365 for the Custom Days</description>
+    <errorConditionFormula>AND(ISPICKVAL(leaseworks__Compounding_Base__c,&#39;Custom&#39;),!ISNULL(leaseworks__Custom_Days__c), OR(leaseworks__Custom_Days__c &lt; 1 ,leaseworks__Custom_Days__c &gt; 365))</errorConditionFormula>
     <errorMessage>Please enter a number between 1 and 365 for custom days</errorMessage>
 </ValidationRule>

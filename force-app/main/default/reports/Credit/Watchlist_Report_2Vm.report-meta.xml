@@ -4,10 +4,16 @@
         <field>Account$Name</field>
     </columns>
     <columns>
+        <field>Account$Parent</field>
+    </columns>
+    <columns>
         <field>Account$pro_Credit_Score__c</field>
     </columns>
     <columns>
         <field>Account$GCC_Comments__c</field>
+    </columns>
+    <columns>
+        <field>Account$pro_Last_GCC_Update__c</field>
     </columns>
     <filter>
         <criteriaItems>
@@ -16,13 +22,6 @@
             <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
             <value>Operator</value>
-        </criteriaItems>
-        <criteriaItems>
-            <column>Account$leaseworks__Current_Lessee__c</column>
-            <columnToColumn>false</columnToColumn>
-            <isUnlocked>true</isUnlocked>
-            <operator>equals</operator>
-            <value>1</value>
         </criteriaItems>
         <criteriaItems>
             <column>Account$Name</column>
@@ -38,13 +37,15 @@
             <operator>equals</operator>
             <value>1</value>
         </criteriaItems>
+        <criteriaItems>
+            <column>Account$CAP_Credit_Counterparty__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>1</value>
+        </criteriaItems>
     </filter>
-    <format>Summary</format>
-    <groupingsDown>
-        <dateGranularity>Day</dateGranularity>
-        <field>Account$Parent</field>
-        <sortOrder>Asc</sortOrder>
-    </groupingsDown>
+    <format>Tabular</format>
     <name>Watchlist Report</name>
     <params>
         <name>co</name>

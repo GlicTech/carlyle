@@ -20,8 +20,8 @@
     <dynamicChoiceSets>
         <name>pcs_LocationChoices</name>
         <dataType>Picklist</dataType>
-        <displayField xsi:nil="true"/>
-        <object xsi:nil="true"/>
+        <displayField xsi:nil="true" />
+        <object xsi:nil="true" />
         <picklistField>pro_Work_Location__c</picklistField>
         <picklistObject>pro_Time_Log_Entry__c</picklistObject>
     </dynamicChoiceSets>
@@ -208,7 +208,6 @@
                     <dataType>String</dataType>
                     <fieldText>Consultant</fieldText>
                     <fieldType>DropdownBox</fieldType>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                 </fields>
                 <inputParameters>
@@ -224,7 +223,6 @@
                 <fieldType>Region</fieldType>
                 <fields>
                     <fieldType>ObjectProvided</fieldType>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                     <objectFieldReference>varTimeLogEntryToCreate.pro_Work_Location__c</objectFieldReference>
                 </fields>
@@ -241,7 +239,6 @@
                 <fieldType>Region</fieldType>
                 <fields>
                     <fieldType>ObjectProvided</fieldType>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                     <objectFieldReference>varTimeLogEntryToCreate.pro_Day_Worked__c</objectFieldReference>
                 </fields>
@@ -258,7 +255,6 @@
                 <fieldType>Region</fieldType>
                 <fields>
                     <fieldType>ObjectProvided</fieldType>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                     <objectFieldReference>varTimeLogEntryToCreate.pro_Time_Log_Date__c</objectFieldReference>
                 </fields>
@@ -285,27 +281,6 @@
         </connector>
     </start>
     <status>Active</status>
-    <transforms>
-        <name>Create_Project_Consultant_Id_Collection</name>
-        <label>Create Project Consultant Id Collection</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Get_Time_Log_Entries</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>Get_Project_Consultants[$EachItem].Id</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
     <variables>
         <name>recordId</name>
         <dataType>SObject</dataType>

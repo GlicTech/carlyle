@@ -35,22 +35,22 @@
     <formulas>
         <name>f_IbanOrRoutingExisting</name>
         <dataType>String</dataType>
-        <expression>IF({!$Record.leaseworks__Country__r.Name} = &apos;United States of America&apos;, &apos;Routing/ABA&apos;, &apos;IBAN&apos;)</expression>
+        <expression>IF({!$Record.leaseworks__Country__r.Name} = &#39;United States of America&#39;, &#39;Routing/ABA&#39;, &#39;IBAN&#39;)</expression>
     </formulas>
     <formulas>
         <name>f_IbanOrRoutingUpdated</name>
         <dataType>String</dataType>
-        <expression>IF({!$Record.pro_Country_Name_Pending__c} = &apos;United States of America&apos;, &apos;Routing/ABA&apos;, &apos;IBAN&apos;)</expression>
+        <expression>IF({!$Record.pro_Country_Name_Pending__c} = &#39;United States of America&#39;, &#39;Routing/ABA&#39;, &#39;IBAN&#39;)</expression>
     </formulas>
     <formulas>
         <name>f_IbanOrRoutingValueExisting</name>
         <dataType>String</dataType>
-        <expression>IF({!$Record.leaseworks__Country__r.Name} = &apos;United States of America&apos;, {!$Record.leaseworks__Routing_ABA__c}, {!$Record.leaseworks__IBAN_Code__c})</expression>
+        <expression>IF({!$Record.leaseworks__Country__r.Name} = &#39;United States of America&#39;, {!$Record.leaseworks__Routing_ABA__c}, {!$Record.leaseworks__IBAN_Code__c})</expression>
     </formulas>
     <formulas>
         <name>f_IbanOrRoutingValueUpdated</name>
         <dataType>String</dataType>
-        <expression>IF({!$Record.pro_Country_Name_Pending__c} = &apos;United States of America&apos;, {!$Record.pro_Routing_ABA_Pending__c}, {!$Record.pro_IBAN_Code_Pending__c})</expression>
+        <expression>IF({!$Record.pro_Country_Name_Pending__c} = &#39;United States of America&#39;, {!$Record.pro_Routing_ABA_Pending__c}, {!$Record.pro_IBAN_Code_Pending__c})</expression>
     </formulas>
     <interviewLabel>Prodigy - Bank Account Updated Launch Approval {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Prodigy - Bank Account Updated Launch Approval</label>
@@ -67,9 +67,7 @@
             <name>Email_Bank_Account_Approvers</name>
             <actionName>pro_Autolaunched_Email_Bank_Account_Approvers</actionName>
             <actionType>stepBackground</actionType>
-            <canAssigneeEdit>false</canAssigneeEdit>
             <entryConditionLogic>and</entryConditionLogic>
-            <exitConditionLogic>and</exitConditionLogic>
             <inputParameters>
                 <name>varBankAccountUpdated</name>
                 <value>
@@ -84,9 +82,6 @@
             </inputParameters>
             <label>Email Bank Account Approvers</label>
             <requiresAsyncProcessing>false</requiresAsyncProcessing>
-            <runAsUser>false</runAsUser>
-            <shouldLock>false</shouldLock>
-            <stepSubtype>BackgroundStep</stepSubtype>
         </stageSteps>
         <stageSteps>
             <name>Approval_Action</name>
@@ -98,9 +93,7 @@
                 </assignee>
                 <assigneeType>Group</assigneeType>
             </assignees>
-            <canAssigneeEdit>true</canAssigneeEdit>
             <entryConditionLogic>and</entryConditionLogic>
-            <exitConditionLogic>and</exitConditionLogic>
             <inputParameters>
                 <name>recordId</name>
                 <value>
@@ -127,9 +120,6 @@
             </inputParameters>
             <label>Approval Action</label>
             <requiresAsyncProcessing>false</requiresAsyncProcessing>
-            <runAsUser>false</runAsUser>
-            <shouldLock>true</shouldLock>
-            <stepSubtype>ApprovalStep</stepSubtype>
         </stageSteps>
     </orchestratedStages>
     <orchestratedStages>
@@ -142,9 +132,7 @@
             <name>Set_Bank_Ac_As_Approved</name>
             <actionName>Prodigy_Bank_Account_Set_As_Approved</actionName>
             <actionType>stepBackground</actionType>
-            <canAssigneeEdit>false</canAssigneeEdit>
             <entryConditionLogic>and</entryConditionLogic>
-            <exitConditionLogic>and</exitConditionLogic>
             <inputParameters>
                 <name>recordId</name>
                 <value>
@@ -153,9 +141,6 @@
             </inputParameters>
             <label>Set Bank Ac As Approved</label>
             <requiresAsyncProcessing>false</requiresAsyncProcessing>
-            <runAsUser>false</runAsUser>
-            <shouldLock>false</shouldLock>
-            <stepSubtype>BackgroundStep</stepSubtype>
         </stageSteps>
     </orchestratedStages>
     <orchestratedStages>
@@ -168,9 +153,7 @@
             <name>Reset_Approval_Values</name>
             <actionName>Prodigy_Bank_Account_Update_Rejected</actionName>
             <actionType>stepBackground</actionType>
-            <canAssigneeEdit>false</canAssigneeEdit>
             <entryConditionLogic>and</entryConditionLogic>
-            <exitConditionLogic>and</exitConditionLogic>
             <inputParameters>
                 <name>recordId</name>
                 <value>
@@ -179,9 +162,6 @@
             </inputParameters>
             <label>Reset Approval Values</label>
             <requiresAsyncProcessing>false</requiresAsyncProcessing>
-            <runAsUser>false</runAsUser>
-            <shouldLock>false</shouldLock>
-            <stepSubtype>BackgroundStep</stepSubtype>
         </stageSteps>
     </orchestratedStages>
     <processMetadataValues>

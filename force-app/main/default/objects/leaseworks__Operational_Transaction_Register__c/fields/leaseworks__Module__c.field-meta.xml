@@ -4,22 +4,22 @@
     <deprecated>false</deprecated>
     <description>Prepayment functionality is already deprecated. Keeping the lookup to track historical prepayments</description>
     <externalId>false</externalId>
-    <formula>IF($Setup.leaseworks__LeaseWorksSettings__c.leaseworks__CustType__c ==&apos;LESSOR&apos;,
-(IF(!ISBLANK(leaseworks__Invoice__c),&apos;Receivable&apos;,
-IF(!ISBLANK(leaseworks__Payments_Credits__c),&apos;Receivable&apos;,
-IF(!ISBLANK(leaseworks__Prepayment__c),&apos;Receivable&apos;,
-IF(!ISBLANK(leaseworks__Payables__c),&apos;Payable&apos;,
-IF(!ISBLANK(leaseworks__Payouts__c),&apos;Payable&apos;,
-IF(!ISBLANK(leaseworks__Credit_Memo__c),&apos;Receivable&apos;,
-IF(!ISBLANK( leaseworks__Payment_on_Account__c ),&apos;Receivable&apos;,&apos;&apos;))))))))
+    <formula>IF($Setup.leaseworks__LeaseWorksSettings__c.leaseworks__CustType__c ==&#39;LESSOR&#39;,
+(IF(!ISBLANK(leaseworks__Invoice__c),&#39;Receivable&#39;,
+IF(!ISBLANK(leaseworks__Payments_Credits__c),&#39;Receivable&#39;,
+IF(!ISBLANK(leaseworks__Prepayment__c),&#39;Receivable&#39;,
+IF(!ISBLANK(leaseworks__Payables__c),&#39;Payable&#39;,
+IF(!ISBLANK(leaseworks__Payouts__c),&#39;Payable&#39;,
+IF(!ISBLANK(leaseworks__Credit_Memo__c),&#39;Receivable&#39;,
+IF(!ISBLANK( leaseworks__Payment_on_Account__c ),&#39;Receivable&#39;,&#39;&#39;))))))))
 ,
-(IF(!ISBLANK(leaseworks__Invoice__c),&apos;Payable&apos;,
-IF(!ISBLANK(leaseworks__Payments_Credits__c),&apos;Payable&apos;,
-IF(!ISBLANK(leaseworks__Prepayment__c),&apos;Payable&apos;,
-IF(!ISBLANK(leaseworks__Payables__c),&apos;Receivable&apos;,
-IF(!ISBLANK(leaseworks__Payouts__c),&apos;Receivable&apos;,
-IF(!ISBLANK(leaseworks__Credit_Memo__c),&apos;Payable&apos;,
-IF(!ISBLANK( leaseworks__Payment_on_Account__c ),&apos;Payable&apos;,&apos;&apos;)))))))))</formula>
+(IF(!ISBLANK(leaseworks__Invoice__c),&#39;Payable&#39;,
+IF(!ISBLANK(leaseworks__Payments_Credits__c),&#39;Payable&#39;,
+IF(!ISBLANK(leaseworks__Prepayment__c),&#39;Payable&#39;,
+IF(!ISBLANK(leaseworks__Payables__c),&#39;Receivable&#39;,
+IF(!ISBLANK(leaseworks__Payouts__c),&#39;Receivable&#39;,
+IF(!ISBLANK(leaseworks__Credit_Memo__c),&#39;Payable&#39;,
+IF(!ISBLANK( leaseworks__Payment_on_Account__c ),&#39;Payable&#39;,&#39;&#39;)))))))))</formula>
     <label>Module</label>
     <required>false</required>
     <trackHistory>false</trackHistory>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>62.0</apiVersion>
-    <description>Orchestrator for Asset in Deal record triggers. When LOI Date is populated, delegates Pre-Closing checklist generation to the pro_Auto_Generate_PreClosing subflow.</description>
+    <description>Orchestrator for Asset in Deal record triggers. When LOI Date is populated, delegates BOTH Pre-Closing AND Post-Closing checklist generation to the respective subflows (GT-23 / US-029: post-closing is now triggered at LOI Signed to give the deal team visibility of the post-closing items for planning and movable items).</description>
     <label>AiD Orchestrator</label>
     <processMetadataValues>
         <name>BuilderType</name>
@@ -34,10 +34,32 @@
     </start>
     <status>Active</status>
     <subflows>
+        <name>Call_Auto_Generate_PostClosing</name>
+        <label>Call Auto Generate Post-Closing</label>
+        <locationX>176</locationX>
+        <locationY>268</locationY>
+        <flowName>pro_Auto_Generate_PostClosing</flowName>
+        <inputAssignments>
+            <name>varDealId</name>
+            <value>
+                <elementReference>$Record.leaseworks__Marketing_Activity__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>varAidId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
+    <subflows>
         <name>Call_Auto_Generate_PreClosing</name>
         <label>Call Auto Generate Pre-Closing</label>
         <locationX>176</locationX>
         <locationY>134</locationY>
+        <connector>
+            <targetReference>Call_Auto_Generate_PostClosing</targetReference>
+        </connector>
         <flowName>pro_Auto_Generate_PreClosing</flowName>
         <inputAssignments>
             <name>varDealId</name>

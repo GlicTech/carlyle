@@ -3,6 +3,7 @@
     <fullName>leaseworks__Event_Cost_Calculated__c</fullName>
     <deprecated>false</deprecated>
     <description>Projected Event cost based on Maintenance Program current catalog Year cost times Event Cost Escalation times number of years between Current Catalog Year and Calculated Event Due Year</description>
+    <externalId>false</externalId>
     <formula>IF(AND(!ISBLANK(leaseworks__Y_Hidden_Event_Due_Date__c),!ISBLANK(leaseworks__Y_Hidden_Current_Catalog_Year__c),(YEAR(leaseworks__Y_Hidden_Event_Due_Date__c) &gt; VALUE(leaseworks__Y_Hidden_Current_Catalog_Year__c))),((1 + leaseworks__Y_Hidden_Event_Cost_Escalation__c) ^ (YEAR(leaseworks__Y_Hidden_Event_Due_Date__c) - VALUE(leaseworks__Y_Hidden_Current_Catalog_Year__c))) * (leaseworks__Event_Cost_CY_F__c),(1 + leaseworks__Y_Hidden_Event_Cost_Escalation__c) * (leaseworks__Event_Cost_CY_F__c))</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <inlineHelpText>Projected Event cost based on Maintenance Program current catalog Year cost times Event Cost Escalation times number of years between Current Catalog Year and Calculated Event Due Year</inlineHelpText>

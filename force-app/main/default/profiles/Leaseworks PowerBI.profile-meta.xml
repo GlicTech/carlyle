@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Profile xmlns="http://soap.sforce.com/2006/04/metadata">
+    <custom>true</custom>
+    <userLicense>Salesforce Platform</userLicense>
     <applicationVisibilities>
         <application>AirLease</application>
         <default>true</default>
@@ -48,7 +50,7 @@
     <applicationVisibilities>
         <application>leaseworks__Notification_Apps</application>
         <default>false</default>
-        <visible>false</visible>
+        <visible>true</visible>
     </applicationVisibilities>
     <applicationVisibilities>
         <application>standard__AllTabSet</application>
@@ -200,10 +202,6 @@
     </classAccesses>
     <classAccesses>
         <apexClass>BatchPowerBIRequestPoller</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>BatchToCorrectInvoices</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -4128,18 +4126,10 @@
     </classAccesses>
     <classAccesses>
         <apexClass>Pro_NintexInvoiceTrueUpDS</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Pro_NintexInvoiceTrueUpDSTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>Pro_ProgressSyncBatch</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>Pro_ProgressSyncBatch_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -4148,10 +4138,6 @@
     </classAccesses>
     <classAccesses>
         <apexClass>Pro_ProgressSyncHandler_Test</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>Pro_ProgressSyncSchedulable</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -5699,16 +5685,16 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <enabled>false</enabled>
         <apexClass>leaseworks__FeeScheduleTriggerHandler</apexClass>
-        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>leaseworks__FeeSlipLineTriggerHandler</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <enabled>false</enabled>
         <apexClass>leaseworks__FeeSlipTriggerHandler</apexClass>
-        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>leaseworks__FieldDependencyController</apexClass>
@@ -6195,8 +6181,8 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <enabled>false</enabled>
         <apexClass>leaseworks__MaintenanceProgramController</apexClass>
-        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>leaseworks__MaintenanceProgramEventHandler</apexClass>
@@ -6311,8 +6297,8 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <enabled>false</enabled>
         <apexClass>leaseworks__Notify_NotificationSetupController</apexClass>
-        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>leaseworks__Notify_RecordAccessUtility</apexClass>
@@ -8179,6 +8165,10 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>leaseworks__UtilizationRecordsBatch</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>leaseworks__UtilizationSnapshotController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -8232,38 +8222,6 @@
     </classAccesses>
     <classAccesses>
         <apexClass>proTimeLogControllerTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>pro_BackfillPriorCalendarYearBatch</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>pro_BackfillPriorCalendarYearBatchTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>pro_BackfillPriorCalendarYearScheduler</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>pro_BackfillPriorCalendarYearService</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>pro_BackfillPriorCalendarYearServiceTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>pro_BackfillPriorYearNotify</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>pro_BackfillPriorYearNotifyTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>pro_BackfillPriorYearSchedulerTest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -8526,7 +8484,6 @@
         <apexClass>usf3__ZippexTests</apexClass>
         <enabled>true</enabled>
     </classAccesses>
-    <custom>true</custom>
     <customMetadataTypeAccesses>
         <enabled>true</enabled>
         <name>Loop__Nintex_Automation_Form__mdt</name>
@@ -8584,7 +8541,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Account.Active_Contracts_Total_Outstanding__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -8601,6 +8558,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.BillingAddress</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.CAP_Funds_Impacted__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -8715,7 +8677,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Account.Logo__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Account.MR_Claims__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.Macro_Impact__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -8880,7 +8852,12 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <readable>false</readable>
         <field>Account.Watchlilst_Rating_Comments__c</field>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.Watchlist_Credit_Rating_Comments__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -9479,6 +9456,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.pro_Insurance__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Account.pro_KYC_Approved_As_Of__c</field>
         <readable>true</readable>
@@ -9899,39 +9881,84 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>CAP_Credit_Paper_Risk__c.Mitigants__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>CAP_Credit_Paper_Risk__c.Risk_Description__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
+        <readable>false</readable>
         <field>CAP_Credit_Papers__c.Account__c</field>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CAP_Credit_Papers__c.CAP_Business_Overview__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
+        <field>CAP_Credit_Papers__c.CAP_Executive_Summary__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CAP_Credit_Papers__c.CAP_Financial_Performance__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CAP_Credit_Papers__c.CAP_Fleet_Overview__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CAP_Credit_Papers__c.CAP_Jurisdiction_Country_Risk__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CAP_Credit_Papers__c.CAP_Liquidity_Capital_Structure__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CAP_Credit_Papers__c.CAP_Management_Overview__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <readable>false</readable>
         <field>CAP_Credit_Papers__c.CAP_Outlook_1_Year__c</field>
-        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
+        <readable>false</readable>
         <field>CAP_Credit_Papers__c.CAP_Outlook_3_Year__c</field>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CAP_Credit_Papers__c.CAP_Outlook_Comments__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
+        <field>CAP_Credit_Papers__c.CAP_Ownership_Overview__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <readable>false</readable>
         <field>CAP_Credit_Papers__c.CAP_Rating_Comments__c</field>
-        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
+        <readable>false</readable>
         <field>CAP_Credit_Papers__c.Financial_Analysis__c</field>
-        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -9945,18 +9972,18 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <readable>false</readable>
         <field>CAP_Credit_Papers__c.Reviewer__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>CAP_Credit_Papers__c.Status__c</field>
-        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <readable>false</readable>
+        <field>CAP_Credit_Papers__c.Status__c</field>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <readable>false</readable>
         <field>CAP_Credit_Papers__c.Unique_Reference__c</field>
-        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -11176,37 +11203,37 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>FAQ__c.Area__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>FAQ__c.Impacted_Department__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>FAQ__c.Priority__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>FAQ__c.Question__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>FAQ__c.Response__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>FAQ__c.Source__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>FAQ__c.Topic_Keywords__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -16435,8 +16462,8 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <readable>false</readable>
         <field>leaseworks__Aircraft_In_Deal__c.leaseworks__Benchmark_Rent_From_Lease__c</field>
-        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -19395,33 +19422,43 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <readable>false</readable>
         <field>leaseworks__Aircraft_Proposal__c.pro_Post_Closing_Complete__c</field>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>leaseworks__Aircraft_Proposal__c.pro_Post_Closing_Completion_Pct__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <readable>false</readable>
         <field>leaseworks__Aircraft_Proposal__c.pro_Post_Closing_Items_Completed__c</field>
-        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <readable>false</readable>
         <field>leaseworks__Aircraft_Proposal__c.pro_Post_Closing_Items_Total__c</field>
-        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <readable>false</readable>
         <field>leaseworks__Aircraft_Proposal__c.pro_Pre_Closing_Complete__c</field>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>leaseworks__Aircraft_Proposal__c.pro_Pre_Closing_Completion_Pct__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <readable>false</readable>
         <field>leaseworks__Aircraft_Proposal__c.pro_Pre_Closing_Items_Completed__c</field>
-        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <readable>false</readable>
         <field>leaseworks__Aircraft_Proposal__c.pro_Pre_Closing_Items_Total__c</field>
-        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -20190,16 +20227,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>leaseworks__Aircraft__c.CAP_Prior_Year_Flight_Cycles__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>leaseworks__Aircraft__c.CAP_Prior_Year_Flight_Hours__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>leaseworks__Aircraft__c.Comments_Exchange__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -20436,12 +20463,12 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.leaseworks__Aircraft_Type__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.leaseworks__Aircraft_Variant__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -20491,7 +20518,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.leaseworks__Asset_Owner__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -20616,22 +20643,22 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.leaseworks__Cash_Maintenance_Reserve_Engine_1_LLP__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.leaseworks__Cash_Maintenance_Reserve_Engine_2_LLP__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.leaseworks__Cash_Maintenance_Reserve_Engine_3_LLP__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.leaseworks__Cash_Maintenance_Reserve_Engine_4_LLP__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -20671,22 +20698,22 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.leaseworks__Cost_to_Half_Life_Heavy_1__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.leaseworks__Cost_to_Half_Life_Heavy_2__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.leaseworks__Cost_to_Half_Life_Heavy_3__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.leaseworks__Cost_to_Half_Life_Heavy_4__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -20701,7 +20728,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.leaseworks__Cumulative_Unpaid_Maintenance_Reserve__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -20721,7 +20748,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.leaseworks__Cycles_Since_Last_C_Check__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -20801,7 +20828,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.leaseworks__Engine_Type__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -20811,7 +20838,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.leaseworks__Engine_Variant__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -20826,7 +20853,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.leaseworks__Event_Phase__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -20841,7 +20868,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.leaseworks__FH_FC_Ratio_per_Lease__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -20856,7 +20883,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.leaseworks__First_Class_Quantity__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -20936,42 +20963,42 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.leaseworks__Last_C_Check_Date2__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.leaseworks__Last_C_Check_Date_F__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.leaseworks__Last_C_Check_Date__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.leaseworks__Last_C_Check__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.leaseworks__Last_Heavy_1_Date__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.leaseworks__Last_Heavy_2_Date__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.leaseworks__Last_Heavy_3_Date__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.leaseworks__Last_Heavy_4_Date__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -21026,7 +21053,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.leaseworks__Lessee_Previous__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -21076,7 +21103,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.leaseworks__Maintenance_Adjusted_HLMV__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -21086,97 +21113,97 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.leaseworks__Maintenance_Reserve_Engine_1_LLP__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.leaseworks__Maintenance_Reserve_Engine_1__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.leaseworks__Maintenance_Reserve_Engine_2_LLP__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.leaseworks__Maintenance_Reserve_Engine_2__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.leaseworks__Maintenance_Reserve_Engine_3_LLP__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.leaseworks__Maintenance_Reserve_Engine_3__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.leaseworks__Maintenance_Reserve_Engine_4_LLP__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.leaseworks__Maintenance_Reserve_Engine_4__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.leaseworks__Maintenance_Reserve_Heavy_Maintenance_2__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.leaseworks__Maintenance_Reserve_Heavy_Maintenance_3__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.leaseworks__Maintenance_Reserve_Heavy_Maintenance_4__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.leaseworks__Maintenance_Reserve_LG_Center_Main__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.leaseworks__Maintenance_Reserve_LG_Left_Main__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.leaseworks__Maintenance_Reserve_LG_Left_Wing__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.leaseworks__Maintenance_Reserve_LG_Nose__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.leaseworks__Maintenance_Reserve_LG_Right_Main__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.leaseworks__Maintenance_Reserve_LG_Right_Wing__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.leaseworks__Maintenance_Reserve_Landing_Gear__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.leaseworks__Maintenance_Reserve_Other__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -21189,9 +21216,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>leaseworks__Aircraft__c.leaseworks__Manufacturer__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -21206,7 +21233,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.leaseworks__Marketing_Representative_F__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -21226,12 +21253,12 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.leaseworks__Maximum_Operational_Take__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.leaseworks__Maximum_Taxi_Weight_kg__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -21256,17 +21283,17 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.leaseworks__NMR_Propeller_1__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.leaseworks__NMR_Propeller_2__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.leaseworks__Net_Book_Value_NBV__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -21276,22 +21303,22 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.leaseworks__Next_C_Check_Date_RU__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.leaseworks__Next_C_Check_Date__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.leaseworks__Next_Heavy_1_Date_RU__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.leaseworks__Next_Heavy_2_Date_RU__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -21311,7 +21338,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.leaseworks__Number_of_engines__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -21336,7 +21363,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.leaseworks__Pro_Forma_MR_Balance__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -21461,7 +21488,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.leaseworks__Threshold_for_C_Check__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -21471,12 +21498,12 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.leaseworks__Time_Since_Last_C_Check__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.leaseworks__Topup_MR_20_Month_C_Check__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -21521,7 +21548,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.leaseworks__Y_Hidden_Asset_Option__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -21556,7 +21583,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.leaseworks__Y_Hidden_Next_CounterParty__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -21581,12 +21608,12 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.leaseworks__Y_hidden_Next_Airline__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.leaseworks__Y_hidden_Next_Lessor__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -21650,6 +21677,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>leaseworks__Aircraft__c.pro_Last_Utilization_Calculation__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>leaseworks__Aircraft__c.pro_Lease_Name__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -21686,7 +21718,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.pro_Open_Target_Count__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -21716,6 +21748,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.pro_Powerplant__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>leaseworks__Aircraft__c.pro_Prev_Yr_FC__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>leaseworks__Aircraft__c.pro_Prev_Yr_FH__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -21756,6 +21798,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Aircraft__c.pro_Tax__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>leaseworks__Aircraft__c.pro_Trading_RFP_Probability__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -23877,11 +23924,6 @@
         <editable>false</editable>
         <field>leaseworks__Assembly_MR_Rate__c.leaseworks__MR_Rate_End_Date__c</field>
         <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>leaseworks__Assembly_MR_Rate__c.leaseworks__MR_Rate_Method__c</field>
-        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -27730,11 +27772,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>leaseworks__Cash_Security_Deposit__c.Replaced_by_LOC__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>leaseworks__Cash_Security_Deposit__c.Security_Against_Local__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -31305,6 +31342,31 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>leaseworks__Contract_Team__c.leaseworks__Active__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>leaseworks__Contract_Team__c.leaseworks__Description__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>leaseworks__Contract_Team__c.leaseworks__External_ID__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>leaseworks__Contract_Team__c.leaseworks__Team_Email__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>leaseworks__Contract_Team__c.leaseworks__Team_Member__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>leaseworks__Cost_Center__c.leaseworks__Account_Name__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -32224,6 +32286,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>leaseworks__Country__c.pro_Insurance__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Country__c.pro_Investment_Strategy__c</field>
         <readable>true</readable>
@@ -32374,9 +32441,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>leaseworks__Credit_Memo__c.leaseworks__Amount__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -32386,7 +32453,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Credit_Memo__c.leaseworks__Available_Credit_Memo_Amount_F__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -32406,7 +32473,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Credit_Memo__c.leaseworks__Company__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -32429,9 +32496,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>leaseworks__Credit_Memo__c.leaseworks__Currency__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -32486,7 +32553,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Credit_Memo__c.leaseworks__Lessee__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -32551,7 +32618,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Credit_Memo__c.leaseworks__Y_Hidden_Company_Name__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -34525,6 +34592,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>leaseworks__Deal_Team__c.CAP_Approval_Required__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>leaseworks__Deal_Team__c.leaseworks__Assigned_To__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -34701,11 +34773,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Deal_Team__c.pro_LOI_Approver_Comments__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>leaseworks__Deal_Team__c.pro_LOI_Approver__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -37814,9 +37881,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>leaseworks__Fee_Slip_Line__c.leaseworks__Line_Amount__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -37856,7 +37923,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Fee_Slip__c.leaseworks__Fee_Slip_Adj_Amount__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -37869,9 +37936,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>leaseworks__Fee_Slip__c.leaseworks__Fee_Slip_Amount__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -37886,7 +37953,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Fee_Slip__c.leaseworks__Final_Fee_Slip_Amt__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -37901,7 +37968,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Fee_Slip__c.leaseworks__Invoiced_Amount__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -37916,7 +37983,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Fee_Slip__c.leaseworks__Paid_Amount__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -42775,11 +42842,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>leaseworks__Invoice__c.leaseworks__Applied_Amount_Pending__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>leaseworks__Invoice__c.leaseworks__Apply_Daily_Interest_Rate__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -42795,11 +42857,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>leaseworks__Invoice__c.leaseworks__Assumed_Assembly_Utilization__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>leaseworks__Invoice__c.leaseworks__Assumed_Estimated_Invoice__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -42807,11 +42864,6 @@
         <editable>false</editable>
         <field>leaseworks__Invoice__c.leaseworks__Assumed_Estimated__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>leaseworks__Invoice__c.leaseworks__Assumed_Monthly_Utilization__c</field>
-        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -42980,11 +43032,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>leaseworks__Invoice__c.leaseworks__Credited_Invoice__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>leaseworks__Invoice__c.leaseworks__Custom_Days__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -43132,11 +43179,6 @@
         <editable>false</editable>
         <field>leaseworks__Invoice__c.leaseworks__Exchange_Rate__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>leaseworks__Invoice__c.leaseworks__Expense_Amount__c</field>
-        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -43640,11 +43682,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>leaseworks__Invoice__c.leaseworks__Refund_Amount__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>leaseworks__Invoice__c.leaseworks__Rent_Amount__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -43680,16 +43717,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>leaseworks__Invoice__c.leaseworks__Rent_Payable_from__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>leaseworks__Invoice__c.leaseworks__Rent_Payable_to__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>leaseworks__Invoice__c.leaseworks__Rent_Pyable_To__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -43716,6 +43743,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Invoice__c.leaseworks__SD_Accounting_Method__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>leaseworks__Invoice__c.leaseworks__SD_AutoGenerated_Line_Amount__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -43837,11 +43869,6 @@
         <editable>false</editable>
         <field>leaseworks__Invoice__c.leaseworks__Total_Amount_Due__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>leaseworks__Invoice__c.leaseworks__Total_Applied_Amount__c</field>
-        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -47080,8 +47107,8 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <readable>false</readable>
         <field>leaseworks__Lease__c.Fixed_Interest__c</field>
-        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -47205,8 +47232,8 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <readable>false</readable>
         <field>leaseworks__Lease__c.Margin__c</field>
-        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -47246,11 +47273,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Lease__c.Restrictions__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>leaseworks__Lease__c.SSD_Cash_LoC_RSD_Cash_LoC__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -47540,13 +47562,18 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>leaseworks__Lease__c.leaseworks__Base_Rent_Number__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>leaseworks__Lease__c.leaseworks__Base_Rent__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <readable>false</readable>
         <field>leaseworks__Lease__c.leaseworks__Benchmark_Rent__c</field>
-        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -47671,6 +47698,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Lease__c.leaseworks__Current_Rent_New__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>leaseworks__Lease__c.leaseworks__Current_Rent_Number__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -48885,6 +48917,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>leaseworks__Lease__c.leaseworks__Primary_Rent_Currency__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>leaseworks__Lease__c.leaseworks__Pro_Rata_NO_Of_Days_For_UR__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -49040,8 +49077,8 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <readable>false</readable>
         <field>leaseworks__Lease__c.leaseworks__Rent_Remaining__c</field>
-        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -49521,6 +49558,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Lease__c.pro_Manual_Rent_Schedules__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>leaseworks__Lease__c.pro_Operational_Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -51460,8 +51502,8 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <readable>false</readable>
         <field>leaseworks__MSN_s_Of_Interest__c.leaseworks__Benchmark_Rent__c</field>
-        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -53275,16 +53317,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>leaseworks__Marketing_Activity__c.Key_Risks_Constraints__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>leaseworks__Marketing_Activity__c.Key_Terms__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>leaseworks__Marketing_Activity__c.LOI_Signed_Date__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -53302,11 +53334,6 @@
         <editable>false</editable>
         <field>leaseworks__Marketing_Activity__c.Pro_Final_Delivery_Color__c</field>
         <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>leaseworks__Marketing_Activity__c.Proposed_Structure__c</field>
-        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -55844,7 +55871,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>leaseworks__Obligation__c.leaseworks__Type__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -62946,7 +62973,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Py_Line_Item__c.leaseworks__Company__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -65779,9 +65806,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>leaseworks__Service_Fee__c.leaseworks__Fee_Flat_Amount__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -66594,6 +66621,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>leaseworks__Stepped_Rent__c.leaseworks__Primary_Rent_Schedule__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Stepped_Rent__c.leaseworks__Pro_rata_Number_Of_Days__c</field>
         <readable>true</readable>
@@ -66660,6 +66692,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>leaseworks__Stepped_Rent__c.leaseworks__Rent_Remaining__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>leaseworks__Stepped_Rent__c.leaseworks__Rent_Start_Date_Always_End_of_Month__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -66716,6 +66753,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Stepped_Rent__c.leaseworks__Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>leaseworks__Stepped_Rent__c.leaseworks__Sum_of_Rent_Slips__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>leaseworks__Stepped_Rent__c.leaseworks__Total_Invoiced_Rent__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -67581,11 +67628,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>leaseworks__Supplemental_Rent_Rate__c.leaseworks__Parent_SRR__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>leaseworks__Supplemental_Rent_Rate__c.leaseworks__Rate_Based_On__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -69429,7 +69471,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>leaseworks__Technical_Project__c.pro_Project_Manager_Days_Budgeted__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -72070,11 +72112,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>leaseworks__Utilization_Report__c.CAP_Is_Prior_Calendar_Year__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>leaseworks__Utilization_Report__c.External_Document_Link_Utilization__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -73080,11 +73117,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>leaseworks__Utilization_Report__c.pro_Previous_Year__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>leaseworks__Utilization_Snapshot__c.leaseworks__CSN_As_Of_Date__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -73510,6 +73542,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>pro_Asset_Target_Audit__c.Reporting_Year__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>pro_Asset_Target_Audit__c.Run_Rate_Target__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>pro_Asset_Target_Audit__c.pro_Achieved_In_Target_Year__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -73526,22 +73568,22 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>pro_Asset_Target_Audit__c.pro_Asset_in_Deal__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>pro_Asset_Target_Audit__c.pro_Connected_Target_Audit_Record__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>pro_Asset_Target_Audit__c.pro_Contract_Extended__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>pro_Asset_Target_Audit__c.pro_Contract__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -73551,7 +73593,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>pro_Asset_Target_Audit__c.pro_Deal_Record_Type_Name__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -73571,17 +73613,17 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>pro_Asset_Target_Audit__c.pro_Likely_Outcome__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>pro_Asset_Target_Audit__c.pro_Marketing_Trading__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>pro_Asset_Target_Audit__c.pro_Moved_To_Trading__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -73601,7 +73643,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>pro_Asset_Target_Audit__c.pro_Progress_Picklist__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -73621,12 +73663,12 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>pro_Asset_Target_Audit__c.pro_Target_End_Date_1__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>pro_Asset_Target_Audit__c.pro_Target_End_Date_Passed__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -73640,137 +73682,132 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>pro_Asset_Target_Audit__c.pro_Target_Re_Opened__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>pro_Asset_Target_Audit__c.pro_Target_Reached__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>pro_Asset_Target_Audit__c.pro_Target_Readjusted__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>pro_Asset_Target_Audit__c.pro_Target_Year__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>pro_Asset_Target_Snapshot_Item__c.pro_Asset_Id__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>pro_Asset_Target_Snapshot_Item__c.pro_Asset_In_Deal_Id__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>pro_Asset_Target_Snapshot_Item__c.pro_Asset_In_Deal_Name__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>pro_Asset_Target_Snapshot_Item__c.pro_Asset_In_Deal__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>pro_Asset_Target_Snapshot_Item__c.pro_Asset_Name__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>pro_Asset_Target_Snapshot_Item__c.pro_Asset_Target_Audit__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>pro_Asset_Target_Snapshot_Item__c.pro_Asset__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>pro_Asset_Target_Snapshot_Item__c.pro_Contract_Id__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>pro_Asset_Target_Snapshot_Item__c.pro_Contract_Name__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>pro_Asset_Target_Snapshot_Item__c.pro_Contract__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>pro_Asset_Target_Snapshot_Item__c.pro_LOId_Deal_Type__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>pro_Asset_Target_Snapshot_Item__c.pro_Likely_Outcome__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>pro_Asset_Target_Snapshot_Item__c.pro_Marketing_Trading__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>pro_Asset_Target_Snapshot_Item__c.pro_Progress__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>pro_Asset_Target_Snapshot_Item__c.pro_Target_End_Date__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>pro_Asset_Target_Snapshot_Item__c.pro_Target_Forecast_Id__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>pro_Asset_Target_Snapshot_Item__c.pro_Target_Forecast_Name__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>pro_Asset_Target_Snapshot_Item__c.pro_Target_Forecast__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>pro_Asset_Target_Snapshot_Item__c.pro_Target_Reached_Id__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>pro_Asset_Target_Snapshot_Item__c.pro_Target_Reached_Name__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>pro_Asset_Target_Snapshot_Item__c.pro_Target_Reached__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>pro_Asset_Target_Snapshot__c.pro_Target_Year__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>pro_Backfill_Prior_Year_Config__mdt.pro_Error_Notification_Emails__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>pro_Checklist_Item_Template__mdt.DeveloperName__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -73805,11 +73842,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>pro_Checklist_Item_Template__mdt.pro_Default_Responsibility_Role__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>pro_Checklist_Item_Template__mdt.pro_Document_Action_Required__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -73830,11 +73862,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>pro_Checklist_Item_Template__mdt.pro_Notification_Recipient_Username__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>pro_Checklist_Item_Template__mdt.pro_Parent_Template__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -73845,17 +73872,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>pro_Checklist_Item_Template__mdt.pro_Recipient_Username__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>pro_Checklist_Item_Template__mdt.pro_Sort_Order__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>pro_Checklist_Item_Template__mdt.pro_Template_Name__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -73870,11 +73887,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>pro_Checklist_Item_Template__mdt.pro_Type__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>pro_Checklist_Item__c.pro_Comment_Notes__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -73884,9 +73896,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
+        <readable>false</readable>
         <field>pro_Checklist_Item__c.pro_Completion_Fields__c</field>
-        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -73909,24 +73921,14 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
-        <field>pro_Checklist_Item__c.pro_LoC_Requirement__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>false</editable>
         <field>pro_Checklist_Item__c.pro_Moveable_to_Post_Closing__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
-        <field>pro_Checklist_Item__c.pro_Provided_By__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>false</editable>
-        <field>pro_Checklist_Item__c.pro_Repsonsibility__c</field>
         <readable>false</readable>
+        <field>pro_Checklist_Item__c.pro_Provided_By__c</field>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -73944,24 +73946,19 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
-        <field>pro_Checklist_Item__c.pro_Text_Input__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
+        <readable>false</readable>
         <field>pro_Checklist_Item__c.pro_Title__c</field>
-        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
+        <readable>false</readable>
         <field>pro_Checklist_Item__c.pro_User__c</field>
-        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
+        <readable>false</readable>
         <field>pro_Checklist_Item__c.pro_Yes_No__c</field>
-        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -74006,7 +74003,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>pro_Claim_Update__c.pro_Include_In_CPC__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -74174,12 +74171,12 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>pro_GCC_Update__c.pro_Date__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>pro_GCC_Update__c.pro_GCC_Comment__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -74474,9 +74471,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>pro_Project_Consultant__c.pro_Project_Role__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -74571,6 +74568,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>pro_Target__c.pro_Achieved_Target_Count__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>pro_Target__c.pro_Achieved_Year__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -77142,9 +77144,6 @@
         <layout>FlowInterview-Flow Interview Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>FlowOrchestration-Orchestration Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
         <layout>FlowOrchestrationStepInstance-Orchestration Step Run Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -78122,6 +78121,9 @@
         <layout>leaseworks__Contract_Diary__c-leaseworks__Contract Diary Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>leaseworks__Contract_Team__c-leaseworks__Contract Team Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>leaseworks__Cost_Center__c-leaseworks__Cost Center Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -78765,7 +78767,7 @@
         <recordType>leaseworks__Lease__c.leaseworks__Aircraft</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>leaseworks__Lease__c-Lease Admin Layout 2019_09_04 New</layout>
+        <layout>leaseworks__Lease__c-2024 Lease Engine Layout</layout>
         <recordType>leaseworks__Lease__c.leaseworks__Engine</recordType>
     </layoutAssignments>
     <layoutAssignments>
@@ -79035,7 +79037,7 @@
         <layout>leaseworks__Marketing_Activity__c-leaseworks__Marketing Activity Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>leaseworks__Marketing_Activity__c-leaseworks__Marketing Activity Layout</layout>
+        <layout>leaseworks__Marketing_Activity__c-leaseworks__Marketing Activity - Sale Layout</layout>
         <recordType>leaseworks__Marketing_Activity__c.Engine_Exchange</recordType>
     </layoutAssignments>
     <layoutAssignments>
@@ -79722,6 +79724,9 @@
         <layout>lwrp__Impact_Analysis_Run__c-lwrp__Impact Analysis Run Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>lwrp__Power_BI_Auth_Settings__mdt-lwrp__Power BI Auth Settings Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>lwrp__Power_BI_Embedded_Report_Mapping__c-lwrp__Power BI Embedded Report Mapping Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -79773,9 +79778,6 @@
         <layout>pro_Asset_Target_Snapshot__c-Asset Target Snapshot Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>pro_Backfill_Prior_Year_Config__mdt-Backfill Prior Year Config Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
         <layout>pro_Checklist_Item_Template__mdt-Checklist Item Template Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -79821,6 +79823,9 @@
         <layout>pro_Non_Deal_Approver_Mapping__mdt-Non Deal Approver Mapping Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>pro_Notification_Config__mdt-Notification Config Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>pro_Party_In_Deal__c-Party In Deal Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -79828,6 +79833,9 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>pro_Print_Options_Config__c-Print Options Config Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>pro_Processing__c-Pro Processing Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>pro_Project_Consultant__c-Project Consultant Layout</layout>
@@ -79921,7 +79929,7 @@
         <allowDelete>true</allowDelete>
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
-        <modifyAllRecords>false</modifyAllRecords>
+        <modifyAllRecords>true</modifyAllRecords>
         <object>Account</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
@@ -80011,7 +80019,7 @@
         <allowDelete>true</allowDelete>
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
-        <modifyAllRecords>false</modifyAllRecords>
+        <modifyAllRecords>true</modifyAllRecords>
         <object>Contact</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
@@ -80086,6 +80094,15 @@
         <modifyAllRecords>false</modifyAllRecords>
         <object>EngagementChannelType</object>
         <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>FAQ__c</object>
+        <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
         <allowCreate>true</allowCreate>
@@ -80506,7 +80523,7 @@
         <allowDelete>true</allowDelete>
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
-        <modifyAllRecords>false</modifyAllRecords>
+        <modifyAllRecords>true</modifyAllRecords>
         <object>leaseworks__Aircraft__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
@@ -80548,10 +80565,10 @@
     </objectPermissions>
     <objectPermissions>
         <allowCreate>true</allowCreate>
-        <allowDelete>true</allowDelete>
+        <allowDelete>false</allowDelete>
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
-        <modifyAllRecords>true</modifyAllRecords>
+        <modifyAllRecords>false</modifyAllRecords>
         <object>leaseworks__Assembly_Eligible_Event__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
@@ -80565,11 +80582,11 @@
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
-        <allowCreate>true</allowCreate>
-        <allowDelete>true</allowDelete>
-        <allowEdit>true</allowEdit>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
         <allowRead>true</allowRead>
-        <modifyAllRecords>true</modifyAllRecords>
+        <modifyAllRecords>false</modifyAllRecords>
         <object>leaseworks__Assembly_MR_Fund_Transfer__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
@@ -80682,11 +80699,11 @@
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
-        <allowCreate>true</allowCreate>
-        <allowDelete>true</allowDelete>
-        <allowEdit>true</allowEdit>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
         <allowRead>true</allowRead>
-        <modifyAllRecords>true</modifyAllRecords>
+        <modifyAllRecords>false</modifyAllRecords>
         <object>leaseworks__Bank_Account_Contact__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
@@ -80700,11 +80717,11 @@
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
-        <allowCreate>false</allowCreate>
-        <allowDelete>false</allowDelete>
-        <allowEdit>false</allowEdit>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
-        <modifyAllRecords>false</modifyAllRecords>
+        <modifyAllRecords>true</modifyAllRecords>
         <object>leaseworks__Bank_Account__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
@@ -80718,13 +80735,13 @@
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
+        <object>leaseworks__Bank__c</object>
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>
         <allowEdit>false</allowEdit>
-        <allowRead>true</allowRead>
+        <allowRead>false</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
-        <object>leaseworks__Bank__c</object>
-        <viewAllRecords>true</viewAllRecords>
+        <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
         <allowCreate>true</allowCreate>
@@ -80736,13 +80753,13 @@
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
+        <object>leaseworks__Batch__c</object>
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>
         <allowEdit>false</allowEdit>
-        <allowRead>true</allowRead>
+        <allowRead>false</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
-        <object>leaseworks__Batch__c</object>
-        <viewAllRecords>true</viewAllRecords>
+        <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
         <allowCreate>false</allowCreate>
@@ -80925,11 +80942,11 @@
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
-        <allowCreate>true</allowCreate>
-        <allowDelete>true</allowDelete>
-        <allowEdit>true</allowEdit>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
         <allowRead>true</allowRead>
-        <modifyAllRecords>true</modifyAllRecords>
+        <modifyAllRecords>false</modifyAllRecords>
         <object>leaseworks__Constituent_Assembly__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
@@ -80943,13 +80960,22 @@
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>leaseworks__Contract_Team__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <object>leaseworks__Counterparty__c</object>
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>
         <allowEdit>false</allowEdit>
-        <allowRead>true</allowRead>
+        <allowRead>false</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
-        <object>leaseworks__Counterparty__c</object>
-        <viewAllRecords>true</viewAllRecords>
+        <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
         <allowCreate>false</allowCreate>
@@ -81010,7 +81036,7 @@
         <allowDelete>true</allowDelete>
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
-        <modifyAllRecords>false</modifyAllRecords>
+        <modifyAllRecords>true</modifyAllRecords>
         <object>leaseworks__Customer_Interaction_Log__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
@@ -81024,9 +81050,9 @@
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
-        <allowCreate>true</allowCreate>
-        <allowDelete>true</allowDelete>
-        <allowEdit>true</allowEdit>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>leaseworks__DealStage_in_Days__c</object>
@@ -81123,20 +81149,20 @@
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
+        <object>leaseworks__Delinquency_History__c</object>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>false</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>
         <allowEdit>false</allowEdit>
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
-        <object>leaseworks__Delinquency_History__c</object>
-        <viewAllRecords>true</viewAllRecords>
-    </objectPermissions>
-    <objectPermissions>
-        <allowCreate>true</allowCreate>
-        <allowDelete>true</allowDelete>
-        <allowEdit>true</allowEdit>
-        <allowRead>true</allowRead>
-        <modifyAllRecords>true</modifyAllRecords>
         <object>leaseworks__Delivery_Timeline__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
@@ -81249,20 +81275,20 @@
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
-        <allowCreate>true</allowCreate>
-        <allowDelete>true</allowDelete>
-        <allowEdit>true</allowEdit>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
         <allowRead>true</allowRead>
-        <modifyAllRecords>true</modifyAllRecords>
+        <modifyAllRecords>false</modifyAllRecords>
         <object>leaseworks__Engine_Template_Thrust__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
-        <allowCreate>true</allowCreate>
-        <allowDelete>true</allowDelete>
-        <allowEdit>true</allowEdit>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
         <allowRead>true</allowRead>
-        <modifyAllRecords>true</modifyAllRecords>
+        <modifyAllRecords>false</modifyAllRecords>
         <object>leaseworks__Engine_Template__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
@@ -81456,20 +81482,20 @@
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
-        <allowCreate>true</allowCreate>
-        <allowDelete>true</allowDelete>
-        <allowEdit>true</allowEdit>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
         <allowRead>true</allowRead>
-        <modifyAllRecords>true</modifyAllRecords>
+        <modifyAllRecords>false</modifyAllRecords>
         <object>leaseworks__Global_Fleet__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
-        <allowCreate>true</allowCreate>
-        <allowDelete>true</allowDelete>
-        <allowEdit>true</allowEdit>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
         <allowRead>true</allowRead>
-        <modifyAllRecords>true</modifyAllRecords>
+        <modifyAllRecords>false</modifyAllRecords>
         <object>leaseworks__Historical_Event_Task__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
@@ -81496,7 +81522,7 @@
         <allowDelete>true</allowDelete>
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
-        <modifyAllRecords>false</modifyAllRecords>
+        <modifyAllRecords>true</modifyAllRecords>
         <object>leaseworks__IL_Account__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
@@ -81780,11 +81806,11 @@
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
-        <allowCreate>true</allowCreate>
-        <allowDelete>true</allowDelete>
-        <allowEdit>true</allowEdit>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
         <allowRead>true</allowRead>
-        <modifyAllRecords>true</modifyAllRecords>
+        <modifyAllRecords>false</modifyAllRecords>
         <object>leaseworks__LLP_Catalog_Summary__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
@@ -81825,9 +81851,9 @@
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
-        <allowCreate>true</allowCreate>
-        <allowDelete>true</allowDelete>
-        <allowEdit>true</allowEdit>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>leaseworks__LLP_Template__c</object>
@@ -81861,11 +81887,11 @@
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
-        <allowCreate>true</allowCreate>
-        <allowDelete>true</allowDelete>
-        <allowEdit>true</allowEdit>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
         <allowRead>true</allowRead>
-        <modifyAllRecords>true</modifyAllRecords>
+        <modifyAllRecords>false</modifyAllRecords>
         <object>leaseworks__LOI_Revision__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
@@ -81897,11 +81923,11 @@
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
-        <allowCreate>false</allowCreate>
-        <allowDelete>false</allowDelete>
-        <allowEdit>false</allowEdit>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
-        <modifyAllRecords>false</modifyAllRecords>
+        <modifyAllRecords>true</modifyAllRecords>
         <object>leaseworks__Lease_Extension_History__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
@@ -81955,7 +81981,7 @@
         <allowDelete>true</allowDelete>
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
-        <modifyAllRecords>false</modifyAllRecords>
+        <modifyAllRecords>true</modifyAllRecords>
         <object>leaseworks__Lease__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
@@ -82149,29 +82175,29 @@
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
-        <allowCreate>true</allowCreate>
-        <allowDelete>true</allowDelete>
-        <allowEdit>true</allowEdit>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
         <allowRead>true</allowRead>
-        <modifyAllRecords>true</modifyAllRecords>
+        <modifyAllRecords>false</modifyAllRecords>
         <object>leaseworks__Maintenance_Program_Event_Catalog__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
-        <allowCreate>true</allowCreate>
-        <allowDelete>true</allowDelete>
-        <allowEdit>true</allowEdit>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
         <allowRead>true</allowRead>
-        <modifyAllRecords>true</modifyAllRecords>
+        <modifyAllRecords>false</modifyAllRecords>
         <object>leaseworks__Maintenance_Program_Event__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
-        <allowCreate>true</allowCreate>
-        <allowDelete>true</allowDelete>
-        <allowEdit>true</allowEdit>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
         <allowRead>true</allowRead>
-        <modifyAllRecords>true</modifyAllRecords>
+        <modifyAllRecords>false</modifyAllRecords>
         <object>leaseworks__Maintenance_Program__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
@@ -82221,11 +82247,11 @@
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
-        <allowCreate>false</allowCreate>
-        <allowDelete>false</allowDelete>
-        <allowEdit>false</allowEdit>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
-        <modifyAllRecords>false</modifyAllRecords>
+        <modifyAllRecords>true</modifyAllRecords>
         <object>leaseworks__Mods__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
@@ -82284,11 +82310,11 @@
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
-        <allowCreate>false</allowCreate>
-        <allowDelete>false</allowDelete>
-        <allowEdit>false</allowEdit>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
-        <modifyAllRecords>false</modifyAllRecords>
+        <modifyAllRecords>true</modifyAllRecords>
         <object>leaseworks__Notifications_Subscription__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
@@ -82329,13 +82355,13 @@
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
+        <object>leaseworks__Order__c</object>
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>
         <allowEdit>false</allowEdit>
-        <allowRead>true</allowRead>
+        <allowRead>false</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
-        <object>leaseworks__Order__c</object>
-        <viewAllRecords>true</viewAllRecords>
+        <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
         <allowCreate>true</allowCreate>
@@ -82411,10 +82437,10 @@
     </objectPermissions>
     <objectPermissions>
         <allowCreate>true</allowCreate>
-        <allowDelete>false</allowDelete>
-        <allowEdit>false</allowEdit>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
-        <modifyAllRecords>false</modifyAllRecords>
+        <modifyAllRecords>true</modifyAllRecords>
         <object>leaseworks__Parent_Journal_Entry__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
@@ -82581,20 +82607,20 @@
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
-        <allowCreate>true</allowCreate>
-        <allowDelete>true</allowDelete>
-        <allowEdit>true</allowEdit>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
         <allowRead>true</allowRead>
-        <modifyAllRecords>true</modifyAllRecords>
+        <modifyAllRecords>false</modifyAllRecords>
         <object>leaseworks__Pricing_Output_New__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
-        <allowCreate>true</allowCreate>
-        <allowDelete>true</allowDelete>
-        <allowEdit>true</allowEdit>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
         <allowRead>true</allowRead>
-        <modifyAllRecords>true</modifyAllRecords>
+        <modifyAllRecords>false</modifyAllRecords>
         <object>leaseworks__Pricing_Run_New__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
@@ -82626,11 +82652,11 @@
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
-        <allowCreate>false</allowCreate>
-        <allowDelete>false</allowDelete>
-        <allowEdit>false</allowEdit>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
-        <modifyAllRecords>false</modifyAllRecords>
+        <modifyAllRecords>true</modifyAllRecords>
         <object>leaseworks__Project_Contact__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
@@ -82662,7 +82688,7 @@
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
-        <allowCreate>false</allowCreate>
+        <allowCreate>true</allowCreate>
         <allowDelete>true</allowDelete>
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
@@ -82681,10 +82707,10 @@
     </objectPermissions>
     <objectPermissions>
         <allowCreate>true</allowCreate>
-        <allowDelete>false</allowDelete>
+        <allowDelete>true</allowDelete>
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
-        <modifyAllRecords>false</modifyAllRecords>
+        <modifyAllRecords>true</modifyAllRecords>
         <object>leaseworks__Py_Line_Item__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
@@ -82747,7 +82773,7 @@
         <allowDelete>true</allowDelete>
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
-        <modifyAllRecords>false</modifyAllRecords>
+        <modifyAllRecords>true</modifyAllRecords>
         <object>leaseworks__Reconciliation_Schedule__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
@@ -82761,11 +82787,11 @@
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
-        <allowCreate>true</allowCreate>
-        <allowDelete>true</allowDelete>
-        <allowEdit>true</allowEdit>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
         <allowRead>true</allowRead>
-        <modifyAllRecords>true</modifyAllRecords>
+        <modifyAllRecords>false</modifyAllRecords>
         <object>leaseworks__Related_Email__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
@@ -82933,10 +82959,10 @@
     </objectPermissions>
     <objectPermissions>
         <allowCreate>true</allowCreate>
-        <allowDelete>false</allowDelete>
+        <allowDelete>true</allowDelete>
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
-        <modifyAllRecords>false</modifyAllRecords>
+        <modifyAllRecords>true</modifyAllRecords>
         <object>leaseworks__Stepped_Rent__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
@@ -83031,20 +83057,20 @@
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
-        <allowCreate>false</allowCreate>
-        <allowDelete>false</allowDelete>
-        <allowEdit>false</allowEdit>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
-        <modifyAllRecords>false</modifyAllRecords>
+        <modifyAllRecords>true</modifyAllRecords>
         <object>leaseworks__Technical_Project_Check__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
-        <allowCreate>false</allowCreate>
-        <allowDelete>false</allowDelete>
-        <allowEdit>false</allowEdit>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
-        <modifyAllRecords>false</modifyAllRecords>
+        <modifyAllRecords>true</modifyAllRecords>
         <object>leaseworks__Technical_Project__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
@@ -83189,8 +83215,62 @@
         <allowEdit>false</allowEdit>
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
-        <object>pro_Fund__c</object>
+        <object>pro_Asset_Target_Audit__c</object>
         <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>pro_Asset_Target_Snapshot_Item__c</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>pro_Asset_Target_Snapshot__c</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>pro_Claim_Update__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>pro_Contract_On_Ticket__c</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>false</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>pro_Fund__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>pro_GCC_Update__c</object>
+        <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
         <allowCreate>true</allowCreate>
@@ -83217,6 +83297,24 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>pro_Status_Update__c</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>pro_Target__c</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>pro_Ticket__c</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <pageAccesses>
@@ -83473,7 +83571,7 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>MassLightningAircraft</apexPage>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>Mass_Delete_Account</apexPage>
@@ -83756,17 +83854,17 @@
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>Account.Legal_Counsel</recordType>
-        <visible>true</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <default>false</default>
-        <recordType>Account.leaseworks__Counterparty</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
-        <recordType>Account.leaseworks__Lessor</recordType>
+        <recordType>Account.leaseworks__Counterparty</recordType>
         <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Account.leaseworks__Lessor</recordType>
+        <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>true</default>
@@ -83775,14 +83873,14 @@
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
-        <default>true</default>
+        <default>false</default>
         <recordType>CAP_Credit_Papers__c.Credit_Review</recordType>
-        <visible>true</visible>
+        <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>CAP_Credit_Papers__c.Credit_Summary</recordType>
-        <visible>true</visible>
+        <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
@@ -84083,6 +84181,7 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>true</default>
+        <personAccountDefault>true</personAccountDefault>
         <recordType>leaseworks__Aircraft__c.leaseworks__Aircraft</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
@@ -84103,6 +84202,7 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>true</default>
+        <personAccountDefault>true</personAccountDefault>
         <recordType>leaseworks__Assembly_Eligible_Event__c.leaseworks__Assemblies</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
@@ -84370,6 +84470,7 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>true</default>
+        <personAccountDefault>true</personAccountDefault>
         <recordType>leaseworks__Invoice__c.leaseworks__Monthly_Utilization</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
@@ -84425,6 +84526,7 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>true</default>
+        <personAccountDefault>true</personAccountDefault>
         <recordType>leaseworks__Lease_Extension_History__c.leaseworks__Lease_Extension</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
@@ -84465,6 +84567,7 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>true</default>
+        <personAccountDefault>true</personAccountDefault>
         <recordType>leaseworks__Lease__c.leaseworks__Aircraft</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
@@ -84549,9 +84652,10 @@
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
-        <default>false</default>
+        <default>true</default>
+        <personAccountDefault>true</personAccountDefault>
         <recordType>leaseworks__Marketing_Activity__c.Approval</recordType>
-        <visible>false</visible>
+        <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
@@ -84581,17 +84685,17 @@
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>leaseworks__Marketing_Activity__c.leaseworks__Engine_Lease</recordType>
-        <visible>true</visible>
+        <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>leaseworks__Marketing_Activity__c.leaseworks__Engine_Sale</recordType>
-        <visible>true</visible>
+        <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
-        <default>true</default>
+        <default>false</default>
         <recordType>leaseworks__Marketing_Activity__c.leaseworks__Lease</recordType>
-        <visible>true</visible>
+        <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
@@ -84601,17 +84705,17 @@
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>leaseworks__Marketing_Activity__c.leaseworks__Lease_Extension</recordType>
-        <visible>true</visible>
+        <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>leaseworks__Marketing_Activity__c.leaseworks__Purchase</recordType>
-        <visible>true</visible>
+        <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>leaseworks__Marketing_Activity__c.leaseworks__SLB_N</recordType>
-        <visible>true</visible>
+        <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
@@ -84722,6 +84826,7 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>true</default>
+        <personAccountDefault>true</personAccountDefault>
         <recordType>leaseworks__Pricing_Run_New__c.leaseworks__Lease</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
@@ -84782,6 +84887,7 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>true</default>
+        <personAccountDefault>true</personAccountDefault>
         <recordType>leaseworks__Reconciliation_Schedule__c.leaseworks__Default</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
@@ -84822,14 +84928,13 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>true</default>
-        <personAccountDefault>true</personAccountDefault>
         <recordType>leaseworks__Technical_Project__c.Technical_Project</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>leaseworks__Technical_Project__c.Technical_Project_Template</recordType>
-        <visible>true</visible>
+        <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>true</default>
@@ -84854,27 +84959,28 @@
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>pro_Ticket__c.Lease_Management</recordType>
-        <visible>false</visible>
+        <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>pro_Ticket__c.Legal_Contracts</recordType>
-        <visible>false</visible>
+        <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>pro_Ticket__c.Technical</recordType>
-        <visible>false</visible>
+        <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>true</default>
+        <personAccountDefault>true</personAccountDefault>
         <recordType>pro_Ticket__c.Trading_Asset_Management</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>pro_Ticket__c.pro_Data_Quality_Request</recordType>
-        <visible>false</visible>
+        <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
@@ -84943,7 +85049,7 @@
     </tabVisibilities>
     <tabVisibilities>
         <tab>Manage_Targets</tab>
-        <visibility>Hidden</visibility>
+        <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>Power_BI_Report</tab>
@@ -84963,7 +85069,7 @@
     </tabVisibilities>
     <tabVisibilities>
         <tab>Utilization_Studio_New</tab>
-        <visibility>DefaultOn</visibility>
+        <visibility>DefaultOff</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>dlrs__LookupRollupCalculateJob__c</tab>
@@ -85071,11 +85177,11 @@
     </tabVisibilities>
     <tabVisibilities>
         <tab>leaseworks__Campaign_Snapshot__c</tab>
-        <visibility>DefaultOn</visibility>
+        <visibility>Hidden</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>leaseworks__Canvass_Block_UI</tab>
-        <visibility>DefaultOn</visibility>
+        <visibility>Hidden</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>leaseworks__Chart_Of_Accounts__c</tab>
@@ -85095,7 +85201,7 @@
     </tabVisibilities>
     <tabVisibilities>
         <tab>leaseworks__Constituent_Assembly__c</tab>
-        <visibility>Hidden</visibility>
+        <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>leaseworks__Contract_Diary__c</tab>
@@ -85171,7 +85277,7 @@
     </tabVisibilities>
     <tabVisibilities>
         <tab>leaseworks__Engine_Template__c</tab>
-        <visibility>Hidden</visibility>
+        <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>leaseworks__Engine_Thrust__c</tab>
@@ -85203,7 +85309,7 @@
     </tabVisibilities>
     <tabVisibilities>
         <tab>leaseworks__Global_Accounting_Setup__c</tab>
-        <visibility>DefaultOn</visibility>
+        <visibility>DefaultOff</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>leaseworks__Global_Fleet__c</tab>
@@ -85291,7 +85397,7 @@
     </tabVisibilities>
     <tabVisibilities>
         <tab>leaseworks__Maintenance_Program__c</tab>
-        <visibility>Hidden</visibility>
+        <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>leaseworks__Mapping__c</tab>
@@ -85323,7 +85429,7 @@
     </tabVisibilities>
     <tabVisibilities>
         <tab>leaseworks__Notifications_Subscription__c</tab>
-        <visibility>Hidden</visibility>
+        <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>leaseworks__Notify_Notification_Configuration</tab>
@@ -85447,7 +85553,7 @@
     </tabVisibilities>
     <tabVisibilities>
         <tab>leaseworks__Technical_Project__c</tab>
-        <visibility>DefaultOn</visibility>
+        <visibility>DefaultOff</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>leaseworks__Transaction__c</tab>
@@ -85455,10 +85561,18 @@
     </tabVisibilities>
     <tabVisibilities>
         <tab>leaseworks__Utilization_Report_Staging__c</tab>
-        <visibility>DefaultOn</visibility>
+        <visibility>DefaultOff</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>leaseworks__Utilization_Studio</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>lwrp__LeaseWorks_Reports</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>lwrp__LeaseWorks_Reports_Configuration_Admin</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>
     <tabVisibilities>
@@ -85478,6 +85592,10 @@
         <visibility>DefaultOff</visibility>
     </tabVisibilities>
     <tabVisibilities>
+        <tab>pro_Processing__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>pro_Target__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
@@ -85490,8 +85608,12 @@
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
-        <tab>standard-ApprovalSubmission</tab>
+        <tab>standard-AppLauncher</tab>
         <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>standard-ApprovalSubmission</tab>
+        <visibility>Hidden</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>standard-ApprovalSubmissionDetail</tab>
@@ -85532,6 +85654,10 @@
     <tabVisibilities>
         <tab>standard-Case</tab>
         <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>standard-Chatter</tab>
+        <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>standard-CollaborationGroup</tab>
@@ -85578,12 +85704,20 @@
         <visibility>Hidden</visibility>
     </tabVisibilities>
     <tabVisibilities>
+        <tab>standard-Dashboard</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>standard-DataUseLegalBasis</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>standard-DataUsePurpose</tab>
         <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>standard-Document</tab>
+        <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>standard-DuplicateRecordSet</tab>
@@ -85596,6 +85730,10 @@
     <tabVisibilities>
         <tab>standard-Event</tab>
         <visibility>DefaultOff</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>standard-File</tab>
+        <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>standard-FlowOrchestrationInstance</tab>
@@ -85694,6 +85832,10 @@
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
+        <tab>standard-UserDevopsPreference</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>standard-UserProvisioningRequest</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>
@@ -85713,7 +85855,10 @@
         <tab>standard-home</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
-    <userLicense>Salesforce Platform</userLicense>
+    <tabVisibilities>
+        <tab>standard-report</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
     <userPermissions>
         <enabled>true</enabled>
         <name>ActivitiesAccess</name>

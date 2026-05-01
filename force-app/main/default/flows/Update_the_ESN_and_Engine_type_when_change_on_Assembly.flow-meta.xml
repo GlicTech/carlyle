@@ -100,16 +100,6 @@
             <targetReference>Loop_through_Engines</targetReference>
         </connector>
     </assignments>
-    <customErrors>
-        <name>Error_Message</name>
-        <label>Error Message</label>
-        <locationX>440</locationX>
-        <locationY>1655</locationY>
-        <customErrorMessages>
-            <errorMessage>Error While Updating Engine Details on Lease</errorMessage>
-            <isFieldError>false</isFieldError>
-        </customErrorMessages>
-    </customErrors>
     <decisions>
         <name>Engine_1_or_Engine_2</name>
         <label>Engine 1 or Engine 2</label>
@@ -333,10 +323,10 @@
         <filterFormula>AND(
     /* Type is (or was) Engine 1 or Engine 2 */
     OR(
-        ISPICKVAL({!$Record.leaseworks__Type__c}, &apos;Engine 1&apos;),
-        ISPICKVAL({!$Record.leaseworks__Type__c}, &apos;Engine 2&apos;),
-        ISPICKVAL({!$Record__Prior.leaseworks__Type__c}, &apos;Engine 1&apos;),
-        ISPICKVAL({!$Record__Prior.leaseworks__Type__c}, &apos;Engine 2&apos;)
+        ISPICKVAL({!$Record.leaseworks__Type__c}, &#39;Engine 1&#39;),
+        ISPICKVAL({!$Record.leaseworks__Type__c}, &#39;Engine 2&#39;),
+        ISPICKVAL({!$Record__Prior.leaseworks__Type__c}, &#39;Engine 1&#39;),
+        ISPICKVAL({!$Record__Prior.leaseworks__Type__c}, &#39;Engine 2&#39;)
     ),
 
     /* A relevant field changed */

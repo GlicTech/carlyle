@@ -3,6 +3,6 @@
     <fullName>leaseworks__Check_Pmt_amt_greater_than_POA_balance</fullName>
     <active>true</active>
     <description>Amount exceeds the Available Balance on the payment on account.</description>
-    <errorConditionFormula>IF(AND(NOT(ISBLANK(leaseworks__Payment_on_Account__c)),leaseworks__Prepayment__c,OR(AND( ISCHANGED(leaseworks__Payment_Status__c ) ,  (ISPICKVAL(PRIORVALUE(leaseworks__Payment_Status__c ),&quot;Pending&quot;) || ISPICKVAL(PRIORVALUE(leaseworks__Payment_Status__c ),&quot;Submitted&quot;)),ISPICKVAL(leaseworks__Payment_Status__c , &apos;Approved&apos;)),  ISCHANGED(leaseworks__Amount__c))),leaseworks__Amount__c &gt; leaseworks__Payment_on_Account__r.leaseworks__Balance_Available__c,false)</errorConditionFormula>
+    <errorConditionFormula>IF(AND(NOT(ISBLANK(leaseworks__Payment_on_Account__c)),leaseworks__Prepayment__c,OR(AND( ISCHANGED(leaseworks__Payment_Status__c ) ,  (ISPICKVAL(PRIORVALUE(leaseworks__Payment_Status__c ),&quot;Pending&quot;) || ISPICKVAL(PRIORVALUE(leaseworks__Payment_Status__c ),&quot;Submitted&quot;)),ISPICKVAL(leaseworks__Payment_Status__c , &#39;Approved&#39;)),  ISCHANGED(leaseworks__Amount__c))),leaseworks__Amount__c &gt; leaseworks__Payment_on_Account__r.leaseworks__Balance_Available__c,false)</errorConditionFormula>
     <errorMessage>Amount exceeds the Available Balance on the payment on account.</errorMessage>
 </ValidationRule>

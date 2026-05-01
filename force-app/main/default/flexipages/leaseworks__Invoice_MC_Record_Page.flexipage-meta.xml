@@ -743,6 +743,26 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Billing_Adj_Credit_Applied__c</fieldItem>
+                <identifier>RecordBilling_Adj_Credit_Applied_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Cash_Credit_Applied__c</fieldItem>
+                <identifier>RecordCash_Credit_Applied_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.leaseworks__Sec_Dep_Refund_Offset_Applied__c</fieldItem>
                 <identifier>RecordSec_Dep_Refund_Offset_Applied_cField2</identifier>
             </fieldInstance>
@@ -855,6 +875,26 @@
                 <identifier>RecordExchange_Rate_cField</identifier>
             </fieldInstance>
         </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Billing_Adj_Ledger__c</fieldItem>
+                <identifier>RecordBilling_Adj_Ledger_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Availed_Credit_Ledger__c</fieldItem>
+                <identifier>RecordAvailed_Credit_Ledger__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
         <name>Facet-b0f6f768-3f05-4615-808b-f98cdbc3c579</name>
         <type>Facet</type>
     </flexiPageRegions>
@@ -907,6 +947,16 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.leaseworks__Non_Deferred_Balance_Due_Ledger__c</fieldItem>
                 <identifier>RecordNon_Deferred_Balance_Due_Ledger_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Cash_Credit_AppliedLedger__c</fieldItem>
+                <identifier>RecordCash_Credit_AppliedLedger__cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-6bc992a0-016e-44b2-87b6-a4781fef9bb7</name>
@@ -1106,10 +1156,16 @@
                 <fieldItem>Record.leaseworks__Gross_Up_Amnt__c</fieldItem>
                 <identifier>RecordGross_Up_Amnt_cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 AND 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.leaseworks__Transaction_Currency__c}</leftValue>
                         <operator>NE</operator>
                         <rightValue>USD</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Tax_Type__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>JCT</rightValue>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -1123,10 +1179,16 @@
                 <fieldItem>Record.leaseworks__Gross_Up_Amount__c</fieldItem>
                 <identifier>RecordGross_Up_Amount_cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 AND 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.leaseworks__Transaction_Currency__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>USD</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Tax_Type__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>JCT</rightValue>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -1139,6 +1201,13 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.leaseworks__Grossup_Amount_Formula__c</fieldItem>
                 <identifier>RecordGrossup_Amount_Formula_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Tax_Type__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>JCT</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <name>Facet-4490ae32-711b-4723-a2ae-e1e46e68d888</name>
@@ -1174,10 +1243,16 @@
                 <fieldItem>Record.leaseworks__Withholding_Tax_Amnt__c</fieldItem>
                 <identifier>RecordWithholding_Tax_Amnt_cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 AND 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.leaseworks__Transaction_Currency__c}</leftValue>
                         <operator>NE</operator>
                         <rightValue>USD</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Tax_Type__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>JCT</rightValue>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -1191,10 +1266,16 @@
                 <fieldItem>Record.leaseworks__Withholding_Tax_Amount__c</fieldItem>
                 <identifier>RecordWithholding_Tax_Amount_cField</identifier>
                 <visibilityRule>
+                    <booleanFilter>1 AND 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.leaseworks__Transaction_Currency__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>USD</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Tax_Type__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>JCT</rightValue>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>

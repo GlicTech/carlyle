@@ -83,13 +83,6 @@
             <value>blank</value>
         </criteriaItems>
         <criteriaItems>
-            <column>leaseworks__Credit_Memo__c.leaseworks__Available_Credit_Memo_Amount_F__c</column>
-            <columnToColumn>false</columnToColumn>
-            <isUnlocked>false</isUnlocked>
-            <operator>greaterOrEqual</operator>
-            <value>0</value>
-        </criteriaItems>
-        <criteriaItems>
             <column>leaseworks__Credit_Memo__c.CMS_Reference_Number_Local__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>false</isUnlocked>
@@ -109,6 +102,13 @@
             <isUnlocked>true</isUnlocked>
             <operator>notEqual</operator>
             <value>BLANK</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>leaseworks__Credit_Memo__c.leaseworks__Balance_Available_New__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>greaterOrEqual</operator>
+            <value>0</value>
         </criteriaItems>
     </filter>
     <format>Tabular</format>

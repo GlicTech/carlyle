@@ -7,7 +7,13 @@
                     <name>actionNames</name>
                     <valueList>
                         <valueListItems>
-                            <value>leaseworks__Aircraft_Proposal__c.pro_Asset_Checklist</value>
+                            <value>Global.pro_Asset_Checklist</value>
+                            <visibilityRule>
+                                <criteria>
+                                    <leftValue>{!Record.pro_LOI_Date_Formula__c}</leftValue>
+                                    <operator>NE</operator>
+                                </criteria>
+                            </visibilityRule>
                         </valueListItems>
                         <valueListItems>
                             <value>Edit</value>
@@ -86,7 +92,7 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
-                    <value>readonly</value>
+                    <value>none</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.LOI_Date__c</fieldItem>
                 <identifier>RecordLOI_Date_cField</identifier>
@@ -98,62 +104,24 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.Type_local__c</fieldItem>
-                <identifier>RecordType_local__cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>readonly</value>
-                </fieldInstanceProperties>
                 <fieldItem>Record.Outside_Counsel_engaged__c</fieldItem>
                 <identifier>RecordOutside_Counsel_engaged_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>readonly</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.First_draft_from_counsel__c</fieldItem>
-                <identifier>RecordFirst_draft_from_counsel_cField</identifier>
-            </fieldInstance>
+            <componentInstance>
+                <componentName>flexipage:blankSpace</componentName>
+                <identifier>flexipage_blankSpace</identifier>
+            </componentInstance>
         </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>readonly</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.CAP_first_review_complete__c</fieldItem>
-                <identifier>RecordCAP_first_review_complete_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>readonly</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.BAC_Approval_Date__c</fieldItem>
-                <identifier>RecordBAC_Approval_Date_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <name>Facet-06d661dd-93b5-449a-a20d-7b96e08b5e50</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.Transaction_document_executed__c</fieldItem>
-                <identifier>RecordTransaction_document_executed_cField</identifier>
+                <fieldItem>Record.First_draft_from_counsel__c</fieldItem>
+                <identifier>RecordFirst_draft_from_counsel_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -172,8 +140,22 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.pro_Local_Counsel_Firm__c</fieldItem>
-                <identifier>Recordpro_Local_Counsel_Firm_cField</identifier>
+                <fieldItem>Record.BAC_Approval_Date__c</fieldItem>
+                <identifier>RecordBAC_Approval_Date_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <name>Facet-06d661dd-93b5-449a-a20d-7b96e08b5e50</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Type_local__c</fieldItem>
+                <identifier>RecordType_local__cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -184,6 +166,26 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.pro_Outside_Counsel_Firm__c</fieldItem>
                 <identifier>Recordpro_Outside_Counsel_Firm_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.pro_Local_Counsel_Firm__c</fieldItem>
+                <identifier>Recordpro_Local_Counsel_Firm_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.CAP_first_review_complete__c</fieldItem>
+                <identifier>RecordCAP_first_review_complete_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -203,7 +205,7 @@
                     <value>none</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.Transaction_document_executed__c</fieldItem>
-                <identifier>RecordTransaction_document_executed_cField2</identifier>
+                <identifier>RecordTransaction_document_executed_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-31fd9037-35d6-4156-8feb-8349d38b60b6</name>
@@ -239,10 +241,6 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-7cfcc1bc-672c-485a-9dbd-d1a61083bb52</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>horizontalAlignment</name>
-                    <value>true</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -378,21 +376,25 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.pro_Pre_Closing_Complete__c</fieldItem>
-                <identifier>Recordpro_Pre_Closing_Complete_cField</identifier>
+                <fieldItem>Record.pro_Pre_Closing_Completion_Pct__c</fieldItem>
+                <identifier>Recordpro_Pre_Closing_Completion_Pct_cField</identifier>
             </fieldInstance>
         </itemInstances>
+        <name>Facet-cba685c4-f488-4da0-8642-87fd12a6a2ca</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.pro_Post_Closing_Complete__c</fieldItem>
-                <identifier>Recordpro_Post_Closing_Complete_cField</identifier>
+                <fieldItem>Record.pro_Post_Closing_Completion_Pct__c</fieldItem>
+                <identifier>Recordpro_Post_Closing_Completion_Pct_cField</identifier>
             </fieldInstance>
         </itemInstances>
-        <name>Facet-2273c017-f3fd-4757-9149-2fbce6c8f9fa</name>
+        <name>Facet-cf6af3d7-de62-48ff-a8df-6aaf3b3674d9</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -400,13 +402,23 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>body</name>
-                    <value>Facet-2273c017-f3fd-4757-9149-2fbce6c8f9fa</value>
+                    <value>Facet-cba685c4-f488-4da0-8642-87fd12a6a2ca</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:column</componentName>
                 <identifier>flexipage_column3</identifier>
             </componentInstance>
         </itemInstances>
-        <name>Facet-00800a9f-e186-41b1-b309-c424fd7d99ea</name>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-cf6af3d7-de62-48ff-a8df-6aaf3b3674d9</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:column</componentName>
+                <identifier>flexipage_column4</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>Facet-6cb83320-828b-483d-9925-af655f025740</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -424,23 +436,18 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>columns</name>
-                    <value>Facet-00800a9f-e186-41b1-b309-c424fd7d99ea</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>horizontalAlignment</name>
-                    <value>false</value>
+                    <value>Facet-6cb83320-828b-483d-9925-af655f025740</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
-                    <value>Checklist Items Progress</value>
+                    <value>Checklist Completion</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:fieldSection</componentName>
                 <identifier>flexipage_fieldSection2</identifier>
                 <visibilityRule>
                     <criteria>
-                        <leftValue>{!Record.pro_Pre_Closing_Items_Total__c}</leftValue>
-                        <operator>GT</operator>
-                        <rightValue>0</rightValue>
+                        <leftValue>{!Record.pro_LOI_Date_Formula__c}</leftValue>
+                        <operator>NE</operator>
                     </criteria>
                 </visibilityRule>
             </componentInstance>

@@ -10,6 +10,10 @@
     <dashboardFilters>
         <dashboardFilterOptions>
             <operator>equals</operator>
+            <values>2024</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
             <values>2025</values>
         </dashboardFilterOptions>
         <dashboardFilterOptions>
@@ -32,7 +36,27 @@
             <operator>equals</operator>
             <values>2030</values>
         </dashboardFilterOptions>
-        <name>Target Year</name>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>2031</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>2032</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>2033</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>2034</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>2035</values>
+        </dashboardFilterOptions>
+        <name>Year</name>
     </dashboardFilters>
     <dashboardFilters>
         <dashboardFilterOptions>
@@ -41,22 +65,42 @@
         </dashboardFilterOptions>
         <dashboardFilterOptions>
             <operator>equals</operator>
-            <values>Trading</values>
+            <values>Trading/On Lease</values>
         </dashboardFilterOptions>
-        <name>Marketing / Trading</name>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>Trading/Off Lease</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>Credit</values>
+        </dashboardFilterOptions>
+        <name>Redeploy Type</name>
     </dashboardFilters>
     <dashboardFilters>
         <dashboardFilterOptions>
             <operator>equals</operator>
-            <values>Extension</values>
+            <values>Re-Deploy (ext. or re-lease),Green-Time Ext,Sale At Lease End,Sale,Finance Lease</values>
         </dashboardFilterOptions>
         <dashboardFilterOptions>
             <operator>equals</operator>
-            <values>Re-lease</values>
+            <values>Re-Deploy (ext. or re-lease)</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>Green-Time Ext</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>Sale At Lease End</values>
         </dashboardFilterOptions>
         <dashboardFilterOptions>
             <operator>equals</operator>
             <values>Sale</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>Finance Lease</values>
         </dashboardFilterOptions>
         <name>Likely Outcome</name>
     </dashboardFilters>
@@ -73,21 +117,21 @@
                 <componentChartTheme>dark</componentChartTheme>
                 <componentType>Gauge</componentType>
                 <dashboardFilterColumns>
-                    <column>pro_Asset_Target_Audit__c$pro_Target_Year__c</column>
+                    <column>pro_Asset_Target_Audit__c$Reporting_Year__c</column>
                 </dashboardFilterColumns>
                 <dashboardFilterColumns>
                     <column>pro_Asset_Target_Audit__c$pro_Marketing_Trading__c</column>
                 </dashboardFilterColumns>
                 <dashboardFilterColumns>
-                    <column>pro_Asset_Target_Audit__c$pro_Likely_Outcome__c</column>
+                    <column>pro_Asset_Target_Audit__c$pro_Asset__c.Likely_Outcome__c</column>
                 </dashboardFilterColumns>
                 <decimalPrecision>-1</decimalPrecision>
                 <displayUnits>Auto</displayUnits>
-                <gaugeMax>54.0</gaugeMax>
-                <gaugeMin>0.0</gaugeMin>
-                <groupingSortProperties />
+                <gaugeMax>41.0</gaugeMax>
+                <gaugeMin>14.0</gaugeMin>
+                <groupingSortProperties/>
                 <header>Target Achieved Globally</header>
-                <indicatorBreakpoint1>18.0</indicatorBreakpoint1>
+                <indicatorBreakpoint1>28.0</indicatorBreakpoint1>
                 <indicatorBreakpoint2>36.0</indicatorBreakpoint2>
                 <indicatorHighColor>#00716B</indicatorHighColor>
                 <indicatorLowColor>#C23934</indicatorLowColor>
@@ -114,22 +158,22 @@
                 <componentChartTheme>dark</componentChartTheme>
                 <componentType>Gauge</componentType>
                 <dashboardFilterColumns>
-                    <column>pro_Asset_Target_Audit__c$pro_Target_Year__c</column>
+                    <column>pro_Asset_Target_Audit__c$Reporting_Year__c</column>
                 </dashboardFilterColumns>
                 <dashboardFilterColumns>
                     <column>pro_Asset_Target_Audit__c$pro_Marketing_Trading__c</column>
                 </dashboardFilterColumns>
                 <dashboardFilterColumns>
-                    <column>pro_Asset_Target_Audit__c$pro_Likely_Outcome__c</column>
+                    <column>pro_Asset_Target_Audit__c$pro_Asset__c.Likely_Outcome__c</column>
                 </dashboardFilterColumns>
                 <decimalPrecision>-1</decimalPrecision>
                 <displayUnits>Auto</displayUnits>
-                <gaugeMax>24.0</gaugeMax>
+                <gaugeMax>21.0</gaugeMax>
                 <gaugeMin>0.0</gaugeMin>
-                <groupingSortProperties />
+                <groupingSortProperties/>
                 <header>Target Achieved EMEA</header>
-                <indicatorBreakpoint1>8.0</indicatorBreakpoint1>
-                <indicatorBreakpoint2>18.0</indicatorBreakpoint2>
+                <indicatorBreakpoint1>7.0</indicatorBreakpoint1>
+                <indicatorBreakpoint2>14.0</indicatorBreakpoint2>
                 <indicatorHighColor>#00716B</indicatorHighColor>
                 <indicatorLowColor>#C23934</indicatorLowColor>
                 <indicatorMiddleColor>#CA8501</indicatorMiddleColor>
@@ -155,22 +199,22 @@
                 <componentChartTheme>dark</componentChartTheme>
                 <componentType>Gauge</componentType>
                 <dashboardFilterColumns>
-                    <column>pro_Asset_Target_Audit__c$pro_Target_Year__c</column>
+                    <column>pro_Asset_Target_Audit__c$Reporting_Year__c</column>
                 </dashboardFilterColumns>
                 <dashboardFilterColumns>
                     <column>pro_Asset_Target_Audit__c$pro_Marketing_Trading__c</column>
                 </dashboardFilterColumns>
                 <dashboardFilterColumns>
-                    <column>pro_Asset_Target_Audit__c$pro_Likely_Outcome__c</column>
+                    <column>pro_Asset_Target_Audit__c$pro_Asset__c.Likely_Outcome__c</column>
                 </dashboardFilterColumns>
                 <decimalPrecision>-1</decimalPrecision>
                 <displayUnits>Auto</displayUnits>
-                <gaugeMax>13.0</gaugeMax>
+                <gaugeMax>9.0</gaugeMax>
                 <gaugeMin>0.0</gaugeMin>
-                <groupingSortProperties />
+                <groupingSortProperties/>
                 <header>Target Achieved APAC</header>
-                <indicatorBreakpoint1>4.0</indicatorBreakpoint1>
-                <indicatorBreakpoint2>8.0</indicatorBreakpoint2>
+                <indicatorBreakpoint1>3.0</indicatorBreakpoint1>
+                <indicatorBreakpoint2>6.0</indicatorBreakpoint2>
                 <indicatorHighColor>#00716B</indicatorHighColor>
                 <indicatorLowColor>#C23934</indicatorLowColor>
                 <indicatorMiddleColor>#CA8501</indicatorMiddleColor>
@@ -196,22 +240,22 @@
                 <componentChartTheme>dark</componentChartTheme>
                 <componentType>Gauge</componentType>
                 <dashboardFilterColumns>
-                    <column>pro_Asset_Target_Audit__c$pro_Target_Year__c</column>
+                    <column>pro_Asset_Target_Audit__c$Reporting_Year__c</column>
                 </dashboardFilterColumns>
                 <dashboardFilterColumns>
                     <column>pro_Asset_Target_Audit__c$pro_Marketing_Trading__c</column>
                 </dashboardFilterColumns>
                 <dashboardFilterColumns>
-                    <column>pro_Asset_Target_Audit__c$pro_Likely_Outcome__c</column>
+                    <column>pro_Asset_Target_Audit__c$pro_Asset__c.Likely_Outcome__c</column>
                 </dashboardFilterColumns>
                 <decimalPrecision>-1</decimalPrecision>
                 <displayUnits>Auto</displayUnits>
-                <gaugeMax>16.0</gaugeMax>
+                <gaugeMax>11.0</gaugeMax>
                 <gaugeMin>0.0</gaugeMin>
-                <groupingSortProperties />
+                <groupingSortProperties/>
                 <header>Target Achieved Americas</header>
-                <indicatorBreakpoint1>5.0</indicatorBreakpoint1>
-                <indicatorBreakpoint2>10.0</indicatorBreakpoint2>
+                <indicatorBreakpoint1>4.0</indicatorBreakpoint1>
+                <indicatorBreakpoint2>8.0</indicatorBreakpoint2>
                 <indicatorHighColor>#00716B</indicatorHighColor>
                 <indicatorLowColor>#C23934</indicatorLowColor>
                 <indicatorMiddleColor>#CA8501</indicatorMiddleColor>
@@ -231,24 +275,24 @@
                 <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
                 <chartAxisRange>Auto</chartAxisRange>
                 <chartSummary>
+                    <aggregate>Sum</aggregate>
                     <axisBinding>y</axisBinding>
-                    <column>RowCount</column>
+                    <column>CDF1</column>
                 </chartSummary>
                 <chartSummary>
-                    <aggregate>Maximum</aggregate>
                     <axisBinding>y</axisBinding>
-                    <column>pro_Asset_Target_Audit__c$pro_Target_Forecast__c.pro_Target_Amount__c</column>
+                    <column>FORMULA4</column>
                 </chartSummary>
                 <componentChartTheme>dark</componentChartTheme>
                 <componentType>LineCumulative</componentType>
                 <dashboardFilterColumns>
-                    <column>pro_Asset_Target_Audit__c$pro_Target_Year__c</column>
+                    <column>pro_Asset_Target_Audit__c$Reporting_Year__c</column>
                 </dashboardFilterColumns>
                 <dashboardFilterColumns>
                     <column>pro_Asset_Target_Audit__c$pro_Marketing_Trading__c</column>
                 </dashboardFilterColumns>
                 <dashboardFilterColumns>
-                    <column>pro_Asset_Target_Audit__c$pro_Likely_Outcome__c</column>
+                    <column>pro_Asset_Target_Audit__c$pro_Asset__c.Likely_Outcome__c</column>
                 </dashboardFilterColumns>
                 <decimalPrecision>-1</decimalPrecision>
                 <displayUnits>Auto</displayUnits>
@@ -263,7 +307,7 @@
                         <sortOrder>a</sortOrder>
                     </groupingSorts>
                 </groupingSortProperties>
-                <header>Target vs Achieved</header>
+                <header>Run Rate vs Achieved</header>
                 <legendPosition>Right</legendPosition>
                 <report>pro_Targets/Target_Report_by_Target_Month_WJ0</report>
                 <showPercentage>false</showPercentage>
@@ -284,23 +328,23 @@
                 </chartSummary>
                 <componentType>Metric</componentType>
                 <dashboardFilterColumns>
-                    <column>pro_Asset_Target_Audit__c$pro_Target_Year__c</column>
+                    <column>pro_Asset_Target_Audit__c$Reporting_Year__c</column>
                 </dashboardFilterColumns>
                 <dashboardFilterColumns>
                     <column>pro_Asset_Target_Audit__c$pro_Marketing_Trading__c</column>
                 </dashboardFilterColumns>
                 <dashboardFilterColumns>
-                    <column>pro_Asset_Target_Audit__c$pro_Likely_Outcome__c</column>
+                    <column>pro_Asset_Target_Audit__c$pro_Asset__c.Likely_Outcome__c</column>
                 </dashboardFilterColumns>
                 <decimalPrecision>-1</decimalPrecision>
-                <displayUnits>Auto</displayUnits>
-                <groupingSortProperties />
+                <displayUnits>Integer</displayUnits>
+                <groupingSortProperties/>
                 <header>Open Targets</header>
-                <indicatorBreakpoint1>33.0</indicatorBreakpoint1>
-                <indicatorBreakpoint2>67.0</indicatorBreakpoint2>
-                <indicatorHighColor>#C23934</indicatorHighColor>
-                <indicatorLowColor>#C23934</indicatorLowColor>
-                <indicatorMiddleColor>#C23934</indicatorMiddleColor>
+                <indicatorBreakpoint1>-1.0</indicatorBreakpoint1>
+                <indicatorBreakpoint2>0.0</indicatorBreakpoint2>
+                <indicatorHighColor>#D7382D</indicatorHighColor>
+                <indicatorLowColor>#51C268</indicatorLowColor>
+                <indicatorMiddleColor>#CA8501</indicatorMiddleColor>
                 <report>pro_Targets/Target_Report_by_Target_Month_Open_vvH</report>
                 <showRange>false</showRange>
             </dashboardComponent>
@@ -317,17 +361,17 @@
                 </chartSummary>
                 <componentType>Metric</componentType>
                 <dashboardFilterColumns>
-                    <column>pro_Asset_Target_Audit__c$pro_Target_Year__c</column>
+                    <column>pro_Asset_Target_Audit__c$Reporting_Year__c</column>
                 </dashboardFilterColumns>
                 <dashboardFilterColumns>
                     <column>pro_Asset_Target_Audit__c$pro_Marketing_Trading__c</column>
                 </dashboardFilterColumns>
                 <dashboardFilterColumns>
-                    <column>pro_Asset_Target_Audit__c$pro_Likely_Outcome__c</column>
+                    <column>pro_Asset_Target_Audit__c$pro_Asset__c.Likely_Outcome__c</column>
                 </dashboardFilterColumns>
                 <decimalPrecision>-1</decimalPrecision>
                 <displayUnits>Auto</displayUnits>
-                <groupingSortProperties />
+                <groupingSortProperties/>
                 <header>Achieved Targets</header>
                 <indicatorBreakpoint1>33.0</indicatorBreakpoint1>
                 <indicatorBreakpoint2>67.0</indicatorBreakpoint2>
@@ -347,13 +391,13 @@
                 <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
                 <componentType>FlexTable</componentType>
                 <dashboardFilterColumns>
-                    <column>pro_Asset_Target_Audit__c$pro_Target_Year__c</column>
+                    <column>pro_Asset_Target_Audit__c$Reporting_Year__c</column>
                 </dashboardFilterColumns>
                 <dashboardFilterColumns>
                     <column>pro_Asset_Target_Audit__c$pro_Marketing_Trading__c</column>
                 </dashboardFilterColumns>
                 <dashboardFilterColumns>
-                    <column>pro_Asset_Target_Audit__c$pro_Likely_Outcome__c</column>
+                    <column>pro_Asset_Target_Audit__c$pro_Asset__c.Likely_Outcome__c</column>
                 </dashboardFilterColumns>
                 <flexComponentProperties>
                     <decimalPrecision>-1</decimalPrecision>
@@ -393,13 +437,13 @@
                 <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
                 <componentType>FlexTable</componentType>
                 <dashboardFilterColumns>
-                    <column>pro_Asset_Target_Audit__c$pro_Target_Year__c</column>
+                    <column>pro_Asset_Target_Audit__c$Reporting_Year__c</column>
                 </dashboardFilterColumns>
                 <dashboardFilterColumns>
                     <column>pro_Asset_Target_Audit__c$pro_Marketing_Trading__c</column>
                 </dashboardFilterColumns>
                 <dashboardFilterColumns>
-                    <column>pro_Asset_Target_Audit__c$pro_Likely_Outcome__c</column>
+                    <column>pro_Asset_Target_Audit__c$pro_Asset__c.Likely_Outcome__c</column>
                 </dashboardFilterColumns>
                 <flexComponentProperties>
                     <decimalPrecision>-1</decimalPrecision>
@@ -446,18 +490,18 @@
                         <type>detail</type>
                     </flexTableColumn>
                     <flexTableColumn>
-                        <reportColumn>pro_Asset_Target_Audit__c.pro_Target_End_Date_1__c</reportColumn>
+                        <reportColumn>pro_Asset_Target_Audit__c.pro_Current_Lease_Expiry_Date__c</reportColumn>
                         <showSubTotal>false</showSubTotal>
                         <showTotal>true</showTotal>
                         <type>detail</type>
                     </flexTableColumn>
                     <flexTableSortInfo>
-                        <sortColumn>pro_Asset_Target_Audit__c.pro_Target_End_Date_1__c</sortColumn>
+                        <sortColumn>pro_Asset_Target_Audit__c.pro_Target_Forecast__c.Name</sortColumn>
                         <sortOrder>1</sortOrder>
                     </flexTableSortInfo>
                     <hideChatterPhotos>true</hideChatterPhotos>
                 </flexComponentProperties>
-                <groupingSortProperties />
+                <groupingSortProperties/>
                 <header>All Target Audits</header>
                 <report>pro_Targets/Target_Audit_Report_b1m</report>
                 <title>Annual</title>
@@ -471,7 +515,7 @@
     <dashboardType>SpecifiedUser</dashboardType>
     <description>Works off new Target Audit Solution</description>
     <isGridLayout>true</isGridLayout>
-    
+    <runningUser>claudial@carlyle.aero</runningUser>
     <textColor>#000000</textColor>
     <title>Annual Targets</title>
     <titleColor>#000000</titleColor>

@@ -3,7 +3,8 @@
     <fullName>leaseworks__Available_Balance_Cur__c</fullName>
     <deprecated>false</deprecated>
     <description>This formula field calculates the available balance on payment studio record. If the Approval status is Cancelled or Declined the balance will be Zero.</description>
-    <formula>IF( OR(ISPICKVAL(leaseworks__Approval_Status__c, &apos;Declined&apos;), ISPICKVAL(leaseworks__Approval_Status__c, &apos;Cancelled&apos;)), 0, leaseworks__Payment_Amount_Cur__c - (leaseworks__Amount_Paid__c +  leaseworks__Total_Payment_on_Accounts__c))</formula>
+    <externalId>false</externalId>
+    <formula>IF( OR(ISPICKVAL(leaseworks__Approval_Status__c, &#39;Declined&#39;), ISPICKVAL(leaseworks__Approval_Status__c, &#39;Cancelled&#39;)), 0, leaseworks__Payment_Amount_Cur__c - (leaseworks__Amount_Paid__c +  leaseworks__Total_Payment_on_Accounts__c))</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Available Balance($)</label>
     <precision>18</precision>

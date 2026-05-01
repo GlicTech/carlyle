@@ -3,6 +3,7 @@
     <fullName>leaseworks__Multicurrency_Enabled__c</fullName>
     <deprecated>false</deprecated>
     <description>This hidden checkbox controls the conditional display of fields on the layout when multicurrency is enabled.</description>
+    <externalId>false</externalId>
     <formula>IF(NOT(ISBLANK(TEXT(leaseworks__Rent_Slip__r.leaseworks__Stepped_Rent__r.leaseworks__Billing_Currency__c))),
 IF(ISPICKVAL(leaseworks__Rent_Slip__r.leaseworks__Stepped_Rent__r.leaseworks__Billing_Currency__c, &quot;USD&quot;),false,true), false)</formula>
     <inlineHelpText>This hidden checkbox controls the conditional display of fields on the layout when multicurrency is enabled.</inlineHelpText>

@@ -2,10 +2,35 @@
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>62.0</apiVersion>
     <decisions>
+        <name>Was_Inactve_Status_Changed</name>
+        <label>Was Inactve Status Changed?</label>
+        <locationX>182</locationX>
+        <locationY>323</locationY>
+        <defaultConnector>
+            <targetReference>Was_LOI_Date_Populated</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Update_Target_Re_Opened</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.leaseworks__Inactive_AT__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Target_Re_Opened</targetReference>
+            </connector>
+            <label>Yes - Update Target Re-Opened</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Was_LOI_Date_Change</name>
         <label>Was LOI Date Change?</label>
         <locationX>182</locationX>
-        <locationY>623</locationY>
+        <locationY>923</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
             <name>Yes_LOI_Date_Changed</name>
@@ -34,7 +59,7 @@
         <name>Was_LOI_Date_Populated</name>
         <label>Was LOI Date Populated?</label>
         <locationX>182</locationX>
-        <locationY>323</locationY>
+        <locationY>623</locationY>
         <defaultConnector>
             <targetReference>Was_LOI_Date_Change</targetReference>
         </defaultConnector>
@@ -88,9 +113,9 @@
         <locationX>56</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Was_LOI_Date_Populated</targetReference>
+            <targetReference>Was_Inactve_Status_Changed</targetReference>
         </connector>
-        <filterLogic>1 OR 2</filterLogic>
+        <filterLogic>or</filterLogic>
         <filters>
             <field>leaseworks__Aircraft__c</field>
             <operator>IsNull</operator>
@@ -105,6 +130,13 @@
                 <booleanValue>false</booleanValue>
             </value>
         </filters>
+        <filters>
+            <field>leaseworks__Inactive_AT__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
         <object>leaseworks__Aircraft_Proposal__c</object>
         <recordTriggerType>CreateAndUpdate</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>
@@ -114,7 +146,7 @@
         <name>Run_Subflow_In_System_Context_Without_Sharing</name>
         <label>Run Subflow In System Context Without Sharing</label>
         <locationX>50</locationX>
-        <locationY>431</locationY>
+        <locationY>731</locationY>
         <connector>
             <targetReference>Was_LOI_Date_Change</targetReference>
         </connector>
@@ -127,10 +159,26 @@
         </inputAssignments>
     </subflows>
     <subflows>
+        <name>Update_Target_Re_Opened</name>
+        <label>Update Target Re-Opened</label>
+        <locationX>50</locationX>
+        <locationY>431</locationY>
+        <connector>
+            <targetReference>Was_LOI_Date_Populated</targetReference>
+        </connector>
+        <flowName>pro_Autolaunched_Flag_Re_Opened_Targets</flowName>
+        <inputAssignments>
+            <name>varTriggeringAid</name>
+            <value>
+                <elementReference>$Record</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
+    <subflows>
         <name>Update_Target_Reached</name>
         <label>Update Target Reached</label>
         <locationX>50</locationX>
-        <locationY>731</locationY>
+        <locationY>1031</locationY>
         <flowName>Autolaunched_Change_Target_Reached_When_LOI_Date_Changed</flowName>
         <inputAssignments>
             <name>varTriggeringAiD</name>

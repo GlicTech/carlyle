@@ -2,7 +2,7 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>leaseworks__NoAssignedStatusWithoutLease</fullName>
     <active>true</active>
-    <errorConditionFormula>AND( !ISNEW(),Text( leaseworks__Status__c )==&apos;Assigned&apos;,  Text(PRIORVALUE( leaseworks__Status__c ))!=&apos;Assigned&apos;,IsBlank( leaseworks__Lease__c ) )</errorConditionFormula>
+    <errorConditionFormula>AND( !ISNEW(),Text( leaseworks__Status__c )==&#39;Assigned&#39;,  Text(PRIORVALUE( leaseworks__Status__c ))!=&#39;Assigned&#39;,IsBlank( leaseworks__Lease__c ) )</errorConditionFormula>
     <errorDisplayField>leaseworks__Status__c</errorDisplayField>
     <errorMessage>Aircraft cannot be set in Assigned status without Lease.</errorMessage>
 </ValidationRule>

@@ -3,18 +3,18 @@
     <fullName>leaseworks__Stop_Bank_Account_TD_Creation</fullName>
     <active>true</active>
     <description>#DimensionStory - Should not allow the user to create Bank Account as Lease Dimension</description>
-    <errorConditionFormula>AND(!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c , leaseworks__Dimension__r.Name == &apos;Bank Account&apos; , 
+    <errorConditionFormula>AND(!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c , leaseworks__Dimension__r.Name == &#39;Bank Account&#39; , 
 (OR(
-AND (NOT(ISBLANK(leaseworks__Payment__c)) , OR(ISPICKVAL(leaseworks__Payment__r.leaseworks__Payment_Type__c, &apos;CN_Payment&apos;),
-ISPICKVAL(leaseworks__Payment__r.leaseworks__Payment_Type__c,&apos;Credit Memo Correction&apos;))),
-AND(IF( NOT(ISBLANK(leaseworks__Invoice__c)) , &apos;Invoice&apos;,
-IF(NOT(ISBLANK(leaseworks__Payment__c)) , &apos;Payment&apos;,
-IF( NOT(ISBLANK(leaseworks__Payable__c)) , &apos;Payable&apos;,
-IF( NOT(ISBLANK(leaseworks__Credit_Memo__c)) , &apos;Credit Memo&apos; ,
-IF( NOT(ISBLANK(leaseworks__Payouts__c)) , &apos;Payout&apos; ,
-IF( NOT(ISBLANK( leaseworks__LOC_Transactions__c )) , &apos;LoC DrawDown&apos; ,
-IF( NOT(ISBLANK(leaseworks__Payment_on_Account__c)) , &apos;Payment On Account&apos; ,
-&apos;&apos; )))))))== &apos;Payable&apos;, leaseworks__Payable__r.leaseworks__Lease__c == NULL)
+AND (NOT(ISBLANK(leaseworks__Payment__c)) , OR(ISPICKVAL(leaseworks__Payment__r.leaseworks__Payment_Type__c, &#39;CN_Payment&#39;),
+ISPICKVAL(leaseworks__Payment__r.leaseworks__Payment_Type__c,&#39;Credit Memo Correction&#39;))),
+AND(IF( NOT(ISBLANK(leaseworks__Invoice__c)) , &#39;Invoice&#39;,
+IF(NOT(ISBLANK(leaseworks__Payment__c)) , &#39;Payment&#39;,
+IF( NOT(ISBLANK(leaseworks__Payable__c)) , &#39;Payable&#39;,
+IF( NOT(ISBLANK(leaseworks__Credit_Memo__c)) , &#39;Credit Memo&#39; ,
+IF( NOT(ISBLANK(leaseworks__Payouts__c)) , &#39;Payout&#39; ,
+IF( NOT(ISBLANK( leaseworks__LOC_Transactions__c )) , &#39;LoC DrawDown&#39; ,
+IF( NOT(ISBLANK(leaseworks__Payment_on_Account__c)) , &#39;Payment On Account&#39; ,
+&#39;&#39; )))))))== &#39;Payable&#39;, leaseworks__Payable__r.leaseworks__Lease__c == NULL)
 ))
 )</errorConditionFormula>
     <errorMessage>You are not allowed to create Bank Account</errorMessage>

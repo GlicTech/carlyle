@@ -44,9 +44,6 @@
                 <stringValue>&lt;p&gt;There was an error in processing your request:&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;{!$Flow.FaultMessage}&lt;/p&gt;</stringValue>
             </value>
         </inputParameters>
-        <nameSegment>emailSimple</nameSegment>
-        <offset>0</offset>
-        <versionString>1.0.1</versionString>
     </actionCalls>
     <apiVersion>64.0</apiVersion>
     <decisions>
@@ -97,10 +94,10 @@
     <description>When an Account is created, this flow retrieves print options defaults from CMDT, sets these values to a Print Options Config file, and links this file to the new Account.</description>
     <environments>Default</environments>
     <formulas>
-        <description>Created a Name that is a concatenation of &apos;Print Options - &apos; plus the Unique Lease Id</description>
+        <description>Created a Name that is a concatenation of &#39;Print Options - &#39; plus the Unique Lease Id</description>
         <name>f_ConcatenatedName</name>
         <dataType>String</dataType>
-        <expression>LEFT(&apos;Print Options - &apos; &amp; {!$Record.Name}, 80)</expression>
+        <expression>LEFT(&#39;Print Options - &#39; &amp; {!$Record.Name}, 80)</expression>
     </formulas>
     <interviewLabel>Prodigy - Account - Initialize Print Options Config On Create {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Prodigy - Account - Initialize Print Options Config On Create</label>

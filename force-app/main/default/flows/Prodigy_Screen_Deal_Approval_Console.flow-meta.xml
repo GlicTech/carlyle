@@ -534,34 +534,34 @@ Screen flow allows users to offer approval or rejection on LOI, Lease Documentat
     <formulas>
         <name>f_ApprovalEvent</name>
         <dataType>String</dataType>
-        <expression>IF({!bb_NonDealApprovalButtons.value} = &apos;Approve&apos;, &apos;Approved&apos;,
-     IF({!bb_NonDealApprovalButtons.value} = &apos;Reject&apos;, &apos;Rejected&apos;, &apos;Resubmission Requested&apos;))</expression>
+        <expression>IF({!bb_NonDealApprovalButtons.value} = &#39;Approve&#39;, &#39;Approved&#39;,
+     IF({!bb_NonDealApprovalButtons.value} = &#39;Reject&#39;, &#39;Rejected&#39;, &#39;Resubmission Requested&#39;))</expression>
     </formulas>
     <formulas>
         <name>f_ApprovalsRequiredOrPlaceholder</name>
         <dataType>String</dataType>
-        <expression>IF(TEXT({!recordId.leaseworks__Deal_Status__c}) = &apos;LOI Signed&apos; &amp;&amp; {!Deal_Teams_Found} = True, {!Create_Member_Role_Collection_For_Approver_Deal_Teams}, IF(TEXT({!recordId.leaseworks__Deal_Status__c}) = &apos;Documentation&apos; &amp;&amp; {!varAidApproversFound} = True, {!Create_Member_Role_Collection_For_AiD_Approvers}, &apos;&apos;))</expression>
+        <expression>IF(TEXT({!recordId.leaseworks__Deal_Status__c}) = &#39;LOI Signed&#39; &amp;&amp; {!Deal_Teams_Found} = True, {!Create_Member_Role_Collection_For_Approver_Deal_Teams}, IF(TEXT({!recordId.leaseworks__Deal_Status__c}) = &#39;Documentation&#39; &amp;&amp; {!varAidApproversFound} = True, {!Create_Member_Role_Collection_For_AiD_Approvers}, &#39;&#39;))</expression>
     </formulas>
     <formulas>
         <name>f_ApproveOrRejectLOI</name>
         <dataType>Boolean</dataType>
-        <expression>IF({!bb_LoiSignatureButtons.value} = &apos;Reject LOI Approval&apos;, False, True)</expression>
+        <expression>IF({!bb_LoiSignatureButtons.value} = &#39;Reject LOI Approval&#39;, False, True)</expression>
     </formulas>
     <formulas>
         <name>f_DealTeamFullName</name>
         <dataType>String</dataType>
-        <expression>{!$User.FirstName} + &apos; &apos; + {!$User.LastName}</expression>
+        <expression>{!$User.FirstName} + &#39; &#39; + {!$User.LastName}</expression>
     </formulas>
     <formulas>
         <name>f_IncludeOrExclude</name>
         <dataType>Boolean</dataType>
-        <expression>IF({!bb_ApproverRequiredOrNot.value} = &apos;Required&apos;, True, False)</expression>
+        <expression>IF({!bb_ApproverRequiredOrNot.value} = &#39;Required&#39;, True, False)</expression>
     </formulas>
     <formulas>
         <name>f_NonDealApprovalStatus</name>
         <dataType>Boolean</dataType>
         <expression>IF(
-    {!bb_NonDealApprovalButtons.value} = &apos;Approve&apos;,
+    {!bb_NonDealApprovalButtons.value} = &#39;Approve&#39;,
     TRUE,
     FALSE
 )</expression>
@@ -721,6 +721,13 @@ Screen flow allows users to offer approval or rejection on LOI, Lease Documentat
             <operator>EqualTo</operator>
             <value>
                 <elementReference>recordId.Id</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>leaseworks__Inactive_AT__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>false</booleanValue>
             </value>
         </filters>
         <getFirstRecordOnly>false</getFirstRecordOnly>
@@ -1028,7 +1035,7 @@ Screen flow allows users to offer approval or rejection on LOI, Lease Documentat
     </recordUpdates>
     <recordUpdates>
         <name>Update_AiD_Approvers_With_Manager_s_Datable_Inline_Comments</name>
-        <label>Update AiD Approvers With Manager&apos;s Datable Inline Comments</label>
+        <label>Update AiD Approvers With Manager&#39;s Datable Inline Comments</label>
         <locationX>1634</locationX>
         <locationY>2678</locationY>
         <connector>
@@ -1081,7 +1088,7 @@ Screen flow allows users to offer approval or rejection on LOI, Lease Documentat
     </recordUpdates>
     <recordUpdates>
         <name>Update_Deal_Teams_With_Manager_s_Datatable_Inline_Comments</name>
-        <label>Update Deal Teams With Manager&apos;s Datatable Inline Comments</label>
+        <label>Update Deal Teams With Manager&#39;s Datatable Inline Comments</label>
         <locationX>1634</locationX>
         <locationY>2570</locationY>
         <connector>
@@ -1434,7 +1441,7 @@ Screen flow allows users to offer approval or rejection on LOI, Lease Documentat
                     <inputParameters>
                         <name>columnWidths</name>
                         <value>
-                            <stringValue>pro_Member_Role__c:171, pro_LOI_Signed_Approved__c:98, pro_LOI_Approver_Comments__c:394</stringValue>
+                            <stringValue>pro_Member_Role__c:171, pro_LOI_Signed_Approved__c:157, pro_LOI_Approver_Comments__c:432</stringValue>
                         </value>
                     </inputParameters>
                     <inputParameters>
@@ -1507,7 +1514,7 @@ Screen flow allows users to offer approval or rejection on LOI, Lease Documentat
                     <isRequired>true</isRequired>
                     <storeOutputAutomatically>true</storeOutputAutomatically>
                     <visibilityRule>
-                        <conditionLogic>and</conditionLogic>
+                        <conditionLogic>(1 OR 3) AND 2</conditionLogic>
                         <conditions>
                             <leftValueReference>recordId.leaseworks__Deal_Status__c</leftValueReference>
                             <operator>EqualTo</operator>
@@ -1520,6 +1527,13 @@ Screen flow allows users to offer approval or rejection on LOI, Lease Documentat
                             <operator>EqualTo</operator>
                             <rightValue>
                                 <booleanValue>true</booleanValue>
+                            </rightValue>
+                        </conditions>
+                        <conditions>
+                            <leftValueReference>recordId.leaseworks__Deal_Status__c</leftValueReference>
+                            <operator>EqualTo</operator>
+                            <rightValue>
+                                <stringValue>Termsheet Signature</stringValue>
                             </rightValue>
                         </conditions>
                     </visibilityRule>
@@ -1595,7 +1609,7 @@ Screen flow allows users to offer approval or rejection on LOI, Lease Documentat
                     <inputParameters>
                         <name>columnWidths</name>
                         <value>
-                            <stringValue>pro_AiD_Name__c:123, pro_Member_Role__c:149, pro_Lease_Documentation_Approved__c:107, pro_Lease_Documentation_Approver_Comment__c:302</stringValue>
+                            <stringValue>pro_AiD_Name__c:123, pro_Member_Role__c:149, pro_Lease_Documentation_Approved__c:118, pro_Lease_Documentation_Approver_Comment__c:390</stringValue>
                         </value>
                     </inputParameters>
                     <inputParameters>
@@ -2325,7 +2339,6 @@ Screen flow allows users to offer approval or rejection on LOI, Lease Documentat
                     <name>Approver_Comment</name>
                     <fieldText>Approver Comment</fieldText>
                     <fieldType>LargeTextArea</fieldType>
-                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                 </fields>
                 <fields>
@@ -2414,153 +2427,6 @@ Screen flow allows users to offer approval or rejection on LOI, Lease Documentat
         </connector>
     </start>
     <status>Active</status>
-    <transforms>
-        <name>Create_AiD_Id_Collection</name>
-        <label>Create AiD Id Collection</label>
-        <locationX>2162</locationX>
-        <locationY>998</locationY>
-        <connector>
-            <targetReference>Get_Asset_In_Deal_Approvers_For_Running_User</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>Get_Assets_In_Deal[$EachItem].Id</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
-    <transforms>
-        <name>Create_Id_Collection_For_AiD_Approvers_Selected_To_Include_Exclude</name>
-        <label>Create Id Collection For AiD Approvers Selected To Include / Exclude</label>
-        <locationX>1634</locationX>
-        <locationY>2894</locationY>
-        <connector>
-            <targetReference>Set_Deal_Teams_As_Included_Excluded_In_Approvals</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>dt_AllAidApprovers.outputSelectedRows[$EachItem].Id</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
-    <transforms>
-        <name>Create_Id_Collection_For_Deal_Teams_Selected_To_Include_Exclude</name>
-        <label>Create Id Collection For Deal Teams Selected To Include / Exclude</label>
-        <locationX>1634</locationX>
-        <locationY>2786</locationY>
-        <connector>
-            <targetReference>Create_Id_Collection_For_AiD_Approvers_Selected_To_Include_Exclude</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>dt_AllDealTeams.outputSelectedRows[$EachItem].Id</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
-    <transforms>
-        <name>Create_Id_Collection_For_Selected_AiD_Approvers</name>
-        <label>Create Id Collection For Selected AiD Approvers</label>
-        <locationX>842</locationX>
-        <locationY>2570</locationY>
-        <connector>
-            <targetReference>Update_AiD_Approvers_With_Datatable_Inline_Comments</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>dt_DocumentationApprovalsDue.outputSelectedRows[$EachItem].Id</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
-    <transforms>
-        <name>Create_Id_Collection_For_Selected_Deal_Team_Records</name>
-        <label>Create Id Collection For Selected Deal Team Records</label>
-        <locationX>50</locationX>
-        <locationY>2570</locationY>
-        <connector>
-            <targetReference>Update_Deal_Teams_With_Datatable_Inline_Comments</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>dt_LoiApprovalsDue.outputSelectedRows[$EachItem].Id</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
-    <transforms>
-        <name>Create_Member_Role_Collection_For_AiD_Approvers</name>
-        <label>Create Member Role Collection For AiD Approvers</label>
-        <locationX>1238</locationX>
-        <locationY>2246</locationY>
-        <connector>
-            <targetReference>ApproverConsoleScreen</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>Get_Asset_In_Deal_Approvers_For_Running_User[$EachItem].pro_Member_Role__c</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
-    <transforms>
-        <name>Create_Member_Role_Collection_For_Approver_Deal_Teams</name>
-        <label>Create Member Role Collection For Approver Deal Teams</label>
-        <locationX>1238</locationX>
-        <locationY>2138</locationY>
-        <connector>
-            <targetReference>Create_Member_Role_Collection_For_AiD_Approvers</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>Get_Open_LOI_Deal_Team_Records_For_Running_User[$EachItem].pro_Member_Role__c</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
     <variables>
         <name>recordId</name>
         <dataType>SObject</dataType>
@@ -2620,7 +2486,7 @@ Screen flow allows users to offer approval or rejection on LOI, Lease Documentat
         <scale>0</scale>
     </variables>
     <variables>
-        <description>Used as a placeholder in the element &apos;Are Internal And External Loops On The Same Deal Team?&apos; allowing for the datatable output selectedRows to be replaced with the editedRows output</description>
+        <description>Used as a placeholder in the element &#39;Are Internal And External Loops On The Same Deal Team?&#39; allowing for the datatable output selectedRows to be replaced with the editedRows output</description>
         <name>varDealTeamPlaceholder</name>
         <dataType>SObject</dataType>
         <isCollection>false</isCollection>

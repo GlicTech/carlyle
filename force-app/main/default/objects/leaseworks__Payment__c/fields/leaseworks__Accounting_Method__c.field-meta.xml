@@ -4,9 +4,9 @@
     <deprecated>false</deprecated>
     <description>Accounting Method from the interest invoice</description>
     <externalId>false</externalId>
-    <formula>IF( OR(ISPICKVAL(leaseworks__Invoice__r.leaseworks__Invoice_Type__c , &apos;Interest&apos;),ISPICKVAL(leaseworks__Invoice__r.leaseworks__Invoice_Type__c , &apos;Deferred - Interest&apos;), ISPICKVAL(leaseworks__Invoice__r.leaseworks__Invoice_Type__c , &apos;HL/SL-Interest&apos;) ) , TEXT(leaseworks__Invoice__r.leaseworks__Accounting_Method__c) ,
-IF( OR( ISPICKVAL(leaseworks__Invoice__r.leaseworks__Invoice_Type__c , &apos;Aircraft MR&apos;),ISPICKVAL(leaseworks__Invoice__r.leaseworks__Invoice_Type__c , &apos;HL/SL-MR&apos;), ISPICKVAL(leaseworks__Invoice__r.leaseworks__Invoice_Type__c , &apos;Deferred - MR&apos;)), TEXT(leaseworks__Invoice__r.leaseworks__MR_Accounting_Method__c) ,
-IF( OR(ISPICKVAL(leaseworks__Invoice__r.leaseworks__Invoice_Type__c , &apos;Security Deposit&apos;), ISPICKVAL(leaseworks__Invoice__r.leaseworks__Invoice_Type__c , &apos;HL/SL-SD&apos;),ISPICKVAL(leaseworks__Invoice__r.leaseworks__Invoice_Type__c , &apos;Deferred - Security Deposit&apos;)), TEXT(leaseworks__Invoice__r.leaseworks__SD_Accounting_Method__c),null)))</formula>
+    <formula>IF( OR(ISPICKVAL(leaseworks__Invoice__r.leaseworks__Invoice_Type__c , &#39;Interest&#39;),ISPICKVAL(leaseworks__Invoice__r.leaseworks__Invoice_Type__c , &#39;Deferred - Interest&#39;), ISPICKVAL(leaseworks__Invoice__r.leaseworks__Invoice_Type__c , &#39;HL/SL-Interest&#39;) ) , TEXT(leaseworks__Invoice__r.leaseworks__Accounting_Method__c) ,
+IF( OR( ISPICKVAL(leaseworks__Invoice__r.leaseworks__Invoice_Type__c , &#39;Aircraft MR&#39;),ISPICKVAL(leaseworks__Invoice__r.leaseworks__Invoice_Type__c , &#39;HL/SL-MR&#39;), ISPICKVAL(leaseworks__Invoice__r.leaseworks__Invoice_Type__c , &#39;Deferred - MR&#39;)), TEXT(leaseworks__Invoice__r.leaseworks__MR_Accounting_Method__c) ,
+IF( OR(ISPICKVAL(leaseworks__Invoice__r.leaseworks__Invoice_Type__c , &#39;Security Deposit&#39;), ISPICKVAL(leaseworks__Invoice__r.leaseworks__Invoice_Type__c , &#39;HL/SL-SD&#39;),ISPICKVAL(leaseworks__Invoice__r.leaseworks__Invoice_Type__c , &#39;Deferred - Security Deposit&#39;)), TEXT(leaseworks__Invoice__r.leaseworks__SD_Accounting_Method__c),null)))</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>_Accounting Method</label>
     <required>false</required>

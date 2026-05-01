@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>pro_Omit_From_Targets__c</fullName>
-    <description>Evaluates as true if Impact Type = &apos;Russian&apos;, Status = &apos;Sold&apos;, or Likely Outcome = &apos;Sale&apos;</description>
-    <formula>ISPICKVAL( pro_Impact_Type__c , &apos;Russia&apos;) ||  ISPICKVAL(leaseworks__Status__c , &apos;Sold&apos;)||   ISPICKVAL(Likely_Outcome__c , &apos;Sale&apos;)</formula>
+    <description>Evaluates as true if Impact Type = &#39;Russian&#39;, Status = &#39;Sold&#39;, or Likely Outcome = &#39;Sale&#39;</description>
+    <externalId>false</externalId>
+    <formula>ISPICKVAL( pro_Impact_Type__c , &#39;Russia&#39;) ||  ISPICKVAL(leaseworks__Status__c , &#39;Sold&#39;)||   ISPICKVAL(Likely_Outcome__c , &#39;Sale&#39;)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Omit From Targets</label>
     <trackHistory>false</trackHistory>

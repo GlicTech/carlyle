@@ -2,8 +2,8 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>leaseworks__RestrictFirstVariablePeriod</fullName>
     <active>true</active>
-    <description>&apos;First Variable Period&apos; cannot be negative or 0/null and cannot be higher than 360 (assuming max length of the Lease)</description>
+    <description>&#39;First Variable Period&#39; cannot be negative or 0/null and cannot be higher than 360 (assuming max length of the Lease)</description>
     <errorConditionFormula>OR(leaseworks__First_Variable_Period__c &lt;0 ,leaseworks__First_Variable_Period__c &gt; 360,  ISBLANK(leaseworks__First_Variable_Period__c), leaseworks__First_Variable_Period__c=0 )</errorConditionFormula>
     <errorDisplayField>leaseworks__First_Variable_Period__c</errorDisplayField>
-    <errorMessage>&apos;First Variable Period&apos; cannot be negative or 0/null and cannot be higher than 360 (assuming max length of the Lease)</errorMessage>
+    <errorMessage>&#39;First Variable Period&#39; cannot be negative or 0/null and cannot be higher than 360 (assuming max length of the Lease)</errorMessage>
 </ValidationRule>

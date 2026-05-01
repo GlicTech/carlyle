@@ -3,12 +3,12 @@
     <fullName>leaseworks__Value_to_Hold__c</fullName>
     <deprecated>false</deprecated>
     <externalId>false</externalId>
-    <formula>&apos;Rent/Term: &apos; + Text(round((leaseworks__Lease_Expiry__c-leaseworks__Lease_Start__c)/365,0)) + &apos;yr@ $&apos;
-+  Text(round(leaseworks__Rent__c/1000,0))   +&apos;k/mo; &apos; 
-+   right(&apos;0&apos; + text(month(leaseworks__Lease_Start__c)),2 ) + &apos;/&apos; + right(text(Year(leaseworks__Lease_Start__c)),2 ) + &apos;; &apos;
-+ &apos;Total cash flows: $&apos; + Text(round(leaseworks__Total_Cash_Flows__c/1000000,1))  + &apos;M; &apos; 
-+ &apos; GAAP Gain/(Loss) on Sale: $&apos; + Text(round(leaseworks__GAAP_Gain_Loss_on_Sale__c/1000000,1))  + &apos;M; &apos; 
-+ &apos; Income: $&apos; + Text(round(leaseworks__Income_Statement_Impact__c/1000000,1))  + &apos;M&apos;</formula>
+    <formula>&#39;Rent/Term: &#39; + Text(round((leaseworks__Lease_Expiry__c-leaseworks__Lease_Start__c)/365,0)) + &#39;yr@ $&#39;
++  Text(round(leaseworks__Rent__c/1000,0))   +&#39;k/mo; &#39; 
++   right(&#39;0&#39; + text(month(leaseworks__Lease_Start__c)),2 ) + &#39;/&#39; + right(text(Year(leaseworks__Lease_Start__c)),2 ) + &#39;; &#39;
++ &#39;Total cash flows: $&#39; + Text(round(leaseworks__Total_Cash_Flows__c/1000000,1))  + &#39;M; &#39; 
++ &#39; GAAP Gain/(Loss) on Sale: $&#39; + Text(round(leaseworks__GAAP_Gain_Loss_on_Sale__c/1000000,1))  + &#39;M; &#39; 
++ &#39; Income: $&#39; + Text(round(leaseworks__Income_Statement_Impact__c/1000000,1))  + &#39;M&#39;</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Value to Hold</label>
     <required>false</required>

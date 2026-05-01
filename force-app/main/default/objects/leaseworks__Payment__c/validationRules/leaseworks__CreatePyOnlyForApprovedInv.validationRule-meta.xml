@@ -4,6 +4,6 @@
     <active>true</active>
     <description>Payments can only be created on approved unpaid invoices.</description>
     <errorConditionFormula>AND(!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c,ISNEW(),
-				OR(leaseworks__Status__c=&apos;Pending&apos;,AND(leaseworks__Status__c = &apos;Approved&apos; , leaseworks__Y_Hidden_Invoice_Payment_Status__c =&apos;Credited&apos;),leaseworks__Status__c=&apos;Submitted&apos;,leaseworks__Status__c=&apos;Declined&apos;,leaseworks__Status__c=&apos;Cancelled-Pending&apos;,leaseworks__Status__c=&apos;Cancelled&apos;))</errorConditionFormula>
+				OR(leaseworks__Status__c=&#39;Pending&#39;,AND(leaseworks__Status__c = &#39;Approved&#39; , leaseworks__Y_Hidden_Invoice_Payment_Status__c =&#39;Credited&#39;),leaseworks__Status__c=&#39;Submitted&#39;,leaseworks__Status__c=&#39;Declined&#39;,leaseworks__Status__c=&#39;Cancelled-Pending&#39;,leaseworks__Status__c=&#39;Cancelled&#39;))</errorConditionFormula>
     <errorMessage>Payments can only be created on approved unpaid invoices.</errorMessage>
 </ValidationRule>

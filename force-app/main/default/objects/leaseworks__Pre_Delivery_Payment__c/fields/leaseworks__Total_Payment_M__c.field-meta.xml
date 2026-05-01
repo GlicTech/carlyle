@@ -2,6 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>leaseworks__Total_Payment_M__c</fullName>
     <deprecated>false</deprecated>
+    <externalId>false</externalId>
     <formula>IF ( leaseworks__Long_Term_Commitment_Credit_Memorandum__c, 
 (leaseworks__Airframe_Net_Base_Price__c * leaseworks__Escalation_Airframe__c)+(leaseworks__Engine_Net_Base_Price__c * leaseworks__Escalation_Engine__c ) -(leaseworks__Aircraft_Base_Price__r.leaseworks__Customer_Support_Credit_Memorandum__c * leaseworks__AircraftPriceIndex__c) -  (leaseworks__Aircraft_Base_Price__r.leaseworks__Long_Term_Commitment_Credit_Memorandum__c *  leaseworks__AirframeCredit__c ) 
 , 

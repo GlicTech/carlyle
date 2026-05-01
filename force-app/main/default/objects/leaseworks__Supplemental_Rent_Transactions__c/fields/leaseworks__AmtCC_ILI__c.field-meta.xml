@@ -2,16 +2,17 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>leaseworks__AmtCC_ILI__c</fullName>
     <deprecated>false</deprecated>
+    <externalId>false</externalId>
     <formula>IF(
-    TEXT(leaseworks__Transaction_Type__c) = &apos;MR Invoice&apos;,
+    TEXT(leaseworks__Transaction_Type__c) = &#39;MR Invoice&#39;,
     IF(
         ISBLANK(leaseworks__Invoice_Line_Item__c),
         IF(
             OR(
-                leaseworks__Y_Hidden_Doc_Status__c = &apos;Pending&apos;,
-                leaseworks__Y_Hidden_Doc_Status__c = &apos;Declined&apos;,
-                leaseworks__Y_Hidden_Doc_Status__c = &apos;Cancelled&apos;,
-                leaseworks__Y_Hidden_Doc_Status__c = &apos;Submitted&apos;,
+                leaseworks__Y_Hidden_Doc_Status__c = &#39;Pending&#39;,
+                leaseworks__Y_Hidden_Doc_Status__c = &#39;Declined&#39;,
+                leaseworks__Y_Hidden_Doc_Status__c = &#39;Cancelled&#39;,
+                leaseworks__Y_Hidden_Doc_Status__c = &#39;Submitted&#39;,
                 ISBLANK(leaseworks__Y_Hidden_Doc_Status__c)
             ),
             NULL,
@@ -19,25 +20,25 @@
         ),
         IF(
             OR(
-                ISPICKVAL(leaseworks__Invoice_Line_Item__r.leaseworks__Invoice__r.leaseworks__Status__c, &apos;Pending&apos;),
-                ISPICKVAL(leaseworks__Invoice_Line_Item__r.leaseworks__Invoice__r.leaseworks__Status__c, &apos;Declined&apos;),
-                ISPICKVAL(leaseworks__Invoice_Line_Item__r.leaseworks__Invoice__r.leaseworks__Status__c, &apos;Cancelled&apos;),
-                ISPICKVAL(leaseworks__Invoice_Line_Item__r.leaseworks__Invoice__r.leaseworks__Status__c, &apos;Submitted&apos;)
+                ISPICKVAL(leaseworks__Invoice_Line_Item__r.leaseworks__Invoice__r.leaseworks__Status__c, &#39;Pending&#39;),
+                ISPICKVAL(leaseworks__Invoice_Line_Item__r.leaseworks__Invoice__r.leaseworks__Status__c, &#39;Declined&#39;),
+                ISPICKVAL(leaseworks__Invoice_Line_Item__r.leaseworks__Invoice__r.leaseworks__Status__c, &#39;Cancelled&#39;),
+                ISPICKVAL(leaseworks__Invoice_Line_Item__r.leaseworks__Invoice__r.leaseworks__Status__c, &#39;Submitted&#39;)
             ),
             NULL,
             leaseworks__Invoice_Line_Item__r.leaseworks__Amount_Due__c
         )
     ),
     IF(
-        TEXT(leaseworks__Transaction_Type__c) = &apos;MR Invoice Reconciliation&apos;,
+        TEXT(leaseworks__Transaction_Type__c) = &#39;MR Invoice Reconciliation&#39;,
         IF(
             ISBLANK(leaseworks__Invoice_Line_Item__c),
             0,
             IF(
                 OR(
-                    ISPICKVAL(leaseworks__Invoice_Line_Item__r.leaseworks__Invoice__r.leaseworks__Status__c, &apos;Pending&apos;),
-                    ISPICKVAL(leaseworks__Invoice_Line_Item__r.leaseworks__Invoice__r.leaseworks__Status__c, &apos;Declined&apos;),
-                    ISPICKVAL(leaseworks__Invoice_Line_Item__r.leaseworks__Invoice__r.leaseworks__Status__c, &apos;Cancelled&apos;)
+                    ISPICKVAL(leaseworks__Invoice_Line_Item__r.leaseworks__Invoice__r.leaseworks__Status__c, &#39;Pending&#39;),
+                    ISPICKVAL(leaseworks__Invoice_Line_Item__r.leaseworks__Invoice__r.leaseworks__Status__c, &#39;Declined&#39;),
+                    ISPICKVAL(leaseworks__Invoice_Line_Item__r.leaseworks__Invoice__r.leaseworks__Status__c, &#39;Cancelled&#39;)
                 ),
                 NULL,
                 leaseworks__Invoice_Line_Item__r.leaseworks__Amount_Due__c

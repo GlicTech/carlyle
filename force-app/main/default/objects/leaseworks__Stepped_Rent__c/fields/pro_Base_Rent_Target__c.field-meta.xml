@@ -2,7 +2,8 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>pro_Base_Rent_Target__c</fullName>
     <description>Used as the foundational currency conversion formula for the Base Rent.</description>
-    <formula>IF( ISPICKVAL(leaseworks__Billing_Currency__c,&apos;USD&apos;),
+    <externalId>false</externalId>
+    <formula>IF( ISPICKVAL(leaseworks__Billing_Currency__c,&#39;USD&#39;),
 			pro_Rent_Slip_Current__c, (pro_Rent_Slip_Current__c *  pro_Currency_Rates__r.leaseworks__Rate_New__c))</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Rent (Current)</label>

@@ -21,16 +21,6 @@
             </value>
         </assignmentItems>
     </assignments>
-    <customErrors>
-        <name>Add_Error_Message_To_Records</name>
-        <label>Add Error Message To Records</label>
-        <locationX>314</locationX>
-        <locationY>503</locationY>
-        <customErrorMessages>
-            <errorMessage>Missing exchange rate for invoice date between local currency (USD) and transaction currency ({!$Record.leaseworks__Rent__r.leaseworks__Stepped_Rent__r.Local_Currency_local__c}). Please add the exchange rate in the Currency Rates table.</errorMessage>
-            <isFieldError>false</isFieldError>
-        </customErrorMessages>
-    </customErrors>
     <decisions>
         <name>Check_for_Currency_Rate_Record</name>
         <label>Check for Currency Rate Record</label>
@@ -126,7 +116,7 @@
         <connector>
             <targetReference>Get_Currency_Rates</targetReference>
         </connector>
-        <filterFormula>(ISPICKVAL({!$Record.leaseworks__Invoice_Type__c} ,&apos;Rent&apos;))  &amp;&amp; !{!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c} &amp;&amp; !{!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c} &amp;&amp; NOT(ISBLANK(TEXT({!$Record.leaseworks__Rent__r.leaseworks__Stepped_Rent__r.Local_Currency_local__c})))</filterFormula>
+        <filterFormula>(ISPICKVAL({!$Record.leaseworks__Invoice_Type__c} ,&#39;Rent&#39;))  &amp;&amp; !{!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c} &amp;&amp; !{!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c} &amp;&amp; NOT(ISBLANK(TEXT({!$Record.leaseworks__Rent__r.leaseworks__Stepped_Rent__r.Local_Currency_local__c})))</filterFormula>
         <object>leaseworks__Invoice__c</object>
         <recordTriggerType>CreateAndUpdate</recordTriggerType>
         <triggerType>RecordBeforeSave</triggerType>

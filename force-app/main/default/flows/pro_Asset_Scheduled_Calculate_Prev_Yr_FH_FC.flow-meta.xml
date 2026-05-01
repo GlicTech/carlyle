@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Calculates_Prev_Yr_FC</name>
+        <label>Calculates Prev. Yr FC</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>dlrs__RollupActionCalculate</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Calculates_Prev_Yr_FH</targetReference>
+        </connector>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <inputParameters>
+            <name>ParentId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>RollupSummaryUniqueName</name>
+            <value>
+                <stringValue>pro_Asset_Prev_Yr_FC</stringValue>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
+        <name>Calculates_Prev_Yr_FH</name>
+        <label>Calculates Prev. Yr FH</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>dlrs__RollupActionCalculate</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Update_Last_Utilization_Calculation_Date</targetReference>
+        </connector>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <inputParameters>
+            <name>ParentId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>RollupSummaryUniqueName</name>
+            <value>
+                <stringValue>pro_Asset_Prev_Yr_FH</stringValue>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <apiVersion>66.0</apiVersion>
+    <description>A daily Scheduled Job to calculate the Prev. Yr FH/FC from Utilization Records.
+Ran as a daily flow to monitor for amendments to FH and FC figures, as well as changes to the Status picklist value.
+PC - Prodigy 31/03/26</description>
+    <environments>Default</environments>
+    <interviewLabel>Asset - Scheduled - Calculate Prev. Yr FH/FC {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Asset - Scheduled - Calculate Prev. Yr FH/FC</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Update_Last_Utilization_Calculation_Date</name>
+        <label>Update Last Utilization Calculation Date</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <inputAssignments>
+            <field>pro_Last_Utilization_Calculation__c</field>
+            <value>
+                <elementReference>$Flow.CurrentDate</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Calculates_Prev_Yr_FC</targetReference>
+        </connector>
+        <object>leaseworks__Aircraft__c</object>
+        <schedule>
+            <dayOfMonthToRun>0</dayOfMonthToRun>
+            <frequency>Daily</frequency>
+            <frequencyNumber>0</frequencyNumber>
+            <startDate>2026-04-02</startDate>
+            <startTime>00:30:00.000Z</startTime>
+        </schedule>
+        <triggerType>Scheduled</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

@@ -216,24 +216,34 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Completed_By__c</fieldItem>
-                <identifier>Recordleaseworks_Completed_By_cField</identifier>
+                <fieldItem>Record.leaseworks__Completion_Date__c</fieldItem>
+                <identifier>Recordleaseworks_Completion_Date_cField</identifier>
             </fieldInstance>
         </itemInstances>
-        <name>Facet-13b49324-649b-4d5f-b391-177c27af70f9</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Completion_Date__c</fieldItem>
-                <identifier>Recordleaseworks_Completion_Date_cField</identifier>
+                <fieldItem>Record.leaseworks__Completed_By__c</fieldItem>
+                <identifier>Recordleaseworks_Completed_By_cField</identifier>
             </fieldInstance>
         </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>readonly</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Period__c</fieldItem>
+                <identifier>RecordPeriod_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <name>Facet-13b49324-649b-4d5f-b391-177c27af70f9</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
                 <fieldInstanceProperties>
@@ -353,7 +363,7 @@
                 <fieldItem>Record.leaseworks__Currency__c</fieldItem>
                 <identifier>Recordleaseworks_Currency_cField</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 OR 2</booleanFilter>
+                    <booleanFilter>1 AND 2</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.leaseworks__Type__c}</leftValue>
                         <operator>EQUAL</operator>
@@ -367,7 +377,7 @@
                 </visibilityRule>
             </fieldInstance>
         </itemInstances>
-        <name>Facet-657bb8ae-9e76-467a-a669-1d0b014fdf0f</name>
+        <name>Facet-35967a57-8a53-4d24-a925-5458552c2d5d</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -381,7 +391,7 @@
                 <identifier>Recordleaseworks_Outstanding_cField</identifier>
             </fieldInstance>
         </itemInstances>
-        <name>Facet-4dcf092b-dcf9-44f5-9b36-b37c401ea374</name>
+        <name>Facet-be3ee7d9-abf5-4b76-b384-9b7127b32a81</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -389,7 +399,7 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>body</name>
-                    <value>Facet-657bb8ae-9e76-467a-a669-1d0b014fdf0f</value>
+                    <value>Facet-35967a57-8a53-4d24-a925-5458552c2d5d</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:column</componentName>
                 <identifier>flexipage_column10</identifier>
@@ -399,13 +409,13 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>body</name>
-                    <value>Facet-4dcf092b-dcf9-44f5-9b36-b37c401ea374</value>
+                    <value>Facet-be3ee7d9-abf5-4b76-b384-9b7127b32a81</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:column</componentName>
                 <identifier>flexipage_column11</identifier>
             </componentInstance>
         </itemInstances>
-        <name>Facet-28fc7682-830d-4e24-a67a-92f545e5f94c</name>
+        <name>Facet-2dcf83df-30f9-4ced-9926-de6683ac2321</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -478,10 +488,6 @@
                     <value>Facet-94660f3e-65a5-4ad6-ae44-4fcb0459f735</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
-                    <name>horizontalAlignment</name>
-                    <value>false</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
                     <name>label</name>
                     <value>@@@SFDCEngagementSignalDistinctDetailsSFDC@@@</value>
                 </componentInstanceProperties>
@@ -494,10 +500,6 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-1fa06113-b640-42f1-aeb4-467bd92c91d7</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>horizontalAlignment</name>
-                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -514,10 +516,6 @@
                     <value>Facet-39a1f995-8c15-428c-b21d-5b936a44cce8</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
-                    <name>horizontalAlignment</name>
-                    <value>false</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
                     <name>label</name>
                     <value>Links</value>
                 </componentInstanceProperties>
@@ -529,11 +527,7 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>columns</name>
-                    <value>Facet-28fc7682-830d-4e24-a67a-92f545e5f94c</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>horizontalAlignment</name>
-                    <value>false</value>
+                    <value>Facet-2dcf83df-30f9-4ced-9926-de6683ac2321</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -548,10 +542,6 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-e2eb88d5-792b-4ece-9326-70710c4a7885</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>horizontalAlignment</name>
-                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -616,12 +606,8 @@
                     <value>Facet-ad9d0f32-97c8-40f7-98a8-807b2117252c</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
-                    <name>horizontalAlignment</name>
-                    <value>false</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
                     <name>label</name>
-                    <value>Comments</value>
+                    <value>Section</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:fieldSection</componentName>
                 <identifier>flexipage_fieldSection5</identifier>

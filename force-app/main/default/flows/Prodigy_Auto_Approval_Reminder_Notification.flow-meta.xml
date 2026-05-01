@@ -41,8 +41,6 @@
                 <elementReference>recordId.Id</elementReference>
             </value>
         </inputParameters>
-        <nameSegment>customNotificationAction</nameSegment>
-        <offset>0</offset>
     </actionCalls>
     <actionCalls>
         <name>Notify_Outstanding_LOI_Approvers</name>
@@ -85,8 +83,6 @@
                 <elementReference>recordId.Id</elementReference>
             </value>
         </inputParameters>
-        <nameSegment>customNotificationAction</nameSegment>
-        <offset>0</offset>
     </actionCalls>
     <actionCalls>
         <name>Notify_Outstanding_Non_Deal_Approvers</name>
@@ -129,8 +125,6 @@
                 <elementReference>recordId.Id</elementReference>
             </value>
         </inputParameters>
-        <nameSegment>customNotificationAction</nameSegment>
-        <offset>0</offset>
     </actionCalls>
     <apiVersion>64.0</apiVersion>
     <assignments>
@@ -310,13 +304,13 @@
     <formulas>
         <name>f_NotificationTitle</name>
         <dataType>String</dataType>
-        <expression>IF(TEXT({!recordId.leaseworks__Deal_Status__c}) = &apos;LOI Signed&apos;, &apos;🔔 LOI Approval Required [&apos; + {!recordId.Name} + &apos;]&apos;, 
-        IF(TEXT({!recordId.leaseworks__Deal_Status__c}) = &apos;Documentation&apos;, &apos;🔔 Lease Documentation Approval Required [&apos; +     {!recordId.Name} + &apos;]&apos;,  &apos;🔔 Non Deal Approval Required [&apos; +     {!recordId.Name} + &apos;]&apos;))</expression>
+        <expression>IF(TEXT({!recordId.leaseworks__Deal_Status__c}) = &#39;LOI Signed&#39;, &#39;🔔 LOI Approval Required [&#39; + {!recordId.Name} + &#39;]&#39;, 
+        IF(TEXT({!recordId.leaseworks__Deal_Status__c}) = &#39;Documentation&#39;, &#39;🔔 Lease Documentation Approval Required [&#39; +     {!recordId.Name} + &#39;]&#39;,  &#39;🔔 Non Deal Approval Required [&#39; +     {!recordId.Name} + &#39;]&#39;))</expression>
     </formulas>
     <formulas>
         <name>f_SubmissionNotes</name>
         <dataType>String</dataType>
-        <expression>IF(NOT(ISBLANK({!varSubmissionNotes} )), BR() + &apos;&quot;&apos; + {!varSubmissionNotes} + &apos;&quot;&apos;, &apos;&apos;)</expression>
+        <expression>IF(NOT(ISBLANK({!varSubmissionNotes} )), BR() + &#39;&quot;&#39; + {!varSubmissionNotes} + &#39;&quot;&#39;, &#39;&#39;)</expression>
     </formulas>
     <interviewLabel>Prodigy - Auto - Approval Reminder  Notification {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Prodigy - Auto - Approval Reminder  Notification</label>
@@ -571,6 +565,7 @@
         </inputAssignments>
         <object>leaseworks__Marketing_Activity__c</object>
     </recordUpdates>
+    <runInMode>SystemModeWithoutSharing</runInMode>
     <start>
         <locationX>0</locationX>
         <locationY>0</locationY>
@@ -587,90 +582,6 @@
 
 Click to view the Deal record.</text>
     </textTemplates>
-    <transforms>
-        <name>Create_AiD_Id_Collection</name>
-        <label>Create AiD Id Collection</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Get_Outstanding_Documentation_Approvers</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>Get_AiDs[$EachItem].Id</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
-    <transforms>
-        <name>Create_List_Of_Approver_Member_Roles</name>
-        <label>Create List Of Approver Member Roles</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Get_Outstanding_LOI_Approvers</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>Get_CMDT_For_LOI_Approvers[$EachItem].pro_Deal_Team_Name__c</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
-    <transforms>
-        <name>Create_LOI_Approver_Id_Collection</name>
-        <label>Create LOI Approver Id Collection</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Notify_Outstanding_LOI_Approvers</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>Get_Outstanding_LOI_Approvers[$EachItem].leaseworks__Assigned_To__c</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
-    <transforms>
-        <name>Create_Non_Deal_Approver_Assignee_Id_Collection</name>
-        <label>Create Non Deal Approver Assignee Id Collection</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Notify_Outstanding_Non_Deal_Approvers</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>Get_Outstanding_Non_Deal_Approvers[$EachItem].leaseworks__Assigned_To__c</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
     <variables>
         <name>recordId</name>
         <dataType>SObject</dataType>

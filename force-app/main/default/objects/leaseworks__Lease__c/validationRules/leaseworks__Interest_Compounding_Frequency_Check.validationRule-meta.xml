@@ -2,7 +2,7 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>leaseworks__Interest_Compounding_Frequency_Check</fullName>
     <active>true</active>
-    <description>User needs to provide a value for Compounding Frequency when &apos;Compound Interest?&apos; checkbox is checked</description>
+    <description>User needs to provide a value for Compounding Frequency when &#39;Compound Interest?&#39; checkbox is checked</description>
     <errorConditionFormula>AND(leaseworks__Compound_Interest__c, ISBLANK(TEXT(leaseworks__Compounding_Base__c)))</errorConditionFormula>
-    <errorMessage>&apos;Compounding Frequency&apos; is required if compounding is enabled for interest calculation</errorMessage>
+    <errorMessage>&#39;Compounding Frequency&#39; is required if compounding is enabled for interest calculation</errorMessage>
 </ValidationRule>

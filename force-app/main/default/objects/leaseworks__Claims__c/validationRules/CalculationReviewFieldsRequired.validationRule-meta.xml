@@ -2,12 +2,12 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>CalculationReviewFieldsRequired</fullName>
     <active>false</active>
-    <description>Requires users to fill in the Calculation Review fields before moving status to &apos;Lease Management Review&apos;</description>
+    <description>Requires users to fill in the Calculation Review fields before moving status to &#39;Lease Management Review&#39;</description>
     <errorConditionFormula>AND(   OR(
-      ISPICKVAL( leaseworks__Claim_Status__c , &apos;Finance/Accounting Review&apos;),
-      ISPICKVAL( leaseworks__Claim_Status__c , &apos;CTO Sign-off&apos;),
-      ISPICKVAL( leaseworks__Claim_Status__c , &apos;Approved&apos;),
-      ISPICKVAL( leaseworks__Claim_Status__c , &apos;Finalised&apos;)),
+      ISPICKVAL( leaseworks__Claim_Status__c , &#39;Finance/Accounting Review&#39;),
+      ISPICKVAL( leaseworks__Claim_Status__c , &#39;CTO Sign-off&#39;),
+      ISPICKVAL( leaseworks__Claim_Status__c , &#39;Approved&#39;),
+      ISPICKVAL( leaseworks__Claim_Status__c , &#39;Finalised&#39;)),
        
        OR(
           ISBLANK( PFM_Reviewed_By__c ),
@@ -15,5 +15,5 @@
           ISBLANK(   leaseworks__Finance_Accounting_Review_Date__c)
        )
  )</errorConditionFormula>
-    <errorMessage>The following fields must be completed before moving the Claim Status to &apos;Lease Management Review&apos;: PFM Reviewed By, PFM Comments, PFM Review Date</errorMessage>
+    <errorMessage>The following fields must be completed before moving the Claim Status to &#39;Lease Management Review&#39;: PFM Reviewed By, PFM Comments, PFM Review Date</errorMessage>
 </ValidationRule>

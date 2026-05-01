@@ -3,6 +3,7 @@
     <fullName>leaseworks__Rent_Invoice_Generation_Date__c</fullName>
     <deprecated>false</deprecated>
     <description>Identifies the date on which the rent invoice is to be generated, based on the defined &quot;Invoice Required By&quot; period relative to the Period Start Date.</description>
+    <externalId>false</externalId>
     <formula>leaseworks__Start_Date__c  -  leaseworks__RentPayments__r.leaseworks__Invoice_Required_By_Date_Setting__c</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <inlineHelpText>The Rent Invoice Generation Date is calculated by subtracting the &quot;Invoice Required By&quot; number of days from the Period Start Date. This date indicates when the billing team is expected to generate and issue the corresponding invoice to the customer.</inlineHelpText>

@@ -3,6 +3,7 @@
     <fullName>leaseworks__Converted_Currency_Line_Amount__c</fullName>
     <deprecated>false</deprecated>
     <description>This field will be calculated only when the exchange rate information is available.</description>
+    <externalId>false</externalId>
     <formula>if(  leaseworks__Invoice__r.leaseworks__Exchange_Rate__c != 0 , leaseworks__Total_Line_Amount__c *leaseworks__Invoice__r.leaseworks__Exchange_Rate__c,null)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <inlineHelpText>This field displays the invoice line amount in foreign currency based on the exchange rate entered.</inlineHelpText>

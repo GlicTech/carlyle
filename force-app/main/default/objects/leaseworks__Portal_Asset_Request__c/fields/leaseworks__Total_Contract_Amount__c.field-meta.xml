@@ -3,10 +3,11 @@
     <fullName>leaseworks__Total_Contract_Amount__c</fullName>
     <deprecated>false</deprecated>
     <description>Maximum Rent times Lease Term or Assumed Utilization during the Term</description>
+    <externalId>false</externalId>
     <formula>CASE(  TEXT(leaseworks__Rent_Up_To__c),
-&apos;MO&apos;,  ROUND(leaseworks__Lease_Term_MO__c,1)  *  leaseworks__Rent_Up_To_Amount__c ,
-&apos;FH&apos;,  leaseworks__Assumed_Monthly_FH__c * ROUND(leaseworks__Lease_Term_MO__c,1) *  leaseworks__Rent_Up_To_Amount__c,
-&apos;FC&apos;, leaseworks__Assumed_Monthly_FC__c * ROUND(leaseworks__Lease_Term_MO__c,1) *  leaseworks__Rent_Up_To_Amount__c,
+&#39;MO&#39;,  ROUND(leaseworks__Lease_Term_MO__c,1)  *  leaseworks__Rent_Up_To_Amount__c ,
+&#39;FH&#39;,  leaseworks__Assumed_Monthly_FH__c * ROUND(leaseworks__Lease_Term_MO__c,1) *  leaseworks__Rent_Up_To_Amount__c,
+&#39;FC&#39;, leaseworks__Assumed_Monthly_FC__c * ROUND(leaseworks__Lease_Term_MO__c,1) *  leaseworks__Rent_Up_To_Amount__c,
 null)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <inlineHelpText>Maximum Rent times Lease Term or Assumed Utilization during the Term</inlineHelpText>

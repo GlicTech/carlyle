@@ -140,7 +140,7 @@
             <label>Yes - Utilizations Last Month</label>
         </rules>
     </decisions>
-    <description>Flow flags &apos;In Fleet - Available&apos; Assets with associated Assembly Utilizations in the past three months showing as 0 for flight hours or flights cycles.</description>
+    <description>Flow flags &#39;In Fleet - Available&#39; Assets with associated Assembly Utilizations in the past three months showing as 0 for flight hours or flights cycles.</description>
     <environments>Default</environments>
     <formulas>
         <name>f_TodayMinus2Months</name>
@@ -449,132 +449,6 @@
         <triggerType>Scheduled</triggerType>
     </start>
     <status>Active</status>
-    <transforms>
-        <name>Create_Assembly_Id_Collection</name>
-        <label>Create Assembly Id Collection</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Get_Assembly_Utilizations_With_FH_FC_For_Past_Month</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>Get_Attached_Assemblies[$EachItem].Id</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
-    <transforms>
-        <name>Create_Assembly_Id_Collection_For_Utilizations_2_Months_Ago</name>
-        <label>Create Assembly Id Collection For Utilizations 2 Months Ago</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Create_Assembly_Id_Collection_For_Utilizations_3_Months_Ago</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>Get_Assembly_Utilizations_With_FH_FC_For_Past_2_Months[$EachItem].leaseworks__Constituent_Assembly__c</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
-    <transforms>
-        <name>Create_Assembly_Id_Collection_For_Utilizations_3_Months_Ago</name>
-        <label>Create Assembly Id Collection For Utilizations 3 Months Ago</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Loop_Attached_Assemblies</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>Get_Assembly_Utilizations_With_FH_FC_For_Past_3_Months[$EachItem].leaseworks__Constituent_Assembly__c</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
-    <transforms>
-        <name>Create_Assembly_Id_Collection_For_Utilizations_Last_Month</name>
-        <label>Create Assembly Id Collection For Utilizations Last Month</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Create_Assembly_Id_Collection_For_Utilizations_2_Months_Ago</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>Get_Assembly_Utilizations_With_FH_FC_For_Past_Month[$EachItem].leaseworks__Constituent_Assembly__c</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
-    <transforms>
-        <name>Create_Id_Collection_For_Utilizations_2_Months_Ago</name>
-        <label>Create Id Collection For Utilizations 2 Months Ago</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Get_Assembly_Utilizations_With_FH_FC_For_Past_3_Months</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>Get_Assembly_Utilizations_With_FH_FC_For_Past_2_Months[$EachItem].Id</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
-    <transforms>
-        <name>Create_Id_Collection_For_Utilizations_Last_Month</name>
-        <label>Create Id Collection For Utilizations Last Month</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Get_Assembly_Utilizations_With_FH_FC_For_Past_2_Months</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>Get_Assembly_Utilizations_With_FH_FC_For_Past_Month[$EachItem].Id</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
     <variables>
         <name>currentItem_Filter_Out_0_Utilization_Assemblies</name>
         <dataType>String</dataType>

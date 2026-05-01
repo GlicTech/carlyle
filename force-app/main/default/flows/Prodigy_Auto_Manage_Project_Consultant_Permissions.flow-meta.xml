@@ -47,9 +47,6 @@
                 <stringValue>&lt;p&gt;The flow Prodigy - Auto - Manage Project Consultant Permissions ran into an error. See the details:&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;{!$Flow.FaultMessage}&lt;/p&gt;</stringValue>
             </value>
         </inputParameters>
-        <nameSegment>emailSimple</nameSegment>
-        <offset>0</offset>
-        <versionString>1.0.1</versionString>
     </actionCalls>
     <apiVersion>64.0</apiVersion>
     <assignments>
@@ -189,7 +186,7 @@ All other users: Remove from permission set.</description>
         </rules>
     </decisions>
     <decisions>
-        <description>Choose which (if any) permission set to assign/deassign based on the user&apos;s profile</description>
+        <description>Choose which (if any) permission set to assign/deassign based on the user&#39;s profile</description>
         <name>Assign_Full_Access_or_Partial_Access</name>
         <label>Assign Full Access or Partial Access?</label>
         <locationX>0</locationX>
@@ -255,9 +252,9 @@ All other users: Remove from permission set.</description>
         </rules>
     </decisions>
     <decisions>
-        <description>If running user&apos;s email ends with &apos;invalid&apos; then skip sending an email as this would throw an error</description>
+        <description>If running user&#39;s email ends with &#39;invalid&#39; then skip sending an email as this would throw an error</description>
         <name>Is_Running_User_s_Email_Valid</name>
-        <label>Is Running User&apos;s Email Valid?</label>
+        <label>Is Running User&#39;s Email Valid?</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnector>
@@ -368,7 +365,7 @@ All other users: Remove from permission set.</description>
     </decisions>
     <description>Auto Assign Permissions
 
-This flow gets called by a record triggered flow on user. Based on the user&apos;s active status and profile, it automatically assigns or removes assignment to Project Consultant Full Access permission set.</description>
+This flow gets called by a record triggered flow on user. Based on the user&#39;s active status and profile, it automatically assigns or removes assignment to Project Consultant Full Access permission set.</description>
     <environments>Default</environments>
     <interviewLabel>Prodigy - Auto - Manage Project Consultant Permissions {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Prodigy - Auto - Manage Project Consultant Permissions</label>
@@ -582,48 +579,6 @@ This flow gets called by a record triggered flow on user. Based on the user&apos
         </connector>
     </start>
     <status>Active</status>
-    <transforms>
-        <name>Create_A_Set_Of_User_Ids_Assigned_To_Partial_Permission_Set</name>
-        <label>Create A Set Of User Ids Assigned To Partial Permission Set</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Add_Or_Remove_User_From_Partial_Permission_Set</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>Get_Partial_Access_Permission_Set_Assignees[$EachItem].AssigneeId</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
-    <transforms>
-        <name>Create_Collection_Of_User_Ids_Assigned_To_Permission_Set</name>
-        <label>Create Collection Of User Ids Assigned To Permission Set</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Add_or_Remove_User_From_Permission_Set</targetReference>
-        </connector>
-        <dataType>String</dataType>
-        <isCollection>true</isCollection>
-        <scale>0</scale>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-        <transformValues>
-            <transformValueActions>
-                <transformType>Map</transformType>
-                <value>
-                    <elementReference>Get_Permission_Set_Assignees[$EachItem].AssigneeId</elementReference>
-                </value>
-            </transformValueActions>
-        </transformValues>
-    </transforms>
     <variables>
         <name>varTriggeringUser</name>
         <dataType>SObject</dataType>

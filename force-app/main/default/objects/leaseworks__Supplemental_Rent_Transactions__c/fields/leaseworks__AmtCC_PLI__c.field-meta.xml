@@ -3,6 +3,7 @@
     <fullName>leaseworks__AmtCC_PLI__c</fullName>
     <deprecated>false</deprecated>
     <description>The field is necessary to bypass the character limit issue in the formula fields mentioned above. Instead of using the full condition, we utilize this field solely to remain within the character limit</description>
+    <externalId>false</externalId>
     <formula>IF(
     TEXT(leaseworks__Transaction_Type__c) = &quot;MR Cash Payment&quot;,
         IF(ISBLANK(leaseworks__Payment_Line_Item__c) ,

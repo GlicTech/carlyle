@@ -2,6 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>leaseworks__Qualified_Amount_F__c</fullName>
     <deprecated>false</deprecated>
+    <externalId>false</externalId>
     <formula>IF( AND(leaseworks__Performed__c, NOT ISNULL(leaseworks__ResrvAllocation_F__c), NOT ISNULL(leaseworks__Historical_Event__r.leaseworks__Event_Cost__c), NOT ISNULL(leaseworks__Reserves_Cap__c)),
 MIN((leaseworks__ResrvAllocation_F__c * leaseworks__Historical_Event__r.leaseworks__Event_Cost__c ), leaseworks__Reserves_Cap__c ), 
  (IF(AND(leaseworks__Performed__c, NOT ISNULL(leaseworks__ResrvAllocation_F__c), NOT ISNULL(leaseworks__Historical_Event__r.leaseworks__Event_Cost__c), ISNULL(leaseworks__Reserves_Cap__c)),(leaseworks__ResrvAllocation_F__c*leaseworks__Historical_Event__r.leaseworks__Event_Cost__c),0)))</formula>

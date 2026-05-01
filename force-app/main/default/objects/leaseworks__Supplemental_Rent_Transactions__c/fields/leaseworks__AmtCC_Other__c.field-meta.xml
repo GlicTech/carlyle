@@ -2,7 +2,8 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>leaseworks__AmtCC_Other__c</fullName>
     <deprecated>false</deprecated>
-    <formula>IF(TEXT(leaseworks__Transaction_Type__c)==&apos;MR Transfer&apos;,IF(OR(leaseworks__MR_Fund_Transfer_Status__c==&apos;Pending&apos;,leaseworks__MR_Fund_Transfer_Status__c==&apos;Rejected&apos;),null,IF((leaseworks__Assembly_MR_Fund_Transfer_Source__c=leaseworks__Supplemental_Rent__c),(-1),1))*leaseworks__Assembly_MR_Fund_Transfer_Amount__c,IF(TEXT(leaseworks__Transaction_Type__c)==&apos;MR Lessor Commitment Amount Used&apos;,IF(ISBLANK(leaseworks__Event_Payout__c),0,IF(OR(ISPICKVAL(leaseworks__Event_Payout__r.leaseworks__Status__c,&apos;Approved&apos;),ISPICKVAL(leaseworks__Event_Payout__r.leaseworks__Status__c,&apos;Cancelled-Pending&apos;)),leaseworks__Payout_Line_Item__r.leaseworks__Payout_Line_Amount__c,0)),null))</formula>
+    <externalId>false</externalId>
+    <formula>IF(TEXT(leaseworks__Transaction_Type__c)==&#39;MR Transfer&#39;,IF(OR(leaseworks__MR_Fund_Transfer_Status__c==&#39;Pending&#39;,leaseworks__MR_Fund_Transfer_Status__c==&#39;Rejected&#39;),null,IF((leaseworks__Assembly_MR_Fund_Transfer_Source__c=leaseworks__Supplemental_Rent__c),(-1),1))*leaseworks__Assembly_MR_Fund_Transfer_Amount__c,IF(TEXT(leaseworks__Transaction_Type__c)==&#39;MR Lessor Commitment Amount Used&#39;,IF(ISBLANK(leaseworks__Event_Payout__c),0,IF(OR(ISPICKVAL(leaseworks__Event_Payout__r.leaseworks__Status__c,&#39;Approved&#39;),ISPICKVAL(leaseworks__Event_Payout__r.leaseworks__Status__c,&#39;Cancelled-Pending&#39;)),leaseworks__Payout_Line_Item__r.leaseworks__Payout_Line_Amount__c,0)),null))</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>_Amount CC Other</label>
     <precision>18</precision>

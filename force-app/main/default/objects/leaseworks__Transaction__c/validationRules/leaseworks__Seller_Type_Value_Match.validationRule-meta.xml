@@ -3,7 +3,7 @@
     <fullName>leaseworks__Seller_Type_Value_Match</fullName>
     <active>true</active>
     <description>Ensure that the selected Seller Type and the lookup entered match. For example, if seller type is Airline</description>
-    <errorConditionFormula>AND( TEXT(leaseworks__Transaction_Type__c) == &apos;Acquisition&apos; , OR(ISBLANK(TEXT(leaseworks__Seller_Type__c)),
+    <errorConditionFormula>AND( TEXT(leaseworks__Transaction_Type__c) == &#39;Acquisition&#39; , OR(ISBLANK(TEXT(leaseworks__Seller_Type__c)),
 CASE(leaseworks__Seller_Type__c,
 
 &quot;Lessor&quot;, IF(ISBLANK(leaseworks__Lessor__c),1,0),

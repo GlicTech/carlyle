@@ -7,8 +7,15 @@
         <field>leaseworks__Constituent_Assembly__c.leaseworks__Type__c</field>
     </columns>
     <columns>
+        <field>leaseworks__Constituent_Assembly__c.leaseworks__Last_Snapshot_Date__c</field>
+    </columns>
+    <columns>
         <aggregateTypes>Sum</aggregateTypes>
         <field>leaseworks__Constituent_Assembly__c.leaseworks__TSN__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>leaseworks__Constituent_Assembly__c.leaseworks__Last_TSN_Utilization__c</field>
     </columns>
     <columns>
         <aggregateTypes>Sum</aggregateTypes>
@@ -16,25 +23,34 @@
     </columns>
     <columns>
         <aggregateTypes>Sum</aggregateTypes>
-        <field>leaseworks__Constituent_Assembly__c.leaseworks__FH_FC_Since_Event__c</field>
+        <field>leaseworks__Constituent_Assembly__c.leaseworks__Last_CSN_Utilization__c</field>
     </columns>
     <columns>
         <aggregateTypes>Sum</aggregateTypes>
-        <field>leaseworks__Constituent_Assembly__c.leaseworks__FH_FC__c</field>
+        <field>CDF1</field>
     </columns>
-    <columns>
-        <aggregateTypes>Sum</aggregateTypes>
-        <field>leaseworks__Constituent_Assembly__c.leaseworks__Average_Monthly_Utilization_Cycles__c</field>
-    </columns>
-    <columns>
-        <aggregateTypes>Sum</aggregateTypes>
-        <field>leaseworks__Constituent_Assembly__c.leaseworks__Average_Utilization__c</field>
-    </columns>
+    <customDetailFormulas>
+        <calculatedFormula>leaseworks__Constituent_Assembly__c.leaseworks__Last_TSN_Utilization__c - leaseworks__Constituent_Assembly__c.leaseworks__TSN__c</calculatedFormula>
+        <dataType>Double</dataType>
+        <description>TSN Last Util - TSN</description>
+        <developerName>CDF1</developerName>
+        <label>Delta TSN</label>
+        <scale>2</scale>
+    </customDetailFormulas>
+    <filter>
+        <criteriaItems>
+            <column>leaseworks__Constituent_Assembly__c.leaseworks__Last_Snapshot_Date__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value></value>
+        </criteriaItems>
+    </filter>
     <format>Summary</format>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
         <field>FK_NAME</field>
-        <sortOrder>Asc</sortOrder>
+        <sortOrder>Desc</sortOrder>
     </groupingsDown>
     <name>Assembly - TSN/CSN Report</name>
     <params>
@@ -47,7 +63,7 @@
     <showGrandTotal>true</showGrandTotal>
     <showSubTotals>true</showSubTotals>
     <timeFrameFilter>
-        <dateColumn>leaseworks__Constituent_Assembly__c.leaseworks__Y_Hidden_Last_Event_Date__c</dateColumn>
+        <dateColumn>CUST_CREATED_DATE</dateColumn>
         <interval>INTERVAL_CUSTOM</interval>
     </timeFrameFilter>
 </Report>

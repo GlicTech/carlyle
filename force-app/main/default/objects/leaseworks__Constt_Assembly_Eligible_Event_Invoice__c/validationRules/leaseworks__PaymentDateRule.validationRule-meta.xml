@@ -6,7 +6,7 @@
     <errorConditionFormula>AND( 
 !$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c ,
 AND( 
-text(leaseworks__Status__c)==&apos;Paid&apos; , 
+text(leaseworks__Status__c)==&#39;Paid&#39; , 
 OR (isBlank(leaseworks__Payment_Date__c), leaseworks__Payment_Date__c &lt; leaseworks__Invoice_Date__c) 
 )
 )</errorConditionFormula>

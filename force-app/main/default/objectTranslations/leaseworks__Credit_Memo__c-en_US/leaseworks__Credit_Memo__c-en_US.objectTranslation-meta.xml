@@ -1,47 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <fieldSets>
         <label><!-- BulkInvoiceCriteriaFieldSetForCM --></label>
         <name>leaseworks__BulkInvoiceCriteriaFieldSetForCM</name>
@@ -55,8 +13,8 @@
         <name>leaseworks__SkipFieldsFromValidations</name>
     </fieldSets>
     <quickActions>
-        <label><!-- Generate Credit Memo --></label>
-        <name>Generate_Credit_Memo_pbi</name>
+        <label><!-- Generate Credit Note --></label>
+        <name>Generate_Credit_Note</name>
     </quickActions>
     <quickActions>
         <label><!-- Apply To Invoice --></label>
@@ -87,6 +45,10 @@
         <name>leaseworks__Entity_Required_if_Accounting_Enabled</name>
     </validationRules>
     <validationRules>
+        <errorMessage><!-- Exchange Rate should be greater than zero. --></errorMessage>
+        <name>leaseworks__Exchange_Rate_Positive</name>
+    </validationRules>
+    <validationRules>
         <errorMessage><!-- Update from Approved to Pending is not allowed --></errorMessage>
         <name>leaseworks__NoManualStausUpdateToPending</name>
     </validationRules>
@@ -98,8 +60,63 @@
         <errorMessage><!-- Unable to proceed with approval/cancellation. Entity on the Credit Memo is inactive. Please link it to an active entity to continue. --></errorMessage>
         <name>leaseworks__Status_is_Apprved_and_Entity_Is_Inactive</name>
     </validationRules>
+    <validationRules>
+        <errorMessage><!-- Sum of the distribution amount should be equal to the related Credit Memo amount. --></errorMessage>
+        <name>leaseworks__ValidateCreditMemoOnApproval</name>
+    </validationRules>
     <webLinks>
         <label><!-- Generate_Credit_Note --></label>
         <name>Generate_Credit_Note</name>
     </webLinks>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 </CustomObjectTranslation>

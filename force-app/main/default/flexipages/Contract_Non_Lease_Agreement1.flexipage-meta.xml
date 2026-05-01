@@ -9,6 +9,9 @@
                         <valueListItems>
                             <value>Edit</value>
                         </valueListItems>
+                        <valueListItems>
+                            <value>CustomButton.leaseworks__Lease__c.leaseworks__Mid_Term_Lease_Updates</value>
+                        </valueListItems>
                     </valueList>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
@@ -636,10 +639,6 @@
                     <value>Facet-a7f7a79c-e955-4811-97e9-5245673d34df</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
-                    <name>horizontalAlignment</name>
-                    <value>true</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
                     <name>label</name>
                     <value>Contract Information</value>
                 </componentInstanceProperties>
@@ -652,10 +651,6 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-3af576cf-96b5-4226-b3ab-ea8a12391e72</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>horizontalAlignment</name>
-                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -672,10 +667,6 @@
                     <value>Facet-5e87bf5d-f44c-4766-ab5c-4b50462d069c</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
-                    <name>horizontalAlignment</name>
-                    <value>false</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
                     <name>label</name>
                     <value>Comments</value>
                 </componentInstanceProperties>
@@ -688,10 +679,6 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-3fcc5865-232b-4158-8a8e-7d2eab10e36c</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>horizontalAlignment</name>
-                    <value>true</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -708,10 +695,6 @@
                     <value>Facet-44d497bd-a93b-4c45-8554-46a3add9d33e</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
-                    <name>horizontalAlignment</name>
-                    <value>false</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
                     <name>label</name>
                     <value>References</value>
                 </componentInstanceProperties>
@@ -724,10 +707,6 @@
                 <componentInstanceProperties>
                     <name>columns</name>
                     <value>Facet-02dc0721-abdb-45c2-8e08-90a8bbb96ca3</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>horizontalAlignment</name>
-                    <value>true</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
@@ -818,12 +797,125 @@
                 </componentInstanceProperties>
                 <componentName>lst:dynamicRelatedList</componentName>
                 <identifier>lst_dynamicRelatedList</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Lease_Type_Legal__c}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>Consignment</rightValue>
+                    </criteria>
+                </visibilityRule>
             </componentInstance>
         </itemInstances>
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
                     <name>actionNames</name>
+                    <valueList>
+                        <valueListItems>
+                            <value>New</value>
+                        </valueListItems>
+                    </valueList>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>adminFilters</name>
+                    <valueList>
+                        <valueListItems>
+                            <value>leaseworks__Role__c|NOT_EQUAL|[&quot;Lessee&quot;]</value>
+                        </valueListItems>
+                    </valueList>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>maxRecordsToDisplay</name>
+                    <value>10</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>parentFieldApiName</name>
+                    <value>leaseworks__Lease__c.Id</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListApiName</name>
+                    <value>leaseworks__Parties__r</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListDisplayType</name>
+                    <value>ADVGRID</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListFieldAliases</name>
+                    <valueList>
+                        <valueListItems>
+                            <value>NAME</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>leaseworks__Role__c</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>leaseworks__Account__c</value>
+                        </valueListItems>
+                    </valueList>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListLabel</name>
+                    <value>Parties</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>showActionBar</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>sortFieldAlias</name>
+                    <value>__DEFAULT__</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>sortFieldOrder</name>
+                    <value>Default</value>
+                </componentInstanceProperties>
+                <componentName>lst:dynamicRelatedList</componentName>
+                <identifier>lst_dynamicRelatedList4</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Lease_Type_Legal__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Consignment</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>parentFieldApiName</name>
+                    <value>leaseworks__Lease__c.Id</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListApiName</name>
+                    <value>leaseworks__Invoices__r</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListComponentOverride</name>
+                    <value>ADVGRID</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>rowsToDisplay</name>
+                    <value>10</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>showActionBar</name>
+                    <value>true</value>
+                </componentInstanceProperties>
+                <componentName>force:relatedListSingleContainer</componentName>
+                <identifier>force_relatedListSingleContainer</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>actionNames</name>
+                    <valueList>
+                        <valueListItems>
+                            <value>New</value>
+                        </valueListItems>
+                    </valueList>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>adminFilters</name>
@@ -838,7 +930,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>relatedListApiName</name>
-                    <value>leaseworks__Invoices__r</value>
+                    <value>leaseworks__Lease_Documents__r</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>relatedListDisplayType</name>
@@ -851,31 +943,22 @@
                             <value>NAME</value>
                         </valueListItems>
                         <valueListItems>
+                            <value>leaseworks__Document_Title__c</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>leaseworks__Details_Key_Changes__c</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>leaseworks__Date__c</value>
+                        </valueListItems>
+                        <valueListItems>
                             <value>leaseworks__Type__c</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>leaseworks__Invoice_Date__c</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>leaseworks__Date_of_MR_Payment_Due__c</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>leaseworks__Invoiced_Amount_Formula__c</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>leaseworks__Balance_Due__c</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>leaseworks__Ageing__c</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>leaseworks__Status__c</value>
                         </valueListItems>
                     </valueList>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>relatedListLabel</name>
-                    <value>Invoices</value>
+                    <value>Contract Documents</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>showActionBar</name>

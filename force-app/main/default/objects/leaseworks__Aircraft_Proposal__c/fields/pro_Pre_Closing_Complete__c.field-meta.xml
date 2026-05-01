@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>pro_Pre_Closing_Complete__c</fullName>
-    <description>AB 09/03/2026 - Percentage of pre-closing items completed. Handles division by zero.</description>
-    <formula>IF(pro_Pre_Closing_Items_Total__c &gt; 0, pro_Pre_Closing_Items_Completed__c / pro_Pre_Closing_Items_Total__c, 0)</formula>
+    <externalId>false</externalId>
+    <formula>AND(pro_Pre_Closing_Items_Total__c &gt; 0, pro_Pre_Closing_Items_Completed__c &gt;= pro_Pre_Closing_Items_Total__c)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-    <label>Pre-Closing % Complete</label>
-    <precision>18</precision>
-    <required>false</required>
-    <scale>2</scale>
+    <label>Pre-Closing Complete</label>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
-    <type>Percent</type>
+    <type>Checkbox</type>
 </CustomField>

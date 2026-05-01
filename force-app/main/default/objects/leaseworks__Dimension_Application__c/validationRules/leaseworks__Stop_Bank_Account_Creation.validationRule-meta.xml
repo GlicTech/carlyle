@@ -3,6 +3,6 @@
     <fullName>leaseworks__Stop_Bank_Account_Creation</fullName>
     <active>true</active>
     <description>#DimensionStory - Should not allow the user to create Bank Account as Lease Dimension</description>
-    <errorConditionFormula>!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c &amp;&amp; leaseworks__Dimension__r.Name == &apos;Bank Account&apos;</errorConditionFormula>
+    <errorConditionFormula>!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c &amp;&amp; leaseworks__Dimension__r.Name == &#39;Bank Account&#39;</errorConditionFormula>
     <errorMessage>Bank Account cannot be added to the lease dimensions. The bank account is automatically added to the payment and payout transactions</errorMessage>
 </ValidationRule>

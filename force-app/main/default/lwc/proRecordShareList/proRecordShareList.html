@@ -1,71 +1,57 @@
 <template>
-  <lightning-card title="👥 Record Access" icon-name="standard:users">
-    <template if:true={isLoading}>
-      <div class="slds-is-relative slds-p-around_medium">
-        <lightning-spinner
-          size="medium"
-          alternative-text="Loading..."
-        ></lightning-spinner>
-      </div>
-    </template>
+    <lightning-card title="👥 Record Access" icon-name="standard:users">
+        <template if:true={isLoading}>
+            <div class="slds-is-relative slds-p-around_medium">
+                <lightning-spinner size="medium" alternative-text="Loading..."></lightning-spinner>
+            </div>
+        </template>
 
-    <template if:true={hasShares}>
-      <div class="table-container slds-p-around_small">
-        <table
-          class="slds-table slds-table_bordered slds-table_cell-buffer compact-table"
-        >
-          <thead>
-            <tr class="header-row">
-              <th class="col-user">User / Group</th>
-              <th class="col-access">Access Level</th>
-              <th class="col-action slds-text-align_right">Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <template for:each={shares} for:item="share">
-              <tr key={share.id} class="share-row">
-                <td class="col-user">
-                  <div class="slds-grid slds-grid_vertical-align-center">
-                    <lightning-icon
-                      icon-name={share.icon}
-                      size="x-small"
-                      class="slds-m-right_x-small user-icon"
-                    >
-                    </lightning-icon>
-                    <span class="slds-truncate" title={share.name}
-                      >{share.name}</span
-                    >
-                  </div>
-                </td>
-                <td class="col-access">
-                  <lightning-badge
-                    class="access-badge"
-                    label={share.access}
-                  ></lightning-badge>
-                </td>
-                <td class="col-action slds-text-align_right">
-                  <lightning-button
-                    variant="destructive-text"
-                    label="Revoke"
-                    data-id={share.id}
-                    class="revoke-btn"
-                    onclick={handleRevoke}
-                  >
-                  </lightning-button>
-                </td>
-              </tr>
-            </template>
-          </tbody>
-        </table>
-      </div>
-    </template>
+        <template if:true={hasShares}>
+            <div class="table-container slds-p-around_small">
+                <table class="slds-table slds-table_bordered slds-table_cell-buffer compact-table">
+                    <thead>
+                        <tr class="header-row">
+                            <th class="col-user">User / Group</th>
+                            <th class="col-access">Access Level</th>
+                            <th class="col-action slds-text-align_right">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={shares} for:item="share">
+                            <tr key={share.id} class="share-row">
+                                <td class="col-user">
+                                    <div class="slds-grid slds-grid_vertical-align-center">
+                                        <lightning-icon
+                                            icon-name={share.icon}
+                                            size="x-small"
+                                            class="slds-m-right_x-small user-icon">
+                                        </lightning-icon>
+                                        <span class="slds-truncate" title={share.name}>{share.name}</span>
+                                    </div>
+                                </td>
+                                <td class="col-access">
+                                    <lightning-badge class="access-badge" label={share.access}></lightning-badge>
+                                </td>
+                                <td class="col-action slds-text-align_right">
+                                    <lightning-button
+                                        variant="destructive-text"
+                                        label="Revoke"
+                                        data-id={share.id}
+                                        class="revoke-btn"
+                                        onclick={handleRevoke}>
+                                    </lightning-button>
+                                </td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </div>
+        </template>
 
-    <template if:false={hasShares}>
-      <div
-        class="slds-p-around_small slds-text-color_weak slds-text-align_center"
-      >
-        No users currently have access.
-      </div>
-    </template>
-  </lightning-card>
+        <template if:false={hasShares}>
+            <div class="slds-p-around_small slds-text-color_weak slds-text-align_center">
+                No users currently have access.
+            </div>
+        </template>
+    </lightning-card>
 </template>

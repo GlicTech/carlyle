@@ -4,7 +4,7 @@
     <active>true</active>
     <description>RBH Rate (FC) value is required if rate basis is set to Cycle</description>
     <errorConditionFormula>AND(
-            OR (leaseworks__Rate_Basis_F__c == &apos;Cycle&apos;, leaseworks__Rate_Basis_F__c == &apos;FC Matrix&apos;),
+            OR (leaseworks__Rate_Basis_F__c == &#39;Cycle&#39;, leaseworks__Rate_Basis_F__c == &#39;FC Matrix&#39;),
             ISNULL(leaseworks__PBH_Rate_FC__c)
         )</errorConditionFormula>
     <errorDisplayField>leaseworks__PBH_Rate_FC__c</errorDisplayField>

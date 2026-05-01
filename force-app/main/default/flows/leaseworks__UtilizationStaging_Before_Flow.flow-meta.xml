@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>65.0</apiVersion>
+    <assignments>
+        <name>Updating_Utilization_Staging_Name</name>
+        <label>Updating Utilization Staging Name</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Name</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>MonthlyUtilizationStagingNameFormulaa</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <description>Monthly Utilization Staging Name should be auto populated: &lt;Asset Name&gt; - &lt;Type&gt; - &lt;Period Ending&gt;</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>MonthlyUtilizationStagingNameFormulaa</name>
+        <dataType>String</dataType>
+        <expression>{!$Record.leaseworks__Aircraft__r.Name} + &quot; || &quot; + TEXT({!$Record.leaseworks__Type__c}) + &quot; || &quot; + TEXT({!$Record.leaseworks__Month_Ending__c})</expression>
+    </formulas>
+    <interviewLabel>UtilizationStaging Before Flow {!$Flow.CurrentDateTime}</interviewLabel>
+    <isTemplate>true</isTemplate>
+    <label>UtilizationStaging Before Flow</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Updating_Utilization_Staging_Name</targetReference>
+        </connector>
+        <filterFormula>AND(NOT({!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c}),NOT({!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c}))</filterFormula>
+        <object>leaseworks__Utilization_Report_Staging__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>MonthlyUtilizationStagingNameFormula</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

@@ -4,7 +4,7 @@
     <deprecated>false</deprecated>
     <description>Contains the URL link to the PDF attachment of the invoices.</description>
     <externalId>false</externalId>
-    <formula>IF(NOT(ISNULL(leaseworks__Attachment_ID__c))&amp;&amp;NOT(ISBLANK(leaseworks__Attachment_ID__c))&amp;&amp;NOT(ISBLANK(leaseworks__Link_to_Invoice__c)),HYPERLINK(&apos;/&apos; &amp;  leaseworks__Attachment_ID__c,  leaseworks__Link_to_Invoice__r.Name&amp;&apos;.pdf&apos; , &apos;_blank&apos;),IF(NOT(ISNULL(leaseworks__Attachment_ID__c))&amp;&amp;NOT(ISBLANK(leaseworks__Attachment_ID__c))&amp;&amp;NOT(ISBLANK(leaseworks__Link_To_Credit_Memo__c)),HYPERLINK(&apos;/&apos; &amp;  leaseworks__Attachment_ID__c,  leaseworks__Link_To_Credit_Memo__r.Name&amp;&apos;.pdf&apos; , &apos;_blank&apos;),null))</formula>
+    <formula>IF(NOT(ISNULL(leaseworks__Attachment_ID__c))&amp;&amp;NOT(ISBLANK(leaseworks__Attachment_ID__c))&amp;&amp;NOT(ISBLANK(leaseworks__Link_to_Invoice__c)),HYPERLINK(&#39;/&#39; &amp;  leaseworks__Attachment_ID__c,  leaseworks__Link_to_Invoice__r.Name&amp;&#39;.pdf&#39; , &#39;_blank&#39;),IF(NOT(ISNULL(leaseworks__Attachment_ID__c))&amp;&amp;NOT(ISBLANK(leaseworks__Attachment_ID__c))&amp;&amp;NOT(ISBLANK(leaseworks__Link_To_Credit_Memo__c)),HYPERLINK(&#39;/&#39; &amp;  leaseworks__Attachment_ID__c,  leaseworks__Link_To_Credit_Memo__r.Name&amp;&#39;.pdf&#39; , &#39;_blank&#39;),null))</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <inlineHelpText>Contains the URL link to the PDF attachment of the invoices.</inlineHelpText>
     <label>PDF Attachment</label>

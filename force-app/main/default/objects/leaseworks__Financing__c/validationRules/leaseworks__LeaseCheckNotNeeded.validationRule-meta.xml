@@ -2,7 +2,7 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>leaseworks__LeaseCheckNotNeeded</fullName>
     <active>true</active>
-    <errorConditionFormula>AND(text(leaseworks__Financing_Type__c) != &apos;Operating Lease&apos;, !ISBLANK( leaseworks__Lease__c ) )</errorConditionFormula>
+    <errorConditionFormula>AND(text(leaseworks__Financing_Type__c) != &#39;Operating Lease&#39;, !ISBLANK( leaseworks__Lease__c ) )</errorConditionFormula>
     <errorDisplayField>leaseworks__Lease__c</errorDisplayField>
     <errorMessage>Lease is needed only for Operating Lease</errorMessage>
 </ValidationRule>

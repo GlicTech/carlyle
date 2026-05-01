@@ -2,12 +2,12 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>leaseworks__URTypeRule</fullName>
     <active>true</active>
-    <description>Can&apos;t convert an existing UR Type to Other.</description>
+    <description>Can&#39;t convert an existing UR Type to Other.</description>
     <errorConditionFormula>And(!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c 
 ,!ISNEW() 
 , !IsBlank(PRIORVALUE(leaseworks__Type__c))
 , Text(leaseworks__Type__c)!=  Text(PRIORVALUE(leaseworks__Type__c))
-, Text(PRIORVALUE(leaseworks__Type__c))!=&apos;Provision&apos;
+, Text(PRIORVALUE(leaseworks__Type__c))!=&#39;Provision&#39;
 )</errorConditionFormula>
     <errorDisplayField>leaseworks__Type__c</errorDisplayField>
     <errorMessage>You cannot modify an existing Utilization Report Type.</errorMessage>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>65.0</apiVersion>
+    <description>This flow updates LLP name field when there is change on LLP Template record.</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>LLPTemplateUpdateNameFormula</name>
+        <dataType>String</dataType>
+        <expression>$Record.leaseworks__Part_Name__c + if( isBlank(TEXT($Record.leaseworks__Module_N__c)),&#39;&#39;,&#39; (&#39; + TEXT($Record.leaseworks__Module_N__c) + &#39;)&#39;  )</expression>
+    </formulas>
+    <interviewLabel>LLPTemplateWF {!$Flow.CurrentDateTime}</interviewLabel>
+    <isTemplate>true</isTemplate>
+    <label>LLPTemplateWF</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>LLPTemplateUpdateName</name>
+        <label>LLPTemplateUpdateName</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <inputAssignments>
+            <field>Name</field>
+            <value>
+                <elementReference>LLPTemplateUpdateNameFormula</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>LLPTemplateUpdateName</targetReference>
+        </connector>
+        <object>leaseworks__LLP_Template__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

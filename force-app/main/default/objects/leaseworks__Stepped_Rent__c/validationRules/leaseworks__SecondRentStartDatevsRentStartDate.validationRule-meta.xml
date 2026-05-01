@@ -3,6 +3,6 @@
     <fullName>leaseworks__SecondRentStartDatevsRentStartDate</fullName>
     <active>true</active>
     <description>Difference between Rent Start Date and Second Rent Start Date is longer than the periodicity(Rent period) selected then display the below error message immediately.</description>
-    <errorConditionFormula>IF(NOT(ISNULL(leaseworks__Sec_Rent_Perd_Start_Dt__c)), leaseworks__Sec_Rent_Perd_Start_Dt__c &gt; ADDMONTHS(leaseworks__Start_Date__c,IF(ISPICKVAL( leaseworks__Rent_Period__c , &apos;Monthly&apos;),1,IF(ISPICKVAL( leaseworks__Rent_Period__c , &apos;Quarterly&apos;),3,IF(ISPICKVAL( leaseworks__Rent_Period__c , &apos;Semi-Annual&apos;),6,IF(ISPICKVAL( leaseworks__Rent_Period__c , &apos;Annual&apos;),12,1))))),false)</errorConditionFormula>
+    <errorConditionFormula>IF(NOT(ISNULL(leaseworks__Sec_Rent_Perd_Start_Dt__c)), leaseworks__Sec_Rent_Perd_Start_Dt__c &gt; ADDMONTHS(leaseworks__Start_Date__c,IF(ISPICKVAL( leaseworks__Rent_Period__c , &#39;Monthly&#39;),1,IF(ISPICKVAL( leaseworks__Rent_Period__c , &#39;Quarterly&#39;),3,IF(ISPICKVAL( leaseworks__Rent_Period__c , &#39;Semi-Annual&#39;),6,IF(ISPICKVAL( leaseworks__Rent_Period__c , &#39;Annual&#39;),12,1))))),false)</errorConditionFormula>
     <errorMessage>The difference between the Rent Start Date and Second Rent Period Start Date is longer than the periodicity selected</errorMessage>
 </ValidationRule>

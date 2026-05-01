@@ -4,6 +4,7 @@
     <deleteConstraint>Restrict</deleteConstraint>
     <deprecated>false</deprecated>
     <description>Before searching for Assembly to link, ensure Asset has a Lease assigned (Lease field on the Asset page)</description>
+    <externalId>false</externalId>
     <inlineHelpText>Before searching for Assembly to link, ensure Asset has a Lease assigned (Lease field on the Asset page)</inlineHelpText>
     <label>Associated Assembly</label>
     <lookupFilter>
@@ -22,7 +23,7 @@
         <filterItems>
             <field>leaseworks__Constituent_Assembly__c.leaseworks__Attached_Aircraft__c</field>
             <operation>notEqual</operation>
-            <value></value>
+            <value />
         </filterItems>
         <isOptional>true</isOptional>
     </lookupFilter>

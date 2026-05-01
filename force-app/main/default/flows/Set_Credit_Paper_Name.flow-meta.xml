@@ -26,7 +26,7 @@ MONTH({!$Record.Date_of_Review__c}),
     <formulas>
         <name>SetCreditPaperName</name>
         <dataType>String</dataType>
-        <expression>{!$Record.RecordType.Name}+&apos; - &apos;+{!$Record.Account__r.Name}+&apos; - &apos;+{!MonthYear}</expression>
+        <expression>{!$Record.RecordType.Name}+&#39; - &#39;+{!$Record.Account__r.Name}+&#39; - &#39;+{!MonthYear}</expression>
     </formulas>
     <interviewLabel>Set Credit Paper Name {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Set Credit Paper Name</label>
@@ -50,42 +50,10 @@ MONTH({!$Record.Date_of_Review__c}),
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
     <recordUpdates>
-        <name>Disable_Triggers</name>
-        <label>Disable Triggers</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Set_Concatenated_Name</targetReference>
-        </connector>
-        <inputAssignments>
-            <field>leaseworks__Disable_All_Triggers__c</field>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </inputAssignments>
-        <object>leaseworks__LeaseWorksSettings__c</object>
-    </recordUpdates>
-    <recordUpdates>
-        <name>Enable_Triggers</name>
-        <label>Enable Triggers</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <inputAssignments>
-            <field>leaseworks__Disable_All_Triggers__c</field>
-            <value>
-                <booleanValue>false</booleanValue>
-            </value>
-        </inputAssignments>
-        <object>leaseworks__LeaseWorksSettings__c</object>
-    </recordUpdates>
-    <recordUpdates>
         <name>Set_Concatenated_Name</name>
         <label>Set Concatenated Name</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
-        <connector>
-            <targetReference>Enable_Triggers</targetReference>
-        </connector>
         <inputAssignments>
             <field>Name</field>
             <value>
@@ -98,7 +66,7 @@ MONTH({!$Record.Date_of_Review__c}),
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Disable_Triggers</targetReference>
+            <targetReference>Set_Concatenated_Name</targetReference>
         </connector>
         <filterFormula>AND(
   NOT({!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c}),

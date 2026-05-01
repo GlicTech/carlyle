@@ -36,7 +36,7 @@
                             <value>Edit</value>
                         </valueListItems>
                         <valueListItems>
-                            <value>Delete</value>
+                            <value>Submit</value>
                         </valueListItems>
                         <valueListItems>
                             <value>leaseworks__Payable__c.leaseworks__Cancel_Payable</value>
@@ -47,17 +47,7 @@
                         <valueListItems>
                             <value>CustomButton.leaseworks__Payable__c.leaseworks__Apply_To_Invoice</value>
                             <visibilityRule>
-                                <booleanFilter>1 AND 2 AND 3 AND 4 AND 5 AND 6 AND 7</booleanFilter>
-                                <criteria>
-                                    <leftValue>{!Record.leaseworks__Payable_Type__c}</leftValue>
-                                    <operator>NE</operator>
-                                    <rightValue>Security Deposit Refund</rightValue>
-                                </criteria>
-                                <criteria>
-                                    <leftValue>{!Record.leaseworks__Payable_Type__c}</leftValue>
-                                    <operator>NE</operator>
-                                    <rightValue>Security Deposit - MR Refund</rightValue>
-                                </criteria>
+                                <booleanFilter>1 AND 2 AND 3 AND 4 AND 5</booleanFilter>
                                 <criteria>
                                     <leftValue>{!Record.leaseworks__Payable_Type__c}</leftValue>
                                     <operator>NE</operator>
@@ -84,6 +74,9 @@
                                     <rightValue>Loan</rightValue>
                                 </criteria>
                             </visibilityRule>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>Delete</value>
                         </valueListItems>
                     </valueList>
                 </componentInstanceProperties>
@@ -129,7 +122,7 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
-                    <value>none</value>
+                    <value>readonly</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.leaseworks__Payable_Type__c</fieldItem>
                 <identifier>RecordPayable_Type__cField</identifier>
@@ -139,20 +132,10 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
-                    <value>readonly</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Payables_Invoice_Number__c</fieldItem>
-                <identifier>RecordPayables_Invoice_Number__cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Supplier_Invoice_Number__c</fieldItem>
-                <identifier>RecordSupplier_Invoice_Number__cField</identifier>
+                <fieldItem>Record.leaseworks__Payable_Category__c</fieldItem>
+                <identifier>RecordPayable_Category_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -181,25 +164,22 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Payable_Remarks__c</fieldItem>
-                <identifier>RecordPayable_Remarks__cField</identifier>
+                <fieldItem>Record.leaseworks__Payable_Short_Comment__c</fieldItem>
+                <identifier>RecordPayable_Short_Comment__cField</identifier>
             </fieldInstance>
         </itemInstances>
+        <name>Facet-d1dfd51d-b7c9-4d1b-8de4-028d5dd268c0</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
         <itemInstances>
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
                     <value>readonly</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Lessee_New__c</fieldItem>
-                <identifier>RecordLessee__cField</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.leaseworks__Payable_Type__c}</leftValue>
-                        <operator>NE</operator>
-                        <rightValue>Loan</rightValue>
-                    </criteria>
-                </visibilityRule>
+                <fieldItem>Record.leaseworks__Lease__c</fieldItem>
+                <identifier>RecordLease__cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -218,15 +198,8 @@
                     <name>uiBehavior</name>
                     <value>readonly</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Lease__c</fieldItem>
-                <identifier>RecordLease__cField</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.leaseworks__Payable_Type__c}</leftValue>
-                        <operator>NE</operator>
-                        <rightValue>Loan</rightValue>
-                    </criteria>
-                </visibilityRule>
+                <fieldItem>Record.leaseworks__Company_Lookup__c</fieldItem>
+                <identifier>RecordCompany_Lookup__cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -235,21 +208,8 @@
                     <name>uiBehavior</name>
                     <value>readonly</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Utilization_Report__c</fieldItem>
-                <identifier>RecordUtilization_Report__cField</identifier>
-                <visibilityRule>
-                    <booleanFilter>1 OR 2</booleanFilter>
-                    <criteria>
-                        <leftValue>{!Record.leaseworks__Payable_Category__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>MR TrueUp</rightValue>
-                    </criteria>
-                    <criteria>
-                        <leftValue>{!Record.leaseworks__Payable_Category__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>Rent Reduction</rightValue>
-                    </criteria>
-                </visibilityRule>
+                <fieldItem>Record.leaseworks__Lessee_New__c</fieldItem>
+                <identifier>RecordLessee__cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -268,11 +228,35 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Head_Lease_Sub_Lease__c</fieldItem>
-                <identifier>RecordHead_Lease_Sub_Lease_cField</identifier>
+                <fieldItem>Record.leaseworks__Internal_Comments__c</fieldItem>
+                <identifier>RecordInternal_Comments_cField</identifier>
             </fieldInstance>
         </itemInstances>
-        <name>Facet-d1dfd51d-b7c9-4d1b-8de4-028d5dd268c0</name>
+        <name>Facet-83fae27f-230b-474f-999c-377e8fee7b65</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-d1dfd51d-b7c9-4d1b-8de4-028d5dd268c0</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:column</componentName>
+                <identifier>flexipage_column</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-83fae27f-230b-474f-999c-377e8fee7b65</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:column</componentName>
+                <identifier>flexipage_column2</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>Facet-3adff5d1-6f1b-4275-9c0e-40ce67861785</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -289,40 +273,6 @@
                         <leftValue>{!Record.leaseworks__Payable_Type__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>Loan</rightValue>
-                    </criteria>
-                </visibilityRule>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>readonly</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Loan_Slip__c</fieldItem>
-                <identifier>RecordLoan_Slip__cField</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.leaseworks__Payable_Type__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>Loan</rightValue>
-                    </criteria>
-                </visibilityRule>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>readonly</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Cash_Security_Deposit__c</fieldItem>
-                <identifier>RecordCash_Security_Deposit__cField</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.leaseworks__Payable_Type__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>Security Deposit Refund</rightValue>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -350,13 +300,108 @@
                     <name>uiBehavior</name>
                     <value>readonly</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Historical_Event__c</fieldItem>
-                <identifier>RecordHistorical_Event__cField</identifier>
+                <fieldItem>Record.leaseworks__Cash_Security_Deposit__c</fieldItem>
+                <identifier>RecordCash_Security_Deposit__cField</identifier>
                 <visibilityRule>
                     <criteria>
                         <leftValue>{!Record.leaseworks__Payable_Type__c}</leftValue>
                         <operator>EQUAL</operator>
-                        <rightValue>MR Claim Event</rightValue>
+                        <rightValue>Security Deposit Refund</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>readonly</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Reconciliation_Schedule__c</fieldItem>
+                <identifier>RecordReconciliation_Schedule__cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Payable_Category__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>MR Reconciliation Refund</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>readonly</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Payment_on_Account__c</fieldItem>
+                <identifier>RecordPayment_on_Account_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Payable_Type__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Payment on Account Refund</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Related_Invoice__c</fieldItem>
+                <identifier>RecordRelated_Invoice_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Payable_Type__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Rebate</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>readonly</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Utilization_Report__c</fieldItem>
+                <identifier>RecordUtilization_Report__cField</identifier>
+                <visibilityRule>
+                    <booleanFilter>1 OR 2</booleanFilter>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Payable_Category__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>MR TrueUp</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Payable_Category__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Rent Reduction</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <name>Facet-8xhcpzlulp6</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>readonly</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Loan_Slip__c</fieldItem>
+                <identifier>RecordLoan_Slip__cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Payable_Type__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Loan</rightValue>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -384,23 +429,13 @@
                     <name>uiBehavior</name>
                     <value>readonly</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Company_Lookup__c</fieldItem>
-                <identifier>RecordCompany_Lookup__cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>readonly</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Reconciliation_Schedule__c</fieldItem>
-                <identifier>RecordReconciliation_Schedule__cField</identifier>
+                <fieldItem>Record.leaseworks__Historical_Event__c</fieldItem>
+                <identifier>RecordHistorical_Event__cField</identifier>
                 <visibilityRule>
                     <criteria>
-                        <leftValue>{!Record.leaseworks__Payable_Category__c}</leftValue>
+                        <leftValue>{!Record.leaseworks__Payable_Type__c}</leftValue>
                         <operator>EQUAL</operator>
-                        <rightValue>MR Reconciliation Refund</rightValue>
+                        <rightValue>MR Claim Event</rightValue>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
@@ -439,17 +474,7 @@
                 </visibilityRule>
             </fieldInstance>
         </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Payable_Short_Comment__c</fieldItem>
-                <identifier>RecordPayable_Short_Comment__cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <name>Facet-83fae27f-230b-474f-999c-377e8fee7b65</name>
+        <name>Facet-itl1fox21xi</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -457,23 +482,23 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>body</name>
-                    <value>Facet-d1dfd51d-b7c9-4d1b-8de4-028d5dd268c0</value>
+                    <value>Facet-8xhcpzlulp6</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:column</componentName>
-                <identifier>flexipage_column</identifier>
+                <identifier>flexipage_column9</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
                     <name>body</name>
-                    <value>Facet-83fae27f-230b-474f-999c-377e8fee7b65</value>
+                    <value>Facet-itl1fox21xi</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:column</componentName>
-                <identifier>flexipage_column2</identifier>
+                <identifier>flexipage_column10</identifier>
             </componentInstance>
         </itemInstances>
-        <name>Facet-3adff5d1-6f1b-4275-9c0e-40ce67861785</name>
+        <name>Facet-5882195mekl</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -590,6 +615,16 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Lessor_Commitment_Amount__c</fieldItem>
+                <identifier>RecordLessor_Commitment_Amount_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
                     <value>readonly</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.leaseworks__Payable_Balance__c</fieldItem>
@@ -617,6 +652,16 @@
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Payout_Listings__c</fieldItem>
+                <identifier>RecordPayout_Listings_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
         <itemInstances>
             <fieldInstance>
                 <fieldInstanceProperties>
@@ -705,8 +750,120 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Head_Lease_Sub_Lease__c</fieldItem>
+                <identifier>RecordHead_Lease_Sub_Lease_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Lessee_New__c</fieldItem>
+                <identifier>RecordLessee_New_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <name>Facet-9jxl5xwpkbp</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentName>flexipage:blankSpace</componentName>
+                <identifier>flexipage_blankSpace</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Company_Lookup__c</fieldItem>
+                <identifier>RecordCompany_Lookup_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <name>Facet-u0xyxuayqu</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-9jxl5xwpkbp</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:column</componentName>
+                <identifier>flexipage_column11</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-u0xyxuayqu</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:column</componentName>
+                <identifier>flexipage_column12</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>Facet-siaaaqsfr8</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Entity__c</fieldItem>
+                <identifier>RecordEntity_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.leaseworks__Accounting_Period__c</fieldItem>
                 <identifier>RecordAccounting_Period_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Block_Posting_to_GL__c</fieldItem>
+                <identifier>RecordBlock_Posting_to_GL_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <name>Facet-fwwzq3dds6q</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__JE_Cancellation_Method__c</fieldItem>
+                <identifier>RecordJE_Cancellation_Method_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Reversal_Accounting_Period__c</fieldItem>
+                <identifier>RecordReversal_Accounting_Period_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -718,11 +875,11 @@
                 <fieldItem>Record.leaseworks__Accounting_Method__c</fieldItem>
                 <identifier>RecordAccounting_Method_cField</identifier>
                 <visibilityRule>
-                    <booleanFilter>1 OR 2 OR 3</booleanFilter>
+                    <booleanFilter>1 AND 2 AND 3 AND 4</booleanFilter>
                     <criteria>
                         <leftValue>{!Record.leaseworks__Payable_Type__c}</leftValue>
                         <operator>EQUAL</operator>
-                        <rightValue>Security Deposit Refund</rightValue>
+                        <rightValue>Manual MR Payable</rightValue>
                     </criteria>
                     <criteria>
                         <leftValue>{!Record.leaseworks__Payable_Type__c}</leftValue>
@@ -732,46 +889,17 @@
                     <criteria>
                         <leftValue>{!Record.leaseworks__Payable_Type__c}</leftValue>
                         <operator>EQUAL</operator>
-                        <rightValue>Manual MR Payable</rightValue>
+                        <rightValue>Security Deposit Refund</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Payable_Type__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Security Deposit - MR Refund</rightValue>
                     </criteria>
                 </visibilityRule>
             </fieldInstance>
         </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Entity__c</fieldItem>
-                <identifier>RecordEntity_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <name>Facet-354f6298-6146-4035-9021-9491e43d9ca5</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Block_Posting_to_GL__c</fieldItem>
-                <identifier>RecordBlock_Posting_to_GL_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__JE_Cancellation_Method__c</fieldItem>
-                <identifier>RecordJE_Cancellation_Method__c</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <name>Facet-b738b2c7-98dd-4971-af2e-55242c03b23f</name>
+        <name>Facet-265l1qzb88v</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -779,23 +907,23 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>body</name>
-                    <value>Facet-354f6298-6146-4035-9021-9491e43d9ca5</value>
+                    <value>Facet-fwwzq3dds6q</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:column</componentName>
-                <identifier>flexipage_column9</identifier>
+                <identifier>flexipage_column13</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
                     <name>body</name>
-                    <value>Facet-b738b2c7-98dd-4971-af2e-55242c03b23f</value>
+                    <value>Facet-265l1qzb88v</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:column</componentName>
-                <identifier>flexipage_column10</identifier>
+                <identifier>flexipage_column14</identifier>
             </componentInstance>
         </itemInstances>
-        <name>Facet-fde12d6b-5374-4e0e-9045-67badfa3b057</name>
+        <name>Facet-gpv4wfumecv</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -811,6 +939,63 @@
                 </componentInstanceProperties>
                 <componentName>flexipage:fieldSection</componentName>
                 <identifier>flexipage_fieldSection</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>columns</name>
+                    <value>Facet-5882195mekl</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>label</name>
+                    <value>Related Record Details</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:fieldSection</componentName>
+                <identifier>flexipage_fieldSection5</identifier>
+                <visibilityRule>
+                    <booleanFilter>1 OR 2 OR 3 OR 4 OR 5 OR 6 OR 7 OR 8</booleanFilter>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Payable_Category__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>MR TrueUp</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Payable_Category__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Rent Reduction</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Payable_Type__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Security Deposit Refund</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Payable_Type__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>MR Claim Event</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Payable_Type__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Rebate</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Payable_Type__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>MR Reconciliation Refund</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Payable_Type__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Payment on Account Refund</rightValue>
+                    </criteria>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Payable_Type__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>Loan</rightValue>
+                    </criteria>
+                </visibilityRule>
             </componentInstance>
         </itemInstances>
         <itemInstances>
@@ -845,14 +1030,28 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>columns</name>
-                    <value>Facet-fde12d6b-5374-4e0e-9045-67badfa3b057</value>
+                    <value>Facet-siaaaqsfr8</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>label</name>
+                    <value>Head Lease/Sub Lease</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:fieldSection</componentName>
+                <identifier>flexipage_fieldSection6</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>columns</name>
+                    <value>Facet-gpv4wfumecv</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>label</name>
                     <value>Accounting Details</value>
                 </componentInstanceProperties>
                 <componentName>flexipage:fieldSection</componentName>
-                <identifier>flexipage_fieldSection5</identifier>
+                <identifier>flexipage_fieldSection7</identifier>
             </componentInstance>
         </itemInstances>
         <name>Facet-ea23a454-c188-4ab6-8731-0bac3032ae94</name>

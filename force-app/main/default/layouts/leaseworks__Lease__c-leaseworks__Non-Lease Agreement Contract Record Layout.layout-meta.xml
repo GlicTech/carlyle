@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customButtons>leaseworks__Mid_Term_Lease_Updates</customButtons>
     <excludeButtons>Submit</excludeButtons>
     <layoutSections>
         <customLabel>true</customLabel>
@@ -55,6 +56,10 @@
                 <behavior>Readonly</behavior>
                 <field>cap_Total_Invoiced_Balance__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>leaseworks__Primary_Rent_Currency__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -92,6 +97,22 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>leaseworks__UR_Due_Day__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>leaseworks__Base_Rent__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>leaseworks__Base_Rent_Number__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>leaseworks__Current_Rent_New__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>leaseworks__Current_Rent_Number__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -155,9 +176,9 @@
         <detailHeading>false</detailHeading>
         <editHeading>false</editHeading>
         <label>Custom Links</label>
-        <layoutColumns/>
-        <layoutColumns/>
-        <layoutColumns/>
+        <layoutColumns />
+        <layoutColumns />
+        <layoutColumns />
         <style>CustomLinks</style>
     </layoutSections>
     <layoutSections>
@@ -268,6 +289,19 @@
         <relatedList>leaseworks__Contract_Team__c.leaseworks__Contract__c</relatedList>
     </relatedLists>
     <relatedLists>
+        <fields>NAME</fields>
+        <fields>leaseworks__Credit_Memo_Reason__c</fields>
+        <fields>leaseworks__Credit_Memo_Amount_New__c</fields>
+        <fields>leaseworks__Balance_Available_New__c</fields>
+        <fields>leaseworks__Status__c</fields>
+        <fields>leaseworks__Lessee_New__c</fields>
+        <relatedList>leaseworks__Credit_Memo__c.leaseworks__Lease__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>leaseworks__Lease_Options__c.leaseworks__Lease__c</relatedList>
+    </relatedLists>
+    <relatedLists>
         <relatedList>RelatedFileList</relatedList>
     </relatedLists>
     <relatedLists>
@@ -284,14 +318,22 @@
         <fields>NAME</fields>
         <fields>leaseworks__Date_of_MR_Payment_Due__c</fields>
         <fields>leaseworks__Invoice_Date__c</fields>
-        <fields>leaseworks__Invoice_Category__c</fields>
         <fields>leaseworks__Status__c</fields>
+        <fields>leaseworks__Invoice_Category__c</fields>
         <fields>leaseworks__Payment_Status__c</fields>
         <fields>leaseworks__Total_Amount_Due__c</fields>
         <fields>leaseworks__Amount_Paid_Remaining__c</fields>
         <fields>leaseworks__Availed_Credit_Amount_Cm__c</fields>
         <fields>leaseworks__Balnce_Due__c</fields>
         <relatedList>leaseworks__Invoice__c.leaseworks__Lease__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>leaseworks__Description__c</fields>
+        <fields>leaseworks__Due_Date__c</fields>
+        <fields>leaseworks__Assigned_To__c</fields>
+        <fields>leaseworks__Asset__c</fields>
+        <relatedList>leaseworks__Obligation__c.leaseworks__Lease__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>

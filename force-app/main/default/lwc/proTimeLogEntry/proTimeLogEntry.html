@@ -1,278 +1,176 @@
 <template>
   <div class="time-log-container">
-    <div class="slds-grid slds-wrap slds-gutters slds-p-around_medium">
-      <!-- Project Overview Card -->
-      <div class="slds-col slds-size_1-of-3">
-        <div class="project-card">
-          <div class="card-header">
-            <lightning-icon
-              icon-name="action:description"
-              size="small"
-              alternative-text="Project Icon"
-            ></lightning-icon>
-            <span class="slds-m-left_x-small">Project Overview</span>
-          </div>
-          <div class="card-line">
-            📋
-            <strong class="label">Project Name:</strong
-            >&nbsp;&nbsp;&nbsp;{projectName}
-          </div>
-          <div class="card-line">
-            🛠️
-            <strong class="label">Operator:</strong
-            >&nbsp;&nbsp;&nbsp;{operatorName}
-          </div>
-          <div class="card-line">
-            ⏳
-            <strong class="label">Project Start Date:</strong
-            >&nbsp;&nbsp;&nbsp;{projectStartDate}
-          </div>
-          <div class="card-line">
-            🚀
-            <strong class="label">Project End Date:</strong
-            >&nbsp;&nbsp;&nbsp;{projectEndDate}
-          </div>
-        </div>
-      </div>
+<div class="slds-grid slds-wrap slds-gutters slds-p-around_medium">
 
-      <!-- Project Utilization Card -->
-      <div class="slds-col slds-size_1-of-3">
-        <div class="project-card">
-          <div class="card-header">
-            <lightning-icon
-              icon-name="action:update"
-              size="small"
-              alternative-text="Utilization"
-            ></lightning-icon>
-            <span class="slds-m-left_x-small">Project Utilization</span>
-          </div>
-          <div class="card-line">
-            📊
-            <strong class="label">Total Consultant Days Budgeted: </strong>
-            &nbsp;&nbsp;&nbsp;{budgetedDays} Days
-          </div>
-          <div class="card-line">
-            🧮
-            <strong class="label">Days Charged: </strong>
-            &nbsp;&nbsp;&nbsp;{totalLoggedDays} Days
-          </div>
-          <div class="card-line">
-            📈 <strong class="label">Days Remaining: </strong>&nbsp;&nbsp;&nbsp;
-            {remainingDays} Days
-          </div>
-        </div>
+  <!-- Project Overview Card -->
+  <div class="slds-col slds-size_1-of-3">
+    <div class="project-card">
+      <div class="card-header">
+        <lightning-icon icon-name="action:description" size="small" alternative-text="Project Icon"></lightning-icon>
+        <span class="slds-m-left_x-small">Project Overview</span>
       </div>
-
-      <!-- Project Duration Summary Card -->
-      <div class="slds-col slds-size_1-of-3">
-        <div class="project-card duration-card">
-          <div class="card-header">
-            <lightning-icon
-              icon-name="action:new_event"
-              size="small"
-              alternative-text="Duration Summary"
-            ></lightning-icon>
-            <span class="slds-m-left_x-small">Project Duration</span>
-          </div>
-          <div class="card-line">
-            ⏱️
-            <strong class="label">Accumulated Duration: </strong
-            >&nbsp;&nbsp;&nbsp; {accumulatedDays} Days
-          </div>
-          <div class="card-line">
-            ⏳
-            <strong class="label">Days Remaining/Over: </strong>
-            &nbsp;&nbsp;&nbsp;{remainDays} Days
-          </div>
-          <div class="card-line">
-            📆
-            <strong class="label">Actual Total Duration: </strong>
-            &nbsp;&nbsp;&nbsp;{actualDuration} Days
-          </div>
-        </div>
-      </div>
+      <div class="card-line">📋 <strong class="label">Project Name:</strong>&nbsp;&nbsp;&nbsp;{projectName}</div>
+      <div class="card-line">🛠️ <strong class="label">Operator:</strong>&nbsp;&nbsp;&nbsp;{operatorName}</div>
+      <div class="card-line">⏳ <strong class="label">Project Start Date:</strong>&nbsp;&nbsp;&nbsp;{projectStartDate}</div>
+      <div class="card-line">🚀 <strong class="label">Project End Date:</strong>&nbsp;&nbsp;&nbsp;{projectEndDate}</div>
     </div>
+  </div>
+
+  <!-- Project Utilization Card -->
+  <div class="slds-col slds-size_1-of-3">
+    <div class="project-card">
+      <div class="card-header">
+        <lightning-icon icon-name="action:update" size="small" alternative-text="Utilization"></lightning-icon>
+        <span class="slds-m-left_x-small">Project Utilization</span>
+      </div>
+      <div class="card-line">📊 <strong class="label">Total Consultant Days Budgeted: </strong> &nbsp;&nbsp;&nbsp;{budgetedDays} Days</div>
+      <div class="card-line">🧮 <strong class="label">Days Charged: </strong> &nbsp;&nbsp;&nbsp;{totalLoggedDays} Days</div>
+      <div class="card-line">📈 <strong class="label">Days Remaining: </strong>&nbsp;&nbsp;&nbsp; {remainingDays} Days</div>
+    </div>
+  </div>
+
+  <!-- Project Duration Summary Card -->
+  <div class="slds-col slds-size_1-of-3">
+    <div class="project-card duration-card">
+      <div class="card-header">
+        <lightning-icon icon-name="action:new_event" size="small" alternative-text="Duration Summary"></lightning-icon>
+        <span class="slds-m-left_x-small">Project Duration</span>
+      </div>
+      <div class="card-line">⏱️ <strong class="label">Accumulated Duration: </strong>&nbsp;&nbsp;&nbsp; {accumulatedDays} Days</div>
+      <div class="card-line">⏳ <strong class="label">Days Remaining/Over: </strong> &nbsp;&nbsp;&nbsp;{remainDays} Days</div>
+      <div class="card-line">📆 <strong class="label">Actual Total Duration: </strong> &nbsp;&nbsp;&nbsp;{actualDuration} Days</div>
+    </div>
+  </div>
+</div>
 
     <!-- HEADER -->
     <div class="header slds-p-around_medium">
-      <h1 class="slds-text-heading_medium">
-        <strong>🧭 Time Log Entry</strong>
-      </h1>
+      <h1 class="slds-text-heading_medium"><strong>🧭 Time Log Entry</strong></h1>
 
       <!-- Filters Row -->
-      <div
-        class="slds-grid slds-gutters slds-m-top_medium slds-align_absolute-center"
-      >
-        <!-- Work Mode -->
-        <div class="slds-col">
-          <!-- <label class="slds-form-element__label">Work Mode</label>-->
-          <div class="workmode-toggle">
-            <button
-              class={onsiteButtonClass}
-              onclick={setOnsite}
-              title="OnSite"
-            >
-              🛬 Onsite
-            </button>
-            <button
-              class={offsiteButtonClass}
-              onclick={setOffsite}
-              title="OffSite"
-            >
-              ✈️ Offsite
-            </button>
-          </div>
-        </div>
-        <!-- Date Picker -->
-        <div class="slds-col slds-m-left_medium">
-          <div class="styled-date-picker">
-            <lightning-input
-              type="date"
-              value={selectedDate}
-              onchange={handleStartDateChange}
-              variant="label-hidden"
-              class="clean-date-input"
-            ></lightning-input>
-          </div>
-        </div>
+    <div class="slds-grid slds-gutters slds-m-top_medium slds-align_absolute-center">
 
-        <!-- View Mode -->
-        <template if:true={showToggleButtons}>
-          <div class="slds-col slds-m-left_medium">
-            <label class="slds-form-element__label">View Mode</label>
-            <lightning-button-group>
-              <lightning-button
-                variant={weekButtonVariant}
-                label="Week"
-                onclick={setWeekView}
-              ></lightning-button>
-              <lightning-button
-                variant={monthButtonVariant}
-                label="Month"
-                onclick={setMonthView}
-              ></lightning-button>
-            </lightning-button-group>
-          </div>
-        </template>
+      <!-- Work Mode -->
+      <div class="slds-col">
+       <!-- <label class="slds-form-element__label">Work Mode</label>-->
+       <div class="workmode-toggle">
+        <button
+          class={onsiteButtonClass}
+          onclick={setOnsite}
+          title="OnSite">
+          🛬 Onsite
+        </button>
+        <button
+          class={offsiteButtonClass}
+          onclick={setOffsite}
+          title="OffSite">
+           ✈️ Offsite
+        </button>
       </div>
+      </div>
+       <!-- Date Picker -->
+      <div class="slds-col slds-m-left_medium">
+        <div class="styled-date-picker">
+        <lightning-input
+          type="date"
+          value={selectedDate}
+          onchange={handleStartDateChange}
+          variant="label-hidden"
+          class="clean-date-input"
+        ></lightning-input>
+      </div>
+      </div>
+
+      <!-- View Mode -->
+      <template if:true={showToggleButtons}>
+      <div class="slds-col slds-m-left_medium">
+        <label class="slds-form-element__label">View Mode</label>
+        <lightning-button-group>
+          <lightning-button variant={weekButtonVariant} label="Week" onclick={setWeekView}></lightning-button>
+          <lightning-button variant={monthButtonVariant} label="Month" onclick={setMonthView}></lightning-button>
+        </lightning-button-group>
+      </div>
+      </template>
     </div>
+  </div>
 
     <!-- TABLE -->
     <div class="slds-p-horizontal_small slds-scrollable_x">
       <table class="slds-table slds-table_cell-buffer slds-table_bordered">
         <thead class={tableHeaderClass}>
-          <tr>
-            <th class="consultant-header sticky-column">Consultant</th>
-            <template for:each={dateHeaders} for:item="day">
-              <th key={day.key} class={day.className}>
-                <div>{day.day}</div>
-                <div style="font-size: 0.8em">({day.weekday})</div>
-              </th>
-            </template>
-            <th><strong>Total</strong></th>
-          </tr>
-        </thead>
+        <tr>
+          <th class="consultant-header sticky-column">Consultant</th>
+          <template for:each={dateHeaders} for:item="day">
+            <th key={day.key} class={day.className}>
+              <div>{day.day}</div>
+              <div style="font-size: 0.8em;">({day.weekday})</div>
+            </th>
+          </template>
+          <th><strong>Total</strong></th>
+        </tr>
+      </thead>
 
         <tbody>
           <template for:each={timeLogRows} for:item="row">
             <tr key={row.consultantId} class={row.styleClass}>
-              <td class="sticky-column" style="width: 304px">
-                👨‍💼 {row.consultantName}
-              </td>
-              <template
-                for:each={row.entries}
-                for:item="entry"
-                for:index="index"
-              >
-                <td
-                  key={entry.entryDate}
-                  class={entry.cellClass}
-                  style="width: 80px"
-                >
-                  <div class="compact-input-wrapper">
-                    <lightning-input
-                      type="number"
-                      variant="label-hidden"
-                      min="0"
-                      max="1"
-                      step="0.1"
-                      onkeydown={handleKeyDown}
-                      class="compact-input"
-                      value={entry.value}
-                      data-id={row.consultantId}
-                      data-date={entry.entryDate}
-                      onchange={handleValueChange}
-                    >
-                    </lightning-input>
-                  </div>
-                </td>
-              </template>
-              <td class="slds-text-align_center">
-                <strong>{row.total}</strong>
-              </td>
+              <td class="sticky-column" style="width: 304px;">👨‍💼 {row.consultantName}</td>
+              <template for:each={row.entries} for:item="entry" for:index="index">
+              <td key={entry.entryDate} class={entry.cellClass} style="width: 80px;">
+              <div class="compact-input-wrapper">
+                <lightning-input
+                  type="number"
+                  variant="label-hidden"
+                  min="0"
+                  max="1"
+                  step="0.1"
+                  onkeydown={handleKeyDown}
+                  class="compact-input"
+                  value={entry.value}
+                  data-id={row.consultantId}
+                  data-date={entry.entryDate}
+                  onchange={handleValueChange}>
+                </lightning-input>
+              </div>
+            </td>
+            </template>
+            <td class="slds-text-align_center"><strong>{row.total}</strong></td>
             </tr>
           </template>
         </tbody>
         <tfoot>
-          <tr if:true={isOnsite}>
-            <td class="slds-text-align_center">
-              <strong>Onsite Total</strong>
-            </td>
-            <template for:each={onsiteColumnTotals} for:item="item">
-              <td key={item.key} class="slds-text-align_center">
-                <strong>{item.value}</strong>
-              </td>
-            </template>
-            <td></td>
-          </tr>
+        <tr if:true={isOnsite}>
+          <td class="slds-text-align_center"><strong>Onsite Total</strong></td>
+          <template for:each={onsiteColumnTotals} for:item="item">
+            <td key={item.key} class="slds-text-align_center"><strong>{item.value}</strong></td>
+          </template>
+          <td></td>
+        </tr>
 
-          <!-- Offsite Total -->
-          <tr if:false={isOnsite}>
-            <td class="slds-text-align_center">
-              <strong>Offsite Total</strong>
-            </td>
-            <template for:each={offsiteColumnTotals} for:item="item">
-              <td key={item.key} class="slds-text-align_center">
-                <strong>{item.value}</strong>
-              </td>
-            </template>
-            <td></td>
-          </tr>
+        <!-- Offsite Total -->
+        <tr if:false={isOnsite}>
+          <td class="slds-text-align_center"><strong>Offsite Total</strong></td>
+          <template for:each={offsiteColumnTotals} for:item="item">
+            <td key={item.key} class="slds-text-align_center"><strong>{item.value}</strong></td>
+          </template>
+          <td></td>
+        </tr>
 
-          <!-- Combined Total -->
-          <tr>
-            <td class="slds-text-align_center slds-theme_success">
-              <strong>Total(Onsite+Offsite)</strong>
-            </td>
-            <template for:each={combinedTotals} for:item="item">
-              <td
-                key={item.key}
-                class="slds-text-align_center slds-theme_success"
-              >
-                <strong>{item.value}</strong>
-              </td>
-            </template>
-            <td class="slds-text-align_center slds-theme_success">
-              <strong>{grandCombinedTotal}</strong>
-            </td>
-          </tr>
-        </tfoot>
+        <!-- Combined Total -->
+        <tr>
+          <td class="slds-text-align_center slds-theme_success"><strong>Total(Onsite+Offsite)</strong></td>
+          <template for:each={combinedTotals} for:item="item">
+            <td key={item.key} class="slds-text-align_center slds-theme_success"><strong>{item.value}</strong></td>
+          </template>
+          <td class="slds-text-align_center slds-theme_success"><strong>{grandCombinedTotal}</strong></td>
+        </tr>
+      </tfoot>
       </table>
     </div>
 
     <!-- FOOTER -->
     <div class="slds-align_absolute-center slds-m-around_medium">
-      <lightning-button
-        variant="brand"
-        label="Save"
-        onclick={handleSave}
-      ></lightning-button>
-      <lightning-button
-        variant="neutral"
-        class="slds-m-left_small"
-        label="Back to Project"
-        onclick={navigateToProject}
-      ></lightning-button>
+      <lightning-button variant="brand" label="Save" onclick={handleSave}></lightning-button>
+      <lightning-button variant="neutral" class="slds-m-left_small" label="Back to Project" onclick={navigateToProject}></lightning-button>
     </div>
   </div>
 </template>

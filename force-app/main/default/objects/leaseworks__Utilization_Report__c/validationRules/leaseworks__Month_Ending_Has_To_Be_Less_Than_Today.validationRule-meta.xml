@@ -3,8 +3,8 @@
     <fullName>leaseworks__Month_Ending_Has_To_Be_Less_Than_Today</fullName>
     <active>true</active>
     <errorConditionFormula>AND(  
-Value(Text(Year(leaseworks__Month_Ending__c))+lpad(Text(Month(leaseworks__Month_Ending__c)),2,&apos;0&apos;)+lpad(Text(Day(leaseworks__Month_Ending__c)),2,&apos;0&apos;) ) &gt; 
-Value(Text(Year(Today()))+lpad(Text(Month(Today())+1),2,&apos;0&apos;)+&apos;01&apos; )
+Value(Text(Year(leaseworks__Month_Ending__c))+lpad(Text(Month(leaseworks__Month_Ending__c)),2,&#39;0&#39;)+lpad(Text(Day(leaseworks__Month_Ending__c)),2,&#39;0&#39;) ) &gt; 
+Value(Text(Year(Today()))+lpad(Text(Month(Today())+1),2,&#39;0&#39;)+&#39;01&#39; )
 , ! leaseworks__Assumed_Estimated__c 
 )</errorConditionFormula>
     <errorDisplayField>leaseworks__Month_Ending__c</errorDisplayField>
