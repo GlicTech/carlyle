@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>65.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <assignments>
         <name>Assign_Aircraft_Filtered_Deal_Team_Mappings_To_Variable</name>
         <label>Assign Aircraft Filtered Deal Team Mappings To Variable</label>
@@ -59,6 +60,22 @@
             <operator>Assign</operator>
             <value>
                 <elementReference>Keep_Default_Roles</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Role_Switch_Based_On_Asset_Type</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Unfiltered_Mappings_To_Variable</name>
+        <label>Assign Unfiltered Mappings To Variable</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>varDealTeamMappings</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_CMDT_For_Deal_Team_Mappings</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -255,6 +272,22 @@
         </connector>
     </assignments>
     <assignments>
+        <name>Flag_CAPF_VII</name>
+        <label>Flag CAPF VII</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>varCapfviiFund</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_Fund_Name</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Flag_LOI_Approver_Switch</name>
         <label>Flag LOI Approver Switch</label>
         <locationX>0</locationX>
@@ -268,6 +301,22 @@
         </assignmentItems>
         <connector>
             <targetReference>Deal_Created_On_Airline_Or_Other_Account_Type</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Flag_Non_CAPF_VII</name>
+        <label>Flag Non CAPF VII</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>varNonCapfviiFund</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_Fund_Name</targetReference>
         </connector>
     </assignments>
     <collectionProcessors>
@@ -426,6 +475,31 @@
         </rules>
     </decisions>
     <decisions>
+        <name>Fund_Is_CAPF_VII</name>
+        <label>Fund IS CAPF VII</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Flag_Non_CAPF_VII</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Flag Non CAPF VII</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Skip</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Loop_Fund_Name</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>CAPF VII</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Flag_CAPF_VII</targetReference>
+            </connector>
+            <label>Yes - Skip</label>
+        </rules>
+    </decisions>
+    <decisions>
         <description>If Regional Manager = Marketing / Deal Rep =&gt; Alan B. is the LOI Approver
 If Regional Manager does not equal Marketing / Deal Rep =&gt; Regional Manager is the LOI Approver and Marketing / Deal Rep signs off final documents</description>
         <name>LOI_Approver_Switch</name>
@@ -453,6 +527,60 @@ If Regional Manager does not equal Marketing / Deal Rep =&gt; Regional Manager i
         </rules>
     </decisions>
     <decisions>
+        <name>Role_Inclusion_Based_On_Fund</name>
+        <label>Role Inclusion Based On Fund</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Assign_Unfiltered_Mappings_To_Variable</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Include Both Roles</defaultConnectorLabel>
+        <rules>
+            <name>Include_Investment_Strategy</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>varCapfviiFund</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>varNonCapfviiFund</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Switch_In_Fund_Based_Role</targetReference>
+            </connector>
+            <label>Include Investment &amp; Strategy</label>
+        </rules>
+        <rules>
+            <name>Include_Portfolio_Management</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>varCapfviiFund</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>varNonCapfviiFund</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Keep_Default_Roles</targetReference>
+            </connector>
+            <label>Include Portfolio Management</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Role_Switch_Based_On_Asset_Type</name>
         <label>Role Switch Based On Asset Type?</label>
         <locationX>0</locationX>
@@ -475,38 +603,6 @@ If Regional Manager does not equal Marketing / Deal Rep =&gt; Regional Manager i
                 <targetReference>Switch_In_Engine_Based_Role</targetReference>
             </connector>
             <label>Yes - Engine - Switch Roles</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <name>Role_Switch_Based_On_Fund</name>
-        <label>Role Switch Based On Fund?</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <defaultConnector>
-            <targetReference>Keep_Default_Roles</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Keep Default Roles</defaultConnectorLabel>
-        <rules>
-            <name>Yes_Switch_Roles_Based_On_Fund</name>
-            <conditionLogic>or</conditionLogic>
-            <conditions>
-                <leftValueReference>Get_First_Asset_In_Deal.pro_Fund__c</leftValueReference>
-                <operator>Contains</operator>
-                <rightValue>
-                    <elementReference>Get_CAPFVII_Role_Inclusion_CMDT.pro_Fund_Name__c</elementReference>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>varTriggeringDeal.pro_Fund__r.Name</leftValueReference>
-                <operator>Contains</operator>
-                <rightValue>
-                    <elementReference>Get_CAPFVII_Role_Inclusion_CMDT.pro_Fund_Name__c</elementReference>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Switch_In_Fund_Based_Role</targetReference>
-            </connector>
-            <label>Yes - Switch Roles Based On Fund</label>
         </rules>
     </decisions>
     <decisions>
@@ -584,6 +680,7 @@ If Regional Manager does not equal Marketing / Deal Rep =&gt; Regional Manager i
         &quot;Credit&quot;, {!varTriggeringDeal.leaseworks__Counter_Party__r.Credit__c},
         &quot;Debt&quot;, {!varTriggeringDeal.leaseworks__Counter_Party__r.Debt__c},
         &quot;Investment &amp; Strategy&quot;, {!varTriggeringDeal.leaseworks__Counter_Party__r.Investment_Strategy__c},
+        &quot;Insurance&quot;, {!varTriggeringDeal.leaseworks__Counter_Party__r.pro_Insurance__c},
         &quot;Legal&quot;, {!varTriggeringDeal.leaseworks__Counter_Party__r.Legal__c},
         &quot;Marketing&quot;, {!varTriggeringDeal.leaseworks__Counter_Party__r.OwnerId},
         &quot;Compliance&quot;, {!varTriggeringDeal.leaseworks__Counter_Party__r.Compliance__c},
@@ -666,6 +763,20 @@ IF( {!varTriggeringDeal.RecordType.DeveloperName} = &apos;Engine_Sale&apos;, &ap
             <targetReference>Create_Deal_Teams</targetReference>
         </noMoreValuesConnector>
     </loops>
+    <loops>
+        <name>Loop_Fund_Name</name>
+        <label>Loop Fund Name</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <collectionReference>Create_Fund_Name_List_From_AiDs</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Fund_Is_CAPF_VII</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Role_Inclusion_Based_On_Fund</targetReference>
+        </noMoreValuesConnector>
+    </loops>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
@@ -721,6 +832,27 @@ IF( {!varTriggeringDeal.RecordType.DeveloperName} = &apos;Engine_Sale&apos;, &ap
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
+        <name>Get_Assets_In_Deal</name>
+        <label>Get Assets In Deal</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_CAPFVII_Role_Inclusion_CMDT</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>leaseworks__Marketing_Activity__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>varTriggeringDeal.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>leaseworks__Aircraft_Proposal__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
         <name>Get_CAPFVII_Role_Inclusion_CMDT</name>
         <label>Get CAPFVII Role Inclusion CMDT</label>
         <locationX>0</locationX>
@@ -755,7 +887,7 @@ IF( {!varTriggeringDeal.RecordType.DeveloperName} = &apos;Engine_Sale&apos;, &ap
         <locationY>0</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Get_First_Asset_In_Deal</targetReference>
+            <targetReference>Get_Assets_In_Deal</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -809,27 +941,6 @@ IF( {!varTriggeringDeal.RecordType.DeveloperName} = &apos;Engine_Sale&apos;, &ap
         </filters>
         <getFirstRecordOnly>false</getFirstRecordOnly>
         <object>User</object>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </recordLookups>
-    <recordLookups>
-        <name>Get_First_Asset_In_Deal</name>
-        <label>Get First Asset In Deal</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Get_CAPFVII_Role_Inclusion_CMDT</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>leaseworks__Marketing_Activity__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>varTriggeringDeal.Id</elementReference>
-            </value>
-        </filters>
-        <getFirstRecordOnly>true</getFirstRecordOnly>
-        <object>leaseworks__Aircraft_Proposal__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
@@ -888,7 +999,7 @@ IF( {!varTriggeringDeal.RecordType.DeveloperName} = &apos;Engine_Sale&apos;, &ap
         <locationY>0</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Role_Switch_Based_On_Fund</targetReference>
+            <targetReference>Create_Fund_Name_List_From_AiDs</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -952,6 +1063,27 @@ IF( {!varTriggeringDeal.RecordType.DeveloperName} = &apos;Engine_Sale&apos;, &ap
             </transformValueActions>
         </transformValues>
     </transforms>
+    <transforms>
+        <name>Create_Fund_Name_List_From_AiDs</name>
+        <label>Create Fund Name List From AiDs</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Loop_Fund_Name</targetReference>
+        </connector>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>Get_Assets_In_Deal[$EachItem].pro_Fund__c</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
     <variables>
         <name>currentItem_Filter_Collection_To_Regional_Marketing_Manager</name>
         <dataType>SObject</dataType>
@@ -1001,6 +1133,16 @@ IF( {!varTriggeringDeal.RecordType.DeveloperName} = &apos;Engine_Sale&apos;, &ap
         <objectType>Deal_Team_Mapping__mdt</objectType>
     </variables>
     <variables>
+        <name>varCapfviiFund</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
+    </variables>
+    <variables>
         <name>varDealTeamMappings</name>
         <dataType>SObject</dataType>
         <isCollection>true</isCollection>
@@ -1023,6 +1165,16 @@ IF( {!varTriggeringDeal.RecordType.DeveloperName} = &apos;Engine_Sale&apos;, &ap
         <isInput>false</isInput>
         <isOutput>false</isOutput>
         <objectType>leaseworks__Deal_Team__c</objectType>
+    </variables>
+    <variables>
+        <name>varNonCapfviiFund</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
     </variables>
     <variables>
         <name>varSwitchLoiApprover</name>

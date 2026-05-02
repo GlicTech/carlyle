@@ -4,7 +4,8 @@
     <deprecated>false</deprecated>
     <description>Hyperlink to the associated document (ref to the table above)</description>
     <externalId>false</externalId>
-    <formula>CASE(TEXT(leaseworks__Transaction_Type__c)
+    <formula>if(BEGINS(TEXT(leaseworks__Transaction_Type__c),&apos;Adjustment - &apos;), HYPERLINK(&apos;/&apos;+leaseworks__Supplemental_Rent_Adjustment__c,leaseworks__Supplemental_Rent_Adjustment_Name__c),
+CASE(TEXT(leaseworks__Transaction_Type__c)
 ,&apos;MR Invoice&apos;,  IF(ISBLANK(leaseworks__Invoice_Line_Item__c ),  HYPERLINK(&apos;/&apos;+leaseworks__Supplemental_Rent_Utilization__c,leaseworks__Supplemental_Rent_Utilization__r.Name),
 HYPERLINK(&apos;/&apos;+leaseworks__Invoice_Line_Item__c,leaseworks__Invoice_Line_Item__r.leaseworks__Invoice__r.Name))
 ,&apos;MR Invoice Reconciliation&apos;,HYPERLINK(&apos;/&apos;+leaseworks__Invoice_Line_Item__c,leaseworks__Invoice_Line_Item__r.leaseworks__Invoice__r.Name)					
@@ -21,12 +22,11 @@ HYPERLINK(&apos;/&apos;+leaseworks__Payment_Line_Item__c,leaseworks__Payment_Lin
 ,&apos;MR Payment Offset&apos;,IF(ISBLANK(leaseworks__Payment_Line_Item__c),
 HYPERLINK(&apos;/&apos;+leaseworks__Supplemental_Rent_Utilization__c,leaseworks__Supplemental_Rent_Utilization__r.Name),
 HYPERLINK(&apos;/&apos;+leaseworks__Payment_Line_Item__c,leaseworks__Payment_Line_Item__r.leaseworks__Payment__r.Name))
-,&apos;Adjustment&apos;, HYPERLINK(&apos;/&apos;+leaseworks__Supplemental_Rent_Adjustment__c,leaseworks__Supplemental_Rent_Adjustment_Name__c)
 ,&apos;MR Transfer&apos;, HYPERLINK(&apos;/&apos;+leaseworks__MR_Fund_Transfer__c,leaseworks__MR_Fund_Transfer_Name__c)
 ,&apos;MR Accrued&apos;, HYPERLINK(&apos;/&apos;+leaseworks__Supplemental_Rent_Utilization__c,leaseworks__Supplemental_Rent_Utilization__r.Name)
 ,&apos;MR Claim Accrued&apos;, HYPERLINK(&apos;/&apos;+leaseworks__Claim__c,leaseworks__Claim__r.Name)
 ,&apos;MR Invoice Adjustment&apos;,HYPERLINK(&apos;/&apos;+leaseworks__Invoice_Adjustment_Line_Item__c,leaseworks__Invoice_Adjustment_Line_Item__r.leaseworks__Invoice_Adjustment__r.Name)
-,IF(!ISBLANK(leaseworks__Payable_Line_Item__c),HYPERLINK(&apos;/&apos;+leaseworks__Payable_Line_Item__c,leaseworks__Event_Payable__r.Name),IF(!ISBLANK(leaseworks__Payout_Line_Item__c),HYPERLINK(&apos;/&apos;+leaseworks__Payout_Line_Item__c,leaseworks__Event_Payout__r.Name),&apos;&apos;)))
+,IF(!ISBLANK(leaseworks__Payable_Line_Item__c),HYPERLINK(&apos;/&apos;+leaseworks__Payable_Line_Item__c,leaseworks__Event_Payable__r.Name),IF(!ISBLANK(leaseworks__Payout_Line_Item__c),HYPERLINK(&apos;/&apos;+leaseworks__Payout_Line_Item__c,leaseworks__Event_Payout__r.Name),&apos;&apos;))))
 
 /** The below transaction types are handled in the else of the case statement
 &apos;MR Contribution Applied&apos;,HYPERLINK(&apos;/&apos;+Payable_Line_Item__c,Event_Payable__r.Name)

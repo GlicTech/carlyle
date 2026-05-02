@@ -1,20 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
     <fieldOverrides>
-        <field>leaseworks__Credit_Amount__c</field>
-        <formula>leaseworks__Invoice__c.leaseworks__Amount__c + blankvalue(leaseworks__Invoice__c.leaseworks__Adjustment_1__c, 0) + blankvalue(leaseworks__Invoice__c.leaseworks__Adjustment_2__c, 0) + blankvalue(leaseworks__Invoice__c.leaseworks__Adjustment_3__c, 0) 
- + (leaseworks__Invoice__c.leaseworks__Amount__c + blankvalue(leaseworks__Invoice__c.leaseworks__Adjustment_1__c, 0) + blankvalue(leaseworks__Invoice__c.leaseworks__Adjustment_2__c, 0) + blankvalue(leaseworks__Invoice__c.leaseworks__Adjustment_3__c, 0) ) * blankvalue(leaseworks__Invoice__c.leaseworks__Tax_Rate__c, 0) * IF(leaseworks__Invoice__c.leaseworks__Tax_Applicable__c, 1, 0) - leaseworks__Invoice__c.leaseworks__Amount_Paid__c</formula>
-    </fieldOverrides>
-    <fieldOverrides>
         <field>leaseworks__Date_of_MR_Payment_Due__c</field>
         <formula>leaseworks__Invoice__c.leaseworks__Date_of_MR_Payment_Due__c</formula>
-    </fieldOverrides>
-    <fieldOverrides>
-        <field>leaseworks__Invoice_Type__c</field>
-        <formula>IF(ISPICKVAL(leaseworks__Invoice__c.leaseworks__Invoice_Type__c, &apos;Aircraft MR&apos;), &apos;Aircraft MR&apos;, IF(ISPICKVAL(leaseworks__Invoice__c.leaseworks__Invoice_Type__c, &apos;Rent&apos;), &apos;Rent&apos;, 
-IF(ISPICKVAL(leaseworks__Invoice__c.leaseworks__Invoice_Type__c, &apos;Intercompany Rent&apos;), &apos;Intercompany Rent&apos;,IF(ISPICKVAL(leaseworks__Invoice__c.leaseworks__Invoice_Type__c, &apos;Intercompany MR&apos;),&apos;Intercompany MR&apos;,
-&apos;Security Deposit&apos;))))</formula>
-        <literalValue>Aircraft MR</literalValue>
     </fieldOverrides>
     <fieldOverrides>
         <field>leaseworks__Lease__c</field>

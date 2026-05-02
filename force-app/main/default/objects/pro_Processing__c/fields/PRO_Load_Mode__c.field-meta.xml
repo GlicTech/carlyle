@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PRO_Load_Mode__c</fullName>
+    <description>How to load the attached Carlyle CSV into World Fleet. Bulk API 2.0 requires a Named Credential (see pro_GlobalFleetBulkApi2Loader). Files over ~5 MB cannot use Bulk from Apex (callout size limit).</description>
+    <label>Load Mode</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Apex_Upsert</fullName>
+                <default>true</default>
+                <label>Apex Upsert</label>
+            </value>
+            <value>
+                <fullName>Bulk_API_2</fullName>
+                <default>false</default>
+                <label>Bulk API 2.0</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

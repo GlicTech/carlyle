@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>66.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Assign_Lessee</name>
+        <label>Assign Lessee</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.leaseworks__Lessee_New__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Consignee__c</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <description>Populates the Lessee field with Consignee in the background</description>
+    <environments>Default</environments>
+    <interviewLabel>Consignment Contracts - Lessee Update {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Consignment Contracts - Lessee Update</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Assign_Lessee</targetReference>
+        </connector>
+        <filterFormula>AND(
+NOT({!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c}),
+NOT({!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_WFs__c}),
+ISPICKVAL({!$Record.leaseworks__Lease_Type_Legal__c}, &apos;Consignment&apos;),
+OR(
+ISNEW(),
+ISCHANGED({!$Record.Consignee__c})
+)
+)</filterFormula>
+        <object>leaseworks__Lease__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

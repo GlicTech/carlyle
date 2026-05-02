@@ -2,9 +2,18 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>leaseworks__CreditMemo_Display_Name__c</fullName>
     <deprecated>false</deprecated>
-    <description>This display name is used in the Payment studio to show the list of Credit Memo when Payment source is chosen as &apos;Credit Memo&apos;</description>
+    <description>This display name is used in the Payment studio to show the list of Credit Memo when Payment source is chosen as &apos;Credit Memo&apos;
+    [LOAD:No]
+    [JUSTIFICATION:This is formula text field, no needs to do LOAD]
+    [REPLACEMENT OBJECT API:NA]
+    [REPLACEMENT FIELD API:NA]
+    [COMMENTS:NA]&quot;</description>
     <externalId>false</externalId>
-    <formula>Name &amp; &apos; | &apos; &amp;  leaseworks__Lessee_New__r.Name &amp; &apos; | $&apos; &amp; TEXT( leaseworks__Credit_Memo_Amount_New__c )</formula>
+    <formula>IF(
+    leaseworks__Multicurrency_Enabled__c,
+    Name &amp; &quot; | &quot; &amp; leaseworks__Lessee_New__r.Name &amp; &quot; | &quot; &amp; TEXT(leaseworks__Credit_Memo_Amount_New__c),
+    Name &amp; &quot; | &quot; &amp; leaseworks__Lessee_New__r.Name &amp; &quot; | $&quot; &amp; TEXT(leaseworks__Credit_Memo_Amount_New__c)
+)</formula>
     <label>_CreditMemo Display Name</label>
     <required>false</required>
     <trackHistory>false</trackHistory>

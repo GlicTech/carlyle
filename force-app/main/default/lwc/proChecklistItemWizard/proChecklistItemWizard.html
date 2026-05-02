@@ -7,14 +7,17 @@
                                class="slds-is-fixed"></lightning-spinner>
         </template>
 
-        <!-- HEADER CARDS (3-across) -->
+        <!-- FIXED HEADER -->
+        <div class="sticky-header">
+
+        <!-- HEADER CARDS (3-across: removed Completion card) -->
         <div class="header-row slds-grid slds-gutters slds-m-bottom_medium">
 
             <!-- Card 1 — Project Overview -->
             <div class="slds-col slds-size_1-of-3">
                 <div class="header-card">
                     <div class="card-title">
-                        <lightning-icon icon-name="standard:task" size="small"
+                        <lightning-icon icon-name="action:description" size="small"
                                         class="slds-m-right_x-small"></lightning-icon>
                         Project Overview
                     </div>
@@ -23,7 +26,7 @@
                             <lightning-icon icon-name="utility:bookmark" size="xx-small"
                                             class="field-icon"></lightning-icon>
                             <span class="field-label">Project Name:</span>
-                            <span class="field-value">{projectName}</span>
+                            <a href={projectRecordUrl} class="field-value field-link" data-id={recordId} onclick={handleNavigateToProject}>{projectName}</a>
                         </p>
                         <p class="card-field">
                             <lightning-icon icon-name="utility:people" size="xx-small"
@@ -43,6 +46,12 @@
                             <span class="field-label">End Date:</span>
                             <span class="field-value">{projectEndDate}</span>
                         </p>
+                        <p class="card-field">
+                            <lightning-icon icon-name="utility:clock" size="xx-small"
+                                            class="field-icon"></lightning-icon>
+                            <span class="field-label">Days Remaining:</span>
+                            <span class="field-value">{projectDaysRemaining}</span>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -51,7 +60,7 @@
             <div class="slds-col slds-size_1-of-3">
                 <div class="header-card">
                     <div class="card-title">
-                        <lightning-icon icon-name="standard:asset_object" size="small"
+                        <lightning-icon icon-name="action:preview" size="small"
                                         class="slds-m-right_x-small"></lightning-icon>
                         Project Details
                     </div>
@@ -60,7 +69,7 @@
                             <lightning-icon icon-name="utility:asset_warranty" size="xx-small"
                                             class="field-icon"></lightning-icon>
                             <span class="field-label">Asset:</span>
-                            <span class="field-value">{projectAsset}</span>
+                            <a href={assetRecordUrl} class="field-value field-link" data-id={projectAssetId} onclick={handleNavigateToAsset}>{projectAsset}</a>
                         </p>
                         <p class="card-field">
                             <lightning-icon icon-name="utility:identity" size="xx-small"
@@ -84,32 +93,32 @@
                 </div>
             </div>
 
-            <!-- Card 3 — Completion -->
+            <!-- Card 3 — Project Utilization -->
             <div class="slds-col slds-size_1-of-3">
                 <div class="header-card">
                     <div class="card-title">
-                        <lightning-icon icon-name="standard:progress_ring" size="small"
+                        <lightning-icon icon-name="action:update" size="small"
                                         class="slds-m-right_x-small"></lightning-icon>
-                        Completion
+                        Project Utilization
                     </div>
                     <div class="card-body">
                         <p class="card-field">
-                            <lightning-icon icon-name="utility:check" size="xx-small"
+                            <lightning-icon icon-name="utility:date_input" size="xx-small"
                                             class="field-icon"></lightning-icon>
-                            <span class="field-label">Overall Completion:</span>
-                            <span class="field-value">{projectCompletion}</span>
+                            <span class="field-label">Total Days Budgeted:</span>
+                            <span class="field-value">{utilizationBudgeted}</span>
                         </p>
                         <p class="card-field">
-                            <lightning-icon icon-name="utility:rows" size="xx-small"
+                            <lightning-icon icon-name="utility:trending" size="xx-small"
                                             class="field-icon"></lightning-icon>
-                            <span class="field-label">Total Checklist Items:</span>
-                            <span class="field-value">{totalChecklistItems}</span>
+                            <span class="field-label">Days Charged:</span>
+                            <span class="field-value">{utilizationCharged}</span>
                         </p>
                         <p class="card-field">
-                            <lightning-icon icon-name="utility:filter" size="xx-small"
+                            <lightning-icon icon-name="utility:quote" size="xx-small"
                                             class="field-icon"></lightning-icon>
-                            <span class="field-label">Showing:</span>
-                            <span class="field-value">{showingCount} items</span>
+                            <span class="field-label">Utilisation Remaining:</span>
+                            <span class="field-value">{utilizationRemaining}</span>
                         </p>
                     </div>
                 </div>
@@ -127,6 +136,55 @@
             </div>
             <p class="update-text">{latestProjectUpdateDisplay}</p>
         </div>
+
+        <!-- TOOLBAR: Filter Tabs + Actions -->
+        <div class="phase-toolbar">
+            <div class="phase-tabs">
+                <button class={allTabClass} data-filter="All" onclick={handleFilterClick}>
+                    <span class="tab-label">All</span>
+                    <span class="tab-stats">
+                        <span class="tab-badge">{allTabPercentage}</span>
+                        <span class="tab-progress-bar">
+                            <span class="tab-progress-fill" style={allTabProgressStyle}></span>
+                        </span>
+                        <span class="tab-badge">{allTabRatio}</span>
+                    </span>
+                </button>
+                <button class={openTabClass} data-filter="Open" onclick={handleFilterClick}>
+                    <span class="tab-label">Open</span>
+                    <span class="tab-badge">{openTabBadge}</span>
+                </button>
+                <button class={closedTabClass} data-filter="Closed" onclick={handleFilterClick}>
+                    <span class="tab-label">Closed</span>
+                    <span class="tab-badge">{closedTabBadge}</span>
+                </button>
+                <button class={naTabClass} data-filter="NA" onclick={handleFilterClick}>
+                    <span class="tab-label">N/A</span>
+                    <span class="tab-badge">{naTabBadge}</span>
+                </button>
+            </div>
+            <div class="toolbar-actions">
+                <span class="item-count">{itemCountLabel}</span>
+                <button class="btn" onclick={handleToggleAddForm}>
+                    + Add Item
+                </button>
+                <button class={bulkUpdateButtonClass} onclick={handleToggleBulkUpdate}>
+                    Bulk Update
+                </button>
+                <button class="btn" onclick={handleDiscard} disabled={noDirtyItems}>
+                    &#8634; Discard
+                </button>
+                <button class="btn btn-brand" onclick={handleSave} disabled={noDirtyItems}>
+                    Save
+                </button>
+            </div>
+        </div>
+
+        </div>
+        <!-- END FIXED HEADER -->
+
+        <!-- SCROLLABLE TABLE CONTAINER (Change 5) -->
+        <div class="table-scroll-container">
 
         <!-- ADD ITEM FORM (toggleable) -->
         <template lwc:if={showAddForm}>
@@ -158,36 +216,6 @@
             </div>
         </template>
 
-        <!-- TOOLBAR: Filter Tabs + Actions -->
-        <div class="phase-toolbar">
-            <div class="phase-tabs">
-                <button class={allTabClass} data-filter="All" onclick={handleFilterClick}>
-                    <span class="tab-label">All</span>
-                </button>
-                <button class={openTabClass} data-filter="Open" onclick={handleFilterClick}>
-                    <span class="tab-label">Open</span>
-                </button>
-                <button class={closedTabClass} data-filter="Closed" onclick={handleFilterClick}>
-                    <span class="tab-label">Closed</span>
-                </button>
-            </div>
-            <div class="toolbar-actions">
-                <span class="item-count">{itemCountLabel}</span>
-                <button class="btn" onclick={handleToggleAddForm}>
-                    + Add Item
-                </button>
-                <button class={bulkUpdateButtonClass} onclick={handleToggleBulkUpdate}>
-                    Bulk Update
-                </button>
-                <button class="btn" onclick={handleDiscard} disabled={noDirtyItems}>
-                    &#8634; Discard
-                </button>
-                <button class="btn btn-brand" onclick={handleSave} disabled={noDirtyItems}>
-                    Save
-                </button>
-            </div>
-        </div>
-
         <!-- BULK UPDATE SECTION (toggleable) -->
         <template lwc:if={showBulkUpdate}>
             <div class="bulk-update-section">
@@ -200,133 +228,39 @@
                 <!-- Row 1 -->
                 <div class="bulk-update-grid">
                     <div class="bulk-field-item">
-                        <lightning-combobox
-                            label="Department"
-                            value={bulkDepartment}
-                            options={departmentOptionsWithNone}
-                            onchange={handleBulkFieldChange}
-                            data-field="Department__c"
-                            placeholder="Department"
-                            class="bulk-field-input"
-                        ></lightning-combobox>
+                        <lightning-combobox label="Department" value={bulkDepartment} options={departmentOptionsWithNone} onchange={handleBulkFieldChange} data-field="Department__c" placeholder="Department" class="bulk-field-input"></lightning-combobox>
                     </div>
                     <div class="bulk-field-item">
-                        <lightning-input type="text"
-                            label="Comments"
-                            value={bulkComments}
-                            onchange={handleBulkFieldChange}
-                            data-field="leaseworks__Comments__c"
-                            placeholder="Comments"
-                            class="bulk-field-input"
-                        ></lightning-input>
+                        <lightning-input type="date" label="Actual Start" value={bulkActualStart} onchange={handleBulkFieldChange} data-field="Actual_Start_Date__c" class="bulk-field-input"></lightning-input>
                     </div>
                     <div class="bulk-field-item">
-                        <lightning-combobox
-                            label="Reviewed"
-                            value={bulkReviewed}
-                            options={reviewedOptionsWithNone}
-                            onchange={handleBulkFieldChange}
-                            data-field="leaseworks__Reviewed__c"
-                            placeholder="Reviewed"
-                            class="bulk-field-input"
-                        ></lightning-combobox>
+                        <lightning-input type="date" label="Actual Completion" value={bulkActualFinish} onchange={handleBulkFieldChange} data-field="Actual_Finish_Date__c" class="bulk-field-input"></lightning-input>
                     </div>
                     <div class="bulk-field-item">
-                        <lightning-input type="text"
-                            label="Lease Section Ref"
-                            value={bulkLeaseSectionRef}
-                            onchange={handleBulkFieldChange}
-                            data-field="leaseworks__Lease_Section_Reference__c"
-                            placeholder="Lease Ref"
-                            class="bulk-field-input"
-                        ></lightning-input>
-                    </div>
-                    <div class="bulk-field-item">
-                        <lightning-input type="url"
-                            label="External Item URL"
-                            value={bulkExternalUrl}
-                            onchange={handleBulkFieldChange}
-                            data-field="leaseworks__External_Item_URL__c"
-                            placeholder="URL"
-                            class="bulk-field-input"
-                        ></lightning-input>
-                    </div>
-                    <div class="bulk-field-item">
-                        <lightning-combobox
-                            label="Responsible Party"
-                            value={bulkResponsibleParty}
-                            options={responsiblePartyOptionsWithNone}
-                            onchange={handleBulkFieldChange}
-                            data-field="leaseworks__Responsible_Party__c"
-                            placeholder="Resp. Party"
-                            class="bulk-field-input"
-                        ></lightning-combobox>
+                        <lightning-input type="number" label="Days Prior" value={bulkDayPrior} onchange={handleBulkFieldChange} data-field="Day_Prior__c" placeholder="Day" step="1" class="bulk-field-input"></lightning-input>
                     </div>
                 </div>
 
                 <!-- Row 2 -->
                 <div class="bulk-update-grid slds-m-top_small">
                     <div class="bulk-field-item">
-                        <lightning-input type="date"
-                            label="Actual Start"
-                            value={bulkActualStart}
-                            onchange={handleBulkFieldChange}
-                            data-field="Actual_Start_Date__c"
-                            class="bulk-field-input"
-                        ></lightning-input>
+                        <lightning-combobox label="% Complete" value={bulkComplete} options={completeOptionsWithNone} onchange={handleBulkFieldChange} data-field="Complete_N__c" placeholder="%" class="bulk-field-input"></lightning-combobox>
                     </div>
                     <div class="bulk-field-item">
-                        <lightning-input type="date"
-                            label="Actual Finish"
-                            value={bulkActualFinish}
-                            onchange={handleBulkFieldChange}
-                            data-field="Actual_Finish_Date__c"
-                            class="bulk-field-input"
-                        ></lightning-input>
+                        <lightning-combobox label="Status" value={bulkStatus} options={statusOptionsWithNone} onchange={handleBulkFieldChange} data-field="leaseworks__Status__c" placeholder="Status" class="bulk-field-input"></lightning-combobox>
                     </div>
                     <div class="bulk-field-item">
-                        <lightning-combobox
-                            label="Status"
-                            value={bulkStatus}
-                            options={statusOptionsWithNone}
-                            onchange={handleBulkFieldChange}
-                            data-field="leaseworks__Status__c"
-                            placeholder="Status"
-                            class="bulk-field-input"
-                        ></lightning-combobox>
+                        <lightning-combobox label="Necessary" value={bulkNecessary} options={bulkNecessaryOptions} onchange={handleBulkFieldChange} data-field="pro_Necessary__c" placeholder="Necessary" class="bulk-field-input"></lightning-combobox>
                     </div>
                     <div class="bulk-field-item">
-                        <lightning-input type="number"
-                            label="% Complete"
-                            value={bulkComplete}
-                            onchange={handleBulkFieldChange}
-                            data-field="Complete__c"
-                            placeholder="%"
-                            min="0" max="100" step="1"
-                            class="bulk-field-input"
-                        ></lightning-input>
+                        <lightning-combobox label="Assigned To" value={bulkAssignedTo} options={assignedToOptions} onchange={handleBulkFieldChange} data-field="Assigned_To__c" placeholder="Assigned" class="bulk-field-input"></lightning-combobox>
                     </div>
-                    <div class="bulk-field-item">
-                        <lightning-input type="number"
-                            label="Day Prior"
-                            value={bulkDayPrior}
-                            onchange={handleBulkFieldChange}
-                            data-field="Day_Prior__c"
-                            placeholder="Day"
-                            step="1"
-                            class="bulk-field-input"
-                        ></lightning-input>
-                    </div>
-                    <div class="bulk-field-item">
-                        <lightning-input type="number"
-                            label="Predecessors"
-                            value={bulkPredecessors}
-                            onchange={handleBulkFieldChange}
-                            data-field="Predecessors__c"
-                            placeholder="Pred"
-                            step="1"
-                            class="bulk-field-input"
-                        ></lightning-input>
+                </div>
+
+                <!-- Row 3 -->
+                <div class="bulk-update-grid slds-m-top_small">
+                    <div class="bulk-field-item bulk-field-item_wide">
+                        <lightning-input type="text" label="Comments" value={bulkComments} onchange={handleBulkFieldChange} data-field="leaseworks__Comments__c" placeholder="Comments" class="bulk-field-input"></lightning-input>
                     </div>
                 </div>
 
@@ -358,12 +292,15 @@
                         <th class="col-number">#</th>
                         <th class="col-name">Checklist Item</th>
                         <th class="col-department">Department</th>
+                        <th class="col-date">Actual Start</th>
+                        <th class="col-date">Actual Completion</th>
+                        <th class="col-number-sm">Days Prior</th>
+                        <th class="col-number-sm">Days Remaining</th>
+                        <th class="col-number-sm">% Complete</th>
+                        <th class="col-status">Status</th>
+                        <th class="col-necessary">Necessary</th>
                         <th class="col-comments">Comments</th>
                         <th class="col-assigned">Assigned To</th>
-                        <th class="col-reviewed">Reviewed</th>
-                        <th class="col-responsible">Responsible Party</th>
-                        <th class="col-status">Status</th>
-                        <th class="col-number-sm">% Complete</th>
                         <th class="col-done">Done</th>
                     </tr>
                 </thead>
@@ -404,23 +341,41 @@
                                 <td class="col-department">
                                     <span class="text-display">{item.Department__c}</span>
                                 </td>
+                                <td class="col-date">
+                                    <span class="text-display">{item.actualStartDisplay}</span>
+                                </td>
+                                <td class="col-date">
+                                    <span class="text-display">{item.actualFinishDisplay}</span>
+                                </td>
+                                <td class="col-number-sm">
+                                    <span class="text-display">{item.dayPriorDisplay}</span>
+                                </td>
+                                <td class="col-number-sm">
+                                    <span class="text-display">{item.daysRemainingDisplay}</span>
+                                </td>
+                                <td class="col-number-sm">
+                                    <span class="text-display">{item.completeDisplay}</span>
+                                </td>
+                                <td class="col-status">
+                                    <span class="text-display">{item.leaseworks__Status__c}</span>
+                                </td>
+                                <td class="col-necessary">
+                                    <select class="inline-select"
+                                            data-id={item.Id}
+                                            data-field="pro_Necessary__c"
+                                            onchange={handleInlineNecessaryChange}>
+                                        <template for:each={item.necessarySelectOptions} for:item="opt">
+                                            <option key={opt.value}
+                                                    value={opt.value}
+                                                    selected={opt.selected}>{opt.label}</option>
+                                        </template>
+                                    </select>
+                                </td>
                                 <td class="col-comments">
                                     <span class="text-display">{item.leaseworks__Comments__c}</span>
                                 </td>
                                 <td class="col-assigned">
                                     <span class="text-display">{item.assignedToName}</span>
-                                </td>
-                                <td class="col-reviewed">
-                                    <span class="text-display">{item.leaseworks__Reviewed__c}</span>
-                                </td>
-                                <td class="col-responsible">
-                                    <span class="text-display">{item.leaseworks__Responsible_Party__c}</span>
-                                </td>
-                                <td class="col-status">
-                                    <span class="text-display">{item.leaseworks__Status__c}</span>
-                                </td>
-                                <td class="col-number-sm">
-                                    <span class="text-display">{item.completeDisplay}</span>
                                 </td>
                                 <td class="col-done">
                                     <label class="done-checkbox">
@@ -437,7 +392,7 @@
                     </template>
                     <template lwc:else>
                         <tr>
-                            <td colspan="11" class="empty-message">No checklist items found.</td>
+                            <td colspan="14" class="empty-message">No checklist items found.</td>
                         </tr>
                     </template>
                 </tbody>
@@ -460,30 +415,66 @@
                               class="slds-m-left_small"></lightning-button>
         </div>
 
-        <!-- FOOTER -->
-        <div class="footer-bar slds-grid slds-grid_align-center slds-m-top_medium slds-m-bottom_medium">
-            <lightning-button label="Back to Project" variant="neutral"
-                              onclick={handleBackToProject}></lightning-button>
         </div>
+        <!-- END SCROLLABLE TABLE CONTAINER -->
 
-        <!-- EDIT MODAL -->
+        <!-- EDIT MODAL (Change 4: item picker + Change 6: field reorder + Days Prior) -->
         <template lwc:if={showEditModal}>
             <section role="dialog" tabindex="-1" aria-modal="true"
                      aria-label={editModalTitle} class="slds-modal slds-fade-in-open">
                 <div class="slds-modal__container edit-modal-container">
-                    <!-- Header -->
-                    <div class="slds-modal__header edit-modal-header">
-                        <lightning-button-icon
-                            icon-name="utility:close"
-                            alternative-text="Close"
-                            class="slds-modal__close"
-                            onclick={handleCloseEditModal}
-                        ></lightning-button-icon>
-                        <h2 class="slds-modal__title slds-hyphenate">{editModalTitle}</h2>
+                    <!-- Header with item picker -->
+                    <div class="slds-modal__header edit-modal-header-block">
+                        <div class="edit-modal-close-row">
+                            <lightning-button-icon
+                                icon-name="utility:close"
+                                alternative-text="Close"
+                                onclick={handleCloseEditModal}
+                            ></lightning-button-icon>
+                        </div>
+                        <div class="item-picker-wrapper">
+                            <!-- Trigger field -->
+                            <div class="item-picker-trigger" onclick={handleItemPickerToggle} role="button" tabindex="0">
+                                <span class="item-picker-value">{editModalTitle}</span>
+                                <lightning-icon icon-name="utility:chevrondown" size="xx-small" class="item-picker-chevron"></lightning-icon>
+                            </div>
+                            <!-- Dropdown -->
+                            <template lwc:if={itemPickerOpen}>
+                                <div class="item-picker-dropdown">
+                                    <input type="text"
+                                           class="item-picker-search"
+                                           placeholder="Search items..."
+                                           value={itemPickerSearch}
+                                           oninput={handleItemPickerSearch} />
+                                    <ul class="item-picker-list" role="listbox">
+                                        <template for:each={itemPickerFilteredOptions} for:item="opt">
+                                            <li key={opt.value}
+                                                class="item-picker-option"
+                                                data-id={opt.value}
+                                                onclick={handleItemPickerSelect}
+                                                role="option">
+                                                {opt.label}
+                                            </li>
+                                        </template>
+                                        <template lwc:if={itemPickerNoResults}>
+                                            <li class="item-picker-no-results">No items match</li>
+                                        </template>
+                                    </ul>
+                                </div>
+                            </template>
+                        </div>
                     </div>
                     <!-- Body -->
-                    <div class="slds-modal__content slds-p-around_medium edit-modal-body">
+                    <div class="slds-modal__content edit-modal-body">
                         <div class="edit-modal-grid">
+                            <div class="edit-modal-field edit-modal-field_wide">
+                                <lightning-input type="text"
+                                    label="Item Name"
+                                    value={editModalFields.Name}
+                                    data-field="Name"
+                                    onchange={handleEditModalFieldChange}
+                                ></lightning-input>
+                            </div>
                             <div class="edit-modal-field">
                                 <lightning-combobox
                                     label="Department"
@@ -492,64 +483,6 @@
                                     data-field="Department__c"
                                     onchange={handleEditModalFieldChange}
                                 ></lightning-combobox>
-                            </div>
-                            <div class="edit-modal-field">
-                                <lightning-input type="text"
-                                    label="Comments"
-                                    value={editModalFields.leaseworks__Comments__c}
-                                    data-field="leaseworks__Comments__c"
-                                    onchange={handleEditModalFieldChange}
-                                ></lightning-input>
-                            </div>
-                            <div class="edit-modal-field">
-                                <lightning-combobox
-                                    label="Reviewed"
-                                    value={editModalFields.leaseworks__Reviewed__c}
-                                    options={reviewedOptionsWithNone}
-                                    data-field="leaseworks__Reviewed__c"
-                                    onchange={handleEditModalFieldChange}
-                                ></lightning-combobox>
-                            </div>
-                            <div class="edit-modal-field">
-                                <lightning-input type="text"
-                                    label="Lease Section Ref"
-                                    value={editModalFields.leaseworks__Lease_Section_Reference__c}
-                                    data-field="leaseworks__Lease_Section_Reference__c"
-                                    onchange={handleEditModalFieldChange}
-                                ></lightning-input>
-                            </div>
-                            <div class="edit-modal-field">
-                                <lightning-input type="url"
-                                    label="External Item URL"
-                                    value={editModalFields.leaseworks__External_Item_URL__c}
-                                    data-field="leaseworks__External_Item_URL__c"
-                                    onchange={handleEditModalFieldChange}
-                                ></lightning-input>
-                            </div>
-                            <div class="edit-modal-field">
-                                <lightning-combobox
-                                    label="Responsible Party"
-                                    value={editModalFields.leaseworks__Responsible_Party__c}
-                                    options={responsiblePartyOptionsWithNone}
-                                    data-field="leaseworks__Responsible_Party__c"
-                                    onchange={handleEditModalFieldChange}
-                                ></lightning-combobox>
-                            </div>
-                            <div class="edit-modal-field">
-                                <lightning-input type="date"
-                                    label="Actual Start"
-                                    value={editModalFields.Actual_Start_Date__c}
-                                    data-field="Actual_Start_Date__c"
-                                    onchange={handleEditModalFieldChange}
-                                ></lightning-input>
-                            </div>
-                            <div class="edit-modal-field">
-                                <lightning-input type="date"
-                                    label="Actual Finish"
-                                    value={editModalFields.Actual_Finish_Date__c}
-                                    data-field="Actual_Finish_Date__c"
-                                    onchange={handleEditModalFieldChange}
-                                ></lightning-input>
                             </div>
                             <div class="edit-modal-field">
                                 <lightning-combobox
@@ -561,17 +494,60 @@
                                 ></lightning-combobox>
                             </div>
                             <div class="edit-modal-field">
-                                <lightning-input type="number"
-                                    label="% Complete"
-                                    value={editModalFields.Complete__c}
-                                    data-field="Complete__c"
-                                    min="0" max="100" step="1"
+                                <lightning-combobox
+                                    label="Necessary"
+                                    value={editModalFields.pro_Necessary__c}
+                                    options={necessaryOptions}
+                                    data-field="pro_Necessary__c"
+                                    onchange={handleEditModalFieldChange}
+                                ></lightning-combobox>
+                            </div>
+                            <div class="edit-modal-field">
+                                <lightning-combobox
+                                    label="Assigned To"
+                                    value={editModalFields.Assigned_To__c}
+                                    options={assignedToOptions}
+                                    data-field="Assigned_To__c"
+                                    onchange={handleEditModalFieldChange}
+                                ></lightning-combobox>
+                            </div>
+                            <div class="edit-modal-field">
+                                <lightning-combobox
+                                    label="Responsible Party (Lessor/Lessee)"
+                                    value={editModalFields.leaseworks__Responsible_Party__c}
+                                    options={responsiblePartyOptionsWithNone}
+                                    data-field="leaseworks__Responsible_Party__c"
+                                    onchange={handleEditModalFieldChange}
+                                ></lightning-combobox>
+                            </div>
+                            <div class="edit-modal-field">
+                                <lightning-input type="date"
+                                    label="Actual Start Date"
+                                    value={editModalFields.Actual_Start_Date__c}
+                                    data-field="Actual_Start_Date__c"
+                                    onchange={handleEditModalFieldChange}
+                                ></lightning-input>
+                            </div>
+                            <div class="edit-modal-field">
+                                <lightning-input type="date"
+                                    label="Actual Completion Date"
+                                    value={editModalFields.Actual_Finish_Date__c}
+                                    data-field="Actual_Finish_Date__c"
                                     onchange={handleEditModalFieldChange}
                                 ></lightning-input>
                             </div>
                             <div class="edit-modal-field">
                                 <lightning-input type="number"
-                                    label="Day Prior"
+                                    label="Duration (Days)"
+                                    value={editModalFields.Duration_Days_N__c}
+                                    data-field="Duration_Days_N__c"
+                                    step="1"
+                                    onchange={handleEditModalFieldChange}
+                                ></lightning-input>
+                            </div>
+                            <div class="edit-modal-field">
+                                <lightning-input type="number"
+                                    label="Days Prior"
                                     value={editModalFields.Day_Prior__c}
                                     data-field="Day_Prior__c"
                                     step="1"
@@ -579,13 +555,21 @@
                                 ></lightning-input>
                             </div>
                             <div class="edit-modal-field">
-                                <lightning-input type="number"
-                                    label="Predecessors"
-                                    value={editModalFields.Predecessors__c}
-                                    data-field="Predecessors__c"
-                                    step="1"
+                                <lightning-combobox
+                                    label="% Complete"
+                                    value={editModalFields.Complete_N__c}
+                                    options={completeOptionsWithNone}
+                                    data-field="Complete_N__c"
                                     onchange={handleEditModalFieldChange}
-                                ></lightning-input>
+                                ></lightning-combobox>
+                            </div>
+                            <div class="edit-modal-field edit-modal-field_wide">
+                                <lightning-textarea
+                                    label="Comments"
+                                    value={editModalFields.leaseworks__Comments__c}
+                                    data-field="leaseworks__Comments__c"
+                                    onchange={handleEditModalFieldChange}
+                                ></lightning-textarea>
                             </div>
                         </div>
                     </div>
@@ -599,5 +583,36 @@
             <div class="slds-backdrop slds-backdrop_open"></div>
         </template>
 
+
+        <!-- NECESSARY COMMENT MODAL (GT-18 — fires on Necessary != Yes) -->
+        <template lwc:if={showNecessaryModal}>
+            <section role="dialog" tabindex="-1" aria-modal="true"
+                     aria-label="Comment Required" class="slds-modal slds-fade-in-open na-comment-modal">
+                <div class="slds-modal__container edit-modal-container">
+                    <div class="slds-modal__header edit-modal-header">
+                        <h2 class="slds-modal__title slds-hyphenate">Comment Required</h2>
+                    </div>
+                    <div class="slds-modal__content edit-modal-body">
+                        <p class="na-modal-subtitle">Please explain why this item is not necessary.</p>
+                        <label class="na-field-label">Comment</label>
+                        <textarea
+                            class="comment-textarea"
+                            value={necessaryCommentText}
+                            onchange={handleNecessaryCommentChange}
+                            oninput={handleNecessaryCommentChange}
+                            placeholder="Enter comment..."
+                        ></textarea>
+                        <template lwc:if={necessaryCommentValidationError}>
+                            <p class="slds-text-color_error slds-m-top_x-small">A comment is required.</p>
+                        </template>
+                    </div>
+                    <div class="slds-modal__footer edit-modal-footer">
+                        <button class="btn" onclick={handleNecessaryModalCancel}>Cancel</button>
+                        <button class="btn btn-brand" onclick={handleNecessaryModalConfirm}>Confirm</button>
+                    </div>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open na-backdrop"></div>
+        </template>
     </section>
 </template>

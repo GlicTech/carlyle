@@ -13,21 +13,31 @@
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
             <name>recipientAddresses</name>
-            <value/>
+            <value>
+                <collectionElements>
+                    <elementReference>varEmailRecipients</elementReference>
+                </collectionElements>
+            </value>
         </inputParameters>
         <inputParameters>
             <name>ccAddresses</name>
-            <value/>
+            <value>
+                <collectionElements>
+                    <elementReference>varCcEmailCollection</elementReference>
+                </collectionElements>
+            </value>
         </inputParameters>
         <inputParameters>
             <name>senderType</name>
             <value>
+                <inputConfiguratorMode>Custom</inputConfiguratorMode>
                 <stringValue>OrgWideEmailAddress</stringValue>
             </value>
         </inputParameters>
         <inputParameters>
             <name>senderAddress</name>
             <value>
+                <inputConfiguratorMode>Custom</inputConfiguratorMode>
                 <stringValue>leaseworks@carlyle.aero</stringValue>
             </value>
         </inputParameters>
@@ -46,6 +56,7 @@
         <inputParameters>
             <name>emailBody</name>
             <value>
+                <inputConfiguratorMode>Custom</inputConfiguratorMode>
                 <stringValue>&lt;p&gt;{!tt_EmailBody}&lt;/p&gt;</stringValue>
             </value>
         </inputParameters>
@@ -101,6 +112,7 @@
         <offset>0</offset>
     </actionCalls>
     <apiVersion>65.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <assignments>
         <name>Assign_Documentation_Sign_Off_Emails_To_Variable</name>
         <label>Assign Documentation Sign Off Emails To Variable</label>

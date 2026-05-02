@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Logo__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(
+  ISBLANK(Website),
+  &quot;&quot;,
+  HYPERLINK(
+    IF(
+      BEGINS(Website, &quot;http&quot;),
+      Website,
+      &quot;https://&quot; &amp; Website
+    ),
+    IMAGE(
+      &quot;https://img.logo.dev/&quot; &amp; Website &amp; &quot;?token=pk_MA5a54O1TvyTM5yPXsjnLA&amp;size=128&amp;format=png&amp;fallback=404&quot;,
+      Name,
+      40,
+      40
+    ),
+    &quot;_blank&quot;
+  )
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Logo</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

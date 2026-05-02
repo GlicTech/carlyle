@@ -4,7 +4,8 @@
     <deprecated>false</deprecated>
     <description>Formula field showing the date of the document</description>
     <externalId>false</externalId>
-    <formula>CASE(TEXT(leaseworks__Transaction_Type__c)
+    <formula>if(BEGINS(TEXT(leaseworks__Transaction_Type__c),&apos;Adjustment - &apos;), TEXT(leaseworks__Supplemental_Rent_Adjustment_Date__c), 
+CASE(TEXT(leaseworks__Transaction_Type__c)
 ,&apos;Opening Balance&apos;, IF(!ISBLANK(leaseworks__Supplemental_Rent__r.leaseworks__Opening_Balance_Date_Override__c),TEXT(leaseworks__Supplemental_Rent__r.leaseworks__Opening_Balance_Date_Override__c),IF(
 OR((leaseworks__Lease_Start_Date__c &lt; leaseworks__Supplemental_Rent__r.leaseworks__Min_Transaction_Date__c),ISBlank(leaseworks__Supplemental_Rent__r.leaseworks__Min_Transaction_Date__c)),TEXT(leaseworks__Lease_Start_Date__c),TEXT(leaseworks__Supplemental_Rent__r.leaseworks__Min_Transaction_Date__c)))
 ,&apos;MR Invoice&apos;, IF(ISBLANK(leaseworks__Invoice_Line_Item__c ) ,  leaseworks__Y_Hidden_Doc_Date__c , TEXT(leaseworks__Invoice_Line_Item__r.leaseworks__Invoice__r.leaseworks__Invoice_Date__c)) 
@@ -29,14 +30,13 @@ TEXT(leaseworks__Payment_Line_Item__r.leaseworks__Payment_Date__c))
 ,&apos;MR Manual Payout&apos;,TEXT(leaseworks__Event_Payout__r.leaseworks__Payout_Date__c)
 ,&apos;Payable - MR Reconciliation&apos;,TEXT(leaseworks__Event_Payable__r.leaseworks__Payable_Date__c)
 ,&apos;Payout - MR Reconciliation&apos;,TEXT(leaseworks__Event_Payout__r.leaseworks__Payout_Date__c)
-,&apos;Adjustment&apos;,TEXT(leaseworks__Supplemental_Rent_Adjustment_Date__c)
 ,&apos;MR Transfer&apos;,TEXT(leaseworks__MR_Fund_Transfer_Date__c)
 ,&apos;MR Accrued&apos;,TEXT(leaseworks__Utilization_Date__c)
 ,&apos;MR Claim Accrued&apos;,TEXT(leaseworks__Claim_Date__c)
 ,&apos;MR Invoice Adjustment&apos;,TEXT(leaseworks__Invoice_Adjustment_Line_Item__r.leaseworks__Invoice_Adjustment__r.leaseworks__Adjustment_Date__c)
 ,&apos;MR Lessor Commitment Amount Applied&apos;,TEXT(leaseworks__Event_Payable__r.leaseworks__Payable_Date__c)
 ,&apos;MR Lessor Commitment Amount Used&apos;,TEXT(leaseworks__Event_Payout__r.leaseworks__Payout_Date__c)
-,&apos;&apos;)</formula>
+,&apos;&apos;))</formula>
     <inlineHelpText>Auto-calculated field, showing the source document date</inlineHelpText>
     <label>Transaction Date</label>
     <required>false</required>

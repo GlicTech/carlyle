@@ -133,7 +133,7 @@
                         <valueListItems>
                             <value>leaseworks__Marketing_Activity__c.pro_Approval_Console</value>
                             <visibilityRule>
-                                <booleanFilter>1 OR 2</booleanFilter>
+                                <booleanFilter>1 OR 2 OR 3</booleanFilter>
                                 <criteria>
                                     <leftValue>{!Record.leaseworks__Deal_Status__c}</leftValue>
                                     <operator>EQUAL</operator>
@@ -143,6 +143,11 @@
                                     <leftValue>{!Record.leaseworks__Deal_Status__c}</leftValue>
                                     <operator>EQUAL</operator>
                                     <rightValue>Documentation</rightValue>
+                                </criteria>
+                                <criteria>
+                                    <leftValue>{!Record.leaseworks__Deal_Status__c}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>Termsheet Signature</rightValue>
                                 </criteria>
                             </visibilityRule>
                         </valueListItems>
@@ -231,6 +236,10 @@
         </itemInstances>
         <itemInstances>
             <componentInstance>
+                <componentInstanceProperties>
+                    <name>label</name>
+                    <value>Tabs</value>
+                </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>tabs</name>
                     <value>Facet-ff4eabfa-5080-48ba-ad13-18ba2b35e70e</value>
@@ -436,6 +445,10 @@
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
+                    <name>label</name>
+                    <value>Tabs</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
                     <name>tabs</name>
                     <value>Facet-f1366861-c86f-4e56-92ce-4a00e0e0e002</value>
                 </componentInstanceProperties>
@@ -559,6 +572,10 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
+                <componentInstanceProperties>
+                    <name>label</name>
+                    <value>Tabs</value>
+                </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>tabs</name>
                     <value>maintabs</value>

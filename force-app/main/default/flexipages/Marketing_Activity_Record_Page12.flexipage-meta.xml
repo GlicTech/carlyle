@@ -133,7 +133,7 @@
                         <valueListItems>
                             <value>leaseworks__Marketing_Activity__c.pro_Approval_Console</value>
                             <visibilityRule>
-                                <booleanFilter>1 OR 2</booleanFilter>
+                                <booleanFilter>1 OR 2 OR 3</booleanFilter>
                                 <criteria>
                                     <leftValue>{!Record.leaseworks__Deal_Status__c}</leftValue>
                                     <operator>EQUAL</operator>
@@ -143,6 +143,11 @@
                                     <leftValue>{!Record.leaseworks__Deal_Status__c}</leftValue>
                                     <operator>EQUAL</operator>
                                     <rightValue>Documentation</rightValue>
+                                </criteria>
+                                <criteria>
+                                    <leftValue>{!Record.leaseworks__Deal_Status__c}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>Termsheet Signature</rightValue>
                                 </criteria>
                             </visibilityRule>
                         </valueListItems>
@@ -231,6 +236,10 @@
         </itemInstances>
         <itemInstances>
             <componentInstance>
+                <componentInstanceProperties>
+                    <name>label</name>
+                    <value>Tabs</value>
+                </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>tabs</name>
                     <value>Facet-d2f672cc-1464-4920-b271-be2ca74030b2</value>
@@ -455,6 +464,10 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
+                <componentInstanceProperties>
+                    <name>label</name>
+                    <value>Tabs</value>
+                </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>tabs</name>
                     <value>maintabs</value>

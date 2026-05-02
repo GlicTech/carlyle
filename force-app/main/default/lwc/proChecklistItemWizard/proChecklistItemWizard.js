@@ -8,10 +8,21 @@ import getChecklistItems from '@salesforce/apex/Pro_ChecklistItemController.getC
 import saveChecklistItems from '@salesforce/apex/Pro_ChecklistItemController.saveChecklistItems';
 import getPicklistValues from '@salesforce/apex/Pro_ChecklistItemController.getPicklistValues';
 import addChecklistItem from '@salesforce/apex/Pro_ChecklistItemController.addChecklistItem';
+import getProjectUtilization from '@salesforce/apex/Pro_ChecklistItemController.getProjectUtilization';
+import getTabCounts from '@salesforce/apex/Pro_ChecklistItemController.getTabCounts';
+import getProjectContacts from '@salesforce/apex/Pro_ChecklistItemController.getProjectContacts';
 
 const PAGE_SIZE = 200;
-const STATUS_COMPLETED = 'Completed';
+// Status API values (unchanged managed LeaseWorks picklist).
+// 'Completed' API is shown to users as 'Complete'; 'Hold' is shown as 'On Hold'.
+const STATUS_COMPLETED   = 'Completed';
 const STATUS_NOT_STARTED = 'Not Started';
+const COMPLETE_N_FULL    = '100';
+
+// Necessary picklist (pro_Necessary__c) — v4 UAT
+const NECESSARY_YES    = 'Yes';
+const NECESSARY_NA     = 'NA';
+const NECESSARY_WAIVED = 'Waived';
 
 const LABELS = {
     UNSAVED_CHANGES: 'You have unsaved changes. Please save or discard first.',
@@ -25,23 +36,40 @@ const LABELS = {
     ADD_ITEM_NAME_REQUIRED: 'Item name is required.',
     LOAD_PICKLISTS_FAILED: 'Failed to load picklist values',
     LOAD_ITEMS_FAILED: 'Failed to load checklist items',
-    UNKNOWN_ERROR: 'An unexpected error occurred.'
+    UNKNOWN_ERROR: 'An unexpected error occurred.',
+    NECESSARY_COMMENT_REQUIRED: 'A comment is required when Necessary is not Yes.'
 };
 
-const EDITABLE_FIELDS = [
+// Fields exposed in the Edit dialog (GT-11, GT-19, GT-20)
+const MODAL_FIELDS = [
+    'Name',
     'Department__c',
-    'leaseworks__Comments__c',
-    'leaseworks__Reviewed__c',
-    'leaseworks__Lease_Section_Reference__c',
-    'leaseworks__External_Item_URL__c',
+    'leaseworks__Status__c',
+    'pro_Necessary__c',
+    'Assigned_To__c',
     'leaseworks__Responsible_Party__c',
     'Actual_Start_Date__c',
     'Actual_Finish_Date__c',
-    'leaseworks__Status__c',
-    'Complete__c',
+    'Duration_Days_N__c',
     'Day_Prior__c',
-    'Predecessors__c'
+    'Complete_N__c',
+    'leaseworks__Comments__c'
 ];
+
+// Fields exposed in the Bulk Update toolbar (GT-12, GT-18)
+const BULK_FIELDS = [
+    'Department__c',
+    'Actual_Start_Date__c',
+    'Actual_Finish_Date__c',
+    'Day_Prior__c',
+    'Complete_N__c',
+    'leaseworks__Status__c',
+    'pro_Necessary__c',
+    'leaseworks__Comments__c',
+    'Assigned_To__c'
+];
+
+const ALL_EDITABLE_FIELDS = [...new Set([...MODAL_FIELDS, ...BULK_FIELDS])];
 
 export default class ProChecklistItemWizard extends NavigationMixin(LightningElement) {
 
@@ -68,6 +96,17 @@ export default class ProChecklistItemWizard extends NavigationMixin(LightningEle
     _statusOptions = [];
     _reviewedOptions = [];
     _responsiblePartyOptions = [];
+    _completeNOptions = [];
+    _necessaryOptions = [];
+
+    // Project contacts for Assigned To
+    _projectContactOptions = [];
+
+    // Tab counts
+    _tabCounts = null;
+
+    // Utilization data
+    _utilizationData = null;
 
     // State
     activeFilter = 'All';
@@ -87,22 +126,31 @@ export default class ProChecklistItemWizard extends NavigationMixin(LightningEle
     showBulkUpdate = false;
     bulkDepartment = '';
     bulkComments = '';
-    bulkReviewed = '';
-    bulkLeaseSectionRef = '';
-    bulkExternalUrl = '';
-    bulkResponsibleParty = '';
     bulkActualStart = '';
     bulkActualFinish = '';
     bulkStatus = '';
-    bulkComplete = null;
+    bulkComplete = '';
     bulkDayPrior = null;
-    bulkPredecessors = null;
+    bulkAssignedTo = '';
+    bulkNecessary = '';
     _bulkDirtyFields = new Set();
 
     // Edit modal state
     showEditModal = false;
     editModalItemId = null;
     editModalFields = {};
+    itemPickerOpen = false;
+    itemPickerSearch = '';
+
+    // Necessary comment modal state (GT-18 — fires on any non-Yes selection)
+    showNecessaryModal = false;
+    necessaryCommentText = '';
+    necessaryCommentValidationError = false;
+    _necessaryModalItemId = null;
+    _necessaryModalPreviousValue = null;
+    _necessaryModalNextValue = null;
+    _necessaryModalSource = null; // 'inline' | 'edit-modal' | 'bulk'
+    _bulkNecessaryPending = false;
 
     // Wire results for refresh
     _wiredProject;
@@ -128,6 +176,8 @@ export default class ProChecklistItemWizard extends NavigationMixin(LightningEle
             this._statusOptions = this._mapOptions(data['leaseworks__Status__c']);
             this._reviewedOptions = this._mapOptions(data['leaseworks__Reviewed__c']);
             this._responsiblePartyOptions = this._mapOptions(data['leaseworks__Responsible_Party__c']);
+            this._completeNOptions = this._mapOptions(data['Complete_N__c']);
+            this._necessaryOptions = this._mapOptions(data['pro_Necessary__c']);
         }
         if (error) {
             this._showError(LABELS.LOAD_PICKLISTS_FAILED, error);
@@ -152,6 +202,24 @@ export default class ProChecklistItemWizard extends NavigationMixin(LightningEle
         if (result.error) {
             this._showError(LABELS.LOAD_ITEMS_FAILED, result.error);
         }
+    }
+
+    @wire(getProjectUtilization, { projectId: '$recordId' })
+    wiredUtilization(result) {
+        this._wiredUtilization = result;
+        if (result.data) { this._utilizationData = result.data; }
+    }
+
+    @wire(getTabCounts, { projectId: '$recordId' })
+    wiredTabCounts(result) {
+        this._wiredTabCounts = result;
+        if (result.data) { this._tabCounts = result.data; }
+    }
+
+    @wire(getProjectContacts, { projectId: '$recordId' })
+    wiredContacts(result) {
+        this._wiredContacts = result;
+        if (result.data) { this._projectContactOptions = result.data; }
     }
 
     /* ═══════════════════════════════════
@@ -230,6 +298,18 @@ export default class ProChecklistItemWizard extends NavigationMixin(LightningEle
         return this.projectData.leaseworks__End_Date__c || '\u2014';
     }
 
+    get projectRecordUrl() {
+        return '/' + this.recordId;
+    }
+
+    get projectAssetId() {
+        return this.projectData.leaseworks__Asset__c || '';
+    }
+
+    get assetRecordUrl() {
+        return this.projectData.leaseworks__Asset__c ? '/' + this.projectData.leaseworks__Asset__c : '#';
+    }
+
     get projectCompletion() {
         const val = this.projectData.Complete__c;
         return val != null ? Math.round(val) + '%' : '\u2014';
@@ -240,8 +320,82 @@ export default class ProChecklistItemWizard extends NavigationMixin(LightningEle
         return val != null ? val : '\u2014';
     }
 
+    get projectDaysRemaining() {
+        const val = this.projectData.leaseworks__Days_Remainig__c;
+        return val != null ? val : '—';
+    }
+
     get latestProjectUpdateDisplay() {
         return this.latestProjectUpdate || 'No update recorded.';
+    }
+
+    // Utilization computed
+    get utilizationBudgeted() {
+        return this._utilizationData ? this._utilizationData.totalDaysBudgeted : '—';
+    }
+
+    get utilizationCharged() {
+        return this._utilizationData ? this._utilizationData.daysCharged : '—';
+    }
+
+    get utilizationRemaining() {
+        return this._utilizationData ? this._utilizationData.daysRemaining : '—';
+    }
+
+    // Tab count figures — prefer live stats while the user has unsaved changes,
+    // fall back to the server-wired tab counts once the view is clean (GT-21).
+    get _currentTabStats() {
+        if (this.hasUnsavedChanges) {
+            const live = this._liveAllTabStats;
+            return {
+                totalExclNA: live.total,
+                closedCount: live.completedCount,
+                percentage: live.avg
+            };
+        }
+        const tc = this._tabCounts;
+        if (!tc) return { totalExclNA: 0, closedCount: 0, percentage: 0 };
+        const totalExclNA = tc.totalExclNA || 0;
+        const closedCount = tc.closedCount || 0;
+        const pct = totalExclNA > 0 ? Math.round((closedCount / totalExclNA) * 100) : 0;
+        return { totalExclNA, closedCount, percentage: pct };
+    }
+
+    get allTabBadge() {
+        const s = this._currentTabStats;
+        if (!this._tabCounts && !this.hasUnsavedChanges) return '';
+        return s.percentage + '% ' + s.closedCount + '/' + s.totalExclNA;
+    }
+
+    get allTabPercentage() {
+        if (!this._tabCounts && !this.hasUnsavedChanges) return '';
+        return this._currentTabStats.percentage + '%';
+    }
+
+    get allTabRatio() {
+        if (!this._tabCounts && !this.hasUnsavedChanges) return '';
+        const s = this._currentTabStats;
+        return s.closedCount + '/' + s.totalExclNA;
+    }
+
+    get allTabProgressStyle() {
+        if (!this._tabCounts && !this.hasUnsavedChanges) return 'width: 0%';
+        return 'width: ' + this._currentTabStats.percentage + '%';
+    }
+
+    get openTabBadge() {
+        if (!this._tabCounts) return '';
+        return String(this._tabCounts.openCount || 0);
+    }
+
+    get closedTabBadge() {
+        if (!this._tabCounts) return '';
+        return String(this._tabCounts.closedCount || 0);
+    }
+
+    get naTabBadge() {
+        if (!this._tabCounts) return '';
+        return String(this._tabCounts.naCount || 0);
     }
 
     // Filter tab classes
@@ -255,6 +409,10 @@ export default class ProChecklistItemWizard extends NavigationMixin(LightningEle
 
     get closedTabClass() {
         return this.activeFilter === 'Closed' ? 'phase-tab phase-tab-active' : 'phase-tab';
+    }
+
+    get naTabClass() {
+        return this.activeFilter === 'NA' ? 'phase-tab phase-tab-active' : 'phase-tab';
     }
 
     get isAllSelected() {
@@ -280,6 +438,25 @@ export default class ProChecklistItemWizard extends NavigationMixin(LightningEle
         return item ? item.Name : 'Edit Item';
     }
 
+    // Item picker options for the edit modal combobox (Change 4)
+    get checklistItemOptions() {
+        return this._allItems.map(item => ({
+            label: item.Name,
+            value: item.Id
+        }));
+    }
+
+    get itemPickerFilteredOptions() {
+        const search = (this.itemPickerSearch || '').toLowerCase().trim();
+        return this._allItems
+            .filter(i => !search || i.Name.toLowerCase().includes(search))
+            .map(i => ({ label: i.Name, value: i.Id }));
+    }
+
+    get itemPickerNoResults() {
+        return this.itemPickerFilteredOptions.length === 0;
+    }
+
     // Picklist options with "None" prefix for comboboxes
     get departmentOptionsWithNone() {
         return [{ label: '-- None --', value: '' }, ...this._departmentOptions];
@@ -297,20 +474,68 @@ export default class ProChecklistItemWizard extends NavigationMixin(LightningEle
         return [{ label: '-- None --', value: '' }, ...this._responsiblePartyOptions];
     }
 
+    get completeOptionsWithNone() {
+        return [{ label: '-- None --', value: '' }, ...this._completeNOptions];
+    }
+
+    get necessaryOptions() {
+        return this._necessaryOptions;
+    }
+
+    get necessaryOptionsWithNone() {
+        return [{ label: '-- None --', value: '' }, ...this._necessaryOptions];
+    }
+
+    get bulkNecessaryOptions() {
+        return [{ label: '-- No Change --', value: '' }, ...this._necessaryOptions];
+    }
+
+    get assignedToOptions() {
+        const opts = [{ label: '-- None --', value: '' }];
+        if (this._projectContactOptions) {
+            this._projectContactOptions.forEach(c => {
+                const role = c.leaseworks__Project_Role__c;
+                const label = c.Name + (role ? ' - ' + role : '');
+                opts.push({ label: label, value: c.Id });
+            });
+        }
+        return opts;
+    }
+
     // Enriched items for the template
     get enrichedItems() {
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        const necessaryOpts = this._necessaryOptions;
         return this._allItems.map((item, index) => {
             const isCompleted = item.leaseworks__Status__c === STATUS_COMPLETED;
+            const necessaryValue = item.pro_Necessary__c || NECESSARY_YES;
+            const isNotNecessary = necessaryValue === NECESSARY_NA || necessaryValue === NECESSARY_WAIVED;
             const isSelected = this.selectedIds.has(item.Id);
 
             let rowClass = 'checklist-row';
             if (isCompleted) {
                 rowClass += ' completed-row';
+            } else if (isNotNecessary) {
+                rowClass += ' na-row';
             }
 
-            const titleClass = isCompleted ? 'item-title item-title-done' : 'item-title';
-            const completeVal = item.Complete__c;
-            const completeDisplay = completeVal != null ? Math.round(completeVal) + '%' : '';
+            const titleClass = (isCompleted || isNotNecessary) ? 'item-title item-title-done' : 'item-title';
+            const completeDisplay = item.Complete_N__c ? item.Complete_N__c + '%' : '';
+            let daysRemaining = null;
+            let daysRemainingDisplay = '';
+            if (item.Finish_Date__c) {
+                const finishDate = new Date(item.Finish_Date__c);
+                finishDate.setHours(0, 0, 0, 0);
+                daysRemaining = Math.ceil((finishDate - today) / 86400000);
+                daysRemainingDisplay = String(daysRemaining);
+            }
+
+            const necessarySelectOptions = necessaryOpts.map(o => ({
+                label: o.label,
+                value: o.value,
+                selected: o.value === necessaryValue
+            }));
 
             return {
                 ...item,
@@ -319,11 +544,40 @@ export default class ProChecklistItemWizard extends NavigationMixin(LightningEle
                 rowClass,
                 titleClass,
                 isCompleted,
+                isNotNecessary,
                 isSelected,
                 completeDisplay,
-                assignedToName: item.Assigned_To__r ? item.Assigned_To__r.Name : ''
+                daysRemaining,
+                daysRemainingDisplay,
+                necessaryValue,
+                necessarySelectOptions,
+                assignedToName: item.Assigned_To__r ? item.Assigned_To__r.Name : '',
+                actualStartDisplay: item.Actual_Start_Date__c || '',
+                actualFinishDisplay: item.Actual_Finish_Date__c || '',
+                dayPriorDisplay: item.Day_Prior__c != null ? String(item.Day_Prior__c) : ''
             };
         });
+    }
+
+    // GT-21 — live "All" tab percentage computed from _allItems.
+    // Uses the in-memory state (reflects unsaved edits) when the user has
+    // pending changes; otherwise the server-wired tab count is authoritative.
+    get _liveAllTabStats() {
+        const eligible = this._allItems.filter(i => {
+            const n = i.pro_Necessary__c || NECESSARY_YES;
+            return n === NECESSARY_YES;
+        });
+        const total = eligible.length;
+        let sum = 0;
+        let completedCount = 0;
+        eligible.forEach(i => {
+            const pct = i.Complete_N__c != null && i.Complete_N__c !== ''
+                        ? Number(i.Complete_N__c) : 0;
+            sum += (Number.isFinite(pct) ? pct : 0);
+            if (i.leaseworks__Status__c === STATUS_COMPLETED) completedCount++;
+        });
+        const avg = total > 0 ? Math.round(sum / total) : 0;
+        return { total, completedCount, avg };
     }
 
     /* ═══════════════════════════════════
@@ -410,7 +664,7 @@ export default class ProChecklistItemWizard extends NavigationMixin(LightningEle
         }
 
         // For number fields, convert to number or null
-        if (field === 'Complete__c' || field === 'Day_Prior__c' || field === 'Predecessors__c') {
+        if (field === 'Duration_Days_N__c' || field === 'Day_Prior__c') {
             value = (value !== '' && value != null) ? Number(value) : null;
         }
 
@@ -433,11 +687,12 @@ export default class ProChecklistItemWizard extends NavigationMixin(LightningEle
 
         if (checked) {
             item.leaseworks__Status__c = STATUS_COMPLETED;
+            item.Complete_N__c = COMPLETE_N_FULL;
         } else {
-            // Revert to original status, or Not Started if original was also Completed
             const original = this._originalItems.find(i => i.Id === itemId);
             const originalStatus = original ? original.leaseworks__Status__c : STATUS_NOT_STARTED;
             item.leaseworks__Status__c = (originalStatus === STATUS_COMPLETED) ? STATUS_NOT_STARTED : originalStatus;
+            item.Complete_N__c = original ? original.Complete_N__c : item.Complete_N__c;
         }
         this._markDirty(itemId);
     }
@@ -497,16 +752,13 @@ export default class ProChecklistItemWizard extends NavigationMixin(LightningEle
         switch (field) {
             case 'Department__c': this.bulkDepartment = value; break;
             case 'leaseworks__Comments__c': this.bulkComments = value; break;
-            case 'leaseworks__Reviewed__c': this.bulkReviewed = value; break;
-            case 'leaseworks__Lease_Section_Reference__c': this.bulkLeaseSectionRef = value; break;
-            case 'leaseworks__External_Item_URL__c': this.bulkExternalUrl = value; break;
-            case 'leaseworks__Responsible_Party__c': this.bulkResponsibleParty = value; break;
+            case 'Assigned_To__c': this.bulkAssignedTo = value; break;
             case 'Actual_Start_Date__c': this.bulkActualStart = value; break;
             case 'Actual_Finish_Date__c': this.bulkActualFinish = value; break;
             case 'leaseworks__Status__c': this.bulkStatus = value; break;
-            case 'Complete__c': this.bulkComplete = value; break;
+            case 'Complete_N__c': this.bulkComplete = value; break;
             case 'Day_Prior__c': this.bulkDayPrior = value; break;
-            case 'Predecessors__c': this.bulkPredecessors = value; break;
+            case 'pro_Necessary__c': this.bulkNecessary = value; break;
             default: break;
         }
     }
@@ -522,36 +774,48 @@ export default class ProChecklistItemWizard extends NavigationMixin(LightningEle
         const df = this._bulkDirtyFields;
         if (df.has('Department__c')) updates.Department__c = this.bulkDepartment;
         if (df.has('leaseworks__Comments__c')) updates['leaseworks__Comments__c'] = this.bulkComments;
-        if (df.has('leaseworks__Reviewed__c')) updates['leaseworks__Reviewed__c'] = this.bulkReviewed;
-        if (df.has('leaseworks__Lease_Section_Reference__c')) updates['leaseworks__Lease_Section_Reference__c'] = this.bulkLeaseSectionRef;
-        if (df.has('leaseworks__External_Item_URL__c')) updates['leaseworks__External_Item_URL__c'] = this.bulkExternalUrl;
-        if (df.has('leaseworks__Responsible_Party__c')) updates['leaseworks__Responsible_Party__c'] = this.bulkResponsibleParty;
+        if (df.has('Assigned_To__c')) updates.Assigned_To__c = this.bulkAssignedTo;
         if (df.has('Actual_Start_Date__c')) updates.Actual_Start_Date__c = this.bulkActualStart;
         if (df.has('Actual_Finish_Date__c')) updates.Actual_Finish_Date__c = this.bulkActualFinish;
         if (df.has('leaseworks__Status__c')) updates['leaseworks__Status__c'] = this.bulkStatus;
-        if (df.has('Complete__c')) updates.Complete__c = (this.bulkComplete !== '' && this.bulkComplete != null) ? Number(this.bulkComplete) : null;
+        if (df.has('Complete_N__c')) updates.Complete_N__c = this.bulkComplete;
         if (df.has('Day_Prior__c')) updates.Day_Prior__c = (this.bulkDayPrior !== '' && this.bulkDayPrior != null) ? Number(this.bulkDayPrior) : null;
-        if (df.has('Predecessors__c')) updates.Predecessors__c = (this.bulkPredecessors !== '' && this.bulkPredecessors != null) ? Number(this.bulkPredecessors) : null;
+        if (df.has('pro_Necessary__c')) updates.pro_Necessary__c = this.bulkNecessary;
 
         if (Object.keys(updates).length === 0) {
             this._showWarning(LABELS.BULK_NO_FIELDS);
             return;
         }
 
+        // GT-21 — bi-directional auto-complete (bulk): keep Status/%=100 in sync.
+        if (updates['leaseworks__Status__c'] === STATUS_COMPLETED) {
+            updates.Complete_N__c = COMPLETE_N_FULL;
+        } else if (updates.Complete_N__c === COMPLETE_N_FULL && !df.has('leaseworks__Status__c')) {
+            updates['leaseworks__Status__c'] = STATUS_COMPLETED;
+        }
+
+        // GT-18 — bulk Necessary = NA / Waived requires a comment popup first.
+        if (df.has('pro_Necessary__c')
+            && this.bulkNecessary
+            && this.bulkNecessary !== NECESSARY_YES) {
+            this._bulkNecessaryPending = true;
+            this._openNecessaryModal('bulk', null, null, this.bulkNecessary, updates);
+            return;
+        }
+
+        this._applyBulkUpdates(updates);
+    }
+
+    _applyBulkUpdates(updates) {
         let updatedCount = 0;
         this._allItems.forEach(item => {
             if (this.selectedIds.has(item.Id)) {
-                Object.keys(updates).forEach(field => {
-                    item[field] = updates[field];
-                });
+                Object.keys(updates).forEach(field => { item[field] = updates[field]; });
                 this._markDirty(item.Id);
                 updatedCount++;
             }
         });
-
-        // Force reactivity
         this._allItems = [...this._allItems];
-
         this._showSuccess(LABELS.BULK_APPLIED.replace('{0}', updatedCount));
     }
 
@@ -561,15 +825,64 @@ export default class ProChecklistItemWizard extends NavigationMixin(LightningEle
 
     handleOpenEditModal(event) {
         const itemId = event.currentTarget.dataset.id;
+        this._loadEditModalForItem(itemId);
+    }
+
+    // Change 4: item picker in edit modal
+    handleEditModalItemSwitch(event) {
+        const newItemId = event.detail.value;
+        if (!newItemId || newItemId === this.editModalItemId) return;
+        this._applyCurrentModalToItem();
+        this._loadEditModalForItem(newItemId);
+    }
+
+    handleItemPickerToggle() {
+        this.itemPickerOpen = !this.itemPickerOpen;
+        if (this.itemPickerOpen) {
+            this.itemPickerSearch = '';
+        }
+    }
+
+    handleItemPickerSearch(event) {
+        this.itemPickerSearch = event.target.value;
+    }
+
+    handleItemPickerSelect(event) {
+        const newItemId = event.currentTarget.dataset.id;
+        if (!newItemId || newItemId === this.editModalItemId) {
+            this.itemPickerOpen = false;
+            return;
+        }
+        this._applyCurrentModalToItem();
+        this._loadEditModalForItem(newItemId);
+        this.itemPickerOpen = false;
+        this.itemPickerSearch = '';
+    }
+
+    _applyCurrentModalToItem() {
+        const currentItem = this._allItems.find(i => i.Id === this.editModalItemId);
+        if (currentItem) {
+            MODAL_FIELDS.forEach(field => {
+                let value = this.editModalFields[field];
+                if (field === 'Duration_Days_N__c' || field === 'Day_Prior__c') {
+                    value = (value !== '' && value != null) ? Number(value) : null;
+                }
+                currentItem[field] = value;
+            });
+            this._markDirty(this.editModalItemId);
+            this._allItems = [...this._allItems];
+        }
+    }
+
+    _loadEditModalForItem(itemId) {
         const item = this._allItems.find(i => i.Id === itemId);
         if (!item) return;
 
         this.editModalItemId = itemId;
         this.editModalFields = {};
-        EDITABLE_FIELDS.forEach(field => {
+        ALL_EDITABLE_FIELDS.forEach(field => {
             this.editModalFields[field] = item[field] != null ? item[field] : '';
         });
-        // Force reactivity on the object
         this.editModalFields = { ...this.editModalFields };
         this.showEditModal = true;
     }
@@ -585,26 +898,64 @@ export default class ProChecklistItemWizard extends NavigationMixin(LightningEle
             value = event.target.value;
         }
 
-        this.editModalFields = { ...this.editModalFields, [field]: value };
+        // GT-18 — Necessary != Yes in the edit dialog triggers the comment popup
+        // (the popup writes both Necessary and the comment back to the modal state).
+        if (field === 'pro_Necessary__c'
+            && value
+            && value !== NECESSARY_YES
+            && (this.editModalFields.pro_Necessary__c || NECESSARY_YES) !== value) {
+            this._openNecessaryModal(
+                'edit-modal',
+                this.editModalItemId,
+                this.editModalFields.pro_Necessary__c || NECESSARY_YES,
+                value
+            );
+            return;
+        }
+
+        let updated = { ...this.editModalFields, [field]: value };
+
+        // GT-21 — bi-directional auto-complete in the edit modal.
+        if (field === 'leaseworks__Status__c') {
+            if (value === STATUS_COMPLETED) {
+                updated.Complete_N__c = COMPLETE_N_FULL;
+            } else if (this.editModalFields.leaseworks__Status__c === STATUS_COMPLETED
+                       && updated.Complete_N__c === COMPLETE_N_FULL) {
+                // Status moved away from Complete — release the forced 100%
+                const original = this._originalItems.find(i => i.Id === this.editModalItemId);
+                updated.Complete_N__c = original && original.Complete_N__c ? original.Complete_N__c : '';
+            }
+        } else if (field === 'Complete_N__c') {
+            if (value === COMPLETE_N_FULL) {
+                updated.leaseworks__Status__c = STATUS_COMPLETED;
+            } else if (this.editModalFields.leaseworks__Status__c === STATUS_COMPLETED) {
+                // % dropped below 100 — revert Status to the item's original value
+                const original = this._originalItems.find(i => i.Id === this.editModalItemId);
+                updated.leaseworks__Status__c = original && original.leaseworks__Status__c !== STATUS_COMPLETED
+                    ? original.leaseworks__Status__c
+                    : STATUS_NOT_STARTED;
+            }
+        }
+
+        this.editModalFields = updated;
     }
 
     handleSaveEditModal() {
         const item = this._allItems.find(i => i.Id === this.editModalItemId);
         if (!item) return;
+        this._applyEditModalChanges(item);
+    }
 
-        EDITABLE_FIELDS.forEach(field => {
+    _applyEditModalChanges(item) {
+        MODAL_FIELDS.forEach(field => {
             let value = this.editModalFields[field];
-            // Number fields need conversion
-            if (field === 'Complete__c' || field === 'Day_Prior__c' || field === 'Predecessors__c') {
+            if (field === 'Duration_Days_N__c' || field === 'Day_Prior__c') {
                 value = (value !== '' && value != null) ? Number(value) : null;
             }
             item[field] = value;
         });
-
         this._markDirty(this.editModalItemId);
-        // Force reactivity
         this._allItems = [...this._allItems];
-
         this.showEditModal = false;
         this.editModalItemId = null;
         this.editModalFields = {};
@@ -614,6 +965,125 @@ export default class ProChecklistItemWizard extends NavigationMixin(LightningEle
         this.showEditModal = false;
         this.editModalItemId = null;
         this.editModalFields = {};
+        this.itemPickerOpen = false;
+        this.itemPickerSearch = '';
+    }
+
+    /* ═══════════════════════════════════
+       NECESSARY POPUP  (GT-18 — replaces legacy Status=N/A modal)
+       Fires whenever Necessary is set to anything other than 'Yes', from:
+         • the inline dropdown in the table (source='inline')
+         • the Edit dialog (source='edit-modal')
+         • the Bulk Update toolbar (source='bulk')
+       Requires a non-empty comment. Cancel reverts the underlying value.
+       ═══════════════════════════════════ */
+
+    handleInlineNecessaryChange(event) {
+        const itemId = event.target.dataset.id;
+        const value = event.target.value;
+        const item = this._allItems.find(i => i.Id === itemId);
+        if (!item) return;
+
+        const previous = item.pro_Necessary__c || NECESSARY_YES;
+        if (value === previous) return;
+
+        if (value === NECESSARY_YES) {
+            item.pro_Necessary__c = NECESSARY_YES;
+            this._markDirty(itemId);
+            this._allItems = [...this._allItems];
+            return;
+        }
+
+        this._openNecessaryModal('inline', itemId, previous, value);
+    }
+
+    _openNecessaryModal(source, itemId, previous, nextValue, pendingBulkUpdates) {
+        this._necessaryModalSource = source;
+        this._necessaryModalItemId = itemId;
+        this._necessaryModalPreviousValue = previous;
+        this._necessaryModalNextValue = nextValue;
+        this._pendingBulkUpdates = pendingBulkUpdates || null;
+        // Prefill with existing comment on the target item so users can edit rather than retype
+        if (itemId) {
+            const item = this._allItems.find(i => i.Id === itemId);
+            this.necessaryCommentText = item && item.leaseworks__Comments__c
+                ? item.leaseworks__Comments__c : '';
+        } else {
+            this.necessaryCommentText = '';
+        }
+        this.necessaryCommentValidationError = false;
+        this.showNecessaryModal = true;
+    }
+
+    handleNecessaryCommentChange(event) {
+        this.necessaryCommentText = event.target.value;
+        if (this.necessaryCommentText && this.necessaryCommentText.trim()) {
+            this.necessaryCommentValidationError = false;
+        }
+    }
+
+    handleNecessaryModalConfirm() {
+        if (!this.necessaryCommentText || !this.necessaryCommentText.trim()) {
+            this.necessaryCommentValidationError = true;
+            return;
+        }
+        const comment = this.necessaryCommentText.trim();
+        const nextValue = this._necessaryModalNextValue;
+        const source = this._necessaryModalSource;
+
+        if (source === 'edit-modal') {
+            this.editModalFields = {
+                ...this.editModalFields,
+                pro_Necessary__c: nextValue,
+                leaseworks__Comments__c: comment
+            };
+        } else if (source === 'bulk') {
+            const updates = this._pendingBulkUpdates || {};
+            updates.pro_Necessary__c = nextValue;
+            updates['leaseworks__Comments__c'] = comment;
+            this._applyBulkUpdates(updates);
+            this._bulkNecessaryPending = false;
+        } else { // 'inline'
+            const item = this._allItems.find(i => i.Id === this._necessaryModalItemId);
+            if (item) {
+                item.pro_Necessary__c = nextValue;
+                item['leaseworks__Comments__c'] = comment;
+                this._markDirty(this._necessaryModalItemId);
+                this._allItems = [...this._allItems];
+            }
+        }
+        this._closeNecessaryModal();
+    }
+
+    handleNecessaryModalCancel() {
+        const source = this._necessaryModalSource;
+        const itemId = this._necessaryModalItemId;
+        const prev = this._necessaryModalPreviousValue;
+
+        if (source === 'inline' && itemId && prev) {
+            // LWC won't rewind a native <select>'s DOM value when the underlying
+            // data didn't change — restore it after this render tick.
+            // eslint-disable-next-line @lwc/lwc/no-async-operation
+            setTimeout(() => {
+                const sel = this.template.querySelector(
+                    `select[data-id="${itemId}"][data-field="pro_Necessary__c"]`);
+                if (sel) sel.value = prev;
+            }, 0);
+        } else if (source === 'bulk') {
+            this._bulkNecessaryPending = false;
+        }
+        this._closeNecessaryModal();
+    }
+
+    _closeNecessaryModal() {
+        this.showNecessaryModal = false;
+        this.necessaryCommentText = '';
+        this.necessaryCommentValidationError = false;
+        this._necessaryModalItemId = null;
+        this._necessaryModalPreviousValue = null;
+        this._necessaryModalNextValue = null;
+        this._necessaryModalSource = null;
+        this._pendingBulkUpdates = null;
     }
 
     /* ═══════════════════════════════════
@@ -633,7 +1103,7 @@ export default class ProChecklistItemWizard extends NavigationMixin(LightningEle
                         Id: item.Id,
                         LastModifiedDate: original ? original.LastModifiedDate : item.LastModifiedDate
                     };
-                    EDITABLE_FIELDS.forEach(field => {
+                    ALL_EDITABLE_FIELDS.forEach(field => {
                         record[field] = item[field];
                     });
                     return record;
@@ -747,6 +1217,39 @@ export default class ProChecklistItemWizard extends NavigationMixin(LightningEle
         });
     }
 
+    handleNavigateToProject(event) {
+        event.preventDefault();
+        if (this.hasUnsavedChanges) {
+            this._showWarning(LABELS.UNSAVED_CHANGES_NAV);
+            return;
+        }
+        this[NavigationMixin.Navigate]({
+            type: 'standard__recordPage',
+            attributes: {
+                recordId: this.recordId,
+                objectApiName: 'leaseworks__Technical_Project__c',
+                actionName: 'view'
+            }
+        });
+    }
+
+    handleNavigateToAsset(event) {
+        event.preventDefault();
+        const assetId = this.projectData.leaseworks__Asset__c;
+        if (!assetId) return;
+        if (this.hasUnsavedChanges) {
+            this._showWarning(LABELS.UNSAVED_CHANGES_NAV);
+            return;
+        }
+        this[NavigationMixin.Navigate]({
+            type: 'standard__recordPage',
+            attributes: {
+                recordId: assetId,
+                actionName: 'view'
+            }
+        });
+    }
+
     /* ═══════════════════════════════════
        PRIVATE HELPERS
        ═══════════════════════════════════ */
@@ -759,7 +1262,6 @@ export default class ProChecklistItemWizard extends NavigationMixin(LightningEle
         if (!items) return [];
         return items.map(item => {
             const clone = { ...item };
-            // Preserve relationship objects
             if (item.Assigned_To__r) {
                 clone.Assigned_To__r = { ...item.Assigned_To__r };
             }
@@ -776,7 +1278,10 @@ export default class ProChecklistItemWizard extends NavigationMixin(LightningEle
         this.isLoading = true;
         await Promise.all([
             refreshApex(this._wiredItems),
-            refreshApex(this._wiredProject)
+            refreshApex(this._wiredProject),
+            refreshApex(this._wiredTabCounts),
+            refreshApex(this._wiredUtilization),
+            refreshApex(this._wiredContacts)
         ]);
         this.isLoading = false;
     }

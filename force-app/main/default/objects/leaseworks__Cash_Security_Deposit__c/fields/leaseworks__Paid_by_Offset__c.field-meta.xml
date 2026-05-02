@@ -2,9 +2,14 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>leaseworks__Paid_by_Offset__c</fullName>
     <deprecated>false</deprecated>
-    <description>Total amount offset against invoices</description>
-    <inlineHelpText>Total amount offset against invoices</inlineHelpText>
-    <label>Paid by Offset</label>
+    <description>This field displays the total amount refunded from the Security Deposit by offsetting approved payables against open invoices. It is calculated by the system, summing all approved payable amounts settled through offsets rather than cash payouts.
+    [LOAD: No]
+    [JUSTIFICATION: No needs to do load, because this field automatically populates after Offset creation.]
+    [REPLACEMENT OBJECT API: NA]
+    [REPLACEMENT FIELD API: NA]
+    [COMMENTS: NA]</description>
+    <inlineHelpText>Total amount refunded by offsetting against open invoices. System calculated.</inlineHelpText>
+    <label>Paid Out by Offset</label>
     <precision>18</precision>
     <required>false</required>
     <scale>2</scale>

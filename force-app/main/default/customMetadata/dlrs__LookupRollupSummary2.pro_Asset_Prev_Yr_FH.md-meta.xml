@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Asset - Prev. Yr FH</label>
+    <protected>false</protected>
+    <values>
+        <field>dlrs__Active__c</field>
+        <value xsi:type="xsd:boolean">true</value>
+    </values>
+    <values>
+        <field>dlrs__AggregateAllRows__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>dlrs__AggregateOperation__c</field>
+        <value xsi:type="xsd:string">Sum</value>
+    </values>
+    <values>
+        <field>dlrs__AggregateResultField__c</field>
+        <value xsi:type="xsd:string">pro_Prev_Yr_FH__c</value>
+    </values>
+    <values>
+        <field>dlrs__BypassPermissionApiName__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>dlrs__CalculationMode__c</field>
+        <value xsi:type="xsd:string">Process Builder</value>
+    </values>
+    <values>
+        <field>dlrs__CalculationSharingMode__c</field>
+        <value xsi:type="xsd:string">System</value>
+    </values>
+    <values>
+        <field>dlrs__ChildObject__c</field>
+        <value xsi:type="xsd:string">leaseworks__Utilization_Report__c</value>
+    </values>
+    <values>
+        <field>dlrs__ConcatenateDelimiter__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>dlrs__Description__c</field>
+        <value xsi:type="xsd:string">Sums the total Flight Hours from Approved By Lessor Utilization Report records for the previous calendar year, rolled up to the parent Aircraft asset.
+PC - Prodigy - 31/03/26</value>
+    </values>
+    <values>
+        <field>dlrs__FieldToAggregate__c</field>
+        <value xsi:type="xsd:string">leaseworks__Airframe_Flight_Hours_Month__c</value>
+    </values>
+    <values>
+        <field>dlrs__FieldToOrderBy__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>dlrs__ParentObject__c</field>
+        <value xsi:type="xsd:string">leaseworks__Aircraft__c</value>
+    </values>
+    <values>
+        <field>dlrs__RelationshipCriteriaFields__c</field>
+        <value xsi:type="xsd:string">leaseworks__Month_Ending__c
+leaseworks__Status__c
+leaseworks__Airframe_Flight_Hours_Month__c</value>
+    </values>
+    <values>
+        <field>dlrs__RelationshipCriteria__c</field>
+        <value xsi:type="xsd:string">leaseworks__Month_Ending__c = LAST_YEAR AND leaseworks__Status__c = &apos;Approved By Lessor&apos;</value>
+    </values>
+    <values>
+        <field>dlrs__RelationshipField__c</field>
+        <value xsi:type="xsd:string">leaseworks__Aircraft__c</value>
+    </values>
+    <values>
+        <field>dlrs__RowLimit__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>dlrs__TestCode2__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>dlrs__TestCodeParent__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>dlrs__TestCodeSeeAllData__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>dlrs__TestCode__c</field>
+        <value xsi:nil="true"/>
+    </values>
+</CustomMetadata>

@@ -2,10 +2,15 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>leaseworks__Amount_to_Replenish__c</fullName>
     <deprecated>false</deprecated>
-    <description>The amount to replenish in order to maintain the stipulated security deposit cash.</description>
+    <description>This field shows how much needs to be added back to restore the Security Deposit to the originally agreed cash amount. It&apos;s a formula calculated by subtracting the Remaining Security Deposit Cash from the Stipulated Security Deposit (Cash). The value updates automatically based on changes in deposit balance or payouts.
+    [LOAD: No]
+    [JUSTIFICATION: No needs to do load, because this is formula field which automatically gets calculated.]
+    [REPLACEMENT OBJECT API: NA]
+    [REPLACEMENT FIELD API: NA]
+    [COMMENTS: NA]</description>
     <formula>leaseworks__Security_Deposit_Cash__c -  leaseworks__Security_Depo_Cash__c</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-    <inlineHelpText>The amount to replenish in order to maintain the stipulated security deposit cash.</inlineHelpText>
+    <inlineHelpText>The amount to replenish in order to maintain the stipulated security deposit cash. Calculated as Stipulated Security Deposit (Cash) – Remaining Security Deposit Cash.</inlineHelpText>
     <label>Amount to Replenish</label>
     <precision>18</precision>
     <required>false</required>

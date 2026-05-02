@@ -154,6 +154,7 @@
         <offset>0</offset>
     </actionCalls>
     <apiVersion>64.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <assignments>
         <name>Add_Deal_Team_Assignee_Email_To_Distribution_List</name>
         <label>Add Deal Team Assignee Email To Distribution List</label>
@@ -718,6 +719,7 @@ IF(TEXT({!$Record.leaseworks__Discussion_Type__c}) = &apos;General - Marketing T
         <connector>
             <targetReference>IL_Is_Type_Commercial_Technical_Or_Contracts_Legal_Weekly_Summary_Note</targetReference>
         </connector>
+        <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Draft__c</field>

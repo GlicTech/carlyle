@@ -4,8 +4,8 @@
     <active>true</active>
     <description>Rule requires users to input a Document Link before the Deal can be progressed to LOI in Works status,.</description>
     <errorConditionFormula>AND(
-       ISPICKVAL(leaseworks__Deal_Status__c ,&apos;LOI in works&apos;),
-        ISBLANK( pro_Long_Document_Link__c )  
+       ISPICKVAL(leaseworks__Deal_Status__c , &apos;LOI in works&apos;),
+        ISBLANK(pro_Long_Document_Link__c)  
 )</errorConditionFormula>
     <errorMessage>You must enter a link into the Document Link field before the Deal can be progressed to the LOI In Works status.</errorMessage>
 </ValidationRule>

@@ -10,6 +10,12 @@
                             <value>Edit</value>
                         </valueListItems>
                         <valueListItems>
+                            <value>leaseworks__Stepped_Rent__c.leaseworks__Generate_Straight_Line_Revenue</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>leaseworks__Stepped_Rent__c.Mark_Schedule_as_ad_hoc</value>
+                        </valueListItems>
+                        <valueListItems>
                             <value>Delete</value>
                         </valueListItems>
                         <valueListItems>
@@ -95,6 +101,16 @@
                 <identifier>RecordRent_Schedule_External_id__cField</identifier>
             </fieldInstance>
         </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Ad_hoc_Schedule_Local__c</fieldItem>
+                <identifier>RecordAd_hoc_Schedule_Local_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
         <name>Facet-96cec0e3-0550-4f2b-8f6b-dbc810932dd6</name>
         <type>Facet</type>
     </flexiPageRegions>
@@ -115,6 +131,26 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
+                <fieldItem>Record.Active_Inactive_Flag_Local__c</fieldItem>
+                <identifier>RecordActive_Inactive_Flag_Local_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Primary_Rent_Schedule__c</fieldItem>
+                <identifier>Recordleaseworks_Primary_Rent_Schedule_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.leaseworks__Lease__c</fieldItem>
                 <identifier>Recordleaseworks_Lease_cField</identifier>
             </fieldInstance>
@@ -127,16 +163,6 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.leaseworks__Rent_End_Date__c</fieldItem>
                 <identifier>Recordleaseworks_Rent_End_Date_cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.Ad_hoc_Schedule_Local__c</fieldItem>
-                <identifier>RecordAd_hoc_Schedule_Local_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -1101,6 +1127,90 @@
     </flexiPageRegions>
     <flexiPageRegions>
         <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__SLR_Start_Date__c</fieldItem>
+                <identifier>Recordleaseworks_SLR_Start_Date_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__SLR_Opening_Balance__c</fieldItem>
+                <identifier>Recordleaseworks_SLR_Opening_Balance_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <name>Facet-4ff129bc-f4c9-4dc6-8cb3-ad973f804892</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__SLR_End_Date__c</fieldItem>
+                <identifier>Recordleaseworks_SLR_End_Date_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <name>Facet-6b956ccc-9b68-48d9-a276-5e49972d1017</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-4ff129bc-f4c9-4dc6-8cb3-ad973f804892</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:column</componentName>
+                <identifier>flexipage_column24</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-6b956ccc-9b68-48d9-a276-5e49972d1017</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:column</componentName>
+                <identifier>flexipage_column25</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>Facet-b3b8f91c-edc5-47a2-8e54-63553cb5f33c</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>columns</name>
+                    <value>Facet-b3b8f91c-edc5-47a2-8e54-63553cb5f33c</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>label</name>
+                    <value>Section</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:fieldSection</componentName>
+                <identifier>flexipage_fieldSection13</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>Facet-74e53240-c73e-4c86-b3c2-c8d1fc3c1006</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
                     <name>body</name>
@@ -1154,6 +1264,20 @@
                 </componentInstanceProperties>
                 <componentName>flexipage:tab</componentName>
                 <identifier>flexipage_tab4</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>Facet-74e53240-c73e-4c86-b3c2-c8d1fc3c1006</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>title</name>
+                    <value>SLR</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:tab</componentName>
+                <identifier>flexipage_tab5</identifier>
             </componentInstance>
         </itemInstances>
         <name>Facet-6be5ec8d-7c8f-4a7e-b13d-cec3b9501b53</name>
@@ -1214,6 +1338,10 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
+                <componentInstanceProperties>
+                    <name>label</name>
+                    <value>Tabs</value>
+                </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>tabs</name>
                     <value>Facet-6be5ec8d-7c8f-4a7e-b13d-cec3b9501b53</value>

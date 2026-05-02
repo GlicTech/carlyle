@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>65.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <assignments>
         <name>Count_Selected_Rent_Slips</name>
         <label>Count Selected Rent Slips</label>
@@ -17,6 +18,12 @@
             <targetReference>Confirmation_Screen</targetReference>
         </connector>
     </assignments>
+    <customProperties>
+        <name>ScreenProgressIndicator</name>
+        <value>
+            <stringValue>{&quot;location&quot;:&quot;top&quot;,&quot;type&quot;:&quot;simple&quot;}</stringValue>
+        </value>
+    </customProperties>
     <decisions>
         <name>Check_for_Rent_Slips</name>
         <label>Check for Rent Slips</label>
@@ -159,6 +166,14 @@
             <name>DeletionWarning</name>
             <fieldText>&lt;p&gt;⚠️ You have selected &lt;strong&gt;{!varSelectedCount} Rent Slip(s) &lt;/strong&gt;for deletion.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Are you sure you want to proceed?&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <nextOrFinishButtonLabel>Confirm</nextOrFinishButtonLabel>
         <showFooter>true</showFooter>
@@ -176,6 +191,14 @@
             <name>ErrorText</name>
             <fieldText>&lt;p&gt;⚠️ Some of the selected Rent Slips could not be deleted.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Please review the details below:&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;{!$Flow.FaultMessage}&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
@@ -192,6 +215,14 @@
             <name>NoRentSlipsText</name>
             <fieldText>&lt;p&gt;The are no Rent Slips in this Rent Schedule.&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
@@ -208,6 +239,14 @@
             <name>TextSelectRecords</name>
             <fieldText>&lt;p&gt;No records selected.&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
@@ -227,6 +266,14 @@
             <name>InvoiceText</name>
             <fieldText>&lt;p&gt;Only Rent Slips with no Invoice are shown below. Rent Slips with Invoices cannot be deleted.&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>RentSlipTable</name>
@@ -262,7 +309,10 @@
             </inputParameters>
             <inputParameters>
                 <name>keyField</name>
-                <value/>
+                <value>
+                    <complexValue>{&quot;dataType&quot;:&quot;SObject&quot;,&quot;objectType&quot;:&quot;leaseworks__Rent__c&quot;,&quot;fieldReferences&quot;:[&quot;Id&quot;],&quot;elementReference&quot;:&quot;Get_Rent_Slips&quot;}</complexValue>
+                    <complexValueType>ComplexObjectFieldDetails</complexValueType>
+                </value>
             </inputParameters>
             <inputParameters>
                 <name>columns</name>
@@ -272,7 +322,10 @@
             </inputParameters>
             <inputParameters>
                 <name>columnReferences</name>
-                <value/>
+                <value>
+                    <complexValue>{&quot;dataType&quot;:&quot;SObject&quot;,&quot;objectType&quot;:&quot;leaseworks__Rent__c&quot;,&quot;fieldReferences&quot;:[&quot;Name&quot;,&quot;leaseworks__Start_Date__c&quot;,&quot;leaseworks__For_Month_Ending__c&quot;,&quot;leaseworks__Rent_Due_Date__c&quot;,&quot;leaseworks__Billing_Currency__c&quot;,&quot;leaseworks__Rent_Slip_Amount__c&quot;,&quot;leaseworks__Final_Rent_Slip_Amount__c&quot;,&quot;leaseworks__Link_to_Invoice__c&quot;,&quot;leaseworks__New_Balance_Due__c&quot;],&quot;elementReference&quot;:&quot;Get_Rent_Slips&quot;}</complexValue>
+                    <complexValueType>ComplexObjectFieldDetails</complexValueType>
+                </value>
             </inputParameters>
             <inputParameters>
                 <name>isShowSearchBar</name>
@@ -283,6 +336,14 @@
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
             <storeOutputAutomatically>true</storeOutputAutomatically>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <nextOrFinishButtonLabel>Delete</nextOrFinishButtonLabel>
         <showFooter>true</showFooter>
@@ -300,6 +361,14 @@
             <name>SuccessText</name>
             <fieldText>&lt;p&gt;The selected Rent Slips have been successfully deleted.&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>

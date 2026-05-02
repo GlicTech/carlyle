@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Floating_Rent_End_Date_Notification</name>
+        <label>Floating Rent End Date Notification</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>pro_NotificationService</actionName>
+        <actionType>apex</actionType>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <inputParameters>
+            <name>configName</name>
+            <value>
+                <stringValue>Lease_Notification_Floating_Rent_End</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>recordId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>pro_NotificationService</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <apiVersion>66.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <name>Is_the_Floating_Rent_Notification_Due</name>
+        <label>Is the Floating Rent Notification Due?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_notification_due</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>f_FloatingRentDue</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Floating_Rent_End_Date_Notification</targetReference>
+            </connector>
+            <label>Yes - notification due</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <formulas>
+        <name>f_FloatingRentDue</name>
+        <dataType>Boolean</dataType>
+        <expression>IF({!$Record.leaseworks__Rent_End_Date__c} - 5 = TODAY() || {!$Record.leaseworks__Rent_End_Date__c} - 30 = TODAY(),
+      True, False)</expression>
+    </formulas>
+    <interviewLabel>Contract - Scheduled - Floating Rent End Date {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Contract - Scheduled - Floating Rent End Date</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Is_the_Floating_Rent_Notification_Due</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>leaseworks__Rent_End_Date__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>leaseworks__Rent_Type__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Floating Rent</stringValue>
+            </value>
+        </filters>
+        <object>leaseworks__Stepped_Rent__c</object>
+        <schedule>
+            <frequency>Daily</frequency>
+            <startDate>2026-04-21</startDate>
+            <startTime>06:00:00.000Z</startTime>
+        </schedule>
+        <triggerType>Scheduled</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

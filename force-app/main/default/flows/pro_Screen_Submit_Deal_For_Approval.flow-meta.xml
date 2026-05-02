@@ -22,6 +22,7 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <apiVersion>65.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <assignments>
         <name>Assign_AiD_Approver_Assignee_Names_To_Collection_Variable</name>
         <label>Assign AiD Approver Assignee Names To Collection Variable</label>
@@ -110,6 +111,12 @@
             <targetReference>Assign_AiD_Approver_Assignee_Names_To_Collection_Variable</targetReference>
         </connector>
     </collectionProcessors>
+    <customProperties>
+        <name>ScreenProgressIndicator</name>
+        <value>
+            <stringValue>{&quot;location&quot;:&quot;top&quot;,&quot;type&quot;:&quot;simple&quot;}</stringValue>
+        </value>
+    </customProperties>
     <decisions>
         <name>Deal_Status</name>
         <label>Deal Status</label>
@@ -288,6 +295,14 @@
             <name>ApproversDisplay</name>
             <fieldText>&lt;p&gt;&lt;strong&gt;Outstanding Approvers: &lt;/strong&gt;{!f_OutstandingApprovers}&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>Submission_Notes</name>
@@ -295,6 +310,14 @@
             <fieldType>LargeTextArea</fieldType>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>false</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <nextOrFinishButtonLabel>Submit To Approvers</nextOrFinishButtonLabel>
         <showFooter>true</showFooter>

@@ -1,12 +1,8 @@
 <template>
-  <template if:true={isLoading}>
-    <lightning-spinner
-      alternative-text="Loading..."
-      variant="brand"
-      class="slds-is-fixed"
-    >
-    </lightning-spinner>
-  </template>
-  Redirecting to newly created record..If not redirected please click on below
-  <a href="#" onclick={handleclick}>Click Me</a>
+    <template if:true={isLoading}>
+        <lightning-spinner
+            alternative-text="Loading..." variant="brand" class="slds-is-fixed">
+        </lightning-spinner>
+    </template>
+    Redirecting to newly created record..If not redirected please click on below <a href="#" onclick={handleclick}>Click Me</a>
 </template>

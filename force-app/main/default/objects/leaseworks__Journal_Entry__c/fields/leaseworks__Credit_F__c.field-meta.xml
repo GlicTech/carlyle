@@ -2,9 +2,16 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>leaseworks__Credit_F__c</fullName>
     <deprecated>false</deprecated>
-    <formula>if(leaseworks__Amount__c &lt;= 0,-1*leaseworks__Amount__c,0.0)</formula>
+    <description>[LOAD: No]
+        [JUSTIFICATION: This field is deprecated]
+        [REPLACEMENT OBJECT API: Journal_Entry__c]
+        [REPLACEMENT FIELD API: Credit_Number__c]
+        [COMMENTS: Asana link https://app.asana.com/1/7934919496419/project/1108557631023783/task/1210702411446941?focus=true
+            Reason - Created relevant number field for this currency field
+            Version - v53]</description>
+    <formula>/*if(Amount__c &lt;= 0,-1*Amount__c,0.0)*/null</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-    <label>Z_Unused 202507 Credit</label>
+    <label>Z_Unused 2507 Credit</label>
     <precision>18</precision>
     <required>false</required>
     <scale>2</scale>

@@ -2,9 +2,17 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>leaseworks__Rent_Remaining__c</fullName>
     <deprecated>false</deprecated>
-    <formula>leaseworks__Sum_of_Rent_Slip__c  -  leaseworks__Total_Invoice_Rent_Till_Today__c</formula>
+    <description>Rent Remaining is the sum of the rent slips minus the approved or paid invoices
+        [LOAD:No]
+        [JUSTIFICATION: Deprecated this field]
+        [REPLACEMENT OBJECT API: Stepped_Rent__c]
+        [REPLACEMENT FIELD API: Rent_Remaining__c]
+        [COMMENTS: Asana link https://app.asana.com/1/7934919496419/project/1211557698320453/task/1210539422112047?focus=true
+            Reason: we created a new field on Rent schedule object to calculate Rent Remaining at that level. Hence this field is no longer needed on Lease object
+            Release version: v60]</description>
+    <formula>/*Sum_of_Rent_Slip__c  -  Total_Invoice_Rent_Till_Today__c*/null</formula>
     <inlineHelpText>Rent Remaining is the sum of the rent slips minus the approved or paid invoices</inlineHelpText>
-    <label>Rent Remaining</label>
+    <label>Z_Unused_2602 Rent Remaining</label>
     <precision>18</precision>
     <required>false</required>
     <scale>2</scale>

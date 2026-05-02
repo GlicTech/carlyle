@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>62.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <decisions>
         <name>Was_A_Target_Previously_Closed_By_Another_AiD</name>
         <label>Was A Target Previously Closed By Another AiD?</label>
@@ -321,6 +322,12 @@
             <field>pro_Asset_in_Deal__c</field>
             <value>
                 <elementReference>varAID.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>pro_Target_Re_Opened__c</field>
+            <value>
+                <booleanValue>false</booleanValue>
             </value>
         </inputAssignments>
         <inputAssignments>

@@ -265,7 +265,7 @@
     <fieldUpdates>
         <fullName>Set_Finance_Sign_Off_Date</fullName>
         <field>leaseworks__CFO_Sign_off_Date__c</field>
-        <formula>TODAY()</formula>
+        <formula>IF(CONTAINS( Finance_Sign_Off_User__c ,  $User.Id ),TODAY(), leaseworks__CFO_Sign_off_Date__c)</formula>
         <name>Set Finance Sign Off Date</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
@@ -295,7 +295,7 @@
     <fieldUpdates>
         <fullName>Set_Technical_Sign_Off_Date</fullName>
         <field>leaseworks__CTO_Sign_off_Date__c</field>
-        <formula>TODAY()</formula>
+        <formula>IF(CONTAINS( Technical_Sign_Off_User__c,  $User.Id), TODAY(),  leaseworks__CTO_Sign_off_Date__c )</formula>
         <name>Set Technical Sign Off Date</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>

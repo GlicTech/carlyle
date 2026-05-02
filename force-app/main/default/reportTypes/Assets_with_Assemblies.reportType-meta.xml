@@ -1140,16 +1140,6 @@
             <field>YoM__c</field>
             <table>leaseworks__Aircraft__c</table>
         </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>CAP_Prior_Year_Flight_Hours__c</field>
-            <table>leaseworks__Aircraft__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>CAP_Prior_Year_Flight_Cycles__c</field>
-            <table>leaseworks__Aircraft__c</table>
-        </columns>
         <masterLabel>Assets</masterLabel>
     </sections>
     <sections>
@@ -1797,5 +1787,13 @@
             <table>leaseworks__Aircraft__c.leaseworks__Constituent_Assemblies__r</table>
         </columns>
         <masterLabel>Assemblies</masterLabel>
+    </sections>
+    <sections>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>leaseworks__Lease__c.leaseworks__Lease_Type_Status__c</field>
+            <table>leaseworks__Aircraft__c</table>
+        </columns>
+        <masterLabel>Lease</masterLabel>
     </sections>
 </ReportType>

@@ -14,21 +14,31 @@
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
             <name>recipientAddresses</name>
-            <value/>
+            <value>
+                <collectionElements>
+                    <elementReference>varTriggeringBankAccount.LastModifiedBy.Email</elementReference>
+                </collectionElements>
+            </value>
         </inputParameters>
         <inputParameters>
             <name>ccAddresses</name>
-            <value/>
+            <value>
+                <collectionElements>
+                    <elementReference>Remove_Duplicates_From_Email_Collection.uniqueStrings</elementReference>
+                </collectionElements>
+            </value>
         </inputParameters>
         <inputParameters>
             <name>senderType</name>
             <value>
+                <inputConfiguratorMode>Custom</inputConfiguratorMode>
                 <stringValue>OrgWideEmailAddress</stringValue>
             </value>
         </inputParameters>
         <inputParameters>
             <name>senderAddress</name>
             <value>
+                <inputConfiguratorMode>Custom</inputConfiguratorMode>
                 <stringValue>leaseworks@carlyle.aero</stringValue>
             </value>
         </inputParameters>
@@ -47,6 +57,7 @@
         <inputParameters>
             <name>emailBody</name>
             <value>
+                <inputConfiguratorMode>Custom</inputConfiguratorMode>
                 <stringValue>&lt;p&gt;{!tt_EmailBodyCreation}&lt;/p&gt;</stringValue>
             </value>
         </inputParameters>
@@ -59,6 +70,7 @@
         <inputParameters>
             <name>relatedRecordId</name>
             <value>
+                <inputConfiguratorMode>Resource</inputConfiguratorMode>
                 <stringValue></stringValue>
             </value>
         </inputParameters>
@@ -79,21 +91,31 @@
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
             <name>recipientAddresses</name>
-            <value/>
+            <value>
+                <collectionElements>
+                    <elementReference>varTriggeringBankAccount.LastModifiedBy.Email</elementReference>
+                </collectionElements>
+            </value>
         </inputParameters>
         <inputParameters>
             <name>ccAddresses</name>
-            <value/>
+            <value>
+                <collectionElements>
+                    <elementReference>Remove_Duplicates_From_Email_Collection.uniqueStrings</elementReference>
+                </collectionElements>
+            </value>
         </inputParameters>
         <inputParameters>
             <name>senderType</name>
             <value>
+                <inputConfiguratorMode>Custom</inputConfiguratorMode>
                 <stringValue>OrgWideEmailAddress</stringValue>
             </value>
         </inputParameters>
         <inputParameters>
             <name>senderAddress</name>
             <value>
+                <inputConfiguratorMode>Custom</inputConfiguratorMode>
                 <stringValue>leaseworks@carlyle.aero</stringValue>
             </value>
         </inputParameters>
@@ -112,6 +134,7 @@
         <inputParameters>
             <name>emailBody</name>
             <value>
+                <inputConfiguratorMode>Custom</inputConfiguratorMode>
                 <stringValue>&lt;p&gt;{!tt_EmailBodyUpdate}&lt;/p&gt;</stringValue>
             </value>
         </inputParameters>
@@ -124,6 +147,7 @@
         <inputParameters>
             <name>relatedRecordId</name>
             <value>
+                <inputConfiguratorMode>Resource</inputConfiguratorMode>
                 <stringValue></stringValue>
             </value>
         </inputParameters>
@@ -194,6 +218,7 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <apiVersion>65.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <assignments>
         <description>Assign all Group Member records that refer to a user record into one collection</description>
         <name>Assign_Users_From_Main_Group_And_Subgroups_To_Collection</name>

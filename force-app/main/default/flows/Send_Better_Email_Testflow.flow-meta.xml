@@ -536,6 +536,7 @@
         </outputParameters>
     </actionCalls>
     <apiVersion>49.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <assignments>
         <name>Add_All_Attached_Files</name>
         <label>Add All Attached Files</label>
@@ -1686,6 +1687,14 @@ Also create an empty string collection of email addresses</description>
             <name>SelectExampleInstructions</name>
             <fieldText>&lt;p&gt;Select the example/test you would like to execute.  For examples 3-5, you will need to do some prior setup of records and/or templates as described in the instructions for each when selected.  The choices are:&lt;/p&gt;&lt;p&gt;&lt;b style=&quot;background-color: rgba(25, 30, 35, 0.2);&quot;&gt;1) Simple Email Text&lt;/b&gt; - &lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60);&quot;&gt;Sends a simple better text email&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;2) Simple Email with Address Collections&lt;/b&gt; - &lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60);&quot;&gt;Send an email using collections of recipients.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;3) Email with Attachments&lt;/b&gt; - &lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60);&quot;&gt;Attachments and Signature&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;4) Email Using Template&lt;/b&gt; -&lt;span style=&quot;font-size: 10.5pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60);&quot;&gt;Single Mail Template with merge fields from Recipient Record, Related To Record, Activity to Recipient and Task to Related To&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;5) Multi-Lingual Using Email Templates&lt;/b&gt; - Sending &lt;span style=&quot;font-size: 10.5pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60);&quot;&gt;Multi-Lingual with Email Templates&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;6) Mass Email&lt;/b&gt; - Send an email using MassEmail messaging&lt;/p&gt;&lt;p&gt;&lt;b&gt;7) Bulk Email &lt;/b&gt;- Send bulk email using request collections&lt;/p&gt;&lt;p&gt;&lt;b style=&quot;background-color: rgb(255, 255, 255); color: rgb(62, 62, 60);&quot;&gt;8) Email Using Template Target Not Recipient&lt;/b&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(62, 62, 60);&quot;&gt; -&lt;/span&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(62, 62, 60); font-size: 10.5pt; font-family: Arial, sans-serif;&quot;&gt;Single Mail Template with merge fields from Target Record, Related To Record, Different Recipient&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;NOTE&lt;/b&gt;:  By default, &lt;span style=&quot;color: rgb(23, 43, 77); font-family: -apple-system, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, Oxygen, Ubuntu, &amp;quot;Fira Sans&amp;quot;, &amp;quot;Droid Sans&amp;quot;, &amp;quot;Helvetica Neue&amp;quot;, sans-serif; font-size: 14px; background-color: rgb(255, 255, 255);&quot;&gt;UseSalesforceSignature and saveAsActivity are set to true if unspecified.  This often has unintended consequences, so  explicitly setting these variables is best practice - especially if they are not desired features.&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>Choose_Example</name>
@@ -1702,6 +1711,14 @@ Also create an empty string collection of email addresses</description>
             <fieldType>DropdownBox</fieldType>
             <isRequired>true</isRequired>
             <scale>0</scale>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
@@ -1744,6 +1761,14 @@ Also create an empty string collection of email addresses</description>
                 <assignToReference>content_document_ids</assignToReference>
                 <name>contentDocIds</name>
             </outputParameters>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
@@ -1763,6 +1788,14 @@ Also create an empty string collection of email addresses</description>
             <name>Example3Details</name>
             <fieldText>&lt;p&gt;&lt;b style=&quot;font-size: 10.5pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60);&quot;&gt;Flow Example 3&lt;/b&gt;&lt;span style=&quot;font-size: 10.5pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60);&quot;&gt; &lt;/span&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60);&quot;&gt;Attachments and Signature.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60);&quot;&gt;This example illustrates how to upload and send attachments using Content Document Links&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60);&quot;&gt;Send the attachments added in the flow (related record == current user).&amp;nbsp;It also tests using the signature of the running user.&amp;nbsp;Parameters are:&lt;/span&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;to the addressee in [&lt;/span&gt;&lt;b style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;TO(&lt;/b&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif; color: rgb(8, 7, 7); background-color: white;&quot;&gt;send_Email_To&lt;/span&gt;&lt;b style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;)&lt;/b&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;]&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;content predefined in the resource [&lt;/span&gt;&lt;b style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;HTMLTextTemplate]&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;from[&lt;/span&gt;&lt;b style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;Reply Email Address(TestReturnAddress)&lt;/b&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;]&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;with the name [&lt;/span&gt;&lt;b style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;Sender Display Name(sendSender)&lt;/b&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;]&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;using [&lt;/span&gt;&lt;b style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;Subject(sendSubject)&lt;/b&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;]&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;and [&lt;/span&gt;&lt;b style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;Body(&lt;/b&gt;&lt;b style=&quot;font-size: 10pt; font-family: Arial, sans-serif; background-color: white;&quot;&gt;HTML_Body_3&lt;/b&gt;&lt;b style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;)&lt;/b&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;]&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;with attachments &lt;/span&gt;&lt;b style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;[&lt;/b&gt;&lt;b style=&quot;font-size: 9pt; font-family: Arial, sans-serif; background-color: white;&quot;&gt;Attach which Content Document Links&lt;/b&gt;&lt;b style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt; (filtered_cdls)]&lt;/b&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;(Created using document upload then converting documents to Document Versions and Content Document Links to those versions&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60);&quot;&gt;All of the above are flow resource variables.&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>X3_ToEmailaAdress</name>
@@ -1809,6 +1842,14 @@ Also create an empty string collection of email addresses</description>
                 <assignToReference>send_Email_To</assignToReference>
                 <name>value</name>
             </outputParameters>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>X3_Reply_To_Email_Address</name>
@@ -1843,6 +1884,14 @@ Also create an empty string collection of email addresses</description>
                 <assignToReference>testReturnAddress</assignToReference>
                 <name>value</name>
             </outputParameters>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>X3_Screen_Sender_Name</name>
@@ -1853,6 +1902,14 @@ Also create an empty string collection of email addresses</description>
             <fieldText>Sender Name</fieldText>
             <fieldType>InputField</fieldType>
             <isRequired>true</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>X3_Screen_Subject</name>
@@ -1863,6 +1920,14 @@ Also create an empty string collection of email addresses</description>
             <fieldText>Subject</fieldText>
             <fieldType>InputField</fieldType>
             <isRequired>true</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
@@ -1879,6 +1944,14 @@ Also create an empty string collection of email addresses</description>
             <name>dispResults</name>
             <fieldText>&lt;p&gt;Email Send Results:&lt;/p&gt;&lt;p&gt;IsSuccess: {!isSuccess}&lt;/p&gt;&lt;p&gt;Errors: &lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
@@ -1898,6 +1971,14 @@ Also create an empty string collection of email addresses</description>
             <name>Example1Details</name>
             <fieldText>&lt;p&gt;&lt;b style=&quot;font-size: 10.5pt; color: rgb(62, 62, 60); font-family: Arial, sans-serif;&quot;&gt;Flow Example 1&lt;/b&gt;&lt;span style=&quot;font-size: 10.5pt; color: rgb(62, 62, 60); font-family: Arial, sans-serif;&quot;&gt; &lt;/span&gt;&lt;span style=&quot;font-size: 10pt; color: rgb(62, 62, 60); font-family: Arial, sans-serif;&quot;&gt;Sends a rich text email with:&lt;/span&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;content predefined in the resource &lt;/span&gt;&lt;b style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;HTMLTextTemplate&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;to the addressee in [&lt;/span&gt;&lt;b style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;TO(&lt;/b&gt;&lt;b style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;send_Email_To&lt;/b&gt;&lt;b style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;)&lt;/b&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;]&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;from[&lt;/span&gt;&lt;b style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;Reply to Email&lt;/b&gt;&lt;b style=&quot;font-size: 9pt; font-family: Arial, sans-serif; background-color: white;&quot;&gt;(&lt;/b&gt;&lt;b style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;TestReturnAddress)&lt;/b&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;]&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;with the name [&lt;/span&gt;&lt;b style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;Sender Display Name(testSenderName)&lt;/b&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;]&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;using [&lt;/span&gt;&lt;b style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;Subject(testSubject)&lt;/b&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;]&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;and [&lt;/span&gt;&lt;b style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;Body(&lt;/b&gt;&lt;b style=&quot;font-size: 10pt; font-family: Arial, sans-serif; background-color: white;&quot;&gt;x1_HTML_Body&lt;/b&gt;&lt;b style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;)&lt;/b&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;]&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 10pt; color: rgb(62, 62, 60); font-family: Arial, sans-serif;&quot;&gt;All of the above are flow resource variables. To create a body with line breaks, use a formula variable (see example resource variable testPlainTextLineFeeds)&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;b style=&quot;font-size: 10pt; color: rgb(62, 62, 60); font-family: Arial, sans-serif;&quot;&gt;Note&lt;/b&gt;&lt;span style=&quot;font-size: 10pt; color: rgb(62, 62, 60); font-family: Arial, sans-serif;&quot;&gt;: To get the full effect of rich text, edit the flow resource formula &lt;/span&gt;&lt;b style=&quot;font-size: 10pt; color: rgb(62, 62, 60); font-family: Arial, sans-serif;&quot;&gt;HTMLTextTemplate&lt;/b&gt;&lt;span style=&quot;font-size: 10pt; color: rgb(62, 62, 60); font-family: Arial, sans-serif;&quot;&gt; resource instead of modifying the field on this screen.&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>X1_Screen_Email_To</name>
@@ -1944,6 +2025,14 @@ Also create an empty string collection of email addresses</description>
                 <assignToReference>send_Email_To</assignToReference>
                 <name>value</name>
             </outputParameters>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>X1_Screen_Reply_To_Email_Address</name>
@@ -1978,6 +2067,14 @@ Also create an empty string collection of email addresses</description>
                 <assignToReference>testReturnAddress</assignToReference>
                 <name>value</name>
             </outputParameters>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>X1_Screen_Sender_Name</name>
@@ -1988,6 +2085,14 @@ Also create an empty string collection of email addresses</description>
             <fieldText>Sender Name</fieldText>
             <fieldType>InputField</fieldType>
             <isRequired>true</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>X1_Screen_Subject</name>
@@ -1998,6 +2103,14 @@ Also create an empty string collection of email addresses</description>
             <fieldText>Subject</fieldText>
             <fieldType>InputField</fieldType>
             <isRequired>true</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>X1_Screen_HTML_Body</name>
@@ -2008,6 +2121,14 @@ Also create an empty string collection of email addresses</description>
             <fieldText>HTML Body</fieldText>
             <fieldType>InputField</fieldType>
             <isRequired>false</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>X1_Screen_MessageId</name>
@@ -2018,6 +2139,14 @@ Also create an empty string collection of email addresses</description>
             <fieldText>Message Id</fieldText>
             <fieldType>InputField</fieldType>
             <isRequired>false</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
@@ -2037,6 +2166,14 @@ Also create an empty string collection of email addresses</description>
             <name>Example2Details</name>
             <fieldText>&lt;p&gt;&lt;b style=&quot;font-size: 10.5pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60);&quot;&gt;Flow Example 2&lt;/b&gt;&lt;span style=&quot;font-size: 10.5pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60);&quot;&gt; &lt;/span&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60);&quot;&gt;Send an email using collections of recipients.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60);&quot;&gt;The collections are defined by:&lt;/span&gt;&lt;/p&gt;&lt;ol&gt;&lt;li&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;To: A collection of strings&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;CC: A collection of Contact Ids derived from pre-existing Contacts selected via a “contains” configuration&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;BCC: A collection of User Ids selected via a “contains” configuration&lt;/span&gt;&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60);&quot;&gt;If you want to test the Contact Collection, you must specify pre-created contacts using “contains” which looks for contact names containing the specified string.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60);&quot;&gt;If you want to test the User Collection, you must specify existing users using “contains” which looks for user names containing the specified string.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60);&quot;&gt;In the flow, the following are constructed and used for the action:&lt;/span&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;TO (stringCollectionEmailAddresses) [from ToEmailAddress_2_1 &amp;amp; ToEmailAddress_2_2]&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;CC (curContacts) [from Test_Contact_Recipient_Contains_2]&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;BCC (curUsers) [from Test_User_Recipient_Contains_2]&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;from[&lt;/span&gt;&lt;b style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;Reply Email Address(testReturnAddress)&lt;/b&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;]&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;with the name [&lt;/span&gt;&lt;b style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;Sender Display Name(testSenderName)&lt;/b&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;]&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;using [&lt;/span&gt;&lt;b style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;Subject(testSendSubject)&lt;/b&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;]&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;and [&lt;/span&gt;&lt;b style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;Body(&lt;/b&gt;&lt;b style=&quot;font-size: 10pt; font-family: Arial, sans-serif; background-color: white;&quot;&gt;x2_HTML_Body&lt;/b&gt;&lt;b style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;)&lt;/b&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;]&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60);&quot;&gt;All of the above are flow resource variables.&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>X2_Screen_EmailAddress_1</name>
@@ -2083,6 +2220,14 @@ Also create an empty string collection of email addresses</description>
                 <assignToReference>testEmailAddress1</assignToReference>
                 <name>value</name>
             </outputParameters>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>X2_Screen_ToEmailAddress2</name>
@@ -2123,6 +2268,14 @@ Also create an empty string collection of email addresses</description>
                 <assignToReference>testEmailAddress2</assignToReference>
                 <name>value</name>
             </outputParameters>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>X2_Reply_To_Email_Address</name>
@@ -2157,6 +2310,14 @@ Also create an empty string collection of email addresses</description>
                 <assignToReference>testReturnAddress</assignToReference>
                 <name>value</name>
             </outputParameters>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>X2_Screen_Sender_Name</name>
@@ -2167,6 +2328,14 @@ Also create an empty string collection of email addresses</description>
             <fieldText>Sender Name</fieldText>
             <fieldType>InputField</fieldType>
             <isRequired>true</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>X2_Screen_Subject</name>
@@ -2177,6 +2346,14 @@ Also create an empty string collection of email addresses</description>
             <fieldText>Subject</fieldText>
             <fieldType>InputField</fieldType>
             <isRequired>true</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>X2_Screen_HTML_Body</name>
@@ -2186,6 +2363,14 @@ Also create an empty string collection of email addresses</description>
             <fieldText>Body</fieldText>
             <fieldType>LargeTextArea</fieldType>
             <isRequired>false</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>X2_Screen_Test_Contact_Recipient_Contains</name>
@@ -2196,6 +2381,14 @@ Also create an empty string collection of email addresses</description>
             <fieldText>Test Contact Recipient Contains</fieldText>
             <fieldType>InputField</fieldType>
             <isRequired>false</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>X2_Screen_Test_User_Recipient_Contains</name>
@@ -2206,6 +2399,14 @@ Also create an empty string collection of email addresses</description>
             <fieldText>Test User Recipient Contains</fieldText>
             <fieldType>InputField</fieldType>
             <isRequired>false</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
@@ -2225,6 +2426,14 @@ Also create an empty string collection of email addresses</description>
             <name>Example4Details</name>
             <fieldText>&lt;p&gt;&lt;b style=&quot;font-size: 10.5pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60);&quot;&gt;Flow Example 4&lt;/b&gt;&lt;span style=&quot;font-size: 10.5pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60);&quot;&gt; Single Mail Template with merge fields from Recipient Record, Related To Record, Activity to Recipient and Task to Related To&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;b style=&quot;font-size: 10pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60); background-color: white;&quot;&gt;&lt;i&gt;NOTE: Before running this example flow, you must create record(s) for both the Recipient (a contact by default) and the Related Record (an Account Record by default) and have the Record Ids available&lt;/i&gt;&lt;/b&gt;&lt;i style=&quot;font-size: 10pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60); background-color: white;&quot;&gt;.&lt;/i&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60);&quot;&gt;This sends out an email using a specified Email Template with the addressee specified through the Recipient Record Id (TargetObjectId) and optionally (dependent on your Template) merge fields with an associated object record (WhatId).&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60);&quot;&gt;Parameters used:&lt;/span&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;sender [&lt;/span&gt;&lt;b style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;Sender Display Name(sendSender)&lt;/b&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;]&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 9pt; font-family: Arial, sans-serif; color: black; background-color: white;&quot;&gt;reply to &lt;/span&gt;&lt;b style=&quot;font-size: 9pt; font-family: Arial, sans-serif; color: black; background-color: white;&quot;&gt;[Reply Email Address&lt;/b&gt;&lt;b&gt;(testReturnAddress)]&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;with&amp;nbsp;[&lt;/span&gt;&lt;b style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;Email Template Id(&lt;/b&gt;&lt;b style=&quot;font-size: 10pt; font-family: Arial, sans-serif; color: black; background-color: white;&quot;&gt;templateId&lt;/b&gt;&lt;b style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;)&lt;/b&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;] (looked up or created if specified by name)&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;sent to &lt;/span&gt;&lt;b style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;[&lt;/b&gt;&lt;b style=&quot;font-size: 9pt; font-family: Arial, sans-serif; color: black; background-color: white;&quot;&gt;Recipient Record Id&lt;/b&gt;&lt;b&gt;(templateTargetId)]&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 9pt; font-family: Arial, sans-serif; color: black; background-color: white;&quot;&gt;with related record &lt;/span&gt;&lt;b style=&quot;font-size: 9pt; font-family: Arial, sans-serif; color: black; background-color: white;&quot;&gt;[Related Record Id(templateWhatId)]&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif; color: black; background-color: white;&quot;&gt;Save Email as Activity on Recipient Record(s)&lt;/span&gt;[true]&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif; color: black; background-color: white;&quot;&gt;Save Email as Task on recipient related record(s)&lt;/span&gt;[true]&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60);&quot;&gt;For this example, you will need to create or use a template. Templates also require that you have a recipient record (targetObjectId) (e.g., Contact, User, . . .) which must also pre-exist.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60);&quot;&gt;You will be required enter the ID for that record as the Recipient Record Id&lt;/span&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60); background-color: white;&quot;&gt;. Additionally if you intend to test merge fields (RelatedTo) with your template, You must also pre-create the related object record and have available the Id for that record as the Record Object Id (RecordId).&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60);&quot;&gt;If you are using the defaults, you will also need to:&lt;/span&gt;&lt;/p&gt;&lt;ol&gt;&lt;li&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;Create a Contact (for Recipient Object) and/or have the Id available.&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;Create an Account (for Related Record) and/or have the Id available.&lt;/span&gt;&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60); background-color: white;&quot;&gt;This example also creates an activity for the email which will be assigned to the Recipient Record Id and a task related to the Related Record Id.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60); background-color: white;&quot;&gt;Note: These are independently settable in the Action.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60);&quot;&gt;If you specify template by name and the templates do not exist, they will be created using Contact for the &lt;/span&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60); background-color: white;&quot;&gt;Recipient RecordType and Account for the Related RecordType.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60);&quot;&gt;If you use the default test templates (&lt;/span&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60); background-color: white;&quot;&gt;sendBetterEmailTest) the Target ID should be a ContactId and the Related Record should be an AccountId.&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>X4_Screen_Template_RecordId</name>
@@ -2232,6 +2441,14 @@ Also create an empty string collection of email addresses</description>
             <fieldText>Email Template Id (If Preferred)</fieldText>
             <fieldType>InputField</fieldType>
             <isRequired>false</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>X4_Screen_Email_Template_Name</name>
@@ -2242,6 +2459,14 @@ Also create an empty string collection of email addresses</description>
             <fieldText>Email Template Name</fieldText>
             <fieldType>InputField</fieldType>
             <isRequired>false</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>X4_Screen_Template_Target_Record_Id</name>
@@ -2250,6 +2475,14 @@ Also create an empty string collection of email addresses</description>
             <fieldType>InputField</fieldType>
             <helpText>&lt;p&gt;This must be an existing record.  If you are using the default test templates (sendBetterEmailTest), it should be a ContactId&lt;/p&gt;</helpText>
             <isRequired>true</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>X4_Screen_Related_RecordId</name>
@@ -2257,6 +2490,14 @@ Also create an empty string collection of email addresses</description>
             <fieldText>Related Record Id (also for template merge fields for related record and creating task on same)</fieldText>
             <fieldType>InputField</fieldType>
             <isRequired>true</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
             <validationRule>
                 <errorMessage>&lt;p&gt;Related Record Id and Related Record Type both must either be used or blank.   One of them is blank.&lt;/p&gt;</errorMessage>
                 <formulaExpression>ISBLANK({!X4_Related_RecordType}) == ISBLANK({!X4_Screen_Related_RecordId})</formulaExpression>
@@ -2272,6 +2513,14 @@ Also create an empty string collection of email addresses</description>
             <fieldType>InputField</fieldType>
             <helpText>&lt;p&gt;&lt;span style=&quot;color: rgb(62, 62, 60); background-color: rgb(255, 255, 255);&quot;&gt;This must be an existing record of a type that allows File Attachments.  If you are using the default test templates (sendBetterEmailTest), it should be an Accoun&lt;/span&gt;&lt;/p&gt;</helpText>
             <isRequired>false</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
             <validationRule>
                 <errorMessage>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(62, 62, 60);&quot;&gt;Related Record Id and Related Record Type both must either be used or blank.   One of them is blank.&lt;/span&gt;&lt;/p&gt;</errorMessage>
                 <formulaExpression>ISBLANK({!X4_Related_RecordType}) == ISBLANK({!X4_Screen_Related_RecordId})</formulaExpression>
@@ -2310,6 +2559,14 @@ Also create an empty string collection of email addresses</description>
                 <assignToReference>testReturnAddress</assignToReference>
                 <name>value</name>
             </outputParameters>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>X4_Screen_Sender_Name</name>
@@ -2320,6 +2577,14 @@ Also create an empty string collection of email addresses</description>
             <fieldText>Sender Name</fieldText>
             <fieldType>InputField</fieldType>
             <isRequired>true</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
@@ -2339,6 +2604,14 @@ Also create an empty string collection of email addresses</description>
             <name>Example5Details</name>
             <fieldText>&lt;p&gt;&lt;b style=&quot;font-size: 10.5pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60);&quot;&gt;Flow Example 5&lt;/b&gt;&lt;span style=&quot;font-size: 10.5pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60);&quot;&gt; Multi-Lingual with Email Templates&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;b style=&quot;background-color: white; font-size: 10pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60);&quot;&gt;&lt;i&gt;NOTE: Before running this example flow, you must create record(s) for both the Recipient (a contact by default) and the Related Record (an Account Record by default) and have the Record Ids available&lt;/i&gt;&lt;/b&gt;&lt;i style=&quot;background-color: white; font-size: 10pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60);&quot;&gt;.&lt;/i&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60);&quot;&gt;SendBetterEmail provides multi-lingual support within the same flow by allowing the language to be specified, then selecting the appropriate template for that language.&amp;nbsp;For this functionality, each language localization has its own template with all localizations sharing a common EmailTemplate.Name. To differentiate the localizations, add a tag to the Email Template Description field in the format: ‘Language=”en_US”‘ (or whatever corresponding to your organization localizations)&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60);&quot;&gt;This example sends out an email using an Email Template with multiple language versions selected by using the language identifier for a set of specified Email Templates with the language tagged in the description.&amp;nbsp;It uses the Recipient Record Id (Recipient Id) and optionally (dependent on your Template) merge fields with a related object record (What/About Id) in merge fields to customize the email for each recipient/related object.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60);&quot;&gt;Parameters used:&lt;/span&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;description [&lt;/span&gt;&lt;b style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;Sender Display Name(sendSender)&lt;/b&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;]&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;background-color: white; font-size: 9pt; font-family: Arial, sans-serif; color: black;&quot;&gt;reply to &lt;/span&gt;&lt;b style=&quot;background-color: white; font-size: 9pt; font-family: Arial, sans-serif; color: black;&quot;&gt;[Reply Email Address&lt;/b&gt;&lt;b style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;(testReturnAddress)]&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;with&amp;nbsp;[&lt;/span&gt;&lt;b style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;Template Name(&lt;/b&gt;&lt;b style=&quot;font-size: 10pt; font-family: Arial, sans-serif; background-color: white; color: black;&quot;&gt;testTemplateName&lt;/b&gt;&lt;b style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;)&lt;/b&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;] (looked up or created if specified by name) (Default: sendBetterEmailTest)&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;selecting &lt;/span&gt;&lt;b style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;[Template Language(testTemplateLanguage)]&lt;/b&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;(Default: es_MX)&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;sent to &lt;/span&gt;&lt;b style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;[&lt;/b&gt;&lt;b style=&quot;font-size: 9pt; font-family: Arial, sans-serif; background-color: white; color: black;&quot;&gt;Recipient Record Id&lt;/b&gt;&lt;b style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;(templateTargetId)]&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;background-color: white; font-size: 9pt; font-family: Arial, sans-serif; color: black;&quot;&gt;with related record &lt;/span&gt;&lt;b style=&quot;background-color: white; font-size: 9pt; font-family: Arial, sans-serif; color: black;&quot;&gt;[Related Record Id(templateWhatId)]&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60);&quot;&gt;If you are using the defaults, prior to running this example, you must:&lt;/span&gt;&lt;/p&gt;&lt;ol&gt;&lt;li style=&quot;text-align: justify;&quot;&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;Create a Contact (for Recipient Object) and/or have the Id available.&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;Create an Account (for Related Record) and/or have the Id available.&lt;/span&gt;&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60);&quot;&gt;If you have not already created the Named Template, this example will create an English and Spanish(Mexican) version of that template for you.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60);&quot;&gt;You can, of course, vary the templates and object records to reflect your organization&apos;s needs.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60);&quot;&gt;This sends out an email using a specified EmailTemplate with the addressee specified through the TargetObjectId and optionally (dependent on your Template) merge fields with an associated object record using that record&apos;s Id.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60);&quot;&gt;For this example, you will need to create or use one or more templates. Templates also require that you have a recipient record (targetObjectId) (e.g., Contact, User, . . .) which must also pre-exist. You will be required enter the ID for that record as the &lt;/span&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60); background-color: white;&quot;&gt;(targetObjectId). &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: white; font-size: 10pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60);&quot;&gt;Additionally if you intend to test merge fields (RelatedTo) with your template, you must also pre-create the related object record and have available the Id for that record as an ID for the Record Object Id (RecordId).&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: white; font-size: 10pt; font-family: Tahoma, sans-serif; color: rgb(62, 62, 60);&quot;&gt;﻿&lt;/span&gt;&lt;span style=&quot;background-color: white; font-size: 10pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60);&quot;&gt;If you use the default test templates (sendBetterEmailTest) the Target ID should be a ContactId and the Related Record should be an AccountId&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>X5_Screen_Template_Name</name>
@@ -2350,6 +2623,14 @@ Also create an empty string collection of email addresses</description>
             <fieldType>InputField</fieldType>
             <helpText>&lt;p&gt;&lt;span style=&quot;color: rgb(206, 145, 120);&quot;&gt;Used&amp;nbsp;in&amp;nbsp;conjunction&amp;nbsp;with&amp;nbsp;Template&amp;nbsp;Language.&amp;nbsp;Finds&amp;nbsp;templates&amp;nbsp;with&amp;nbsp;the&amp;nbsp;name&amp;nbsp;matching&amp;nbsp;Template&amp;nbsp;Name&amp;nbsp;for&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;color: rgb(215, 186, 125);&quot;&gt;&apos;&lt;/span&gt;&lt;span style=&quot;color: rgb(206, 145, 120);&quot;&gt;Language=&quot;xxx_YY&quot;&lt;/span&gt;&lt;span style=&quot;color: rgb(215, 186, 125);&quot;&gt;&apos;&lt;/span&gt;&lt;span style=&quot;color: rgb(206, 145, 120);&quot;&gt;&amp;nbsp;in&amp;nbsp;the&amp;nbsp;Description.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</helpText>
             <isRequired>true</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>X5_Screen_Template_Language</name>
@@ -2361,6 +2642,14 @@ Also create an empty string collection of email addresses</description>
             <fieldType>InputField</fieldType>
             <helpText>&lt;p&gt;&lt;span style=&quot;color: rgb(206, 145, 120);&quot;&gt;Will be in the format lang_Local(e.g. &quot;en_US&quot;) Used&amp;nbsp;in&amp;nbsp;conjunction&amp;nbsp;with&amp;nbsp;Template&amp;nbsp;Name,&amp;nbsp;Finds&amp;nbsp;templates&amp;nbsp;with&amp;nbsp;the&amp;nbsp;name&amp;nbsp;matching&amp;nbsp;Template&amp;nbsp;Name&amp;nbsp;for&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;color: rgb(215, 186, 125);&quot;&gt;&apos;&lt;/span&gt;&lt;span style=&quot;color: rgb(206, 145, 120);&quot;&gt;Language=&quot;xxx_YY&quot;&lt;/span&gt;&lt;span style=&quot;color: rgb(215, 186, 125);&quot;&gt;&apos;&lt;/span&gt;&lt;span style=&quot;color: rgb(206, 145, 120);&quot;&gt;&amp;nbsp;in&amp;nbsp;the&amp;nbsp;Description.&amp;nbsp;&amp;nbsp;Template&amp;nbsp;Selection&amp;nbsp;criteria&amp;nbsp;order&amp;nbsp;first&amp;nbsp;found&amp;nbsp;Name&amp;nbsp;with:&amp;nbsp;1)If&amp;nbsp;empty,&amp;nbsp;Org&amp;nbsp;LanguageLocaleKey&amp;nbsp;2)Language&amp;nbsp;found&amp;nbsp;in&amp;nbsp;Description&amp;nbsp;3)First&amp;nbsp;without&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;color: rgb(215, 186, 125);&quot;&gt;&apos;&lt;/span&gt;&lt;span style=&quot;color: rgb(206, 145, 120);&quot;&gt;Language=&quot;&lt;/span&gt;&lt;span style=&quot;color: rgb(215, 186, 125);&quot;&gt;&apos;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</helpText>
             <isRequired>false</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>X5_Screen_Template_Target_Record_Id</name>
@@ -2369,6 +2658,14 @@ Also create an empty string collection of email addresses</description>
             <fieldType>InputField</fieldType>
             <helpText>&lt;p&gt;This must be an existing record.  If you are using the default test Template set (sendBetterEmailTest), this should be a ContactId.&lt;/p&gt;</helpText>
             <isRequired>true</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>X5_Screen_Related_Record_Id_for_testing_merge_fields_5</name>
@@ -2377,6 +2674,14 @@ Also create an empty string collection of email addresses</description>
             <fieldType>InputField</fieldType>
             <helpText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(62, 62, 60);&quot;&gt;This must be an existing record.  If you are using the default test Template set (sendBetterEmailTest), this should be a AccountId.&lt;/span&gt;&lt;/p&gt;</helpText>
             <isRequired>false</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>X5_Screen_Related_Record_Type</name>
@@ -2387,6 +2692,14 @@ Also create an empty string collection of email addresses</description>
             <fieldText>Related Record Type</fieldText>
             <fieldType>InputField</fieldType>
             <isRequired>false</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>X5_Reply_To_Email_Address</name>
@@ -2421,6 +2734,14 @@ Also create an empty string collection of email addresses</description>
                 <assignToReference>testReturnAddress</assignToReference>
                 <name>value</name>
             </outputParameters>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>X5_Screen_Sender_Name</name>
@@ -2431,6 +2752,14 @@ Also create an empty string collection of email addresses</description>
             <fieldText>Sender Name</fieldText>
             <fieldType>InputField</fieldType>
             <isRequired>true</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
@@ -2450,6 +2779,14 @@ Also create an empty string collection of email addresses</description>
             <name>Example6Details</name>
             <fieldText>&lt;p&gt;&lt;b style=&quot;font-size: 10.5pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60);&quot;&gt;Flow Example 6&lt;/b&gt;&lt;span style=&quot;font-size: 10.5pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60);&quot;&gt; &lt;/span&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60); background-color: white;&quot;&gt;Send an email using MassEmail message&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60);&quot;&gt;SendBetterEmail can also be used to send Mass Emails. Mass Emails are far more limited in functionality that Single Emails, though both can be bulked as a single send (up to 10) in this action. Mass emails cannot have language localization by target for obvious reasons (one template for a list of targets), so the selected language will apply to the entire list.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60);&quot;&gt;Since this is simply demonstrating the MassEmail functionality, only a single email is sent using the running user as the Recipient Record Id.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60);&quot;&gt;Parameters used:&lt;/span&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;description [&lt;/span&gt;&lt;b style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;Description(testMassEmailFinishedMessage)&lt;/b&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;](&lt;/span&gt;&lt;span style=&quot;font-size: 9pt; font-family: Arial, sans-serif; background-color: white;&quot;&gt;sent in internal email with status after action completes&lt;/span&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;)&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;with&amp;nbsp;[&lt;/span&gt;&lt;b style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;Template Name(&lt;/b&gt;&lt;b style=&quot;font-size: 10pt; font-family: Arial, sans-serif; color: black; background-color: white;&quot;&gt;testTemplateName&lt;/b&gt;&lt;b style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;)&lt;/b&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;] (looked up or created if specified by name) (Default: sendBetterEmailTest)&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 9pt; font-family: Arial, sans-serif; color: black; background-color: white;&quot;&gt;with related record id collection &lt;/span&gt;&lt;b style=&quot;font-size: 9pt; font-family: Arial, sans-serif; color: black; background-color: white;&quot;&gt;[Recipient Record Id Collection(UserListForMassMail)]&lt;/b&gt;&lt;span style=&quot;font-size: 9pt; font-family: Arial, sans-serif; color: black; background-color: white;&quot;&gt;(consists of a single record, the user running the example)&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60);&quot;&gt;You can, of course, vary the templates and object records to reflect your organization&apos;s needs.&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>X6_Finished_Message_Description</name>
@@ -2461,6 +2798,14 @@ Also create an empty string collection of email addresses</description>
             <fieldType>InputField</fieldType>
             <helpText>&lt;p&gt;The message sent via email to the originator when all of the emails have been sent (or at least attempted to be sent); with status.&lt;/p&gt;</helpText>
             <isRequired>false</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>X6_Template_Name_Mass_Email</name>
@@ -2472,6 +2817,14 @@ Also create an empty string collection of email addresses</description>
             <fieldType>InputField</fieldType>
             <helpText>&lt;p&gt;&lt;span style=&quot;color: rgb(206, 145, 120);&quot;&gt;Used&amp;nbsp;in&amp;nbsp;conjunction&amp;nbsp;with&amp;nbsp;Template&amp;nbsp;Language.&amp;nbsp;Finds&amp;nbsp;templates&amp;nbsp;with&amp;nbsp;the&amp;nbsp;name&amp;nbsp;matching&amp;nbsp;Template&amp;nbsp;Name&amp;nbsp;for&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;color: rgb(215, 186, 125);&quot;&gt;&apos;&lt;/span&gt;&lt;span style=&quot;color: rgb(206, 145, 120);&quot;&gt;Language=&quot;xxx_YY&quot;&lt;/span&gt;&lt;span style=&quot;color: rgb(215, 186, 125);&quot;&gt;&apos;&lt;/span&gt;&lt;span style=&quot;color: rgb(206, 145, 120);&quot;&gt;&amp;nbsp;in&amp;nbsp;the&amp;nbsp;Description.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</helpText>
             <isRequired>true</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <helpText>&lt;p&gt;The message sent to the originator when all messages have been sent - with status.&lt;/p&gt;</helpText>
         <showFooter>true</showFooter>
@@ -2492,6 +2845,14 @@ Also create an empty string collection of email addresses</description>
             <name>Example1Details_0</name>
             <fieldText>&lt;p&gt;&lt;b style=&quot;font-size: 10.5pt; color: rgb(62, 62, 60); font-family: Arial, sans-serif;&quot;&gt;Flow Example 7&lt;/b&gt;&lt;span style=&quot;font-size: 10.5pt; color: rgb(62, 62, 60); font-family: Arial, sans-serif;&quot;&gt; &lt;/span&gt;&lt;span style=&quot;font-size: 10pt; color: rgb(62, 62, 60); font-family: Arial, sans-serif; background-color: white;&quot;&gt;- Send bulk email using request collections&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;b style=&quot;font-size: 10pt; color: rgb(62, 62, 60); font-family: Arial, sans-serif;&quot;&gt;This is a complex, advanced functionality that should be used only when needed.&lt;/b&gt;&lt;span style=&quot;font-size: 10pt; color: rgb(62, 62, 60); font-family: Arial, sans-serif;&quot;&gt;&amp;nbsp;&amp;nbsp;You are much better off using the standard functionality unless you have bulk requests that cannot be satisfied with the single SendBetterEmail request.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 10pt; color: rgb(62, 62, 60); font-family: Arial, sans-serif;&quot;&gt;SendBetterEmail can be used to send bulk email using &lt;/span&gt;&lt;i style=&quot;font-size: 10pt; color: rgb(62, 62, 60); font-family: Arial, sans-serif;&quot;&gt;collections&lt;/i&gt;&lt;span style=&quot;font-size: 10pt; color: rgb(62, 62, 60); font-family: Arial, sans-serif;&quot;&gt; of; 1) Single Email Requests, 2) Mass Email Requests, or 3) a blend of both.&amp;nbsp;All requests are (of course) subject to organization limits.&amp;nbsp;While this example just shows how to create a collection of requests using the &quot;Send Better Email Bulk Request Setup&quot; Apex action where each request is a single email, each request in the collection could send as many as the request type allows (subject to limits of course).&amp;nbsp;Consequently, if you create individual requests for the collection that each have a target object list (Recipient Records), each target will receive an email.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 10pt; color: rgb(62, 62, 60); font-family: Arial, sans-serif;&quot;&gt;Parameters for sendBetterEmail Action (actually send the request collection):&lt;/span&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;Collection of sendBetterEmail Requests &lt;/span&gt;&lt;b style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;[&lt;/b&gt;&lt;b style=&quot;font-size: 9pt; font-family: Arial, sans-serif; background-color: white;&quot;&gt;emailRequests&lt;/b&gt;&lt;b style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;(bulkSendBetterEmailRequest)]&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;span style=&quot;font-size: 10pt; color: rgb(62, 62, 60); font-family: Arial, sans-serif;&quot;&gt;Parameters for &apos;Send Better Email Bulk Request Setup&apos; (create a Single Email request)&lt;/span&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;to the addressee in [&lt;/span&gt;&lt;b style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;TO(&lt;/b&gt;&lt;b style=&quot;font-size: 10pt; font-family: Arial, sans-serif; background-color: white;&quot;&gt;send_Email_To&lt;/b&gt;&lt;b style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;)&lt;/b&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;]&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;from[&lt;/span&gt;&lt;b style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;Reply to Email&lt;/b&gt;&lt;b style=&quot;font-size: 9pt; font-family: Arial, sans-serif; background-color: white;&quot;&gt;(&lt;/b&gt;&lt;b style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;TestReturnAddress)&lt;/b&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;]&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;with the name [&lt;/span&gt;&lt;b style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;Sender Display Name(testSenderName)&lt;/b&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;]&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;using [&lt;/span&gt;&lt;b style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;Subject(BulkSubject)&lt;/b&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;] (formula)&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;and [&lt;/span&gt;&lt;b style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;Body(&lt;/b&gt;&lt;b style=&quot;font-size: 10pt; font-family: Arial, sans-serif; background-color: white;&quot;&gt;x1_HTML_Body&lt;/b&gt;&lt;b style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;)&lt;/b&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;]&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;span style=&quot;font-size: 10pt; color: rgb(62, 62, 60); font-family: Arial, sans-serif;&quot;&gt;The flow works by creating a collection of requests, then send that collection to the sendBetterEmail action.&amp;nbsp;There can be no more than 10 of each request type (Single, Mass) in a collection.&amp;nbsp;The results of the collection request are returned as a collection of SendBetterEmailResponse, so if you want to check the results, you will need to loop through that response in the order of the original request collection.&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>X7_Screen_Email_To</name>
@@ -2538,6 +2899,14 @@ Also create an empty string collection of email addresses</description>
                 <assignToReference>send_Email_To</assignToReference>
                 <name>value</name>
             </outputParameters>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>X7_Screen_Sender_Name</name>
@@ -2548,6 +2917,14 @@ Also create an empty string collection of email addresses</description>
             <fieldText>Sender Name</fieldText>
             <fieldType>InputField</fieldType>
             <isRequired>true</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>X7_Screen_Subject</name>
@@ -2558,6 +2935,14 @@ Also create an empty string collection of email addresses</description>
             <fieldText>Subject</fieldText>
             <fieldType>InputField</fieldType>
             <isRequired>true</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>X7_Screen_HTML_Body</name>
@@ -2568,6 +2953,14 @@ Also create an empty string collection of email addresses</description>
             <fieldText>HTML Body</fieldText>
             <fieldType>InputField</fieldType>
             <isRequired>false</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
@@ -2587,6 +2980,14 @@ Also create an empty string collection of email addresses</description>
             <name>Example8Details</name>
             <fieldText>&lt;p&gt;&lt;b style=&quot;font-size: 10.5pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60);&quot;&gt;Flow Example 8&lt;/b&gt;&lt;span style=&quot;font-size: 10.5pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60);&quot;&gt; Single Mail Template with merge fields from Recipient Record, Related To Record, Activity to Recipient and Task to Related To and a different Recipient&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;b style=&quot;font-size: 10pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60); background-color: white;&quot;&gt;&lt;i&gt;NOTE: Before running this example flow, you must create record(s) for both the Recipient (a contact by default) and the Related Record (an Account Record by default) and have the Record Ids available&lt;/i&gt;&lt;/b&gt;&lt;i style=&quot;font-size: 10pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60); background-color: white;&quot;&gt;.&lt;/i&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60);&quot;&gt;This sends out an email using a specified Email Template with the addressee specified through the Recipient Record Id (TargetObjectId) and optionally (dependent on your Template) merge fields with an associated object record (WhatId).&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60);&quot;&gt;Parameters used:&lt;/span&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;sender [&lt;/span&gt;&lt;b style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;Sender Display Name(sendSender)&lt;/b&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;]&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 9pt; font-family: Arial, sans-serif; color: black; background-color: white;&quot;&gt;reply to &lt;/span&gt;&lt;b style=&quot;font-size: 9pt; font-family: Arial, sans-serif; color: black; background-color: white;&quot;&gt;[Reply Email Address&lt;/b&gt;&lt;b&gt;(testReturnAddress)]&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;with&amp;nbsp;[&lt;/span&gt;&lt;b style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;Email Template Id(&lt;/b&gt;&lt;b style=&quot;font-size: 10pt; font-family: Arial, sans-serif; color: black; background-color: white;&quot;&gt;templateId&lt;/b&gt;&lt;b style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;)&lt;/b&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;] (looked up or created if specified by name)&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;sent to &lt;/span&gt;&lt;b style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;[&lt;/b&gt;&lt;b style=&quot;font-size: 9pt; font-family: Arial, sans-serif; color: black; background-color: white;&quot;&gt;Recipient Record Id&lt;/b&gt;&lt;b&gt;(templateTargetId)]&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 9pt; font-family: Arial, sans-serif; color: black; background-color: white;&quot;&gt;with related record &lt;/span&gt;&lt;b style=&quot;font-size: 9pt; font-family: Arial, sans-serif; color: black; background-color: white;&quot;&gt;[Related Record Id(templateWhatId)]&lt;/b&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif; color: black; background-color: white;&quot;&gt;Save Email as Activity on Recipient Record(s)&lt;/span&gt;[true]&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif; color: black; background-color: white;&quot;&gt;Save Email as Task on recipient related record(s)&lt;/span&gt;[true]&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60);&quot;&gt;For this example, you will need to create or use a template. Templates also require that you have a recipient record (targetObjectId) (e.g., Contact, User, . . .) which must also pre-exist.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60);&quot;&gt;You will be required enter the ID for that record as the Recipient Record Id&lt;/span&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60); background-color: white;&quot;&gt;. Additionally if you intend to test merge fields (RelatedTo) with your template, You must also pre-create the related object record and have available the Id for that record as the Record Object Id (RecordId).&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60);&quot;&gt;If you are using the defaults, you will also need to:&lt;/span&gt;&lt;/p&gt;&lt;ol&gt;&lt;li&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;Create a Contact (for Recipient Object) and/or have the Id available.&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif;&quot;&gt;Create an Account (for Related Record) and/or have the Id available.&lt;/span&gt;&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60); background-color: white;&quot;&gt;This example also creates an activity for the email which will be assigned to the Recipient Record Id and a task related to the Related Record Id.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60); background-color: white;&quot;&gt;Note: These are independently settable in the Action.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60);&quot;&gt;If you specify template by name and the templates do not exist, they will be created using Contact for the &lt;/span&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60); background-color: white;&quot;&gt;Recipient RecordType and Account for the Related RecordType.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60);&quot;&gt;If you use the default test templates (&lt;/span&gt;&lt;span style=&quot;font-size: 10pt; font-family: Arial, sans-serif; color: rgb(62, 62, 60); background-color: white;&quot;&gt;sendBetterEmailTest) the Target ID should be a ContactId and the Related Record should be an AccountId.&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>X8_Screen_Template_RecordId</name>
@@ -2594,6 +2995,14 @@ Also create an empty string collection of email addresses</description>
             <fieldText>Email Template Id (If Preferred)</fieldText>
             <fieldType>InputField</fieldType>
             <isRequired>false</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>X8_Screen_Email_Template_Name</name>
@@ -2604,6 +3013,14 @@ Also create an empty string collection of email addresses</description>
             <fieldText>Email Template Name</fieldText>
             <fieldType>InputField</fieldType>
             <isRequired>false</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>X8_Screen_Recipient_Record_ID</name>
@@ -2611,6 +3028,14 @@ Also create an empty string collection of email addresses</description>
             <fieldText>Recipient Record Id (Send to this record)</fieldText>
             <fieldType>InputField</fieldType>
             <isRequired>true</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>X8_Screen_Template_Target_Record_Id</name>
@@ -2619,6 +3044,14 @@ Also create an empty string collection of email addresses</description>
             <fieldType>InputField</fieldType>
             <helpText>&lt;p&gt;This must be an existing record.  If you are using the default test templates (sendBetterEmailTest), it should be a ContactId&lt;/p&gt;</helpText>
             <isRequired>true</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>X8_Screen_Related_RecordId</name>
@@ -2626,6 +3059,14 @@ Also create an empty string collection of email addresses</description>
             <fieldText>Related Record Id (also for template merge fields for related record and creating task on same)</fieldText>
             <fieldType>InputField</fieldType>
             <isRequired>true</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
             <validationRule>
                 <errorMessage>&lt;p&gt;Related Record Id and Related Record Type both must either be used or blank.   One of them is blank.&lt;/p&gt;</errorMessage>
                 <formulaExpression>ISBLANK({!X4_Related_RecordType}) == ISBLANK({!X4_Screen_Related_RecordId})</formulaExpression>
@@ -2641,6 +3082,14 @@ Also create an empty string collection of email addresses</description>
             <fieldType>InputField</fieldType>
             <helpText>&lt;p&gt;&lt;span style=&quot;color: rgb(62, 62, 60); background-color: rgb(255, 255, 255);&quot;&gt;This must be an existing record of a type that allows File Attachments.  If you are using the default test templates (sendBetterEmailTest), it should be an Accoun&lt;/span&gt;&lt;/p&gt;</helpText>
             <isRequired>false</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
             <validationRule>
                 <errorMessage>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(62, 62, 60);&quot;&gt;Related Record Id and Related Record Type both must either be used or blank.   One of them is blank.&lt;/span&gt;&lt;/p&gt;</errorMessage>
                 <formulaExpression>ISBLANK({!X4_Related_RecordType}) == ISBLANK({!X4_Screen_Related_RecordId})</formulaExpression>
@@ -2653,6 +3102,14 @@ Also create an empty string collection of email addresses</description>
             <fieldType>InputField</fieldType>
             <helpText>&lt;p&gt;Use the MessageId of an existing email to add this message to that email thread&lt;/p&gt;</helpText>
             <isRequired>false</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>X8_Screen_Reply_To_Email_Address</name>
@@ -2687,6 +3144,14 @@ Also create an empty string collection of email addresses</description>
                 <assignToReference>testReturnAddress</assignToReference>
                 <name>value</name>
             </outputParameters>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>X8_Screen_Sender_Name</name>
@@ -2697,6 +3162,14 @@ Also create an empty string collection of email addresses</description>
             <fieldText>Sender Name</fieldText>
             <fieldType>InputField</fieldType>
             <isRequired>true</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>

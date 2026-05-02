@@ -2,10 +2,17 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>leaseworks__Benchmark_Rent__c</fullName>
     <deprecated>false</deprecated>
-    <description>Benchmark rent as specified in business plan or management team. This field is not editable by marketing reps and is set by the pricing team at the Aircraft In Campaign level (on Marketing Campaign record)</description>
-    <formula>leaseworks__Aircraft__r.leaseworks__Benchmark_Rent_From_Lease__c</formula>
+    <description>Benchmark rent as specified in business plan or management team. This field is not editable by marketing reps and is set by the pricing team at the Aircraft In Campaign level (on Marketing Campaign record)
+        [LOAD:No]
+        [JUSTIFICATION: Deprecated this field]
+        [REPLACEMENT OBJECT API: Not needed]
+        [REPLACEMENT FIELD API: Not needed]
+        [COMMENTS: Asana link https://app.asana.com/1/7934919496419/project/1211557698320453/task/1210539422112047?focus=true
+            As we don&apos;t have Benchmark_Rent__c field on Lease__c object anymore, this field is no longer needed
+            Release version: v60]</description>
+    <formula>/*Aircraft__r.Benchmark_Rent_From_Lease__c*/null</formula>
     <inlineHelpText>Assumed baseline rent  as specified in business plan or by the management team. This field is set on the lease page (Benchmark Rent) by users with the right level of access and reference here as a read only field.</inlineHelpText>
-    <label>Assumed Baseline Rent</label>
+    <label>Z_Unused_2602 Assumed Baseline Rent</label>
     <precision>18</precision>
     <required>false</required>
     <scale>0</scale>

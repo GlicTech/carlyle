@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>66.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <description>Flow to set credit paper name automatically</description>
     <environments>Default</environments>
     <formulas>
@@ -50,42 +51,10 @@ MONTH({!$Record.Date_of_Review__c}),
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
     <recordUpdates>
-        <name>Disable_Triggers</name>
-        <label>Disable Triggers</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Set_Concatenated_Name</targetReference>
-        </connector>
-        <inputAssignments>
-            <field>leaseworks__Disable_All_Triggers__c</field>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </inputAssignments>
-        <object>leaseworks__LeaseWorksSettings__c</object>
-    </recordUpdates>
-    <recordUpdates>
-        <name>Enable_Triggers</name>
-        <label>Enable Triggers</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <inputAssignments>
-            <field>leaseworks__Disable_All_Triggers__c</field>
-            <value>
-                <booleanValue>false</booleanValue>
-            </value>
-        </inputAssignments>
-        <object>leaseworks__LeaseWorksSettings__c</object>
-    </recordUpdates>
-    <recordUpdates>
         <name>Set_Concatenated_Name</name>
         <label>Set Concatenated Name</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
-        <connector>
-            <targetReference>Enable_Triggers</targetReference>
-        </connector>
         <inputAssignments>
             <field>Name</field>
             <value>
@@ -98,7 +67,7 @@ MONTH({!$Record.Date_of_Review__c}),
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Disable_Triggers</targetReference>
+            <targetReference>Set_Concatenated_Name</targetReference>
         </connector>
         <filterFormula>AND(
   NOT({!$Setup.leaseworks__LeaseWorksSettings__c.leaseworks__Disable_All_Triggers__c}),

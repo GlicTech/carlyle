@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Deal_Checklist_Testing</fullName>
+    <columns>Deal_Unique_ID__c</columns>
+    <columns>NAME</columns>
+    <columns>leaseworks__Deal_Type__c</columns>
+    <columns>leaseworks__Deal_Status__c</columns>
+    <columns>leaseworks__Marketing_Representative_User__c</columns>
+    <columns>leaseworks__Counter_Party__c</columns>
+    <columns>Deal_Probability__c</columns>
+    <columns>leaseworks__Country__c</columns>
+    <columns>leaseworks__Inactive_MA__c</columns>
+    <columns>CREATED_DATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>leaseworks__Inactive_MA__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <filters>
+        <field>leaseworks__Deal_Status__c</field>
+        <operation>equals</operation>
+        <value>LOI Signed,ADM Approval,LOI</value>
+    </filters>
+    <filters>
+        <field>leaseworks__Probability_N__c</field>
+        <operation>equals</operation>
+        <value>High</value>
+    </filters>
+    <label>Deal Checklist Testing</label>
+    <sharedTo>
+        <group>Legal_Contracts</group>
+    </sharedTo>
+</ListView>

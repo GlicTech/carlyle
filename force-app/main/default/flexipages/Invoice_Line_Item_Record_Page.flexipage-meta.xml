@@ -217,7 +217,7 @@
                 <identifier>Recordleaseworks_Amount_Due_cField</identifier>
                 <visibilityRule>
                     <criteria>
-                        <leftValue>{!Record.leaseworks__Invoice__r.leaseworks__Multicurrency_Enabled__c}</leftValue>
+                        <leftValue>{!Record.leaseworks__Multicurrency_Enabled__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>false</rightValue>
                     </criteria>
@@ -234,7 +234,7 @@
                 <identifier>Recordleaseworks_Total_Adjustment_Amount_cField</identifier>
                 <visibilityRule>
                     <criteria>
-                        <leftValue>{!Record.leaseworks__Invoice__r.leaseworks__Multicurrency_Enabled__c}</leftValue>
+                        <leftValue>{!Record.leaseworks__Multicurrency_Enabled__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>false</rightValue>
                     </criteria>
@@ -251,7 +251,7 @@
                 <identifier>Recordleaseworks_Total_Line_Amount_cField</identifier>
                 <visibilityRule>
                     <criteria>
-                        <leftValue>{!Record.leaseworks__Invoice__r.leaseworks__Multicurrency_Enabled__c}</leftValue>
+                        <leftValue>{!Record.leaseworks__Multicurrency_Enabled__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>false</rightValue>
                     </criteria>
@@ -272,7 +272,7 @@
                 <identifier>Recordleaseworks_Total_Amount_Paid_cField</identifier>
                 <visibilityRule>
                     <criteria>
-                        <leftValue>{!Record.leaseworks__Invoice__r.leaseworks__Multicurrency_Enabled__c}</leftValue>
+                        <leftValue>{!Record.leaseworks__Multicurrency_Enabled__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>false</rightValue>
                     </criteria>
@@ -287,6 +287,13 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.leaseworks__Total_Amount_Credited__c</fieldItem>
                 <identifier>Recordleaseworks_Total_Amount_Credited_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Multicurrency_Enabled__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>false</rightValue>
+                    </criteria>
+                </visibilityRule>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -299,7 +306,7 @@
                 <identifier>Recordleaseworks_Balance_Due_cField</identifier>
                 <visibilityRule>
                     <criteria>
-                        <leftValue>{!Record.leaseworks__Invoice__r.leaseworks__Multicurrency_Enabled__c}</leftValue>
+                        <leftValue>{!Record.leaseworks__Multicurrency_Enabled__c}</leftValue>
                         <operator>EQUAL</operator>
                         <rightValue>false</rightValue>
                     </criteria>
@@ -805,6 +812,10 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
+                <componentInstanceProperties>
+                    <name>label</name>
+                    <value>Tabs</value>
+                </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>tabs</name>
                     <value>maintabs</value>

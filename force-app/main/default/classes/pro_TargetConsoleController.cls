@@ -5,10 +5,16 @@
  * Single controller class handling all read and DML operations
  * for the Target Management Console.
  *
- * Security:
- *  - SOQL: WITH SECURITY_ENFORCED
- *  - DML:  Security.stripInaccessible()
- *  - CRUD: Schema.sObjectType checks before DML
+ * Security model (US-027 — system-mode writes):
+ *  - The class runs `without sharing`. Record-level sharing rules do not gate
+ *    Target Console actions.
+ *  - Read methods keep `WITH SECURITY_ENFORCED` on user-facing queries so a
+ *    user only sees records whose fields they have FLS to.
+ *  - Write methods are fully system-mode: FLS, CRUD, and sharing are bypassed.
+ *    The `pro_Manage_Targets_Edit` custom permission (enforced via
+ *    `enforceEditPermission()`) is the single gate on every DML path.
+ *  - Internal read-before-write SOQL inside DML methods uses `WITH SYSTEM_MODE`
+ *    so the write path can update records the running user otherwise couldn't see.
  *
  * Sprint 1 scope: getAssetsForYear, getYearPicklistValues, checkEditPermission
  * Sprint 1.5 scope: saveAssetOutcomeEdits, getActiveTargetCount, getTargetsForYear, setTargetForAssets
@@ -18,29 +24,151 @@
  * @date    2026-03-04
  * @epic    EPIC-TC-001
  */
-public with sharing class pro_TargetConsoleController {
+public without sharing class pro_TargetConsoleController {
   // ================================================================
-  // CONSTANTS
+  // PROGRESS STATUS CATEGORISATION (dynamic)
   // ================================================================
-  private static final Set<String> OPEN_STATUSES = new Set<String>{
-    'Open',
-    'Open - Target Date Exceeded'
+  // pro_Progress__c is a formula. Its possible outputs are mirrored in the
+  // pro_Progress_Picklist__c restricted picklist. We describe that picklist
+  // at runtime and categorise its active values, so that adding a new
+  // progress value (e.g., "Target Re-Opened") flows through to every SOQL
+  // bind variable and the LWC filter chip list without code edits scattered
+  // across controller + LWC.
+  //
+  // Categoriser:
+  //   startsWith "Open"      → 'Open'
+  //   startsWith "Achieved"  → 'Achieved'
+  //   "Target Re-Opened"     → 'Re-Opened'
+  //   "Target Cancelled"     → 'Cancelled'
+  //   "Moved To Trading"     → 'Moved To Trading'
+  //   anything else          → the status value itself (own category)
+  //
+  // Derived sets (exposed as static properties so existing :OPEN_STATUSES
+  // SOQL bind variables continue to work unchanged):
+  //   OPEN_STATUSES              — all non-terminal categories (Open, Re-Opened, …)
+  //                                semantics: "currently open pipeline".
+  //   ACHIEVED_STATUSES          — Achieved category only.
+  //   OPEN_AND_ACHIEVED_STATUSES — OPEN_STATUSES ∪ ACHIEVED_STATUSES.
+  //
+  // The prefix rule means new "Open …" and "Achieved …" values are picked
+  // up automatically. Bespoke categories still need one line in
+  // categoriseStatus — a future CMDT-driven config is tracked in the
+  // build progress notes.
+
+  private static final Set<String> TERMINAL_CATEGORIES = new Set<String>{
+    'Achieved',
+    'Cancelled',
+    'Moved To Trading'
   };
 
-  private static final Set<String> ACHIEVED_STATUSES = new Set<String>{
-    'Achieved - LOI',
-    'Achieved - LOI Other',
-    'Achieved - Contract Extended',
-    'Achieved - No LOI'
-  };
-
-  private static final Set<String> OPEN_AND_ACHIEVED_STATUSES = new Set<String>();
-  static {
-    OPEN_AND_ACHIEVED_STATUSES.addAll(OPEN_STATUSES);
-    OPEN_AND_ACHIEVED_STATUSES.addAll(ACHIEVED_STATUSES);
+  @TestVisible
+  private static String categoriseStatus(String status) {
+    if (String.isBlank(status)) return null;
+    if (status.startsWithIgnoreCase('Open')) return 'Open';
+    if (status.startsWithIgnoreCase('Achieved')) return 'Achieved';
+    if (status == 'Target Re-Opened') return 'Re-Opened';
+    if (status == 'Target Cancelled') return 'Cancelled';
+    if (status == 'Moved To Trading') return 'Moved To Trading';
+    return status;
   }
 
-  // US-021: Statuses excluded from the "Without Targets" query (API names)
+  private static Map<String, Set<String>> statusesByCategoryCache;
+
+  @TestVisible
+  private static Map<String, Set<String>> getStatusesByCategory() {
+    if (statusesByCategoryCache != null) return statusesByCategoryCache;
+    Map<String, Set<String>> result = new Map<String, Set<String>>();
+    Schema.DescribeFieldResult dfr = pro_Asset_Target_Audit__c.pro_Progress_Picklist__c
+      .getDescribe();
+    for (Schema.PicklistEntry pe : dfr.getPicklistValues()) {
+      if (!pe.isActive()) continue;
+      String cat = categoriseStatus(pe.getValue());
+      if (cat == null) continue;
+      if (!result.containsKey(cat)) result.put(cat, new Set<String>());
+      result.get(cat).add(pe.getValue());
+    }
+    statusesByCategoryCache = result;
+    return statusesByCategoryCache;
+  }
+
+  private static Set<String> openStatusesCache;
+  private static Set<String> achievedStatusesCache;
+  private static Set<String> openAndAchievedStatusesCache;
+
+  @TestVisible
+  private static Set<String> OPEN_STATUSES {
+    get {
+      if (openStatusesCache != null) return openStatusesCache;
+      Set<String> s = new Set<String>();
+      Map<String, Set<String>> cats = getStatusesByCategory();
+      for (String cat : cats.keySet()) {
+        if (!TERMINAL_CATEGORIES.contains(cat)) s.addAll(cats.get(cat));
+      }
+      openStatusesCache = s;
+      return openStatusesCache;
+    }
+  }
+
+  @TestVisible
+  private static Set<String> ACHIEVED_STATUSES {
+    get {
+      if (achievedStatusesCache != null) return achievedStatusesCache;
+      Set<String> cat = getStatusesByCategory().get('Achieved');
+      achievedStatusesCache = cat != null ? cat : new Set<String>();
+      return achievedStatusesCache;
+    }
+  }
+
+  @TestVisible
+  private static Set<String> OPEN_AND_ACHIEVED_STATUSES {
+    get {
+      if (openAndAchievedStatusesCache != null) return openAndAchievedStatusesCache;
+      Set<String> s = new Set<String>(OPEN_STATUSES);
+      s.addAll(ACHIEVED_STATUSES);
+      openAndAchievedStatusesCache = s;
+      return openAndAchievedStatusesCache;
+    }
+  }
+
+  private static Set<String> terminalStatusesCache;
+
+  /**
+   * Statuses excluded from the default "All" filter on the Targets tab —
+   * currently Cancelled + Moved To Trading categories. Derived from the
+   * picklist so any future terminal value added via categoriseStatus flows
+   * through without editing the SOQL.
+   */
+  @TestVisible
+  private static Set<String> TERMINAL_STATUSES {
+    get {
+      if (terminalStatusesCache != null) return terminalStatusesCache;
+      Set<String> s = new Set<String>();
+      Set<String> cancelled = getStatusesByCategory().get('Cancelled');
+      Set<String> moved = getStatusesByCategory().get('Moved To Trading');
+      if (cancelled != null) s.addAll(cancelled);
+      if (moved != null) s.addAll(moved);
+      terminalStatusesCache = s;
+      return terminalStatusesCache;
+    }
+  }
+
+  /**
+   * Returns true if the given value is an active picklist value on
+   * pro_Progress_Picklist__c. Used by getTargetAudits to route specific-
+   * status filter values (e.g., "Target Re-Opened") to an exact-match branch.
+   */
+  @TestVisible
+  private static Boolean isKnownProgressValue(String value) {
+    if (String.isBlank(value)) return false;
+    for (Set<String> statuses : getStatusesByCategory().values()) {
+      if (statuses.contains(value)) return true;
+    }
+    return false;
+  }
+
+  // US-021: Asset statuses (leaseworks__Status__c values — NOT pro_Progress__c)
+  // excluded from the "Without Targets" query. Kept as a plain static constant
+  // because the Aircraft object's status picklist is not related to progress.
   private static final Set<String> EXCLUDED_STATUSES_FOR_WITHOUT_TARGET = new Set<String>{
     'Sold',
     'Consigned',
@@ -137,6 +265,9 @@ public with sharing class pro_TargetConsoleController {
     result.put('marketingTrading', describePicklist(
       leaseworks__Aircraft__c.pro_Marketing_Trading__c.getDescribe()
     ));
+    result.put('tradingRfpProbability', describePicklist(
+      leaseworks__Aircraft__c.pro_Trading_RFP_Probability__c.getDescribe()
+    ));
     result.put('statusValues', describePicklist(
       leaseworks__Aircraft__c.leaseworks__Status__c.getDescribe()
     ));
@@ -156,6 +287,81 @@ public with sharing class pro_TargetConsoleController {
       }
     }
     return opts;
+  }
+
+  /**
+   * Returns the filter options for the Targets-tab Progress combobox, built
+   * dynamically from the active values in pro_Progress_Picklist__c.
+   *
+   * Always returned (regardless of picklist contents):
+   *   - { label: "All",              value: "All" }            — default
+   *   - { label: "Moved To Trading", value: "MovedToTrading" } — driven by boolean field
+   *
+   * Returned if the picklist has any value in that category:
+   *   - { label: "Open",     value: "Open" }     — aggregate, matches every non-terminal status
+   *   - { label: "Achieved", value: "Achieved" } — aggregate, matches Achieved category
+   *
+   * Returned per status that falls outside the standard categories
+   * (e.g., "Target Re-Opened"):
+   *   - { label: <status>, value: <status> } — exact-match filter
+   *
+   * The LWC binds a combobox to this list; adding a new picklist value on
+   * pro_Progress_Picklist__c flows through with no code change.
+   */
+  @AuraEnabled(cacheable=true)
+  public static List<Map<String, String>> getProgressFilterOptions() {
+    List<Map<String, String>> options = new List<Map<String, String>>();
+    options.add(new Map<String, String>{
+      'label' => 'All',
+      'value' => 'All'
+    });
+
+    Map<String, Set<String>> cats = getStatusesByCategory();
+
+    if (cats.containsKey('Open') && !cats.get('Open').isEmpty()) {
+      options.add(new Map<String, String>{
+        'label' => 'Open',
+        'value' => 'Open'
+      });
+    }
+    if (cats.containsKey('Achieved') && !cats.get('Achieved').isEmpty()) {
+      options.add(new Map<String, String>{
+        'label' => 'Achieved',
+        'value' => 'Achieved'
+      });
+    }
+
+    // Each non-aggregate, non-terminal category surfaces its members as
+    // individual filter options. Currently just "Target Re-Opened", but
+    // the loop handles future additions without code changes.
+    Set<String> aggregateOrTerminal = new Set<String>{
+      'Open',
+      'Achieved',
+      'Cancelled'
+    };
+    List<String> bespokeCategories = new List<String>();
+    for (String cat : cats.keySet()) {
+      if (aggregateOrTerminal.contains(cat)) continue;
+      if (cat == 'Moved To Trading') continue; // emitted below with its own routing value
+      bespokeCategories.add(cat);
+    }
+    bespokeCategories.sort();
+    for (String cat : bespokeCategories) {
+      List<String> values = new List<String>(cats.get(cat));
+      values.sort();
+      for (String v : values) {
+        options.add(new Map<String, String>{
+          'label' => v,
+          'value' => v
+        });
+      }
+    }
+
+    options.add(new Map<String, String>{
+      'label' => 'Moved To Trading',
+      'value' => 'MovedToTrading'
+    });
+    return options;
   }
 
   // ================================================================
@@ -240,6 +446,7 @@ public with sharing class pro_TargetConsoleController {
             Likely_Outcome__c,
             pro_Target_Moved_To_Trading__c,
             pro_Marketing_Trading__c,
+            pro_Trading_RFP_Probability__c,
             pro_Target_Year__c,
             pro_Target_Forecast_Date__c,
             pro_Open_Target_End_Date__c,
@@ -266,6 +473,7 @@ public with sharing class pro_TargetConsoleController {
             Likely_Outcome__c,
             pro_Target_Moved_To_Trading__c,
             pro_Marketing_Trading__c,
+            pro_Trading_RFP_Probability__c,
             pro_Target_Year__c,
             pro_Target_Forecast_Date__c,
             pro_Open_Target_End_Date__c,
@@ -289,6 +497,7 @@ public with sharing class pro_TargetConsoleController {
             Likely_Outcome__c,
             pro_Target_Moved_To_Trading__c,
             pro_Marketing_Trading__c,
+            pro_Trading_RFP_Probability__c,
             pro_Target_Year__c,
             pro_Target_Forecast_Date__c,
             pro_Open_Target_End_Date__c,
@@ -318,6 +527,7 @@ public with sharing class pro_TargetConsoleController {
             Likely_Outcome__c,
             pro_Target_Moved_To_Trading__c,
             pro_Marketing_Trading__c,
+            pro_Trading_RFP_Probability__c,
             pro_Target_Year__c,
             pro_Target_Forecast_Date__c,
             pro_Open_Target_End_Date__c,
@@ -412,6 +622,7 @@ public with sharing class pro_TargetConsoleController {
           ? a.pro_Target_Moved_To_Trading__c
           : false;
         w.marketingTrading = a.pro_Marketing_Trading__c;
+        w.tradingRfpProbability = a.pro_Trading_RFP_Probability__c;
         w.targetYear = a.pro_Target_Year__c;
         w.forecastEntries = forecastsByAsset.containsKey(a.Id)
           ? forecastsByAsset.get(a.Id)
@@ -441,22 +652,16 @@ public with sharing class pro_TargetConsoleController {
   // ================================================================
 
   /**
-   * Saves inline edits for Likely Outcome, Moved To Trading, and Marketing/Trading
-   * fields on Aircraft records.
+   * Saves inline edits for Likely Outcome, Included in Trading RFP, Marketing/Trading,
+   * and Trading RFP Probability fields on Aircraft records.
    *
-   * @param editsJson  JSON array of objects with keys: id, likelyOutcome, movedToTrading, marketingTrading
+   * @param editsJson  JSON array of objects with keys: id, likelyOutcome, movedToTrading, marketingTrading, tradingRfpProbability
    */
   @AuraEnabled
   public static void saveAssetOutcomeEdits(String editsJson) {
     enforceEditPermission();
     if (String.isBlank(editsJson)) {
       throw new AuraHandledException('No edits to save.');
-    }
-
-    if (!Schema.sObjectType.leaseworks__Aircraft__c.isUpdateable()) {
-      throw new AuraHandledException(
-        'You do not have permission to update Aircraft records.'
-      );
     }
 
     try {
@@ -479,14 +684,18 @@ public with sharing class pro_TargetConsoleController {
         if (edit.containsKey('marketingTrading')) {
           rec.pro_Marketing_Trading__c = (String) edit.get('marketingTrading');
         }
+        if (edit.containsKey('tradingRfpProbability')) {
+          rec.pro_Trading_RFP_Probability__c = (String) edit.get(
+            'tradingRfpProbability'
+          );
+        }
         toUpdate.add(rec);
       }
 
-      SObjectAccessDecision decision = Security.stripInaccessible(
-        AccessType.UPDATABLE,
-        toUpdate
-      );
-      update decision.getRecords();
+      // System mode: bypasses sharing and FLS so any user holding
+      // pro_Manage_Targets_Edit can save edits regardless of underlying
+      // Aircraft record access.
+      Database.update(toUpdate, AccessLevel.SYSTEM_MODE);
     } catch (AuraHandledException ahe) {
       throw ahe;
     } catch (Exception e) {
@@ -597,19 +806,9 @@ public with sharing class pro_TargetConsoleController {
 
     Set<String> recordTypes = buildRecordTypeSet(recordTypeFilter);
 
-    if (!Schema.sObjectType.pro_Asset_Target_Audit__c.isCreateable()) {
-      throw new AuraHandledException(
-        'You do not have permission to create Asset Target Audit records.'
-      );
-    }
-    if (!Schema.sObjectType.pro_Asset_Target_Audit__c.isUpdateable()) {
-      throw new AuraHandledException(
-        'You do not have permission to update Asset Target Audit records.'
-      );
-    }
-
     try {
-      // 1. Find existing open audits for these assets
+      // 1. Find existing open audits for these assets (system mode — must see
+      // ATAs regardless of running user's record access).
       List<Id> ids = new List<Id>();
       for (String s : assetIds) {
         ids.add(Id.valueOf(s));
@@ -623,7 +822,7 @@ public with sharing class pro_TargetConsoleController {
           pro_Asset__c IN :ids
           AND pro_Progress__c IN :OPEN_STATUSES
           AND pro_Asset__r.leaseworks__RecordTypeDevName__c IN :recordTypes
-        WITH SECURITY_ENFORCED
+        WITH SYSTEM_MODE
       ]) {
         oldAuditsByAsset.put(ata.pro_Asset__c, ata);
       }
@@ -637,11 +836,7 @@ public with sharing class pro_TargetConsoleController {
       }
 
       if (!auditsToUpdate.isEmpty()) {
-        SObjectAccessDecision updateDecision = Security.stripInaccessible(
-          AccessType.UPDATABLE,
-          auditsToUpdate
-        );
-        update updateDecision.getRecords();
+        Database.update(auditsToUpdate, AccessLevel.SYSTEM_MODE);
       }
 
       // 3. Create new audit records
@@ -664,11 +859,7 @@ public with sharing class pro_TargetConsoleController {
         newAudits.add(newAudit);
       }
 
-      SObjectAccessDecision createDecision = Security.stripInaccessible(
-        AccessType.CREATABLE,
-        newAudits
-      );
-      insert createDecision.getRecords();
+      Database.insert(newAudits, AccessLevel.SYSTEM_MODE);
 
       return 'Successfully set targets for ' + ids.size() + ' asset(s).';
     } catch (AuraHandledException ahe) {
@@ -869,8 +1060,10 @@ public with sharing class pro_TargetConsoleController {
             ORDER BY pro_Target_End_Date__c ASC
           ];
         }
-      } else {
-        // Default ("All"): exclude Target Cancelled and Moved To Trading
+      } else if (isKnownProgressValue(outcomeFilter)) {
+        // Exact-match branch for specific picklist values (e.g. "Target Re-Opened").
+        // The LWC routes any value not handled above through this path.
+        String exactStatus = outcomeFilter;
         if (isAllTime) {
           audits = [
             SELECT
@@ -891,11 +1084,7 @@ public with sharing class pro_TargetConsoleController {
               pro_Contract__c,
               pro_Contract__r.Name
             FROM pro_Asset_Target_Audit__c
-            WHERE
-              pro_Progress__c NOT IN (
-                'Target Cancelled',
-                'Moved To Trading'
-              )
+            WHERE pro_Progress__c = :exactStatus
               AND pro_Asset__r.leaseworks__RecordTypeDevName__c IN :recordTypes
             WITH SECURITY_ENFORCED
             ORDER BY pro_Target_End_Date__c ASC
@@ -922,10 +1111,64 @@ public with sharing class pro_TargetConsoleController {
             FROM pro_Asset_Target_Audit__c
             WHERE
               pro_Target_Year__c = :targetYear
-              AND pro_Progress__c NOT IN (
-                'Target Cancelled',
-                'Moved To Trading'
-              )
+              AND pro_Progress__c = :exactStatus
+              AND pro_Asset__r.leaseworks__RecordTypeDevName__c IN :recordTypes
+            WITH SECURITY_ENFORCED
+            ORDER BY pro_Target_End_Date__c ASC
+          ];
+        }
+      } else {
+        // Default ("All"): exclude terminal statuses (Cancelled + Moved To Trading).
+        // TERMINAL_STATUSES is derived from the picklist so new terminal values flow through.
+        if (isAllTime) {
+          audits = [
+            SELECT
+              Id,
+              Name,
+              pro_Asset__c,
+              pro_Asset__r.Name,
+              pro_Progress__c,
+              pro_LOId_Deal_Type__c,
+              pro_Likely_Outcome__c,
+              pro_Marketing_Trading__c,
+              pro_Target_Forecast__c,
+              pro_Target_Forecast__r.Name,
+              pro_Target_End_Date__c,
+              pro_Moved_To_Trading__c,
+              pro_Target_Reached__c,
+              pro_Target_Reached__r.Name,
+              pro_Contract__c,
+              pro_Contract__r.Name
+            FROM pro_Asset_Target_Audit__c
+            WHERE
+              pro_Progress__c NOT IN :TERMINAL_STATUSES
+              AND pro_Asset__r.leaseworks__RecordTypeDevName__c IN :recordTypes
+            WITH SECURITY_ENFORCED
+            ORDER BY pro_Target_End_Date__c ASC
+          ];
+        } else {
+          audits = [
+            SELECT
+              Id,
+              Name,
+              pro_Asset__c,
+              pro_Asset__r.Name,
+              pro_Progress__c,
+              pro_LOId_Deal_Type__c,
+              pro_Likely_Outcome__c,
+              pro_Marketing_Trading__c,
+              pro_Target_Forecast__c,
+              pro_Target_Forecast__r.Name,
+              pro_Target_End_Date__c,
+              pro_Moved_To_Trading__c,
+              pro_Target_Reached__c,
+              pro_Target_Reached__r.Name,
+              pro_Contract__c,
+              pro_Contract__r.Name
+            FROM pro_Asset_Target_Audit__c
+            WHERE
+              pro_Target_Year__c = :targetYear
+              AND pro_Progress__c NOT IN :TERMINAL_STATUSES
               AND pro_Asset__r.leaseworks__RecordTypeDevName__c IN :recordTypes
             WITH SECURITY_ENFORCED
             ORDER BY pro_Target_End_Date__c ASC
@@ -1119,12 +1362,6 @@ public with sharing class pro_TargetConsoleController {
       throw new AuraHandledException('No edits to save.');
     }
 
-    if (!Schema.sObjectType.pro_Target__c.isUpdateable()) {
-      throw new AuraHandledException(
-        'You do not have permission to update Target records.'
-      );
-    }
-
     try {
       List<Object> rawEdits = (List<Object>) JSON.deserializeUntyped(editsJson);
 
@@ -1138,11 +1375,7 @@ public with sharing class pro_TargetConsoleController {
         toUpdate.add(rec);
       }
 
-      SObjectAccessDecision decision = Security.stripInaccessible(
-        AccessType.UPDATABLE,
-        toUpdate
-      );
-      update decision.getRecords();
+      Database.update(toUpdate, AccessLevel.SYSTEM_MODE);
     } catch (AuraHandledException ahe) {
       throw ahe;
     } catch (Exception e) {
@@ -1167,12 +1400,6 @@ public with sharing class pro_TargetConsoleController {
       throw new AuraHandledException('No audit records selected for deletion.');
     }
 
-    if (!Schema.sObjectType.pro_Asset_Target_Audit__c.isDeletable()) {
-      throw new AuraHandledException(
-        'You do not have permission to delete Asset Target Audit records.'
-      );
-    }
-
     try {
       List<Id> ids = new List<Id>();
       for (String s : auditIds) {
@@ -1183,10 +1410,10 @@ public with sharing class pro_TargetConsoleController {
         SELECT Id
         FROM pro_Asset_Target_Audit__c
         WHERE Id IN :ids
-        WITH SECURITY_ENFORCED
+        WITH SYSTEM_MODE
       ];
 
-      delete toDelete;
+      Database.delete(toDelete, AccessLevel.SYSTEM_MODE);
 
       return 'Successfully deleted ' +
         toDelete.size() +
@@ -1219,21 +1446,11 @@ public with sharing class pro_TargetConsoleController {
 
     Set<String> recordTypes = buildRecordTypeSet(recordTypeFilter);
 
-    if (!Schema.sObjectType.pro_Asset_Target_Snapshot__c.isCreateable()) {
-      throw new AuraHandledException(
-        'You do not have permission to create Snapshot records.'
-      );
-    }
-    if (!Schema.sObjectType.pro_Asset_Target_Snapshot_Item__c.isCreateable()) {
-      throw new AuraHandledException(
-        'You do not have permission to create Snapshot Item records.'
-      );
-    }
-
     Boolean isAllTime = targetYear == 'AllTime';
 
     try {
-      // Create parent snapshot (CRUD already verified above)
+      // Create parent snapshot (system-mode insert — gated solely by the
+      // pro_Manage_Targets_Edit custom permission above).
       // Naming convention: "2026 All Target Snapshot: 04-03-2026"
       String filterLabel = 'All';
       if (outcomeFilter == 'Open') {
@@ -1242,6 +1459,8 @@ public with sharing class pro_TargetConsoleController {
         filterLabel = 'Achieved';
       } else if (outcomeFilter == 'MovedToTrading') {
         filterLabel = 'Moved To Trading';
+      } else if (isKnownProgressValue(outcomeFilter)) {
+        filterLabel = outcomeFilter;
       }
       String yearLabel = isAllTime ? 'All Time' : targetYear;
       String todayFormatted = Datetime.now().format('dd-MM-yyyy');
@@ -1252,12 +1471,11 @@ public with sharing class pro_TargetConsoleController {
           ' Target Snapshot: ' +
           todayFormatted
       );
-      SObjectAccessDecision snapshotDecision = Security.stripInaccessible(
-        AccessType.CREATABLE,
-        new List<pro_Asset_Target_Snapshot__c>{ snapshot }
-      );
-      insert snapshotDecision.getRecords();
-      Id snapshotId = snapshotDecision.getRecords()[0].Id;
+      List<pro_Asset_Target_Snapshot__c> snapshotsToInsert = new List<pro_Asset_Target_Snapshot__c>{
+        snapshot
+      };
+      Database.insert(snapshotsToInsert, AccessLevel.SYSTEM_MODE);
+      Id snapshotId = snapshotsToInsert[0].Id;
 
       // Query ATAs using the same filter logic as getTargetAudits
       List<pro_Asset_Target_Audit__c> audits;
@@ -1282,7 +1500,7 @@ public with sharing class pro_TargetConsoleController {
             FROM pro_Asset_Target_Audit__c
             WHERE pro_Progress__c IN :OPEN_STATUSES
               AND pro_Asset__r.leaseworks__RecordTypeDevName__c IN :recordTypes
-            WITH SECURITY_ENFORCED
+            WITH SYSTEM_MODE
             ORDER BY pro_Target_End_Date__c ASC
           ];
         } else {
@@ -1307,7 +1525,7 @@ public with sharing class pro_TargetConsoleController {
               pro_Target_Year__c = :targetYear
               AND pro_Progress__c IN :OPEN_STATUSES
               AND pro_Asset__r.leaseworks__RecordTypeDevName__c IN :recordTypes
-            WITH SECURITY_ENFORCED
+            WITH SYSTEM_MODE
             ORDER BY pro_Target_End_Date__c ASC
           ];
         }
@@ -1332,7 +1550,7 @@ public with sharing class pro_TargetConsoleController {
             FROM pro_Asset_Target_Audit__c
             WHERE pro_Progress__c IN :ACHIEVED_STATUSES
               AND pro_Asset__r.leaseworks__RecordTypeDevName__c IN :recordTypes
-            WITH SECURITY_ENFORCED
+            WITH SYSTEM_MODE
             ORDER BY pro_Target_End_Date__c ASC
           ];
         } else {
@@ -1357,7 +1575,7 @@ public with sharing class pro_TargetConsoleController {
               pro_Target_Year__c = :targetYear
               AND pro_Progress__c IN :ACHIEVED_STATUSES
               AND pro_Asset__r.leaseworks__RecordTypeDevName__c IN :recordTypes
-            WITH SECURITY_ENFORCED
+            WITH SYSTEM_MODE
             ORDER BY pro_Target_End_Date__c ASC
           ];
         }
@@ -1382,7 +1600,7 @@ public with sharing class pro_TargetConsoleController {
             FROM pro_Asset_Target_Audit__c
             WHERE pro_Moved_To_Trading__c = TRUE
               AND pro_Asset__r.leaseworks__RecordTypeDevName__c IN :recordTypes
-            WITH SECURITY_ENFORCED
+            WITH SYSTEM_MODE
             ORDER BY pro_Target_End_Date__c ASC
           ];
         } else {
@@ -1407,11 +1625,13 @@ public with sharing class pro_TargetConsoleController {
               pro_Target_Year__c = :targetYear
               AND pro_Moved_To_Trading__c = TRUE
               AND pro_Asset__r.leaseworks__RecordTypeDevName__c IN :recordTypes
-            WITH SECURITY_ENFORCED
+            WITH SYSTEM_MODE
             ORDER BY pro_Target_End_Date__c ASC
           ];
         }
-      } else {
+      } else if (isKnownProgressValue(outcomeFilter)) {
+        // Exact-match branch for specific picklist values (e.g. "Target Re-Opened").
+        String exactStatus = outcomeFilter;
         if (isAllTime) {
           audits = [
             SELECT
@@ -1430,13 +1650,9 @@ public with sharing class pro_TargetConsoleController {
               pro_Contract__c,
               pro_Contract__r.Name
             FROM pro_Asset_Target_Audit__c
-            WHERE
-              pro_Progress__c NOT IN (
-                'Target Cancelled',
-                'Moved To Trading'
-              )
+            WHERE pro_Progress__c = :exactStatus
               AND pro_Asset__r.leaseworks__RecordTypeDevName__c IN :recordTypes
-            WITH SECURITY_ENFORCED
+            WITH SYSTEM_MODE
             ORDER BY pro_Target_End_Date__c ASC
           ];
         } else {
@@ -1459,12 +1675,62 @@ public with sharing class pro_TargetConsoleController {
             FROM pro_Asset_Target_Audit__c
             WHERE
               pro_Target_Year__c = :targetYear
-              AND pro_Progress__c NOT IN (
-                'Target Cancelled',
-                'Moved To Trading'
-              )
+              AND pro_Progress__c = :exactStatus
               AND pro_Asset__r.leaseworks__RecordTypeDevName__c IN :recordTypes
-            WITH SECURITY_ENFORCED
+            WITH SYSTEM_MODE
+            ORDER BY pro_Target_End_Date__c ASC
+          ];
+        }
+      } else {
+        // Default ("All"): exclude terminal statuses (Cancelled + Moved To Trading).
+        // TERMINAL_STATUSES is derived from the picklist so new terminal values flow through.
+        if (isAllTime) {
+          audits = [
+            SELECT
+              Id,
+              pro_Asset__c,
+              pro_Asset__r.Name,
+              pro_Progress__c,
+              pro_LOId_Deal_Type__c,
+              pro_Likely_Outcome__c,
+              pro_Marketing_Trading__c,
+              pro_Target_Forecast__c,
+              pro_Target_Forecast__r.Name,
+              pro_Target_End_Date__c,
+              pro_Target_Reached__c,
+              pro_Target_Reached__r.Name,
+              pro_Contract__c,
+              pro_Contract__r.Name
+            FROM pro_Asset_Target_Audit__c
+            WHERE
+              pro_Progress__c NOT IN :TERMINAL_STATUSES
+              AND pro_Asset__r.leaseworks__RecordTypeDevName__c IN :recordTypes
+            WITH SYSTEM_MODE
+            ORDER BY pro_Target_End_Date__c ASC
+          ];
+        } else {
+          audits = [
+            SELECT
+              Id,
+              pro_Asset__c,
+              pro_Asset__r.Name,
+              pro_Progress__c,
+              pro_LOId_Deal_Type__c,
+              pro_Likely_Outcome__c,
+              pro_Marketing_Trading__c,
+              pro_Target_Forecast__c,
+              pro_Target_Forecast__r.Name,
+              pro_Target_End_Date__c,
+              pro_Target_Reached__c,
+              pro_Target_Reached__r.Name,
+              pro_Contract__c,
+              pro_Contract__r.Name
+            FROM pro_Asset_Target_Audit__c
+            WHERE
+              pro_Target_Year__c = :targetYear
+              AND pro_Progress__c NOT IN :TERMINAL_STATUSES
+              AND pro_Asset__r.leaseworks__RecordTypeDevName__c IN :recordTypes
+            WITH SYSTEM_MODE
             ORDER BY pro_Target_End_Date__c ASC
           ];
         }
@@ -1502,11 +1768,7 @@ public with sharing class pro_TargetConsoleController {
       }
 
       if (!items.isEmpty()) {
-        SObjectAccessDecision itemDecision = Security.stripInaccessible(
-          AccessType.CREATABLE,
-          items
-        );
-        insert itemDecision.getRecords();
+        Database.insert(items, AccessLevel.SYSTEM_MODE);
       }
 
       return snapshotId;
@@ -1651,21 +1913,15 @@ public with sharing class pro_TargetConsoleController {
       throw new AuraHandledException('A snapshot ID must be provided.');
     }
 
-    if (!Schema.sObjectType.pro_Asset_Target_Snapshot__c.isDeletable()) {
-      throw new AuraHandledException(
-        'You do not have permission to delete Snapshot records.'
-      );
-    }
-
     try {
       pro_Asset_Target_Snapshot__c toDelete = [
         SELECT Id
         FROM pro_Asset_Target_Snapshot__c
         WHERE Id = :snapshotId
-        WITH SECURITY_ENFORCED
+        WITH SYSTEM_MODE
         LIMIT 1
       ];
-      delete toDelete;
+      Database.delete(toDelete, AccessLevel.SYSTEM_MODE);
       return 'Snapshot deleted successfully.';
     } catch (AuraHandledException ahe) {
       throw ahe;
@@ -1768,6 +2024,8 @@ public with sharing class pro_TargetConsoleController {
     public Boolean movedToTrading;
     @AuraEnabled
     public String marketingTrading;
+    @AuraEnabled
+    public String tradingRfpProbability;
     @AuraEnabled
     public Date leaseEndDate;
     @AuraEnabled

@@ -10,7 +10,7 @@
                             <value>leaseworks__Credit_Memo__c.leaseworks__Apply_To_Invoice</value>
                         </valueListItems>
                         <valueListItems>
-                            <value>leaseworks__Credit_Memo__c.Generate_Credit_Note1</value>
+                            <value>leaseworks__Credit_Memo__c.Generate_Credit_Note</value>
                         </valueListItems>
                         <valueListItems>
                             <value>leaseworks__Credit_Memo__c.leaseworks__Cancel_Credit_Memo</value>
@@ -21,7 +21,7 @@
                         <valueListItems>
                             <value>leaseworks__Credit_Memo__c.leaseworks__Convert_to_Payable</value>
                             <visibilityRule>
-                                <booleanFilter>(1 OR 2) AND 3 AND 4</booleanFilter>
+                                <booleanFilter>(1 or 2) AND 3 AND 4</booleanFilter>
                                 <criteria>
                                     <leftValue>{!Record.leaseworks__Status__c}</leftValue>
                                     <operator>EQUAL</operator>
@@ -33,14 +33,14 @@
                                     <rightValue>Approved</rightValue>
                                 </criteria>
                                 <criteria>
-                                    <leftValue>{!Record.leaseworks__Billing_Currency__c}</leftValue>
-                                    <operator>EQUAL</operator>
-                                    <rightValue>USD</rightValue>
-                                </criteria>
-                                <criteria>
                                     <leftValue>{!Record.leaseworks__Balance_Available_New__c}</leftValue>
                                     <operator>GT</operator>
                                     <rightValue>0</rightValue>
+                                </criteria>
+                                <criteria>
+                                    <leftValue>{!Record.leaseworks__Billing_Currency__c}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>USD</rightValue>
                                 </criteria>
                             </visibilityRule>
                         </valueListItems>
@@ -150,6 +150,16 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Linked_Payable__c</fieldItem>
+                <identifier>Recordleaseworks_Linked_Payable_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.CMS_Reference_Number_Local__c</fieldItem>
                 <identifier>RecordCMS_Reference_Number_Local__cField</identifier>
             </fieldInstance>
@@ -162,16 +172,6 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.Days_Past_Due__c</fieldItem>
                 <identifier>RecordDays_Past_Due__cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Linked_Payable__c</fieldItem>
-                <identifier>Recordleaseworks_Linked_Payable_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -244,6 +244,16 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Related_Payable_Amount__c</fieldItem>
+                <identifier>Recordleaseworks_Related_Payable_Amount_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.leaseworks__Converted_to_Payable__c</fieldItem>
                 <identifier>Recordleaseworks_Converted_to_Payable_cField</identifier>
             </fieldInstance>
@@ -273,16 +283,6 @@
                         <rightValue>USD</rightValue>
                     </criteria>
                 </visibilityRule>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Related_Payable_Amount__c</fieldItem>
-                <identifier>Recordleaseworks_Related_Payable_Amount_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -653,6 +653,10 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
+                <componentInstanceProperties>
+                    <name>label</name>
+                    <value>Tabs</value>
+                </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>tabs</name>
                     <value>maintabs</value>

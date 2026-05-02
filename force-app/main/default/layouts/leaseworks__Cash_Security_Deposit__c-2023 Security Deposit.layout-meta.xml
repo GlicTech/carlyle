@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <excludeButtons>OpenSlackRecordChannel</excludeButtons>
     <excludeButtons>Submit</excludeButtons>
     <layoutSections>
         <customLabel>false</customLabel>
@@ -250,16 +251,6 @@
     </platformActionList>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>leaseworks__SD_Slip_Amount__c</fields>
-        <fields>leaseworks__Invoice_Date__c</fields>
-        <fields>leaseworks__Due_Date__c</fields>
-        <fields>leaseworks__Status__c</fields>
-        <fields>leaseworks__Invoiced_Amount__c</fields>
-        <fields>leaseworks__Link_To_Invoice__c</fields>
-        <relatedList>leaseworks__Security_Deposit_Slip__c.leaseworks__Security_Deposit__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
         <fields>leaseworks__Invoice_Date__c</fields>
         <fields>leaseworks__Total_Amount_Due__c</fields>
         <fields>leaseworks__Amount_Paid_Remaining__c</fields>
@@ -297,6 +288,16 @@
         <fields>leaseworks__Approval_Status__c</fields>
         <fields>leaseworks__Description__c</fields>
         <relatedList>leaseworks__Payment_Receipt__c.leaseworks__Security_Deposit__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>leaseworks__SD_Slip_Amount__c</fields>
+        <fields>leaseworks__Invoice_Date__c</fields>
+        <fields>leaseworks__Due_Date__c</fields>
+        <fields>leaseworks__Status__c</fields>
+        <fields>leaseworks__Invoiced_Amount__c</fields>
+        <fields>leaseworks__Link_To_Invoice__c</fields>
+        <relatedList>leaseworks__Security_Deposit_Slip__c.leaseworks__Security_Deposit__c</relatedList>
     </relatedLists>
     <relatedLists>
         <relatedList>RelatedEntityHistoryList</relatedList>

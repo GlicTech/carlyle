@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>61.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <environments>Default</environments>
     <formulas>
         <name>f_Accounting</name>
@@ -121,6 +122,14 @@
                     <name>Display_Marketing</name>
                     <fieldText>&lt;p&gt;&lt;strong style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;u&gt;Regional Marketing Manager&lt;/u&gt;&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;{!f_Marketing_Manager}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;color: rgb(25, 72, 228);&quot;&gt;&lt;strong&gt;{!recordId.leaseworks__Operator_New__r.Marketing__r.FirstName} {!recordId.leaseworks__Operator_New__r.Marketing__r.LastName}&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -137,6 +146,14 @@
                     <name>Display_Debt</name>
                     <fieldText>&lt;p&gt;&lt;strong style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;u&gt;Debt&lt;/u&gt;&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;{!f_Debt}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;color: rgb(25, 72, 228);&quot;&gt;&lt;strong&gt;{!recordId.leaseworks__Operator_New__r.Debt__r.FirstName} {!recordId.leaseworks__Operator_New__r.Debt__r.LastName}&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -148,6 +165,14 @@
             </fields>
             <isRequired>false</isRequired>
             <regionContainerType>SectionWithoutHeader</regionContainerType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>Screen_Display_Related_Team_Members_Section2</name>
@@ -159,6 +184,14 @@
                     <name>Display_Trading</name>
                     <fieldText>&lt;p&gt;&lt;strong style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;u&gt;Trading&lt;/u&gt;&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;{!f_Trading}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;color: rgb(25, 72, 228);&quot;&gt;&lt;strong&gt;{!recordId.leaseworks__Operator_New__r.Trading__r.FirstName} {!recordId.leaseworks__Operator_New__r.Trading__r.LastName}&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -175,6 +208,14 @@
                     <name>Display_Technical</name>
                     <fieldText>&lt;p&gt;&lt;strong style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;u&gt;Technical&lt;/u&gt;&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;{!f_Technical}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;color: rgb(25, 72, 228);&quot;&gt;&lt;strong&gt;﻿{!recordId.leaseworks__Operator_New__r.Technical__r.FirstName} {!recordId.leaseworks__Operator_New__r.Technical__r.LastName}&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -186,6 +227,14 @@
             </fields>
             <isRequired>false</isRequired>
             <regionContainerType>SectionWithoutHeader</regionContainerType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>Screen_Display_Related_Team_Members_Section3</name>
@@ -197,6 +246,14 @@
                     <name>Display_Contracts</name>
                     <fieldText>&lt;p&gt;&lt;strong style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;u&gt;Contracts&lt;/u&gt;&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;{!f_Contracts}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;color: rgb(25, 72, 228);&quot;&gt;&lt;strong&gt;{!recordId.leaseworks__Operator_New__r.Contracts__r.FirstName} {!recordId.leaseworks__Operator_New__r.Contracts__r.LastName}  &lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -213,6 +270,14 @@
                     <name>Display_PowerPlant</name>
                     <fieldText>&lt;p&gt;&lt;strong style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;u&gt;PowerPlant&lt;/u&gt;&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;{!f_PowerPlant}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;color: rgb(25, 72, 228);&quot;&gt;&lt;strong&gt;{!recordId.leaseworks__Operator_New__r.Powerplant__r.FirstName} {!recordId.leaseworks__Operator_New__r.Powerplant__r.LastName}&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -224,6 +289,14 @@
             </fields>
             <isRequired>false</isRequired>
             <regionContainerType>SectionWithoutHeader</regionContainerType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>Screen_Display_Related_Team_Members_Section4</name>
@@ -235,6 +308,14 @@
                     <name>Display_Tax</name>
                     <fieldText>&lt;p&gt;&lt;strong style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;u&gt;Tax&lt;/u&gt;&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;{!f_Tax}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;color: rgb(25, 72, 228);&quot;&gt;&lt;strong&gt;{!recordId.leaseworks__Operator_New__r.Tax__r.FirstName} {!recordId.leaseworks__Operator_New__r.Tax__r.LastName}&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -251,6 +332,14 @@
                     <name>Display_Legal</name>
                     <fieldText>&lt;p&gt;&lt;strong style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;u&gt;Legal&lt;/u&gt;&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;{!f_Legal}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;color: rgb(25, 72, 228);&quot;&gt;&lt;strong&gt;{!recordId.leaseworks__Operator_New__r.Legal__r.FirstName} {!recordId.leaseworks__Operator_New__r.Legal__r.LastName}&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -262,6 +351,14 @@
             </fields>
             <isRequired>false</isRequired>
             <regionContainerType>SectionWithoutHeader</regionContainerType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>Screen_Display_Related_Team_Members_Section5</name>
@@ -273,6 +370,14 @@
                     <name>Display_Credit</name>
                     <fieldText>&lt;p&gt;&lt;strong style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;u&gt;Credit&lt;/u&gt;&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;{!f_Credit}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;color: rgb(25, 72, 228);&quot;&gt;&lt;strong&gt;{!recordId.leaseworks__Operator_New__r.Credit__r.FirstName} {!recordId.leaseworks__Operator_New__r.Credit__r.LastName}&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -289,6 +394,14 @@
                     <name>Display_PortfolioManagement</name>
                     <fieldText>&lt;p&gt;&lt;strong style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;u&gt;Portfolio Management&lt;/u&gt;&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;{!f_PortfolioManagement}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;color: rgb(25, 72, 228);&quot;&gt;&lt;strong&gt;{!recordId.leaseworks__Operator_New__r.Portfolio_Fund_Management__r.FirstName} {!recordId.leaseworks__Operator_New__r.Portfolio_Fund_Management__r.LastName}&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -300,6 +413,14 @@
             </fields>
             <isRequired>false</isRequired>
             <regionContainerType>SectionWithoutHeader</regionContainerType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>Screen_Display_Related_Team_Members_Section6</name>
@@ -311,6 +432,14 @@
                     <name>Display_Accounting</name>
                     <fieldText>&lt;p&gt;&lt;strong style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;u&gt;Accounting&lt;/u&gt;&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;{!f_Accounting}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;color: rgb(25, 72, 228);&quot;&gt;&lt;strong&gt;{!recordId.leaseworks__Operator_New__r.Accounting__r.FirstName} {!recordId.leaseworks__Operator_New__r.Accounting__r.LastName}&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -327,6 +456,14 @@
                     <name>Display_Compliance</name>
                     <fieldText>&lt;p&gt;&lt;strong style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;u&gt;Compliance&lt;/u&gt;&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;{!f_Compliance}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;color: rgb(25, 72, 228);&quot;&gt;&lt;strong&gt;{!recordId.leaseworks__Operator_New__r.Compliance__r.FirstName} {!recordId.leaseworks__Operator_New__r.Compliance__r.LastName}&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -338,6 +475,14 @@
             </fields>
             <isRequired>false</isRequired>
             <regionContainerType>SectionWithoutHeader</regionContainerType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>Screen_Display_Related_Team_Members_Section7</name>
@@ -349,6 +494,14 @@
                     <name>Display_Pricing</name>
                     <fieldText>&lt;p&gt;&lt;strong style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;u&gt;Pricing&lt;/u&gt;&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;{!f_Pricing}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;color: rgb(25, 72, 228);&quot;&gt;&lt;strong&gt;{!recordId.leaseworks__Operator_New__r.Pricing__r.FirstName} {!recordId.leaseworks__Operator_New__r.Pricing__r.LastName}&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -365,6 +518,14 @@
                     <name>Display_Receivables</name>
                     <fieldText>&lt;p&gt;&lt;strong style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;u&gt;Lease Management&lt;/u&gt;&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;{!f_Receivables}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;color: rgb(25, 72, 228);&quot;&gt;&lt;strong&gt;{!recordId.leaseworks__Operator_New__r.Receivables__r.FirstName} {!recordId.leaseworks__Operator_New__r.Receivables__r.LastName}&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -376,6 +537,14 @@
             </fields>
             <isRequired>false</isRequired>
             <regionContainerType>SectionWithoutHeader</regionContainerType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <fields>
             <name>Screen_Display_Related_Team_Members_Section8</name>
@@ -387,6 +556,14 @@
                     <name>Display_Investment_Strategy</name>
                     <fieldText>&lt;p&gt;&lt;strong style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;u&gt;Investment / Strategy&lt;/u&gt;&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;{!f_Investment_Strategy}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;color: rgb(25, 72, 228);&quot;&gt;&lt;strong&gt;{!recordId.leaseworks__Operator_New__r.Investment_Strategy__r.FirstName} {!recordId.leaseworks__Operator_New__r.Investment_Strategy__r.LastName}&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;</fieldText>
                     <fieldType>DisplayText</fieldType>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -409,6 +586,14 @@
             </fields>
             <isRequired>false</isRequired>
             <regionContainerType>SectionWithoutHeader</regionContainerType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <showFooter>false</showFooter>
         <showHeader>false</showHeader>

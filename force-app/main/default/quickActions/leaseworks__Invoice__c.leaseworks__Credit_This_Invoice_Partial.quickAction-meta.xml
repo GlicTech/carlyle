@@ -10,16 +10,6 @@
 + (leaseworks__Invoice__c.leaseworks__Amount__c + blankvalue(leaseworks__Invoice__c.leaseworks__Total_Adjustment_Amount__c, 0) ) * blankvalue(leaseworks__Invoice__c.leaseworks__Tax_Rate__c, 0) * IF(leaseworks__Invoice__c.leaseworks__Tax_Applicable__c, 1, 0) - leaseworks__Invoice__c.leaseworks__Amount_Paid__c - leaseworks__Invoice__c.leaseworks__Availed_Credit_Amount_Cm__c</formula>
     </fieldOverrides>
     <fieldOverrides>
-        <field>leaseworks__Balance_Due_On_Invoice__c</field>
-        <formula>leaseworks__Invoice__c.leaseworks__Amount__c + blankvalue(leaseworks__Invoice__c.leaseworks__Total_Adjustment_Amount__c, 0) 
-+ (leaseworks__Invoice__c.leaseworks__Amount__c + blankvalue(leaseworks__Invoice__c.leaseworks__Total_Adjustment_Amount__c, 0) ) * blankvalue(leaseworks__Invoice__c.leaseworks__Tax_Rate__c, 0) * IF(leaseworks__Invoice__c.leaseworks__Tax_Applicable__c, 1, 0) - leaseworks__Invoice__c.leaseworks__Amount_Paid__c - leaseworks__Invoice__c.leaseworks__Availed_Credit_Amount_Cm__c</formula>
-    </fieldOverrides>
-    <fieldOverrides>
-        <field>leaseworks__Invoice_Balance__c</field>
-        <formula>&apos;$&apos; +TEXT(leaseworks__Invoice__c.leaseworks__Amount__c + blankvalue(leaseworks__Invoice__c.leaseworks__Total_Adjustment_Amount__c, 0)
-+ (leaseworks__Invoice__c.leaseworks__Amount__c + blankvalue(leaseworks__Invoice__c.leaseworks__Total_Adjustment_Amount__c, 0)) * blankvalue(leaseworks__Invoice__c.leaseworks__Tax_Rate__c, 0) * IF(leaseworks__Invoice__c.leaseworks__Tax_Applicable__c, 1, 0) - leaseworks__Invoice__c.leaseworks__Amount_Paid__c - leaseworks__Invoice__c.leaseworks__Availed_Credit_Amount_Cm__c)</formula>
-    </fieldOverrides>
-    <fieldOverrides>
         <field>leaseworks__Payment_Date__c</field>
         <formula>today()</formula>
     </fieldOverrides>

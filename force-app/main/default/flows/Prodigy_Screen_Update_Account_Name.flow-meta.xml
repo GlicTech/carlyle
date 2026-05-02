@@ -55,6 +55,13 @@
         <offset>0</offset>
     </actionCalls>
     <apiVersion>64.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <customProperties>
+        <name>ScreenProgressIndicator</name>
+        <value>
+            <stringValue>{&quot;location&quot;:&quot;top&quot;,&quot;type&quot;:&quot;simple&quot;}</stringValue>
+        </value>
+    </customProperties>
     <description>Flow is surfaced as an action on Account page, allowing privilaged users to update the Account Name field even though the record is locked.</description>
     <environments>Default</environments>
     <interviewLabel>Prodigy - Screen - Update Account Name {!$Flow.CurrentDateTime}</interviewLabel>
@@ -173,6 +180,14 @@
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>false</isRequired>
             <objectFieldReference>Get_Tiggering_Account.Name</objectFieldReference>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <nextOrFinishButtonLabel>Update Account Name</nextOrFinishButtonLabel>
         <showFooter>true</showFooter>

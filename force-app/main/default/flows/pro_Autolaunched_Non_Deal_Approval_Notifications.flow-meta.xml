@@ -54,21 +54,31 @@
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
             <name>recipientAddresses</name>
-            <value/>
+            <value>
+                <collectionElements>
+                    <elementReference>varMainRecipientEmails</elementReference>
+                </collectionElements>
+            </value>
         </inputParameters>
         <inputParameters>
             <name>ccAddresses</name>
-            <value/>
+            <value>
+                <collectionElements>
+                    <elementReference>varCcRecipientEmails</elementReference>
+                </collectionElements>
+            </value>
         </inputParameters>
         <inputParameters>
             <name>senderType</name>
             <value>
+                <inputConfiguratorMode>Custom</inputConfiguratorMode>
                 <stringValue>OrgWideEmailAddress</stringValue>
             </value>
         </inputParameters>
         <inputParameters>
             <name>senderAddress</name>
             <value>
+                <inputConfiguratorMode>Custom</inputConfiguratorMode>
                 <stringValue>leaseworks@carlyle.aero</stringValue>
             </value>
         </inputParameters>
@@ -87,6 +97,7 @@
         <inputParameters>
             <name>emailBody</name>
             <value>
+                <inputConfiguratorMode>Custom</inputConfiguratorMode>
                 <stringValue>&lt;p&gt;{!f_EmailBodyBasedOnStatus}&lt;/p&gt;</stringValue>
             </value>
         </inputParameters>
@@ -101,6 +112,7 @@
         <versionString>2.0.1</versionString>
     </actionCalls>
     <apiVersion>65.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <assignments>
         <name>Add_Jonathan_Hayden_Email_To_CC_List</name>
         <label>Add Jonathan Hayden Email To CC List</label>
@@ -543,17 +555,17 @@
     <textTemplates>
         <name>tt_ApprovalGrantedEmailBody</name>
         <isViewedAsPlainText>false</isViewedAsPlainText>
-        <text>&lt;p&gt;Dear User,&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;A Non Deal Approval record has been granted approval.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Description: &lt;/strong&gt;{!varTriggeringDeal.leaseworks__Description__c}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Summary Of Approval Request: &lt;/strong&gt;{!varTriggeringDeal.pro_Summary_Of_Approval_Request__c}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Financial Comments: &lt;/strong&gt;{!varTriggeringDeal.pro_Financial_Comments__c}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;You can view the full details and take action by clicking the link: &lt;a href=&quot;https://leaseworks-carlyle.lightning.force.com/{!varTriggeringDeal.Id}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;View Non Deal Approval in Salesforce&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Kind regards,&lt;/p&gt;&lt;p&gt;Salesforce System Notification&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;em&gt;This message was generated automatically. For assistance, please contact your Salesforce administrator.&lt;/em&gt;&lt;/p&gt;</text>
+        <text>&lt;p&gt;Dear Deal Team,&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;A Non Deal Approval record has been granted approval.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Description: &lt;/strong&gt;{!varTriggeringDeal.leaseworks__Description__c}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Summary Of Approval Request: &lt;/strong&gt;{!varTriggeringDeal.pro_Summary_Of_Approval_Request__c}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Financial Comments: &lt;/strong&gt;{!varTriggeringDeal.pro_Financial_Comments__c}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;You can view the full details and take action by clicking the link: &lt;a href=&quot;https://leaseworks-carlyle.lightning.force.com/{!varTriggeringDeal.Id}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;View Non Deal Approval in Salesforce&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Kind regards,&lt;/p&gt;&lt;p&gt;Salesforce System Notification&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;em&gt;This message was generated automatically. For assistance, please contact your Salesforce administrator.&lt;/em&gt;&lt;/p&gt;</text>
     </textTemplates>
     <textTemplates>
         <name>tt_ApprovalRejectedEmailBody</name>
         <isViewedAsPlainText>false</isViewedAsPlainText>
-        <text>&lt;p&gt;Dear User,&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;A Non Deal Approval record has been rejected for approval.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Description: &lt;/strong&gt;{!varTriggeringDeal.leaseworks__Description__c}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Summary Of Approval Request: &lt;/strong&gt;{!varTriggeringDeal.pro_Summary_Of_Approval_Request__c}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Financial Comments: &lt;/strong&gt;{!varTriggeringDeal.pro_Financial_Comments__c}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;You can view the full details and take action by clicking the link: &lt;a href=&quot;https://leaseworks-carlyle.lightning.force.com/{!varTriggeringDeal.Id}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;View Non Deal Approval in Salesforce&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Kind regards,&lt;/p&gt;&lt;p&gt;Salesforce System Notification&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;em&gt;This message was generated automatically. For assistance, please contact your Salesforce administrator.&lt;/em&gt;&lt;/p&gt;</text>
+        <text>&lt;p&gt;Dear Deal Team,&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;A Non Deal Approval record has been rejected for approval.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Description: &lt;/strong&gt;{!varTriggeringDeal.leaseworks__Description__c}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Summary Of Approval Request: &lt;/strong&gt;{!varTriggeringDeal.pro_Summary_Of_Approval_Request__c}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Financial Comments: &lt;/strong&gt;{!varTriggeringDeal.pro_Financial_Comments__c}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;You can view the full details and take action by clicking the link: &lt;a href=&quot;https://leaseworks-carlyle.lightning.force.com/{!varTriggeringDeal.Id}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;View Non Deal Approval in Salesforce&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Kind regards,&lt;/p&gt;&lt;p&gt;Salesforce System Notification&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;em&gt;This message was generated automatically. For assistance, please contact your Salesforce administrator.&lt;/em&gt;&lt;/p&gt;</text>
     </textTemplates>
     <textTemplates>
         <name>tt_ApprovalSubmittedEmailBody</name>
         <isViewedAsPlainText>false</isViewedAsPlainText>
-        <text>&lt;p&gt;Dear User,&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;A Non Deal Approval record has been submitted for your approval.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Description: &lt;/strong&gt;{!varTriggeringDeal.leaseworks__Description__c}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Summary Of Approval Request: &lt;/strong&gt;{!varTriggeringDeal.pro_Summary_Of_Approval_Request__c}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Financial Comments: &lt;/strong&gt;{!varTriggeringDeal.pro_Financial_Comments__c}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;You can view the full details and take action by clicking the link: &lt;a href=&quot;https://leaseworks-carlyle.lightning.force.com/{!varTriggeringDeal.Id}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;View Non Deal Approval in Salesforce&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Kind regards,&lt;/p&gt;&lt;p&gt;Salesforce System Notification&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;em&gt;This message was generated automatically. For assistance, please contact your Salesforce administrator.&lt;/em&gt;&lt;/p&gt;</text>
+        <text>&lt;p&gt;Dear Approvers,&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;A Non Deal Approval record has been submitted for your approval.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Description: &lt;/strong&gt;{!varTriggeringDeal.leaseworks__Description__c}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Summary Of Approval Request: &lt;/strong&gt;{!varTriggeringDeal.pro_Summary_Of_Approval_Request__c}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Financial Comments: &lt;/strong&gt;{!varTriggeringDeal.pro_Financial_Comments__c}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;You can view the full details and take action by clicking the link: &lt;a href=&quot;https://leaseworks-carlyle.lightning.force.com/{!varTriggeringDeal.Id}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;View Non Deal Approval in Salesforce&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Kind regards,&lt;/p&gt;&lt;p&gt;Salesforce System Notification&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;em&gt;This message was generated automatically. For assistance, please contact your Salesforce administrator.&lt;/em&gt;&lt;/p&gt;</text>
     </textTemplates>
     <textTemplates>
         <name>tt_NotificationBody</name>

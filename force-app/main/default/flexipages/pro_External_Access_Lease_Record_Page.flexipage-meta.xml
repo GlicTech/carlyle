@@ -995,6 +995,40 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.leaseworks__Base_Rent__c</fieldItem>
                 <identifier>Recordleaseworks_Base_Rent_cField1</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Primary_Rent_Currency__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>USD</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Base_Rent_Number__c</fieldItem>
+                <identifier>Recordleaseworks_Base_Rent_Number_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Primary_Rent_Currency__c}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>USD</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Primary_Rent_Currency__c</fieldItem>
+                <identifier>Recordleaseworks_Primary_Rent_Currency_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
@@ -1021,6 +1055,40 @@
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Current_Rent_New__c</fieldItem>
+                <identifier>Recordleaseworks_Current_Rent_New_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Primary_Rent_Currency__c}</leftValue>
+                        <operator>EQUAL</operator>
+                        <rightValue>USD</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.leaseworks__Current_Rent_Number__c</fieldItem>
+                <identifier>Recordleaseworks_Current_Rent_Number_cField</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.leaseworks__Primary_Rent_Currency__c}</leftValue>
+                        <operator>NE</operator>
+                        <rightValue>USD</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </fieldInstance>
+        </itemInstances>
         <itemInstances>
             <fieldInstance>
                 <fieldInstanceProperties>
@@ -2605,6 +2673,10 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
+                <componentInstanceProperties>
+                    <name>label</name>
+                    <value>Tabs</value>
+                </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>tabs</name>
                     <value>Facet-595838bb-4b8a-473c-a866-a0cccf7e9f94</value>

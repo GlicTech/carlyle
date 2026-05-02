@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>65.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <description>Orchestrator for Deal Team record triggers. When a Contracts team member is created or their Assigned To changes, delegates assignee sync to the pro_Checklist_Assignee_Sync subflow. Runs synchronously (after save) because async paths require doesRequireRecordChangedToMeetCriteria=true which prevents firing on field changes within an already-matching record.</description>
     <label>Deal Team Orchestrator</label>
     <processMetadataValues>

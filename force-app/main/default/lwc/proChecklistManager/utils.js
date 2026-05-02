@@ -24,23 +24,9 @@ const COMPLETION_FIELD_CONFIG = {
         ],
         required: true
     },
-    'pro_Text_Input__c': {
-        label: 'Text Input',
-        type: 'text',
-        required: true
-    },
     'pro_Key_Date__c': {
         label: 'Key Date',
         type: 'date',
-        required: true
-    },
-    'pro_LoC_Requirement__c': {
-        label: 'LoC Requirement',
-        type: 'combobox',
-        options: [
-            { label: 'Transfer', value: 'Transfer' },
-            { label: 'New', value: 'New' }
-        ],
         required: true
     },
     'pro_Provided_By__c': {
@@ -164,12 +150,14 @@ function isItemDone(item) {
  * Returns { completed, total, percentage }.
  */
 function calculateCompletion(items) {
-    const countable = items.filter(i => i.pro_Status__c !== STATUS_MOVED);
+    const countable = items.filter(i =>
+        i.pro_Status__c !== STATUS_MOVED && i.pro_Necessary__c !== NECESSARY_NO
+    );
     const total = countable.length;
     if (total === 0) {
         return { completed: 0, total: 0, percentage: 0 };
     }
-    const completed = countable.filter((item) => isItemDone(item)).length;
+    const completed = countable.filter((item) => item.pro_Status__c === STATUS_COMPLETED).length;
     const percentage = Math.round((completed / total) * 100);
     return { completed, total, percentage };
 }

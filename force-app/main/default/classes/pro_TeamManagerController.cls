@@ -48,6 +48,16 @@ public with sharing class pro_TeamManagerController {
         'Accounting' => 'pro_Accounting__c'
     };
 
+    /**
+     * Order in which role names are shown in replacee queue (matches LWC role panel and search table).
+     * Used by orderRoleNamesForDisplay for getReplaceeBrowserData team rows.
+     */
+    private static final List<String> ROLE_DISPLAY_ORDER = new List<String>{
+        'Record Owner', 'Compliance', 'Contracts', 'Credit', 'Debt', 'Investment & Strategy', 'Legal',
+        'Marketing', 'MR Claims', 'Portfolio Management', 'Powerplant', 'Lease Management', 'Tax',
+        'Technical', 'Trading', 'Pricing', 'Accounting'
+    };
+
     // ========== Search & lookup (LWC screen 2) ==========
 
     /** Search active users by name or email; returns id/name maps for the user lookup. */
@@ -158,6 +168,29 @@ public with sharing class pro_TeamManagerController {
 
     // ========== Replace mode: teams for replacee user ==========
 
+    /**
+     * Include a deal team row if its Name (e.g. Trading) is in the selected team roles, or (legacy) when
+     * only "Record Owner" is selected, include all of the replacee’s deal teams so parent deals are discoverable.
+     * When the role set is empty and Record Owner is not in play, return false (avoids the previous
+     * “roles.isEmpty() ⇒ include every team row” for broad “all role names” cases).
+     */
+    private static Boolean isDealTeamIncludedForReplaceeRoles(
+        leaseworks__Deal_Team__c dt,
+        Set<String> roles,
+        Boolean includeRecordOwner
+    ) {
+        if (dt == null) {
+            return false;
+        }
+        if (roles != null && !roles.isEmpty()) {
+            return roles.contains(dt.Name);
+        }
+        if (includeRecordOwner) {
+            return true;
+        }
+        return false;
+    }
+
     /** Returns airlines, countries, deal teams, and deals where the replacee user is assigned (filtered by selected roles). */
     @AuraEnabled
     public static pro_ReplaceeTeamsWrapper getReplaceeTeams(Id replaceeUserId, String roleTypesSemicolonSeparated) {
@@ -185,16 +218,19 @@ public with sharing class pro_TeamManagerController {
             w.countries = (List<leaseworks__Country__c>) Database.query(soql);
         }
 
-        // Deal teams where replacee is assigned; filter by role name and collect parent deal Ids.
+        // Deal teams where replacee is assigned; only include team rows whose Name is in the selected
+        // team roles (e.g. Trading, Legal). Do not treat "all deal teams" when roles is empty: that
+        // only happens if only Record Owner was in the request (roles after stripping RO is empty) —
+        // in that case deal-team rows are not the mechanism for that update (owner changes use MAs).
         List<leaseworks__Deal_Team__c> allDealTeams = [
-            SELECT Id, Name, leaseworks__Marketing_Activity__c
+            SELECT Id, Name, leaseworks__Assigned_To__c, leaseworks__Marketing_Activity__c
             FROM leaseworks__Deal_Team__c
             WHERE leaseworks__Assigned_To__c = :replaceeUserId
             LIMIT 5000
         ];
         Set<Id> dealIds = new Set<Id>();
         for (leaseworks__Deal_Team__c dt : allDealTeams) {
-            if (roles.isEmpty() || roles.contains(dt.Name)) {
+            if (isDealTeamIncludedForReplaceeRoles(dt, roles, includeRecordOwner)) {
                 if (dt.leaseworks__Marketing_Activity__c != null) {
                     dealIds.add(dt.leaseworks__Marketing_Activity__c);
                 }
@@ -202,7 +238,7 @@ public with sharing class pro_TeamManagerController {
         }
         List<leaseworks__Deal_Team__c> filteredTeams = new List<leaseworks__Deal_Team__c>();
         for (leaseworks__Deal_Team__c dt : allDealTeams) {
-            if (roles.isEmpty() || roles.contains(dt.Name)) {
+            if (isDealTeamIncludedForReplaceeRoles(dt, roles, includeRecordOwner)) {
                 filteredTeams.add(dt);
             }
         }
@@ -219,8 +255,217 @@ public with sharing class pro_TeamManagerController {
         return w;
     }
 
-    /** Builds SOQL OR clauses for role lookups (e.g. Trading__c = :userId) and optional OwnerId. */
-    private static List<String> buildRoleOrClauses(Set<String> roles, Map<String, String> roleToField, Boolean includeRecordOwner) {
+    private static final String BROWSER_COUNTRY_OTHER = '__BROWSER_COUNTRY_OTHER__';
+
+    private static pro_BrowserCountry browserGetOrCreateCountry(
+        Map<String, pro_BrowserCountry> countryByKey,
+        String key,
+        String label
+    ) {
+        if (countryByKey.containsKey(key)) {
+            return countryByKey.get(key);
+        }
+        pro_BrowserCountry cNode = new pro_BrowserCountry();
+        cNode.countryId = key;
+        cNode.countryName = String.isNotBlank(label) ? label : '—';
+        cNode.hasCountryTeam = false;
+        cNode.airlines = new List<pro_BrowserAirline>();
+        cNode.unassignedDeals = new List<pro_BrowserDeal>();
+        countryByKey.put(key, cNode);
+        return cNode;
+    }
+
+    private static void sortChildBrowserLists(pro_BrowserCountry c) {
+        if (c == null) {
+            return;
+        }
+        c.airlines.sort();
+        for (pro_BrowserAirline al : c.airlines) {
+            al.deals.sort();
+        }
+        c.unassignedDeals.sort();
+    }
+
+    /**
+     * Replace-mode: returns flat team rows (same as getReplaceeTeams) plus a nested country → airline → deal tree
+     * for the Team browser (uses Account.leaseworks__Country__c, Marketing Activity → Prospect/Operator, etc.).
+     */
+    @AuraEnabled
+    public static pro_ReplaceeBrowserResult getReplaceeBrowserData(Id replaceeUserId, String roleTypesSemicolonSeparated) {
+        pro_ReplaceeBrowserResult out = new pro_ReplaceeBrowserResult();
+        out.teams = new List<pro_BrowserTeamRow>();
+        out.tree = new List<pro_BrowserCountry>();
+
+        pro_ReplaceeTeamsWrapper w = getReplaceeTeams(replaceeUserId, roleTypesSemicolonSeparated);
+        Set<String> selected = parseSelectedRoleSet(roleTypesSemicolonSeparated);
+        Set<Id> countryIds = new Set<Id>();
+        for (leaseworks__Country__c cr : w.countries) {
+            countryIds.add(cr.Id);
+        }
+        Map<Id, leaseworks__Country__c> countryForRoles = new Map<Id, leaseworks__Country__c>();
+        if (!countryIds.isEmpty()) {
+            String cqs = soqlAllCountryFieldsForRoleCheck();
+            for (leaseworks__Country__c c2 : (List<leaseworks__Country__c>) Database.query(cqs)) {
+                countryForRoles.put(c2.Id, c2);
+            }
+        }
+        Set<Id> accIdSet = new Set<Id>();
+        for (Account ar : w.airlines) {
+            accIdSet.add(ar.Id);
+        }
+        String aqs = soqlAccountWithCountryAndRoles();
+        Map<Id, Account> fullAirlineById = new Map<Id, Account>();
+        if (!accIdSet.isEmpty()) {
+            for (Account acc : (List<Account>) Database.query(aqs)) {
+                fullAirlineById.put(acc.Id, acc);
+            }
+        }
+        Set<Id> dealIds = new Set<Id>();
+        for (leaseworks__Marketing_Activity__c dx : w.deals) {
+            dealIds.add(dx.Id);
+        }
+        Map<Id, List<Id>> dealIdToTeamIds = new Map<Id, List<Id>>();
+        for (leaseworks__Deal_Team__c dt0 : w.dealTeams) {
+            if (dt0.leaseworks__Marketing_Activity__c == null) {
+                continue;
+            }
+            if (!dealIdToTeamIds.containsKey(dt0.leaseworks__Marketing_Activity__c)) {
+                dealIdToTeamIds.put(dt0.leaseworks__Marketing_Activity__c, new List<Id>());
+            }
+            dealIdToTeamIds.get(dt0.leaseworks__Marketing_Activity__c).add(dt0.Id);
+        }
+        List<leaseworks__Marketing_Activity__c> dealEnriched = new List<leaseworks__Marketing_Activity__c>();
+        if (!dealIds.isEmpty()) {
+            dealEnriched = [
+                SELECT
+                    Id,
+                    Name,
+                    OwnerId,
+                    leaseworks__Counter_Party__c,
+                    leaseworks__Counter_Party__r.Id,
+                    leaseworks__Counter_Party__r.Name,
+                    leaseworks__Counter_Party__r.leaseworks__Country__c,
+                    leaseworks__Counter_Party__r.leaseworks__Country__r.Name
+                FROM leaseworks__Marketing_Activity__c
+                WHERE Id IN :dealIds
+            ];
+        }
+        Map<Id, leaseworks__Marketing_Activity__c> maByDealId = new Map<Id, leaseworks__Marketing_Activity__c>(dealEnriched);
+        for (Account a : w.airlines) {
+            out.teams.add(
+                browserTeam(
+                    a.Id,
+                    a.Name,
+                    'Airline',
+                    null,
+                    replaceeRoleValuesOnAccount(fullAirlineById.get(a.Id), replaceeUserId, selected)
+                )
+            );
+        }
+        for (leaseworks__Country__c c : w.countries) {
+            out.teams.add(
+                browserTeam(
+                    c.Id,
+                    c.Name,
+                    'Country',
+                    null,
+                    replaceeRoleValuesOnCountry(countryForRoles.get(c.Id), replaceeUserId, selected)
+                )
+            );
+        }
+        for (leaseworks__Marketing_Activity__c d : w.deals) {
+            List<Id> dtForDeal = dealIdToTeamIds.containsKey(d.Id)
+                ? dealIdToTeamIds.get(d.Id)
+                : new List<Id>();
+            List<String> dtStr = new List<String>();
+            for (Id x : dtForDeal) {
+                dtStr.add(String.valueOf(x));
+            }
+            leaseworks__Marketing_Activity__c maRow = maByDealId.get(d.Id);
+            out.teams.add(
+                browserTeam(
+                    d.Id,
+                    d.Name,
+                    'Deal',
+                    dtStr,
+                    replaceeRoleValuesOnDeal(maRow, d.Id, w.dealTeams, replaceeUserId, selected)
+                )
+            );
+        }
+        if (w.airlines.isEmpty() && w.countries.isEmpty() && w.deals.isEmpty()) {
+            return out;
+        }
+
+        Map<Id, Account> airlineById = new Map<Id, Account>(fullAirlineById);
+
+        Map<String, pro_BrowserCountry> countryByKey = new Map<String, pro_BrowserCountry>();
+        Map<Id, pro_BrowserAirline> airlineByAccount = new Map<Id, pro_BrowserAirline>();
+
+        for (leaseworks__Country__c c : w.countries) {
+            pro_BrowserCountry cNode = browserGetOrCreateCountry(countryByKey, String.valueOf(c.Id), c.Name);
+            cNode.hasCountryTeam = true;
+        }
+
+        for (Account airlineAcct : w.airlines) {
+            Account fromQuery = airlineById.get(airlineAcct.Id);
+            Id ctryId = fromQuery != null ? fromQuery.leaseworks__Country__c : null;
+            String cname = (fromQuery != null && fromQuery.getSObject('leaseworks__Country__r') != null)
+                ? (String) fromQuery.getSObject('leaseworks__Country__r').get('Name') : '—';
+            pro_BrowserCountry cNode;
+            if (ctryId != null) {
+                cNode = browserGetOrCreateCountry(countryByKey, String.valueOf(ctryId), cname);
+            } else {
+                cNode = browserGetOrCreateCountry(countryByKey, BROWSER_COUNTRY_OTHER, 'Not assigned to a country');
+            }
+            pro_BrowserAirline an = new pro_BrowserAirline();
+            an.id = airlineAcct.Id;
+            an.name = airlineAcct.Name;
+            an.deals = new List<pro_BrowserDeal>();
+            cNode.airlines.add(an);
+            airlineByAccount.put(airlineAcct.Id, an);
+        }
+        for (leaseworks__Marketing_Activity__c d0 : dealEnriched) {
+            pro_BrowserDeal bDeal = toBrowserDeal(d0, dealIdToTeamIds);
+            if (bDeal == null) {
+                continue;
+            }
+            Id counterPartyId = (Id) d0.get('leaseworks__Counter_Party__c');
+            SObject cparty = d0.getSObject('leaseworks__Counter_Party__r');
+            pro_BrowserAirline targetAirline = counterPartyId != null ? airlineByAccount.get(counterPartyId) : null;
+            if (targetAirline != null) {
+                targetAirline.deals.add(bDeal);
+            } else {
+                Id ctryId = cparty != null ? (Id) cparty.get('leaseworks__Country__c') : null;
+                String cname = cparty != null && cparty.getSObject('leaseworks__Country__r') != null
+                    ? (String) cparty.getSObject('leaseworks__Country__r').get('Name') : null;
+                pro_BrowserCountry cNode;
+                if (ctryId != null) {
+                    cNode = browserGetOrCreateCountry(countryByKey, String.valueOf(ctryId), cname);
+                } else {
+                    cNode = browserGetOrCreateCountry(
+                        countryByKey,
+                        BROWSER_COUNTRY_OTHER,
+                        'Not assigned to a country'
+                    );
+                }
+                cNode.unassignedDeals.add(bDeal);
+            }
+        }
+        for (pro_BrowserCountry cNode2 : countryByKey.values()) {
+            sortChildBrowserLists(cNode2);
+        }
+        List<pro_BrowserCountry> sortList = new List<pro_BrowserCountry>(countryByKey.values());
+        sortList.sort();
+        out.tree = sortList;
+        return out;
+    }
+
+    /** Dynamic SOQL OR-clauses for Account/Country user role fields (and optional Owner) for replacee queries. */
+    private static List<String> buildRoleOrClauses(
+        Set<String> roles,
+        Map<String, String> roleToField,
+        Boolean includeRecordOwner
+    ) {
         List<String> clauses = new List<String>();
         if (includeRecordOwner) {
             clauses.add('OwnerId = :replaceeUserId');
@@ -232,6 +477,167 @@ public with sharing class pro_TeamManagerController {
             }
         }
         return clauses;
+    }
+
+    private static pro_BrowserTeamRow browserTeam(
+        Id recordId, String name, String kind, List<String> dealTeamIds, List<String> replaceeRoleValues
+    ) {
+        pro_BrowserTeamRow t = new pro_BrowserTeamRow();
+        t.id = String.valueOf(recordId);
+        t.name = name != null ? name : '';
+        t.type = kind;
+        t.dealTeamIds = dealTeamIds != null ? dealTeamIds : new List<String>();
+        t.replaceeRoleValues = replaceeRoleValues != null ? replaceeRoleValues : new List<String>();
+        return t;
+    }
+
+    private static Set<String> parseSelectedRoleSet(String roleTypesSemicolonSeparated) {
+        Set<String> out = new Set<String>();
+        if (String.isBlank(roleTypesSemicolonSeparated)) {
+            return out;
+        }
+        for (String r : roleTypesSemicolonSeparated.split(';')) {
+            String t0 = r != null ? r.trim() : '';
+            if (String.isNotBlank(t0)) {
+                out.add(t0);
+            }
+        }
+        return out;
+    }
+
+    /** Puts role names in ROLE_DISPLAY_ORDER, then any remainder alphabetically. */
+    private static List<String> orderRoleNamesForDisplay(Set<String> pick) {
+        List<String> out = new List<String>();
+        if (pick == null || pick.isEmpty()) {
+            return out;
+        }
+        Set<String> left = new Set<String>(pick);
+        for (String r : ROLE_DISPLAY_ORDER) {
+            if (left.contains(r)) {
+                out.add(r);
+                left.remove(r);
+            }
+        }
+        if (!left.isEmpty()) {
+            List<String> rest = new List<String>(left);
+            rest.sort();
+            for (String x : rest) {
+                out.add(x);
+            }
+        }
+        return out;
+    }
+
+    private static List<String> replaceeRoleValuesOnCountry(
+        leaseworks__Country__c c, Id replaceeUserId, Set<String> selected
+    ) {
+        if (c == null || replaceeUserId == null) {
+            return new List<String>();
+        }
+        Set<String> pick = new Set<String>();
+        if (selected.contains('Record Owner') && c.OwnerId == replaceeUserId) {
+            pick.add('Record Owner');
+        }
+        for (String roleName : COUNTRY_ROLE_FIELDS.keySet()) {
+            if (!selected.contains(roleName)) {
+                continue;
+            }
+            String f = COUNTRY_ROLE_FIELDS.get(roleName);
+            if (String.isNotBlank(f) && c.get(f) == replaceeUserId) {
+                pick.add(roleName);
+            }
+        }
+        return orderRoleNamesForDisplay(pick);
+    }
+
+    private static List<String> replaceeRoleValuesOnAccount(Account a, Id replaceeUserId, Set<String> selected) {
+        if (a == null || replaceeUserId == null) {
+            return new List<String>();
+        }
+        Set<String> pick = new Set<String>();
+        if (selected.contains('Record Owner') && a.OwnerId == replaceeUserId) {
+            pick.add('Record Owner');
+        }
+        for (String roleName : ACCOUNT_ROLE_FIELDS.keySet()) {
+            if (!selected.contains(roleName)) {
+                continue;
+            }
+            String f = ACCOUNT_ROLE_FIELDS.get(roleName);
+            if (String.isNotBlank(f) && a.get(f) == replaceeUserId) {
+                pick.add(roleName);
+            }
+        }
+        return orderRoleNamesForDisplay(pick);
+    }
+
+    private static List<String> replaceeRoleValuesOnDeal(
+        leaseworks__Marketing_Activity__c ma,
+        Id dealId,
+        List<leaseworks__Deal_Team__c> dealTeamsForWrapper,
+        Id replaceeUserId,
+        Set<String> selected
+    ) {
+        Set<String> pick = new Set<String>();
+        if (ma != null
+            && replaceeUserId != null
+            && selected.contains('Record Owner')
+            && ma.OwnerId == replaceeUserId) {
+            pick.add('Record Owner');
+        }
+        if (dealId != null && dealTeamsForWrapper != null) {
+            for (leaseworks__Deal_Team__c dt : dealTeamsForWrapper) {
+                if (dt.leaseworks__Marketing_Activity__c != dealId) {
+                    continue;
+                }
+                if (dt.leaseworks__Assigned_To__c != replaceeUserId) {
+                    continue;
+                }
+                String dName = dt.Name;
+                if (String.isBlank(dName) || !selected.contains(dName)) {
+                    continue;
+                }
+                pick.add(dName);
+            }
+        }
+        return orderRoleNamesForDisplay(pick);
+    }
+
+    private static String soqlAllCountryFieldsForRoleCheck() {
+        Set<String> fs = new Set<String>{ 'Id', 'Name', 'OwnerId' };
+        for (String fld : COUNTRY_ROLE_FIELDS.values()) {
+            if (String.isNotBlank(fld)) {
+                fs.add(fld);
+            }
+        }
+        return 'SELECT ' + String.join(new List<String>(fs), ', ') + ' FROM leaseworks__Country__c WHERE Id IN :countryIds';
+    }
+
+    private static String soqlAccountWithCountryAndRoles() {
+        Set<String> fs = new Set<String>{
+            'Id', 'Name', 'OwnerId', 'leaseworks__Country__c', 'leaseworks__Country__r.Name'
+        };
+        for (String fld : ACCOUNT_ROLE_FIELDS.values()) {
+            if (String.isNotBlank(fld)) {
+                fs.add(fld);
+            }
+        }
+        return 'SELECT ' + String.join(new List<String>(fs), ', ') + ' FROM Account WHERE Id IN :accIdSet';
+    }
+
+    private static pro_BrowserDeal toBrowserDeal(leaseworks__Marketing_Activity__c d, Map<Id, List<Id>> dealIdToTeamIds) {
+        if (d == null) {
+            return null;
+        }
+        pro_BrowserDeal bd = new pro_BrowserDeal();
+        bd.id = d.Id;
+        bd.name = d.Name != null ? d.Name : '';
+        bd.dealTeamIds = new List<String>();
+        if (dealIdToTeamIds.containsKey(d.Id)) {
+            for (Id x : dealIdToTeamIds.get(d.Id)) {
+                bd.dealTeamIds.add(String.valueOf(x));
+            }
+        }
+        return bd;
     }
 
     // ========== Execute update (TeamMemberUpdater) ==========
@@ -249,6 +655,10 @@ public with sharing class pro_TeamManagerController {
         Boolean changeRecordOwner
     ) {
         pro_UpdateResult result = new pro_UpdateResult();
+        result.updatedAccountIds = new List<Id>();
+        result.updatedCountryIds = new List<Id>();
+        result.updatedDealTeamIds = new List<Id>();
+        result.updatedDealIds = new List<Id>();
         try {
             if (String.isBlank(replacerId)) {
                 result.success = false;
@@ -393,6 +803,75 @@ public with sharing class pro_TeamManagerController {
         }
     }
 
+    /** Replace browser: flat team checkboxes + nested country → airline → deal tree. */
+    public class pro_ReplaceeBrowserResult {
+        @AuraEnabled public List<pro_BrowserTeamRow> teams;
+        @AuraEnabled public List<pro_BrowserCountry> tree;
+    }
+
+    /** One selectable row in the replace browser (mirrors LWC team item shape). */
+    public class pro_BrowserTeamRow {
+        @AuraEnabled public String id;
+        @AuraEnabled public String name;
+        @AuraEnabled public String type;
+        @AuraEnabled public List<String> dealTeamIds;
+        /**
+         * Role names where the find user (replacee) is assigned on this record, intersected with the
+         * user’s current role selection — same order as the role panel where possible.
+         */
+        @AuraEnabled public List<String> replaceeRoleValues;
+    }
+
+    /** Tree node: country; sorted by name (synthetic "other" last). */
+    public class pro_BrowserCountry implements Comparable {
+        @AuraEnabled public String countryId;
+        @AuraEnabled public String countryName;
+        @AuraEnabled public Boolean hasCountryTeam;
+        @AuraEnabled public List<pro_BrowserAirline> airlines;
+        @AuraEnabled public List<pro_BrowserDeal> unassignedDeals;
+        public Integer compareTo(Object other) {
+            pro_BrowserCountry o = (pro_BrowserCountry) other;
+            if (BROWSER_COUNTRY_OTHER.equals(this.countryId) && BROWSER_COUNTRY_OTHER.equals(o.countryId)) {
+                return 0;
+            }
+            if (BROWSER_COUNTRY_OTHER.equals(this.countryId)) {
+                return 1;
+            }
+            if (BROWSER_COUNTRY_OTHER.equals(o.countryId)) {
+                return -1;
+            }
+            String n1 = this.countryName != null ? this.countryName : '';
+            String n2 = o.countryName != null ? o.countryName : '';
+            return n1.compareTo(n2);
+        }
+    }
+
+    /** Tree node: airline under a country. */
+    public class pro_BrowserAirline implements Comparable {
+        @AuraEnabled public Id id;
+        @AuraEnabled public String name;
+        @AuraEnabled public List<pro_BrowserDeal> deals;
+        public Integer compareTo(Object other) {
+            pro_BrowserAirline o = (pro_BrowserAirline) other;
+            String n1 = this.name != null ? this.name : '';
+            String n2 = o != null && o.name != null ? o.name : '';
+            return n1.compareTo(n2);
+        }
+    }
+
+    /** Tree node: deal under an airline or unassigned under country. */
+    public class pro_BrowserDeal implements Comparable {
+        @AuraEnabled public Id id;
+        @AuraEnabled public String name;
+        @AuraEnabled public List<String> dealTeamIds;
+        public Integer compareTo(Object other) {
+            pro_BrowserDeal o = (pro_BrowserDeal) other;
+            String n1 = this.name != null ? this.name : '';
+            String n2 = o != null && o.name != null ? o.name : '';
+            return n1.compareTo(n2);
+        }
+    }
+
     // ========== Wrapper classes (Aura serialization) ==========
 
     /** Result of executeUpdate: success flag, message, and lists of updated record Ids. */
@@ -426,13 +905,6 @@ public with sharing class pro_TeamManagerController {
     }
 
     // ========== Role assignments (for selected row panel) ==========
-
-    /** Order in which roles are shown in the LWC role panel. */
-    private static final List<String> ROLE_DISPLAY_ORDER = new List<String>{
-        'Record Owner', 'Trading', 'Technical', 'Tax', 'Lease Management', 'Pricing', 'Powerplant',
-        'Portfolio Management', 'Marketing', 'MR Claims', 'Legal', 'Investment & Strategy', 'Debt',
-        'Credit', 'Contracts', 'Compliance', 'Accounting'
-    };
 
     /**
      * Returns current role assignments for a single record (Country, Airline/Account, or Deal)

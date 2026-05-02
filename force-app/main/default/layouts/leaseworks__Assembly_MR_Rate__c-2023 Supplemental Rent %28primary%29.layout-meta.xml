@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
     <customButtons>leaseworks__Set_MR_Rate_From_Catalog</customButtons>
-    <excludeButtons>OpenSlackRecordChannel</excludeButtons>
     <excludeButtons>Submit</excludeButtons>
     <layoutSections>
         <customLabel>false</customLabel>
@@ -458,10 +457,6 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <relatedList>leaseworks__Assembly_MR_Rate__c.leaseworks__Parent_Fund__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
         <relatedList>leaseworks__Credit_Memo_Issuance__c.leaseworks__Supplemental_Rent__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -534,12 +529,15 @@
         <fields>leaseworks__Esc_Per__c</fields>
         <fields>leaseworks__Esc_Factor_F__c</fields>
         <fields>leaseworks__Override__c</fields>
-        <fields>leaseworks__Comments__c</fields>
         <fields>leaseworks__Utilization__c</fields>
         <fields>leaseworks__Rate_Details_Overview__c</fields>
         <relatedList>leaseworks__MR_Rate__c.leaseworks__Assembly_MR_Info__c</relatedList>
         <sortField>leaseworks__MR_Rate_Start_Date__c</sortField>
         <sortOrder>Asc</sortOrder>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>leaseworks__Assembly_MR_Rate__c.leaseworks__Parent_Fund__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>

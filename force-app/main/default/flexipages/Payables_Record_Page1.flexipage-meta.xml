@@ -132,7 +132,7 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
-                    <value>readonly</value>
+                    <value>none</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.leaseworks__Payable_Type__c</fieldItem>
                 <identifier>RecordPayable_Type__cField</identifier>
@@ -677,23 +677,6 @@
                 </visibilityRule>
             </fieldInstance>
         </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.leaseworks__Related_Invoice__c</fieldItem>
-                <identifier>Recordleaseworks_Related_Invoice_cField</identifier>
-                <visibilityRule>
-                    <criteria>
-                        <leftValue>{!Record.leaseworks__Payable_Type__c}</leftValue>
-                        <operator>EQUAL</operator>
-                        <rightValue>HL/SL-Rent Payable</rightValue>
-                    </criteria>
-                </visibilityRule>
-            </fieldInstance>
-        </itemInstances>
         <name>Facet-b8cfd4ce-dd67-4487-81ea-489acb3bff58</name>
         <type>Facet</type>
     </flexiPageRegions>
@@ -1126,7 +1109,7 @@
         <name>rightcol</name>
         <type>Region</type>
     </flexiPageRegions>
-    <masterLabel>Payables Record Page (superseded)</masterLabel>
+    <masterLabel>Payables Record Page (superseded)(for ref only)</masterLabel>
     <sobjectType>leaseworks__Payable__c</sobjectType>
     <template>
         <name>flexipage:recordHomeTwoColEqualHeaderTemplateDesktop</name>
